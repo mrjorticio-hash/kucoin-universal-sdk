@@ -44,6 +44,9 @@ public class PythonSdkGenerator extends AbstractPythonCodegen implements NameSer
     // map of codegen models
     private HashMap<String, CodegenModel> codegenModelMap = new HashMap<>();
 
+    // model export(init.py)
+    private Set<String> exports = new LinkedHashSet<>();
+
     private String service;
     private String subService;
 
@@ -446,6 +449,15 @@ public class PythonSdkGenerator extends AbstractPythonCodegen implements NameSer
 
                     case API:
                     case TEST: {
+
+                        allModels.forEach(m-> {
+                            String importName =  (String)m.get("importPath");
+                            String fileName = m.getModel().getClassFilename();
+                            // from .model_get_part_order_book_req import GetPartOrderBookReqBuilder
+                            exports.add(String.format("from .%s import %s", fileName, importName));
+                        });
+
+
                         if (op.hasParams) {
                             modelImport.addAll(generateApiImport(meta, true));
                         }
