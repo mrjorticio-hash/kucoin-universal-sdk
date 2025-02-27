@@ -449,7 +449,6 @@ public class PythonSdkGenerator extends AbstractPythonCodegen implements NameSer
 
                     case API:
                     case TEST: {
-
                         allModels.forEach(m-> {
                             String importName =  (String)m.get("importPath");
                             String fileName = m.getModel().getClassFilename();
@@ -471,6 +470,12 @@ public class PythonSdkGenerator extends AbstractPythonCodegen implements NameSer
                     }
                     case WS:
                     case WS_TEST: {
+                        allModels.forEach(m-> {
+                            String importName =  (String)m.get("importPath");
+                            String fileName = m.getModel().getClassFilename();
+                            // from .model_get_part_order_book_req import GetPartOrderBookReqBuilder
+                            exports.add(String.format("from .%s import %s", fileName, importName));
+                        });
                         modelImport.addAll(generateApiImport(meta, false));
                         break;
                     }
@@ -729,6 +734,14 @@ public class PythonSdkGenerator extends AbstractPythonCodegen implements NameSer
         }
 
         return objs;
+    }
+
+
+    @Override
+    public Map<String, Object> postProcessSupportingFileData(Map<String, Object> objs) {
+        Map<String, Object> data = super.postProcessSupportingFileData(objs);
+        data.put("exports", exports);
+        return data;
     }
 
     private PythonType getPydanticType(CodegenProperty cp,
