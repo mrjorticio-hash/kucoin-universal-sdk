@@ -35,12 +35,12 @@ class DefaultWsService(WebSocketService):
                     return
                 if event_triggered:
                     logging.info("WebSocket client reconnected, resubscribe...")
+                    if self.client.welcome_received.is_set():
+                        old_topic_manager = self.topic_manager
+                        self.topic_manager = TopicManager()
+                        old_topic_manager.range(lambda _, value: self._resubscribe(value))
 
-                    old_topic_manager = self.topic_manager
-                    self.topic_manager = TopicManager()
-                    old_topic_manager.range(lambda _, value: self._resubscribe(value))
-
-                    self.client.reconnected_event.clear()
+                        self.client.reconnected_event.clear()
             logging.info("Recovery loop exiting...")
 
         self.recovery_thread = threading.Thread(target=recovery_loop, daemon=True)
@@ -51,10 +51,10 @@ class DefaultWsService(WebSocketService):
         sub_info_list = callback_manager.get_sub_info()
         for sub in sub_info_list:
             try:
-                sub_id = self.subscribe(sub['Prefix'], sub['Args'], sub['Callback'])
+                sub_id = self.subscribe(sub.prefix, sub.args, sub.callback)
                 self.notify_event(WebSocketEvent.EVENT_RE_SUBSCRIBE_OK, sub_id)
             except Exception as err:
-                self.notify_event(WebSocketEvent.EVENT_RE_SUBSCRIBE_ERROR, f"id: {sub.get('SubId', '')}, err: {err}")
+                self.notify_event(WebSocketEvent.EVENT_RE_SUBSCRIBE_ERROR, f"id: {sub_id}, err: {err}")
 
     def start(self):
         try:
@@ -124,7 +124,7 @@ class DefaultWsService(WebSocketService):
             created = callback_manager.add(sub_info)
             if not created:
                 logging.info(f"Already subscribed: {sub_id}")
-                raise Exception("Already subscribed")
+                return sub_id
 
             sub_event = WsMessage(
                 id=sub_id,
@@ -139,6 +139,7 @@ class DefaultWsService(WebSocketService):
                 event_triggered = data.event.wait(timeout=data.timeout)
                 if event_triggered:
                     logging.info(f"ACK received for message ID {data.msg.id}")
+                    data.event.clear()
                 else:
                     logging.warning(f"Timeout for message ID {data.msg.id}")
                     raise TimeoutError(f"Timeout for message ID {data.msg.id}")
