@@ -7,12 +7,12 @@ from typing import Dict
 
 from pydantic import BaseModel
 
-from kucoin_universal_sdk.api.client import DefaultClient
-from kucoin_universal_sdk.generate.spot.spot_public.model_trade_event import TradeEvent
-from kucoin_universal_sdk.model.client_option import ClientOptionBuilder
-from kucoin_universal_sdk.model.constants import GLOBAL_API_ENDPOINT, GLOBAL_FUTURES_API_ENDPOINT, \
+from kucoin_universal_sdk.api import DefaultClient
+from kucoin_universal_sdk.generate.spot.spot_public import TradeEvent
+from kucoin_universal_sdk.model import ClientOptionBuilder
+from kucoin_universal_sdk.model import GLOBAL_API_ENDPOINT, GLOBAL_FUTURES_API_ENDPOINT, \
     GLOBAL_BROKER_API_ENDPOINT
-from kucoin_universal_sdk.model.websocket_option import WebSocketClientOptionBuilder
+from kucoin_universal_sdk.model import WebSocketClientOptionBuilder
 
 
 class KLine(BaseModel):

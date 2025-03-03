@@ -16,23 +16,22 @@ import uuid
 from datetime import datetime
 from enum import Enum
 
-from kucoin_universal_sdk.api.client import DefaultClient
-from kucoin_universal_sdk.generate.account.account.api_account import AccountAPI
-from kucoin_universal_sdk.generate.account.account.model_get_spot_account_list_req import GetSpotAccountListReqBuilder, \
+from kucoin_universal_sdk.api import DefaultClient
+from kucoin_universal_sdk.generate.account.account import AccountAPI
+from kucoin_universal_sdk.generate.account.account import GetSpotAccountListReqBuilder, \
     GetSpotAccountListReq
-from kucoin_universal_sdk.generate.spot.market.api_market import MarketAPI
-from kucoin_universal_sdk.generate.spot.market.model_get24hr_stats_req import Get24hrStatsReqBuilder
-from kucoin_universal_sdk.generate.spot.market.model_get_klines_req import GetKlinesReqBuilder, GetKlinesReq
-from kucoin_universal_sdk.generate.spot.order.api_order import OrderAPI
-from kucoin_universal_sdk.generate.spot.order.model_add_order_sync_req import AddOrderSyncReqBuilder, AddOrderSyncReq
-from kucoin_universal_sdk.generate.spot.order.model_cancel_all_orders_by_symbol_req import \
-    CancelAllOrdersBySymbolReqBuilder
-from kucoin_universal_sdk.generate.spot.order.model_get_open_orders_req import GetOpenOrdersReqBuilder
-from kucoin_universal_sdk.generate.spot.order.model_set_dcp_req import SetDcpReqBuilder
-from kucoin_universal_sdk.model.client_option import ClientOptionBuilder
-from kucoin_universal_sdk.model.constants import GLOBAL_API_ENDPOINT, GLOBAL_FUTURES_API_ENDPOINT, \
+from kucoin_universal_sdk.generate.spot.market import Get24hrStatsReqBuilder
+from kucoin_universal_sdk.generate.spot.market import GetKlinesReqBuilder, GetKlinesReq
+from kucoin_universal_sdk.generate.spot.market import MarketAPI
+from kucoin_universal_sdk.generate.spot.order import AddOrderSyncReqBuilder, AddOrderSyncReq
+from kucoin_universal_sdk.generate.spot.order import CancelAllOrdersBySymbolReqBuilder
+from kucoin_universal_sdk.generate.spot.order import GetOpenOrdersReqBuilder
+from kucoin_universal_sdk.generate.spot.order import OrderAPI
+from kucoin_universal_sdk.generate.spot.order import SetDcpReqBuilder
+from kucoin_universal_sdk.model import ClientOptionBuilder
+from kucoin_universal_sdk.model import GLOBAL_API_ENDPOINT, GLOBAL_FUTURES_API_ENDPOINT, \
     GLOBAL_BROKER_API_ENDPOINT
-from kucoin_universal_sdk.model.transport_option import TransportOptionBuilder
+from kucoin_universal_sdk.model import TransportOptionBuilder
 
 
 class Action(Enum):

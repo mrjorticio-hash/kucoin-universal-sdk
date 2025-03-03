@@ -4,3 +4,4 @@ from .model_get_account_detail_orders import GetAccountDetailOrders
 from .model_get_account_detail_resp import GetAccountDetailResp
 from .model_get_accounts_data import GetAccountsData
 from .model_get_accounts_resp import GetAccountsResp
+from .api_vip_lending import VIPLendingAPI

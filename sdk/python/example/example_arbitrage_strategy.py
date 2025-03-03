@@ -16,40 +16,35 @@ import uuid
 from datetime import datetime, timedelta
 from enum import Enum
 
-from kucoin_universal_sdk.api.client import DefaultClient
-from kucoin_universal_sdk.generate.account.account.model_get_cross_margin_account_req import \
-    GetCrossMarginAccountReqBuilder, GetCrossMarginAccountReq
-from kucoin_universal_sdk.generate.account.account.model_get_futures_account_req import GetFuturesAccountReqBuilder
-from kucoin_universal_sdk.generate.account.account.model_get_spot_account_list_req import GetSpotAccountListReqBuilder, \
-    GetSpotAccountListReq
-from kucoin_universal_sdk.generate.futures.fundingfees.model_get_current_funding_rate_req import \
-    GetCurrentFundingRateReqBuilder
-from kucoin_universal_sdk.generate.futures.market.model_get_symbol_req import GetSymbolReqBuilder
-from kucoin_universal_sdk.generate.futures.order.model_add_order_req import AddOrderReqBuilder, AddOrderReq
-from kucoin_universal_sdk.generate.futures.order.model_cancel_order_by_id_req import CancelOrderByIdReqBuilder
-from kucoin_universal_sdk.generate.futures.order.model_get_order_by_order_id_req import \
+from kucoin_universal_sdk.api import DefaultClient
+from kucoin_universal_sdk.generate.account.account import GetCrossMarginAccountReqBuilder, GetCrossMarginAccountReq
+from kucoin_universal_sdk.generate.account.account import GetFuturesAccountReqBuilder
+from kucoin_universal_sdk.generate.account.account import GetSpotAccountListReqBuilder, GetSpotAccountListReq
+from kucoin_universal_sdk.generate.futures.fundingfees import GetCurrentFundingRateReqBuilder
+from kucoin_universal_sdk.generate.futures.market import GetSymbolReqBuilder
+from kucoin_universal_sdk.generate.futures.order import AddOrderReqBuilder, AddOrderReq
+from kucoin_universal_sdk.generate.futures.order import CancelOrderByIdReqBuilder
+from kucoin_universal_sdk.generate.futures.order import \
     GetOrderByOrderIdReqBuilder as FuturesGetOrderByOrderIdReqBuilder
-from kucoin_universal_sdk.generate.futures.order.model_get_order_by_order_id_resp import GetOrderByOrderIdResp
-from kucoin_universal_sdk.generate.margin.order.model_add_order_req import \
+from kucoin_universal_sdk.generate.futures.order import GetOrderByOrderIdResp
+from kucoin_universal_sdk.generate.margin.order import \
     AddOrderReqBuilder as MarginAddOrderReqBuilder, AddOrderReq as MarginAddOrderReq
-from kucoin_universal_sdk.generate.margin.order.model_cancel_order_by_order_id_req import CancelOrderByOrderIdReqBuilder
-from kucoin_universal_sdk.generate.margin.order.model_get_order_by_order_id_req import \
+from kucoin_universal_sdk.generate.margin.order import CancelOrderByOrderIdReqBuilder
+from kucoin_universal_sdk.generate.margin.order import \
     GetOrderByOrderIdReqBuilder as MarginGetOrderByOrderIdReqBuilder
-from kucoin_universal_sdk.generate.service.account_api import AccountService
-from kucoin_universal_sdk.generate.service.futures_api import FuturesService
-from kucoin_universal_sdk.generate.service.margin_api import MarginService
-from kucoin_universal_sdk.generate.service.spot_api import SpotService
-from kucoin_universal_sdk.generate.spot.market.model_get_ticker_req import GetTickerReqBuilder
-from kucoin_universal_sdk.generate.spot.order.model_add_order_sync_req import AddOrderSyncReqBuilder, AddOrderSyncReq
-from kucoin_universal_sdk.generate.spot.order.model_cancel_order_by_order_id_sync_req import \
-    CancelOrderByOrderIdSyncReqBuilder
-from kucoin_universal_sdk.generate.spot.order.model_cancel_order_by_order_id_sync_resp import \
-    CancelOrderByOrderIdSyncResp
+from kucoin_universal_sdk.generate.service import AccountService
+from kucoin_universal_sdk.generate.service import FuturesService
+from kucoin_universal_sdk.generate.service import MarginService
+from kucoin_universal_sdk.generate.service import SpotService
+from kucoin_universal_sdk.generate.spot.market import GetTickerReqBuilder
+from kucoin_universal_sdk.generate.spot.order import AddOrderSyncReqBuilder, AddOrderSyncReq
+from kucoin_universal_sdk.generate.spot.order import CancelOrderByOrderIdSyncReqBuilder
+from kucoin_universal_sdk.generate.spot.order import CancelOrderByOrderIdSyncResp
 from kucoin_universal_sdk.generate.spot.order.model_get_order_by_order_id_req import GetOrderByOrderIdReqBuilder
-from kucoin_universal_sdk.model.client_option import ClientOptionBuilder
-from kucoin_universal_sdk.model.constants import GLOBAL_API_ENDPOINT, GLOBAL_FUTURES_API_ENDPOINT, \
+from kucoin_universal_sdk.model import ClientOptionBuilder
+from kucoin_universal_sdk.model import GLOBAL_API_ENDPOINT, GLOBAL_FUTURES_API_ENDPOINT, \
     GLOBAL_BROKER_API_ENDPOINT
-from kucoin_universal_sdk.model.transport_option import TransportOptionBuilder
+from kucoin_universal_sdk.model import TransportOptionBuilder
 
 SPOT_SYMBOL = "DOGE-USDT"
 FUTURES_SYMBOL = "DOGEUSDTM"

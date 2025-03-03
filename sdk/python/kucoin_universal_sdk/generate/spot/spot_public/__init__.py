@@ -18,3 +18,4 @@ from .model_symbol_snapshot_data_market_change4h import SymbolSnapshotDataMarket
 from .model_symbol_snapshot_event import SymbolSnapshotEvent
 from .model_ticker_event import TickerEvent
 from .model_trade_event import TradeEvent
+from .ws_spot_public import SpotPublicWS

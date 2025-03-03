@@ -7,3 +7,4 @@ from .model_margin_mode_event import MarginModeEvent
 from .model_order_event import OrderEvent
 from .model_position_event import PositionEvent
 from .model_stop_orders_event import StopOrdersEvent
+from .ws_futures_private import FuturesPrivateWS
