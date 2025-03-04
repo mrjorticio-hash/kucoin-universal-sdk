@@ -1,0 +1,5 @@
+from .model_cross_margin_position_asset_list_value import CrossMarginPositionAssetListValue
+from .model_cross_margin_position_event import CrossMarginPositionEvent
+from .model_isolated_margin_position_change_assets_value import IsolatedMarginPositionChangeAssetsValue
+from .model_isolated_margin_position_event import IsolatedMarginPositionEvent
+from .ws_margin_private import MarginPrivateWS

@@ -105,6 +105,8 @@ class WebSocketClient:
                 self.close()
                 self.disconnect_event.set()
                 raise Exception("Did not receive welcome message")
+            self.close_event.clear()
+            self.shutdown.clear()
         except Exception as err:
             self.connected.clear()
             logging.error(f"Failed to connect or validate welcome message: {err}")
@@ -157,7 +159,7 @@ class WebSocketClient:
         return self.read_msg
 
     def write(self, ms: WsMessage, timeout: float) -> WriteMsg:
-        logging.info(f"Write message: {ms}")
+        logging.debug(f"Write message: {ms}")
         if not self.connected.is_set():
             raise Exception("Not connected")
 
@@ -218,8 +220,6 @@ class WebSocketClient:
         self.disconnect_event.set()
 
     def on_close(self, ws, close_status_code, close_msg):
-        self.connected.clear()
-        self.disconnect_event.set()
         logging.info(f"WebSocket closed with status code {close_status_code}, message: {close_msg}")
 
     def reconnect(self):
@@ -233,12 +233,12 @@ class WebSocketClient:
                         continue
 
                     logging.info("Broken WebSocket connection, starting reconnection")
-                    self.close()
+                    self.reconnect_close()
                     self.notify_event(WebSocketEvent.EVENT_TRY_RECONNECT, "")
                     self.disconnect_event.clear()
+                    self.welcome_received.clear()
 
                     attempt = 0
-                    reconnected = False
                     if not self.options.reconnect or (
                         self.options.reconnect_attempts != -1 and attempt >= self.options.reconnect_attempts):
                         logging.error("Max reconnect attempts reached or reconnect disabled")
@@ -253,15 +253,11 @@ class WebSocketClient:
                         self.notify_event(WebSocketEvent.EVENT_CONNECTED, "")
                         self.connected.set()
                         self.run()
-                        reconnected = True
-                        break
+                        self.reconnected_event.set()
+                        continue
                     except Exception as err:
                         logging.error(f"Reconnect attempt {attempt} failed: {err}")
                         attempt += 1
-
-                    if reconnected:
-                        self.reconnected_event.set()
-                        continue
 
                     self.notify_event(WebSocketEvent.EVENT_CLIENT_FAIL, "")
                     logging.error("Failed to reconnect after all attempts.")
@@ -274,6 +270,28 @@ class WebSocketClient:
             self.read_msg.get_nowait()
         while not self.write_msg.empty():
             self.write_msg.get_nowait()
+            
+    def reconnect_close(self):
+        if self.connected.is_set():
+            self.shutdown.set()
+            self.disconnect_event.set()
+            self.connected.clear()
+            with self.ack_event_lock:
+                for msg in self.ack_event.values():
+                    msg.event.set()
+                self.ack_event.clear()
+            self._clear_message_queues()
+
+            if self.conn:
+                self.conn.close()
+                self.conn = None
+                self.close_event.set()
+                logging.info("WebSocket connection closed. Reconnecting...")
+        self.token_provider.close()
+        self.write_thread.join()
+        self.keep_alive_thread.join()
+        self.ws_thread.join()  
+        self.notify_event(WebSocketEvent.EVENT_DISCONNECTED, "")   
 
     def close(self):
         if self.connected.is_set():

@@ -9,6 +9,7 @@ import com.kucoin.universal.sdk.plugin.service.SchemaService;
 import com.kucoin.universal.sdk.plugin.service.impl.OperationServiceImpl;
 import com.kucoin.universal.sdk.plugin.service.impl.SchemaServiceImpl;
 import com.kucoin.universal.sdk.plugin.util.SpecificationUtil;
+import com.opencsv.CSVReader;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.Operation;
 import io.swagger.v3.oas.models.media.Schema;
@@ -25,6 +26,7 @@ import org.openapitools.codegen.utils.ModelUtils;
 
 import javax.annotation.Nullable;
 import java.io.File;
+import java.io.FileReader;
 import java.util.*;
 
 import static org.openapitools.codegen.utils.CamelizeOption.LOWERCASE_FIRST_LETTER;
@@ -43,6 +45,10 @@ public class PythonSdkGenerator extends AbstractPythonCodegen implements NameSer
     private HashMap<String, HashSet<String>> circularImports = new HashMap<>();
     // map of codegen models
     private HashMap<String, CodegenModel> codegenModelMap = new HashMap<>();
+
+    // model export(init.py)
+    private Set<String> exports = new LinkedHashSet<>();
+    private Set<String> serviceExports = new LinkedHashSet<>();
 
     private String service;
     private String subService;
@@ -99,7 +105,7 @@ public class PythonSdkGenerator extends AbstractPythonCodegen implements NameSer
             }
             case ENTRY: {
                 apiTemplateFiles.put("api_entry.mustache", ".py");
-                supportingFiles.add(new SupportingFile("module.mustache", String.format("./%s/__init__.py", "service")));
+                supportingFiles.add(new SupportingFile("module_service.mustache", String.format("./%s/__init__.py", "service")));
                 break;
             }
             case TEST: {
@@ -111,8 +117,8 @@ public class PythonSdkGenerator extends AbstractPythonCodegen implements NameSer
         }
 
         supportingFiles.add(new SupportingFile("version.mustache", "version.py"));
-        supportingFiles.add(new SupportingFile("module.mustache", "__init__.py"));
-        supportingFiles.add(new SupportingFile("module.mustache", String.format("./%s/__init__.py", service)));
+        supportingFiles.add(new SupportingFile("module_empty.mustache", "__init__.py"));
+        supportingFiles.add(new SupportingFile("module_empty.mustache", String.format("./%s/__init__.py", service)));
 
         templateDir = "python-sdk";
 
@@ -446,6 +452,18 @@ public class PythonSdkGenerator extends AbstractPythonCodegen implements NameSer
 
                     case API:
                     case TEST: {
+                        allModels.forEach(m-> {
+                            String importName =  (String)m.get("importPath");
+                            String fileName = m.getModel().getClassFilename();
+                            // from .model_get_part_order_book_req import GetPartOrderBookReqBuilder
+                            exports.add(String.format("from .%s import %s", fileName, importName));
+                            if (m.getModel().getVendorExtensions().containsKey("x-request-model")) {
+                                exports.add(String.format("from .%s import %s", fileName, importName+"Builder"));
+                            }
+                        });
+                        exports.add(String.format("from .%s import %sAPI", toApiFilename(meta.getSubService()), formatService(meta.getSubService())));
+
+
                         if (op.hasParams) {
                             modelImport.addAll(generateApiImport(meta, true));
                         }
@@ -459,6 +477,14 @@ public class PythonSdkGenerator extends AbstractPythonCodegen implements NameSer
                     }
                     case WS:
                     case WS_TEST: {
+                        allModels.forEach(m-> {
+                            String importName =  (String)m.get("importPath");
+                            String fileName = m.getModel().getClassFilename();
+                            // from .model_get_part_order_book_req import GetPartOrderBookReqBuilder
+                            exports.add(String.format("from .%s import %s", fileName, importName));
+                        });
+                        exports.add(String.format("from .%s import %sWS", toApiFilename(meta.getSubService()), formatService(meta.getSubService())));
+
                         modelImport.addAll(generateApiImport(meta, false));
                         break;
                     }
@@ -717,6 +743,46 @@ public class PythonSdkGenerator extends AbstractPythonCodegen implements NameSer
         }
 
         return objs;
+    }
+
+
+    @Override
+    public Map<String, Object> postProcessSupportingFileData(Map<String, Object> objs) {
+        Map<String, Object> data = super.postProcessSupportingFileData(objs);
+        data.put("exports", exports);
+
+        if (!modeSwitch.isEntry()) {
+            return data;
+        }
+
+        String csvPath = (String) additionalProperties.get("CSV_PATH");
+        if (csvPath == null) {
+            log.error("no csv path found");
+            return data;
+        }
+
+        String apiCsvFile = csvPath + "/apis.csv";
+
+        Set<String> services = new TreeSet<>();
+        try {
+
+            CSVReader reader = new CSVReader(new FileReader(apiCsvFile));
+            List<String[]> rows = reader.readAll();
+            for (int i = 1; i < rows.size(); i++) {
+                services.add(rows.get(i)[0].toLowerCase());
+            }
+        } catch (Exception e) {
+            throw new RuntimeException("read csv fail", e);
+        }
+
+        services.forEach(s-> {
+            Map<String,String> specialKeywords = Map.of("copytrading", "CopyTrading", "viplending", "VIPLending");
+            String service = formatService(specialKeywords.getOrDefault(s, s));
+            serviceExports.add(String.format("from .%s_api import %sService", s, service));
+        });
+        data.put("serviceExports", serviceExports);
+
+        return data;
     }
 
     private PythonType getPydanticType(CodegenProperty cp,

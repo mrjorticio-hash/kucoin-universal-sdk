@@ -2,15 +2,15 @@ import logging
 import os
 import time
 
-from kucoin_universal_sdk.api.client import DefaultClient
-from kucoin_universal_sdk.generate.futures.futures_public.model_ticker_v2_event import TickerV2Event
-from kucoin_universal_sdk.generate.futures.futures_public.ws_futures_public import FuturesPublicWS
-from kucoin_universal_sdk.generate.spot.spot_public.model_ticker_event import TickerEvent
-from kucoin_universal_sdk.generate.spot.spot_public.ws_spot_public import SpotPublicWS
-from kucoin_universal_sdk.model.client_option import ClientOptionBuilder
-from kucoin_universal_sdk.model.constants import GLOBAL_API_ENDPOINT, GLOBAL_FUTURES_API_ENDPOINT, \
+from kucoin_universal_sdk.api import DefaultClient
+from kucoin_universal_sdk.generate.futures.futures_public import FuturesPublicWS
+from kucoin_universal_sdk.generate.futures.futures_public import TickerV2Event
+from kucoin_universal_sdk.generate.spot.spot_public import SpotPublicWS
+from kucoin_universal_sdk.generate.spot.spot_public import TickerEvent
+from kucoin_universal_sdk.model import ClientOptionBuilder
+from kucoin_universal_sdk.model import GLOBAL_API_ENDPOINT, GLOBAL_FUTURES_API_ENDPOINT, \
     GLOBAL_BROKER_API_ENDPOINT
-from kucoin_universal_sdk.model.websocket_option import WebSocketClientOptionBuilder
+from kucoin_universal_sdk.model import WebSocketClientOptionBuilder
 
 
 def ws_example():
