@@ -8,7 +8,7 @@ For an overview of the project and SDKs in other languages, refer to the [Main R
 
 ## 📦 Installation
 
-### Latest Version: `1.1.0`
+### Latest Version: `1.1.1`
 Install the Python SDK using `pip`:
 
 ```bash
@@ -23,12 +23,12 @@ Here's a quick example to get you started with the SDK in **Python**.
 import logging
 import os
 
-from kucoin_universal_sdk.api.client import DefaultClient
-from kucoin_universal_sdk.generate.spot.market.model_get_part_order_book_req import GetPartOrderBookReqBuilder
-from kucoin_universal_sdk.model.client_option import ClientOptionBuilder
-from kucoin_universal_sdk.model.constants import GLOBAL_API_ENDPOINT, GLOBAL_FUTURES_API_ENDPOINT, \
+from kucoin_universal_sdk.api import DefaultClient
+from kucoin_universal_sdk.generate.spot.market import GetPartOrderBookReqBuilder
+from kucoin_universal_sdk.model import ClientOptionBuilder
+from kucoin_universal_sdk.model import GLOBAL_API_ENDPOINT, GLOBAL_FUTURES_API_ENDPOINT, \
     GLOBAL_BROKER_API_ENDPOINT
-from kucoin_universal_sdk.model.transport_option import TransportOptionBuilder
+from kucoin_universal_sdk.model import TransportOptionBuilder
 
 
 def example():

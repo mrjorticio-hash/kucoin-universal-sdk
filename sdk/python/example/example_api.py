@@ -3,20 +3,19 @@ import os
 import uuid
 from datetime import datetime, timedelta
 
-from kucoin_universal_sdk.api.client import DefaultClient
-from kucoin_universal_sdk.generate.account.fee.model_get_spot_actual_fee_req import GetSpotActualFeeReqBuilder
-from kucoin_universal_sdk.generate.futures.market.model_get_klines_req import GetKlinesReqBuilder, GetKlinesReq
-from kucoin_universal_sdk.generate.service.account_api import AccountService
-from kucoin_universal_sdk.generate.service.futures_api import FuturesService
-from kucoin_universal_sdk.generate.service.spot_api import SpotService
-from kucoin_universal_sdk.generate.spot.order.model_add_order_sync_req import AddOrderSyncReqBuilder, AddOrderSyncReq
-from kucoin_universal_sdk.generate.spot.order.model_cancel_order_by_order_id_sync_req import \
-    CancelOrderByOrderIdSyncReqBuilder
-from kucoin_universal_sdk.generate.spot.order.model_get_order_by_order_id_req import GetOrderByOrderIdReqBuilder
-from kucoin_universal_sdk.model.client_option import ClientOptionBuilder
-from kucoin_universal_sdk.model.constants import GLOBAL_API_ENDPOINT, GLOBAL_FUTURES_API_ENDPOINT, \
+from kucoin_universal_sdk.api import DefaultClient
+from kucoin_universal_sdk.generate.account.fee import GetSpotActualFeeReqBuilder
+from kucoin_universal_sdk.generate.futures.market import GetKlinesReqBuilder, GetKlinesReq
+from kucoin_universal_sdk.generate.service import AccountService
+from kucoin_universal_sdk.generate.service import FuturesService
+from kucoin_universal_sdk.generate.service import SpotService
+from kucoin_universal_sdk.generate.spot.order import AddOrderSyncReqBuilder, AddOrderSyncReq
+from kucoin_universal_sdk.generate.spot.order import CancelOrderByOrderIdSyncReqBuilder
+from kucoin_universal_sdk.generate.spot.order import GetOrderByOrderIdReqBuilder
+from kucoin_universal_sdk.model import ClientOptionBuilder
+from kucoin_universal_sdk.model import GLOBAL_API_ENDPOINT, GLOBAL_FUTURES_API_ENDPOINT, \
     GLOBAL_BROKER_API_ENDPOINT
-from kucoin_universal_sdk.model.transport_option import TransportOptionBuilder
+from kucoin_universal_sdk.model import TransportOptionBuilder
 
 
 def rest_example():
