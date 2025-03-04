@@ -32,9 +32,9 @@ The  **KuCoin Universal SDK** is the official SDK provided by KuCoin, offering a
 
 ## 🛠️ Installation
 
-### Latest Version: `1.1.0`
+### Latest Version: `1.1.0`(Global API version)
 
-### Python Installation
+### Python Installation(`1.1.1`)
 
 ```bash
 pip install kucoin-universal-sdk
