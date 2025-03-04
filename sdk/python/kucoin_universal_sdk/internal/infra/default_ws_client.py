@@ -159,7 +159,7 @@ class WebSocketClient:
         return self.read_msg
 
     def write(self, ms: WsMessage, timeout: float) -> WriteMsg:
-        logging.info(f"Write message: {ms}")
+        logging.debug(f"Write message: {ms}")
         if not self.connected.is_set():
             raise Exception("Not connected")
 
