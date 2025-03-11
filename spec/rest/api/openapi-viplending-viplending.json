@@ -7,11 +7,100 @@
     },
     "tags": [],
     "paths": {
+        "/api/v1/otc-loan/discount-rate-configs": {
+            "get": {
+                "summary": "Get Discount Rate Configs",
+                "deprecated": false,
+                "description": "Get the gradient discount rate of each currency",
+                "tags": [],
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "currency": {
+                                                        "type": "string",
+                                                        "description": "Currency",
+                                                        "example": [
+                                                            "BTC",
+                                                            "ETH"
+                                                        ]
+                                                    },
+                                                    "usdtLevels": {
+                                                        "type": "array",
+                                                        "items": {
+                                                            "type": "object",
+                                                            "properties": {
+                                                                "left": {
+                                                                    "type": "integer",
+                                                                    "description": "Left end point of gradient interval, left<amount<=right"
+                                                                },
+                                                                "right": {
+                                                                    "type": "integer",
+                                                                    "description": "Right end point of gradient interval, left<amount<=right"
+                                                                },
+                                                                "discountRate": {
+                                                                    "type": "string",
+                                                                    "description": "Discount rate"
+                                                                }
+                                                            },
+                                                            "required": [
+                                                                "left",
+                                                                "right",
+                                                                "discountRate"
+                                                            ]
+                                                        },
+                                                        "description": "Gradient configuration list, amount converted into USDT"
+                                                    }
+                                                },
+                                                "required": [
+                                                    "currency",
+                                                    "usdtLevels"
+                                                ]
+                                            }
+                                        }
+                                    },
+                                    "required": [
+                                        "code",
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                },
+                "x-api-doc": "https://www.kucoin.com/docs-new/api-3471463",
+                "x-abandon": "normal",
+                "x-domain": "Spot",
+                "x-api-channel": "Private",
+                "x-api-permission": "NULL",
+                "x-api-rate-limit-pool": "Public",
+                "x-sdk-service": "VIPLending",
+                "x-sdk-sub-service": "VIPLending",
+                "x-sdk-method-name": "getDiscountRateConfigs",
+                "x-sdk-method-description": "Get the gradient discount rate of each currency",
+                "x-api-rate-limit-weight": 10,
+                "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": [\\n        {\\n            \\\"currency\\\": \\\"BTC\\\",\\n            \\\"usdtLevels\\\": [\\n                {\\n                    \\\"left\\\": 0,\\n                    \\\"right\\\": 20000000,\\n                    \\\"discountRate\\\": \\\"1.00000000\\\"\\n                },\\n                {\\n                    \\\"left\\\": 20000000,\\n                    \\\"right\\\": 50000000,\\n                    \\\"discountRate\\\": \\\"0.95000000\\\"\\n                },\\n                {\\n                    \\\"left\\\": 50000000,\\n                    \\\"right\\\": 100000000,\\n                    \\\"discountRate\\\": \\\"0.90000000\\\"\\n                },\\n                {\\n                    \\\"left\\\": 100000000,\\n                    \\\"right\\\": 300000000,\\n                    \\\"discountRate\\\": \\\"0.50000000\\\"\\n                },\\n                {\\n                    \\\"left\\\": 300000000,\\n                    \\\"right\\\": 99999999999,\\n                    \\\"discountRate\\\": \\\"0.00000000\\\"\\n                }\\n            ]\\n        }\\n    ]\\n}",
+                "operationId": "001"
+            }
+        },
         "/api/v1/otc-loan/loan": {
             "get": {
-                "summary": "Get Account Detail",
+                "summary": "Get Loan Info",
                 "deprecated": false,
-                "description": "The following information is only applicable to loans.  Get information on off-exchange funding and loans, This endpoint is only for querying accounts that are currently involved in loans.",
+                "description": "The following information is only applicable to loans.  Get information on off-exchange funding and loans. This endpoint is only for querying accounts that are currently involved in loans.",
                 "tags": [],
                 "parameters": [],
                 "responses": {
@@ -119,7 +208,7 @@
                                                             },
                                                             "marginFactor": {
                                                                 "type": "string",
-                                                                "description": "Margin Coefficient return real time margin discount rate to USDT"
+                                                                "description": "Margin Coefficient return real-time margin discount rate to USDT"
                                                             }
                                                         },
                                                         "required": [
@@ -157,18 +246,18 @@
                 "x-api-rate-limit-pool": "Management",
                 "x-sdk-service": "VIPLending",
                 "x-sdk-sub-service": "VIPLending",
-                "x-sdk-method-name": "getAccountDetail",
-                "x-sdk-method-description": "The following information is only applicable to loans.  Get information on off-exchange funding and loans, This endpoint is only for querying accounts that are currently involved in loans.",
-                "x-api-rate-limit": 1,
+                "x-sdk-method-name": "getLoanInfo",
+                "x-sdk-method-description": "The following information is only applicable to loans.  Get information on off-exchange funding and loans. This endpoint is only for querying accounts that are currently involved in loans.",
+                "x-api-rate-limit-weight": 5,
                 "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"parentUid\\\": \\\"1260004199\\\",\\n        \\\"orders\\\": [{\\n            \\\"orderId\\\": \\\"671a2be815f4140007a588e1\\\",\\n            \\\"principal\\\": \\\"100\\\",\\n            \\\"interest\\\": \\\"0\\\",\\n            \\\"currency\\\": \\\"USDT\\\"\\n        }],\\n        \\\"ltv\\\": {\\n            \\\"transferLtv\\\": \\\"0.6000\\\",\\n            \\\"onlyClosePosLtv\\\": \\\"0.7500\\\",\\n            \\\"delayedLiquidationLtv\\\": \\\"0.7500\\\",\\n            \\\"instantLiquidationLtv\\\": \\\"0.8000\\\",\\n            \\\"currentLtv\\\": \\\"0.1111\\\"\\n        },\\n        \\\"totalMarginAmount\\\": \\\"900.00000000\\\",\\n        \\\"transferMarginAmount\\\": \\\"166.66666666\\\",\\n        \\\"margins\\\": [{\\n            \\\"marginCcy\\\": \\\"USDT\\\",\\n            \\\"marginQty\\\": \\\"1000.00000000\\\",\\n            \\\"marginFactor\\\": \\\"0.9000000000\\\"\\n        }]\\n    }\\n}",
-                "operationId": "001"
+                "operationId": "002"
             }
         },
         "/api/v1/otc-loan/accounts": {
             "get": {
                 "summary": "Get Accounts",
                 "deprecated": false,
-                "description": "Accounts participating in OTC lending, This interface is only for querying accounts currently running OTC lending.",
+                "description": "Accounts participating in OTC lending. This interface is only for querying accounts currently running OTC lending.",
                 "tags": [],
                 "parameters": [],
                 "responses": {
@@ -241,10 +330,10 @@
                 "x-sdk-service": "VIPLending",
                 "x-sdk-sub-service": "VIPLending",
                 "x-sdk-method-name": "getAccounts",
-                "x-sdk-method-description": "Accounts participating in OTC lending, This interface is only for querying accounts currently running OTC lending.",
-                "x-api-rate-limit": 1,
+                "x-sdk-method-description": "Accounts participating in OTC lending. This interface is only for querying accounts currently running OTC lending.",
+                "x-api-rate-limit-weight": 20,
                 "x-response-example": "\\n{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": [{\\n        \\\"uid\\\": \\\"1260004199\\\",\\n        \\\"marginCcy\\\": \\\"USDT\\\",\\n        \\\"marginQty\\\": \\\"900\\\",\\n        \\\"marginFactor\\\": \\\"0.9000000000\\\",\\n        \\\"accountType\\\": \\\"TRADE\\\",\\n        \\\"isParent\\\": true\\n    }]\\n}",
-                "operationId": "002"
+                "operationId": "003"
             }
         }
     },

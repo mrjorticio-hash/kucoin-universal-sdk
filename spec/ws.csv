@@ -3,7 +3,9 @@ Spot,"/market/ticker:{symbol},{symbol}",ticker,True
 Spot,/market/ticker:all,allTickers,True
 Spot,"/spotMarket/level1:{symbol},{symbol}",orderbookLevel1,True
 Spot,"/spotMarket/level2Depth5:{symbol},{symbol}",orderbookLevel5,True
-Spot,"/market/level2:{symbol},{symbol}",orderbookLevel50,True
+Spot,"/spotMarket/level2Depth50:{symbol},{symbol}",orderbookLevel50,True
+Spot,/callauction/level2Depth50:{symbol},callAuctionOrderbookLevel50,True
+Spot,/callauction/callauctionData:{symbol},callAuctionInfo,True
 Spot,"/market/level2:{symbol},{symbol}",orderbookIncrement,True
 Spot,/market/candles:{symbol}_{type},klines,True
 Spot,"/market/match:{symbol},{symbol}",trade,True
@@ -12,6 +14,7 @@ Spot,/market/snapshot:{market},marketSnapshot,True
 Spot,/spotMarket/tradeOrdersV2,orderV2,False
 Spot,/spotMarket/tradeOrders,orderV1,False
 Spot,/account/balance,account,False
+Spot,/spotMarket/advancedOrders,stopOrder,False
 Margin,"/indicator/index:{symbol},{symbol}",indexPrice,True
 Margin,"/indicator/markPrice:{symbol},{symbol}",markPrice,True
 Margin,/margin/position,crossMarginPosition,False

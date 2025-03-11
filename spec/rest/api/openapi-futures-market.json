@@ -11,7 +11,7 @@
             "get": {
                 "summary": "Get Symbol",
                 "deprecated": false,
-                "description": "Get information of specified contracts that can be traded. This API will return a list of tradable contracts, including some key parameters of the contract such as the symbol name, tick size, mark price,etc.",
+                "description": "Get information of specified contracts that can be traded. This API will return a list of tradable contracts, including some key parameters of the contract such as the symbol name, tick size, mark price, etc.",
                 "tags": [],
                 "parameters": [
                     {
@@ -59,7 +59,7 @@
                                                 },
                                                 "type": {
                                                     "type": "string",
-                                                    "description": "Type of the contract",
+                                                    "description": "Type of contract",
                                                     "enum": [
                                                         "FFWCSX",
                                                         "FFICSX"
@@ -68,7 +68,7 @@
                                                         {
                                                             "value": "FFWCSX",
                                                             "name": "FFWCSX",
-                                                            "description": "Standardized swap contracts standard financial futures on swap, expiration swap funding rate"
+                                                            "description": "Standardized swap contracts, standard financial futures on swaps, expiration swap funding rates"
                                                         },
                                                         {
                                                             "value": "FFICSX",
@@ -79,17 +79,17 @@
                                                 },
                                                 "firstOpenDate": {
                                                     "type": "integer",
-                                                    "description": "First Open Date(millisecond)",
+                                                    "description": "First Open Date (milliseconds)",
                                                     "format": "int64"
                                                 },
                                                 "expireDate": {
                                                     "type": "integer",
-                                                    "description": "Expiration date(millisecond). Null means it will never expire",
+                                                    "description": "Expiration date (milliseconds) Null means it will never expire",
                                                     "format": "int64"
                                                 },
                                                 "settleDate": {
                                                     "type": "integer",
-                                                    "description": "Settlement date(millisecond). Null indicates that automatic settlement is not supported",
+                                                    "description": "Settlement date (milliseconds) Null indicates that automatic settlement is not supported",
                                                     "format": "int64"
                                                 },
                                                 "baseCurrency": {
@@ -190,13 +190,13 @@
                                                         {
                                                             "value": "FairPrice",
                                                             "name": "FairPrice",
-                                                            "description": "Fair Price"
+                                                            "description": "FairPrice"
                                                         }
                                                     ]
                                                 },
                                                 "fairMethod": {
                                                     "type": "string",
-                                                    "description": "Fair price marking method, The Futures contract is null",
+                                                    "description": "Fair price marking method; the Futures contract is null",
                                                     "enum": [
                                                         "FundingRate"
                                                     ],
@@ -210,7 +210,7 @@
                                                 },
                                                 "fundingBaseSymbol": {
                                                     "type": "string",
-                                                    "description": "Ticker symbol of the based currency"
+                                                    "description": "Ticker symbol of the base currency"
                                                 },
                                                 "fundingQuoteSymbol": {
                                                     "type": "string",
@@ -226,7 +226,7 @@
                                                 },
                                                 "settlementSymbol": {
                                                     "type": "string",
-                                                    "description": "Settlement Symbol"
+                                                    "description": "Settlement symbol"
                                                 },
                                                 "status": {
                                                     "type": "string",
@@ -254,7 +254,7 @@
                                                         {
                                                             "value": "BeingSettled",
                                                             "name": "BeingSettled",
-                                                            "description": "Setting"
+                                                            "description": "Settling"
                                                         },
                                                         {
                                                             "value": "Settled",
@@ -288,11 +288,11 @@
                                                 },
                                                 "fundingRateGranularity": {
                                                     "type": "integer",
-                                                    "description": "Funding interval(millisecond)"
+                                                    "description": "Funding interval (milliseconds)"
                                                 },
                                                 "openInterest": {
                                                     "type": "string",
-                                                    "description": "Open interest"
+                                                    "description": "Open interest (unit: lots)"
                                                 },
                                                 "turnoverOf24h": {
                                                     "type": "number",
@@ -316,7 +316,7 @@
                                                 },
                                                 "nextFundingRateTime": {
                                                     "type": "integer",
-                                                    "description": "Next funding rate time(millisecond)"
+                                                    "description": "Next funding rate time (milliseconds)"
                                                 },
                                                 "maxLeverage": {
                                                     "type": "integer",
@@ -331,19 +331,19 @@
                                                 },
                                                 "premiumsSymbol1M": {
                                                     "type": "string",
-                                                    "description": "Premium index symbol(1 minute)"
+                                                    "description": "Premium index symbol (1 minute)"
                                                 },
                                                 "premiumsSymbol8H": {
                                                     "type": "string",
-                                                    "description": "Premium index symbol(8 hours)"
+                                                    "description": "Premium index symbol (8 hours)"
                                                 },
                                                 "fundingBaseSymbol1M": {
                                                     "type": "string",
-                                                    "description": "Base currency interest rate symbol(1 minute)"
+                                                    "description": "Base currency interest rate symbol (1 minute)"
                                                 },
                                                 "fundingQuoteSymbol1M": {
                                                     "type": "string",
-                                                    "description": "Quote currency interest rate symbol(1 minute)"
+                                                    "description": "Quote currency interest rate symbol (1 minute)"
                                                 },
                                                 "lowPrice": {
                                                     "type": "number",
@@ -355,7 +355,7 @@
                                                 },
                                                 "priceChgPct": {
                                                     "type": "number",
-                                                    "description": "24-hour price change% "
+                                                    "description": "24-hour % price change "
                                                 },
                                                 "priceChg": {
                                                     "type": "number",
@@ -379,6 +379,14 @@
                                                 "supportCross": {
                                                     "type": "boolean",
                                                     "description": "Whether support Cross Margin"
+                                                },
+                                                "buyLimit": {
+                                                    "type": "number",
+                                                    "description": "The current maximum allowed buying price"
+                                                },
+                                                "sellLimit": {
+                                                    "type": "number",
+                                                    "description": "The current minimum allowed selling price"
                                                 }
                                             },
                                             "required": [
@@ -443,7 +451,9 @@
                                                 "f",
                                                 "mmrLimit",
                                                 "mmrLevConstant",
-                                                "supportCross"
+                                                "supportCross",
+                                                "buyLimit",
+                                                "sellLimit"
                                             ]
                                         }
                                     },
@@ -465,9 +475,9 @@
                 "x-sdk-service": "Futures",
                 "x-sdk-sub-service": "Market",
                 "x-sdk-method-name": "getSymbol",
-                "x-sdk-method-description": "Get information of specified contracts that can be traded. This API will return a list of tradable contracts, including some key parameters of the contract such as the symbol name, tick size, mark price,etc.",
-                "x-api-rate-limit": 3,
-                "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"symbol\\\": \\\"XBTUSDM\\\",\\n        \\\"rootSymbol\\\": \\\"XBT\\\",\\n        \\\"type\\\": \\\"FFWCSX\\\",\\n        \\\"firstOpenDate\\\": 1552638575000,\\n        \\\"expireDate\\\": null,\\n        \\\"settleDate\\\": null,\\n        \\\"baseCurrency\\\": \\\"XBT\\\",\\n        \\\"quoteCurrency\\\": \\\"USD\\\",\\n        \\\"settleCurrency\\\": \\\"XBT\\\",\\n        \\\"maxOrderQty\\\": 10000000,\\n        \\\"maxPrice\\\": 1000000.0,\\n        \\\"lotSize\\\": 1,\\n        \\\"tickSize\\\": 0.1,\\n        \\\"indexPriceTickSize\\\": 0.1,\\n        \\\"multiplier\\\": -1.0,\\n        \\\"initialMargin\\\": 0.014,\\n        \\\"maintainMargin\\\": 0.007,\\n        \\\"maxRiskLimit\\\": 1,\\n        \\\"minRiskLimit\\\": 1,\\n        \\\"riskStep\\\": 0,\\n        \\\"makerFeeRate\\\": 2.0E-4,\\n        \\\"takerFeeRate\\\": 6.0E-4,\\n        \\\"takerFixFee\\\": 0.0,\\n        \\\"makerFixFee\\\": 0.0,\\n        \\\"settlementFee\\\": null,\\n        \\\"isDeleverage\\\": true,\\n        \\\"isQuanto\\\": false,\\n        \\\"isInverse\\\": true,\\n        \\\"markMethod\\\": \\\"FairPrice\\\",\\n        \\\"fairMethod\\\": \\\"FundingRate\\\",\\n        \\\"fundingBaseSymbol\\\": \\\".XBTINT8H\\\",\\n        \\\"fundingQuoteSymbol\\\": \\\".USDINT8H\\\",\\n        \\\"fundingRateSymbol\\\": \\\".XBTUSDMFPI8H\\\",\\n        \\\"indexSymbol\\\": \\\".BXBT\\\",\\n        \\\"settlementSymbol\\\": null,\\n        \\\"status\\\": \\\"Open\\\",\\n        \\\"fundingFeeRate\\\": 1.75E-4,\\n        \\\"predictedFundingFeeRate\\\": 1.76E-4,\\n        \\\"fundingRateGranularity\\\": 28800000,\\n        \\\"openInterest\\\": \\\"61725904\\\",\\n        \\\"turnoverOf24h\\\": 209.56303473,\\n        \\\"volumeOf24h\\\": 1.4354731E7,\\n        \\\"markPrice\\\": 68336.7,\\n        \\\"indexPrice\\\": 68335.29,\\n        \\\"lastTradePrice\\\": 68349.3,\\n        \\\"nextFundingRateTime\\\": 17402942,\\n        \\\"maxLeverage\\\": 75,\\n        \\\"sourceExchanges\\\": [\\n            \\\"kraken\\\",\\n            \\\"bitstamp\\\",\\n            \\\"crypto\\\"\\n        ],\\n        \\\"premiumsSymbol1M\\\": \\\".XBTUSDMPI\\\",\\n        \\\"premiumsSymbol8H\\\": \\\".XBTUSDMPI8H\\\",\\n        \\\"fundingBaseSymbol1M\\\": \\\".XBTINT\\\",\\n        \\\"fundingQuoteSymbol1M\\\": \\\".USDINT\\\",\\n        \\\"lowPrice\\\": 67436.7,\\n        \\\"highPrice\\\": 69471.8,\\n        \\\"priceChgPct\\\": 0.0097,\\n        \\\"priceChg\\\": 658.7,\\n        \\\"k\\\": 2645000.0,\\n        \\\"m\\\": 1640000.0,\\n        \\\"f\\\": 1.3,\\n        \\\"mmrLimit\\\": 0.3,\\n        \\\"mmrLevConstant\\\": 75.0,\\n        \\\"supportCross\\\": true\\n    }\\n}",
+                "x-sdk-method-description": "Get information of specified contracts that can be traded. This API will return a list of tradable contracts, including some key parameters of the contract such as the symbol name, tick size, mark price, etc.",
+                "x-api-rate-limit-weight": 3,
+                "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"symbol\\\": \\\"XBTUSDTM\\\",\\n        \\\"rootSymbol\\\": \\\"USDT\\\",\\n        \\\"type\\\": \\\"FFWCSX\\\",\\n        \\\"firstOpenDate\\\": 1585555200000,\\n        \\\"expireDate\\\": null,\\n        \\\"settleDate\\\": null,\\n        \\\"baseCurrency\\\": \\\"XBT\\\",\\n        \\\"quoteCurrency\\\": \\\"USDT\\\",\\n        \\\"settleCurrency\\\": \\\"USDT\\\",\\n        \\\"maxOrderQty\\\": 1000000,\\n        \\\"maxPrice\\\": 1000000.0,\\n        \\\"lotSize\\\": 1,\\n        \\\"tickSize\\\": 0.1,\\n        \\\"indexPriceTickSize\\\": 0.01,\\n        \\\"multiplier\\\": 0.001,\\n        \\\"initialMargin\\\": 0.008,\\n        \\\"maintainMargin\\\": 0.004,\\n        \\\"maxRiskLimit\\\": 100000,\\n        \\\"minRiskLimit\\\": 100000,\\n        \\\"riskStep\\\": 50000,\\n        \\\"makerFeeRate\\\": 2.0E-4,\\n        \\\"takerFeeRate\\\": 6.0E-4,\\n        \\\"takerFixFee\\\": 0.0,\\n        \\\"makerFixFee\\\": 0.0,\\n        \\\"settlementFee\\\": null,\\n        \\\"isDeleverage\\\": true,\\n        \\\"isQuanto\\\": true,\\n        \\\"isInverse\\\": false,\\n        \\\"markMethod\\\": \\\"FairPrice\\\",\\n        \\\"fairMethod\\\": \\\"FundingRate\\\",\\n        \\\"fundingBaseSymbol\\\": \\\".XBTINT8H\\\",\\n        \\\"fundingQuoteSymbol\\\": \\\".USDTINT8H\\\",\\n        \\\"fundingRateSymbol\\\": \\\".XBTUSDTMFPI8H\\\",\\n        \\\"indexSymbol\\\": \\\".KXBTUSDT\\\",\\n        \\\"settlementSymbol\\\": \\\"\\\",\\n        \\\"status\\\": \\\"Open\\\",\\n        \\\"fundingFeeRate\\\": 5.2E-5,\\n        \\\"predictedFundingFeeRate\\\": 8.3E-5,\\n        \\\"fundingRateGranularity\\\": 28800000,\\n        \\\"openInterest\\\": \\\"6748176\\\",\\n        \\\"turnoverOf24h\\\": 1.0346431983265533E9,\\n        \\\"volumeOf24h\\\": 12069.225,\\n        \\\"markPrice\\\": 86378.69,\\n        \\\"indexPrice\\\": 86382.64,\\n        \\\"lastTradePrice\\\": 86364,\\n        \\\"nextFundingRateTime\\\": 17752926,\\n        \\\"maxLeverage\\\": 125,\\n        \\\"sourceExchanges\\\": [\\n            \\\"okex\\\",\\n            \\\"binance\\\",\\n            \\\"kucoin\\\",\\n            \\\"bybit\\\",\\n            \\\"bitmart\\\",\\n            \\\"gateio\\\"\\n        ],\\n        \\\"premiumsSymbol1M\\\": \\\".XBTUSDTMPI\\\",\\n        \\\"premiumsSymbol8H\\\": \\\".XBTUSDTMPI8H\\\",\\n        \\\"fundingBaseSymbol1M\\\": \\\".XBTINT\\\",\\n        \\\"fundingQuoteSymbol1M\\\": \\\".USDTINT\\\",\\n        \\\"lowPrice\\\": 82205.2,\\n        \\\"highPrice\\\": 89299.9,\\n        \\\"priceChgPct\\\": -0.028,\\n        \\\"priceChg\\\": -2495.9,\\n        \\\"k\\\": 490.0,\\n        \\\"m\\\": 300.0,\\n        \\\"f\\\": 1.3,\\n        \\\"mmrLimit\\\": 0.3,\\n        \\\"mmrLevConstant\\\": 125.0,\\n        \\\"supportCross\\\": true,\\n        \\\"buyLimit\\\": 90700.7115,\\n        \\\"sellLimit\\\": 82062.5485\\n    }\\n}",
                 "x-request-example": "{\\\"symbol\\\": \\\"XBTUSDTM\\\"}",
                 "operationId": "001"
             }
@@ -476,7 +486,7 @@
             "get": {
                 "summary": "Get All Symbols",
                 "deprecated": false,
-                "description": "Get detailed information of all contracts that can be traded. This API will return a list of tradable contracts, including some key parameters of the contract such as the symbol name, tick size, mark price,etc.",
+                "description": "Get detailed information of all contracts that can be traded. This API will return a list of tradable contracts, including some key parameters of the contract such as the symbol name, tick size, mark price, etc.",
                 "tags": [],
                 "parameters": [],
                 "responses": {
@@ -516,7 +526,7 @@
                                                     },
                                                     "type": {
                                                         "type": "string",
-                                                        "description": "Type of the contract",
+                                                        "description": "Type of contract",
                                                         "enum": [
                                                             "FFWCSX",
                                                             "FFICSX"
@@ -525,7 +535,7 @@
                                                             {
                                                                 "value": "FFWCSX",
                                                                 "name": "FFWCSX",
-                                                                "description": "Standardized swap contracts standard financial futures on swap, expiration swap funding rate"
+                                                                "description": "Standardized swap contracts, standard financial futures on swaps, expiration swap funding rates"
                                                             },
                                                             {
                                                                 "value": "FFICSX",
@@ -536,17 +546,17 @@
                                                     },
                                                     "firstOpenDate": {
                                                         "type": "integer",
-                                                        "description": "First Open Date(millisecond)",
+                                                        "description": "First Open Date (milliseconds)",
                                                         "format": "int64"
                                                     },
                                                     "expireDate": {
                                                         "type": "integer",
-                                                        "description": "Expiration date(millisecond). Null means it will never expire",
+                                                        "description": "Expiration date (milliseconds) Null means it will never expire",
                                                         "format": "int64"
                                                     },
                                                     "settleDate": {
                                                         "type": "integer",
-                                                        "description": "Settlement date(millisecond). Null indicates that automatic settlement is not supported",
+                                                        "description": "Settlement date (milliseconds) Null indicates that automatic settlement is not supported",
                                                         "format": "int64"
                                                     },
                                                     "baseCurrency": {
@@ -647,13 +657,13 @@
                                                             {
                                                                 "value": "FairPrice",
                                                                 "name": "FairPrice",
-                                                                "description": "Fair Price"
+                                                                "description": "FairPrice"
                                                             }
                                                         ]
                                                     },
                                                     "fairMethod": {
                                                         "type": "string",
-                                                        "description": "Fair price marking method, The Futures contract is null",
+                                                        "description": "Fair price marking method; the Futures contract is null",
                                                         "enum": [
                                                             "FundingRate"
                                                         ],
@@ -667,7 +677,7 @@
                                                     },
                                                     "fundingBaseSymbol": {
                                                         "type": "string",
-                                                        "description": "Ticker symbol of the based currency"
+                                                        "description": "Ticker symbol of the base currency"
                                                     },
                                                     "fundingQuoteSymbol": {
                                                         "type": "string",
@@ -683,7 +693,7 @@
                                                     },
                                                     "settlementSymbol": {
                                                         "type": "string",
-                                                        "description": "Settlement Symbol"
+                                                        "description": "Settlement symbol"
                                                     },
                                                     "status": {
                                                         "type": "string",
@@ -711,7 +721,7 @@
                                                             {
                                                                 "value": "BeingSettled",
                                                                 "name": "BeingSettled",
-                                                                "description": "Setting"
+                                                                "description": "Settling"
                                                             },
                                                             {
                                                                 "value": "Settled",
@@ -745,11 +755,11 @@
                                                     },
                                                     "fundingRateGranularity": {
                                                         "type": "integer",
-                                                        "description": "Funding interval(millisecond)"
+                                                        "description": "Funding interval (milliseconds)"
                                                     },
                                                     "openInterest": {
                                                         "type": "string",
-                                                        "description": "Open interest"
+                                                        "description": "Open interest (unit: lots)"
                                                     },
                                                     "turnoverOf24h": {
                                                         "type": "number",
@@ -773,7 +783,7 @@
                                                     },
                                                     "nextFundingRateTime": {
                                                         "type": "integer",
-                                                        "description": "Next funding rate time(millisecond)"
+                                                        "description": "Next funding rate time (milliseconds)"
                                                     },
                                                     "maxLeverage": {
                                                         "type": "integer",
@@ -788,19 +798,19 @@
                                                     },
                                                     "premiumsSymbol1M": {
                                                         "type": "string",
-                                                        "description": "Premium index symbol(1 minute)"
+                                                        "description": "Premium index symbol (1 minute)"
                                                     },
                                                     "premiumsSymbol8H": {
                                                         "type": "string",
-                                                        "description": "Premium index symbol(8 hours)"
+                                                        "description": "Premium index symbol (8 hours)"
                                                     },
                                                     "fundingBaseSymbol1M": {
                                                         "type": "string",
-                                                        "description": "Base currency interest rate symbol(1 minute)"
+                                                        "description": "Base currency interest rate symbol (1 minute)"
                                                     },
                                                     "fundingQuoteSymbol1M": {
                                                         "type": "string",
-                                                        "description": "Quote currency interest rate symbol(1 minute)"
+                                                        "description": "Quote currency interest rate symbol (1 minute)"
                                                     },
                                                     "lowPrice": {
                                                         "type": "number",
@@ -812,7 +822,7 @@
                                                     },
                                                     "priceChgPct": {
                                                         "type": "number",
-                                                        "description": "24-hour price change% "
+                                                        "description": "24-hour % price change "
                                                     },
                                                     "priceChg": {
                                                         "type": "number",
@@ -836,6 +846,14 @@
                                                     "supportCross": {
                                                         "type": "boolean",
                                                         "description": "Whether support Cross Margin"
+                                                    },
+                                                    "buyLimit": {
+                                                        "type": "number",
+                                                        "description": "The current maximum allowed buying price"
+                                                    },
+                                                    "sellLimit": {
+                                                        "type": "number",
+                                                        "description": "The current minimum allowed selling price"
                                                     }
                                                 },
                                                 "required": [
@@ -898,10 +916,12 @@
                                                     "f",
                                                     "mmrLimit",
                                                     "mmrLevConstant",
-                                                    "supportCross"
+                                                    "supportCross",
+                                                    "buyLimit",
+                                                    "sellLimit"
                                                 ]
                                             },
-                                            "description": "the list of all contracts"
+                                            "description": "List of all contracts"
                                         }
                                     },
                                     "required": [
@@ -922,9 +942,9 @@
                 "x-sdk-service": "Futures",
                 "x-sdk-sub-service": "Market",
                 "x-sdk-method-name": "GetAllSymbols",
-                "x-sdk-method-description": "Get detailed information of all contracts that can be traded. This API will return a list of tradable contracts, including some key parameters of the contract such as the symbol name, tick size, mark price,etc.",
-                "x-api-rate-limit": 3,
-                "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": [\\n        {\\n            \\\"symbol\\\": \\\"XBTUSDTM\\\",\\n            \\\"rootSymbol\\\": \\\"USDT\\\",\\n            \\\"type\\\": \\\"FFWCSX\\\",\\n            \\\"firstOpenDate\\\": 1585555200000,\\n            \\\"expireDate\\\": null,\\n            \\\"settleDate\\\": null,\\n            \\\"baseCurrency\\\": \\\"XBT\\\",\\n            \\\"quoteCurrency\\\": \\\"USDT\\\",\\n            \\\"settleCurrency\\\": \\\"USDT\\\",\\n            \\\"maxOrderQty\\\": 1000000,\\n            \\\"maxPrice\\\": 1000000.0,\\n            \\\"lotSize\\\": 1,\\n            \\\"tickSize\\\": 0.1,\\n            \\\"indexPriceTickSize\\\": 0.01,\\n            \\\"multiplier\\\": 0.001,\\n            \\\"initialMargin\\\": 0.008,\\n            \\\"maintainMargin\\\": 0.004,\\n            \\\"maxRiskLimit\\\": 100000,\\n            \\\"minRiskLimit\\\": 100000,\\n            \\\"riskStep\\\": 50000,\\n            \\\"makerFeeRate\\\": 2.0E-4,\\n            \\\"takerFeeRate\\\": 6.0E-4,\\n            \\\"takerFixFee\\\": 0.0,\\n            \\\"makerFixFee\\\": 0.0,\\n            \\\"settlementFee\\\": null,\\n            \\\"isDeleverage\\\": true,\\n            \\\"isQuanto\\\": true,\\n            \\\"isInverse\\\": false,\\n            \\\"markMethod\\\": \\\"FairPrice\\\",\\n            \\\"fairMethod\\\": \\\"FundingRate\\\",\\n            \\\"fundingBaseSymbol\\\": \\\".XBTINT8H\\\",\\n            \\\"fundingQuoteSymbol\\\": \\\".USDTINT8H\\\",\\n            \\\"fundingRateSymbol\\\": \\\".XBTUSDTMFPI8H\\\",\\n            \\\"indexSymbol\\\": \\\".KXBTUSDT\\\",\\n            \\\"settlementSymbol\\\": \\\"\\\",\\n            \\\"status\\\": \\\"Open\\\",\\n            \\\"fundingFeeRate\\\": 1.53E-4,\\n            \\\"predictedFundingFeeRate\\\": 8.0E-5,\\n            \\\"fundingRateGranularity\\\": 28800000,\\n            \\\"openInterest\\\": \\\"6384957\\\",\\n            \\\"turnoverOf24h\\\": 5.788402220999069E8,\\n            \\\"volumeOf24h\\\": 8274.432,\\n            \\\"markPrice\\\": 69732.33,\\n            \\\"indexPrice\\\": 69732.32,\\n            \\\"lastTradePrice\\\": 69732,\\n            \\\"nextFundingRateTime\\\": 21265941,\\n            \\\"maxLeverage\\\": 125,\\n            \\\"sourceExchanges\\\": [\\n                \\\"okex\\\",\\n                \\\"binance\\\",\\n                \\\"kucoin\\\",\\n                \\\"bybit\\\",\\n                \\\"bitmart\\\",\\n                \\\"gateio\\\"\\n            ],\\n            \\\"premiumsSymbol1M\\\": \\\".XBTUSDTMPI\\\",\\n            \\\"premiumsSymbol8H\\\": \\\".XBTUSDTMPI8H\\\",\\n            \\\"fundingBaseSymbol1M\\\": \\\".XBTINT\\\",\\n            \\\"fundingQuoteSymbol1M\\\": \\\".USDTINT\\\",\\n            \\\"lowPrice\\\": 68817.5,\\n            \\\"highPrice\\\": 71615.8,\\n            \\\"priceChgPct\\\": 6.0E-4,\\n            \\\"priceChg\\\": 48.0,\\n            \\\"k\\\": 490.0,\\n            \\\"m\\\": 300.0,\\n            \\\"f\\\": 1.3,\\n            \\\"mmrLimit\\\": 0.3,\\n            \\\"mmrLevConstant\\\": 125.0,\\n            \\\"supportCross\\\": true\\n        }\\n    ]\\n}",
+                "x-sdk-method-description": "Get detailed information of all contracts that can be traded. This API will return a list of tradable contracts, including some key parameters of the contract such as the symbol name, tick size, mark price, etc.",
+                "x-api-rate-limit-weight": 3,
+                "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": [\\n        {\\n            \\\"symbol\\\": \\\"XBTUSDTM\\\",\\n            \\\"rootSymbol\\\": \\\"USDT\\\",\\n            \\\"type\\\": \\\"FFWCSX\\\",\\n            \\\"firstOpenDate\\\": 1585555200000,\\n            \\\"expireDate\\\": null,\\n            \\\"settleDate\\\": null,\\n            \\\"baseCurrency\\\": \\\"XBT\\\",\\n            \\\"quoteCurrency\\\": \\\"USDT\\\",\\n            \\\"settleCurrency\\\": \\\"USDT\\\",\\n            \\\"maxOrderQty\\\": 1000000,\\n            \\\"maxPrice\\\": 1000000,\\n            \\\"lotSize\\\": 1,\\n            \\\"tickSize\\\": 0.1,\\n            \\\"indexPriceTickSize\\\": 0.01,\\n            \\\"multiplier\\\": 0.001,\\n            \\\"initialMargin\\\": 0.008,\\n            \\\"maintainMargin\\\": 0.004,\\n            \\\"maxRiskLimit\\\": 100000,\\n            \\\"minRiskLimit\\\": 100000,\\n            \\\"riskStep\\\": 50000,\\n            \\\"makerFeeRate\\\": 0.0002,\\n            \\\"takerFeeRate\\\": 0.0006,\\n            \\\"takerFixFee\\\": 0,\\n            \\\"makerFixFee\\\": 0,\\n            \\\"settlementFee\\\": null,\\n            \\\"isDeleverage\\\": true,\\n            \\\"isQuanto\\\": true,\\n            \\\"isInverse\\\": false,\\n            \\\"markMethod\\\": \\\"FairPrice\\\",\\n            \\\"fairMethod\\\": \\\"FundingRate\\\",\\n            \\\"fundingBaseSymbol\\\": \\\".XBTINT8H\\\",\\n            \\\"fundingQuoteSymbol\\\": \\\".USDTINT8H\\\",\\n            \\\"fundingRateSymbol\\\": \\\".XBTUSDTMFPI8H\\\",\\n            \\\"indexSymbol\\\": \\\".KXBTUSDT\\\",\\n            \\\"settlementSymbol\\\": \\\"\\\",\\n            \\\"status\\\": \\\"Open\\\",\\n            \\\"fundingFeeRate\\\": 0.000052,\\n            \\\"predictedFundingFeeRate\\\": 0.000083,\\n            \\\"fundingRateGranularity\\\": 28800000,\\n            \\\"openInterest\\\": \\\"6748176\\\",\\n            \\\"turnoverOf24h\\\": 1034643198.3265533,\\n            \\\"volumeOf24h\\\": 12069.225,\\n            \\\"markPrice\\\": 86378.69,\\n            \\\"indexPrice\\\": 86382.64,\\n            \\\"lastTradePrice\\\": 86364,\\n            \\\"nextFundingRateTime\\\": 17752926,\\n            \\\"maxLeverage\\\": 125,\\n            \\\"sourceExchanges\\\": [\\n                \\\"okex\\\",\\n                \\\"binance\\\",\\n                \\\"kucoin\\\",\\n                \\\"bybit\\\",\\n                \\\"bitmart\\\",\\n                \\\"gateio\\\"\\n            ],\\n            \\\"premiumsSymbol1M\\\": \\\".XBTUSDTMPI\\\",\\n            \\\"premiumsSymbol8H\\\": \\\".XBTUSDTMPI8H\\\",\\n            \\\"fundingBaseSymbol1M\\\": \\\".XBTINT\\\",\\n            \\\"fundingQuoteSymbol1M\\\": \\\".USDTINT\\\",\\n            \\\"lowPrice\\\": 82205.2,\\n            \\\"highPrice\\\": 89299.9,\\n            \\\"priceChgPct\\\": -0.028,\\n            \\\"priceChg\\\": -2495.9,\\n            \\\"k\\\": 490,\\n            \\\"m\\\": 300,\\n            \\\"f\\\": 1.3,\\n            \\\"mmrLimit\\\": 0.3,\\n            \\\"mmrLevConstant\\\": 125,\\n            \\\"supportCross\\\": true,\\n            \\\"buyLimit\\\": 90700.7115,\\n            \\\"sellLimit\\\": 82062.5485\\n        }\\n    ]\\n}",
                 "operationId": "002"
             }
         },
@@ -932,13 +952,13 @@
             "get": {
                 "summary": "Get Ticker",
                 "deprecated": false,
-                "description": "This endpoint returns \"last traded price/size\"、\"best bid/ask price/size\" etc. of a single symbol. These messages can also be obtained through Websocket.",
+                "description": "This endpoint returns \"last traded price/size\", \"best bid/ask price/size\" etc. of a single symbol. These messages can also be obtained through Websocket.",
                 "tags": [],
                 "parameters": [
                     {
                         "name": "symbol",
                         "in": "query",
-                        "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) \n\n",
+                        "description": "Symbol of the contract. Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) \n\n",
                         "required": true,
                         "schema": {
                             "type": "string",
@@ -967,16 +987,16 @@
                                             "properties": {
                                                 "sequence": {
                                                     "type": "integer",
-                                                    "description": "Sequence number, used to judge whether the messages pushed by Websocket is continuous.",
+                                                    "description": "Sequence number, used to judge whether the messages pushed by Websocket are continuous.",
                                                     "format": "int64"
                                                 },
                                                 "symbol": {
                                                     "type": "string",
-                                                    "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) "
+                                                    "description": "Symbol of the contract. Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) "
                                                 },
                                                 "side": {
                                                     "type": "string",
-                                                    "description": "Filled side, The trade side indicates the taker order side. A taker order is the order that was matched with orders opened on the order book.",
+                                                    "description": "Filled side; the trade side indicates the taker order side. A taker order is the order that was matched with orders opened on the order book.",
                                                     "enum": [
                                                         "buy",
                                                         "sell"
@@ -1024,7 +1044,7 @@
                                                 },
                                                 "ts": {
                                                     "type": "integer",
-                                                    "description": "Filled time(nanosecond)",
+                                                    "description": "Filled time (nanoseconds)",
                                                     "format": "int64"
                                                 }
                                             },
@@ -1061,8 +1081,8 @@
                 "x-sdk-service": "Futures",
                 "x-sdk-sub-service": "Market",
                 "x-sdk-method-name": "getTicker",
-                "x-sdk-method-description": "This endpoint returns \"last traded price/size\"、\"best bid/ask price/size\" etc. of a single symbol. These messages can also be obtained through Websocket.",
-                "x-api-rate-limit": 2,
+                "x-sdk-method-description": "This endpoint returns \"last traded price/size\", \"best bid/ask price/size\" etc. of a single symbol. These messages can also be obtained through Websocket.",
+                "x-api-rate-limit-weight": 2,
                 "x-response-example": "{\\\"code\\\":\\\"200000\\\",\\\"data\\\":{\\\"sequence\\\":1697895100310,\\\"symbol\\\":\\\"XBTUSDM\\\",\\\"side\\\":\\\"sell\\\",\\\"size\\\":2936,\\\"tradeId\\\":\\\"1697901180000\\\",\\\"price\\\":\\\"67158.4\\\",\\\"bestBidPrice\\\":\\\"67169.6\\\",\\\"bestBidSize\\\":32345,\\\"bestAskPrice\\\":\\\"67169.7\\\",\\\"bestAskSize\\\":7251,\\\"ts\\\":1729163001780000000}}",
                 "x-request-example": "{\\\"symbol\\\": \\\"XBTUSDTM\\\"}",
                 "operationId": "003"
@@ -1072,7 +1092,7 @@
             "get": {
                 "summary": "Get All Tickers",
                 "deprecated": false,
-                "description": "This endpoint returns \"last traded price/size\"、\"best bid/ask price/size\" etc. of a single symbol. These messages can also be obtained through Websocket.",
+                "description": "This endpoint returns \"last traded price/size\", \"best bid/ask price/size\" etc. of a single symbol. These messages can also be obtained through Websocket.",
                 "tags": [],
                 "parameters": [],
                 "responses": {
@@ -1094,7 +1114,7 @@
                                                 "properties": {
                                                     "sequence": {
                                                         "type": "integer",
-                                                        "description": "Sequence number, used to judge whether the messages pushed by Websocket is continuous.",
+                                                        "description": "Sequence number, used to judge whether the messages pushed by Websocket are continuous.",
                                                         "format": "int64"
                                                     },
                                                     "symbol": {
@@ -1123,7 +1143,7 @@
                                                     },
                                                     "size": {
                                                         "type": "integer",
-                                                        "description": "Filled side, The trade side indicates the taker order side. A taker order is the order that was matched with orders opened on the order book."
+                                                        "description": "Filled side; the trade side indicates the taker order side. A taker order is the order that was matched with orders opened on the order book."
                                                     },
                                                     "tradeId": {
                                                         "type": "string",
@@ -1151,7 +1171,7 @@
                                                     },
                                                     "ts": {
                                                         "type": "integer",
-                                                        "description": "Filled time(nanosecond)",
+                                                        "description": "Filled time (nanoseconds)",
                                                         "format": "int64"
                                                     }
                                                 },
@@ -1189,8 +1209,8 @@
                 "x-sdk-service": "Futures",
                 "x-sdk-sub-service": "Market",
                 "x-sdk-method-name": "getAllTickers",
-                "x-sdk-method-description": "This endpoint returns \"last traded price/size\"、\"best bid/ask price/size\" etc. of a single symbol. These messages can also be obtained through Websocket.",
-                "x-api-rate-limit": 5,
+                "x-sdk-method-description": "This endpoint returns \"last traded price/size\", \"best bid/ask price/size\" etc. of a single symbol. These messages can also be obtained through Websocket.",
+                "x-api-rate-limit-weight": 5,
                 "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": [\\n        {\\n            \\\"sequence\\\": 1707992727046,\\n            \\\"symbol\\\": \\\"XBTUSDTM\\\",\\n            \\\"side\\\": \\\"sell\\\",\\n            \\\"size\\\": 21,\\n            \\\"tradeId\\\": \\\"1784299761369\\\",\\n            \\\"price\\\": \\\"67153\\\",\\n            \\\"bestBidPrice\\\": \\\"67153\\\",\\n            \\\"bestBidSize\\\": 2767,\\n            \\\"bestAskPrice\\\": \\\"67153.1\\\",\\n            \\\"bestAskSize\\\": 5368,\\n            \\\"ts\\\": 1729163466659000000\\n        },\\n        {\\n            \\\"sequence\\\": 1697895166299,\\n            \\\"symbol\\\": \\\"XBTUSDM\\\",\\n            \\\"side\\\": \\\"sell\\\",\\n            \\\"size\\\": 1956,\\n            \\\"tradeId\\\": \\\"1697901245065\\\",\\n            \\\"price\\\": \\\"67145.2\\\",\\n            \\\"bestBidPrice\\\": \\\"67135.3\\\",\\n            \\\"bestBidSize\\\": 1,\\n            \\\"bestAskPrice\\\": \\\"67135.8\\\",\\n            \\\"bestAskSize\\\": 3,\\n            \\\"ts\\\": 1729163445340000000\\n        }\\n    ]\\n}",
                 "operationId": "004"
             }
@@ -1199,13 +1219,13 @@
             "get": {
                 "summary": "Get Full OrderBook",
                 "deprecated": false,
-                "description": "Query for Full orderbook depth data. (aggregated by price)  It is generally used by professional traders because it uses more server resources and traffic, and we have strict access rate limit control.  To maintain up-to-date Order Book, please use Websocket incremental feed after retrieving the OrderBook.",
+                "description": "Query for Full orderbook depth data (aggregated by price). It is generally used by professional traders because it uses more server resources and traffic, and we have strict access rate limit control.  To maintain an up-to-date Order Book, please use Websocket incremental feed after retrieving the OrderBook.",
                 "tags": [],
                 "parameters": [
                     {
                         "name": "symbol",
                         "in": "query",
-                        "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) \n",
+                        "description": "Symbol of the contract. Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) \n",
                         "required": false,
                         "schema": {
                             "type": "string"
@@ -1234,7 +1254,7 @@
                                                 },
                                                 "symbol": {
                                                     "type": "string",
-                                                    "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) "
+                                                    "description": "Symbol of the contract. Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) "
                                                 },
                                                 "bids": {
                                                     "type": "array",
@@ -1261,7 +1281,7 @@
                                                 "ts": {
                                                     "type": "integer",
                                                     "format": "int64",
-                                                    "description": "Timestamp(nanosecond)"
+                                                    "description": "Timestamp (nanoseconds)"
                                                 }
                                             },
                                             "required": [
@@ -1291,8 +1311,8 @@
                 "x-sdk-service": "Futures",
                 "x-sdk-sub-service": "Market",
                 "x-sdk-method-name": "getFullOrderBook",
-                "x-sdk-method-description": "Query for Full orderbook depth data. (aggregated by price)  It is generally used by professional traders because it uses more server resources and traffic, and we have strict access rate limit control.  To maintain up-to-date Order Book, please use Websocket incremental feed after retrieving the OrderBook.",
-                "x-api-rate-limit": 3,
+                "x-sdk-method-description": "Query for Full orderbook depth data (aggregated by price). It is generally used by professional traders because it uses more server resources and traffic, and we have strict access rate limit control.  To maintain an up-to-date Order Book, please use Websocket incremental feed after retrieving the OrderBook.",
+                "x-api-rate-limit-weight": 3,
                 "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"sequence\\\": 1697895963339,\\n        \\\"symbol\\\": \\\"XBTUSDM\\\",\\n        \\\"bids\\\": [\\n            [\\n                66968,\\n                2\\n            ],\\n            [\\n                66964.8,\\n                25596\\n            ]\\n        ],\\n        \\\"asks\\\": [\\n            [\\n                66968.1,\\n                13501\\n            ],\\n            [\\n                66968.7,\\n                2032\\n            ]\\n        ],\\n        \\\"ts\\\": 1729168101216000000\\n    }\\n}",
                 "x-request-example": "{\\\"symbol\\\": \\\"XBTUSDM\\\"}",
                 "operationId": "005"
@@ -1302,13 +1322,13 @@
             "get": {
                 "summary": "Get Part OrderBook",
                 "deprecated": false,
-                "description": "Query for part orderbook depth data. (aggregated by price)  You are recommended to request via this endpoint as the system reponse would be faster and cosume less traffic.",
+                "description": "Query for part orderbook depth data. (aggregated by price). It is recommended that you request via this endpoint, as the system response will be faster and consume less traffic.",
                 "tags": [],
                 "parameters": [
                     {
                         "name": "symbol",
                         "in": "query",
-                        "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) ",
+                        "description": "Symbol of the contract. Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) ",
                         "required": true,
                         "schema": {
                             "type": "string"
@@ -1345,7 +1365,7 @@
                                                 },
                                                 "symbol": {
                                                     "type": "string",
-                                                    "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) "
+                                                    "description": "Symbol of the contract. Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) "
                                                 },
                                                 "bids": {
                                                     "type": "array",
@@ -1371,7 +1391,7 @@
                                                 },
                                                 "ts": {
                                                     "type": "integer",
-                                                    "description": "Timestamp(nanosecond)",
+                                                    "description": "Timestamp (nanoseconds)",
                                                     "format": "int64"
                                                 }
                                             },
@@ -1402,8 +1422,8 @@
                 "x-sdk-service": "Futures",
                 "x-sdk-sub-service": "Market",
                 "x-sdk-method-name": "getPartOrderBook",
-                "x-sdk-method-description": "Query for part orderbook depth data. (aggregated by price)  You are recommended to request via this endpoint as the system reponse would be faster and cosume less traffic.",
-                "x-api-rate-limit": 5,
+                "x-sdk-method-description": "Query for part orderbook depth data. (aggregated by price). It is recommended that you request via this endpoint, as the system response will be faster and consume less traffic.",
+                "x-api-rate-limit-weight": 5,
                 "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"sequence\\\": 1697895963339,\\n        \\\"symbol\\\": \\\"XBTUSDM\\\",\\n        \\\"bids\\\": [\\n            [\\n                66968,\\n                2\\n            ],\\n            [\\n                66964.8,\\n                25596\\n            ]\\n        ],\\n        \\\"asks\\\": [\\n            [\\n                66968.1,\\n                13501\\n            ],\\n            [\\n                66968.7,\\n                2032\\n            ]\\n        ],\\n        \\\"ts\\\": 1729168101216000000\\n    }\\n}",
                 "x-request-example": "{\\\"symbol\\\": \\\"XBTUSDM\\\", \\\"size\\\": \\\"20\\\"}",
                 "operationId": "006"
@@ -1413,13 +1433,13 @@
             "get": {
                 "summary": "Get Trade History",
                 "deprecated": false,
-                "description": "Request via this endpoint to get the trade history of the specified symbol, the returned quantity is the last 100 transaction records.",
+                "description": "Request the trade history of the specified symbol via this endpoint. The returned quantity is the last 100 transaction records.",
                 "tags": [],
                 "parameters": [
                     {
                         "name": "symbol",
                         "in": "query",
-                        "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) ",
+                        "description": "Symbol of the contract. Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) ",
                         "required": true,
                         "schema": {
                             "type": "string"
@@ -1465,7 +1485,7 @@
                                                     },
                                                     "ts": {
                                                         "type": "integer",
-                                                        "description": "Filled timestamp(nanosecond)",
+                                                        "description": "Filled timestamp (nanosecond)",
                                                         "format": "int64"
                                                     },
                                                     "size": {
@@ -1478,7 +1498,7 @@
                                                     },
                                                     "side": {
                                                         "type": "string",
-                                                        "description": "Filled side, The trade side indicates the taker order side. A taker order is the order that was matched with orders opened on the order book.",
+                                                        "description": "Filled side; the trade side indicates the taker order side. A taker order is the order that was matched with orders opened on the order book.",
                                                         "enum": [
                                                             "buy",
                                                             "sell"
@@ -1529,8 +1549,8 @@
                 "x-sdk-service": "Futures",
                 "x-sdk-sub-service": "Market",
                 "x-sdk-method-name": "getTradeHistory",
-                "x-sdk-method-description": "Request via this endpoint to get the trade history of the specified symbol, the returned quantity is the last 100 transaction records.",
-                "x-api-rate-limit": 5,
+                "x-sdk-method-description": "Request the trade history of the specified symbol via this endpoint. The returned quantity is the last 100 transaction records.",
+                "x-api-rate-limit-weight": 5,
                 "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": [\\n        {\\n            \\\"sequence\\\": 1697915257909,\\n            \\\"contractId\\\": 1,\\n            \\\"tradeId\\\": \\\"1697915257909\\\",\\n            \\\"makerOrderId\\\": \\\"236679665752801280\\\",\\n            \\\"takerOrderId\\\": \\\"236679667975745536\\\",\\n            \\\"ts\\\": 1729242032152000000,\\n            \\\"size\\\": 1,\\n            \\\"price\\\": \\\"67878\\\",\\n            \\\"side\\\": \\\"sell\\\"\\n        },\\n        {\\n            \\\"sequence\\\": 1697915257749,\\n            \\\"contractId\\\": 1,\\n            \\\"tradeId\\\": \\\"1697915257749\\\",\\n            \\\"makerOrderId\\\": \\\"236679660971245570\\\",\\n            \\\"takerOrderId\\\": \\\"236679665400492032\\\",\\n            \\\"ts\\\": 1729242031535000000,\\n            \\\"size\\\": 1,\\n            \\\"price\\\": \\\"67867.8\\\",\\n            \\\"side\\\": \\\"sell\\\"\\n        },\\n        {\\n            \\\"sequence\\\": 1697915257701,\\n            \\\"contractId\\\": 1,\\n            \\\"tradeId\\\": \\\"1697915257701\\\",\\n            \\\"makerOrderId\\\": \\\"236679660971245570\\\",\\n            \\\"takerOrderId\\\": \\\"236679661919211521\\\",\\n            \\\"ts\\\": 1729242030932000000,\\n            \\\"size\\\": 1,\\n            \\\"price\\\": \\\"67867.8\\\",\\n            \\\"side\\\": \\\"sell\\\"\\n        }\\n    ]\\n}",
                 "x-request-example": "{\\\"symbol\\\": \\\"XBTUSDM\\\"}",
                 "operationId": "007"
@@ -1540,13 +1560,13 @@
             "get": {
                 "summary": "Get Klines",
                 "deprecated": false,
-                "description": "Get the Kline of the symbol. Data are returned in grouped buckets based on requested type. For each query, the system would return at most 500 pieces of data. To obtain more data, please page the data by time.",
+                "description": "Get the symbol’s candlestick chart. Data are returned in grouped buckets based on requested type. For each query, the system will return at most 500 pieces of data. To obtain more data, please page the data by time.",
                 "tags": [],
                 "parameters": [
                     {
                         "name": "symbol",
                         "in": "query",
-                        "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol, indexSymbol, premiumsSymbol1M, premiumsSymbol8H](https://www.kucoin.com/docs-new/api-3470220) ",
+                        "description": "Symbol of the contract. Please refer to [Get Symbol endpoint: symbol, indexSymbol, premiumsSymbol1M, premiumsSymbol8H](https://www.kucoin.com/docs-new/api-3470220) ",
                         "required": true,
                         "schema": {
                             "type": "string",
@@ -1561,7 +1581,7 @@
                     {
                         "name": "granularity",
                         "in": "query",
-                        "description": "Type of candlestick patterns(minute)",
+                        "description": "Type of candlestick patterns (minutes)",
                         "required": true,
                         "schema": {
                             "type": "integer",
@@ -1641,7 +1661,7 @@
                     {
                         "name": "from",
                         "in": "query",
-                        "description": "Start time (milisecond)",
+                        "description": "Start time (milliseconds)",
                         "required": false,
                         "schema": {
                             "type": "integer",
@@ -1651,7 +1671,7 @@
                     {
                         "name": "to",
                         "in": "query",
-                        "description": "End time (milisecond)",
+                        "description": "End time (milliseconds)",
                         "required": false,
                         "schema": {
                             "type": "integer",
@@ -1676,7 +1696,7 @@
                                                 "type": "array",
                                                 "items": {
                                                     "type": "number",
-                                                    "description": "Start time of the candle cycle, opening price, highest price, Lowest price, closing price, Transaction volume"
+                                                    "description": "Start time of the candle cycle, opening price, highest price, lowest price, closing price, transaction volume"
                                                 }
                                             }
                                         }
@@ -1699,8 +1719,8 @@
                 "x-sdk-service": "Futures",
                 "x-sdk-sub-service": "Market",
                 "x-sdk-method-name": "getKlines",
-                "x-sdk-method-description": "Get the Kline of the symbol. Data are returned in grouped buckets based on requested type. For each query, the system would return at most 500 pieces of data. To obtain more data, please page the data by time.",
-                "x-api-rate-limit": 3,
+                "x-sdk-method-description": "Get the symbol’s candlestick chart. Data are returned in grouped buckets based on requested type. For each query, the system will return at most 500 pieces of data. To obtain more data, please page the data by time.",
+                "x-api-rate-limit-weight": 3,
                 "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": [\\n        [\\n            1728576000000,\\n            60791.1,\\n            61035,\\n            58940,\\n            60300,\\n            5501167\\n        ],\\n        [\\n            1728604800000,\\n            60299.9,\\n            60924.1,\\n            60077.4,\\n            60666.1,\\n            1220980\\n        ],\\n        [\\n            1728633600000,\\n            60665.7,\\n            62436.8,\\n            60650.1,\\n            62255.1,\\n            3386359\\n        ]\\n    ]\\n}",
                 "x-request-example": "{\\\"symbol\\\": \\\"XBTUSDTM\\\", \\\"granularity\\\": 1, \\\"from\\\": 1728552342000, \\\"to\\\": 1729243542000}",
                 "operationId": "008"
@@ -1710,13 +1730,13 @@
             "get": {
                 "summary": "Get Mark Price",
                 "deprecated": false,
-                "description": "Get current mark price",
+                "description": "Get the current mark price.",
                 "tags": [],
                 "parameters": [
                     {
                         "name": "symbol",
                         "in": "path",
-                        "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) ",
+                        "description": "Symbol of the contract. Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) ",
                         "required": true,
                         "schema": {
                             "type": "string"
@@ -1739,15 +1759,15 @@
                                             "properties": {
                                                 "symbol": {
                                                     "type": "string",
-                                                    "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) "
+                                                    "description": "Symbol of the contract. Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) "
                                                 },
                                                 "granularity": {
                                                     "type": "integer",
-                                                    "description": "Granularity (milisecond)"
+                                                    "description": "Granularity (milliseconds)"
                                                 },
                                                 "timePoint": {
                                                     "type": "integer",
-                                                    "description": "Time point (milisecond)",
+                                                    "description": "Time point (milliseconds)",
                                                     "format": "int64"
                                                 },
                                                 "value": {
@@ -1786,8 +1806,8 @@
                 "x-sdk-service": "Futures",
                 "x-sdk-sub-service": "Market",
                 "x-sdk-method-name": "getMarkPrice",
-                "x-sdk-method-description": "Get current mark price",
-                "x-api-rate-limit": 3,
+                "x-sdk-method-description": "Get the current mark price.",
+                "x-api-rate-limit-weight": 3,
                 "x-response-example": "{\\\"code\\\":\\\"200000\\\",\\\"data\\\":{\\\"symbol\\\":\\\"XBTUSDTM\\\",\\\"granularity\\\":1000,\\\"timePoint\\\":1729254307000,\\\"value\\\":67687.08,\\\"indexPrice\\\":67683.58}}",
                 "x-request-example": "{\\\"symbol\\\": \\\"XBTUSDTM\\\"}",
                 "operationId": "009"
@@ -1797,13 +1817,13 @@
             "get": {
                 "summary": "Get Spot Index Price",
                 "deprecated": false,
-                "description": "Get Spot Index Price",
+                "description": "Get Spot Index Price.",
                 "tags": [],
                 "parameters": [
                     {
                         "name": "symbol",
                         "in": "query",
-                        "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: indexSymbol](https://www.kucoin.com/docs-new/api-3470220) ",
+                        "description": "Symbol of the contract. Please refer to [Get Symbol endpoint: indexSymbol](https://www.kucoin.com/docs-new/api-3470220) ",
                         "required": true,
                         "schema": {
                             "type": "string",
@@ -1816,7 +1836,7 @@
                     {
                         "name": "startAt",
                         "in": "query",
-                        "description": "Start time (milisecond)",
+                        "description": "Start time (milliseconds)",
                         "required": false,
                         "schema": {
                             "type": "integer",
@@ -1826,7 +1846,7 @@
                     {
                         "name": "endAt",
                         "in": "query",
-                        "description": "End time (milisecond)",
+                        "description": "End time (milliseconds)",
                         "required": false,
                         "schema": {
                             "type": "integer",
@@ -1836,7 +1856,7 @@
                     {
                         "name": "reverse",
                         "in": "query",
-                        "description": "This parameter functions to judge whether the lookup is reverse. True means “yes”. False means no. This parameter is set as True by default.",
+                        "description": "This parameter functions to judge whether the lookup is reversed. True means “yes”. False means “no”. This parameter is set as True by default.",
                         "required": false,
                         "schema": {
                             "type": "boolean",
@@ -1856,7 +1876,7 @@
                     {
                         "name": "forward",
                         "in": "query",
-                        "description": "This parameter functions to judge whether the lookup is forward or not. True means “yes” and False means “no”. This parameter is set as true by default",
+                        "description": "This parameter functions to judge whether the lookup is forward or not. True means “yes” and False means “no”. This parameter is set as true by default.",
                         "required": false,
                         "schema": {
                             "type": "boolean",
@@ -1866,7 +1886,7 @@
                     {
                         "name": "maxCount",
                         "in": "query",
-                        "description": "Max record count. The default record count is 10, The maximum length cannot exceed 100",
+                        "description": "Max. record count. The default record count is 10; the maximum length cannot exceed 100",
                         "required": false,
                         "schema": {
                             "type": "integer",
@@ -1897,15 +1917,15 @@
                                                         "properties": {
                                                             "symbol": {
                                                                 "type": "string",
-                                                                "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: indexSymbol](https://www.kucoin.com/docs-new/api-3470220) "
+                                                                "description": "Symbol of the contract. Please refer to [Get Symbol endpoint: indexSymbol](https://www.kucoin.com/docs-new/api-3470220) "
                                                             },
                                                             "granularity": {
                                                                 "type": "integer",
-                                                                "description": "Granularity (milisecond)"
+                                                                "description": "Granularity (milliseconds)"
                                                             },
                                                             "timePoint": {
                                                                 "type": "integer",
-                                                                "description": "Timestamp (milisecond)",
+                                                                "description": "Timestamp (milliseconds)",
                                                                 "format": "int64"
                                                             },
                                                             "value": {
@@ -1977,8 +1997,8 @@
                 "x-sdk-service": "Futures",
                 "x-sdk-sub-service": "Market",
                 "x-sdk-method-name": "getSpotIndexPrice",
-                "x-sdk-method-description": "Get Spot Index Price",
-                "x-api-rate-limit": 2,
+                "x-sdk-method-description": "Get Spot Index Price.",
+                "x-api-rate-limit-weight": 2,
                 "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"hasMore\\\": true,\\n        \\\"dataList\\\": [\\n            {\\n                \\\"symbol\\\": \\\".KXBTUSDT\\\",\\n                \\\"granularity\\\": 1000,\\n                \\\"timePoint\\\": 1730557515000,\\n                \\\"value\\\": 69202.94,\\n                \\\"decomposionList\\\": [\\n                    {\\n                        \\\"exchange\\\": \\\"gateio\\\",\\n                        \\\"price\\\": 69209.27,\\n                        \\\"weight\\\": 0.0533\\n                    },\\n                    {\\n                        \\\"exchange\\\": \\\"bitmart\\\",\\n                        \\\"price\\\": 69230.77,\\n                        \\\"weight\\\": 0.0128\\n                    },\\n                    {\\n                        \\\"exchange\\\": \\\"okex\\\",\\n                        \\\"price\\\": 69195.34,\\n                        \\\"weight\\\": 0.11\\n                    },\\n                    {\\n                        \\\"exchange\\\": \\\"bybit\\\",\\n                        \\\"price\\\": 69190.33,\\n                        \\\"weight\\\": 0.0676\\n                    },\\n                    {\\n                        \\\"exchange\\\": \\\"binance\\\",\\n                        \\\"price\\\": 69204.55,\\n                        \\\"weight\\\": 0.6195\\n                    },\\n                    {\\n                        \\\"exchange\\\": \\\"kucoin\\\",\\n                        \\\"price\\\": 69202.91,\\n                        \\\"weight\\\": 0.1368\\n                    }\\n                ]\\n            },\\n            {\\n                \\\"symbol\\\": \\\".KXBTUSDT\\\",\\n                \\\"granularity\\\": 1000,\\n                \\\"timePoint\\\": 1730557514000,\\n                \\\"value\\\": 69204.98,\\n                \\\"decomposionList\\\": [\\n                    {\\n                        \\\"exchange\\\": \\\"gateio\\\",\\n                        \\\"price\\\": 69212.71,\\n                        \\\"weight\\\": 0.0808\\n                    },\\n                    {\\n                        \\\"exchange\\\": \\\"bitmart\\\",\\n                        \\\"price\\\": 69230.77,\\n                        \\\"weight\\\": 0.0134\\n                    },\\n                    {\\n                        \\\"exchange\\\": \\\"okex\\\",\\n                        \\\"price\\\": 69195.49,\\n                        \\\"weight\\\": 0.0536\\n                    },\\n                    {\\n                        \\\"exchange\\\": \\\"bybit\\\",\\n                        \\\"price\\\": 69195.97,\\n                        \\\"weight\\\": 0.0921\\n                    },\\n                    {\\n                        \\\"exchange\\\": \\\"binance\\\",\\n                        \\\"price\\\": 69204.56,\\n                        \\\"weight\\\": 0.5476\\n                    },\\n                    {\\n                        \\\"exchange\\\": \\\"kucoin\\\",\\n                        \\\"price\\\": 69207.8,\\n                        \\\"weight\\\": 0.2125\\n                    }\\n                ]\\n            }\\n        ]\\n    }\\n}",
                 "x-request-example": "{\\\"symbol\\\": \\\".KXBTUSDT\\\", \\\"startAt\\\": 123456, \\\"endAt\\\": 123456, \\\"reverse\\\": true, \\\"offset\\\": 123456, \\\"forward\\\": true, \\\"maxCount\\\": 10}",
                 "operationId": "010"
@@ -1994,7 +2014,7 @@
                     {
                         "name": "symbol",
                         "in": "query",
-                        "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: fundingBaseSymbol, fundingQuoteSymbol, fundingBaseSymbol1M, fundingQuoteSymbol1M](https://www.kucoin.com/docs-new/api-3470220) ",
+                        "description": "Symbol of the contract. Please refer to [Get Symbol endpoint: fundingBaseSymbol, fundingQuoteSymbol, fundingBaseSymbol1M, fundingQuoteSymbol1M](https://www.kucoin.com/docs-new/api-3470220) ",
                         "required": true,
                         "schema": {
                             "type": "string",
@@ -2009,7 +2029,7 @@
                     {
                         "name": "startAt",
                         "in": "query",
-                        "description": "Start time (milisecond)",
+                        "description": "Start time (milliseconds)",
                         "required": false,
                         "schema": {
                             "type": "integer",
@@ -2019,7 +2039,7 @@
                     {
                         "name": "endAt",
                         "in": "query",
-                        "description": "End time (milisecond)",
+                        "description": "End time (milliseconds)",
                         "required": false,
                         "schema": {
                             "type": "integer",
@@ -2029,7 +2049,7 @@
                     {
                         "name": "reverse",
                         "in": "query",
-                        "description": "This parameter functions to judge whether the lookup is reverse. True means “yes”. False means no. This parameter is set as True by default.",
+                        "description": "This parameter functions to judge whether the lookup is reversed. True means “yes”. False means “no”. This parameter is set as True by default.",
                         "required": false,
                         "schema": {
                             "type": "boolean",
@@ -2049,7 +2069,7 @@
                     {
                         "name": "forward",
                         "in": "query",
-                        "description": "This parameter functions to judge whether the lookup is forward or not. True means “yes” and False means “no”. This parameter is set as true by default",
+                        "description": "This parameter functions to judge whether the lookup is forward or not. True means “yes” and False means “no”. This parameter is set as true by default.",
                         "required": false,
                         "schema": {
                             "type": "boolean",
@@ -2059,7 +2079,7 @@
                     {
                         "name": "maxCount",
                         "in": "query",
-                        "description": "Max record count. The default record count is 10, The maximum length cannot exceed 100",
+                        "description": "Max. record count. The default record count is 10; the maximum length cannot exceed 100",
                         "required": false,
                         "schema": {
                             "type": "integer",
@@ -2090,15 +2110,15 @@
                                                         "properties": {
                                                             "symbol": {
                                                                 "type": "string",
-                                                                "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: fundingBaseSymbol, fundingQuoteSymbol, fundingBaseSymbol1M, fundingQuoteSymbol1M](https://www.kucoin.com/docs-new/api-3470220) "
+                                                                "description": "Symbol of the contract. Please refer to [Get Symbol endpoint: fundingBaseSymbol, fundingQuoteSymbol, fundingBaseSymbol1M, fundingQuoteSymbol1M](https://www.kucoin.com/docs-new/api-3470220) "
                                                             },
                                                             "granularity": {
                                                                 "type": "integer",
-                                                                "description": "Granularity (milisecond)"
+                                                                "description": "Granularity (milliseconds)"
                                                             },
                                                             "timePoint": {
                                                                 "type": "integer",
-                                                                "description": "Timestamp(milisecond)",
+                                                                "description": "Timestamp (milliseconds)",
                                                                 "format": "int64"
                                                             },
                                                             "value": {
@@ -2144,7 +2164,7 @@
                 "x-sdk-sub-service": "Market",
                 "x-sdk-method-name": "getInterestRateIndex",
                 "x-sdk-method-description": "Get interest rate Index.",
-                "x-api-rate-limit": 5,
+                "x-api-rate-limit-weight": 5,
                 "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"dataList\\\": [\\n            {\\n                \\\"symbol\\\": \\\".XBTINT\\\",\\n                \\\"granularity\\\": 60000,\\n                \\\"timePoint\\\": 1728692100000,\\n                \\\"value\\\": 3.0E-4\\n            },\\n            {\\n                \\\"symbol\\\": \\\".XBTINT\\\",\\n                \\\"granularity\\\": 60000,\\n                \\\"timePoint\\\": 1728692040000,\\n                \\\"value\\\": 3.0E-4\\n            }\\n        ],\\n        \\\"hasMore\\\": true\\n    }\\n}",
                 "x-request-example": "{\\\"symbol\\\": \\\".XBTINT8H\\\", \\\"startAt\\\": 1728663338000, \\\"endAt\\\": 1728692138000, \\\"reverse\\\": true, \\\"offset\\\": 254062248624417, \\\"forward\\\": true, \\\"maxCount\\\": 10}",
                 "operationId": "011"
@@ -2160,7 +2180,7 @@
                     {
                         "name": "symbol",
                         "in": "query",
-                        "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: premiumsSymbol1M, premiumsSymbol8H](https://www.kucoin.com/docs-new/api-3470220) ",
+                        "description": "Symbol of the contract. Please refer to [Get Symbol endpoint: premiumsSymbol1M, premiumsSymbol8H](https://www.kucoin.com/docs-new/api-3470220) ",
                         "required": true,
                         "schema": {
                             "type": "string",
@@ -2173,7 +2193,7 @@
                     {
                         "name": "startAt",
                         "in": "query",
-                        "description": "Start time (milisecond)",
+                        "description": "Start time (milliseconds)",
                         "required": false,
                         "schema": {
                             "type": "integer",
@@ -2183,7 +2203,7 @@
                     {
                         "name": "endAt",
                         "in": "query",
-                        "description": "End time (milisecond)",
+                        "description": "End time (milliseconds)",
                         "required": false,
                         "schema": {
                             "type": "integer",
@@ -2193,7 +2213,7 @@
                     {
                         "name": "reverse",
                         "in": "query",
-                        "description": "This parameter functions to judge whether the lookup is reverse. True means “yes”. False means no. This parameter is set as True by default.",
+                        "description": "This parameter functions to judge whether the lookup is reversed. True means “yes”. False means “no”. This parameter is set as True by default.",
                         "required": false,
                         "schema": {
                             "type": "boolean",
@@ -2213,7 +2233,7 @@
                     {
                         "name": "forward",
                         "in": "query",
-                        "description": "This parameter functions to judge whether the lookup is forward or not. True means “yes” and False means “no”. This parameter is set as true by default",
+                        "description": "This parameter functions to judge whether the lookup is forward or not. True means “yes” and False means “no”. This parameter is set as true by default.",
                         "required": false,
                         "schema": {
                             "type": "boolean",
@@ -2223,7 +2243,7 @@
                     {
                         "name": "maxCount",
                         "in": "query",
-                        "description": "Max record count. The default record count is 10, The maximum length cannot exceed 100",
+                        "description": "Max. record count. The default record count is 10; the maximum length cannot exceed 100",
                         "required": false,
                         "schema": {
                             "type": "integer",
@@ -2254,15 +2274,15 @@
                                                         "properties": {
                                                             "symbol": {
                                                                 "type": "string",
-                                                                "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: premiumsSymbol1M, premiumsSymbol8H](https://www.kucoin.com/docs-new/api-3470220) "
+                                                                "description": "Symbol of the contract. Please refer to [Get Symbol endpoint: premiumsSymbol1M, premiumsSymbol8H](https://www.kucoin.com/docs-new/api-3470220) "
                                                             },
                                                             "granularity": {
                                                                 "type": "integer",
-                                                                "description": "Granularity(milisecond)"
+                                                                "description": "Granularity (milliseconds)"
                                                             },
                                                             "timePoint": {
                                                                 "type": "integer",
-                                                                "description": "Timestamp(milisecond)",
+                                                                "description": "Timestamp (milliseconds)",
                                                                 "format": "int64"
                                                             },
                                                             "value": {
@@ -2308,7 +2328,7 @@
                 "x-sdk-sub-service": "Market",
                 "x-sdk-method-name": "getPremiumIndex",
                 "x-sdk-method-description": "Submit request to get premium index.",
-                "x-api-rate-limit": 3,
+                "x-api-rate-limit-weight": 3,
                 "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"hasMore\\\": true,\\n        \\\"dataList\\\": [\\n            {\\n                \\\"symbol\\\": \\\".XBTUSDTMPI\\\",\\n                \\\"granularity\\\": 60000,\\n                \\\"timePoint\\\": 1730558040000,\\n                \\\"value\\\": 0.00006\\n            },\\n            {\\n                \\\"symbol\\\": \\\".XBTUSDTMPI\\\",\\n                \\\"granularity\\\": 60000,\\n                \\\"timePoint\\\": 1730557980000,\\n                \\\"value\\\": -0.000025\\n            }\\n        ]\\n    }\\n}",
                 "x-request-example": "{\\\"symbol\\\": \\\".XBTUSDTMPI\\\", \\\"startAt\\\": 1728663338000, \\\"endAt\\\": 1728692138000, \\\"reverse\\\": true, \\\"offset\\\": 254062248624417, \\\"forward\\\": true, \\\"maxCount\\\": 10}",
                 "operationId": "012"
@@ -2316,7 +2336,7 @@
         },
         "/api/v1/trade-statistics": {
             "get": {
-                "summary": "Get 24hr Stats",
+                "summary": "Get 24hr stats",
                 "deprecated": false,
                 "description": "Get the statistics of the platform futures trading volume in the last 24 hours.",
                 "tags": [],
@@ -2364,7 +2384,7 @@
                 "x-sdk-sub-service": "Market",
                 "x-sdk-method-name": "get24hrStats",
                 "x-sdk-method-description": "Get the statistics of the platform futures trading volume in the last 24 hours.",
-                "x-api-rate-limit": 3,
+                "x-api-rate-limit-weight": 3,
                 "x-response-example": "{\\\"code\\\":\\\"200000\\\",\\\"data\\\":{\\\"turnoverOf24h\\\":1.1155733413273683E9}}",
                 "operationId": "013"
             }
@@ -2390,7 +2410,7 @@
                                         "data": {
                                             "type": "integer",
                                             "format": "int64",
-                                            "description": "ServerTime(millisecond)"
+                                            "description": "ServerTime (milliseconds)"
                                         }
                                     },
                                     "required": [
@@ -2412,7 +2432,7 @@
                 "x-sdk-sub-service": "Market",
                 "x-sdk-method-name": "getServerTime",
                 "x-sdk-method-description": "Get the API server time. This is the Unix timestamp.",
-                "x-api-rate-limit": 2,
+                "x-api-rate-limit-weight": 2,
                 "x-response-example": "{\\\"code\\\":\\\"200000\\\",\\\"data\\\":1729260030774}",
                 "operationId": "014"
             }
@@ -2443,7 +2463,7 @@
                                                 },
                                                 "status": {
                                                     "type": "string",
-                                                    "description": "Status of service: open：normal transaction, close：Stop Trading/Maintenance, cancelonly：can only cancel the order but not place order",
+                                                    "description": "Status of service: open: normal transaction; close: Stop Trading/Maintenance; cancelonly: can only cancel the order but not place order",
                                                     "enum": [
                                                         "open",
                                                         "close",
@@ -2493,7 +2513,7 @@
                 "x-sdk-sub-service": "Market",
                 "x-sdk-method-name": "getServiceStatus",
                 "x-sdk-method-description": "Get the service status.",
-                "x-api-rate-limit": 4,
+                "x-api-rate-limit-weight": 4,
                 "x-response-example": "{\\\"code\\\":\\\"200000\\\",\\\"data\\\":{\\\"msg\\\":\\\"\\\",\\\"status\\\":\\\"open\\\"}}",
                 "operationId": "015"
             }
@@ -2502,7 +2522,7 @@
             "post": {
                 "summary": "Get Public Token - Futures",
                 "deprecated": false,
-                "description": "This interface can obtain the token required for websocket to establish a Futures connection. If you need use public channels (e.g. all public market data), please make request as follows to obtain the server list and public token",
+                "description": "This interface can obtain the token required for Websocket to establish a Futures connection. If you need use public channels (e.g. all public market data), please make request as follows to obtain the server list and public token",
                 "tags": [],
                 "parameters": [],
                 "responses": {
@@ -2521,7 +2541,7 @@
                                             "properties": {
                                                 "token": {
                                                     "type": "string",
-                                                    "description": "The token required to establish a websocket connection"
+                                                    "description": "The token required to establish a Websocket connection"
                                                 },
                                                 "instanceServers": {
                                                     "type": "array",
@@ -2530,7 +2550,7 @@
                                                         "properties": {
                                                             "endpoint": {
                                                                 "type": "string",
-                                                                "description": "Websocket domain URL, It is recommended to use a dynamic URL as the URL may change"
+                                                                "description": "Websocket domain URL. It is recommended to use a dynamic URL, as the URL may change."
                                                             },
                                                             "encrypt": {
                                                                 "type": "boolean",
@@ -2545,18 +2565,18 @@
                                                                 "x-api-enum": [
                                                                     {
                                                                         "value": "websocket",
-                                                                        "name": "websocket",
-                                                                        "description": "websocket"
+                                                                        "name": "Websocket",
+                                                                        "description": "Websocket"
                                                                     }
                                                                 ]
                                                             },
                                                             "pingInterval": {
                                                                 "type": "integer",
-                                                                "description": "Recommended ping interval(millisecond)"
+                                                                "description": "Recommended ping interval (milliseconds)"
                                                             },
                                                             "pingTimeout": {
                                                                 "type": "integer",
-                                                                "description": "Heartbeat timeout(millisecond)"
+                                                                "description": "Heartbeat timeout (milliseconds)"
                                                             }
                                                         },
                                                         "required": [
@@ -2593,8 +2613,8 @@
                 "x-sdk-service": "Futures",
                 "x-sdk-sub-service": "Market",
                 "x-sdk-method-name": "getPublicToken",
-                "x-sdk-method-description": "This interface can obtain the token required for websocket to establish a Futures connection. If you need use public channels (e.g. all public market data), please make request as follows to obtain the server list and public token",
-                "x-api-rate-limit": 10,
+                "x-sdk-method-description": "This interface can obtain the token required for Websocket to establish a Futures connection. If you need use public channels (e.g. all public market data), please make request as follows to obtain the server list and public token",
+                "x-api-rate-limit-weight": 10,
                 "x-response-example": "{\\\"code\\\":\\\"200000\\\",\\\"data\\\":{\\\"token\\\":\\\"2neAiuYvAU61ZDXANAGAsiL4-iAExhsBXZxftpOeh_55i3Ysy2q2LEsEWU64mdzUOPusi34M_wGoSf7iNyEWJ6dACm4ny9vJtLTRq_YsRUlG5ADnAawegdiYB9J6i9GjsxUuhPw3Blq6rhZlGykT3Vp1phUafnulOOpts-MEmEF-3bpfetLOAjsMMBS5qwTWJBvJHl5Vs9Y=.gJEIAywPXFr_4L-WG10eug==\\\",\\\"instanceServers\\\":[{\\\"endpoint\\\":\\\"wss://ws-api-futures.kucoin.com/\\\",\\\"encrypt\\\":true,\\\"protocol\\\":\\\"websocket\\\",\\\"pingInterval\\\":18000,\\\"pingTimeout\\\":10000}]}}",
                 "operationId": "016"
             }
@@ -2603,7 +2623,7 @@
             "post": {
                 "summary": "Get Private Token - Futures",
                 "deprecated": false,
-                "description": "This interface can obtain the token required for websocket to establish a Futures private connection. If you need use private channels(e.g. account balance notice), please make request as follows to obtain the server list and private token",
+                "description": "This interface can obtain the token required for Websocket to establish a Futures private connection. If you need use private channels (e.g. account balance notice), please make request as follows to obtain the server list and private token",
                 "tags": [],
                 "parameters": [],
                 "responses": {
@@ -2622,7 +2642,7 @@
                                             "properties": {
                                                 "token": {
                                                     "type": "string",
-                                                    "description": "The token required to establish a websocket connection"
+                                                    "description": "The token required to establish a Websocket connection"
                                                 },
                                                 "instanceServers": {
                                                     "type": "array",
@@ -2631,7 +2651,7 @@
                                                         "properties": {
                                                             "endpoint": {
                                                                 "type": "string",
-                                                                "description": "Websocket domain URL, It is recommended to use a dynamic URL as the URL may change"
+                                                                "description": "Websocket domain URL. It is recommended to use a dynamic URL, as the URL may change."
                                                             },
                                                             "encrypt": {
                                                                 "type": "boolean",
@@ -2646,18 +2666,18 @@
                                                                 "x-api-enum": [
                                                                     {
                                                                         "value": "websocket",
-                                                                        "name": "websocket",
-                                                                        "description": "websocket"
+                                                                        "name": "Websocket",
+                                                                        "description": "Websocket"
                                                                     }
                                                                 ]
                                                             },
                                                             "pingInterval": {
                                                                 "type": "integer",
-                                                                "description": "Recommended ping interval(millisecond)"
+                                                                "description": "Recommended ping interval (milliseconds)"
                                                             },
                                                             "pingTimeout": {
                                                                 "type": "integer",
-                                                                "description": "Heartbeat timeout(millisecond)"
+                                                                "description": "Heartbeat timeout (milliseconds)"
                                                             }
                                                         },
                                                         "required": [
@@ -2694,8 +2714,8 @@
                 "x-sdk-service": "Futures",
                 "x-sdk-sub-service": "Market",
                 "x-sdk-method-name": "getPrivateToken",
-                "x-sdk-method-description": "This interface can obtain the token required for websocket to establish a Futures private connection. If you need use private channels(e.g. account balance notice), please make request as follows to obtain the server list and private token",
-                "x-api-rate-limit": 10,
+                "x-sdk-method-description": "This interface can obtain the token required for Websocket to establish a Futures private connection. If you need use private channels (e.g. account balance notice), please make request as follows to obtain the server list and private token",
+                "x-api-rate-limit-weight": 10,
                 "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"token\\\": \\\"2neAiuYvAU737TOajb2U3uT8AEZqSWYe0fBD4LoHuXJDSC7gIzJiH4kNTWhCPISWo6nDpAe7aUaaHJ4fG8oRjFgMfUI2sM4IySWHrBceFocY8pKy2REU1HwZIngtMdMrjqPnP-biofFWbNaP1cl0X1pZc2SQ-33hDH1LgNP-yg8bktVoIG0dIxSN4m3uzO8u.ueCCihQ5_4GPpXKxWTDiFQ==\\\",\\n        \\\"instanceServers\\\": [\\n            {\\n                \\\"endpoint\\\": \\\"wss://ws-api-futures.kucoin.com/\\\",\\n                \\\"encrypt\\\": true,\\n                \\\"protocol\\\": \\\"websocket\\\",\\n                \\\"pingInterval\\\": 18000,\\n                \\\"pingTimeout\\\": 10000\\n            }\\n        ]\\n    }\\n}",
                 "operationId": "017"
             }

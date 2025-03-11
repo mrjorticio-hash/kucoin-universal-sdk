@@ -30,7 +30,7 @@
                                             "properties": {
                                                 "orderNo": {
                                                     "type": "string",
-                                                    "description": "Borrow Order Id"
+                                                    "description": "Borrow Order ID"
                                                 },
                                                 "actualSize": {
                                                     "type": "string",
@@ -62,7 +62,7 @@
                 "x-sdk-sub-service": "Debit",
                 "x-sdk-method-name": "borrow",
                 "x-sdk-method-description": "This API endpoint is used to initiate an application for cross or isolated margin borrowing.",
-                "x-api-rate-limit": 15,
+                "x-api-rate-limit-weight": 15,
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -139,7 +139,7 @@
             "get": {
                 "summary": "Get Borrow History",
                 "deprecated": false,
-                "description": "This API endpoint is used to get the borrowing orders for cross and isolated margin accounts",
+                "description": "This API endpoint is used to get the borrowing orders for cross and isolated margin accounts.",
                 "tags": [],
                 "parameters": [
                     {
@@ -183,7 +183,7 @@
                     {
                         "name": "orderNo",
                         "in": "query",
-                        "description": "Borrow Order Id",
+                        "description": "Borrow Order ID",
                         "required": false,
                         "schema": {
                             "type": "string"
@@ -264,7 +264,7 @@
                                                 },
                                                 "totalPage": {
                                                     "type": "integer",
-                                                    "description": "total page"
+                                                    "description": "total pages"
                                                 },
                                                 "items": {
                                                     "type": "array",
@@ -273,7 +273,7 @@
                                                         "properties": {
                                                             "orderNo": {
                                                                 "type": "string",
-                                                                "description": "Borrow Order Id"
+                                                                "description": "Borrow Order ID"
                                                             },
                                                             "symbol": {
                                                                 "type": "string",
@@ -324,7 +324,7 @@
                                                             },
                                                             "createdTime": {
                                                                 "type": "integer",
-                                                                "description": "borrow time",
+                                                                "description": "Borrow time",
                                                                 "format": "int64"
                                                             }
                                                         },
@@ -368,8 +368,8 @@
                 "x-sdk-service": "Margin",
                 "x-sdk-sub-service": "Debit",
                 "x-sdk-method-name": "getBorrowHistory",
-                "x-sdk-method-description": "This API endpoint is used to get the borrowing orders for cross and isolated margin accounts",
-                "x-api-rate-limit": 15,
+                "x-sdk-method-description": "This API endpoint is used to get the borrowing orders for cross and isolated margin accounts.",
+                "x-api-rate-limit-weight": 15,
                 "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"timestamp\\\": 1729657580449,\\n        \\\"currentPage\\\": 1,\\n        \\\"pageSize\\\": 50,\\n        \\\"totalNum\\\": 2,\\n        \\\"totalPage\\\": 1,\\n        \\\"items\\\": [\\n            {\\n                \\\"orderNo\\\": \\\"67187162c0d6990007717b15\\\",\\n                \\\"symbol\\\": null,\\n                \\\"currency\\\": \\\"USDT\\\",\\n                \\\"size\\\": \\\"10\\\",\\n                \\\"actualSize\\\": \\\"10\\\",\\n                \\\"status\\\": \\\"SUCCESS\\\",\\n                \\\"createdTime\\\": 1729655138000\\n            },\\n            {\\n                \\\"orderNo\\\": \\\"67187155b088e70007149585\\\",\\n                \\\"symbol\\\": null,\\n                \\\"currency\\\": \\\"USDT\\\",\\n                \\\"size\\\": \\\"0.1\\\",\\n                \\\"actualSize\\\": \\\"0\\\",\\n                \\\"status\\\": \\\"FAILED\\\",\\n                \\\"createdTime\\\": 1729655125000\\n            }\\n        ]\\n    }\\n}",
                 "x-request-example": "{\\\"currency\\\": \\\"BTC\\\", \\\"isIsolated\\\": true, \\\"symbol\\\": \\\"BTC-USDT\\\", \\\"orderNo\\\": \\\"example_string_default_value\\\", \\\"startTime\\\": 123456, \\\"endTime\\\": 123456, \\\"currentPage\\\": 1, \\\"pageSize\\\": 50}",
                 "operationId": "002"
@@ -402,7 +402,7 @@
                                                 },
                                                 "orderNo": {
                                                     "type": "string",
-                                                    "description": "Repay Order Id"
+                                                    "description": "Repay order ID"
                                                 },
                                                 "actualSize": {
                                                     "type": "string",
@@ -435,7 +435,7 @@
                 "x-sdk-sub-service": "Debit",
                 "x-sdk-method-name": "repay",
                 "x-sdk-method-description": "This API endpoint is used to initiate an application for cross or isolated margin repayment.",
-                "x-api-rate-limit": 10,
+                "x-api-rate-limit-weight": 10,
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -491,7 +491,7 @@
             "get": {
                 "summary": "Get Repay History",
                 "deprecated": false,
-                "description": "This API endpoint is used to get the borrowing orders for cross and isolated margin accounts",
+                "description": "This API endpoint is used to get the borrowing orders for cross and isolated margin accounts.",
                 "tags": [],
                 "parameters": [
                     {
@@ -535,7 +535,7 @@
                     {
                         "name": "orderNo",
                         "in": "query",
-                        "description": "Repay Order Id",
+                        "description": "Repay order ID",
                         "required": false,
                         "schema": {
                             "type": "string"
@@ -616,7 +616,7 @@
                                                 },
                                                 "totalPage": {
                                                     "type": "integer",
-                                                    "description": "total page"
+                                                    "description": "total pages"
                                                 },
                                                 "items": {
                                                     "type": "array",
@@ -625,7 +625,7 @@
                                                         "properties": {
                                                             "orderNo": {
                                                                 "type": "string",
-                                                                "description": "Repay Order Id"
+                                                                "description": "Repay order ID"
                                                             },
                                                             "symbol": {
                                                                 "type": "string",
@@ -720,8 +720,8 @@
                 "x-sdk-service": "Margin",
                 "x-sdk-sub-service": "Debit",
                 "x-sdk-method-name": "getRepayHistory",
-                "x-sdk-method-description": "This API endpoint is used to get the borrowing orders for cross and isolated margin accounts",
-                "x-api-rate-limit": 15,
+                "x-sdk-method-description": "This API endpoint is used to get the borrowing orders for cross and isolated margin accounts.",
+                "x-api-rate-limit-weight": 15,
                 "x-response-example": "{\\\"code\\\":\\\"200000\\\",\\\"data\\\":{\\\"timestamp\\\":1729663471891,\\\"currentPage\\\":1,\\\"pageSize\\\":50,\\\"totalNum\\\":1,\\\"totalPage\\\":1,\\\"items\\\":[{\\\"orderNo\\\":\\\"671873361d5bd400075096ad\\\",\\\"symbol\\\":null,\\\"currency\\\":\\\"USDT\\\",\\\"size\\\":\\\"10\\\",\\\"principal\\\":\\\"9.99986518\\\",\\\"interest\\\":\\\"0.00013482\\\",\\\"status\\\":\\\"SUCCESS\\\",\\\"createdTime\\\":1729655606000}]}}",
                 "x-request-example": "{\\\"currency\\\": \\\"BTC\\\", \\\"isIsolated\\\": true, \\\"symbol\\\": \\\"BTC-USDT\\\", \\\"orderNo\\\": \\\"example_string_default_value\\\", \\\"startTime\\\": 123456, \\\"endTime\\\": 123456, \\\"currentPage\\\": 1, \\\"pageSize\\\": 50}",
                 "operationId": "004"
@@ -729,9 +729,9 @@
         },
         "/api/v3/margin/interest": {
             "get": {
-                "summary": "Get Interest History",
+                "summary": "Get Interest History.",
                 "deprecated": false,
-                "description": "Request via this endpoint to get the interest records of the cross/isolated margin lending.",
+                "description": "Request the interest records of the cross/isolated margin lending via this endpoint.",
                 "tags": [],
                 "parameters": [
                     {
@@ -847,7 +847,7 @@
                                                 },
                                                 "totalPage": {
                                                     "type": "integer",
-                                                    "description": "total page"
+                                                    "description": "total pages"
                                                 },
                                                 "items": {
                                                     "type": "array",
@@ -909,8 +909,8 @@
                 "x-sdk-service": "Margin",
                 "x-sdk-sub-service": "Debit",
                 "x-sdk-method-name": "getInterestHistory",
-                "x-sdk-method-description": "Request via this endpoint to get the interest records of the cross/isolated margin lending.",
-                "x-api-rate-limit": 20,
+                "x-sdk-method-description": "Request the interest records of the cross/isolated margin lending via this endpoint.",
+                "x-api-rate-limit-weight": 20,
                 "x-response-example": "{\\\"code\\\":\\\"200000\\\",\\\"data\\\":{\\\"timestamp\\\":1729665170701,\\\"currentPage\\\":1,\\\"pageSize\\\":50,\\\"totalNum\\\":3,\\\"totalPage\\\":1,\\\"items\\\":[{\\\"currency\\\":\\\"USDT\\\",\\\"dayRatio\\\":\\\"0.000296\\\",\\\"interestAmount\\\":\\\"0.00000001\\\",\\\"createdTime\\\":1729663213375},{\\\"currency\\\":\\\"USDT\\\",\\\"dayRatio\\\":\\\"0.000296\\\",\\\"interestAmount\\\":\\\"0.00000001\\\",\\\"createdTime\\\":1729659618802},{\\\"currency\\\":\\\"USDT\\\",\\\"dayRatio\\\":\\\"0.000296\\\",\\\"interestAmount\\\":\\\"0.00000001\\\",\\\"createdTime\\\":1729656028077}]}}",
                 "x-request-example": "{\\\"currency\\\": \\\"BTC\\\", \\\"isIsolated\\\": true, \\\"symbol\\\": \\\"BTC-USDT\\\", \\\"startTime\\\": 123456, \\\"endTime\\\": 123456, \\\"currentPage\\\": 1, \\\"pageSize\\\": 50}",
                 "operationId": "005"
@@ -957,7 +957,7 @@
                 "x-sdk-sub-service": "Debit",
                 "x-sdk-method-name": "modifyLeverage",
                 "x-sdk-method-description": "This endpoint allows modifying the leverage multiplier for cross margin or isolated margin.",
-                "x-api-rate-limit": 5,
+                "x-api-rate-limit-weight": 8,
                 "requestBody": {
                     "content": {
                         "application/json": {

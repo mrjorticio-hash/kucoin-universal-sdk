@@ -9,9 +9,9 @@
     "paths": {
         "/api/v3/deposit-address/create": {
             "post": {
-                "summary": "Add Deposit Address(V3)",
+                "summary": "Add Deposit Address (V3)",
                 "deprecated": false,
-                "description": "Request via this endpoint to create a deposit address for a currency you intend to deposit.",
+                "description": "Request via this endpoint the creation of a deposit address for a currency you intend to deposit.",
                 "tags": [],
                 "parameters": [],
                 "responses": {
@@ -34,7 +34,7 @@
                                                 },
                                                 "memo": {
                                                     "type": "string",
-                                                    "description": "Address remark. If there’s no remark, it is empty. When you withdraw from other platforms to the KuCoin, you need to fill in memo(tag). If you do not fill memo (tag), your deposit may not be available, please be cautious."
+                                                    "description": "Address remark. If there’s no remark, it is empty. When you withdraw from other platforms to KuCoin, you need to fill in memo(tag). Be careful: If you do not fill in memo(tag), your deposit may not be available."
                                                 },
                                                 "chainId": {
                                                     "type": "string",
@@ -53,11 +53,11 @@
                                                 },
                                                 "to": {
                                                     "type": "string",
-                                                    "description": "Deposit account type: main (funding account), trade (spot trading account)"
+                                                    "description": "Deposit account type: MAIN (funding account), TRADE (spot trading account)"
                                                 },
                                                 "expirationDate": {
                                                     "type": "integer",
-                                                    "description": "Expiration time, Lightning network expiration time, non-Lightning network this field is invalid"
+                                                    "description": "Expiration time; Lightning network expiration time; this field is not applicable to non-Lightning networks"
                                                 },
                                                 "currency": {
                                                     "type": "string",
@@ -102,8 +102,8 @@
                 "x-sdk-service": "Account",
                 "x-sdk-sub-service": "Deposit",
                 "x-sdk-method-name": "addDepositAddressV3",
-                "x-sdk-method-description": "Request via this endpoint to create a deposit address for a currency you intend to deposit.",
-                "x-api-rate-limit": 20,
+                "x-sdk-method-description": "Request via this endpoint the creation of a deposit address for a currency you intend to deposit.",
+                "x-api-rate-limit-weight": 20,
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -122,7 +122,7 @@
                                     },
                                     "chain": {
                                         "type": "string",
-                                        "description": "The chainId of currency, e.g. The available value for USDT are OMNI, ERC20, TRC20, default is ERC20. The available value for BTC are Native, Segwit, TRC20, the parameters are bech32, btc, trx, default is Native. This only apply for multi-chain currency, and there is no need for single chain currency.",
+                                        "description": "The chainId of currency, e.g. the available values for USDT are OMNI, ERC20, and TRC20; default is ERC20. The available values for BTC are Native, Segwit, TRC20; the parameters are bech32, btc, trx; default is Native. ",
                                         "default": "eth",
                                         "example": [
                                             "eth",
@@ -138,22 +138,22 @@
                                     },
                                     "to": {
                                         "type": "string",
-                                        "description": "Deposit account type: main (funding account), trade (spot trading account), the default is main",
+                                        "description": "Deposit account type: MAIN (funding account), TRADE (spot trading account); the default is MAIN",
                                         "enum": [
                                             "main",
                                             "trade"
                                         ],
-                                        "default": "main",
+                                        "default": "MAIN",
                                         "x-api-enum": [
                                             {
                                                 "value": "main",
-                                                "name": "",
-                                                "description": ""
+                                                "name": "main",
+                                                "description": "Funding account"
                                             },
                                             {
                                                 "value": "trade",
-                                                "name": "",
-                                                "description": ""
+                                                "name": "trade",
+                                                "description": "Spot account"
                                             }
                                         ]
                                     },
@@ -163,7 +163,8 @@
                                     }
                                 },
                                 "required": [
-                                    "currency"
+                                    "currency",
+                                    "chain"
                                 ]
                             },
                             "example": "{\n    \"currency\": \"TON\",\n    \"chain\": \"ton\",\n    \"to\": \"trade\"\n}"
@@ -177,9 +178,9 @@
         },
         "/api/v3/deposit-addresses": {
             "get": {
-                "summary": "Get Deposit Address(V3)",
+                "summary": "Get Deposit Address (V3)",
                 "deprecated": false,
-                "description": "Get all deposit addresses for the currency you intend to deposit. If the returned data is empty, you may need to Add Deposit Address first.",
+                "description": "Get all deposit addresses for the currency you intend to deposit. If the returned data is empty, you may need to add the deposit address first.",
                 "tags": [],
                 "parameters": [
                     {
@@ -211,7 +212,18 @@
                         "description": "The chain Id of currency.",
                         "required": false,
                         "schema": {
-                            "type": "string"
+                            "type": "string",
+                            "example": [
+                                "eth",
+                                "bech32",
+                                "btc",
+                                "kcc",
+                                "trx",
+                                "bsc",
+                                "arbitrum",
+                                "ton",
+                                "optimism"
+                            ]
                         }
                     }
                 ],
@@ -237,7 +249,7 @@
                                                     },
                                                     "memo": {
                                                         "type": "string",
-                                                        "description": "Address remark. If there’s no remark, it is empty. When you withdraw from other platforms to the KuCoin, you need to fill in memo(tag). If you do not fill memo (tag), your deposit may not be available, please be cautious."
+                                                        "description": "Address remark. If there’s no remark, it is empty. When you withdraw from other platforms to KuCoin, you need to fill in memo(tag). Be careful: If you do not fill in memo(tag), your deposit may not be available."
                                                     },
                                                     "chainId": {
                                                         "type": "string",
@@ -256,11 +268,27 @@
                                                     },
                                                     "to": {
                                                         "type": "string",
-                                                        "description": "Deposit account type: main (funding account), trade (spot trading account)"
+                                                        "description": "Deposit account type: MAIN(funding account), TRADE (spot trading account)",
+                                                        "enum": [
+                                                            "MAIN",
+                                                            "TRADE"
+                                                        ],
+                                                        "x-api-enum": [
+                                                            {
+                                                                "value": "MAIN",
+                                                                "name": "MAIN",
+                                                                "description": "Funding account"
+                                                            },
+                                                            {
+                                                                "value": "TRADE",
+                                                                "name": "TRADE",
+                                                                "description": "Spot account"
+                                                            }
+                                                        ]
                                                     },
                                                     "expirationDate": {
                                                         "type": "integer",
-                                                        "description": "Expiration time, Lightning network expiration time, non-Lightning network this field is invalid"
+                                                        "description": "Expiration time; Lightning network expiration time; this field is not applicable to non-Lightning networks"
                                                     },
                                                     "currency": {
                                                         "type": "string",
@@ -311,10 +339,10 @@
                 "x-sdk-service": "Account",
                 "x-sdk-sub-service": "Deposit",
                 "x-sdk-method-name": "getDepositAddressV3",
-                "x-sdk-method-description": "Get all deposit addresses for the currency you intend to deposit. If the returned data is empty, you may need to Add Deposit Address first.",
-                "x-api-rate-limit": 5,
+                "x-sdk-method-description": "Get all deposit addresses for the currency you intend to deposit. If the returned data is empty, you may need to add the deposit address first.",
+                "x-api-rate-limit-weight": 5,
                 "x-response-example": "{\\\"code\\\":\\\"200000\\\",\\\"data\\\":[{\\\"address\\\":\\\"TSv3L1fS7yA3SxzKD8c1qdX4nLP6rqNxYz\\\",\\\"memo\\\":\\\"\\\",\\\"chainId\\\":\\\"trx\\\",\\\"to\\\":\\\"TRADE\\\",\\\"expirationDate\\\":0,\\\"currency\\\":\\\"USDT\\\",\\\"contractAddress\\\":\\\"TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t\\\",\\\"chainName\\\":\\\"TRC20\\\"},{\\\"address\\\":\\\"0x551e823a3b36865e8c5dc6e6ac6cc0b00d98533e\\\",\\\"memo\\\":\\\"\\\",\\\"chainId\\\":\\\"kcc\\\",\\\"to\\\":\\\"TRADE\\\",\\\"expirationDate\\\":0,\\\"currency\\\":\\\"USDT\\\",\\\"contractAddress\\\":\\\"0x0039f574ee5cc39bdd162e9a88e3eb1f111baf48\\\",\\\"chainName\\\":\\\"KCC\\\"},{\\\"address\\\":\\\"EQCA1BI4QRZ8qYmskSRDzJmkucGodYRTZCf_b9hckjla6dZl\\\",\\\"memo\\\":\\\"2085202643\\\",\\\"chainId\\\":\\\"ton\\\",\\\"to\\\":\\\"TRADE\\\",\\\"expirationDate\\\":0,\\\"currency\\\":\\\"USDT\\\",\\\"contractAddress\\\":\\\"EQCxE6mUtQJKFnGfaROTKOt1lZbDiiX1kCixRv7Nw2Id_sDs\\\",\\\"chainName\\\":\\\"TON\\\"},{\\\"address\\\":\\\"0x0a2586d5a901c8e7e68f6b0dc83bfd8bd8600ff5\\\",\\\"memo\\\":\\\"\\\",\\\"chainId\\\":\\\"eth\\\",\\\"to\\\":\\\"MAIN\\\",\\\"expirationDate\\\":0,\\\"currency\\\":\\\"USDT\\\",\\\"contractAddress\\\":\\\"0xdac17f958d2ee523a2206206994597c13d831ec7\\\",\\\"chainName\\\":\\\"ERC20\\\"}]}",
-                "x-request-example": "{\\\"currency\\\": \\\"BTC\\\", \\\"amount\\\": \\\"example_string_default_value\\\", \\\"chain\\\": \\\"example_string_default_value\\\"}",
+                "x-request-example": "{\\\"currency\\\": \\\"BTC\\\", \\\"amount\\\": \\\"example_string_default_value\\\", \\\"chain\\\": \\\"eth\\\"}",
                 "operationId": "002"
             }
         },
@@ -322,7 +350,7 @@
             "get": {
                 "summary": "Get Deposit History",
                 "deprecated": false,
-                "description": "Request via this endpoint to get deposit list Items are paginated and sorted to show the latest first. See the Pagination section for retrieving additional entries after the first page.",
+                "description": "Request a deposit list via this endpoint. Items are paginated and sorted to show the latest first. See the Pagination section for retrieving additional entries after the first page.",
                 "tags": [],
                 "parameters": [
                     {
@@ -354,18 +382,18 @@
                             "x-api-enum": [
                                 {
                                     "value": "PROCESSING",
-                                    "name": "",
-                                    "description": ""
+                                    "name": "PROCESSING",
+                                    "description": "Deposit processing"
                                 },
                                 {
                                     "value": "SUCCESS",
-                                    "name": "",
-                                    "description": ""
+                                    "name": "SUCCESS",
+                                    "description": "Deposit success"
                                 },
                                 {
                                     "value": "FAILURE",
-                                    "name": "",
-                                    "description": ""
+                                    "name": "FAILURE",
+                                    "description": "Deposit fail"
                                 }
                             ]
                         }
@@ -373,7 +401,7 @@
                     {
                         "name": "startAt",
                         "in": "query",
-                        "description": "Start time (milisecond)",
+                        "description": "Start time (milliseconds)",
                         "required": false,
                         "schema": {
                             "type": "integer",
@@ -383,7 +411,7 @@
                     {
                         "name": "endAt",
                         "in": "query",
-                        "description": "End time (milisecond)",
+                        "description": "End time (milliseconds)",
                         "required": false,
                         "schema": {
                             "type": "integer",
@@ -565,8 +593,8 @@
                 "x-sdk-service": "Account",
                 "x-sdk-sub-service": "Deposit",
                 "x-sdk-method-name": "getDepositHistory",
-                "x-sdk-method-description": "Request via this endpoint to get deposit list Items are paginated and sorted to show the latest first. See the Pagination section for retrieving additional entries after the first page.",
-                "x-api-rate-limit": 5,
+                "x-sdk-method-description": "Request a deposit list via this endpoint. Items are paginated and sorted to show the latest first. See the Pagination section for retrieving additional entries after the first page.",
+                "x-api-rate-limit-weight": 5,
                 "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"currentPage\\\": 1,\\n        \\\"pageSize\\\": 50,\\n        \\\"totalNum\\\": 5,\\n        \\\"totalPage\\\": 1,\\n        \\\"items\\\": [\\n            {\\n                \\\"currency\\\": \\\"USDT\\\",\\n                \\\"chain\\\": \\\"\\\",\\n                \\\"status\\\": \\\"SUCCESS\\\",\\n                \\\"address\\\": \\\"a435*****@gmail.com\\\",\\n                \\\"memo\\\": \\\"\\\",\\n                \\\"isInner\\\": true,\\n                \\\"amount\\\": \\\"1.00000000\\\",\\n                \\\"fee\\\": \\\"0.00000000\\\",\\n                \\\"walletTxId\\\": null,\\n                \\\"createdAt\\\": 1728555875000,\\n                \\\"updatedAt\\\": 1728555875000,\\n                \\\"remark\\\": \\\"\\\",\\n                \\\"arrears\\\": false\\n            },\\n            {\\n                \\\"currency\\\": \\\"USDT\\\",\\n                \\\"chain\\\": \\\"trx\\\",\\n                \\\"status\\\": \\\"SUCCESS\\\",\\n                \\\"address\\\": \\\"TSv3L1fS7******X4nLP6rqNxYz\\\",\\n                \\\"memo\\\": \\\"\\\",\\n                \\\"isInner\\\": true,\\n                \\\"amount\\\": \\\"6.00000000\\\",\\n                \\\"fee\\\": \\\"0.00000000\\\",\\n                \\\"walletTxId\\\": null,\\n                \\\"createdAt\\\": 1721730920000,\\n                \\\"updatedAt\\\": 1721730920000,\\n                \\\"remark\\\": \\\"\\\",\\n                \\\"arrears\\\": false\\n            }\\n        ]\\n    }\\n}",
                 "x-request-example": "{\\\"currency\\\": \\\"BTC\\\", \\\"status\\\": \\\"SUCCESS\\\", \\\"startAt\\\": 1728663338000, \\\"endAt\\\": 1728692138000, \\\"currentPage\\\": 1, \\\"pageSize\\\": 50}",
                 "operationId": "003"
@@ -574,9 +602,9 @@
         },
         "/api/v2/deposit-addresses": {
             "get": {
-                "summary": "Get Deposit Addresses(V2)",
+                "summary": "Get Deposit Addresses (V2)",
                 "deprecated": true,
-                "description": "Get all deposit addresses for the currency you intend to deposit. If the returned data is empty, you may need to Add Deposit Address first.",
+                "description": "Get all deposit addresses for the currency you intend to deposit. If the returned data is empty, you may need to add the deposit address first.",
                 "tags": [],
                 "parameters": [
                     {
@@ -590,6 +618,26 @@
                                 "BTC",
                                 "ETH",
                                 "USDT"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "chain",
+                        "in": "query",
+                        "description": "Chain id of currency",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "example": [
+                                "eth",
+                                "bech32",
+                                "btc",
+                                "kcc",
+                                "trx",
+                                "bsc",
+                                "arbitrum",
+                                "ton",
+                                "optimism"
                             ]
                         }
                     }
@@ -616,7 +664,7 @@
                                                     },
                                                     "memo": {
                                                         "type": "string",
-                                                        "description": "Address remark. If there’s no remark, it is empty. When you withdraw from other platforms to the KuCoin, you need to fill in memo(tag). If you do not fill memo (tag), your deposit may not be available, please be cautious."
+                                                        "description": "Address remark. If there’s no remark, it is empty. When you withdraw from other platforms to KuCoin, you need to fill in memo(tag). Be careful: If you do not fill in memo(tag), your deposit may not be available."
                                                     },
                                                     "chain": {
                                                         "type": "string",
@@ -703,10 +751,10 @@
                 "x-sdk-service": "Account",
                 "x-sdk-sub-service": "Deposit",
                 "x-sdk-method-name": "getDepositAddressV2",
-                "x-sdk-method-description": "Get all deposit addresses for the currency you intend to deposit. If the returned data is empty, you may need to Add Deposit Address first.",
-                "x-api-rate-limit": 5,
+                "x-sdk-method-description": "Get all deposit addresses for the currency you intend to deposit. If the returned data is empty, you may need to add the deposit address first.",
+                "x-api-rate-limit-weight": 5,
                 "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": [\\n        {\\n            \\\"address\\\": \\\"0x02028456*****87ede7a73d7c\\\",\\n            \\\"memo\\\": \\\"\\\",\\n            \\\"chain\\\": \\\"ERC20\\\",\\n            \\\"chainId\\\": \\\"eth\\\",\\n            \\\"to\\\": \\\"MAIN\\\",\\n            \\\"currency\\\": \\\"ETH\\\",\\n            \\\"contractAddress\\\": \\\"\\\"\\n        }\\n    ]\\n}",
-                "x-request-example": "{\\\"currency\\\": \\\"BTC\\\"}",
+                "x-request-example": "{\\\"currency\\\": \\\"BTC\\\", \\\"chain\\\": \\\"eth\\\"}",
                 "operationId": "004"
             }
         },
@@ -714,7 +762,7 @@
             "get": {
                 "summary": "Get Deposit Addresses - V1",
                 "deprecated": true,
-                "description": "Get all deposit addresses for the currency you intend to deposit. If the returned data is empty, you may need to Add Deposit Address first.",
+                "description": "Get all deposit addresses for the currency you intend to deposit. If the returned data is empty, you may need to add the deposit address first.",
                 "tags": [],
                 "parameters": [
                     {
@@ -734,7 +782,7 @@
                     {
                         "name": "chain",
                         "in": "query",
-                        "description": "The chainId of currency, e.g. The available value for USDT are OMNI, ERC20, TRC20, default is ERC20. The available value for BTC are Native, Segwit, TRC20, the parameters are bech32, btc, trx, default is Native. This only apply for multi-chain currency, and there is no need for single chain currency.",
+                        "description": "The chainId of currency, e.g. the available values for USDT are OMNI, ERC20, and TRC20; default is ERC20. The available values for BTC are Native, Segwit, TRC20; the parameters are bech32, btc, trx; default is Native. This only applies to multi-chain currencies; no need for single-chain currencies.",
                         "required": false,
                         "schema": {
                             "type": "string",
@@ -773,7 +821,7 @@
                                                 },
                                                 "memo": {
                                                     "type": "string",
-                                                    "description": "Address remark. If there’s no remark, it is empty. When you withdraw from other platforms to the KuCoin, you need to fill in memo(tag). If you do not fill memo (tag), your deposit may not be available, please be cautious."
+                                                    "description": "Address remark. If there’s no remark, it is empty. When you withdraw from other platforms to KuCoin, you need to fill in memo(tag). Be careful: If you do not fill in memo(tag), your deposit may not be available."
                                                 },
                                                 "chain": {
                                                     "type": "string",
@@ -859,8 +907,8 @@
                 "x-sdk-service": "Account",
                 "x-sdk-sub-service": "Deposit",
                 "x-sdk-method-name": "getDepositAddressV1",
-                "x-sdk-method-description": "Get all deposit addresses for the currency you intend to deposit. If the returned data is empty, you may need to Add Deposit Address first.",
-                "x-api-rate-limit": 5,
+                "x-sdk-method-description": "Get all deposit addresses for the currency you intend to deposit. If the returned data is empty, you may need to add the deposit address first.",
+                "x-api-rate-limit-weight": 5,
                 "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"address\\\": \\\"0xea220bf61c3c2b0adc2cfa29fec3d2677745a379\\\",\\n        \\\"memo\\\": \\\"\\\",\\n        \\\"chain\\\": \\\"ERC20\\\",\\n        \\\"chainId\\\": \\\"eth\\\",\\n        \\\"to\\\": \\\"MAIN\\\",\\n        \\\"currency\\\": \\\"USDT\\\"\\n    }\\n}",
                 "x-request-example": "{\\\"currency\\\": \\\"BTC\\\", \\\"chain\\\": \\\"eth\\\"}",
                 "operationId": "005"
@@ -868,7 +916,7 @@
             "post": {
                 "summary": "Add Deposit Address - V1",
                 "deprecated": true,
-                "description": "Request via this endpoint to create a deposit address for a currency you intend to deposit.",
+                "description": "Request via this endpoint the creation of a deposit address for a currency you intend to deposit.",
                 "tags": [],
                 "parameters": [],
                 "responses": {
@@ -891,7 +939,7 @@
                                                 },
                                                 "memo": {
                                                     "type": "string",
-                                                    "description": "Address remark. If there’s no remark, it is empty. When you withdraw from other platforms to the KuCoin, you need to fill in memo(tag). If you do not fill memo (tag), your deposit may not be available, please be cautious."
+                                                    "description": "Address remark. If there’s no remark, it is empty. When you withdraw from other platforms to KuCoin, you need to fill in memo(tag). Be careful: If you do not fill in memo(tag), your deposit may not be available."
                                                 },
                                                 "chain": {
                                                     "type": "string",
@@ -981,8 +1029,8 @@
                 "x-sdk-service": "Account",
                 "x-sdk-sub-service": "Deposit",
                 "x-sdk-method-name": "addDepositAddressV1",
-                "x-sdk-method-description": "Request via this endpoint to create a deposit address for a currency you intend to deposit.",
-                "x-api-rate-limit": 20,
+                "x-sdk-method-description": "Request via this endpoint the creation of a deposit address for a currency you intend to deposit.",
+                "x-api-rate-limit-weight": 20,
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -1001,7 +1049,7 @@
                                     },
                                     "chain": {
                                         "type": "string",
-                                        "description": "The chainId of currency, e.g. The available value for USDT are OMNI, ERC20, TRC20, default is ERC20. The available value for BTC are Native, Segwit, TRC20, the parameters are bech32, btc, trx, default is Native. This only apply for multi-chain currency, and there is no need for single chain currency.",
+                                        "description": "The chainId of currency, e.g. the available values for USDT are OMNI, ERC20, and TRC20; default is ERC20. The available values for BTC are Native, Segwit, TRC20; the parameters are bech32, btc, trx; default is Native. This only applies to multi-chain currencies; no need for single-chain currencies.",
                                         "default": "eth",
                                         "example": [
                                             "eth",
@@ -1013,6 +1061,27 @@
                                             "arbitrum",
                                             "ton",
                                             "optimism"
+                                        ]
+                                    },
+                                    "to": {
+                                        "type": "string",
+                                        "description": "Deposit account type: main (funding account), trade (spot trading account); the default is main",
+                                        "enum": [
+                                            "main",
+                                            "trade"
+                                        ],
+                                        "default": "main",
+                                        "x-api-enum": [
+                                            {
+                                                "value": "main",
+                                                "name": "main",
+                                                "description": "Funding account"
+                                            },
+                                            {
+                                                "value": "trade",
+                                                "name": "trade",
+                                                "description": "Spot account"
+                                            }
                                         ]
                                     }
                                 },
@@ -1033,7 +1102,7 @@
             "get": {
                 "summary": "Get Deposit History - Old",
                 "deprecated": true,
-                "description": "Request via this endpoint to get the V1 historical deposits list on KuCoin. The return value is the data after Pagination, sorted in descending order according to time.",
+                "description": "Request the V1 historical deposits list on KuCoin via this endpoint. The return value is the data after Pagination, sorted in descending order according to time.",
                 "tags": [],
                 "parameters": [
                     {
@@ -1084,7 +1153,7 @@
                     {
                         "name": "startAt",
                         "in": "query",
-                        "description": "Start time (milisecond)",
+                        "description": "Start time (milliseconds)",
                         "required": false,
                         "schema": {
                             "type": "integer",
@@ -1094,7 +1163,7 @@
                     {
                         "name": "endAt",
                         "in": "query",
-                        "description": "End time (milisecond)",
+                        "description": "End time (milliseconds)",
                         "required": false,
                         "schema": {
                             "type": "integer",
@@ -1130,7 +1199,7 @@
                                                 },
                                                 "totalPage": {
                                                     "type": "integer",
-                                                    "description": "total page"
+                                                    "description": "total pages"
                                                 },
                                                 "items": {
                                                     "type": "array",
@@ -1143,7 +1212,7 @@
                                                             },
                                                             "createAt": {
                                                                 "type": "integer",
-                                                                "description": "Creation time of the database record"
+                                                                "description": "Database record creation time"
                                                             },
                                                             "amount": {
                                                                 "type": "string",
@@ -1213,8 +1282,8 @@
                 "x-sdk-service": "Account",
                 "x-sdk-sub-service": "Deposit",
                 "x-sdk-method-name": "getDepositHistoryOld",
-                "x-sdk-method-description": "Request via this endpoint to get the V1 historical deposits list on KuCoin. The return value is the data after Pagination, sorted in descending order according to time.",
-                "x-api-rate-limit": 5,
+                "x-sdk-method-description": "Request the V1 historical deposits list on KuCoin via this endpoint. The return value is the data after Pagination, sorted in descending order according to time.",
+                "x-api-rate-limit-weight": 5,
                 "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"currentPage\\\": 1,\\n        \\\"pageSize\\\": 50,\\n        \\\"totalNum\\\": 0,\\n        \\\"totalPage\\\": 0,\\n        \\\"items\\\": [\\n            {\\n                \\\"currency\\\": \\\"BTC\\\",\\n                \\\"createAt\\\": 1528536998,\\n                \\\"amount\\\": \\\"0.03266638\\\",\\n                \\\"walletTxId\\\": \\\"55c643bc2c68d6f17266383ac1be9e454038864b929ae7cee0bc408cc5c869e8@12ffGWmMMD1zA1WbFm7Ho3JZ1w6NYXjpFk@234\\\",\\n                \\\"isInner\\\": false,\\n                \\\"status\\\": \\\"SUCCESS\\\"\\n            }\\n        ]\\n    }\\n}",
                 "x-request-example": "{\\\"currency\\\": \\\"BTC\\\", \\\"status\\\": \\\"SUCCESS\\\", \\\"startAt\\\": 1728663338000, \\\"endAt\\\": 1728692138000}",
                 "operationId": "006"

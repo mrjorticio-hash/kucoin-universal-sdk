@@ -11,7 +11,7 @@
             "trace": {
                 "summary": "Get Cross Margin Position change",
                 "deprecated": "false",
-                "description": "The system will push the change event when the position status changes, Or push the current debt message periodically when there is a liability.",
+                "description": "The system will push the change event when the position status changes, or push the current debt message periodically when there is a liability.",
                 "tags": [],
                 "parameters": [],
                 "x-sdk-service": "Margin",
@@ -39,7 +39,7 @@
             "trace": {
                 "summary": "Get Isolated Margin Position change",
                 "deprecated": "false",
-                "description": "The system will push the change event when the position status changes, Or push the current debt message periodically when there is a liability.",
+                "description": "The system will push the change event when the position status changes, or push the current debt message periodically when there is a liability.",
                 "tags": [],
                 "parameters": [],
                 "x-sdk-service": "Margin",
@@ -84,7 +84,7 @@
                             },
                             "totalAsset": {
                                 "type": "number",
-                                "description": "Total asset in BTC (interest included)"
+                                "description": "Total assets in BTC (interest included)"
                             },
                             "marginCoefficientTotalAsset": {
                                 "type": "string"
@@ -169,7 +169,7 @@
                                     {
                                         "value": "UNLIABILITY",
                                         "name": "UNLIABILITY",
-                                        "description": "When all the liabilities is repaid and the position returns to “EFFECTIVE” status, the system will push this event."
+                                        "description": "When all the liabilities are repaid and the position returns to “EFFECTIVE” status, the system will push this event."
                                     }
                                 ]
                             }

@@ -58,11 +58,11 @@
                                                             },
                                                             "name": {
                                                                 "type": "string",
-                                                                "description": "symbol name"
+                                                                "description": "Symbol name"
                                                             },
                                                             "enableTrading": {
                                                                 "type": "boolean",
-                                                                "description": "Whether trading is enabled: true for enabled, false for disabled"
+                                                                "description": "Whether trading is enabled: True for enabled; false for disabled"
                                                             },
                                                             "market": {
                                                                 "type": "string",
@@ -70,11 +70,11 @@
                                                             },
                                                             "baseCurrency": {
                                                                 "type": "string",
-                                                                "description": "Base currency,e.g. BTC."
+                                                                "description": "Base currency, e.g. BTC."
                                                             },
                                                             "quoteCurrency": {
                                                                 "type": "string",
-                                                                "description": "Quote currency,e.g. USDT."
+                                                                "description": "Quote currency, e.g. USDT."
                                                             },
                                                             "baseIncrement": {
                                                                 "type": "string",
@@ -82,7 +82,7 @@
                                                             },
                                                             "baseMinSize": {
                                                                 "type": "string",
-                                                                "description": "The minimum order quantity requried to place an order."
+                                                                "description": "The minimum order quantity required to place an order."
                                                             },
                                                             "quoteIncrement": {
                                                                 "type": "string",
@@ -102,7 +102,7 @@
                                                             },
                                                             "priceIncrement": {
                                                                 "type": "string",
-                                                                "description": "Price increment: The price of an order must be a positive integer multiple of this increment. For example, for the ETH-USDT trading pair, if the priceIncrement is 0.01, the order price can be 3000.01 but not 3000.001.\n\nspecifies the min order price as well as the price increment.This also applies to quote currency."
+                                                                "description": "Price increment: The price of an order must be a positive integer multiple of this increment. For example, for the ETH-USDT trading pair, if the priceIncrement is 0.01, the order price can be 3000.01 but not 3000.001.\n\nSpecifies the min. order price as well as the price increment.This also applies to quote currency."
                                                             },
                                                             "feeCurrency": {
                                                                 "type": "string",
@@ -110,11 +110,11 @@
                                                             },
                                                             "priceLimitRate": {
                                                                 "type": "string",
-                                                                "description": "Threshold for price portection"
+                                                                "description": "Threshold for price protection"
                                                             },
                                                             "minFunds": {
                                                                 "type": "string",
-                                                                "description": "the minimum trading amounts"
+                                                                "description": "The minimum trading amounts"
                                                             }
                                                         },
                                                         "required": [
@@ -163,7 +163,7 @@
                 "x-sdk-sub-service": "Market",
                 "x-sdk-method-name": "getCrossMarginSymbols",
                 "x-sdk-method-description": "This endpoint allows querying the configuration of cross margin symbol.",
-                "x-api-rate-limit": 3,
+                "x-api-rate-limit-weight": 3,
                 "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"timestamp\\\": 1729665839353,\\n        \\\"items\\\": [\\n            {\\n                \\\"symbol\\\": \\\"BTC-USDT\\\",\\n                \\\"name\\\": \\\"BTC-USDT\\\",\\n                \\\"enableTrading\\\": true,\\n                \\\"market\\\": \\\"USDS\\\",\\n                \\\"baseCurrency\\\": \\\"BTC\\\",\\n                \\\"quoteCurrency\\\": \\\"USDT\\\",\\n                \\\"baseIncrement\\\": \\\"0.00000001\\\",\\n                \\\"baseMinSize\\\": \\\"0.00001\\\",\\n                \\\"baseMaxSize\\\": \\\"10000000000\\\",\\n                \\\"quoteIncrement\\\": \\\"0.000001\\\",\\n                \\\"quoteMinSize\\\": \\\"0.1\\\",\\n                \\\"quoteMaxSize\\\": \\\"99999999\\\",\\n                \\\"priceIncrement\\\": \\\"0.1\\\",\\n                \\\"feeCurrency\\\": \\\"USDT\\\",\\n                \\\"priceLimitRate\\\": \\\"0.1\\\",\\n                \\\"minFunds\\\": \\\"0.1\\\"\\n            }\\n        ]\\n    }\\n}",
                 "x-request-example": "{\\\"symbol\\\": \\\"BTC-USDT\\\"}",
                 "operationId": "001"
@@ -173,7 +173,7 @@
             "get": {
                 "summary": "Get Margin Config",
                 "deprecated": false,
-                "description": "Request via this endpoint to get the configure info of the cross margin.",
+                "description": "Request the configure info of the cross margin via this endpoint.",
                 "tags": [],
                 "parameters": [],
                 "responses": {
@@ -199,7 +199,7 @@
                                                 },
                                                 "maxLeverage": {
                                                     "type": "integer",
-                                                    "description": "Max leverage available"
+                                                    "description": "Max. leverage available"
                                                 },
                                                 "warningDebtRatio": {
                                                     "type": "string",
@@ -236,8 +236,8 @@
                 "x-sdk-service": "Margin",
                 "x-sdk-sub-service": "Market",
                 "x-sdk-method-name": "getMarginConfig",
-                "x-sdk-method-description": "Request via this endpoint to get the configure info of the cross margin.",
-                "x-api-rate-limit": 25,
+                "x-sdk-method-description": "Request the configure info of the cross margin via this endpoint.",
+                "x-api-rate-limit-weight": 25,
                 "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"maxLeverage\\\": 5,\\n        \\\"warningDebtRatio\\\": \\\"0.95\\\",\\n        \\\"liqDebtRatio\\\": \\\"0.97\\\",\\n        \\\"currencyList\\\": [\\n            \\\"VRA\\\",\\n            \\\"APT\\\",\\n            \\\"IOTX\\\",\\n            \\\"SHIB\\\",\\n            \\\"KDA\\\",\\n            \\\"BCHSV\\\",\\n            \\\"NEAR\\\",\\n            \\\"CLV\\\",\\n            \\\"AUDIO\\\",\\n            \\\"AIOZ\\\",\\n            \\\"FLOW\\\",\\n            \\\"WLD\\\",\\n            \\\"COMP\\\",\\n            \\\"MEME\\\",\\n            \\\"SLP\\\",\\n            \\\"STX\\\",\\n            \\\"ZRO\\\",\\n            \\\"QI\\\",\\n            \\\"PYTH\\\",\\n            \\\"RUNE\\\",\\n            \\\"DGB\\\",\\n            \\\"IOST\\\",\\n            \\\"SUI\\\",\\n            \\\"BCH\\\",\\n            \\\"CAKE\\\",\\n            \\\"DOT\\\",\\n            \\\"OMG\\\",\\n            \\\"POL\\\",\\n            \\\"GMT\\\",\\n            \\\"1INCH\\\",\\n            \\\"RSR\\\",\\n            \\\"NKN\\\",\\n            \\\"BTC\\\",\\n            \\\"AR\\\",\\n            \\\"ARB\\\",\\n            \\\"TON\\\",\\n            \\\"LISTA\\\",\\n            \\\"AVAX\\\",\\n            \\\"SEI\\\",\\n            \\\"FTM\\\",\\n            \\\"ERN\\\",\\n            \\\"BB\\\",\\n            \\\"BTT\\\",\\n            \\\"JTO\\\",\\n            \\\"ONE\\\",\\n            \\\"RLC\\\",\\n            \\\"ANKR\\\",\\n            \\\"SUSHI\\\",\\n            \\\"CATI\\\",\\n            \\\"ALGO\\\",\\n            \\\"PEPE2\\\",\\n            \\\"ATOM\\\",\\n            \\\"LPT\\\",\\n            \\\"BIGTIME\\\",\\n            \\\"CFX\\\",\\n            \\\"DYM\\\",\\n            \\\"VELO\\\",\\n            \\\"XPR\\\",\\n            \\\"SNX\\\",\\n            \\\"JUP\\\",\\n            \\\"MANA\\\",\\n            \\\"API3\\\",\\n            \\\"PYR\\\",\\n            \\\"ROSE\\\",\\n            \\\"GLMR\\\",\\n            \\\"SATS\\\",\\n            \\\"TIA\\\",\\n            \\\"GALAX\\\",\\n            \\\"SOL\\\",\\n            \\\"DAO\\\",\\n            \\\"FET\\\",\\n            \\\"ETC\\\",\\n            \\\"MKR\\\",\\n            \\\"WOO\\\",\\n            \\\"DODO\\\",\\n            \\\"OGN\\\",\\n            \\\"BNB\\\",\\n            \\\"ICP\\\",\\n            \\\"BLUR\\\",\\n            \\\"ETH\\\",\\n            \\\"ZEC\\\",\\n            \\\"NEO\\\",\\n            \\\"CELO\\\",\\n            \\\"REN\\\",\\n            \\\"MANTA\\\",\\n            \\\"LRC\\\",\\n            \\\"STRK\\\",\\n            \\\"ADA\\\",\\n            \\\"STORJ\\\",\\n            \\\"REQ\\\",\\n            \\\"TAO\\\",\\n            \\\"VET\\\",\\n            \\\"FITFI\\\",\\n            \\\"USDT\\\",\\n            \\\"DOGE\\\",\\n            \\\"HBAR\\\",\\n            \\\"SXP\\\",\\n            \\\"NEIROCTO\\\",\\n            \\\"CHR\\\",\\n            \\\"ORDI\\\",\\n            \\\"DASH\\\",\\n            \\\"PEPE\\\",\\n            \\\"ONDO\\\",\\n            \\\"ILV\\\",\\n            \\\"WAVES\\\",\\n            \\\"CHZ\\\",\\n            \\\"DOGS\\\",\\n            \\\"XRP\\\",\\n            \\\"CTSI\\\",\\n            \\\"JASMY\\\",\\n            \\\"FLOKI\\\",\\n            \\\"TRX\\\",\\n            \\\"KAVA\\\",\\n            \\\"SAND\\\",\\n            \\\"C98\\\",\\n            \\\"UMA\\\",\\n            \\\"NOT\\\",\\n            \\\"IMX\\\",\\n            \\\"WIF\\\",\\n            \\\"ENA\\\",\\n            \\\"EGLD\\\",\\n            \\\"BOME\\\",\\n            \\\"LTC\\\",\\n            \\\"USDC\\\",\\n            \\\"METIS\\\",\\n            \\\"WIN\\\",\\n            \\\"THETA\\\",\\n            \\\"FXS\\\",\\n            \\\"ENJ\\\",\\n            \\\"CRO\\\",\\n            \\\"AEVO\\\",\\n            \\\"INJ\\\",\\n            \\\"LTO\\\",\\n            \\\"CRV\\\",\\n            \\\"GRT\\\",\\n            \\\"DYDX\\\",\\n            \\\"FLUX\\\",\\n            \\\"ENS\\\",\\n            \\\"WAX\\\",\\n            \\\"MASK\\\",\\n            \\\"POND\\\",\\n            \\\"UNI\\\",\\n            \\\"AAVE\\\",\\n            \\\"LINA\\\",\\n            \\\"TLM\\\",\\n            \\\"BONK\\\",\\n            \\\"QNT\\\",\\n            \\\"LDO\\\",\\n            \\\"ALICE\\\",\\n            \\\"XLM\\\",\\n            \\\"LINK\\\",\\n            \\\"CKB\\\",\\n            \\\"LUNC\\\",\\n            \\\"YFI\\\",\\n            \\\"ETHW\\\",\\n            \\\"XTZ\\\",\\n            \\\"LUNA\\\",\\n            \\\"OP\\\",\\n            \\\"SUPER\\\",\\n            \\\"EIGEN\\\",\\n            \\\"KSM\\\",\\n            \\\"ELON\\\",\\n            \\\"EOS\\\",\\n            \\\"FIL\\\",\\n            \\\"ZETA\\\",\\n            \\\"SKL\\\",\\n            \\\"BAT\\\",\\n            \\\"APE\\\",\\n            \\\"HMSTR\\\",\\n            \\\"YGG\\\",\\n            \\\"MOVR\\\",\\n            \\\"PEOPLE\\\",\\n            \\\"KCS\\\",\\n            \\\"AXS\\\",\\n            \\\"ARPA\\\",\\n            \\\"ZIL\\\"\\n        ]\\n    }\\n}",
                 "operationId": "002"
             }
@@ -246,13 +246,13 @@
             "get": {
                 "summary": "Get ETF Info",
                 "deprecated": false,
-                "description": "This interface returns leveraged token information",
+                "description": "This interface returns leveraged token information.",
                 "tags": [],
                 "parameters": [
                     {
                         "name": "currency",
                         "in": "query",
-                        "description": "ETF Currency, if empty query all currencies\n",
+                        "description": "ETF Currency: If empty, query all currencies\n",
                         "required": false,
                         "schema": {
                             "type": "string"
@@ -329,8 +329,8 @@
                 "x-sdk-service": "Margin",
                 "x-sdk-sub-service": "Market",
                 "x-sdk-method-name": "getETFInfo",
-                "x-sdk-method-description": "This interface returns leveraged token information",
-                "x-api-rate-limit": 3,
+                "x-sdk-method-description": "This interface returns leveraged token information.",
+                "x-api-rate-limit-weight": 3,
                 "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": [\\n        {\\n            \\\"currency\\\": \\\"BTCUP\\\",\\n            \\\"netAsset\\\": \\\"33.846\\\",\\n            \\\"targetLeverage\\\": \\\"2-4\\\",\\n            \\\"actualLeverage\\\": \\\"2.1648\\\",\\n            \\\"issuedSize\\\": \\\"107134.87655291\\\",\\n            \\\"basket\\\": \\\"118.324559 XBTUSDTM\\\"\\n        }\\n    ]\\n}",
                 "x-request-example": "{\\\"currency\\\": \\\"BTCUP\\\"}",
                 "operationId": "003"
@@ -400,7 +400,7 @@
                 "x-sdk-sub-service": "Market",
                 "x-sdk-method-name": "getMarkPriceList",
                 "x-sdk-method-description": "This endpoint returns the current Mark price for all margin trading pairs.",
-                "x-api-rate-limit": 10,
+                "x-api-rate-limit-weight": 10,
                 "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": [\\n        {\\n            \\\"symbol\\\": \\\"USDT-BTC\\\",\\n            \\\"timePoint\\\": 1729676522000,\\n            \\\"value\\\": 1.504E-5\\n        },\\n        {\\n            \\\"symbol\\\": \\\"USDC-BTC\\\",\\n            \\\"timePoint\\\": 1729676522000,\\n            \\\"value\\\": 1.5049024E-5\\n        }\\n    ]\\n}",
                 "operationId": "004"
             }
@@ -476,7 +476,7 @@
                 "x-sdk-sub-service": "Market",
                 "x-sdk-method-name": "getMarkPriceDetail",
                 "x-sdk-method-description": "This endpoint returns the current Mark price for specified margin trading pairs.",
-                "x-api-rate-limit": 2,
+                "x-api-rate-limit-weight": 2,
                 "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"symbol\\\": \\\"USDT-BTC\\\",\\n        \\\"timePoint\\\": 1729676888000,\\n        \\\"value\\\": 1.5045E-5\\n    }\\n}",
                 "x-request-example": "{\\\"symbol\\\": \\\"USDT-BTC\\\"}",
                 "operationId": "005"
@@ -511,19 +511,19 @@
                                                     },
                                                     "symbolName": {
                                                         "type": "string",
-                                                        "description": "symbol name"
+                                                        "description": "Symbol name"
                                                     },
                                                     "baseCurrency": {
                                                         "type": "string",
-                                                        "description": "Base currency,e.g. BTC."
+                                                        "description": "Base currency, e.g. BTC."
                                                     },
                                                     "quoteCurrency": {
                                                         "type": "string",
-                                                        "description": "Quote currency,e.g. USDT."
+                                                        "description": "Quote currency, e.g. USDT."
                                                     },
                                                     "maxLeverage": {
                                                         "type": "integer",
-                                                        "description": "Max leverage of this symbol"
+                                                        "description": "Max. leverage of this symbol"
                                                     },
                                                     "flDebtRatio": {
                                                         "type": "string"
@@ -591,7 +591,7 @@
                 "x-sdk-sub-service": "Market",
                 "x-sdk-method-name": "getIsolatedMarginSymbols",
                 "x-sdk-method-description": "This endpoint allows querying the configuration of isolated margin symbol.",
-                "x-api-rate-limit": 3,
+                "x-api-rate-limit-weight": 3,
                 "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": [\\n        {\\n            \\\"symbol\\\": \\\"BTC-USDT\\\",\\n            \\\"symbolName\\\": \\\"BTC-USDT\\\",\\n            \\\"baseCurrency\\\": \\\"BTC\\\",\\n            \\\"quoteCurrency\\\": \\\"USDT\\\",\\n            \\\"maxLeverage\\\": 10,\\n            \\\"flDebtRatio\\\": \\\"0.97\\\",\\n            \\\"tradeEnable\\\": true,\\n            \\\"autoRenewMaxDebtRatio\\\": \\\"0.96\\\",\\n            \\\"baseBorrowEnable\\\": true,\\n            \\\"quoteBorrowEnable\\\": true,\\n            \\\"baseTransferInEnable\\\": true,\\n            \\\"quoteTransferInEnable\\\": true,\\n            \\\"baseBorrowCoefficient\\\": \\\"1\\\",\\n            \\\"quoteBorrowCoefficient\\\": \\\"1\\\"\\n        }\\n    ]\\n}",
                 "operationId": "006"
             }
@@ -600,7 +600,7 @@
             "post": {
                 "summary": "Add Order",
                 "deprecated": false,
-                "description": "Place order to the Cross-margin or Isolated-margin trading system, you can place two major types of orders: limit and market. Orders can only be placed if your account has sufficient funds. Once an order is placed, your funds will be put on hold for the duration of the order. The amount of funds on hold depends on the order type and parameters specified.",
+                "description": "Place order in the Cross-margin or Isolated-margin trading system. You can place two major types of order: Limit and market. Orders can only be placed if your account has sufficient funds. Once an order is placed, your funds will be put on hold for the duration of the order. The amount of funds on hold depends on the order type and parameters specified.",
                 "tags": [],
                 "parameters": [],
                 "responses": {
@@ -619,11 +619,11 @@
                                             "properties": {
                                                 "orderId": {
                                                     "type": "string",
-                                                    "description": "The unique order id generated by the trading system,which can be used later for further actions such as canceling the order."
+                                                    "description": "The unique order ID generated by the trading system, which can be used later for further actions such as canceling the order."
                                                 },
                                                 "loanApplyId": {
                                                     "type": "string",
-                                                    "description": "Borrow order id. The field is returned only after placing the order under the mode of Auto-Borrow."
+                                                    "description": "Borrow order ID. The field is returned only after placing the order under the mode of Auto-Borrow."
                                                 },
                                                 "borrowSize": {
                                                     "type": "string",
@@ -631,7 +631,7 @@
                                                 },
                                                 "clientOid": {
                                                     "type": "string",
-                                                    "description": "The user self-defined order id."
+                                                    "description": "The user self-defined order ID."
                                                 }
                                             },
                                             "required": [
@@ -660,8 +660,8 @@
                 "x-sdk-service": "Margin",
                 "x-sdk-sub-service": "Order",
                 "x-sdk-method-name": "addOrder",
-                "x-sdk-method-description": "Place order to the Cross-margin or Isolated-margin trading system, you can place two major types of orders: limit and market. Orders can only be placed if your account has sufficient funds. Once an order is placed, your funds will be put on hold for the duration of the order. The amount of funds on hold depends on the order type and parameters specified.",
-                "x-api-rate-limit": 5,
+                "x-sdk-method-description": "Place order in the Cross-margin or Isolated-margin trading system. You can place two major types of order: Limit and market. Orders can only be placed if your account has sufficient funds. Once an order is placed, your funds will be put on hold for the duration of the order. The amount of funds on hold depends on the order type and parameters specified.",
+                "x-api-rate-limit-weight": 5,
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -670,14 +670,14 @@
                                 "properties": {
                                     "clientOid": {
                                         "type": "string",
-                                        "description": "Client Order Id，The ClientOid field is a unique ID created by the user（we recommend using a UUID）, and can only contain numbers, letters, underscores （_）, and hyphens （-）. This field is returned when order information is obtained. You can use clientOid to tag your orders. ClientOid is different from the order ID created by the service provider. Please do not initiate requests using the same clientOid. The maximum length for the ClientOid is 40 characters.\n\nPlease remember the orderId created by the service provider, it used to check for updates in order status.",
+                                        "description": "Client Order ID: The ClientOid field is a unique ID created by the user (we recommend using a UUID), and can only contain numbers, letters, underscores (_), and hyphens (-). This field is returned when order information is obtained. You can use clientOid to tag your orders. ClientOid is different from the order ID created by the service provider. Please do not initiate requests using the same clientOid. The maximum length for the ClientOid is 40 characters.\n\nPlease remember the orderId created by the service provider, it used to check for updates in order status.",
                                         "example": [
                                             "5c52e11203aa677f33e493fb"
                                         ]
                                     },
                                     "side": {
                                         "type": "string",
-                                        "description": "specify if the order is to 'buy' or 'sell'",
+                                        "description": "Specify if the order is to 'buy' or 'sell'.",
                                         "enum": [
                                             "buy",
                                             "sell"
@@ -709,7 +709,7 @@
                                     },
                                     "type": {
                                         "type": "string",
-                                        "description": "specify if the order is an 'limit' order or 'market' order. \n\nThe type of order you specify when you place your order determines whether or not you need to request other parameters and also affects the execution of the matching engine.\n\nWhen placing a limit order, you must specify a price and size. The system will try to match the order according to market price or a price better than market price. If the order cannot be immediately matched, it will stay in the order book until it is matched or the user cancels.\n\nUnlike limit orders, the price for market orders fluctuates with market prices. When placing a market order, you do not need to specify a price, you only need to specify a quantity. Market orders are filled immediately and will not enter the order book. All market orders are takers and a taker fee will be charged.",
+                                        "description": "Specify if the order is a 'limit' order or 'market' order. \n\nThe type of order you specify when you place your order determines whether or not you need to request other parameters and also affects the execution of the matching engine.\n\nWhen placing a limit order, you must specify a price and size. The system will try to match the order according to market price or a price better than market price. If the order cannot be immediately matched, it will stay in the order book until it is matched or the user cancels.\n\nUnlike limit orders, the price for market orders fluctuates with market prices. When placing a market order, you do not need to specify a price; you only need to specify a quantity. Market orders are filled immediately and will not enter the order book. All market orders are takers and a taker fee will be charged.",
                                         "enum": [
                                             "limit",
                                             "market"
@@ -766,7 +766,7 @@
                                     },
                                     "size": {
                                         "type": "string",
-                                        "description": "Specify quantity for order\n\nWhen **type** is limit, size refers to the amount of trading targets (the asset name written in front) for the trading pair. Teh Size must be based on the baseIncrement of the trading pair. The baseIncrement represents the precision for the trading pair. The size of an order must be a positive-integer multiple of baseIncrement and must be between baseMinSize and baseMaxSize.\n\nWhen **type** is market, select one out of two: size or funds"
+                                        "description": "Specify quantity for order.\n\nWhen **type** is limited, size refers to the amount of trading targets (the asset name written in front) for the trading pair. The Size must be based on the baseIncrement of the trading pair. The baseIncrement represents the precision for the trading pair. The size of an order must be a positive-integer multiple of baseIncrement and must be between baseMinSize and baseMaxSize.\n\nWhen **type** is market, select one out of two: size or funds"
                                     },
                                     "timeInForce": {
                                         "type": "string",
@@ -823,7 +823,7 @@
                                     "cancelAfter": {
                                         "type": "integer",
                                         "format": "int64",
-                                        "description": "Cancel after n seconds，the order timing strategy is GTT"
+                                        "description": "Cancel after n seconds, the order timing strategy is GTT"
                                     },
                                     "funds": {
                                         "type": "string",
@@ -831,7 +831,7 @@
                                     },
                                     "isIsolated": {
                                         "type": "boolean",
-                                        "description": "true - isolated margin ,false - cross margin. defult as false",
+                                        "description": "True - isolated margin; false - cross margin. Default is false",
                                         "default": false
                                     },
                                     "autoBorrow": {
@@ -841,7 +841,7 @@
                                     },
                                     "autoRepay": {
                                         "type": "boolean",
-                                        "description": "AutoPay allows returning borrowed assets when you close a position. Our system automatically triggers the repayment and the maximum repayment amount equals to the filled-order amount.",
+                                        "description": "AutoPay allows the return of borrowed assets when you close a position. Our system automatically triggers the repayment and the maximum repayment amount equals to the filled-order amount.",
                                         "default": false
                                     }
                                 },
@@ -864,7 +864,7 @@
             "post": {
                 "summary": "Add Order Test",
                 "deprecated": false,
-                "description": " Order test endpoint, the request parameters and return parameters of this endpoint are exactly the same as the order endpoint, and can be used to verify whether the signature is correct and other operations. After placing an order, the order will not enter the matching system, and the order cannot be queried.",
+                "description": " Order test endpoint: This endpoint’s request and return parameters are identical to the order endpoint, and can be used to verify whether the signature is correct, among other operations. After placing an order, the order will not enter the matching system, and the order cannot be queried.",
                 "tags": [],
                 "parameters": [],
                 "responses": {
@@ -883,7 +883,7 @@
                                             "properties": {
                                                 "orderId": {
                                                     "type": "string",
-                                                    "description": "The unique order id generated by the trading system,which can be used later for further actions such as canceling the order."
+                                                    "description": "The unique order ID generated by the trading system, which can be used later for further actions such as canceling the order."
                                                 },
                                                 "loanApplyId": {
                                                     "type": "string",
@@ -895,7 +895,7 @@
                                                 },
                                                 "clientOid": {
                                                     "type": "string",
-                                                    "description": "The user self-defined order id."
+                                                    "description": "The user self-defined order ID."
                                                 }
                                             },
                                             "required": [
@@ -924,8 +924,8 @@
                 "x-sdk-service": "Margin",
                 "x-sdk-sub-service": "Order",
                 "x-sdk-method-name": "addOrderTest",
-                "x-sdk-method-description": " Order test endpoint, the request parameters and return parameters of this endpoint are exactly the same as the order endpoint, and can be used to verify whether the signature is correct and other operations. After placing an order, the order will not enter the matching system, and the order cannot be queried.",
-                "x-api-rate-limit": 5,
+                "x-sdk-method-description": " Order test endpoint: This endpoint’s request and return parameters are identical to the order endpoint, and can be used to verify whether the signature is correct, among other operations. After placing an order, the order will not enter the matching system, and the order cannot be queried.",
+                "x-api-rate-limit-weight": 5,
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -934,14 +934,14 @@
                                 "properties": {
                                     "clientOid": {
                                         "type": "string",
-                                        "description": "Client Order Id，The ClientOid field is a unique ID created by the user（we recommend using a UUID）, and can only contain numbers, letters, underscores （_）, and hyphens （-）. This field is returned when order information is obtained. You can use clientOid to tag your orders. ClientOid is different from the order ID created by the service provider. Please do not initiate requests using the same clientOid. The maximum length for the ClientOid is 40 characters.\n\nPlease remember the orderId created by the service provider, it used to check for updates in order status.",
+                                        "description": "Client Order ID: The ClientOid field is a unique ID created by the user (we recommend using a UUID), and can only contain numbers, letters, underscores (_), and hyphens (-). This field is returned when order information is obtained. You can use clientOid to tag your orders. ClientOid is different from the order ID created by the service provider. Please do not initiate requests using the same clientOid. The maximum length for the ClientOid is 40 characters.\n\nPlease remember the orderId created by the service provider, it used to check for updates in order status.",
                                         "example": [
                                             "5c52e11203aa677f33e493fb"
                                         ]
                                     },
                                     "side": {
                                         "type": "string",
-                                        "description": "specify if the order is to 'buy' or 'sell'",
+                                        "description": "Specify if the order is to 'buy' or 'sell'.",
                                         "enum": [
                                             "buy",
                                             "sell"
@@ -973,7 +973,7 @@
                                     },
                                     "type": {
                                         "type": "string",
-                                        "description": "specify if the order is an 'limit' order or 'market' order. \n\nThe type of order you specify when you place your order determines whether or not you need to request other parameters and also affects the execution of the matching engine.\n\nWhen placing a limit order, you must specify a price and size. The system will try to match the order according to market price or a price better than market price. If the order cannot be immediately matched, it will stay in the order book until it is matched or the user cancels.\n\nUnlike limit orders, the price for market orders fluctuates with market prices. When placing a market order, you do not need to specify a price, you only need to specify a quantity. Market orders are filled immediately and will not enter the order book. All market orders are takers and a taker fee will be charged.",
+                                        "description": "Specify if the order is a 'limit' order or 'market' order. \n\nThe type of order you specify when you place your order determines whether or not you need to request other parameters and also affects the execution of the matching engine.\n\nWhen placing a limit order, you must specify a price and size. The system will try to match the order according to market price or a price better than market price. If the order cannot be immediately matched, it will stay in the order book until it is matched or the user cancels.\n\nUnlike limit orders, the price for market orders fluctuates with market prices. When placing a market order, you do not need to specify a price; you only need to specify a quantity. Market orders are filled immediately and will not enter the order book. All market orders are takers and a taker fee will be charged.",
                                         "enum": [
                                             "limit",
                                             "market"
@@ -1030,7 +1030,7 @@
                                     },
                                     "size": {
                                         "type": "string",
-                                        "description": "Specify quantity for order\n\nWhen **type** is limit, size refers to the amount of trading targets (the asset name written in front) for the trading pair. Teh Size must be based on the baseIncrement of the trading pair. The baseIncrement represents the precision for the trading pair. The size of an order must be a positive-integer multiple of baseIncrement and must be between baseMinSize and baseMaxSize.\n\nWhen **type** is market, select one out of two: size or funds"
+                                        "description": "Specify quantity for order.\n\nWhen **type** is limited, size refers to the amount of trading targets (the asset name written in front) for the trading pair. The Size must be based on the baseIncrement of the trading pair. The baseIncrement represents the precision for the trading pair. The size of an order must be a positive-integer multiple of baseIncrement and must be between baseMinSize and baseMaxSize.\n\nWhen **type** is market, select one out of two: size or funds"
                                     },
                                     "timeInForce": {
                                         "type": "string",
@@ -1087,7 +1087,7 @@
                                     "cancelAfter": {
                                         "type": "integer",
                                         "format": "int64",
-                                        "description": "Cancel after n seconds，the order timing strategy is GTT"
+                                        "description": "Cancel after n seconds, the order timing strategy is GTT"
                                     },
                                     "funds": {
                                         "type": "string",
@@ -1095,7 +1095,7 @@
                                     },
                                     "isIsolated": {
                                         "type": "boolean",
-                                        "description": "true - isolated margin ,false - cross margin. defult as false",
+                                        "description": "True - isolated margin; false - cross margin. Default is false",
                                         "default": false
                                     },
                                     "autoBorrow": {
@@ -1105,7 +1105,7 @@
                                     },
                                     "autoRepay": {
                                         "type": "boolean",
-                                        "description": "AutoPay allows returning borrowed assets when you close a position. Our system automatically triggers the repayment and the maximum repayment amount equals to the filled-order amount.",
+                                        "description": "AutoPay allows the return of borrowed assets when you close a position. Our system automatically triggers the repayment and the maximum repayment amount equals to the filled-order amount.",
                                         "default": false
                                     }
                                 },
@@ -1128,18 +1128,9 @@
             "delete": {
                 "summary": "Cancel Order By OrderId",
                 "deprecated": false,
-                "description": "This endpoint can be used to cancel a margin order by orderId. This endpoint only sends cancellation requests. The results of the requests must be obtained by checking the order status or subscribing to websocket.",
+                "description": "This endpoint can be used to cancel a margin order by orderId. This endpoint only sends cancellation requests. The results of the requests must be obtained by checking the order status or subscribing to Websocket.",
                 "tags": [],
                 "parameters": [
-                    {
-                        "name": "orderId",
-                        "in": "path",
-                        "description": "The unique order id generated by the trading system",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
                     {
                         "name": "symbol",
                         "in": "query",
@@ -1152,6 +1143,15 @@
                                 "ETH-USDT",
                                 "KCS-USDT"
                             ]
+                        }
+                    },
+                    {
+                        "name": "orderId",
+                        "in": "path",
+                        "description": "The unique order id generated by the trading system",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
                         }
                     }
                 ],
@@ -1171,7 +1171,7 @@
                                             "properties": {
                                                 "orderId": {
                                                     "type": "string",
-                                                    "description": "order id"
+                                                    "description": "Order id"
                                                 }
                                             },
                                             "required": [
@@ -1197,16 +1197,16 @@
                 "x-sdk-service": "Margin",
                 "x-sdk-sub-service": "Order",
                 "x-sdk-method-name": "cancelOrderByOrderId",
-                "x-sdk-method-description": "This endpoint can be used to cancel a margin order by orderId. This endpoint only sends cancellation requests. The results of the requests must be obtained by checking the order status or subscribing to websocket.",
-                "x-api-rate-limit": 5,
+                "x-sdk-method-description": "This endpoint can be used to cancel a margin order by orderId. This endpoint only sends cancellation requests. The results of the requests must be obtained by checking the order status or subscribing to Websocket.",
+                "x-api-rate-limit-weight": 5,
                 "x-response-example": "{\\\"code\\\":\\\"200000\\\",\\\"data\\\":{\\\"orderId\\\":\\\"671663e02188630007e21c9c\\\"}}",
-                "x-request-example": "{\\\"orderId\\\": \\\"671663e02188630007e21c9c\\\", \\\"symbol\\\": \\\"BTC-USDT\\\"}",
+                "x-request-example": "{\\\"symbol\\\": \\\"BTC-USDT\\\", \\\"orderId\\\": \\\"671663e02188630007e21c9c\\\"}",
                 "operationId": "009"
             },
             "get": {
                 "summary": "Get Order By OrderId",
                 "deprecated": false,
-                "description": "This endpoint can be used to obtain information for a single Margin order using the order id.  After the user successfully places an order, the order is in Active state, and the user can use inOrderBook to determine whether the order has entered the order. Canceled or fully filled orders are marked as completed Done status.",
+                "description": "This endpoint can be used to obtain information for a single Margin order using the order ID.  After the user successfully places an order, the order is in the Active state, and the user can use inOrderBook to determine whether the order has entered the order. Canceled or fully filled orders are marked as completed Done status.",
                 "tags": [],
                 "parameters": [
                     {
@@ -1265,7 +1265,7 @@
                                                 },
                                                 "type": {
                                                     "type": "string",
-                                                    "description": "Specify if the order is an 'limit' order or 'market' order. ",
+                                                    "description": "Specify if the order is a 'limit' order or 'market' order. ",
                                                     "enum": [
                                                         "limit",
                                                         "market"
@@ -1305,11 +1305,11 @@
                                                 },
                                                 "price": {
                                                     "type": "string",
-                                                    "description": "Order price"
+                                                    "description": "Order Price"
                                                 },
                                                 "size": {
                                                     "type": "string",
-                                                    "description": "Order size"
+                                                    "description": "Order Size"
                                                 },
                                                 "funds": {
                                                     "type": "string",
@@ -1329,7 +1329,7 @@
                                                 },
                                                 "feeCurrency": {
                                                     "type": "string",
-                                                    "description": "currency used to calculate trading fee"
+                                                    "description": "Currency used to calculate trading fee"
                                                 },
                                                 "stp": {
                                                     "type": "string",
@@ -1406,15 +1406,15 @@
                                                 },
                                                 "postOnly": {
                                                     "type": "boolean",
-                                                    "description": "Whether its a postOnly order."
+                                                    "description": "Whether it’s a postOnly order."
                                                 },
                                                 "hidden": {
                                                     "type": "boolean",
-                                                    "description": "Whether its a hidden order."
+                                                    "description": "Whether it’s a hidden order."
                                                 },
                                                 "iceberg": {
                                                     "type": "boolean",
-                                                    "description": "Whether its a iceberg order."
+                                                    "description": "Whether it’s a iceberg order."
                                                 },
                                                 "visibleSize": {
                                                     "type": "string",
@@ -1429,7 +1429,7 @@
                                                 },
                                                 "clientOid": {
                                                     "type": "string",
-                                                    "description": "Client Order Id，unique identifier created by the user"
+                                                    "description": "Client Order Id, unique identifier created by the user"
                                                 },
                                                 "remark": {
                                                     "type": "string",
@@ -1457,7 +1457,7 @@
                                                 },
                                                 "inOrderBook": {
                                                     "type": "boolean",
-                                                    "description": "Whether to enter the orderbook: true: enter the orderbook; false: not enter the orderbook"
+                                                    "description": "Whether to enter the orderbook: True: enter the orderbook; False: do not enter the orderbook"
                                                 },
                                                 "cancelledSize": {
                                                     "type": "string",
@@ -1477,11 +1477,11 @@
                                                 },
                                                 "tax": {
                                                     "type": "string",
-                                                    "description": "Users in some regions need query this field"
+                                                    "description": "Users in some regions have this field"
                                                 },
                                                 "active": {
                                                     "type": "boolean",
-                                                    "description": "Order status: true-The status of the order isactive; false-The status of the order is done"
+                                                    "description": "Order status: true-The status of the order is active; false-The status of the order is done"
                                                 }
                                             },
                                             "required": [
@@ -1540,8 +1540,8 @@
                 "x-sdk-service": "Margin",
                 "x-sdk-sub-service": "Order",
                 "x-sdk-method-name": "getOrderByOrderId",
-                "x-sdk-method-description": "This endpoint can be used to obtain information for a single Margin order using the order id.  After the user successfully places an order, the order is in Active state, and the user can use inOrderBook to determine whether the order has entered the order. Canceled or fully filled orders are marked as completed Done status.",
-                "x-api-rate-limit": 5,
+                "x-sdk-method-description": "This endpoint can be used to obtain information for a single Margin order using the order ID.  After the user successfully places an order, the order is in the Active state, and the user can use inOrderBook to determine whether the order has entered the order. Canceled or fully filled orders are marked as completed Done status.",
+                "x-api-rate-limit-weight": 5,
                 "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"id\\\": \\\"671667306afcdb000723107f\\\",\\n        \\\"symbol\\\": \\\"BTC-USDT\\\",\\n        \\\"opType\\\": \\\"DEAL\\\",\\n        \\\"type\\\": \\\"limit\\\",\\n        \\\"side\\\": \\\"buy\\\",\\n        \\\"price\\\": \\\"50000\\\",\\n        \\\"size\\\": \\\"0.00001\\\",\\n        \\\"funds\\\": \\\"0.5\\\",\\n        \\\"dealSize\\\": \\\"0\\\",\\n        \\\"dealFunds\\\": \\\"0\\\",\\n        \\\"fee\\\": \\\"0\\\",\\n        \\\"feeCurrency\\\": \\\"USDT\\\",\\n        \\\"stp\\\": null,\\n        \\\"stop\\\": null,\\n        \\\"stopTriggered\\\": false,\\n        \\\"stopPrice\\\": \\\"0\\\",\\n        \\\"timeInForce\\\": \\\"GTC\\\",\\n        \\\"postOnly\\\": false,\\n        \\\"hidden\\\": false,\\n        \\\"iceberg\\\": false,\\n        \\\"visibleSize\\\": \\\"0\\\",\\n        \\\"cancelAfter\\\": 0,\\n        \\\"channel\\\": \\\"API\\\",\\n        \\\"clientOid\\\": \\\"5c52e11203aa677f33e493fb\\\",\\n        \\\"remark\\\": null,\\n        \\\"tags\\\": null,\\n        \\\"cancelExist\\\": false,\\n        \\\"createdAt\\\": 1729521456248,\\n        \\\"lastUpdatedAt\\\": 1729651011877,\\n        \\\"tradeType\\\": \\\"MARGIN_TRADE\\\",\\n        \\\"inOrderBook\\\": true,\\n        \\\"cancelledSize\\\": \\\"0\\\",\\n        \\\"cancelledFunds\\\": \\\"0\\\",\\n        \\\"remainSize\\\": \\\"0.00001\\\",\\n        \\\"remainFunds\\\": \\\"0.5\\\",\\n        \\\"tax\\\": \\\"0\\\",\\n        \\\"active\\\": true\\n    }\\n}",
                 "x-request-example": "{\\\"symbol\\\": \\\"BTC-USDT\\\", \\\"orderId\\\": \\\"671667306afcdb000723107f\\\"}",
                 "operationId": "016"
@@ -1551,18 +1551,9 @@
             "delete": {
                 "summary": "Cancel Order By ClientOid",
                 "deprecated": false,
-                "description": "This endpoint can be used to cancel a margin order by clientOid. This endpoint only sends cancellation requests. The results of the requests must be obtained by checking the order status or subscribing to websocket.",
+                "description": "This endpoint can be used to cancel a margin order by clientOid. This endpoint only sends cancellation requests. The results of the requests must be obtained by checking the order status or subscribing to Websocket.",
                 "tags": [],
                 "parameters": [
-                    {
-                        "name": "clientOid",
-                        "in": "path",
-                        "description": "Client Order Id，unique identifier created by the user",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
                     {
                         "name": "symbol",
                         "in": "query",
@@ -1575,6 +1566,15 @@
                                 "ETH-USDT",
                                 "KCS-USDT"
                             ]
+                        }
+                    },
+                    {
+                        "name": "clientOid",
+                        "in": "path",
+                        "description": "Client Order Id, unique identifier created by the user",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
                         }
                     }
                 ],
@@ -1594,7 +1594,7 @@
                                             "properties": {
                                                 "clientOid": {
                                                     "type": "string",
-                                                    "description": "Client Order Id，unique identifier created by the user"
+                                                    "description": "Client Order Id, unique identifier created by the user"
                                                 }
                                             },
                                             "required": [
@@ -1620,16 +1620,16 @@
                 "x-sdk-service": "Margin",
                 "x-sdk-sub-service": "Order",
                 "x-sdk-method-name": "cancelOrderByClientOid",
-                "x-sdk-method-description": "This endpoint can be used to cancel a margin order by clientOid. This endpoint only sends cancellation requests. The results of the requests must be obtained by checking the order status or subscribing to websocket.",
-                "x-api-rate-limit": 5,
+                "x-sdk-method-description": "This endpoint can be used to cancel a margin order by clientOid. This endpoint only sends cancellation requests. The results of the requests must be obtained by checking the order status or subscribing to Websocket.",
+                "x-api-rate-limit-weight": 5,
                 "x-response-example": "{\\\"code\\\":\\\"200000\\\",\\\"data\\\":{\\\"clientOid\\\":\\\"5c52e11203aa677f33e1493fb\\\"}}",
-                "x-request-example": "{\\\"clientOid\\\": \\\"5c52e11203aa677f33e1493fb\\\", \\\"symbol\\\": \\\"BTC-USDT\\\"}",
+                "x-request-example": "{\\\"symbol\\\": \\\"BTC-USDT\\\", \\\"clientOid\\\": \\\"5c52e11203aa677f33e1493fb\\\"}",
                 "operationId": "010"
             },
             "get": {
                 "summary": "Get Order By ClientOid",
                 "deprecated": false,
-                "description": "This endpoint can be used to obtain information for a single Margin order using the client order id.  After the user successfully places an order, the order is in Active state, and the user can use inOrderBook to determine whether the order has entered the order. Canceled or fully filled orders are marked as completed Done status.",
+                "description": "This endpoint can be used to obtain information for a single Margin order using the client order ID.  After the user successfully places an order, the order is in the Active state, and the user can use inOrderBook to determine whether the order has entered the order. Canceled or fully filled orders are marked as completed Done status.",
                 "tags": [],
                 "parameters": [
                     {
@@ -1649,7 +1649,7 @@
                     {
                         "name": "clientOid",
                         "in": "path",
-                        "description": "Client Order Id，unique identifier created by the user",
+                        "description": "Client Order Id, unique identifier created by the user",
                         "required": true,
                         "schema": {
                             "type": "string"
@@ -1688,7 +1688,7 @@
                                                 },
                                                 "type": {
                                                     "type": "string",
-                                                    "description": "Specify if the order is an 'limit' order or 'market' order. ",
+                                                    "description": "Specify if the order is a 'limit' order or 'market' order. ",
                                                     "enum": [
                                                         "limit",
                                                         "market"
@@ -1728,11 +1728,11 @@
                                                 },
                                                 "price": {
                                                     "type": "string",
-                                                    "description": "Order price"
+                                                    "description": "Order Price"
                                                 },
                                                 "size": {
                                                     "type": "string",
-                                                    "description": "Order size"
+                                                    "description": "Order Size"
                                                 },
                                                 "funds": {
                                                     "type": "string",
@@ -1752,7 +1752,7 @@
                                                 },
                                                 "feeCurrency": {
                                                     "type": "string",
-                                                    "description": "currency used to calculate trading fee"
+                                                    "description": "Currency used to calculate trading fee"
                                                 },
                                                 "stp": {
                                                     "type": "string",
@@ -1829,15 +1829,15 @@
                                                 },
                                                 "postOnly": {
                                                     "type": "boolean",
-                                                    "description": "Whether its a postOnly order."
+                                                    "description": "Whether it’s a postOnly order."
                                                 },
                                                 "hidden": {
                                                     "type": "boolean",
-                                                    "description": "Whether its a hidden order."
+                                                    "description": "Whether it’s a hidden order."
                                                 },
                                                 "iceberg": {
                                                     "type": "boolean",
-                                                    "description": "Whether its a iceberg order."
+                                                    "description": "Whether it’s a iceberg order."
                                                 },
                                                 "visibleSize": {
                                                     "type": "string",
@@ -1852,7 +1852,7 @@
                                                 },
                                                 "clientOid": {
                                                     "type": "string",
-                                                    "description": "Client Order Id，unique identifier created by the user"
+                                                    "description": "Client Order Id, unique identifier created by the user"
                                                 },
                                                 "remark": {
                                                     "type": "string",
@@ -1880,7 +1880,7 @@
                                                 },
                                                 "inOrderBook": {
                                                     "type": "boolean",
-                                                    "description": "Whether to enter the orderbook: true: enter the orderbook; false: not enter the orderbook"
+                                                    "description": "Whether to enter the orderbook: True: enter the orderbook; False: do not enter the orderbook"
                                                 },
                                                 "cancelledSize": {
                                                     "type": "string",
@@ -1900,11 +1900,11 @@
                                                 },
                                                 "tax": {
                                                     "type": "string",
-                                                    "description": "Users in some regions need query this field"
+                                                    "description": "Users in some regions have this field"
                                                 },
                                                 "active": {
                                                     "type": "boolean",
-                                                    "description": "Order status: true-The status of the order isactive; false-The status of the order is done"
+                                                    "description": "Order status: true-The status of the order is active; false-The status of the order is done"
                                                 }
                                             },
                                             "required": [
@@ -1962,8 +1962,8 @@
                 "x-sdk-service": "Margin",
                 "x-sdk-sub-service": "Order",
                 "x-sdk-method-name": "getOrderByClientOid",
-                "x-sdk-method-description": "This endpoint can be used to obtain information for a single Margin order using the client order id.  After the user successfully places an order, the order is in Active state, and the user can use inOrderBook to determine whether the order has entered the order. Canceled or fully filled orders are marked as completed Done status.",
-                "x-api-rate-limit": 5,
+                "x-sdk-method-description": "This endpoint can be used to obtain information for a single Margin order using the client order ID.  After the user successfully places an order, the order is in the Active state, and the user can use inOrderBook to determine whether the order has entered the order. Canceled or fully filled orders are marked as completed Done status.",
+                "x-api-rate-limit-weight": 5,
                 "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"id\\\": \\\"671667306afcdb000723107f\\\",\\n        \\\"symbol\\\": \\\"BTC-USDT\\\",\\n        \\\"opType\\\": \\\"DEAL\\\",\\n        \\\"type\\\": \\\"limit\\\",\\n        \\\"side\\\": \\\"buy\\\",\\n        \\\"price\\\": \\\"50000\\\",\\n        \\\"size\\\": \\\"0.00001\\\",\\n        \\\"funds\\\": \\\"0.5\\\",\\n        \\\"dealSize\\\": \\\"0\\\",\\n        \\\"dealFunds\\\": \\\"0\\\",\\n        \\\"fee\\\": \\\"0\\\",\\n        \\\"feeCurrency\\\": \\\"USDT\\\",\\n        \\\"stp\\\": null,\\n        \\\"stop\\\": null,\\n        \\\"stopTriggered\\\": false,\\n        \\\"stopPrice\\\": \\\"0\\\",\\n        \\\"timeInForce\\\": \\\"GTC\\\",\\n        \\\"postOnly\\\": false,\\n        \\\"hidden\\\": false,\\n        \\\"iceberg\\\": false,\\n        \\\"visibleSize\\\": \\\"0\\\",\\n        \\\"cancelAfter\\\": 0,\\n        \\\"channel\\\": \\\"API\\\",\\n        \\\"clientOid\\\": \\\"5c52e11203aa677f33e493fb\\\",\\n        \\\"remark\\\": null,\\n        \\\"tags\\\": null,\\n        \\\"cancelExist\\\": false,\\n        \\\"createdAt\\\": 1729521456248,\\n        \\\"lastUpdatedAt\\\": 1729651011877,\\n        \\\"tradeType\\\": \\\"MARGIN_TRADE\\\",\\n        \\\"inOrderBook\\\": true,\\n        \\\"cancelledSize\\\": \\\"0\\\",\\n        \\\"cancelledFunds\\\": \\\"0\\\",\\n        \\\"remainSize\\\": \\\"0.00001\\\",\\n        \\\"remainFunds\\\": \\\"0.5\\\",\\n        \\\"tax\\\": \\\"0\\\",\\n        \\\"active\\\": true\\n    }\\n}",
                 "x-request-example": "{\\\"symbol\\\": \\\"BTC-USDT\\\", \\\"clientOid\\\": \\\"5c52e11203aa677f33e493fb\\\"}",
                 "operationId": "017"
@@ -1973,7 +1973,7 @@
             "delete": {
                 "summary": "Cancel All Orders By Symbol",
                 "deprecated": false,
-                "description": "This interface can cancel all open Margin orders by symbol This endpoint only sends cancellation requests. The results of the requests must be obtained by checking the order status or subscribing to websocket.",
+                "description": "This interface can cancel all open Margin orders by symbol. This endpoint only sends cancellation requests. The results of the requests must be obtained by checking the order status or subscribing to Websocket.",
                 "tags": [],
                 "parameters": [
                     {
@@ -2049,8 +2049,8 @@
                 "x-sdk-service": "Margin",
                 "x-sdk-sub-service": "Order",
                 "x-sdk-method-name": "cancelAllOrdersBySymbol",
-                "x-sdk-method-description": "This interface can cancel all open Margin orders by symbol This endpoint only sends cancellation requests. The results of the requests must be obtained by checking the order status or subscribing to websocket.",
-                "x-api-rate-limit": 10,
+                "x-sdk-method-description": "This interface can cancel all open Margin orders by symbol. This endpoint only sends cancellation requests. The results of the requests must be obtained by checking the order status or subscribing to Websocket.",
+                "x-api-rate-limit-weight": 10,
                 "x-response-example": "{\\\"code\\\":\\\"200000\\\",\\\"data\\\":\\\"success\\\"}",
                 "x-request-example": "{\\\"symbol\\\": \\\"BTC-USDT\\\", \\\"tradeType\\\": \\\"MARGIN_TRADE\\\"}",
                 "operationId": "011"
@@ -2060,7 +2060,7 @@
             "get": {
                 "summary": "Get Symbols With Open Order",
                 "deprecated": false,
-                "description": "This interface can query all Margin symbol that has active orders",
+                "description": "This interface can query all Margin symbols that have active orders.",
                 "tags": [],
                 "parameters": [
                     {
@@ -2139,8 +2139,7 @@
                 "x-sdk-service": "Margin",
                 "x-sdk-sub-service": "Order",
                 "x-sdk-method-name": "getSymbolsWithOpenOrder",
-                "x-sdk-method-description": "This interface can query all Margin symbol that has active orders",
-                "x-api-rate-limit": 2,
+                "x-sdk-method-description": "This interface can query all Margin symbols that have active orders.",
                 "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"symbolSize\\\": 1,\\n        \\\"symbols\\\": [\\n            \\\"BTC-USDT\\\"\\n        ]\\n    }\\n}",
                 "x-request-example": "{\\\"tradeType\\\": \\\"MARGIN_TRADE\\\"}",
                 "operationId": "012"
@@ -2150,7 +2149,7 @@
             "get": {
                 "summary": "Get Open Orders",
                 "deprecated": false,
-                "description": "This interface is to obtain all Margin active order lists, and the return value of the active order interface is the paged data of all uncompleted order lists. The returned data is sorted in descending order according to the latest update time of the order.  After the user successfully places an order, the order is in Active state, and the user can use inOrderBook to determine whether the order has entered the order. Canceled or fully filled orders are marked as completed Done status.",
+                "description": "This interface is to obtain all Margin active order lists, and the return value of the active order interface is the paged data of all uncompleted order lists. The returned data is sorted in descending order according to the latest update time of the order.  After the user successfully places an order, the order is in the Active state, and the user can use inOrderBook to determine whether the order has entered the order. Canceled or fully filled orders are marked as completed Done status.",
                 "tags": [],
                 "parameters": [
                     {
@@ -2227,7 +2226,7 @@
                                                     },
                                                     "type": {
                                                         "type": "string",
-                                                        "description": "Specify if the order is an 'limit' order or 'market' order. ",
+                                                        "description": "Specify if the order is a 'limit' order or 'market' order. ",
                                                         "enum": [
                                                             "limit",
                                                             "market"
@@ -2267,11 +2266,11 @@
                                                     },
                                                     "price": {
                                                         "type": "string",
-                                                        "description": "Order price"
+                                                        "description": "Order Price"
                                                     },
                                                     "size": {
                                                         "type": "string",
-                                                        "description": "Order size"
+                                                        "description": "Order Size"
                                                     },
                                                     "funds": {
                                                         "type": "string",
@@ -2287,11 +2286,11 @@
                                                     },
                                                     "fee": {
                                                         "type": "string",
-                                                        "description": "trading fee"
+                                                        "description": "Trading fee"
                                                     },
                                                     "feeCurrency": {
                                                         "type": "string",
-                                                        "description": "currency used to calculate trading fee"
+                                                        "description": "Currency used to calculate trading fee"
                                                     },
                                                     "stp": {
                                                         "type": "string",
@@ -2368,15 +2367,15 @@
                                                     },
                                                     "postOnly": {
                                                         "type": "boolean",
-                                                        "description": "Whether its a postOnly order."
+                                                        "description": "Whether it’s a postOnly order."
                                                     },
                                                     "hidden": {
                                                         "type": "boolean",
-                                                        "description": "Whether its a hidden order."
+                                                        "description": "Whether it’s a hidden order."
                                                     },
                                                     "iceberg": {
                                                         "type": "boolean",
-                                                        "description": "Whether its a iceberg order."
+                                                        "description": "Whether it’s a iceberg order."
                                                     },
                                                     "visibleSize": {
                                                         "type": "string",
@@ -2391,7 +2390,7 @@
                                                     },
                                                     "clientOid": {
                                                         "type": "string",
-                                                        "description": "Client Order Id，unique identifier created by the user"
+                                                        "description": "Client Order Id, unique identifier created by the user"
                                                     },
                                                     "remark": {
                                                         "type": "string",
@@ -2419,7 +2418,7 @@
                                                     },
                                                     "inOrderBook": {
                                                         "type": "boolean",
-                                                        "description": "Whether to enter the orderbook: true: enter the orderbook; false: not enter the orderbook"
+                                                        "description": "Whether to enter the orderbook: True: enter the orderbook; False: do not enter the orderbook"
                                                     },
                                                     "cancelledSize": {
                                                         "type": "string",
@@ -2439,11 +2438,11 @@
                                                     },
                                                     "tax": {
                                                         "type": "string",
-                                                        "description": "Users in some regions need query this field"
+                                                        "description": "Users in some regions have this field"
                                                     },
                                                     "active": {
                                                         "type": "boolean",
-                                                        "description": "Order status: true-The status of the order isactive; false-The status of the order is done"
+                                                        "description": "Order status: true-The status of the order is active; false-The status of the order is done"
                                                     }
                                                 },
                                                 "required": [
@@ -2476,10 +2475,10 @@
                                                     "cancelledFunds",
                                                     "remainSize",
                                                     "remainFunds",
-                                                    "tax",
                                                     "active",
                                                     "createdAt",
-                                                    "lastUpdatedAt"
+                                                    "lastUpdatedAt",
+                                                    "tax"
                                                 ]
                                             }
                                         }
@@ -2502,8 +2501,8 @@
                 "x-sdk-service": "Margin",
                 "x-sdk-sub-service": "Order",
                 "x-sdk-method-name": "getOpenOrders",
-                "x-sdk-method-description": "This interface is to obtain all Margin active order lists, and the return value of the active order interface is the paged data of all uncompleted order lists. The returned data is sorted in descending order according to the latest update time of the order.  After the user successfully places an order, the order is in Active state, and the user can use inOrderBook to determine whether the order has entered the order. Canceled or fully filled orders are marked as completed Done status.",
-                "x-api-rate-limit": 4,
+                "x-sdk-method-description": "This interface is to obtain all Margin active order lists, and the return value of the active order interface is the paged data of all uncompleted order lists. The returned data is sorted in descending order according to the latest update time of the order.  After the user successfully places an order, the order is in the Active state, and the user can use inOrderBook to determine whether the order has entered the order. Canceled or fully filled orders are marked as completed Done status.",
+                "x-api-rate-limit-weight": 4,
                 "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": [\\n        {\\n            \\\"id\\\": \\\"671667306afcdb000723107f\\\",\\n            \\\"clientOid\\\": \\\"5c52e11203aa677f33e493fb\\\",\\n            \\\"symbol\\\": \\\"BTC-USDT\\\",\\n            \\\"opType\\\": \\\"DEAL\\\",\\n            \\\"type\\\": \\\"limit\\\",\\n            \\\"side\\\": \\\"buy\\\",\\n            \\\"price\\\": \\\"50000\\\",\\n            \\\"size\\\": \\\"0.00001\\\",\\n            \\\"funds\\\": \\\"0.5\\\",\\n            \\\"dealSize\\\": \\\"0\\\",\\n            \\\"dealFunds\\\": \\\"0\\\",\\n            \\\"remainSize\\\": \\\"0.00001\\\",\\n            \\\"remainFunds\\\": \\\"0.5\\\",\\n            \\\"cancelledSize\\\": \\\"0\\\",\\n            \\\"cancelledFunds\\\": \\\"0\\\",\\n            \\\"fee\\\": \\\"0\\\",\\n            \\\"feeCurrency\\\": \\\"USDT\\\",\\n            \\\"stp\\\": null,\\n            \\\"stop\\\": null,\\n            \\\"stopTriggered\\\": false,\\n            \\\"stopPrice\\\": \\\"0\\\",\\n            \\\"timeInForce\\\": \\\"GTC\\\",\\n            \\\"postOnly\\\": false,\\n            \\\"hidden\\\": false,\\n            \\\"iceberg\\\": false,\\n            \\\"visibleSize\\\": \\\"0\\\",\\n            \\\"cancelAfter\\\": 0,\\n            \\\"channel\\\": \\\"API\\\",\\n            \\\"remark\\\": null,\\n            \\\"tags\\\": null,\\n            \\\"cancelExist\\\": false,\\n            \\\"tradeType\\\": \\\"MARGIN_TRADE\\\",\\n            \\\"inOrderBook\\\": true,\\n            \\\"active\\\": true,\\n            \\\"tax\\\": \\\"0\\\",\\n            \\\"createdAt\\\": 1729521456248,\\n            \\\"lastUpdatedAt\\\": 1729521460940\\n        }\\n    ]\\n}",
                 "x-request-example": "{\\\"symbol\\\": \\\"BTC-USDT\\\", \\\"tradeType\\\": \\\"MARGIN_TRADE\\\"}",
                 "operationId": "013"
@@ -2513,7 +2512,7 @@
             "get": {
                 "summary": "Get Closed Orders",
                 "deprecated": false,
-                "description": "This interface is to obtain all Margin closed order lists, and the return value of the active order interface is the paged data of all uncompleted order lists. The returned data is sorted in descending order according to the latest update time of the order.  After the user successfully places an order, the order is in Active state, and the user can use inOrderBook to determine whether the order has entered the order. Canceled or fully filled orders are marked as completed Done status.",
+                "description": "This interface is to obtain all Margin closed order lists, and the return value of the active order interface is the paged data of all uncompleted order lists. The returned data is sorted in descending order according to the latest update time of the order.  After the user successfully places an order, the order is in the Active state, and the user can use inOrderBook to determine whether the order has entered the order. Canceled or fully filled orders are marked as completed Done status.",
                 "tags": [],
                 "parameters": [
                     {
@@ -2558,7 +2557,7 @@
                     {
                         "name": "side",
                         "in": "query",
-                        "description": "specify if the order is to 'buy' or 'sell'",
+                        "description": "Specify if the order is to 'buy' or 'sell'.",
                         "required": false,
                         "schema": {
                             "type": "string",
@@ -2583,7 +2582,7 @@
                     {
                         "name": "type",
                         "in": "query",
-                        "description": "specify if the order is an 'limit' order or 'market' order. ",
+                        "description": "Specify if the order is a 'limit' order or 'market' order. ",
                         "required": false,
                         "schema": {
                             "type": "string",
@@ -2608,7 +2607,7 @@
                     {
                         "name": "lastId",
                         "in": "query",
-                        "description": "The id of the last set of data from the previous batch of data. By default, the latest information is given.\nlastId is used to filter data and paginate. If lastId is not entered, the default is a maximum of 100 returned data items. The return results include lastId，which can be used as a query parameter to look up new data from the next page.",
+                        "description": "The ID of the last set of data from the previous data batch. By default, the latest information is given.\nlastId is used to filter data and paginate. If lastId is not entered, the default is a maximum of 100 returned data items. The return results include lastId, which can be used as a query parameter to look up new data from the next page.",
                         "required": false,
                         "schema": {
                             "type": "integer",
@@ -2618,7 +2617,7 @@
                     {
                         "name": "limit",
                         "in": "query",
-                        "description": "Default20，Max100",
+                        "description": "Default20, Max100",
                         "required": false,
                         "schema": {
                             "type": "integer",
@@ -2630,7 +2629,7 @@
                     {
                         "name": "startAt",
                         "in": "query",
-                        "description": "Start time (milisecond)",
+                        "description": "Start time (milliseconds)",
                         "required": false,
                         "schema": {
                             "type": "integer",
@@ -2640,7 +2639,7 @@
                     {
                         "name": "endAt",
                         "in": "query",
-                        "description": "End time (milisecond)",
+                        "description": "End time (milliseconds)",
                         "required": false,
                         "schema": {
                             "type": "integer",
@@ -2664,7 +2663,7 @@
                                             "properties": {
                                                 "lastId": {
                                                     "type": "integer",
-                                                    "description": "The id of the last set of data from the previous batch of data. By default, the latest information is given.\nlastId is used to filter data and paginate. If lastId is not entered, the default is a maximum of 100 returned data items. The return results include lastId，which can be used as a query parameter to look up new data from the next page.",
+                                                    "description": "The ID of the last set of data from the previous data batch. By default, the latest information is given.\nlastId is used to filter data and paginate. If lastId is not entered, the default is a maximum of 100 returned data items. The return results include lastId, which can be used as a query parameter to look up new data from the next page.",
                                                     "format": "int64"
                                                 },
                                                 "items": {
@@ -2690,7 +2689,7 @@
                                                             },
                                                             "type": {
                                                                 "type": "string",
-                                                                "description": "Specify if the order is an 'limit' order or 'market' order. ",
+                                                                "description": "Specify if the order is a 'limit' order or 'market' order. ",
                                                                 "enum": [
                                                                     "limit",
                                                                     "market"
@@ -2714,11 +2713,11 @@
                                                             },
                                                             "price": {
                                                                 "type": "string",
-                                                                "description": "Order price"
+                                                                "description": "Order Price"
                                                             },
                                                             "size": {
                                                                 "type": "string",
-                                                                "description": "Order size"
+                                                                "description": "Order Size"
                                                             },
                                                             "funds": {
                                                                 "type": "string",
@@ -2738,7 +2737,7 @@
                                                             },
                                                             "feeCurrency": {
                                                                 "type": "string",
-                                                                "description": "currency used to calculate trading fee"
+                                                                "description": "Currency used to calculate trading fee"
                                                             },
                                                             "stp": {
                                                                 "type": "string",
@@ -2815,15 +2814,15 @@
                                                             },
                                                             "postOnly": {
                                                                 "type": "boolean",
-                                                                "description": "Whether its a postOnly order."
+                                                                "description": "Whether it’s a postOnly order."
                                                             },
                                                             "hidden": {
                                                                 "type": "boolean",
-                                                                "description": "Whether its a hidden order."
+                                                                "description": "Whether it’s a hidden order."
                                                             },
                                                             "iceberg": {
                                                                 "type": "boolean",
-                                                                "description": "Whether its a iceberg order."
+                                                                "description": "Whether it’s a iceberg order."
                                                             },
                                                             "visibleSize": {
                                                                 "type": "string",
@@ -2838,7 +2837,7 @@
                                                             },
                                                             "clientOid": {
                                                                 "type": "string",
-                                                                "description": "Client Order Id，unique identifier created by the user"
+                                                                "description": "Client Order Id, unique identifier created by the user"
                                                             },
                                                             "remark": {
                                                                 "type": "string",
@@ -2866,7 +2865,7 @@
                                                             },
                                                             "inOrderBook": {
                                                                 "type": "boolean",
-                                                                "description": "Whether to enter the orderbook: true: enter the orderbook; false: not enter the orderbook"
+                                                                "description": "Whether to enter the orderbook: True: enter the orderbook; False: do not enter the orderbook"
                                                             },
                                                             "cancelledSize": {
                                                                 "type": "string",
@@ -2886,11 +2885,11 @@
                                                             },
                                                             "tax": {
                                                                 "type": "string",
-                                                                "description": "Users in some regions need query this field"
+                                                                "description": "Users in some regions have this field"
                                                             },
                                                             "active": {
                                                                 "type": "boolean",
-                                                                "description": "Order status: true-The status of the order isactive; false-The status of the order is done"
+                                                                "description": "Order status: true-The status of the order is active; false-The status of the order is done"
                                                             }
                                                         },
                                                         "required": [
@@ -2955,8 +2954,8 @@
                 "x-sdk-service": "Margin",
                 "x-sdk-sub-service": "Order",
                 "x-sdk-method-name": "getClosedOrders",
-                "x-sdk-method-description": "This interface is to obtain all Margin closed order lists, and the return value of the active order interface is the paged data of all uncompleted order lists. The returned data is sorted in descending order according to the latest update time of the order.  After the user successfully places an order, the order is in Active state, and the user can use inOrderBook to determine whether the order has entered the order. Canceled or fully filled orders are marked as completed Done status.",
-                "x-api-rate-limit": 10,
+                "x-sdk-method-description": "This interface is to obtain all Margin closed order lists, and the return value of the active order interface is the paged data of all uncompleted order lists. The returned data is sorted in descending order according to the latest update time of the order.  After the user successfully places an order, the order is in the Active state, and the user can use inOrderBook to determine whether the order has entered the order. Canceled or fully filled orders are marked as completed Done status.",
+                "x-api-rate-limit-weight": 10,
                 "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"lastId\\\": 136112949351,\\n        \\\"items\\\": [\\n            {\\n                \\\"id\\\": \\\"6716491f6afcdb00078365c8\\\",\\n                \\\"clientOid\\\": \\\"5c52e11203aa677f33e493fb\\\",\\n                \\\"symbol\\\": \\\"BTC-USDT\\\",\\n                \\\"opType\\\": \\\"DEAL\\\",\\n                \\\"type\\\": \\\"limit\\\",\\n                \\\"side\\\": \\\"buy\\\",\\n                \\\"price\\\": \\\"50000\\\",\\n                \\\"size\\\": \\\"0.00001\\\",\\n                \\\"funds\\\": \\\"0.5\\\",\\n                \\\"dealSize\\\": \\\"0\\\",\\n                \\\"dealFunds\\\": \\\"0\\\",\\n                \\\"remainSize\\\": \\\"0\\\",\\n                \\\"remainFunds\\\": \\\"0\\\",\\n                \\\"cancelledSize\\\": \\\"0.00001\\\",\\n                \\\"cancelledFunds\\\": \\\"0.5\\\",\\n                \\\"fee\\\": \\\"0\\\",\\n                \\\"feeCurrency\\\": \\\"USDT\\\",\\n                \\\"stp\\\": null,\\n                \\\"stop\\\": null,\\n                \\\"stopTriggered\\\": false,\\n                \\\"stopPrice\\\": \\\"0\\\",\\n                \\\"timeInForce\\\": \\\"GTC\\\",\\n                \\\"postOnly\\\": false,\\n                \\\"hidden\\\": false,\\n                \\\"iceberg\\\": false,\\n                \\\"visibleSize\\\": \\\"0\\\",\\n                \\\"cancelAfter\\\": 0,\\n                \\\"channel\\\": \\\"API\\\",\\n                \\\"remark\\\": null,\\n                \\\"tags\\\": null,\\n                \\\"cancelExist\\\": true,\\n                \\\"tradeType\\\": \\\"MARGIN_TRADE\\\",\\n                \\\"inOrderBook\\\": false,\\n                \\\"active\\\": false,\\n                \\\"tax\\\": \\\"0\\\",\\n                \\\"createdAt\\\": 1729513759162,\\n                \\\"lastUpdatedAt\\\": 1729521126597\\n            }\\n        ]\\n    }\\n}",
                 "x-request-example": "{\\\"symbol\\\": \\\"BTC-USDT\\\", \\\"tradeType\\\": \\\"MARGIN_TRADE\\\", \\\"side\\\": \\\"buy\\\", \\\"type\\\": \\\"limit\\\", \\\"lastId\\\": 254062248624417, \\\"limit\\\": 20, \\\"startAt\\\": 1728663338000, \\\"endAt\\\": 1728692138000}",
                 "operationId": "014"
@@ -3011,7 +3010,7 @@
                     {
                         "name": "orderId",
                         "in": "query",
-                        "description": "The unique order id generated by the trading system\n(If orderId is specified，please ignore the other query parameters)",
+                        "description": "The unique order id generated by the trading system\n(If orderId is specified, please ignore the other query parameters)",
                         "required": false,
                         "schema": {
                             "type": "string"
@@ -3020,7 +3019,7 @@
                     {
                         "name": "side",
                         "in": "query",
-                        "description": "specify if the order is to 'buy' or 'sell'",
+                        "description": "Specify if the order is to 'buy' or 'sell'.",
                         "required": false,
                         "schema": {
                             "type": "string",
@@ -3045,7 +3044,7 @@
                     {
                         "name": "type",
                         "in": "query",
-                        "description": "specify if the order is an 'limit' order or 'market' order. ",
+                        "description": "Specify if the order is a 'limit' order or 'market' order. ",
                         "required": false,
                         "schema": {
                             "type": "string",
@@ -3070,7 +3069,7 @@
                     {
                         "name": "lastId",
                         "in": "query",
-                        "description": "The id of the last set of data from the previous batch of data. By default, the latest information is given.\nlastId is used to filter data and paginate. If lastId is not entered, the default is a maximum of 100 returned data items. The return results include lastId，which can be used as a query parameter to look up new data from the next page.",
+                        "description": "The ID of the last set of data from the previous data batch. By default, the latest information is given.\nlastId is used to filter data and paginate. If lastId is not entered, the default is a maximum of 100 returned data items. The return results include lastId, which can be used as a query parameter to look up new data from the next page.",
                         "required": false,
                         "schema": {
                             "type": "integer",
@@ -3080,19 +3079,19 @@
                     {
                         "name": "limit",
                         "in": "query",
-                        "description": "Default100，Max200",
+                        "description": "Default20, Max100",
                         "required": false,
                         "schema": {
                             "type": "integer",
                             "default": 20,
                             "minimum": 1,
-                            "maximum": 200
+                            "maximum": 100
                         }
                     },
                     {
                         "name": "startAt",
                         "in": "query",
-                        "description": "Start time (milisecond)",
+                        "description": "Start time (milliseconds)",
                         "required": false,
                         "schema": {
                             "type": "integer",
@@ -3102,7 +3101,7 @@
                     {
                         "name": "endAt",
                         "in": "query",
-                        "description": "End time (milisecond)",
+                        "description": "End time (milliseconds)",
                         "required": false,
                         "schema": {
                             "type": "integer",
@@ -3131,7 +3130,7 @@
                                                         "properties": {
                                                             "id": {
                                                                 "type": "integer",
-                                                                "description": "Id of transaction detail",
+                                                                "description": "ID of transaction detail",
                                                                 "format": "int64"
                                                             },
                                                             "symbol": {
@@ -3145,7 +3144,7 @@
                                                             },
                                                             "tradeId": {
                                                                 "type": "integer",
-                                                                "description": "Trade Id, symbol latitude increment",
+                                                                "description": "Trade ID, symbol latitude increment",
                                                                 "format": "int64"
                                                             },
                                                             "orderId": {
@@ -3154,7 +3153,7 @@
                                                             },
                                                             "counterOrderId": {
                                                                 "type": "string",
-                                                                "description": "Counterparty order Id"
+                                                                "description": "Counterparty order ID"
                                                             },
                                                             "side": {
                                                                 "type": "string",
@@ -3201,11 +3200,11 @@
                                                             },
                                                             "price": {
                                                                 "type": "string",
-                                                                "description": "Order price"
+                                                                "description": "Order Price"
                                                             },
                                                             "size": {
                                                                 "type": "string",
-                                                                "description": "Order size"
+                                                                "description": "Order Size"
                                                             },
                                                             "funds": {
                                                                 "type": "string",
@@ -3221,7 +3220,7 @@
                                                             },
                                                             "feeCurrency": {
                                                                 "type": "string",
-                                                                "description": "currency used to calculate trading fee"
+                                                                "description": "Currency used to calculate trading fee"
                                                             },
                                                             "stop": {
                                                                 "type": "string",
@@ -3233,15 +3232,15 @@
                                                             },
                                                             "tax": {
                                                                 "type": "string",
-                                                                "description": "Users in some regions need query this field"
+                                                                "description": "Users in some regions have this field"
                                                             },
                                                             "taxRate": {
                                                                 "type": "string",
-                                                                "description": "Tax Rate, Users in some regions need query this field"
+                                                                "description": "Tax Rate: Users in some regions must query this field"
                                                             },
                                                             "type": {
                                                                 "type": "string",
-                                                                "description": "Specify if the order is an 'limit' order or 'market' order. ",
+                                                                "description": "Specify if the order is a 'limit' order or 'market' order. ",
                                                                 "enum": [
                                                                     "limit",
                                                                     "market"
@@ -3290,7 +3289,7 @@
                                                 },
                                                 "lastId": {
                                                     "type": "integer",
-                                                    "description": "The id of the last set of data from the previous batch of data. By default, the latest information is given.\nlastId is used to filter data and paginate. If lastId is not entered, the default is a maximum of 100 returned data items. The return results include lastId，which can be used as a query parameter to look up new data from the next page.",
+                                                    "description": "The ID of the last set of data from the previous data batch. By default, the latest information is given.\nlastId is used to filter data and paginate. If lastId is not entered, the default is a maximum of 100 returned data items. The return results include lastId, which can be used as a query parameter to look up new data from the next page.",
                                                     "format": "int64"
                                                 }
                                             },
@@ -3319,7 +3318,7 @@
                 "x-sdk-sub-service": "Order",
                 "x-sdk-method-name": "getTradeHistory",
                 "x-sdk-method-description": "This endpoint can be used to obtain a list of the latest Margin transaction details.  The returned data is sorted in descending order according to the latest update time of the order.",
-                "x-api-rate-limit": 5,
+                "x-api-rate-limit-weight": 5,
                 "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"items\\\": [\\n            {\\n                \\\"id\\\": 137891621991,\\n                \\\"symbol\\\": \\\"BTC-USDT\\\",\\n                \\\"tradeId\\\": 11040911994273793,\\n                \\\"orderId\\\": \\\"671868085584bc0007d85f46\\\",\\n                \\\"counterOrderId\\\": \\\"67186805b7cbdf00071621f9\\\",\\n                \\\"side\\\": \\\"buy\\\",\\n                \\\"liquidity\\\": \\\"taker\\\",\\n                \\\"forceTaker\\\": false,\\n                \\\"price\\\": \\\"67141.6\\\",\\n                \\\"size\\\": \\\"0.00001\\\",\\n                \\\"funds\\\": \\\"0.671416\\\",\\n                \\\"fee\\\": \\\"0.000671416\\\",\\n                \\\"feeRate\\\": \\\"0.001\\\",\\n                \\\"feeCurrency\\\": \\\"USDT\\\",\\n                \\\"stop\\\": \\\"\\\",\\n                \\\"tradeType\\\": \\\"MARGIN_TRADE\\\",\\n                \\\"tax\\\": \\\"0\\\",\\n                \\\"taxRate\\\": \\\"0\\\",\\n                \\\"type\\\": \\\"limit\\\",\\n                \\\"createdAt\\\": 1729652744998\\n            }\\n        ],\\n        \\\"lastId\\\": 137891621991\\n    }\\n}",
                 "x-request-example": "{\\\"symbol\\\": \\\"BTC-USDT\\\", \\\"tradeType\\\": \\\"MARGIN_TRADE\\\", \\\"orderId\\\": \\\"example_string_default_value\\\", \\\"side\\\": \\\"buy\\\", \\\"type\\\": \\\"limit\\\", \\\"lastId\\\": 254062248624417, \\\"limit\\\": 100, \\\"startAt\\\": 1728663338000, \\\"endAt\\\": 1728692138000}",
                 "operationId": "015"
@@ -3348,7 +3347,7 @@
                                             "properties": {
                                                 "orderNo": {
                                                     "type": "string",
-                                                    "description": "Borrow Order Id"
+                                                    "description": "Borrow Order ID"
                                                 },
                                                 "actualSize": {
                                                     "type": "string",
@@ -3380,7 +3379,7 @@
                 "x-sdk-sub-service": "Debit",
                 "x-sdk-method-name": "borrow",
                 "x-sdk-method-description": "This API endpoint is used to initiate an application for cross or isolated margin borrowing.",
-                "x-api-rate-limit": 15,
+                "x-api-rate-limit-weight": 15,
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -3457,7 +3456,7 @@
             "get": {
                 "summary": "Get Borrow History",
                 "deprecated": false,
-                "description": "This API endpoint is used to get the borrowing orders for cross and isolated margin accounts",
+                "description": "This API endpoint is used to get the borrowing orders for cross and isolated margin accounts.",
                 "tags": [],
                 "parameters": [
                     {
@@ -3501,7 +3500,7 @@
                     {
                         "name": "orderNo",
                         "in": "query",
-                        "description": "Borrow Order Id",
+                        "description": "Borrow Order ID",
                         "required": false,
                         "schema": {
                             "type": "string"
@@ -3582,7 +3581,7 @@
                                                 },
                                                 "totalPage": {
                                                     "type": "integer",
-                                                    "description": "total page"
+                                                    "description": "total pages"
                                                 },
                                                 "items": {
                                                     "type": "array",
@@ -3591,7 +3590,7 @@
                                                         "properties": {
                                                             "orderNo": {
                                                                 "type": "string",
-                                                                "description": "Borrow Order Id"
+                                                                "description": "Borrow Order ID"
                                                             },
                                                             "symbol": {
                                                                 "type": "string",
@@ -3642,7 +3641,7 @@
                                                             },
                                                             "createdTime": {
                                                                 "type": "integer",
-                                                                "description": "borrow time",
+                                                                "description": "Borrow time",
                                                                 "format": "int64"
                                                             }
                                                         },
@@ -3686,8 +3685,8 @@
                 "x-sdk-service": "Margin",
                 "x-sdk-sub-service": "Debit",
                 "x-sdk-method-name": "getBorrowHistory",
-                "x-sdk-method-description": "This API endpoint is used to get the borrowing orders for cross and isolated margin accounts",
-                "x-api-rate-limit": 15,
+                "x-sdk-method-description": "This API endpoint is used to get the borrowing orders for cross and isolated margin accounts.",
+                "x-api-rate-limit-weight": 15,
                 "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"timestamp\\\": 1729657580449,\\n        \\\"currentPage\\\": 1,\\n        \\\"pageSize\\\": 50,\\n        \\\"totalNum\\\": 2,\\n        \\\"totalPage\\\": 1,\\n        \\\"items\\\": [\\n            {\\n                \\\"orderNo\\\": \\\"67187162c0d6990007717b15\\\",\\n                \\\"symbol\\\": null,\\n                \\\"currency\\\": \\\"USDT\\\",\\n                \\\"size\\\": \\\"10\\\",\\n                \\\"actualSize\\\": \\\"10\\\",\\n                \\\"status\\\": \\\"SUCCESS\\\",\\n                \\\"createdTime\\\": 1729655138000\\n            },\\n            {\\n                \\\"orderNo\\\": \\\"67187155b088e70007149585\\\",\\n                \\\"symbol\\\": null,\\n                \\\"currency\\\": \\\"USDT\\\",\\n                \\\"size\\\": \\\"0.1\\\",\\n                \\\"actualSize\\\": \\\"0\\\",\\n                \\\"status\\\": \\\"FAILED\\\",\\n                \\\"createdTime\\\": 1729655125000\\n            }\\n        ]\\n    }\\n}",
                 "x-request-example": "{\\\"currency\\\": \\\"BTC\\\", \\\"isIsolated\\\": true, \\\"symbol\\\": \\\"BTC-USDT\\\", \\\"orderNo\\\": \\\"example_string_default_value\\\", \\\"startTime\\\": 123456, \\\"endTime\\\": 123456, \\\"currentPage\\\": 1, \\\"pageSize\\\": 50}",
                 "operationId": "019"
@@ -3720,7 +3719,7 @@
                                                 },
                                                 "orderNo": {
                                                     "type": "string",
-                                                    "description": "Repay Order Id"
+                                                    "description": "Repay order ID"
                                                 },
                                                 "actualSize": {
                                                     "type": "string",
@@ -3753,7 +3752,7 @@
                 "x-sdk-sub-service": "Debit",
                 "x-sdk-method-name": "repay",
                 "x-sdk-method-description": "This API endpoint is used to initiate an application for cross or isolated margin repayment.",
-                "x-api-rate-limit": 10,
+                "x-api-rate-limit-weight": 10,
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -3809,7 +3808,7 @@
             "get": {
                 "summary": "Get Repay History",
                 "deprecated": false,
-                "description": "This API endpoint is used to get the borrowing orders for cross and isolated margin accounts",
+                "description": "This API endpoint is used to get the borrowing orders for cross and isolated margin accounts.",
                 "tags": [],
                 "parameters": [
                     {
@@ -3853,7 +3852,7 @@
                     {
                         "name": "orderNo",
                         "in": "query",
-                        "description": "Repay Order Id",
+                        "description": "Repay order ID",
                         "required": false,
                         "schema": {
                             "type": "string"
@@ -3934,7 +3933,7 @@
                                                 },
                                                 "totalPage": {
                                                     "type": "integer",
-                                                    "description": "total page"
+                                                    "description": "total pages"
                                                 },
                                                 "items": {
                                                     "type": "array",
@@ -3943,7 +3942,7 @@
                                                         "properties": {
                                                             "orderNo": {
                                                                 "type": "string",
-                                                                "description": "Repay Order Id"
+                                                                "description": "Repay order ID"
                                                             },
                                                             "symbol": {
                                                                 "type": "string",
@@ -4038,8 +4037,8 @@
                 "x-sdk-service": "Margin",
                 "x-sdk-sub-service": "Debit",
                 "x-sdk-method-name": "getRepayHistory",
-                "x-sdk-method-description": "This API endpoint is used to get the borrowing orders for cross and isolated margin accounts",
-                "x-api-rate-limit": 15,
+                "x-sdk-method-description": "This API endpoint is used to get the borrowing orders for cross and isolated margin accounts.",
+                "x-api-rate-limit-weight": 15,
                 "x-response-example": "{\\\"code\\\":\\\"200000\\\",\\\"data\\\":{\\\"timestamp\\\":1729663471891,\\\"currentPage\\\":1,\\\"pageSize\\\":50,\\\"totalNum\\\":1,\\\"totalPage\\\":1,\\\"items\\\":[{\\\"orderNo\\\":\\\"671873361d5bd400075096ad\\\",\\\"symbol\\\":null,\\\"currency\\\":\\\"USDT\\\",\\\"size\\\":\\\"10\\\",\\\"principal\\\":\\\"9.99986518\\\",\\\"interest\\\":\\\"0.00013482\\\",\\\"status\\\":\\\"SUCCESS\\\",\\\"createdTime\\\":1729655606000}]}}",
                 "x-request-example": "{\\\"currency\\\": \\\"BTC\\\", \\\"isIsolated\\\": true, \\\"symbol\\\": \\\"BTC-USDT\\\", \\\"orderNo\\\": \\\"example_string_default_value\\\", \\\"startTime\\\": 123456, \\\"endTime\\\": 123456, \\\"currentPage\\\": 1, \\\"pageSize\\\": 50}",
                 "operationId": "021"
@@ -4047,9 +4046,9 @@
         },
         "/api/v3/margin/interest": {
             "get": {
-                "summary": "Get Interest History",
+                "summary": "Get Interest History.",
                 "deprecated": false,
-                "description": "Request via this endpoint to get the interest records of the cross/isolated margin lending.",
+                "description": "Request the interest records of the cross/isolated margin lending via this endpoint.",
                 "tags": [],
                 "parameters": [
                     {
@@ -4165,7 +4164,7 @@
                                                 },
                                                 "totalPage": {
                                                     "type": "integer",
-                                                    "description": "total page"
+                                                    "description": "total pages"
                                                 },
                                                 "items": {
                                                     "type": "array",
@@ -4227,8 +4226,8 @@
                 "x-sdk-service": "Margin",
                 "x-sdk-sub-service": "Debit",
                 "x-sdk-method-name": "getInterestHistory",
-                "x-sdk-method-description": "Request via this endpoint to get the interest records of the cross/isolated margin lending.",
-                "x-api-rate-limit": 20,
+                "x-sdk-method-description": "Request the interest records of the cross/isolated margin lending via this endpoint.",
+                "x-api-rate-limit-weight": 20,
                 "x-response-example": "{\\\"code\\\":\\\"200000\\\",\\\"data\\\":{\\\"timestamp\\\":1729665170701,\\\"currentPage\\\":1,\\\"pageSize\\\":50,\\\"totalNum\\\":3,\\\"totalPage\\\":1,\\\"items\\\":[{\\\"currency\\\":\\\"USDT\\\",\\\"dayRatio\\\":\\\"0.000296\\\",\\\"interestAmount\\\":\\\"0.00000001\\\",\\\"createdTime\\\":1729663213375},{\\\"currency\\\":\\\"USDT\\\",\\\"dayRatio\\\":\\\"0.000296\\\",\\\"interestAmount\\\":\\\"0.00000001\\\",\\\"createdTime\\\":1729659618802},{\\\"currency\\\":\\\"USDT\\\",\\\"dayRatio\\\":\\\"0.000296\\\",\\\"interestAmount\\\":\\\"0.00000001\\\",\\\"createdTime\\\":1729656028077}]}}",
                 "x-request-example": "{\\\"currency\\\": \\\"BTC\\\", \\\"isIsolated\\\": true, \\\"symbol\\\": \\\"BTC-USDT\\\", \\\"startTime\\\": 123456, \\\"endTime\\\": 123456, \\\"currentPage\\\": 1, \\\"pageSize\\\": 50}",
                 "operationId": "022"
@@ -4275,7 +4274,7 @@
                 "x-sdk-sub-service": "Debit",
                 "x-sdk-method-name": "modifyLeverage",
                 "x-sdk-method-description": "This endpoint allows modifying the leverage multiplier for cross margin or isolated margin.",
-                "x-api-rate-limit": 5,
+                "x-api-rate-limit-weight": 8,
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -4395,7 +4394,7 @@
                                                     },
                                                     "autoPurchaseEnable": {
                                                         "type": "boolean",
-                                                        "description": "Whether to allow automatic purchase: true: on, false: off"
+                                                        "description": "Whether to allow automatic purchase: True: on; false: off"
                                                     }
                                                 }
                                             }
@@ -4420,7 +4419,7 @@
                 "x-sdk-sub-service": "Credit",
                 "x-sdk-method-name": "getLoanMarket",
                 "x-sdk-method-description": "This API endpoint is used to get the information about the currencies available for lending.",
-                "x-api-rate-limit": 10,
+                "x-api-rate-limit-weight": 10,
                 "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": [\\n        {\\n            \\\"currency\\\": \\\"BTC\\\",\\n            \\\"purchaseEnable\\\": true,\\n            \\\"redeemEnable\\\": true,\\n            \\\"increment\\\": \\\"0.00000001\\\",\\n            \\\"minPurchaseSize\\\": \\\"0.001\\\",\\n            \\\"maxPurchaseSize\\\": \\\"40\\\",\\n            \\\"interestIncrement\\\": \\\"0.0001\\\",\\n            \\\"minInterestRate\\\": \\\"0.005\\\",\\n            \\\"marketInterestRate\\\": \\\"0.005\\\",\\n            \\\"maxInterestRate\\\": \\\"0.32\\\",\\n            \\\"autoPurchaseEnable\\\": false\\n        }\\n    ]\\n}",
                 "x-request-example": "{\\\"currency\\\": \\\"BTC\\\"}",
                 "operationId": "024"
@@ -4499,7 +4498,7 @@
                 "x-sdk-sub-service": "Credit",
                 "x-sdk-method-name": "getLoanMarketInterestRate",
                 "x-sdk-method-description": "This API endpoint is used to get the interest rates of the margin lending market over the past 7 days.",
-                "x-api-rate-limit": 5,
+                "x-api-rate-limit-weight": 5,
                 "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": [\\n        {\\n            \\\"time\\\": \\\"202410170000\\\",\\n            \\\"marketInterestRate\\\": \\\"0.005\\\"\\n        },\\n        {\\n            \\\"time\\\": \\\"202410170100\\\",\\n            \\\"marketInterestRate\\\": \\\"0.005\\\"\\n        }\\n    ]\\n}",
                 "x-request-example": "{\\\"currency\\\": \\\"BTC\\\"}",
                 "operationId": "025"
@@ -4528,7 +4527,7 @@
                                             "properties": {
                                                 "orderNo": {
                                                     "type": "string",
-                                                    "description": "Purchase order id"
+                                                    "description": "Purchase order ID"
                                                 }
                                             },
                                             "required": [
@@ -4555,7 +4554,7 @@
                 "x-sdk-sub-service": "Credit",
                 "x-sdk-method-name": "purchase",
                 "x-sdk-method-description": "Invest credit in the market and earn interest",
-                "x-api-rate-limit": 15,
+                "x-api-rate-limit-weight": 15,
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -4573,11 +4572,11 @@
                                     },
                                     "size": {
                                         "type": "string",
-                                        "description": "purchase amount"
+                                        "description": "Purchase amount"
                                     },
                                     "interestRate": {
                                         "type": "string",
-                                        "description": "purchase interest rate"
+                                        "description": "Purchase interest rate"
                                     }
                                 },
                                 "required": [
@@ -4599,7 +4598,7 @@
             "post": {
                 "summary": "Modify Purchase",
                 "deprecated": false,
-                "description": "This API endpoint is used to update the interest rates of subscription orders, which will take effect at the beginning of the next hour.,Please ensure that the funds are in the main(funding) account",
+                "description": "This API endpoint is used to update the interest rates of subscription orders, which will take effect at the beginning of the next hour. Please ensure that the funds are in the main (funding) account.",
                 "tags": [],
                 "parameters": [],
                 "responses": {
@@ -4635,8 +4634,8 @@
                 "x-sdk-service": "Margin",
                 "x-sdk-sub-service": "Credit",
                 "x-sdk-method-name": "modifyPurchase",
-                "x-sdk-method-description": "This API endpoint is used to update the interest rates of subscription orders, which will take effect at the beginning of the next hour.,Please ensure that the funds are in the main(funding) account",
-                "x-api-rate-limit": 10,
+                "x-sdk-method-description": "This API endpoint is used to update the interest rates of subscription orders, which will take effect at the beginning of the next hour. Please ensure that the funds are in the main (funding) account.",
+                "x-api-rate-limit-weight": 10,
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -4658,7 +4657,7 @@
                                     },
                                     "purchaseOrderNo": {
                                         "type": "string",
-                                        "description": "Purchase order id"
+                                        "description": "Purchase order ID"
                                     }
                                 },
                                 "required": [
@@ -4680,23 +4679,9 @@
             "get": {
                 "summary": "Get Purchase Orders",
                 "deprecated": false,
-                "description": "This API endpoint provides pagination query for the purchase orders.",
+                "description": "This API endpoint provides a pagination query for the purchase orders.",
                 "tags": [],
                 "parameters": [
-                    {
-                        "name": "currency",
-                        "in": "query",
-                        "description": "currency",
-                        "required": true,
-                        "schema": {
-                            "type": "string",
-                            "example": [
-                                "BTC",
-                                "ETH",
-                                "KCS"
-                            ]
-                        }
-                    },
                     {
                         "name": "status",
                         "in": "query",
@@ -4711,21 +4696,35 @@
                             "x-api-enum": [
                                 {
                                     "value": "DONE",
-                                    "name": "",
-                                    "description": ""
+                                    "name": "DONE",
+                                    "description": "completed"
                                 },
                                 {
                                     "value": "PENDING",
-                                    "name": "",
-                                    "description": ""
+                                    "name": "PENDING",
+                                    "description": "settling"
                                 }
+                            ]
+                        }
+                    },
+                    {
+                        "name": "currency",
+                        "in": "query",
+                        "description": "Currency",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "example": [
+                                "BTC",
+                                "ETH",
+                                "KCS"
                             ]
                         }
                     },
                     {
                         "name": "purchaseOrderNo",
                         "in": "query",
-                        "description": "",
+                        "description": "Purchase order ID",
                         "required": false,
                         "schema": {
                             "type": "string"
@@ -4744,13 +4743,13 @@
                     {
                         "name": "pageSize",
                         "in": "query",
-                        "description": "Page size; 1<=pageSize<=100; default is 50",
+                        "description": "Page size; 1<=pageSize<=50; default is 50",
                         "required": false,
                         "schema": {
                             "type": "integer",
                             "default": 50,
                             "minimum": 1,
-                            "maximum": 100
+                            "maximum": 50
                         }
                     }
                 ],
@@ -4782,7 +4781,7 @@
                                                 },
                                                 "totalPage": {
                                                     "type": "integer",
-                                                    "description": "Total Page"
+                                                    "description": "Total Pages"
                                                 },
                                                 "items": {
                                                     "type": "array",
@@ -4800,7 +4799,7 @@
                                                             },
                                                             "purchaseOrderNo": {
                                                                 "type": "string",
-                                                                "description": "Purchase order id"
+                                                                "description": "Purchase order ID"
                                                             },
                                                             "purchaseSize": {
                                                                 "type": "string",
@@ -4884,10 +4883,10 @@
                 "x-sdk-service": "Margin",
                 "x-sdk-sub-service": "Credit",
                 "x-sdk-method-name": "getPurchaseOrders",
-                "x-sdk-method-description": "This API endpoint provides pagination query for the purchase orders.",
-                "x-api-rate-limit": 10,
+                "x-sdk-method-description": "This API endpoint provides a pagination query for the purchase orders.",
+                "x-api-rate-limit-weight": 10,
                 "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"currentPage\\\": 1,\\n        \\\"pageSize\\\": 10,\\n        \\\"totalNum\\\": 1,\\n        \\\"totalPage\\\": 1,\\n        \\\"items\\\": [\\n            {\\n                \\\"currency\\\": \\\"BTC\\\",\\n                \\\"purchaseOrderNo\\\": \\\"671bb15a3b3f930007880bae\\\",\\n                \\\"purchaseSize\\\": \\\"0.001\\\",\\n                \\\"matchSize\\\": \\\"0\\\",\\n                \\\"interestRate\\\": \\\"0.1\\\",\\n                \\\"incomeSize\\\": \\\"0\\\",\\n                \\\"applyTime\\\": 1729868122172,\\n                \\\"status\\\": \\\"PENDING\\\"\\n            }\\n        ]\\n    }\\n}",
-                "x-request-example": "{\\\"currency\\\": \\\"BTC\\\", \\\"status\\\": \\\"DONE\\\", \\\"purchaseOrderNo\\\": \\\"example_string_default_value\\\", \\\"currentPage\\\": 1, \\\"pageSize\\\": 50}",
+                "x-request-example": "{\\\"status\\\": \\\"DONE\\\", \\\"currency\\\": \\\"BTC\\\", \\\"purchaseOrderNo\\\": \\\"example_string_default_value\\\", \\\"currentPage\\\": 1, \\\"pageSize\\\": 50}",
                 "operationId": "028"
             }
         },
@@ -4895,7 +4894,7 @@
             "post": {
                 "summary": "Redeem",
                 "deprecated": false,
-                "description": "Redeem your loan order",
+                "description": "Redeem your loan order.",
                 "tags": [],
                 "parameters": [],
                 "responses": {
@@ -4914,7 +4913,7 @@
                                             "properties": {
                                                 "orderNo": {
                                                     "type": "string",
-                                                    "description": "Redeem order id"
+                                                    "description": "Redeem order ID"
                                                 }
                                             },
                                             "required": [
@@ -4940,8 +4939,8 @@
                 "x-sdk-service": "Margin",
                 "x-sdk-sub-service": "Credit",
                 "x-sdk-method-name": "redeem",
-                "x-sdk-method-description": "Redeem your loan order",
-                "x-api-rate-limit": 15,
+                "x-sdk-method-description": "Redeem your loan order.",
+                "x-api-rate-limit-weight": 15,
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -4963,7 +4962,7 @@
                                     },
                                     "purchaseOrderNo": {
                                         "type": "string",
-                                        "description": "Purchase order id"
+                                        "description": "Purchase order ID"
                                     }
                                 },
                                 "required": [
@@ -4989,20 +4988,6 @@
                 "tags": [],
                 "parameters": [
                     {
-                        "name": "currency",
-                        "in": "query",
-                        "description": "currency",
-                        "required": true,
-                        "schema": {
-                            "type": "string",
-                            "example": [
-                                "BTC",
-                                "ETH",
-                                "KCS"
-                            ]
-                        }
-                    },
-                    {
                         "name": "status",
                         "in": "query",
                         "description": "DONE-completed; PENDING-settling",
@@ -5016,21 +5001,35 @@
                             "x-api-enum": [
                                 {
                                     "value": "DONE",
-                                    "name": "",
-                                    "description": ""
+                                    "name": "DONE",
+                                    "description": "completed"
                                 },
                                 {
                                     "value": "PENDING",
-                                    "name": "",
-                                    "description": ""
+                                    "name": "PENDING",
+                                    "description": "settling"
                                 }
+                            ]
+                        }
+                    },
+                    {
+                        "name": "currency",
+                        "in": "query",
+                        "description": "currency",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "example": [
+                                "BTC",
+                                "ETH",
+                                "KCS"
                             ]
                         }
                     },
                     {
                         "name": "redeemOrderNo",
                         "in": "query",
-                        "description": "Redeem order id",
+                        "description": "Redeem order ID",
                         "required": false,
                         "schema": {
                             "type": "string"
@@ -5049,13 +5048,13 @@
                     {
                         "name": "pageSize",
                         "in": "query",
-                        "description": "Page size; 1<=pageSize<=100; default is 50",
+                        "description": "Page size; 1<=pageSize<=50; default is 50",
                         "required": false,
                         "schema": {
                             "type": "integer",
                             "default": 50,
                             "minimum": 1,
-                            "maximum": 100
+                            "maximum": 50
                         }
                     }
                 ],
@@ -5087,7 +5086,7 @@
                                                 },
                                                 "totalPage": {
                                                     "type": "integer",
-                                                    "description": "Total Page"
+                                                    "description": "Total Pages"
                                                 },
                                                 "items": {
                                                     "type": "array",
@@ -5105,11 +5104,11 @@
                                                             },
                                                             "purchaseOrderNo": {
                                                                 "type": "string",
-                                                                "description": "Purchase order id"
+                                                                "description": "Purchase order ID"
                                                             },
                                                             "redeemOrderNo": {
                                                                 "type": "string",
-                                                                "description": "Redeem order id"
+                                                                "description": "Redeem order ID"
                                                             },
                                                             "redeemSize": {
                                                                 "type": "string",
@@ -5168,9 +5167,9 @@
                 "x-sdk-sub-service": "Credit",
                 "x-sdk-method-name": "getRedeemOrders",
                 "x-sdk-method-description": "This API endpoint provides pagination query for the redeem orders.",
-                "x-api-rate-limit": 10,
+                "x-api-rate-limit-weight": 10,
                 "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"currentPage\\\": 1,\\n        \\\"pageSize\\\": 10,\\n        \\\"totalNum\\\": 1,\\n        \\\"totalPage\\\": 1,\\n        \\\"items\\\": [\\n            {\\n                \\\"currency\\\": \\\"BTC\\\",\\n                \\\"purchaseOrderNo\\\": \\\"671bafa804c26d000773c533\\\",\\n                \\\"redeemOrderNo\\\": \\\"671bb01004c26d000773c55c\\\",\\n                \\\"redeemSize\\\": \\\"0.001\\\",\\n                \\\"receiptSize\\\": \\\"0.001\\\",\\n                \\\"applyTime\\\": null,\\n                \\\"status\\\": \\\"DONE\\\"\\n            }\\n        ]\\n    }\\n}",
-                "x-request-example": "{\\\"currency\\\": \\\"BTC\\\", \\\"status\\\": \\\"DONE\\\", \\\"redeemOrderNo\\\": \\\"example_string_default_value\\\", \\\"currentPage\\\": 1, \\\"pageSize\\\": 50}",
+                "x-request-example": "{\\\"status\\\": \\\"DONE\\\", \\\"currency\\\": \\\"BTC\\\", \\\"redeemOrderNo\\\": \\\"example_string_default_value\\\", \\\"currentPage\\\": 1, \\\"pageSize\\\": 50}",
                 "operationId": "030"
             }
         },
@@ -5178,14 +5177,14 @@
             "get": {
                 "summary": "Get Margin Risk Limit",
                 "deprecated": false,
-                "description": "Request via this endpoint to get the Configure and Risk limit info of the margin.",
+                "description": "Request Configure and Risk limit info of the margin via this endpoint.",
                 "tags": [],
                 "parameters": [
                     {
                         "name": "isIsolated",
                         "in": "query",
-                        "description": "true-isolated, false-cross",
-                        "required": true,
+                        "description": "True-isolated, false-cross",
+                        "required": false,
                         "schema": {
                             "type": "boolean"
                         }
@@ -5193,7 +5192,7 @@
                     {
                         "name": "currency",
                         "in": "query",
-                        "description": "currency, This field is only required for cross margin",
+                        "description": "Currency: This field is only required for cross margin",
                         "required": false,
                         "schema": {
                             "type": "string"
@@ -5202,7 +5201,7 @@
                     {
                         "name": "symbol",
                         "in": "query",
-                        "description": "symbol, This field is only required for isolated margin",
+                        "description": "Symbol: This field is only required for isolated margin",
                         "required": false,
                         "schema": {
                             "type": "string",
@@ -5261,7 +5260,7 @@
                                                     },
                                                     "precision": {
                                                         "type": "integer",
-                                                        "description": "CROSS MARGIN RESPONSES, Currency precision. the minimum repayment amount of a single transaction should be >= currency precision, for example, the precision of ETH is 8, and the minimum repayment amount is 0.00000001"
+                                                        "description": "CROSS MARGIN RESPONSES, Currency precision. The minimum repayment amount of a single transaction should be >= currency precision. For example, the precision of ETH is 8, and the minimum repayment amount is 0.00000001"
                                                     },
                                                     "borrowMinAmount": {
                                                         "type": "string",
@@ -5269,7 +5268,7 @@
                                                     },
                                                     "borrowMinUnit": {
                                                         "type": "string",
-                                                        "description": "CROSS MARGIN RESPONSES, Minimum unit for borrowing, the borrowed amount must be an integer multiple of this value"
+                                                        "description": "CROSS MARGIN RESPONSES, Minimum unit for borrowing; the borrowed amount must be an integer multiple of this value"
                                                     },
                                                     "borrowEnabled": {
                                                         "type": "boolean",
@@ -5305,11 +5304,11 @@
                                                     },
                                                     "basePrecision": {
                                                         "type": "integer",
-                                                        "description": "ISOLATED MARGIN RESPONSES, Base currency precision. the minimum repayment amount of a single transaction should be >= currency precision, for example, the precision of ETH is 8, and the minimum repayment amount is 0.00000001"
+                                                        "description": "ISOLATED MARGIN RESPONSES, Base currency precision. The minimum repayment amount of a single transaction should be >= currency precision. For example, the precision of ETH is 8, and the minimum repayment amount is 0.00000001"
                                                     },
                                                     "quotePrecision": {
                                                         "type": "integer",
-                                                        "description": "ISOLATED MARGIN RESPONSES, Quote currency precision. the minimum repayment amount of a single transaction should be >= currency precision, for example, the precision of ETH is 8, and the minimum repayment amount is 0.00000001\n"
+                                                        "description": "ISOLATED MARGIN RESPONSES, Quote currency precision. The minimum repayment amount of a single transaction should be >= currency precision. For example, the precision of ETH is 8, and the minimum repayment amount is 0.00000001\n"
                                                     },
                                                     "baseBorrowMinAmount": {
                                                         "type": "string",
@@ -5373,8 +5372,8 @@
                 "x-sdk-service": "Margin",
                 "x-sdk-sub-service": "RiskLimit",
                 "x-sdk-method-name": "getMarginRiskLimit",
-                "x-sdk-method-description": "Request via this endpoint to get the Configure and Risk limit info of the margin.",
-                "x-api-rate-limit": 20,
+                "x-sdk-method-description": "Request Configure and Risk limit info of the margin via this endpoint.",
+                "x-api-rate-limit-weight": 20,
                 "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": [\\n        {\\n            \\\"timestamp\\\": 1729678659275,\\n            \\\"currency\\\": \\\"BTC\\\",\\n            \\\"borrowMaxAmount\\\": \\\"75.15\\\",\\n            \\\"buyMaxAmount\\\": \\\"217.12\\\",\\n            \\\"holdMaxAmount\\\": \\\"217.12\\\",\\n            \\\"borrowCoefficient\\\": \\\"1\\\",\\n            \\\"marginCoefficient\\\": \\\"1\\\",\\n            \\\"precision\\\": 8,\\n            \\\"borrowMinAmount\\\": \\\"0.001\\\",\\n            \\\"borrowMinUnit\\\": \\\"0.0001\\\",\\n            \\\"borrowEnabled\\\": true\\n        }\\n    ]\\n}\\n",
                 "x-request-example": "{\\\"isIsolated\\\": true, \\\"currency\\\": \\\"BTC\\\", \\\"symbol\\\": \\\"BTC-USDT\\\"}",
                 "operationId": "031"
@@ -5384,7 +5383,7 @@
             "post": {
                 "summary": "Add Order - V1",
                 "deprecated": true,
-                "description": "Place order to the Cross-margin or Isolated-margin trading system, you can place two major types of orders: limit and market. Orders can only be placed if your account has sufficient funds. Once an order is placed, your funds will be put on hold for the duration of the order. The amount of funds on hold depends on the order type and parameters specified.",
+                "description": "Place order in the Cross-margin or Isolated-margin trading system. You can place two major types of order: Limit and market. Orders can only be placed if your account has sufficient funds. Once an order is placed, your funds will be put on hold for the duration of the order. The amount of funds on hold depends on the order type and parameters specified.",
                 "tags": [],
                 "parameters": [],
                 "responses": {
@@ -5403,11 +5402,11 @@
                                             "properties": {
                                                 "orderId": {
                                                     "type": "string",
-                                                    "description": "The unique order id generated by the trading system,which can be used later for further actions such as canceling the order."
+                                                    "description": "The unique order ID generated by the trading system, which can be used later for further actions such as canceling the order."
                                                 },
                                                 "loanApplyId": {
                                                     "type": "string",
-                                                    "description": "Borrow order id. The field is returned only after placing the order under the mode of Auto-Borrow."
+                                                    "description": "Borrow order ID. The field is returned only after placing the order under the mode of Auto-Borrow."
                                                 },
                                                 "borrowSize": {
                                                     "type": "string",
@@ -5444,8 +5443,8 @@
                 "x-sdk-service": "Margin",
                 "x-sdk-sub-service": "Order",
                 "x-sdk-method-name": "addOrderV1",
-                "x-sdk-method-description": "Place order to the Cross-margin or Isolated-margin trading system, you can place two major types of orders: limit and market. Orders can only be placed if your account has sufficient funds. Once an order is placed, your funds will be put on hold for the duration of the order. The amount of funds on hold depends on the order type and parameters specified.",
-                "x-api-rate-limit": 5,
+                "x-sdk-method-description": "Place order in the Cross-margin or Isolated-margin trading system. You can place two major types of order: Limit and market. Orders can only be placed if your account has sufficient funds. Once an order is placed, your funds will be put on hold for the duration of the order. The amount of funds on hold depends on the order type and parameters specified.",
+                "x-api-rate-limit-weight": 5,
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -5454,14 +5453,14 @@
                                 "properties": {
                                     "clientOid": {
                                         "type": "string",
-                                        "description": "Client Order Id，The ClientOid field is a unique ID created by the user（we recommend using a UUID）, and can only contain numbers, letters, underscores （_）, and hyphens （-）. This field is returned when order information is obtained. You can use clientOid to tag your orders. ClientOid is different from the order ID created by the service provider. Please do not initiate requests using the same clientOid. The maximum length for the ClientOid is 40 characters.\n\nPlease remember the orderId created by the service provider, it used to check for updates in order status.",
+                                        "description": "Client Order ID: The ClientOid field is a unique ID created by the user (we recommend using a UUID), and can only contain numbers, letters, underscores (_), and hyphens (-). This field is returned when order information is obtained. You can use clientOid to tag your orders. ClientOid is different from the order ID created by the service provider. Please do not initiate requests using the same clientOid. The maximum length for the ClientOid is 40 characters.\n\nPlease remember the orderId created by the service provider, it used to check for updates in order status.",
                                         "example": [
                                             "5c52e11203aa677f33e493fb"
                                         ]
                                     },
                                     "side": {
                                         "type": "string",
-                                        "description": "specify if the order is to 'buy' or 'sell'",
+                                        "description": "Specify if the order is to 'buy' or 'sell'.",
                                         "enum": [
                                             "buy",
                                             "sell"
@@ -5493,7 +5492,7 @@
                                     },
                                     "type": {
                                         "type": "string",
-                                        "description": "specify if the order is an 'limit' order or 'market' order. \n\nThe type of order you specify when you place your order determines whether or not you need to request other parameters and also affects the execution of the matching engine.\n\nWhen placing a limit order, you must specify a price and size. The system will try to match the order according to market price or a price better than market price. If the order cannot be immediately matched, it will stay in the order book until it is matched or the user cancels.\n\nUnlike limit orders, the price for market orders fluctuates with market prices. When placing a market order, you do not need to specify a price, you only need to specify a quantity. Market orders are filled immediately and will not enter the order book. All market orders are takers and a taker fee will be charged.",
+                                        "description": "Specify if the order is a 'limit' order or 'market' order. \n\nThe type of order you specify when you place your order determines whether or not you need to request other parameters and also affects the execution of the matching engine.\n\nWhen placing a limit order, you must specify a price and size. The system will try to match the order according to market price or a price better than market price. If the order cannot be immediately matched, it will stay in the order book until it is matched or the user cancels.\n\nUnlike limit orders, the price for market orders fluctuates with market prices. When placing a market order, you do not need to specify a price; you only need to specify a quantity. Market orders are filled immediately and will not enter the order book. All market orders are takers and a taker fee will be charged.",
                                         "enum": [
                                             "limit",
                                             "market"
@@ -5550,7 +5549,7 @@
                                     },
                                     "size": {
                                         "type": "string",
-                                        "description": "Specify quantity for order\n\nWhen **type** is limit, size refers to the amount of trading targets (the asset name written in front) for the trading pair. Teh Size must be based on the baseIncrement of the trading pair. The baseIncrement represents the precision for the trading pair. The size of an order must be a positive-integer multiple of baseIncrement and must be between baseMinSize and baseMaxSize.\n\nWhen **type** is market, select one out of two: size or funds"
+                                        "description": "Specify quantity for order.\n\nWhen **type** is limited, size refers to the amount of trading targets (the asset name written in front) for the trading pair. The Size must be based on the baseIncrement of the trading pair. The baseIncrement represents the precision for the trading pair. The size of an order must be a positive-integer multiple of baseIncrement and must be between baseMinSize and baseMaxSize.\n\nWhen **type** is market, select one out of two: size or funds"
                                     },
                                     "timeInForce": {
                                         "type": "string",
@@ -5607,7 +5606,7 @@
                                     "cancelAfter": {
                                         "type": "integer",
                                         "format": "int64",
-                                        "description": "Cancel after n seconds，the order timing strategy is GTT"
+                                        "description": "Cancel after n seconds, the order timing strategy is GTT"
                                     },
                                     "funds": {
                                         "type": "string",
@@ -5620,7 +5619,7 @@
                                     },
                                     "autoRepay": {
                                         "type": "boolean",
-                                        "description": "AutoPay allows returning borrowed assets when you close a position. Our system automatically triggers the repayment and the maximum repayment amount equals to the filled-order amount.",
+                                        "description": "AutoPay allows the return of borrowed assets when you close a position. Our system automatically triggers the repayment and the maximum repayment amount equals to the filled-order amount.",
                                         "default": false
                                     },
                                     "marginModel": {
@@ -5664,7 +5663,7 @@
             "post": {
                 "summary": "Add Order Test - V1",
                 "deprecated": true,
-                "description": "Order test endpoint, the request parameters and return parameters of this endpoint are exactly the same as the order endpoint, and can be used to verify whether the signature is correct and other operations. After placing an order, the order will not enter the matching system, and the order cannot be queried.",
+                "description": "Order test endpoint: This endpoint’s request and return parameters are identical to the order endpoint, and can be used to verify whether the signature is correct, among other operations. After placing an order, the order will not enter the matching system, and the order cannot be queried.",
                 "tags": [],
                 "parameters": [],
                 "responses": {
@@ -5683,11 +5682,11 @@
                                             "properties": {
                                                 "orderId": {
                                                     "type": "string",
-                                                    "description": "The unique order id generated by the trading system,which can be used later for further actions such as canceling the order."
+                                                    "description": "The unique order ID generated by the trading system, which can be used later for further actions such as canceling the order."
                                                 },
                                                 "loanApplyId": {
                                                     "type": "string",
-                                                    "description": "Borrow order id. The field is returned only after placing the order under the mode of Auto-Borrow."
+                                                    "description": "Borrow order ID. The field is returned only after placing the order under the mode of Auto-Borrow."
                                                 },
                                                 "borrowSize": {
                                                     "type": "string",
@@ -5724,8 +5723,8 @@
                 "x-sdk-service": "Margin",
                 "x-sdk-sub-service": "Order",
                 "x-sdk-method-name": "addOrderTestV1",
-                "x-sdk-method-description": "Order test endpoint, the request parameters and return parameters of this endpoint are exactly the same as the order endpoint, and can be used to verify whether the signature is correct and other operations. After placing an order, the order will not enter the matching system, and the order cannot be queried.",
-                "x-api-rate-limit": 5,
+                "x-sdk-method-description": "Order test endpoint: This endpoint’s request and return parameters are identical to the order endpoint, and can be used to verify whether the signature is correct, among other operations. After placing an order, the order will not enter the matching system, and the order cannot be queried.",
+                "x-api-rate-limit-weight": 5,
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -5734,14 +5733,14 @@
                                 "properties": {
                                     "clientOid": {
                                         "type": "string",
-                                        "description": "Client Order Id，The ClientOid field is a unique ID created by the user（we recommend using a UUID）, and can only contain numbers, letters, underscores （_）, and hyphens （-）. This field is returned when order information is obtained. You can use clientOid to tag your orders. ClientOid is different from the order ID created by the service provider. Please do not initiate requests using the same clientOid. The maximum length for the ClientOid is 40 characters.\n\nPlease remember the orderId created by the service provider, it used to check for updates in order status.",
+                                        "description": "Client Order ID: The ClientOid field is a unique ID created by the user (we recommend using a UUID), and can only contain numbers, letters, underscores (_), and hyphens (-). This field is returned when order information is obtained. You can use clientOid to tag your orders. ClientOid is different from the order ID created by the service provider. Please do not initiate requests using the same clientOid. The maximum length for the ClientOid is 40 characters.\n\nPlease remember the orderId created by the service provider, it used to check for updates in order status.",
                                         "example": [
                                             "5c52e11203aa677f33e493fb"
                                         ]
                                     },
                                     "side": {
                                         "type": "string",
-                                        "description": "specify if the order is to 'buy' or 'sell'",
+                                        "description": "Specify if the order is to 'buy' or 'sell'.",
                                         "enum": [
                                             "buy",
                                             "sell"
@@ -5773,7 +5772,7 @@
                                     },
                                     "type": {
                                         "type": "string",
-                                        "description": "specify if the order is an 'limit' order or 'market' order. \n\nThe type of order you specify when you place your order determines whether or not you need to request other parameters and also affects the execution of the matching engine.\n\nWhen placing a limit order, you must specify a price and size. The system will try to match the order according to market price or a price better than market price. If the order cannot be immediately matched, it will stay in the order book until it is matched or the user cancels.\n\nUnlike limit orders, the price for market orders fluctuates with market prices. When placing a market order, you do not need to specify a price, you only need to specify a quantity. Market orders are filled immediately and will not enter the order book. All market orders are takers and a taker fee will be charged.",
+                                        "description": "Specify if the order is a 'limit' order or 'market' order. \n\nThe type of order you specify when you place your order determines whether or not you need to request other parameters and also affects the execution of the matching engine.\n\nWhen placing a limit order, you must specify a price and size. The system will try to match the order according to market price or a price better than market price. If the order cannot be immediately matched, it will stay in the order book until it is matched or the user cancels.\n\nUnlike limit orders, the price for market orders fluctuates with market prices. When placing a market order, you do not need to specify a price; you only need to specify a quantity. Market orders are filled immediately and will not enter the order book. All market orders are takers and a taker fee will be charged.",
                                         "enum": [
                                             "limit",
                                             "market"
@@ -5830,7 +5829,7 @@
                                     },
                                     "size": {
                                         "type": "string",
-                                        "description": "Specify quantity for order\n\nWhen **type** is limit, size refers to the amount of trading targets (the asset name written in front) for the trading pair. Teh Size must be based on the baseIncrement of the trading pair. The baseIncrement represents the precision for the trading pair. The size of an order must be a positive-integer multiple of baseIncrement and must be between baseMinSize and baseMaxSize.\n\nWhen **type** is market, select one out of two: size or funds"
+                                        "description": "Specify quantity for order.\n\nWhen **type** is limited, size refers to the amount of trading targets (the asset name written in front) for the trading pair. The Size must be based on the baseIncrement of the trading pair. The baseIncrement represents the precision for the trading pair. The size of an order must be a positive-integer multiple of baseIncrement and must be between baseMinSize and baseMaxSize.\n\nWhen **type** is market, select one out of two: size or funds"
                                     },
                                     "timeInForce": {
                                         "type": "string",
@@ -5887,7 +5886,7 @@
                                     "cancelAfter": {
                                         "type": "integer",
                                         "format": "int64",
-                                        "description": "Cancel after n seconds，the order timing strategy is GTT"
+                                        "description": "Cancel after n seconds, the order timing strategy is GTT"
                                     },
                                     "funds": {
                                         "type": "string",
@@ -5900,7 +5899,7 @@
                                     },
                                     "autoRepay": {
                                         "type": "boolean",
-                                        "description": "AutoPay allows returning borrowed assets when you close a position. Our system automatically triggers the repayment and the maximum repayment amount equals to the filled-order amount.",
+                                        "description": "AutoPay allows the return of borrowed assets when you close a position. Our system automatically triggers the repayment and the maximum repayment amount equals to the filled-order amount.",
                                         "default": false
                                     },
                                     "marginModel": {

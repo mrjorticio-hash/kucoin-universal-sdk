@@ -90,6 +90,34 @@
                     }
                 }
             }
+        },
+        "/stopOrder/spotMarket/advancedOrders": {
+            "trace": {
+                "summary": "Get Stop Order",
+                "deprecated": "false",
+                "description": "This topic will push all change events of your stop orders.",
+                "tags": [],
+                "parameters": [],
+                "x-sdk-service": "Spot",
+                "x-sdk-sub-service": "spot_private",
+                "x-sdk-private": true,
+                "x-sdk-method-name": "stopOrder",
+                "x-topic": "/spotMarket/advancedOrders",
+                "x-push_frequency": "real-time",
+                "x-response-example": "{\\\"topic\\\":\\\"/spotMarket/tradeOrdersV2\\\",\\\"type\\\":\\\"message\\\",\\\"subject\\\":\\\"orderChange\\\",\\\"userId\\\":\\\"633559791e1cbc0001f319bc\\\",\\\"channelType\\\":\\\"private\\\",\\\"data\\\":{\\\"clientOid\\\":\\\"5c52e11203aa677f33e493fc\\\",\\\"orderId\\\":\\\"6720da3fa30a360007f5f832\\\",\\\"orderTime\\\":1730206271588,\\\"orderType\\\":\\\"market\\\",\\\"originSize\\\":\\\"0.00001\\\",\\\"side\\\":\\\"buy\\\",\\\"status\\\":\\\"new\\\",\\\"symbol\\\":\\\"BTC-USDT\\\",\\\"ts\\\":1730206271616000000,\\\"type\\\":\\\"received\\\"}}",
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Spot_spot_private_stopOrder"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     },
     "components": {
@@ -138,11 +166,11 @@
                             },
                             "clientOid": {
                                 "type": "string",
-                                "description": "Client Order Id，The ClientOid field is a unique ID created by the user"
+                                "description": "Client Order ID: The ClientOid field is a unique ID created by the user"
                             },
                             "filledSize": {
                                 "type": "string",
-                                "description": "Cumulative number of filled"
+                                "description": "Cumulative number filled"
                             },
                             "orderId": {
                                 "type": "string",
@@ -150,7 +178,7 @@
                             },
                             "orderTime": {
                                 "type": "integer",
-                                "description": "Order time(millisecond)",
+                                "description": "Order time (milliseconds)",
                                 "format": "int64"
                             },
                             "orderType": {
@@ -231,7 +259,7 @@
                                     {
                                         "value": "open",
                                         "name": "open",
-                                        "description": "the order is in the order book（maker order）"
+                                        "description": "the order is in the order book (maker order)"
                                     },
                                     {
                                         "value": "match",
@@ -256,7 +284,7 @@
                             },
                             "ts": {
                                 "type": "integer",
-                                "description": "Push time(Nanosecond)",
+                                "description": "Push time (nanoseconds)",
                                 "format": "int64"
                             },
                             "type": {
@@ -274,17 +302,17 @@
                                     {
                                         "value": "open",
                                         "name": "open",
-                                        "description": "the order is in the order book（maker order）"
+                                        "description": "the order is in the order book (maker order)"
                                     },
                                     {
                                         "value": "match",
                                         "name": "match",
-                                        "description": "the message sent when the order is match,  1. When the status is open and the type is match, it is a maker match.  2. When the status is match and the type is match, it is a taker match."
+                                        "description": "The message sent when the order is match, 1. When the status is open and the type is match, it is a maker match.  2. When the status is match and the type is match, it is a taker match."
                                     },
                                     {
                                         "value": "update",
                                         "name": "update",
-                                        "description": "The message sent due to the order being modified: STP triggering, partial cancellation of the order. Includes these three situations:  1. When the status is open and the type is update: partial amounts of the order have been canceled, or STP triggers  2. When the status is match and the type is update: STP triggers  3. When the status is done and the type is update: partial amounts of the order have been filled and the unfilled part got canceled, or STP is triggered."
+                                        "description": "The message sent due to the order being modified: STP triggering, partial cancellation of the order. Includes these three scenarios:  1. When the status is open and the type is update: partial amounts of the order have been canceled, or STP triggers  2. When the status is match and the type is update: STP triggers  3. When the status is done and the type is update: partial amounts of the order have been filled and the unfilled part got canceled, or STP is triggered."
                                     },
                                     {
                                         "value": "filled",
@@ -357,7 +385,7 @@
                             },
                             "tradeId": {
                                 "type": "string",
-                                "description": "Trade id, it is generated by Matching engine."
+                                "description": "Trade ID: Generated by Matching engine."
                             }
                         },
                         "required": [
@@ -427,11 +455,11 @@
                             },
                             "clientOid": {
                                 "type": "string",
-                                "description": "Client Order Id，The ClientOid field is a unique ID created by the user"
+                                "description": "Client Order ID: The ClientOid field is a unique ID created by the user"
                             },
                             "filledSize": {
                                 "type": "string",
-                                "description": "Cumulative number of filled"
+                                "description": "Cumulative number filled"
                             },
                             "orderId": {
                                 "type": "string",
@@ -439,7 +467,7 @@
                             },
                             "orderTime": {
                                 "type": "integer",
-                                "description": "Order time(millisecond)",
+                                "description": "Order time (milliseconds)",
                                 "format": "int64"
                             },
                             "orderType": {
@@ -520,7 +548,7 @@
                                     {
                                         "value": "open",
                                         "name": "open",
-                                        "description": "the order is in the order book（maker order）"
+                                        "description": "the order is in the order book (maker order)"
                                     },
                                     {
                                         "value": "match",
@@ -545,7 +573,7 @@
                             },
                             "ts": {
                                 "type": "integer",
-                                "description": "Push time(Nanosecond)",
+                                "description": "Push time (nanoseconds)",
                                 "format": "int64"
                             },
                             "type": {
@@ -562,17 +590,17 @@
                                     {
                                         "value": "open",
                                         "name": "open",
-                                        "description": "the order is in the order book（maker order）"
+                                        "description": "the order is in the order book (maker order)"
                                     },
                                     {
                                         "value": "match",
                                         "name": "match",
-                                        "description": "the message sent when the order is match,  1. When the status is open and the type is match, it is a maker match.  2. When the status is match and the type is match, it is a taker match."
+                                        "description": "The message sent when the order is match, 1. When the status is open and the type is match, it is a maker match.  2. When the status is match and the type is match, it is a taker match."
                                     },
                                     {
                                         "value": "update",
                                         "name": "update",
-                                        "description": "The message sent due to the order being modified: STP triggering, partial cancellation of the order. Includes these three situations:  1. When the status is open and the type is update: partial amounts of the order have been canceled, or STP triggers  2. When the status is match and the type is update: STP triggers  3. When the status is done and the type is update: partial amounts of the order have been filled and the unfilled part got canceled, or STP is triggered."
+                                        "description": "The message sent due to the order being modified: STP triggering, partial cancellation of the order. Includes these three scenarios:  1. When the status is open and the type is update: partial amounts of the order have been canceled, or STP triggers  2. When the status is match and the type is update: STP triggers  3. When the status is done and the type is update: partial amounts of the order have been filled and the unfilled part got canceled, or STP is triggered."
                                     },
                                     {
                                         "value": "filled",
@@ -640,7 +668,7 @@
                             },
                             "tradeId": {
                                 "type": "string",
-                                "description": "Trade id, it is generated by Matching engine."
+                                "description": "Trade ID: Generated by Matching engine."
                             }
                         },
                         "required": [
@@ -788,6 +816,229 @@
                     "type",
                     "subject",
                     "id",
+                    "userId",
+                    "channelType",
+                    "data"
+                ]
+            },
+            "Spot_spot_private_stopOrder": {
+                "type": "object",
+                "properties": {
+                    "topic": {
+                        "type": "string"
+                    },
+                    "type": {
+                        "type": "string"
+                    },
+                    "subject": {
+                        "type": "string"
+                    },
+                    "userId": {
+                        "type": "string"
+                    },
+                    "channelType": {
+                        "type": "string",
+                        "enum": [
+                            "private",
+                            "public"
+                        ],
+                        "description": "Channel type",
+                        "x-api-enum": [
+                            {
+                                "value": "private",
+                                "name": "private",
+                                "description": "private channel"
+                            },
+                            {
+                                "value": "public",
+                                "name": "public",
+                                "description": "public channel"
+                            }
+                        ]
+                    },
+                    "data": {
+                        "type": "object",
+                        "properties": {
+                            "createdAt": {
+                                "type": "integer",
+                                "description": "Order created time (milliseconds)",
+                                "format": "int64"
+                            },
+                            "orderId": {
+                                "type": "string",
+                                "description": "The unique order id generated by the trading system"
+                            },
+                            "orderPrice": {
+                                "type": "string",
+                                "description": "Price"
+                            },
+                            "orderType": {
+                                "type": "string",
+                                "description": "User-specified order type",
+                                "enum": [
+                                    "limit",
+                                    "market"
+                                ],
+                                "x-api-enum": [
+                                    {
+                                        "value": "limit",
+                                        "name": "limit",
+                                        "description": "limit"
+                                    },
+                                    {
+                                        "value": "market",
+                                        "name": "market",
+                                        "description": "market"
+                                    }
+                                ]
+                            },
+                            "side": {
+                                "type": "string",
+                                "description": "buy or sell",
+                                "enum": [
+                                    "buy",
+                                    "sell"
+                                ],
+                                "x-api-enum": [
+                                    {
+                                        "value": "buy",
+                                        "name": "buy",
+                                        "description": "buy"
+                                    },
+                                    {
+                                        "value": "sell",
+                                        "name": "sell",
+                                        "description": "sell"
+                                    }
+                                ]
+                            },
+                            "size": {
+                                "type": "string",
+                                "description": "User-specified order size"
+                            },
+                            "stop": {
+                                "type": "string",
+                                "description": "Order type: stop: stop loss order, oco: oco order",
+                                "enum": [
+                                    "stop",
+                                    "oco"
+                                ],
+                                "x-api-enum": [
+                                    {
+                                        "value": "stop",
+                                        "name": "stop",
+                                        "description": "stop loss order"
+                                    },
+                                    {
+                                        "value": "oco",
+                                        "name": "oco",
+                                        "description": "oco order"
+                                    }
+                                ]
+                            },
+                            "stopPrice": {
+                                "type": "string",
+                                "description": "Stop Price"
+                            },
+                            "symbol": {
+                                "type": "string",
+                                "description": "symbol"
+                            },
+                            "tradeType": {
+                                "type": "string",
+                                "description": "The type of trading : TRADE（Spot）, MARGIN_TRADE (Cross Margin), MARGIN_ISOLATED_TRADE (Isolated Margin).",
+                                "enum": [
+                                    "TRADE",
+                                    "MARGIN_TRADE",
+                                    "MARGIN_ISOLATED_TRADE"
+                                ],
+                                "x-api-enum": [
+                                    {
+                                        "value": "TRADE",
+                                        "name": "TRADE",
+                                        "description": "Spot"
+                                    },
+                                    {
+                                        "value": "MARGIN_TRADE",
+                                        "name": "MARGIN_TRADE",
+                                        "description": "Spot margin trade"
+                                    },
+                                    {
+                                        "value": "MARGIN_ISOLATED_TRADE",
+                                        "name": "MARGIN_ISOLATED_TRADE",
+                                        "description": "Spot margin isolated trade"
+                                    }
+                                ]
+                            },
+                            "ts": {
+                                "type": "string",
+                                "description": "Push time (nanoseconds)"
+                            },
+                            "type": {
+                                "type": "string",
+                                "enum": [
+                                    "open",
+                                    "match",
+                                    "update",
+                                    "filled",
+                                    "canceled",
+                                    "received"
+                                ],
+                                "description": "Order Type",
+                                "x-api-enum": [
+                                    {
+                                        "value": "open",
+                                        "name": "open",
+                                        "description": "the order is in the order book (maker order)"
+                                    },
+                                    {
+                                        "value": "match",
+                                        "name": "match",
+                                        "description": "The message sent when the order is match, 1. When the status is open and the type is match, it is a maker match.  2. When the status is match and the type is match, it is a taker match."
+                                    },
+                                    {
+                                        "value": "update",
+                                        "name": "update",
+                                        "description": "The message sent due to the order being modified: STP triggering, partial cancellation of the order. Includes these three scenarios:  1. When the status is open and the type is update: partial amounts of the order have been canceled, or STP triggers  2. When the status is match and the type is update: STP triggers  3. When the status is done and the type is update: partial amounts of the order have been filled and the unfilled part got canceled, or STP is triggered."
+                                    },
+                                    {
+                                        "value": "filled",
+                                        "name": "filled",
+                                        "description": "The message sent when the status of the order changes to DONE after the transaction"
+                                    },
+                                    {
+                                        "value": "canceled",
+                                        "name": "canceled",
+                                        "description": "The message sent when the status of the order changes to DONE due to being canceled"
+                                    },
+                                    {
+                                        "value": "received",
+                                        "name": "received",
+                                        "description": "The message sent when the order enters the matching system. When the order has just entered the matching system and has not yet done matching logic with the counterparty, a private message with the message type \"received\" and the order status \"new\" will be pushed."
+                                    }
+                                ]
+                            }
+                        },
+                        "required": [
+                            "createdAt",
+                            "orderId",
+                            "orderPrice",
+                            "orderType",
+                            "side",
+                            "size",
+                            "stop",
+                            "stopPrice",
+                            "symbol",
+                            "tradeType",
+                            "ts",
+                            "type"
+                        ]
+                    }
+                },
+                "required": [
+                    "topic",
+                    "type",
+                    "subject",
                     "userId",
                     "channelType",
                     "data"

@@ -14,36 +14,36 @@ account,account,/api/v1/transaction-history,get,Get Account Ledgers - Futures
 account,account,/api/v1/margin/account,get,Get Account Detail - Margin
 account,account,/api/v1/isolated/accounts,get,Get Account List - Isolated Margin - V1
 account,account,/api/v1/isolated/account/{symbol},get,Get Account Detail - Isolated Margin - V1
-account,subaccount,/api/v2/sub/user/created,post,Add SubAccount
-account,subaccount,/api/v3/sub/user/margin/enable,post,Add SubAccount Margin Permission
-account,subaccount,/api/v3/sub/user/futures/enable,post,Add SubAccount Futures Permission
-account,subaccount,/api/v2/sub/user,get,Get SubAccount List - Summary Info
-account,subaccount,/api/v1/sub-accounts/{subUserId},get,Get SubAccount Detail - Balance
-account,subaccount,/api/v2/sub-accounts,get,Get SubAccount List - Spot Balance(V2)
-account,subaccount,/api/v1/account-overview-all,get,Get SubAccount List - Futures Balance(V2)
-account,subaccount,/api/v1/sub/api-key,post,Add SubAccount API
-account,subaccount,/api/v1/sub/api-key/update,post,Modify SubAccount API
-account,subaccount,/api/v1/sub/api-key,get,Get SubAccount API List
-account,subaccount,/api/v1/sub/api-key,delete,Delete SubAccount API
-account,subaccount,/api/v1/sub/user,get,Get SubAccount List - Summary Info(V1)
-account,subaccount,/api/v1/sub-accounts,get,Get SubAccount List - Spot Balance(V1)
-account,deposit,/api/v3/deposit-address/create,post,Add Deposit Address(V3)
-account,deposit,/api/v3/deposit-addresses,get,Get Deposit Address(V3)
+account,subaccount,/api/v2/sub/user/created,post,Add sub-account
+account,subaccount,/api/v3/sub/user/margin/enable,post,Add sub-account Margin Permission
+account,subaccount,/api/v3/sub/user/futures/enable,post,Add sub-account Futures Permission
+account,subaccount,/api/v2/sub/user,get,Get sub-account List - Summary Info
+account,subaccount,/api/v1/sub-accounts/{subUserId},get,Get sub-account Detail - Balance
+account,subaccount,/api/v2/sub-accounts,get,Get sub-account List - Spot Balance (V2)
+account,subaccount,/api/v1/account-overview-all,get,Get sub-account List - Futures Balance (V2)
+account,subaccount,/api/v1/sub/api-key,post,Add sub-account API
+account,subaccount,/api/v1/sub/api-key/update,post,Modify sub-account API
+account,subaccount,/api/v1/sub/api-key,get,Get sub-account API List
+account,subaccount,/api/v1/sub/api-key,delete,Delete sub-account API
+account,subaccount,/api/v1/sub/user,get,Get sub-account List - Summary Info (V1)
+account,subaccount,/api/v1/sub-accounts,get,Get sub-account List - Spot Balance (V1)
+account,deposit,/api/v3/deposit-address/create,post,Add Deposit Address (V3)
+account,deposit,/api/v3/deposit-addresses,get,Get Deposit Address (V3)
 account,deposit,/api/v1/deposits,get,Get Deposit History
-account,deposit,/api/v2/deposit-addresses,get,Get Deposit Addresses(V2)
+account,deposit,/api/v2/deposit-addresses,get,Get Deposit Addresses (V2)
 account,deposit,/api/v1/deposit-addresses,get,Get Deposit Addresses - V1
 account,deposit,/api/v1/hist-deposits,get,Get Deposit History - Old
 account,deposit,/api/v1/deposit-addresses,post,Add Deposit Address - V1
 account,withdrawal,/api/v1/withdrawals/quotas,get,Get Withdrawal Quotas
-account,withdrawal,/api/v3/withdrawals,post,Withdraw(V3)
+account,withdrawal,/api/v3/withdrawals,post,Withdraw (V3)
 account,withdrawal,/api/v1/withdrawals/{withdrawalId},delete,Cancel Withdrawal
 account,withdrawal,/api/v1/withdrawals,get,Get Withdrawal History
 account,withdrawal,/api/v1/hist-withdrawals,get,Get Withdrawal History - Old
 account,withdrawal,/api/v1/withdrawals,post,Withdraw - V1
 account,transfer,/api/v1/accounts/transferable,get,Get Transfer Quotas
 account,transfer,/api/v3/accounts/universal-transfer,post,Flex Transfer
-account,transfer,/api/v2/accounts/sub-transfer,post,SubAccount Transfer
-account,transfer,/api/v2/accounts/inner-transfer,post,Inner Transfer
+account,transfer,/api/v2/accounts/sub-transfer,post,Sub-account Transfer
+account,transfer,/api/v2/accounts/inner-transfer,post,Internal Transfer
 account,transfer,/api/v3/transfer-out,post,Futures Account Transfer Out
 account,transfer,/api/v1/transfer-in,post,Futures Account Transfer In
 account,transfer,/api/v1/transfer-list,get,Get Futures Account Transfer Out Ledger
@@ -61,9 +61,12 @@ spot,market,/api/v1/market/histories,get,Get Trade History
 spot,market,/api/v1/market/candles,get,Get Klines
 spot,market,/api/v1/market/orderbook/level2_{size},get,Get Part OrderBook
 spot,market,/api/v3/market/orderbook/level2,get,Get Full OrderBook
+spot,market,/api/v1/market/orderbook/callauction/level2_{size},get,Get Call Auction Part OrderBook
+spot,market,/api/v1/market/callauctionData,get,Get Call Auction Info
 spot,market,/api/v1/prices,get,Get Fiat Price
-spot,market,/api/v1/market/stats,get,Get 24hr Stats
+spot,market,/api/v1/market/stats,get,Get 24hr stats
 spot,market,/api/v1/markets,get,Get Market List
+spot,market,/api/v1/my-ip,get,Get Client IP Address
 spot,market,/api/v1/timestamp,get,Get Server Time
 spot,market,/api/v1/status,get,Get Service Status
 spot,market,/api/v1/bullet-public,post,Get Public Token - Spot/Margin
@@ -139,7 +142,7 @@ margin,debit,/api/v3/margin/borrow,post,Borrow
 margin,debit,/api/v3/margin/borrow,get,Get Borrow History
 margin,debit,/api/v3/margin/repay,post,Repay
 margin,debit,/api/v3/margin/repay,get,Get Repay History
-margin,debit,/api/v3/margin/interest,get,Get Interest History
+margin,debit,/api/v3/margin/interest,get,Get Interest History.
 margin,debit,/api/v3/position/update-user-leverage,post,Modify Leverage
 margin,credit,/api/v3/project/list,get,Get Loan Market
 margin,credit,/api/v3/project/marketInterestRate,get,Get Loan Market Interest Rate
@@ -161,7 +164,7 @@ futures,market,/api/v1/mark-price/{symbol}/current,get,Get Mark Price
 futures,market,/api/v1/index/query,get,Get Spot Index Price
 futures,market,/api/v1/interest/query,get,Get Interest Rate Index
 futures,market,/api/v1/premium/query,get,Get Premium Index
-futures,market,/api/v1/trade-statistics,get,Get 24hr Stats
+futures,market,/api/v1/trade-statistics,get,Get 24hr stats
 futures,market,/api/v1/timestamp,get,Get Server Time
 futures,market,/api/v1/status,get,Get Service Status
 futures,market,/api/v1/bullet-public,post,Get Public Token - Futures
@@ -198,29 +201,30 @@ futures,positions,/api/v1/margin/withdrawMargin,post,Remove Isolated Margin
 futures,positions,/api/v1/contracts/risk-limit/{symbol},get,Get Isolated Margin Risk Limit
 futures,positions,/api/v1/position/risk-limit-level/change,post,Modify Isolated Margin Risk Limit
 futures,positions,/api/v1/position/margin/auto-deposit-status,post,Modify Isolated Margin Auto-Deposit Status
-futures,fundingfees,/api/v1/funding-rate/{symbol}/current,get,Get Current Funding Rate
+futures,fundingfees,/api/v1/funding-rate/{symbol}/current,get,Get Current Funding Rate.
 futures,fundingfees,/api/v1/contract/funding-rates,get,Get Public Funding History
 futures,fundingfees,/api/v1/funding-history,get,Get Private Funding History
-earn,earn,/api/v1/earn/orders,post,purchase
+earn,earn,/api/v1/earn/orders,post,Purchase
 earn,earn,/api/v1/earn/redeem-preview,get,Get Redeem Preview
 earn,earn,/api/v1/earn/orders,delete,Redeem
 earn,earn,/api/v1/earn/saving/products,get,Get Savings Products
 earn,earn,/api/v1/earn/promotion/products,get,Get Promotion Products
-earn,earn,/api/v1/earn/hold-assets,get,Get Account Holding
 earn,earn,/api/v1/earn/staking/products,get,Get Staking Products
 earn,earn,/api/v1/earn/kcs-staking/products,get,Get KCS Staking Products
 earn,earn,/api/v1/earn/eth-staking/products,get,Get ETH Staking Products
-viplending,viplending,/api/v1/otc-loan/loan,get,Get Account Detail
+earn,earn,/api/v1/earn/hold-assets,get,Get Account Holding
+viplending,viplending,/api/v1/otc-loan/discount-rate-configs,get,Get Discount Rate Configs
+viplending,viplending,/api/v1/otc-loan/loan,get,Get Loan Info
 viplending,viplending,/api/v1/otc-loan/accounts,get,Get Accounts
 affiliate,affiliate,/api/v2/affiliate/inviter/statistics,get,Get Account
 broker,apibroker,/api/v1/broker/api/rebase/download,get,Get Broker Rebate
 broker,ndbroker,/api/v1/broker/nd/info,get,Get Broker Info
-broker,ndbroker,/api/v1/broker/nd/account,post,Add SubAccount
-broker,ndbroker,/api/v1/broker/nd/account,get,Get SubAccount
-broker,ndbroker,/api/v1/broker/nd/account/apikey,post,Add SubAccount API
-broker,ndbroker,/api/v1/broker/nd/account/apikey,get,Get SubAccount API
-broker,ndbroker,/api/v1/broker/nd/account/update-apikey,post,Modify SubAccount API
-broker,ndbroker,/api/v1/broker/nd/account/apikey,delete,Delete SubAccount API
+broker,ndbroker,/api/v1/broker/nd/account,post,Add sub-account
+broker,ndbroker,/api/v1/broker/nd/account,get,Get sub-account
+broker,ndbroker,/api/v1/broker/nd/account/apikey,post,Add sub-account API
+broker,ndbroker,/api/v1/broker/nd/account/apikey,get,Get sub-account API
+broker,ndbroker,/api/v1/broker/nd/account/update-apikey,post,Modify sub-account API
+broker,ndbroker,/api/v1/broker/nd/account/apikey,delete,Delete sub-account API
 broker,ndbroker,/api/v1/broker/nd/transfer,post,Transfer
 broker,ndbroker,/api/v3/broker/nd/transfer/detail,get,Get Transfer History
 broker,ndbroker,/api/v1/asset/ndbroker/deposit/list,get,Get Deposit List
