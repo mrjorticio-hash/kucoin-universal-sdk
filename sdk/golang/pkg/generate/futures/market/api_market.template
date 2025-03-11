@@ -273,7 +273,7 @@ func TestMarketGetPremiumIndexReq(t *testing.T) {
 
 func TestMarketGet24hrStatsReq(t *testing.T) {
     // Get24hrStats
-    // Get 24hr Stats
+    // Get 24hr stats
     // /api/v1/trade-statistics
 
 

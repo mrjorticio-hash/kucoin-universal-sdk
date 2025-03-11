@@ -12,9 +12,9 @@ type GetCurrentFundingRateResp struct {
 	CommonResponse *types.RestResponse
 	// Funding Rate Symbol
 	Symbol string `json:"symbol,omitempty"`
-	// Granularity (milisecond)
+	// Granularity (milliseconds)
 	Granularity int32 `json:"granularity,omitempty"`
-	// The funding rate settlement time point of the previous cycle (milisecond)
+	// The funding rate settlement time point of the previous cycle (milliseconds)
 	TimePoint int64 `json:"timePoint,omitempty"`
 	// Current cycle funding rate
 	Value float32 `json:"value,omitempty"`

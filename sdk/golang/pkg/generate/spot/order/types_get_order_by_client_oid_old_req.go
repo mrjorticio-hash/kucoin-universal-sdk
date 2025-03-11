@@ -4,7 +4,7 @@ package order
 
 // GetOrderByClientOidOldReq struct for GetOrderByClientOidOldReq
 type GetOrderByClientOidOldReq struct {
-	// Unique order id created by users to identify their orders
+	// Unique order ID created by users to identify their orders
 	ClientOid *string `json:"clientOid,omitempty" path:"clientOid" url:"-"`
 }
 
@@ -36,7 +36,7 @@ func NewGetOrderByClientOidOldReqBuilder() *GetOrderByClientOidOldReqBuilder {
 	return &GetOrderByClientOidOldReqBuilder{obj: NewGetOrderByClientOidOldReqWithDefaults()}
 }
 
-// Unique order id created by users to identify their orders
+// Unique order ID created by users to identify their orders
 func (builder *GetOrderByClientOidOldReqBuilder) SetClientOid(value string) *GetOrderByClientOidOldReqBuilder {
 	builder.obj.ClientOid = &value
 	return builder

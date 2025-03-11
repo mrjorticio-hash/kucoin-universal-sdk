@@ -10,9 +10,9 @@ import (
 type GetIsolatedMarginAccountListV1Resp struct {
 	// common response
 	CommonResponse *types.RestResponse
-	// The total balance of the isolated margin account(in the request coin)
+	// The total balance of the isolated margin account (in the request coin)
 	TotalConversionBalance string `json:"totalConversionBalance,omitempty"`
-	// Total liabilities of the isolated margin account(in the request coin)
+	// Total liabilities of the isolated margin account (in the request coin)
 	LiabilityConversionBalance string `json:"liabilityConversionBalance,omitempty"`
 	// Account list
 	Assets []GetIsolatedMarginAccountListV1Assets `json:"assets,omitempty"`

@@ -26,7 +26,7 @@ type TickerEvent struct {
 	// Best bid size
 	BestBidSize string `json:"bestBidSize,omitempty"`
 	// The matching time of the latest transaction
-	Time int64 `json:"Time,omitempty"`
+	Time int64 `json:"time,omitempty"`
 }
 
 // NewTickerEvent instantiates a new TickerEvent object
@@ -60,7 +60,7 @@ func (o *TickerEvent) ToMap() map[string]interface{} {
 	toSerialize["bestAskSize"] = o.BestAskSize
 	toSerialize["bestBid"] = o.BestBid
 	toSerialize["bestBidSize"] = o.BestBidSize
-	toSerialize["Time"] = o.Time
+	toSerialize["time"] = o.Time
 	return toSerialize
 }
 

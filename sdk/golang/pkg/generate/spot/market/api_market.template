@@ -30,7 +30,7 @@ func TestMarketGetCurrencyReq(t *testing.T) {
     // /api/v3/currencies/{currency}
 
     builder := market.NewGetCurrencyReqBuilder()
-    builder.SetCurrency(?).SetChain(?)
+    builder.SetChain(?).SetCurrency(?)
     req := builder.Build()
 
     resp, err := marketApi.GetCurrency(req, context.TODO())
@@ -248,6 +248,52 @@ func TestMarketGetFullOrderBookReq(t *testing.T) {
 }
 
 
+func TestMarketGetCallAuctionPartOrderBookReq(t *testing.T) {
+    // GetCallAuctionPartOrderBook
+    // Get Call Auction Part OrderBook
+    // /api/v1/market/orderbook/callauction/level2_{size}
+
+    builder := market.NewGetCallAuctionPartOrderBookReqBuilder()
+    builder.SetSymbol(?).SetSize(?)
+    req := builder.Build()
+
+    resp, err := marketApi.GetCallAuctionPartOrderBook(req, context.TODO())
+    if err != nil {
+        panic(err)
+    }
+    data, err := json.Marshal(resp.ToMap())
+    if err != nil {
+        panic(err)
+    }
+    fmt.Println("code:", resp.CommonResponse.Code)
+    fmt.Println("message:", resp.CommonResponse.Message)
+    fmt.Println("data:", string(data))
+}
+
+
+func TestMarketGetCallAuctionInfoReq(t *testing.T) {
+    // GetCallAuctionInfo
+    // Get Call Auction Info
+    // /api/v1/market/callauctionData
+
+    builder := market.NewGetCallAuctionInfoReqBuilder()
+    builder.SetSymbol(?)
+    req := builder.Build()
+
+    resp, err := marketApi.GetCallAuctionInfo(req, context.TODO())
+    if err != nil {
+        panic(err)
+    }
+    data, err := json.Marshal(resp.ToMap())
+    if err != nil {
+        panic(err)
+    }
+    fmt.Println("code:", resp.CommonResponse.Code)
+    fmt.Println("message:", resp.CommonResponse.Message)
+    fmt.Println("data:", string(data))
+}
+
+
 func TestMarketGetFiatPriceReq(t *testing.T) {
     // GetFiatPrice
     // Get Fiat Price
@@ -273,7 +319,7 @@ func TestMarketGetFiatPriceReq(t *testing.T) {
 
 func TestMarketGet24hrStatsReq(t *testing.T) {
     // Get24hrStats
-    // Get 24hr Stats
+    // Get 24hr stats
     // /api/v1/market/stats
 
     builder := market.NewGet24hrStatsReqBuilder()
@@ -301,6 +347,26 @@ func TestMarketGetMarketListReq(t *testing.T) {
 
 
     resp, err := marketApi.GetMarketList(context.TODO())
+    if err != nil {
+        panic(err)
+    }
+    data, err := json.Marshal(resp.ToMap())
+    if err != nil {
+        panic(err)
+    }
+    fmt.Println("code:", resp.CommonResponse.Code)
+    fmt.Println("message:", resp.CommonResponse.Message)
+    fmt.Println("data:", string(data))
+}
+
+
+func TestMarketGetClientIPAddressReq(t *testing.T) {
+    // GetClientIPAddress
+    // Get Client IP Address
+    // /api/v1/my-ip
+
+
+    resp, err := marketApi.GetClientIPAddress(context.TODO())
     if err != nil {
         panic(err)
     }

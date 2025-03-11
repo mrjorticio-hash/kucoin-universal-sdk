@@ -37,7 +37,7 @@ func TestWithdrawalGetWithdrawalQuotasRespModel(t *testing.T) {
 
 func TestWithdrawalWithdrawalV3ReqModel(t *testing.T) {
 	// WithdrawalV3
-	// Withdraw(V3)
+	// Withdraw (V3)
 	// /api/v3/withdrawals
 
 	data := "{\"currency\": \"USDT\", \"toAddress\": \"TKFRQXSDcY****GmLrjJggwX8\", \"amount\": 3, \"withdrawType\": \"ADDRESS\", \"chain\": \"trx\", \"isInner\": true, \"remark\": \"this is Remark\"}"
@@ -49,7 +49,7 @@ func TestWithdrawalWithdrawalV3ReqModel(t *testing.T) {
 
 func TestWithdrawalWithdrawalV3RespModel(t *testing.T) {
 	// WithdrawalV3
-	// Withdraw(V3)
+	// Withdraw (V3)
 	// /api/v3/withdrawals
 
 	data := "{\"code\":\"200000\",\"data\":{\"withdrawalId\":\"670deec84d64da0007d7c946\"}}"

@@ -10,7 +10,7 @@ type GetOrderListReq struct {
 	Symbol *string `json:"symbol,omitempty" url:"symbol,omitempty"`
 	// buy or sell
 	Side *string `json:"side,omitempty" url:"side,omitempty"`
-	// limit, market, limit_stop or market_stop
+	// Order Type
 	Type *string `json:"type,omitempty" url:"type,omitempty"`
 	// Start time (milisecond)
 	StartAt *int64 `json:"startAt,omitempty" url:"startAt,omitempty"`
@@ -26,6 +26,10 @@ type GetOrderListReq struct {
 // This constructor will assign default values to properties that have it defined
 func NewGetOrderListReq() *GetOrderListReq {
 	this := GetOrderListReq{}
+	var currentPage int32 = 1
+	this.CurrentPage = &currentPage
+	var pageSize int32 = 50
+	this.PageSize = &pageSize
 	return &this
 }
 
@@ -33,6 +37,10 @@ func NewGetOrderListReq() *GetOrderListReq {
 // This constructor will only assign default values to properties that have it defined,
 func NewGetOrderListReqWithDefaults() *GetOrderListReq {
 	this := GetOrderListReq{}
+	var currentPage int32 = 1
+	this.CurrentPage = &currentPage
+	var pageSize int32 = 50
+	this.PageSize = &pageSize
 	return &this
 }
 
@@ -75,7 +83,7 @@ func (builder *GetOrderListReqBuilder) SetSide(value string) *GetOrderListReqBui
 	return builder
 }
 
-// limit, market, limit_stop or market_stop
+// Order Type
 func (builder *GetOrderListReqBuilder) SetType(value string) *GetOrderListReqBuilder {
 	builder.obj.Type = &value
 	return builder

@@ -4,19 +4,19 @@ package account
 
 // GetMarginHFLedgerReq struct for GetMarginHFLedgerReq
 type GetMarginHFLedgerReq struct {
-	// currency, optional，can select more than one，separate with commas，select no more than 10 currencys，the default will be to query for all currencys if left empty
+	// Currency optional; more than one can be selected; separate using commas; select no more than 10 currencies; the default will be to query for all currencies if left empty
 	Currency *string `json:"currency,omitempty" url:"currency,omitempty"`
 	// direction: in, out
 	Direction *string `json:"direction,omitempty" url:"direction,omitempty"`
-	// Transaction type: TRANSFER- transfer funds, MARGIN_EXCHANGE - cross margin trade, ISOLATED_EXCHANGE - isolated margin trade, LIQUIDATION - liquidation, ASSERT_RETURN - forced liquidation asset return
+	// Transaction type: TRANSFER- transfer funds, MARGIN_EXCHANGE-cross margin trade, ISOLATED_EXCHANGE-isolated margin trade, LIQUIDATION-liquidation, ASSERT_RETURN-forced liquidation asset return
 	BizType *string `json:"bizType,omitempty" url:"bizType,omitempty"`
-	// The id of the last set of data from the previous batch of data. By default, the latest information is given.
+	// The ID of the last set of data from the previous data batch. By default, the latest information is given.
 	LastId *int64 `json:"lastId,omitempty" url:"lastId,omitempty"`
-	// Default100，Max200
+	// Default100, Max200
 	Limit *int32 `json:"limit,omitempty" url:"limit,omitempty"`
-	// Start time (milisecond)
+	// Start time (milliseconds)
 	StartAt *int64 `json:"startAt,omitempty" url:"startAt,omitempty"`
-	// End time (milisecond)
+	// End time (milliseconds)
 	EndAt *int64 `json:"endAt,omitempty" url:"endAt,omitempty"`
 }
 
@@ -58,7 +58,7 @@ func NewGetMarginHFLedgerReqBuilder() *GetMarginHFLedgerReqBuilder {
 	return &GetMarginHFLedgerReqBuilder{obj: NewGetMarginHFLedgerReqWithDefaults()}
 }
 
-// currency, optional，can select more than one，separate with commas，select no more than 10 currencys，the default will be to query for all currencys if left empty
+// Currency optional; more than one can be selected; separate using commas; select no more than 10 currencies; the default will be to query for all currencies if left empty
 func (builder *GetMarginHFLedgerReqBuilder) SetCurrency(value string) *GetMarginHFLedgerReqBuilder {
 	builder.obj.Currency = &value
 	return builder
@@ -70,31 +70,31 @@ func (builder *GetMarginHFLedgerReqBuilder) SetDirection(value string) *GetMargi
 	return builder
 }
 
-// Transaction type: TRANSFER- transfer funds, MARGIN_EXCHANGE - cross margin trade, ISOLATED_EXCHANGE - isolated margin trade, LIQUIDATION - liquidation, ASSERT_RETURN - forced liquidation asset return
+// Transaction type: TRANSFER- transfer funds, MARGIN_EXCHANGE-cross margin trade, ISOLATED_EXCHANGE-isolated margin trade, LIQUIDATION-liquidation, ASSERT_RETURN-forced liquidation asset return
 func (builder *GetMarginHFLedgerReqBuilder) SetBizType(value string) *GetMarginHFLedgerReqBuilder {
 	builder.obj.BizType = &value
 	return builder
 }
 
-// The id of the last set of data from the previous batch of data. By default, the latest information is given.
+// The ID of the last set of data from the previous data batch. By default, the latest information is given.
 func (builder *GetMarginHFLedgerReqBuilder) SetLastId(value int64) *GetMarginHFLedgerReqBuilder {
 	builder.obj.LastId = &value
 	return builder
 }
 
-// Default100，Max200
+// Default100, Max200
 func (builder *GetMarginHFLedgerReqBuilder) SetLimit(value int32) *GetMarginHFLedgerReqBuilder {
 	builder.obj.Limit = &value
 	return builder
 }
 
-// Start time (milisecond)
+// Start time (milliseconds)
 func (builder *GetMarginHFLedgerReqBuilder) SetStartAt(value int64) *GetMarginHFLedgerReqBuilder {
 	builder.obj.StartAt = &value
 	return builder
 }
 
-// End time (milisecond)
+// End time (milliseconds)
 func (builder *GetMarginHFLedgerReqBuilder) SetEndAt(value int64) *GetMarginHFLedgerReqBuilder {
 	builder.obj.EndAt = &value
 	return builder

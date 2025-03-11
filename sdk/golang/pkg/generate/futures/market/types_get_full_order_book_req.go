@@ -4,7 +4,7 @@ package market
 
 // GetFullOrderBookReq struct for GetFullOrderBookReq
 type GetFullOrderBookReq struct {
-	// Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)
+	// Symbol of the contract. Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)
 	Symbol *string `json:"symbol,omitempty" url:"symbol,omitempty"`
 }
 
@@ -36,7 +36,7 @@ func NewGetFullOrderBookReqBuilder() *GetFullOrderBookReqBuilder {
 	return &GetFullOrderBookReqBuilder{obj: NewGetFullOrderBookReqWithDefaults()}
 }
 
-// Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)
+// Symbol of the contract. Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)
 func (builder *GetFullOrderBookReqBuilder) SetSymbol(value string) *GetFullOrderBookReqBuilder {
 	builder.obj.Symbol = &value
 	return builder

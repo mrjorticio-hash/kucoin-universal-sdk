@@ -9,32 +9,46 @@ import (
 
 type VIPLendingAPI interface {
 
-	// GetAccountDetail Get Account Detail
-	// Description: The following information is only applicable to loans.  Get information on off-exchange funding and loans, This endpoint is only for querying accounts that are currently involved in loans.
+	// GetDiscountRateConfigs Get Discount Rate Configs
+	// Description: Get the gradient discount rate of each currency
+	// Documentation: https://www.kucoin.com/docs-new/api-3471463
+	// +-----------------------+---------+
+	// | Extra API Info        | Value   |
+	// +-----------------------+---------+
+	// | API-DOMAIN            | SPOT    |
+	// | API-CHANNEL           | PRIVATE |
+	// | API-PERMISSION        | NULL    |
+	// | API-RATE-LIMIT-POOL   | PUBLIC  |
+	// | API-RATE-LIMIT-WEIGHT | 10      |
+	// +-----------------------+---------+
+	GetDiscountRateConfigs(ctx context.Context) (*GetDiscountRateConfigsResp, error)
+
+	// GetLoanInfo Get Loan Info
+	// Description: The following information is only applicable to loans.  Get information on off-exchange funding and loans. This endpoint is only for querying accounts that are currently involved in loans.
 	// Documentation: https://www.kucoin.com/docs-new/api-3470277
-	// +---------------------+------------+
-	// | Extra API Info      | Value      |
-	// +---------------------+------------+
-	// | API-DOMAIN          | SPOT       |
-	// | API-CHANNEL         | PRIVATE    |
-	// | API-PERMISSION      | GENERAL    |
-	// | API-RATE-LIMIT-POOL | MANAGEMENT |
-	// | API-RATE-LIMIT      | 1          |
-	// +---------------------+------------+
-	GetAccountDetail(ctx context.Context) (*GetAccountDetailResp, error)
+	// +-----------------------+------------+
+	// | Extra API Info        | Value      |
+	// +-----------------------+------------+
+	// | API-DOMAIN            | SPOT       |
+	// | API-CHANNEL           | PRIVATE    |
+	// | API-PERMISSION        | GENERAL    |
+	// | API-RATE-LIMIT-POOL   | MANAGEMENT |
+	// | API-RATE-LIMIT-WEIGHT | 5          |
+	// +-----------------------+------------+
+	GetLoanInfo(ctx context.Context) (*GetLoanInfoResp, error)
 
 	// GetAccounts Get Accounts
-	// Description: Accounts participating in OTC lending, This interface is only for querying accounts currently running OTC lending.
+	// Description: Accounts participating in OTC lending. This interface is only for querying accounts currently running OTC lending.
 	// Documentation: https://www.kucoin.com/docs-new/api-3470278
-	// +---------------------+------------+
-	// | Extra API Info      | Value      |
-	// +---------------------+------------+
-	// | API-DOMAIN          | SPOT       |
-	// | API-CHANNEL         | PRIVATE    |
-	// | API-PERMISSION      | GENERAL    |
-	// | API-RATE-LIMIT-POOL | MANAGEMENT |
-	// | API-RATE-LIMIT      | 1          |
-	// +---------------------+------------+
+	// +-----------------------+------------+
+	// | Extra API Info        | Value      |
+	// +-----------------------+------------+
+	// | API-DOMAIN            | SPOT       |
+	// | API-CHANNEL           | PRIVATE    |
+	// | API-PERMISSION        | GENERAL    |
+	// | API-RATE-LIMIT-POOL   | MANAGEMENT |
+	// | API-RATE-LIMIT-WEIGHT | 20         |
+	// +-----------------------+------------+
 	GetAccounts(ctx context.Context) (*GetAccountsResp, error)
 }
 
@@ -46,8 +60,14 @@ func NewVIPLendingAPIImp(transport interfaces.Transport) *VIPLendingAPIImpl {
 	return &VIPLendingAPIImpl{transport: transport}
 }
 
-func (impl *VIPLendingAPIImpl) GetAccountDetail(ctx context.Context) (*GetAccountDetailResp, error) {
-	resp := &GetAccountDetailResp{}
+func (impl *VIPLendingAPIImpl) GetDiscountRateConfigs(ctx context.Context) (*GetDiscountRateConfigsResp, error) {
+	resp := &GetDiscountRateConfigsResp{}
+	err := impl.transport.Call(ctx, "spot", false, "Get", "/api/v1/otc-loan/discount-rate-configs", nil, resp, false)
+	return resp, err
+}
+
+func (impl *VIPLendingAPIImpl) GetLoanInfo(ctx context.Context) (*GetLoanInfoResp, error) {
+	resp := &GetLoanInfoResp{}
 	err := impl.transport.Call(ctx, "spot", false, "Get", "/api/v1/otc-loan/loan", nil, resp, false)
 	return resp, err
 }

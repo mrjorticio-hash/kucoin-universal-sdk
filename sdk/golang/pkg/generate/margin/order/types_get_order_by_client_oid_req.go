@@ -6,7 +6,7 @@ package order
 type GetOrderByClientOidReq struct {
 	// symbol
 	Symbol *string `json:"symbol,omitempty" url:"symbol,omitempty"`
-	// Client Order Id，unique identifier created by the user
+	// Client Order Id, unique identifier created by the user
 	ClientOid *string `json:"clientOid,omitempty" path:"clientOid" url:"-"`
 }
 
@@ -45,7 +45,7 @@ func (builder *GetOrderByClientOidReqBuilder) SetSymbol(value string) *GetOrderB
 	return builder
 }
 
-// Client Order Id，unique identifier created by the user
+// Client Order Id, unique identifier created by the user
 func (builder *GetOrderByClientOidReqBuilder) SetClientOid(value string) *GetOrderByClientOidReqBuilder {
 	builder.obj.ClientOid = &value
 	return builder

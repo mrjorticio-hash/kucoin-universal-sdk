@@ -8,9 +8,9 @@ type GetDepositHistoryReq struct {
 	Currency *string `json:"currency,omitempty" url:"currency,omitempty"`
 	// Status. Available value: PROCESSING, SUCCESS, and FAILURE
 	Status *string `json:"status,omitempty" url:"status,omitempty"`
-	// Start time (milisecond)
+	// Start time (milliseconds)
 	StartAt *int64 `json:"startAt,omitempty" url:"startAt,omitempty"`
-	// End time (milisecond)
+	// End time (milliseconds)
 	EndAt *int64 `json:"endAt,omitempty" url:"endAt,omitempty"`
 	// Current request page.
 	CurrentPage *int32 `json:"currentPage,omitempty" url:"currentPage,omitempty"`
@@ -67,13 +67,13 @@ func (builder *GetDepositHistoryReqBuilder) SetStatus(value string) *GetDepositH
 	return builder
 }
 
-// Start time (milisecond)
+// Start time (milliseconds)
 func (builder *GetDepositHistoryReqBuilder) SetStartAt(value int64) *GetDepositHistoryReqBuilder {
 	builder.obj.StartAt = &value
 	return builder
 }
 
-// End time (milisecond)
+// End time (milliseconds)
 func (builder *GetDepositHistoryReqBuilder) SetEndAt(value int64) *GetDepositHistoryReqBuilder {
 	builder.obj.EndAt = &value
 	return builder

@@ -4,7 +4,7 @@ package positions
 
 // GetIsolatedMarginRiskLimitReq struct for GetIsolatedMarginRiskLimitReq
 type GetIsolatedMarginRiskLimitReq struct {
-	// Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)
+	// Symbol of the contract. Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)
 	Symbol *string `json:"symbol,omitempty" path:"symbol" url:"-"`
 }
 
@@ -36,7 +36,7 @@ func NewGetIsolatedMarginRiskLimitReqBuilder() *GetIsolatedMarginRiskLimitReqBui
 	return &GetIsolatedMarginRiskLimitReqBuilder{obj: NewGetIsolatedMarginRiskLimitReqWithDefaults()}
 }
 
-// Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)
+// Symbol of the contract. Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)
 func (builder *GetIsolatedMarginRiskLimitReqBuilder) SetSymbol(value string) *GetIsolatedMarginRiskLimitReqBuilder {
 	builder.obj.Symbol = &value
 	return builder

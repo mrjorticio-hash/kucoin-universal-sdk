@@ -11,7 +11,7 @@ import (
 type GetServerTimeResp struct {
 	// common response
 	CommonResponse *types.RestResponse
-	// ServerTime(millisecond)
+	// ServerTime (milliseconds)
 	Data int64 `json:"data,omitempty"`
 }
 

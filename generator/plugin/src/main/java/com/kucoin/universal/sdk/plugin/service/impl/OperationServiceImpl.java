@@ -143,7 +143,7 @@ public class OperationServiceImpl implements OperationService {
                 {"API-CHANNEL", operation.getExtensions().getOrDefault("x-api-channel", "NULL").toString().toUpperCase()},
                 {"API-PERMISSION", operation.getExtensions().getOrDefault("x-api-permission", "NULL").toString().toUpperCase()},
                 {"API-RATE-LIMIT-POOL", operation.getExtensions().getOrDefault("x-api-rate-limit-pool", "NULL").toString().toUpperCase()},
-                {"API-RATE-LIMIT", operation.getExtensions().getOrDefault("x-api-rate-limit", "NULL").toString().toUpperCase()},
+                {"API-RATE-LIMIT-WEIGHT", operation.getExtensions().getOrDefault("x-api-rate-limit-weight", "NULL").toString().toUpperCase()},
         };
 
         String[] extraComment = AsciiTable.getTable(AsciiTable.BASIC_ASCII_NO_DATA_SEPARATORS, new Column[]{

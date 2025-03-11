@@ -49,11 +49,11 @@ func TestTransferFlexTransferReq(t *testing.T) {
 
 func TestTransferSubAccountTransferReq(t *testing.T) {
     // SubAccountTransfer
-    // SubAccount Transfer
+    // Sub-account Transfer
     // /api/v2/accounts/sub-transfer
 
     builder := transfer.NewSubAccountTransferReqBuilder()
-    builder.SetClientOid(?).SetCurrency(?).SetAmount(?).SetDirection(?).SetAccountType(?).SetSubAccountType(?).SetSubUserId(?)
+    builder.SetClientOid(?).SetCurrency(?).SetAmount(?).SetDirection(?).SetAccountType(?).SetSubAccountType(?).SetSubUserId(?).SetTag(?).SetSubTag(?)
     req := builder.Build()
 
     resp, err := transferApi.SubAccountTransfer(req, context.TODO())
@@ -72,7 +72,7 @@ func TestTransferSubAccountTransferReq(t *testing.T) {
 
 func TestTransferInnerTransferReq(t *testing.T) {
     // InnerTransfer
-    // Inner Transfer
+    // Internal Transfer
     // /api/v2/accounts/inner-transfer
 
     builder := transfer.NewInnerTransferReqBuilder()

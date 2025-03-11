@@ -6,11 +6,11 @@ package withdrawal
 type GetWithdrawalHistoryReq struct {
 	// currency
 	Currency *string `json:"currency,omitempty" url:"currency,omitempty"`
-	// Status. Available value: PROCESSING, WALLET_PROCESSING, SUCCESS, and FAILURE
+	// Status. Available value: REVIEW, PROCESSING, WALLET_PROCESSING, SUCCESS and FAILURE
 	Status *string `json:"status,omitempty" url:"status,omitempty"`
-	// Start time (milisecond)
+	// Start time (milliseconds)
 	StartAt *int64 `json:"startAt,omitempty" url:"startAt,omitempty"`
-	// End time (milisecond)
+	// End time (milliseconds)
 	EndAt *int64 `json:"endAt,omitempty" url:"endAt,omitempty"`
 	// Current request page.
 	CurrentPage *int32 `json:"currentPage,omitempty" url:"currentPage,omitempty"`
@@ -65,19 +65,19 @@ func (builder *GetWithdrawalHistoryReqBuilder) SetCurrency(value string) *GetWit
 	return builder
 }
 
-// Status. Available value: PROCESSING, WALLET_PROCESSING, SUCCESS, and FAILURE
+// Status. Available value: REVIEW, PROCESSING, WALLET_PROCESSING, SUCCESS and FAILURE
 func (builder *GetWithdrawalHistoryReqBuilder) SetStatus(value string) *GetWithdrawalHistoryReqBuilder {
 	builder.obj.Status = &value
 	return builder
 }
 
-// Start time (milisecond)
+// Start time (milliseconds)
 func (builder *GetWithdrawalHistoryReqBuilder) SetStartAt(value int64) *GetWithdrawalHistoryReqBuilder {
 	builder.obj.StartAt = &value
 	return builder
 }
 
-// End time (milisecond)
+// End time (milliseconds)
 func (builder *GetWithdrawalHistoryReqBuilder) SetEndAt(value int64) *GetWithdrawalHistoryReqBuilder {
 	builder.obj.EndAt = &value
 	return builder

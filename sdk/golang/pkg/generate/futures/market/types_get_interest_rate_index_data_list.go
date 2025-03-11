@@ -4,11 +4,11 @@ package market
 
 // GetInterestRateIndexDataList struct for GetInterestRateIndexDataList
 type GetInterestRateIndexDataList struct {
-	// Symbol of the contract, Please refer to [Get Symbol endpoint: fundingBaseSymbol, fundingQuoteSymbol, fundingBaseSymbol1M, fundingQuoteSymbol1M](https://www.kucoin.com/docs-new/api-3470220)
+	// Symbol of the contract. Please refer to [Get Symbol endpoint: fundingBaseSymbol, fundingQuoteSymbol, fundingBaseSymbol1M, fundingQuoteSymbol1M](https://www.kucoin.com/docs-new/api-3470220)
 	Symbol string `json:"symbol,omitempty"`
-	// Granularity (milisecond)
+	// Granularity (milliseconds)
 	Granularity int32 `json:"granularity,omitempty"`
-	// Timestamp(milisecond)
+	// Timestamp (milliseconds)
 	TimePoint int64 `json:"timePoint,omitempty"`
 	// Interest rate value
 	Value float32 `json:"value,omitempty"`

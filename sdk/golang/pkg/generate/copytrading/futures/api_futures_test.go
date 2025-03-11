@@ -152,7 +152,7 @@ func TestFuturesGetMaxOpenSizeReqModel(t *testing.T) {
 	// Get Max Open Size
 	// /api/v1/copy-trade/futures/get-max-open-size
 
-	data := "{\"symbol\": \"XBTUSDTM\", \"price\": \"example_string_default_value\", \"leverage\": 123456}"
+	data := "{\"symbol\": \"XBTUSDTM\", \"price\": 123456.0, \"leverage\": 123456}"
 	req := &GetMaxOpenSizeReq{}
 	err := json.Unmarshal([]byte(data), req)
 	req.ToMap()
@@ -164,7 +164,7 @@ func TestFuturesGetMaxOpenSizeRespModel(t *testing.T) {
 	// Get Max Open Size
 	// /api/v1/copy-trade/futures/get-max-open-size
 
-	data := "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"symbol\": \"XBTUSDTM\",\n        \"maxBuyOpenSize\": \"8\",\n        \"maxSellOpenSize\": \"5\"\n    }\n}"
+	data := "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"symbol\": \"XBTUSDTM\",\n        \"maxBuyOpenSize\": 8,\n        \"maxSellOpenSize\": 5\n    }\n}"
 	commonResp := &types.RestResponse{}
 	err := json.Unmarshal([]byte(data), commonResp)
 	assert.Nil(t, err)

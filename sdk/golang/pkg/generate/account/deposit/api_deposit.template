@@ -3,7 +3,7 @@
 
 func TestDepositAddDepositAddressV3Req(t *testing.T) {
     // AddDepositAddressV3
-    // Add Deposit Address(V3)
+    // Add Deposit Address (V3)
     // /api/v3/deposit-address/create
 
     builder := deposit.NewAddDepositAddressV3ReqBuilder()
@@ -26,7 +26,7 @@ func TestDepositAddDepositAddressV3Req(t *testing.T) {
 
 func TestDepositGetDepositAddressV3Req(t *testing.T) {
     // GetDepositAddressV3
-    // Get Deposit Address(V3)
+    // Get Deposit Address (V3)
     // /api/v3/deposit-addresses
 
     builder := deposit.NewGetDepositAddressV3ReqBuilder()
@@ -72,11 +72,11 @@ func TestDepositGetDepositHistoryReq(t *testing.T) {
 
 func TestDepositGetDepositAddressV2Req(t *testing.T) {
     // GetDepositAddressV2
-    // Get Deposit Addresses(V2)
+    // Get Deposit Addresses (V2)
     // /api/v2/deposit-addresses
 
     builder := deposit.NewGetDepositAddressV2ReqBuilder()
-    builder.SetCurrency(?)
+    builder.SetCurrency(?).SetChain(?)
     req := builder.Build()
 
     resp, err := depositApi.GetDepositAddressV2(req, context.TODO())
@@ -145,7 +145,7 @@ func TestDepositAddDepositAddressV1Req(t *testing.T) {
     // /api/v1/deposit-addresses
 
     builder := deposit.NewAddDepositAddressV1ReqBuilder()
-    builder.SetCurrency(?).SetChain(?)
+    builder.SetCurrency(?).SetChain(?).SetTo(?)
     req := builder.Build()
 
     resp, err := depositApi.AddDepositAddressV1(req, context.TODO())

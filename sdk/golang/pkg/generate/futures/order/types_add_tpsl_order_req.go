@@ -40,7 +40,7 @@ type AddTPSLOrderReq struct {
 	Hidden *bool `json:"hidden,omitempty"`
 	// Optional for type is 'limit' order, Only visible portion of the order is displayed in the order book. When iceberg chose, not allowed choose postOnly.
 	Iceberg *bool `json:"iceberg,omitempty"`
-	// Optional for type is 'limit' order, The maximum visible size of an iceberg order. please place order in size (lots), The units of qty (base currency) and valueQty (value) are not supported.
+	// Optional for type is 'limit' order, The maximum visible size of an iceberg order. please place order in size (lots), The units of qty (base currency) and valueQty (value) are not supported. Need to be defined if iceberg is specified.
 	VisibleSize *string `json:"visibleSize,omitempty"`
 	// Take profit price
 	TriggerStopUpPrice *string `json:"triggerStopUpPrice,omitempty"`
@@ -249,7 +249,7 @@ func (builder *AddTPSLOrderReqBuilder) SetIceberg(value bool) *AddTPSLOrderReqBu
 	return builder
 }
 
-// Optional for type is 'limit' order, The maximum visible size of an iceberg order. please place order in size (lots), The units of qty (base currency) and valueQty (value) are not supported.
+// Optional for type is 'limit' order, The maximum visible size of an iceberg order. please place order in size (lots), The units of qty (base currency) and valueQty (value) are not supported. Need to be defined if iceberg is specified.
 func (builder *AddTPSLOrderReqBuilder) SetVisibleSize(value string) *AddTPSLOrderReqBuilder {
 	builder.obj.VisibleSize = &value
 	return builder

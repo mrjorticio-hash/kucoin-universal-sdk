@@ -9,13 +9,13 @@ type GetClosedOrdersItems struct {
 	// symbol
 	Symbol string `json:"symbol,omitempty"`
 	OpType string `json:"opType,omitempty"`
-	// Specify if the order is an 'limit' order or 'market' order.
+	// Specify if the order is a 'limit' order or 'market' order.
 	Type string `json:"type,omitempty"`
 	// Buy or sell
 	Side string `json:"side,omitempty"`
-	// Order price
+	// Order Price
 	Price string `json:"price,omitempty"`
-	// Order size
+	// Order Size
 	Size string `json:"size,omitempty"`
 	// Order Funds
 	Funds string `json:"funds,omitempty"`
@@ -25,7 +25,7 @@ type GetClosedOrdersItems struct {
 	DealFunds string `json:"dealFunds,omitempty"`
 	// [Handling fees](https://www.kucoin.com/docs-new/api-5327739)
 	Fee string `json:"fee,omitempty"`
-	// currency used to calculate trading fee
+	// Currency used to calculate trading fee
 	FeeCurrency string `json:"feeCurrency,omitempty"`
 	// [Self Trade Prevention](https://www.kucoin.com/docs-new/doc-338146) is divided into these strategies: CN, CO, CB , and DC
 	Stp           *string `json:"stp,omitempty"`
@@ -34,18 +34,18 @@ type GetClosedOrdersItems struct {
 	StopPrice     string  `json:"stopPrice,omitempty"`
 	// Time in force
 	TimeInForce string `json:"timeInForce,omitempty"`
-	// Whether its a postOnly order.
+	// Whether it’s a postOnly order.
 	PostOnly bool `json:"postOnly,omitempty"`
-	// Whether its a hidden order.
+	// Whether it’s a hidden order.
 	Hidden bool `json:"hidden,omitempty"`
-	// Whether its a iceberg order.
+	// Whether it’s a iceberg order.
 	Iceberg bool `json:"iceberg,omitempty"`
 	// Visible size of iceberg order in order book.
 	VisibleSize string `json:"visibleSize,omitempty"`
 	// A GTT timeInForce that expires in n seconds
 	CancelAfter int32  `json:"cancelAfter,omitempty"`
 	Channel     string `json:"channel,omitempty"`
-	// Client Order Id，unique identifier created by the user
+	// Client Order Id, unique identifier created by the user
 	ClientOid string `json:"clientOid,omitempty"`
 	// Order placement remarks
 	Remark *string `json:"remark,omitempty"`
@@ -57,7 +57,7 @@ type GetClosedOrdersItems struct {
 	LastUpdatedAt int64 `json:"lastUpdatedAt,omitempty"`
 	// Trade type, redundancy param
 	TradeType string `json:"tradeType,omitempty"`
-	// Whether to enter the orderbook: true: enter the orderbook; false: not enter the orderbook
+	// Whether to enter the orderbook: True: enter the orderbook; False: do not enter the orderbook
 	InOrderBook bool `json:"inOrderBook,omitempty"`
 	// Number of canceled transactions
 	CancelledSize string `json:"cancelledSize,omitempty"`
@@ -67,9 +67,9 @@ type GetClosedOrdersItems struct {
 	RemainSize string `json:"remainSize,omitempty"`
 	// Funds of remain transactions
 	RemainFunds string `json:"remainFunds,omitempty"`
-	// Users in some regions need query this field
+	// Users in some regions have this field
 	Tax string `json:"tax,omitempty"`
-	// Order status: true-The status of the order isactive; false-The status of the order is done
+	// Order status: true-The status of the order is active; false-The status of the order is done
 	Active bool `json:"active,omitempty"`
 }
 

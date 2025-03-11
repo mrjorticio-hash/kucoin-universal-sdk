@@ -4,7 +4,7 @@ package fee
 
 // GetFuturesActualFeeReq struct for GetFuturesActualFeeReq
 type GetFuturesActualFeeReq struct {
-	// Trading pair
+	// The unique identity of the trading pair; will not change even if the trading pair is renamed
 	Symbol *string `json:"symbol,omitempty" url:"symbol,omitempty"`
 }
 
@@ -36,7 +36,7 @@ func NewGetFuturesActualFeeReqBuilder() *GetFuturesActualFeeReqBuilder {
 	return &GetFuturesActualFeeReqBuilder{obj: NewGetFuturesActualFeeReqWithDefaults()}
 }
 
-// Trading pair
+// The unique identity of the trading pair; will not change even if the trading pair is renamed
 func (builder *GetFuturesActualFeeReqBuilder) SetSymbol(value string) *GetFuturesActualFeeReqBuilder {
 	builder.obj.Symbol = &value
 	return builder

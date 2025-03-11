@@ -10,9 +10,9 @@ import (
 type ModifyOrderResp struct {
 	// common response
 	CommonResponse *types.RestResponse
-	// The new order id
+	// The new order ID
 	NewOrderId string `json:"newOrderId,omitempty"`
-	// The original client order id
+	// The original client order ID
 	ClientOid string `json:"clientOid,omitempty"`
 }
 

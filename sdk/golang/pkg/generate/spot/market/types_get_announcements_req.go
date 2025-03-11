@@ -4,13 +4,13 @@ package market
 
 // GetAnnouncementsReq struct for GetAnnouncementsReq
 type GetAnnouncementsReq struct {
-	// page number
+	// Page number
 	CurrentPage *int64 `json:"currentPage,omitempty" url:"currentPage,omitempty"`
-	// page Size
+	// Page Size
 	PageSize *int64 `json:"pageSize,omitempty" url:"pageSize,omitempty"`
-	// Announcement types: latest-announcements , activities (latest activities), new-listings (new currency online), product-updates (product updates), vip (institutions and VIPs), maintenance-updates (system maintenance), product -updates (product news), delistings (currency offline), others, api-campaigns (API user activities), default : latest-announcements
+	// Announcement types: latest-announcements, activities (latest activities), new-listings (new currency online), product-updates (product updates), vip (institutions and VIPs), maintenance-updates (system maintenance), product-updates (product news), delistings (currency offline), others, api-campaigns (API user activities), default: latest-announcements
 	AnnType *string `json:"annType,omitempty" url:"annType,omitempty"`
-	// Language type, the default is en_US, the specific value parameters are as follows
+	// Language type: The default is en_US, the specific value parameters are as follows
 	Lang *string `json:"lang,omitempty" url:"lang,omitempty"`
 	// Announcement online start time (milliseconds)
 	StartTime *int64 `json:"startTime,omitempty" url:"startTime,omitempty"`
@@ -59,25 +59,25 @@ func NewGetAnnouncementsReqBuilder() *GetAnnouncementsReqBuilder {
 	return &GetAnnouncementsReqBuilder{obj: NewGetAnnouncementsReqWithDefaults()}
 }
 
-// page number
+// Page number
 func (builder *GetAnnouncementsReqBuilder) SetCurrentPage(value int64) *GetAnnouncementsReqBuilder {
 	builder.obj.CurrentPage = &value
 	return builder
 }
 
-// page Size
+// Page Size
 func (builder *GetAnnouncementsReqBuilder) SetPageSize(value int64) *GetAnnouncementsReqBuilder {
 	builder.obj.PageSize = &value
 	return builder
 }
 
-// Announcement types: latest-announcements , activities (latest activities), new-listings (new currency online), product-updates (product updates), vip (institutions and VIPs), maintenance-updates (system maintenance), product -updates (product news), delistings (currency offline), others, api-campaigns (API user activities), default : latest-announcements
+// Announcement types: latest-announcements, activities (latest activities), new-listings (new currency online), product-updates (product updates), vip (institutions and VIPs), maintenance-updates (system maintenance), product-updates (product news), delistings (currency offline), others, api-campaigns (API user activities), default: latest-announcements
 func (builder *GetAnnouncementsReqBuilder) SetAnnType(value string) *GetAnnouncementsReqBuilder {
 	builder.obj.AnnType = &value
 	return builder
 }
 
-// Language type, the default is en_US, the specific value parameters are as follows
+// Language type: The default is en_US, the specific value parameters are as follows
 func (builder *GetAnnouncementsReqBuilder) SetLang(value string) *GetAnnouncementsReqBuilder {
 	builder.obj.Lang = &value
 	return builder

@@ -65,7 +65,7 @@ func TestTransferFlexTransferRespModel(t *testing.T) {
 
 func TestTransferSubAccountTransferReqModel(t *testing.T) {
 	// SubAccountTransfer
-	// SubAccount Transfer
+	// Sub-account Transfer
 	// /api/v2/accounts/sub-transfer
 
 	data := "{\"clientOid\": \"64ccc0f164781800010d8c09\", \"currency\": \"USDT\", \"amount\": \"0.01\", \"direction\": \"OUT\", \"accountType\": \"MAIN\", \"subAccountType\": \"MAIN\", \"subUserId\": \"63743f07e0c5230001761d08\"}"
@@ -77,7 +77,7 @@ func TestTransferSubAccountTransferReqModel(t *testing.T) {
 
 func TestTransferSubAccountTransferRespModel(t *testing.T) {
 	// SubAccountTransfer
-	// SubAccount Transfer
+	// Sub-account Transfer
 	// /api/v2/accounts/sub-transfer
 
 	data := "{\"code\":\"200000\",\"data\":{\"orderId\":\"670be6b0b1b9080007040a9b\"}}"
@@ -93,7 +93,7 @@ func TestTransferSubAccountTransferRespModel(t *testing.T) {
 
 func TestTransferInnerTransferReqModel(t *testing.T) {
 	// InnerTransfer
-	// Inner Transfer
+	// Internal Transfer
 	// /api/v2/accounts/inner-transfer
 
 	data := "{\"clientOid\": \"64ccc0f164781800010d8c09\", \"currency\": \"USDT\", \"amount\": \"0.01\", \"from\": \"main\", \"to\": \"trade\"}"
@@ -105,7 +105,7 @@ func TestTransferInnerTransferReqModel(t *testing.T) {
 
 func TestTransferInnerTransferRespModel(t *testing.T) {
 	// InnerTransfer
-	// Inner Transfer
+	// Internal Transfer
 	// /api/v2/accounts/inner-transfer
 
 	data := "{\"code\":\"200000\",\"data\":{\"orderId\":\"670beb3482a1bb0007dec644\"}}"

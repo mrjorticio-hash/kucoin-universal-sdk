@@ -4,7 +4,7 @@ package account
 
 // GetFuturesAccountReq struct for GetFuturesAccountReq
 type GetFuturesAccountReq struct {
-	// Currecny, Default XBT
+	// Currency, Default XBT
 	Currency *string `json:"currency,omitempty" url:"currency,omitempty"`
 }
 
@@ -40,7 +40,7 @@ func NewGetFuturesAccountReqBuilder() *GetFuturesAccountReqBuilder {
 	return &GetFuturesAccountReqBuilder{obj: NewGetFuturesAccountReqWithDefaults()}
 }
 
-// Currecny, Default XBT
+// Currency, Default XBT
 func (builder *GetFuturesAccountReqBuilder) SetCurrency(value string) *GetFuturesAccountReqBuilder {
 	builder.obj.Currency = &value
 	return builder

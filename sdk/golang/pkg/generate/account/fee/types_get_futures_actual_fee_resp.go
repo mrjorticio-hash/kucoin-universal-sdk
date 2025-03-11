@@ -10,7 +10,7 @@ import (
 type GetFuturesActualFeeResp struct {
 	// common response
 	CommonResponse *types.RestResponse
-	// The unique identity of the trading pair and will not change even if the trading pair is renamed
+	// The unique identity of the trading pair; will not change even if the trading pair is renamed
 	Symbol string `json:"symbol,omitempty"`
 	// Actual taker fee rate of the trading pair
 	TakerFeeRate string `json:"takerFeeRate,omitempty"`

@@ -10,15 +10,15 @@ import (
 type GetOpenOrderValueResp struct {
 	// common response
 	CommonResponse *types.RestResponse
-	// Total number of the unexecuted buy orders
+	// Total number of unexecuted buy orders
 	OpenOrderBuySize int32 `json:"openOrderBuySize,omitempty"`
-	// Total number of the unexecuted sell orders
+	// Total number of unexecuted sell orders
 	OpenOrderSellSize int32 `json:"openOrderSellSize,omitempty"`
-	// Value of all the unexecuted buy orders
+	// Value of all unexecuted buy orders
 	OpenOrderBuyCost string `json:"openOrderBuyCost,omitempty"`
-	// Value of all the unexecuted sell orders
+	// Value of all unexecuted sell orders
 	OpenOrderSellCost string `json:"openOrderSellCost,omitempty"`
-	// settlement currency
+	// Settlement currency
 	SettleCurrency string `json:"settleCurrency,omitempty"`
 }
 

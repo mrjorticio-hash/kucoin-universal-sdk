@@ -7,7 +7,7 @@ func TestOrderAddOrderReq(t *testing.T) {
     // /api/v1/hf/orders
 
     builder := order.NewAddOrderReqBuilder()
-    builder.SetClientOid(?).SetSide(?).SetSymbol(?).SetType(?).SetRemark(?).SetStp(?).SetPrice(?).SetSize(?).SetTimeInForce(?).SetPostOnly(?).SetHidden(?).SetIceberg(?).SetVisibleSize(?).SetTags(?).SetCancelAfter(?).SetFunds(?)
+    builder.SetClientOid(?).SetSide(?).SetSymbol(?).SetType(?).SetRemark(?).SetStp(?).SetPrice(?).SetSize(?).SetTimeInForce(?).SetPostOnly(?).SetHidden(?).SetIceberg(?).SetVisibleSize(?).SetTags(?).SetCancelAfter(?).SetFunds(?).SetAllowMaxTimeWindow(?).SetClientTimestamp(?)
     req := builder.Build()
 
     resp, err := orderApi.AddOrder(req, context.TODO())
@@ -30,7 +30,7 @@ func TestOrderAddOrderSyncReq(t *testing.T) {
     // /api/v1/hf/orders/sync
 
     builder := order.NewAddOrderSyncReqBuilder()
-    builder.SetClientOid(?).SetSide(?).SetSymbol(?).SetType(?).SetRemark(?).SetStp(?).SetPrice(?).SetSize(?).SetTimeInForce(?).SetPostOnly(?).SetHidden(?).SetIceberg(?).SetVisibleSize(?).SetTags(?).SetCancelAfter(?).SetFunds(?)
+    builder.SetClientOid(?).SetSide(?).SetSymbol(?).SetType(?).SetRemark(?).SetStp(?).SetPrice(?).SetSize(?).SetTimeInForce(?).SetPostOnly(?).SetHidden(?).SetIceberg(?).SetVisibleSize(?).SetTags(?).SetCancelAfter(?).SetFunds(?).SetAllowMaxTimeWindow(?).SetClientTimestamp(?)
     req := builder.Build()
 
     resp, err := orderApi.AddOrderSync(req, context.TODO())
@@ -53,7 +53,7 @@ func TestOrderAddOrderTestReq(t *testing.T) {
     // /api/v1/hf/orders/test
 
     builder := order.NewAddOrderTestReqBuilder()
-    builder.SetClientOid(?).SetSide(?).SetSymbol(?).SetType(?).SetRemark(?).SetStp(?).SetPrice(?).SetSize(?).SetTimeInForce(?).SetPostOnly(?).SetHidden(?).SetIceberg(?).SetVisibleSize(?).SetTags(?).SetCancelAfter(?).SetFunds(?)
+    builder.SetClientOid(?).SetSide(?).SetSymbol(?).SetType(?).SetRemark(?).SetStp(?).SetPrice(?).SetSize(?).SetTimeInForce(?).SetPostOnly(?).SetHidden(?).SetIceberg(?).SetVisibleSize(?).SetTags(?).SetCancelAfter(?).SetFunds(?).SetAllowMaxTimeWindow(?).SetClientTimestamp(?)
     req := builder.Build()
 
     resp, err := orderApi.AddOrderTest(req, context.TODO())
@@ -122,7 +122,7 @@ func TestOrderCancelOrderByOrderIdReq(t *testing.T) {
     // /api/v1/hf/orders/{orderId}
 
     builder := order.NewCancelOrderByOrderIdReqBuilder()
-    builder.SetOrderId(?).SetSymbol(?)
+    builder.SetSymbol(?).SetOrderId(?)
     req := builder.Build()
 
     resp, err := orderApi.CancelOrderByOrderId(req, context.TODO())
@@ -145,7 +145,7 @@ func TestOrderCancelOrderByOrderIdSyncReq(t *testing.T) {
     // /api/v1/hf/orders/sync/{orderId}
 
     builder := order.NewCancelOrderByOrderIdSyncReqBuilder()
-    builder.SetOrderId(?).SetSymbol(?)
+    builder.SetSymbol(?).SetOrderId(?)
     req := builder.Build()
 
     resp, err := orderApi.CancelOrderByOrderIdSync(req, context.TODO())
@@ -191,7 +191,7 @@ func TestOrderCancelOrderByClientOidSyncReq(t *testing.T) {
     // /api/v1/hf/orders/sync/client-order/{clientOid}
 
     builder := order.NewCancelOrderByClientOidSyncReqBuilder()
-    builder.SetClientOid(?).SetSymbol(?)
+    builder.SetSymbol(?).SetClientOid(?)
     req := builder.Build()
 
     resp, err := orderApi.CancelOrderByClientOidSync(req, context.TODO())
@@ -895,7 +895,7 @@ func TestOrderCancelOrderByOrderIdOldReq(t *testing.T) {
     // /api/v1/orders/{orderId}
 
     builder := order.NewCancelOrderByOrderIdOldReqBuilder()
-    builder.SetSymbol(?).SetOrderId(?)
+    builder.SetOrderId(?)
     req := builder.Build()
 
     resp, err := orderApi.CancelOrderByOrderIdOld(req, context.TODO())
@@ -918,7 +918,7 @@ func TestOrderCancelOrderByClientOidOldReq(t *testing.T) {
     // /api/v1/order/client-order/{clientOid}
 
     builder := order.NewCancelOrderByClientOidOldReqBuilder()
-    builder.SetSymbol(?).SetClientOid(?)
+    builder.SetClientOid(?)
     req := builder.Build()
 
     resp, err := orderApi.CancelOrderByClientOidOld(req, context.TODO())
@@ -986,11 +986,8 @@ func TestOrderGetRecentOrdersListOldReq(t *testing.T) {
     // Get Recent Orders List - Old
     // /api/v1/limit/orders
 
-    builder := order.NewGetRecentOrdersListOldReqBuilder()
-    builder.SetCurrentPage(?).SetPageSize(?)
-    req := builder.Build()
 
-    resp, err := orderApi.GetRecentOrdersListOld(req, context.TODO())
+    resp, err := orderApi.GetRecentOrdersListOld(context.TODO())
     if err != nil {
         panic(err)
     }
@@ -1078,11 +1075,8 @@ func TestOrderGetRecentTradeHistoryOldReq(t *testing.T) {
     // Get Recent Trade History - Old
     // /api/v1/limit/fills
 
-    builder := order.NewGetRecentTradeHistoryOldReqBuilder()
-    builder.SetCurrentPage(?).SetPageSize(?)
-    req := builder.Build()
 
-    resp, err := orderApi.GetRecentTradeHistoryOld(req, context.TODO())
+    resp, err := orderApi.GetRecentTradeHistoryOld(context.TODO())
     if err != nil {
         panic(err)
     }

@@ -26,7 +26,7 @@ func TestWithdrawalGetWithdrawalQuotasReq(t *testing.T) {
 
 func TestWithdrawalWithdrawalV3Req(t *testing.T) {
     // WithdrawalV3
-    // Withdraw(V3)
+    // Withdraw (V3)
     // /api/v3/withdrawals
 
     builder := withdrawal.NewWithdrawalV3ReqBuilder()

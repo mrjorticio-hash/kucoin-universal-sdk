@@ -4,11 +4,11 @@ package risklimit
 
 // GetMarginRiskLimitReq struct for GetMarginRiskLimitReq
 type GetMarginRiskLimitReq struct {
-	// true-isolated, false-cross
+	// True-isolated, false-cross
 	IsIsolated *bool `json:"isIsolated,omitempty" url:"isIsolated,omitempty"`
-	// currency, This field is only required for cross margin
+	// Currency: This field is only required for cross margin
 	Currency *string `json:"currency,omitempty" url:"currency,omitempty"`
-	// symbol, This field is only required for isolated margin
+	// Symbol: This field is only required for isolated margin
 	Symbol *string `json:"symbol,omitempty" url:"symbol,omitempty"`
 }
 
@@ -42,19 +42,19 @@ func NewGetMarginRiskLimitReqBuilder() *GetMarginRiskLimitReqBuilder {
 	return &GetMarginRiskLimitReqBuilder{obj: NewGetMarginRiskLimitReqWithDefaults()}
 }
 
-// true-isolated, false-cross
+// True-isolated, false-cross
 func (builder *GetMarginRiskLimitReqBuilder) SetIsIsolated(value bool) *GetMarginRiskLimitReqBuilder {
 	builder.obj.IsIsolated = &value
 	return builder
 }
 
-// currency, This field is only required for cross margin
+// Currency: This field is only required for cross margin
 func (builder *GetMarginRiskLimitReqBuilder) SetCurrency(value string) *GetMarginRiskLimitReqBuilder {
 	builder.obj.Currency = &value
 	return builder
 }
 
-// symbol, This field is only required for isolated margin
+// Symbol: This field is only required for isolated margin
 func (builder *GetMarginRiskLimitReqBuilder) SetSymbol(value string) *GetMarginRiskLimitReqBuilder {
 	builder.obj.Symbol = &value
 	return builder

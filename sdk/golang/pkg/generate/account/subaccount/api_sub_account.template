@@ -3,7 +3,7 @@
 
 func TestSubAccountAddSubAccountReq(t *testing.T) {
     // AddSubAccount
-    // Add SubAccount
+    // Add sub-account
     // /api/v2/sub/user/created
 
     builder := subaccount.NewAddSubAccountReqBuilder()
@@ -26,7 +26,7 @@ func TestSubAccountAddSubAccountReq(t *testing.T) {
 
 func TestSubAccountAddSubAccountMarginPermissionReq(t *testing.T) {
     // AddSubAccountMarginPermission
-    // Add SubAccount Margin Permission
+    // Add sub-account Margin Permission
     // /api/v3/sub/user/margin/enable
 
     builder := subaccount.NewAddSubAccountMarginPermissionReqBuilder()
@@ -49,7 +49,7 @@ func TestSubAccountAddSubAccountMarginPermissionReq(t *testing.T) {
 
 func TestSubAccountAddSubAccountFuturesPermissionReq(t *testing.T) {
     // AddSubAccountFuturesPermission
-    // Add SubAccount Futures Permission
+    // Add sub-account Futures Permission
     // /api/v3/sub/user/futures/enable
 
     builder := subaccount.NewAddSubAccountFuturesPermissionReqBuilder()
@@ -72,7 +72,7 @@ func TestSubAccountAddSubAccountFuturesPermissionReq(t *testing.T) {
 
 func TestSubAccountGetSpotSubAccountsSummaryV2Req(t *testing.T) {
     // GetSpotSubAccountsSummaryV2
-    // Get SubAccount List - Summary Info
+    // Get sub-account List - Summary Info
     // /api/v2/sub/user
 
     builder := subaccount.NewGetSpotSubAccountsSummaryV2ReqBuilder()
@@ -95,11 +95,11 @@ func TestSubAccountGetSpotSubAccountsSummaryV2Req(t *testing.T) {
 
 func TestSubAccountGetSpotSubAccountDetailReq(t *testing.T) {
     // GetSpotSubAccountDetail
-    // Get SubAccount Detail - Balance
+    // Get sub-account Detail - Balance
     // /api/v1/sub-accounts/{subUserId}
 
     builder := subaccount.NewGetSpotSubAccountDetailReqBuilder()
-    builder.SetSubUserId(?).SetIncludeBaseAmount(?)
+    builder.SetIncludeBaseAmount(?).SetBaseCurrency(?).SetBaseAmount(?).SetSubUserId(?)
     req := builder.Build()
 
     resp, err := subaccountApi.GetSpotSubAccountDetail(req, context.TODO())
@@ -118,7 +118,7 @@ func TestSubAccountGetSpotSubAccountDetailReq(t *testing.T) {
 
 func TestSubAccountGetSpotSubAccountListV2Req(t *testing.T) {
     // GetSpotSubAccountListV2
-    // Get SubAccount List - Spot Balance(V2)
+    // Get sub-account List - Spot Balance (V2)
     // /api/v2/sub-accounts
 
     builder := subaccount.NewGetSpotSubAccountListV2ReqBuilder()
@@ -141,7 +141,7 @@ func TestSubAccountGetSpotSubAccountListV2Req(t *testing.T) {
 
 func TestSubAccountGetFuturesSubAccountListV2Req(t *testing.T) {
     // GetFuturesSubAccountListV2
-    // Get SubAccount List - Futures Balance(V2)
+    // Get sub-account List - Futures Balance (V2)
     // /api/v1/account-overview-all
 
     builder := subaccount.NewGetFuturesSubAccountListV2ReqBuilder()
@@ -164,7 +164,7 @@ func TestSubAccountGetFuturesSubAccountListV2Req(t *testing.T) {
 
 func TestSubAccountAddSubAccountApiReq(t *testing.T) {
     // AddSubAccountApi
-    // Add SubAccount API
+    // Add sub-account API
     // /api/v1/sub/api-key
 
     builder := subaccount.NewAddSubAccountApiReqBuilder()
@@ -187,7 +187,7 @@ func TestSubAccountAddSubAccountApiReq(t *testing.T) {
 
 func TestSubAccountModifySubAccountApiReq(t *testing.T) {
     // ModifySubAccountApi
-    // Modify SubAccount API
+    // Modify sub-account API
     // /api/v1/sub/api-key/update
 
     builder := subaccount.NewModifySubAccountApiReqBuilder()
@@ -210,7 +210,7 @@ func TestSubAccountModifySubAccountApiReq(t *testing.T) {
 
 func TestSubAccountGetSubAccountApiListReq(t *testing.T) {
     // GetSubAccountApiList
-    // Get SubAccount API List
+    // Get sub-account API List
     // /api/v1/sub/api-key
 
     builder := subaccount.NewGetSubAccountApiListReqBuilder()
@@ -233,7 +233,7 @@ func TestSubAccountGetSubAccountApiListReq(t *testing.T) {
 
 func TestSubAccountDeleteSubAccountApiReq(t *testing.T) {
     // DeleteSubAccountApi
-    // Delete SubAccount API
+    // Delete sub-account API
     // /api/v1/sub/api-key
 
     builder := subaccount.NewDeleteSubAccountApiReqBuilder()
@@ -256,7 +256,7 @@ func TestSubAccountDeleteSubAccountApiReq(t *testing.T) {
 
 func TestSubAccountGetSpotSubAccountsSummaryV1Req(t *testing.T) {
     // GetSpotSubAccountsSummaryV1
-    // Get SubAccount List - Summary Info(V1)
+    // Get sub-account List - Summary Info (V1)
     // /api/v1/sub/user
 
 
@@ -276,7 +276,7 @@ func TestSubAccountGetSpotSubAccountsSummaryV1Req(t *testing.T) {
 
 func TestSubAccountGetSpotSubAccountListV1Req(t *testing.T) {
     // GetSpotSubAccountListV1
-    // Get SubAccount List - Spot Balance(V1)
+    // Get sub-account List - Spot Balance (V1)
     // /api/v1/sub-accounts
 
 

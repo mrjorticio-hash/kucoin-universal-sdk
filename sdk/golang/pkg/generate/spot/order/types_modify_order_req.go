@@ -4,15 +4,15 @@ package order
 
 // ModifyOrderReq struct for ModifyOrderReq
 type ModifyOrderReq struct {
-	// The old client order id,orderId and clientOid must choose one
+	// One must be chose out of the old client order ID, orderId and clientOid
 	ClientOid *string `json:"clientOid,omitempty"`
 	// symbol
 	Symbol string `json:"symbol,omitempty"`
-	// The old order id, orderId and clientOid must choose one
+	// One must be chosen out of the old order id, orderId and clientOid
 	OrderId *string `json:"orderId,omitempty"`
-	// The modified price of the new order, newPrice and newSize must choose one
+	// One must be chosen out of the modified price of the new order, newPrice and newSize
 	NewPrice *string `json:"newPrice,omitempty"`
-	// The modified size of the new order, newPrice and newSize must choose one
+	// One must be chosen out of the modified size of the new order, newPrice and newSize
 	NewSize *string `json:"newSize,omitempty"`
 }
 
@@ -49,7 +49,7 @@ func NewModifyOrderReqBuilder() *ModifyOrderReqBuilder {
 	return &ModifyOrderReqBuilder{obj: NewModifyOrderReqWithDefaults()}
 }
 
-// The old client order id,orderId and clientOid must choose one
+// One must be chose out of the old client order ID, orderId and clientOid
 func (builder *ModifyOrderReqBuilder) SetClientOid(value string) *ModifyOrderReqBuilder {
 	builder.obj.ClientOid = &value
 	return builder
@@ -61,19 +61,19 @@ func (builder *ModifyOrderReqBuilder) SetSymbol(value string) *ModifyOrderReqBui
 	return builder
 }
 
-// The old order id, orderId and clientOid must choose one
+// One must be chosen out of the old order id, orderId and clientOid
 func (builder *ModifyOrderReqBuilder) SetOrderId(value string) *ModifyOrderReqBuilder {
 	builder.obj.OrderId = &value
 	return builder
 }
 
-// The modified price of the new order, newPrice and newSize must choose one
+// One must be chosen out of the modified price of the new order, newPrice and newSize
 func (builder *ModifyOrderReqBuilder) SetNewPrice(value string) *ModifyOrderReqBuilder {
 	builder.obj.NewPrice = &value
 	return builder
 }
 
-// The modified size of the new order, newPrice and newSize must choose one
+// One must be chosen out of the modified size of the new order, newPrice and newSize
 func (builder *ModifyOrderReqBuilder) SetNewSize(value string) *ModifyOrderReqBuilder {
 	builder.obj.NewSize = &value
 	return builder

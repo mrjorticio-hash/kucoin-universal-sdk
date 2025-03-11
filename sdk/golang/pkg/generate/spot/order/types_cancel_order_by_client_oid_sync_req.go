@@ -4,10 +4,10 @@ package order
 
 // CancelOrderByClientOidSyncReq struct for CancelOrderByClientOidSyncReq
 type CancelOrderByClientOidSyncReq struct {
-	// Client Order Id，unique identifier created by the user
-	ClientOid *string `json:"clientOid,omitempty" path:"clientOid" url:"-"`
 	// symbol
 	Symbol *string `json:"symbol,omitempty" url:"symbol,omitempty"`
+	// Client Order Id，unique identifier created by the user
+	ClientOid *string `json:"clientOid,omitempty" path:"clientOid" url:"-"`
 }
 
 // NewCancelOrderByClientOidSyncReq instantiates a new CancelOrderByClientOidSyncReq object
@@ -26,8 +26,8 @@ func NewCancelOrderByClientOidSyncReqWithDefaults() *CancelOrderByClientOidSyncR
 
 func (o *CancelOrderByClientOidSyncReq) ToMap() map[string]interface{} {
 	toSerialize := map[string]interface{}{}
-	toSerialize["clientOid"] = o.ClientOid
 	toSerialize["symbol"] = o.Symbol
+	toSerialize["clientOid"] = o.ClientOid
 	return toSerialize
 }
 
@@ -39,15 +39,15 @@ func NewCancelOrderByClientOidSyncReqBuilder() *CancelOrderByClientOidSyncReqBui
 	return &CancelOrderByClientOidSyncReqBuilder{obj: NewCancelOrderByClientOidSyncReqWithDefaults()}
 }
 
-// Client Order Id，unique identifier created by the user
-func (builder *CancelOrderByClientOidSyncReqBuilder) SetClientOid(value string) *CancelOrderByClientOidSyncReqBuilder {
-	builder.obj.ClientOid = &value
-	return builder
-}
-
 // symbol
 func (builder *CancelOrderByClientOidSyncReqBuilder) SetSymbol(value string) *CancelOrderByClientOidSyncReqBuilder {
 	builder.obj.Symbol = &value
+	return builder
+}
+
+// Client Order Id，unique identifier created by the user
+func (builder *CancelOrderByClientOidSyncReqBuilder) SetClientOid(value string) *CancelOrderByClientOidSyncReqBuilder {
+	builder.obj.ClientOid = &value
 	return builder
 }
 

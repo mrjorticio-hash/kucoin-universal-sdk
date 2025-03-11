@@ -11,7 +11,7 @@ import (
 type GetAllSymbolsResp struct {
 	// common response
 	CommonResponse *types.RestResponse
-	// the list of all contracts
+	// List of all contracts
 	Data []GetAllSymbolsData `json:"data,omitempty"`
 }
 

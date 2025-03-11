@@ -10,7 +10,7 @@ import (
 type ModifySubAccountApiResp struct {
 	// common response
 	CommonResponse *types.RestResponse
-	// Sub-Account UID
+	// Sub-account UID
 	Uid string `json:"uid,omitempty"`
 	// apikey remarks
 	Label string `json:"label,omitempty"`
@@ -22,7 +22,7 @@ type ModifySubAccountApiResp struct {
 	Permissions []string `json:"permissions,omitempty"`
 	// IP whitelist list
 	IpWhitelist []string `json:"ipWhitelist,omitempty"`
-	// Creation time, unix timestamp (milliseconds)
+	// Creation time, Unix timestamp (milliseconds)
 	CreatedAt int64 `json:"createdAt,omitempty"`
 }
 

@@ -68,7 +68,7 @@ func TestOrderCancelOrderByOrderIdReqModel(t *testing.T) {
 	// Cancel Order By OrderId
 	// /api/v3/hf/margin/orders/{orderId}
 
-	data := "{\"orderId\": \"671663e02188630007e21c9c\", \"symbol\": \"BTC-USDT\"}"
+	data := "{\"symbol\": \"BTC-USDT\", \"orderId\": \"671663e02188630007e21c9c\"}"
 	req := &CancelOrderByOrderIdReq{}
 	err := json.Unmarshal([]byte(data), req)
 	req.ToMap()
@@ -96,7 +96,7 @@ func TestOrderCancelOrderByClientOidReqModel(t *testing.T) {
 	// Cancel Order By ClientOid
 	// /api/v3/hf/margin/orders/client-order/{clientOid}
 
-	data := "{\"clientOid\": \"5c52e11203aa677f33e1493fb\", \"symbol\": \"BTC-USDT\"}"
+	data := "{\"symbol\": \"BTC-USDT\", \"clientOid\": \"5c52e11203aa677f33e1493fb\"}"
 	req := &CancelOrderByClientOidReq{}
 	err := json.Unmarshal([]byte(data), req)
 	req.ToMap()

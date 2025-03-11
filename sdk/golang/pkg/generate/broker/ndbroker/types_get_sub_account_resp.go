@@ -16,7 +16,7 @@ type GetSubAccountResp struct {
 	PageSize int32 `json:"pageSize,omitempty"`
 	// Total Number
 	TotalNum int32 `json:"totalNum,omitempty"`
-	// Total Page
+	// Total Pages
 	TotalPage int32                `json:"totalPage,omitempty"`
 	Items     []GetSubAccountItems `json:"items,omitempty"`
 }

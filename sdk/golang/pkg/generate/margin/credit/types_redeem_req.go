@@ -8,7 +8,7 @@ type RedeemReq struct {
 	Currency string `json:"currency,omitempty"`
 	// Redemption amount
 	Size string `json:"size,omitempty"`
-	// Purchase order id
+	// Purchase order ID
 	PurchaseOrderNo string `json:"purchaseOrderNo,omitempty"`
 }
 
@@ -57,7 +57,7 @@ func (builder *RedeemReqBuilder) SetSize(value string) *RedeemReqBuilder {
 	return builder
 }
 
-// Purchase order id
+// Purchase order ID
 func (builder *RedeemReqBuilder) SetPurchaseOrderNo(value string) *RedeemReqBuilder {
 	builder.obj.PurchaseOrderNo = value
 	return builder

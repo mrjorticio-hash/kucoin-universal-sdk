@@ -14,11 +14,11 @@ type GetSavingsProductsData struct {
 	Type string `json:"type,omitempty"`
 	// Maximum precision supported
 	Precision int32 `json:"precision,omitempty"`
-	// Products total subscribe amount
+	// Products total subscription amount
 	ProductUpperLimit string `json:"productUpperLimit,omitempty"`
-	// Max user subscribe amount
+	// Max. user subscription amount
 	UserUpperLimit string `json:"userUpperLimit,omitempty"`
-	// Min user subscribe amount
+	// Min. user subscribe amount
 	UserLowerLimit string `json:"userLowerLimit,omitempty"`
 	// Redemption waiting period (days)
 	RedeemPeriod int32 `json:"redeemPeriod,omitempty"`
@@ -36,19 +36,19 @@ type GetSavingsProductsData struct {
 	IncomeCurrency string `json:"incomeCurrency,omitempty"`
 	// Whether the fixed product supports early redemption: 0 (no), 1 (yes)
 	EarlyRedeemSupported int32 `json:"earlyRedeemSupported,omitempty"`
-	// Products remain subscribe amount
+	// Remaining product subscription amount
 	ProductRemainAmount string `json:"productRemainAmount,omitempty"`
-	// Product status: ONGOING(Subscription in progress), PENDING(Preheating Subscription), FULL(Subscribed), INTERESTING (Interest in progress)
+	// Product status: ONGOING (Subscription in progress), PENDING (Preheating Subscription), FULL (Subscribed), INTERESTING (Interest in progress)
 	Status string `json:"status,omitempty"`
 	// Redemption channel: MANUAL (manual redemption), TRANS_DEMAND (transfer to corresponding demand product upon maturity), AUTO (redeem to funding account upon maturity)
 	RedeemType string `json:"redeemType,omitempty"`
 	// Income release type: DAILY (daily release), AFTER (release after product ends)
 	IncomeReleaseType string `json:"incomeReleaseType,omitempty"`
-	// Most recent interest date(millisecond)
+	// Most recent interest date (milliseconds)
 	InterestDate int64 `json:"interestDate,omitempty"`
 	// Product duration (days)
 	Duration int32 `json:"duration,omitempty"`
-	// Whether the product is exclusive for new users: 0 (no), 1 (yes)
+	// Whether the product is exclusive to new users: 0 (no), 1 (yes)
 	NewUserOnly int32 `json:"newUserOnly,omitempty"`
 }
 

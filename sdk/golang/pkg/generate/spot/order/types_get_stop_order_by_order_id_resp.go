@@ -18,7 +18,7 @@ type GetStopOrderByOrderIdResp struct {
 	UserId *string `json:"userId,omitempty"`
 	// Order status, include NEW, TRIGGERED
 	Status *string `json:"status,omitempty"`
-	// Order type,limit, market, limit_stop or market_stop
+	// Order type
 	Type *string `json:"type,omitempty"`
 	// transaction direction,include buy and sell
 	Side *string `json:"side,omitempty"`

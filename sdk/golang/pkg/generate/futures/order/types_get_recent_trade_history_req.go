@@ -4,7 +4,7 @@ package order
 
 // GetRecentTradeHistoryReq struct for GetRecentTradeHistoryReq
 type GetRecentTradeHistoryReq struct {
-	// Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)
+	// Symbol of the contract. Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)
 	Symbol *string `json:"symbol,omitempty" url:"symbol,omitempty"`
 }
 
@@ -36,7 +36,7 @@ func NewGetRecentTradeHistoryReqBuilder() *GetRecentTradeHistoryReqBuilder {
 	return &GetRecentTradeHistoryReqBuilder{obj: NewGetRecentTradeHistoryReqWithDefaults()}
 }
 
-// Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)
+// Symbol of the contract. Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)
 func (builder *GetRecentTradeHistoryReqBuilder) SetSymbol(value string) *GetRecentTradeHistoryReqBuilder {
 	builder.obj.Symbol = &value
 	return builder

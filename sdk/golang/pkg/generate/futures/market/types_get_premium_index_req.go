@@ -4,19 +4,19 @@ package market
 
 // GetPremiumIndexReq struct for GetPremiumIndexReq
 type GetPremiumIndexReq struct {
-	// Symbol of the contract, Please refer to [Get Symbol endpoint: premiumsSymbol1M, premiumsSymbol8H](https://www.kucoin.com/docs-new/api-3470220)
+	// Symbol of the contract. Please refer to [Get Symbol endpoint: premiumsSymbol1M, premiumsSymbol8H](https://www.kucoin.com/docs-new/api-3470220)
 	Symbol *string `json:"symbol,omitempty" url:"symbol,omitempty"`
-	// Start time (milisecond)
+	// Start time (milliseconds)
 	StartAt *int64 `json:"startAt,omitempty" url:"startAt,omitempty"`
-	// End time (milisecond)
+	// End time (milliseconds)
 	EndAt *int64 `json:"endAt,omitempty" url:"endAt,omitempty"`
-	// This parameter functions to judge whether the lookup is reverse. True means “yes”. False means no. This parameter is set as True by default.
+	// This parameter functions to judge whether the lookup is reversed. True means “yes”. False means “no”. This parameter is set as True by default.
 	Reverse *bool `json:"reverse,omitempty" url:"reverse,omitempty"`
 	// Start offset. The unique attribute of the last returned result of the last request. The data of the first page will be returned by default.
 	Offset *int64 `json:"offset,omitempty" url:"offset,omitempty"`
-	// This parameter functions to judge whether the lookup is forward or not. True means “yes” and False means “no”. This parameter is set as true by default
+	// This parameter functions to judge whether the lookup is forward or not. True means “yes” and False means “no”. This parameter is set as true by default.
 	Forward *bool `json:"forward,omitempty" url:"forward,omitempty"`
-	// Max record count. The default record count is 10, The maximum length cannot exceed 100
+	// Max. record count. The default record count is 10; the maximum length cannot exceed 100
 	MaxCount *int64 `json:"maxCount,omitempty" url:"maxCount,omitempty"`
 }
 
@@ -66,25 +66,25 @@ func NewGetPremiumIndexReqBuilder() *GetPremiumIndexReqBuilder {
 	return &GetPremiumIndexReqBuilder{obj: NewGetPremiumIndexReqWithDefaults()}
 }
 
-// Symbol of the contract, Please refer to [Get Symbol endpoint: premiumsSymbol1M, premiumsSymbol8H](https://www.kucoin.com/docs-new/api-3470220)
+// Symbol of the contract. Please refer to [Get Symbol endpoint: premiumsSymbol1M, premiumsSymbol8H](https://www.kucoin.com/docs-new/api-3470220)
 func (builder *GetPremiumIndexReqBuilder) SetSymbol(value string) *GetPremiumIndexReqBuilder {
 	builder.obj.Symbol = &value
 	return builder
 }
 
-// Start time (milisecond)
+// Start time (milliseconds)
 func (builder *GetPremiumIndexReqBuilder) SetStartAt(value int64) *GetPremiumIndexReqBuilder {
 	builder.obj.StartAt = &value
 	return builder
 }
 
-// End time (milisecond)
+// End time (milliseconds)
 func (builder *GetPremiumIndexReqBuilder) SetEndAt(value int64) *GetPremiumIndexReqBuilder {
 	builder.obj.EndAt = &value
 	return builder
 }
 
-// This parameter functions to judge whether the lookup is reverse. True means “yes”. False means no. This parameter is set as True by default.
+// This parameter functions to judge whether the lookup is reversed. True means “yes”. False means “no”. This parameter is set as True by default.
 func (builder *GetPremiumIndexReqBuilder) SetReverse(value bool) *GetPremiumIndexReqBuilder {
 	builder.obj.Reverse = &value
 	return builder
@@ -96,13 +96,13 @@ func (builder *GetPremiumIndexReqBuilder) SetOffset(value int64) *GetPremiumInde
 	return builder
 }
 
-// This parameter functions to judge whether the lookup is forward or not. True means “yes” and False means “no”. This parameter is set as true by default
+// This parameter functions to judge whether the lookup is forward or not. True means “yes” and False means “no”. This parameter is set as true by default.
 func (builder *GetPremiumIndexReqBuilder) SetForward(value bool) *GetPremiumIndexReqBuilder {
 	builder.obj.Forward = &value
 	return builder
 }
 
-// Max record count. The default record count is 10, The maximum length cannot exceed 100
+// Max. record count. The default record count is 10; the maximum length cannot exceed 100
 func (builder *GetPremiumIndexReqBuilder) SetMaxCount(value int64) *GetPremiumIndexReqBuilder {
 	builder.obj.MaxCount = &value
 	return builder

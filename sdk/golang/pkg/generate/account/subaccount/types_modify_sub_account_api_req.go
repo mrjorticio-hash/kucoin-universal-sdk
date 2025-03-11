@@ -4,17 +4,17 @@ package subaccount
 
 // ModifySubAccountApiReq struct for ModifySubAccountApiReq
 type ModifySubAccountApiReq struct {
-	// Password(Must contain 7-32 characters. Cannot contain any spaces.)
+	// Password (Must contain 7–32 characters. Cannot contain any spaces.)
 	Passphrase string `json:"passphrase,omitempty"`
-	// [Permissions](https://www.kucoin.com/docs-new/doc-338144)(Only General、Spot、Futures、Margin、InnerTransfer(Flex Transfer) permissions can be set, such as \"General, Trade\". The default is \"General\")
+	// [Permissions](https://www.kucoin.com/docs-new/doc-338144)(Only General, Spot, Futures, Margin, InnerTransfer (Flex Transfer) permissions can be set, such as \"General, Trade\". The default is \"General\")
 	Permission *string `json:"permission,omitempty"`
-	// IP whitelist(You may add up to 20 IPs. Use a halfwidth comma to each IP)
+	// IP whitelist (You may add up to 20 IPs. Use a halfwidth comma to each IP)
 	IpWhitelist *string `json:"ipWhitelist,omitempty"`
-	// API expiration time; Never expire(default)-1，30Day30，90Day90，180Day180，360Day360
+	// API expiration time: Never expire(default)-1, 30Day30, 90Day90, 180Day180, 360Day360
 	Expire *string `json:"expire,omitempty"`
 	// Sub-account name, create sub account name of API Key.
 	SubName string `json:"subName,omitempty"`
-	// API-Key(Sub-account APIKey)
+	// API-Key (Sub-account APIKey)
 	ApiKey string `json:"apiKey,omitempty"`
 }
 
@@ -62,25 +62,25 @@ func NewModifySubAccountApiReqBuilder() *ModifySubAccountApiReqBuilder {
 	return &ModifySubAccountApiReqBuilder{obj: NewModifySubAccountApiReqWithDefaults()}
 }
 
-// Password(Must contain 7-32 characters. Cannot contain any spaces.)
+// Password (Must contain 7–32 characters. Cannot contain any spaces.)
 func (builder *ModifySubAccountApiReqBuilder) SetPassphrase(value string) *ModifySubAccountApiReqBuilder {
 	builder.obj.Passphrase = value
 	return builder
 }
 
-// [Permissions](https://www.kucoin.com/docs-new/doc-338144)(Only General、Spot、Futures、Margin、InnerTransfer(Flex Transfer) permissions can be set, such as \"General, Trade\". The default is \"General\")
+// [Permissions](https://www.kucoin.com/docs-new/doc-338144)(Only General, Spot, Futures, Margin, InnerTransfer (Flex Transfer) permissions can be set, such as \"General, Trade\". The default is \"General\")
 func (builder *ModifySubAccountApiReqBuilder) SetPermission(value string) *ModifySubAccountApiReqBuilder {
 	builder.obj.Permission = &value
 	return builder
 }
 
-// IP whitelist(You may add up to 20 IPs. Use a halfwidth comma to each IP)
+// IP whitelist (You may add up to 20 IPs. Use a halfwidth comma to each IP)
 func (builder *ModifySubAccountApiReqBuilder) SetIpWhitelist(value string) *ModifySubAccountApiReqBuilder {
 	builder.obj.IpWhitelist = &value
 	return builder
 }
 
-// API expiration time; Never expire(default)-1，30Day30，90Day90，180Day180，360Day360
+// API expiration time: Never expire(default)-1, 30Day30, 90Day90, 180Day180, 360Day360
 func (builder *ModifySubAccountApiReqBuilder) SetExpire(value string) *ModifySubAccountApiReqBuilder {
 	builder.obj.Expire = &value
 	return builder
@@ -92,7 +92,7 @@ func (builder *ModifySubAccountApiReqBuilder) SetSubName(value string) *ModifySu
 	return builder
 }
 
-// API-Key(Sub-account APIKey)
+// API-Key (Sub-account APIKey)
 func (builder *ModifySubAccountApiReqBuilder) SetApiKey(value string) *ModifySubAccountApiReqBuilder {
 	builder.obj.ApiKey = value
 	return builder

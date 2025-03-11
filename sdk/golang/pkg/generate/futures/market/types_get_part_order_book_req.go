@@ -4,7 +4,7 @@ package market
 
 // GetPartOrderBookReq struct for GetPartOrderBookReq
 type GetPartOrderBookReq struct {
-	// Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)
+	// Symbol of the contract. Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)
 	Symbol *string `json:"symbol,omitempty" url:"symbol,omitempty"`
 	// Get the depth layer, optional value: 20, 100
 	Size *string `json:"size,omitempty" path:"size" url:"-"`
@@ -39,7 +39,7 @@ func NewGetPartOrderBookReqBuilder() *GetPartOrderBookReqBuilder {
 	return &GetPartOrderBookReqBuilder{obj: NewGetPartOrderBookReqWithDefaults()}
 }
 
-// Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)
+// Symbol of the contract. Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)
 func (builder *GetPartOrderBookReqBuilder) SetSymbol(value string) *GetPartOrderBookReqBuilder {
 	builder.obj.Symbol = &value
 	return builder

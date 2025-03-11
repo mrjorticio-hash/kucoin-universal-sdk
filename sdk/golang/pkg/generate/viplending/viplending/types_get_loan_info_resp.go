@@ -6,26 +6,26 @@ import (
 	"github.com/Kucoin/kucoin-universal-sdk/sdk/golang/pkg/types"
 )
 
-// GetAccountDetailResp struct for GetAccountDetailResp
-type GetAccountDetailResp struct {
+// GetLoanInfoResp struct for GetLoanInfoResp
+type GetLoanInfoResp struct {
 	// common response
 	CommonResponse *types.RestResponse
 	// Master UID
 	ParentUid string `json:"parentUid,omitempty"`
 	// Loan Orders
-	Orders []GetAccountDetailOrders `json:"orders,omitempty"`
-	Ltv    GetAccountDetailLtv      `json:"ltv,omitempty"`
+	Orders []GetLoanInfoOrders `json:"orders,omitempty"`
+	Ltv    GetLoanInfoLtv      `json:"ltv,omitempty"`
 	// Total Margin Amount (USDT)
 	TotalMarginAmount string `json:"totalMarginAmount,omitempty"`
 	// Total Maintenance Margin for Restricted Transfers (USDT)
-	TransferMarginAmount string                    `json:"transferMarginAmount,omitempty"`
-	Margins              []GetAccountDetailMargins `json:"margins,omitempty"`
+	TransferMarginAmount string               `json:"transferMarginAmount,omitempty"`
+	Margins              []GetLoanInfoMargins `json:"margins,omitempty"`
 }
 
-// NewGetAccountDetailResp instantiates a new GetAccountDetailResp object
+// NewGetLoanInfoResp instantiates a new GetLoanInfoResp object
 // This constructor will assign default values to properties that have it defined
-func NewGetAccountDetailResp(parentUid string, orders []GetAccountDetailOrders, ltv GetAccountDetailLtv, totalMarginAmount string, transferMarginAmount string, margins []GetAccountDetailMargins) *GetAccountDetailResp {
-	this := GetAccountDetailResp{}
+func NewGetLoanInfoResp(parentUid string, orders []GetLoanInfoOrders, ltv GetLoanInfoLtv, totalMarginAmount string, transferMarginAmount string, margins []GetLoanInfoMargins) *GetLoanInfoResp {
+	this := GetLoanInfoResp{}
 	this.ParentUid = parentUid
 	this.Orders = orders
 	this.Ltv = ltv
@@ -35,14 +35,14 @@ func NewGetAccountDetailResp(parentUid string, orders []GetAccountDetailOrders, 
 	return &this
 }
 
-// NewGetAccountDetailRespWithDefaults instantiates a new GetAccountDetailResp object
+// NewGetLoanInfoRespWithDefaults instantiates a new GetLoanInfoResp object
 // This constructor will only assign default values to properties that have it defined,
-func NewGetAccountDetailRespWithDefaults() *GetAccountDetailResp {
-	this := GetAccountDetailResp{}
+func NewGetLoanInfoRespWithDefaults() *GetLoanInfoResp {
+	this := GetLoanInfoResp{}
 	return &this
 }
 
-func (o *GetAccountDetailResp) ToMap() map[string]interface{} {
+func (o *GetLoanInfoResp) ToMap() map[string]interface{} {
 	toSerialize := map[string]interface{}{}
 	toSerialize["parentUid"] = o.ParentUid
 	toSerialize["orders"] = o.Orders
@@ -53,6 +53,6 @@ func (o *GetAccountDetailResp) ToMap() map[string]interface{} {
 	return toSerialize
 }
 
-func (o *GetAccountDetailResp) SetCommonResponse(response *types.RestResponse) {
+func (o *GetLoanInfoResp) SetCommonResponse(response *types.RestResponse) {
 	o.CommonResponse = response
 }

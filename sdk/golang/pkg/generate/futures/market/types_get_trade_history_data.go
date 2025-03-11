@@ -14,13 +14,13 @@ type GetTradeHistoryData struct {
 	MakerOrderId string `json:"makerOrderId,omitempty"`
 	// Taker order ID
 	TakerOrderId string `json:"takerOrderId,omitempty"`
-	// Filled timestamp(nanosecond)
+	// Filled timestamp (nanosecond)
 	Ts int64 `json:"ts,omitempty"`
 	// Filled amount
 	Size int32 `json:"size,omitempty"`
 	// Filled price
 	Price string `json:"price,omitempty"`
-	// Filled side, The trade side indicates the taker order side. A taker order is the order that was matched with orders opened on the order book.
+	// Filled side; the trade side indicates the taker order side. A taker order is the order that was matched with orders opened on the order book.
 	Side string `json:"side,omitempty"`
 }
 

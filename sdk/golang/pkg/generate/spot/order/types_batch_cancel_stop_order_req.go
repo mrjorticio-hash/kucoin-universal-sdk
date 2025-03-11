@@ -6,7 +6,7 @@ package order
 type BatchCancelStopOrderReq struct {
 	// Cancel the open order for the specified symbol
 	Symbol *string `json:"symbol,omitempty" url:"symbol,omitempty"`
-	// The type of trading : TRADE（Spot）, MARGIN_TRADE (Cross Margin), MARGIN_ISOLATED_TRADE (Isolated Margin). Default is TRADE
+	// The type of trading : TRADE（Spot）, MARGIN_TRADE (Cross Margin), MARGIN_ISOLATED_TRADE (Isolated Margin).
 	TradeType *string `json:"tradeType,omitempty" url:"tradeType,omitempty"`
 	// Comma seperated order IDs.
 	OrderIds *string `json:"orderIds,omitempty" url:"orderIds,omitempty"`
@@ -48,7 +48,7 @@ func (builder *BatchCancelStopOrderReqBuilder) SetSymbol(value string) *BatchCan
 	return builder
 }
 
-// The type of trading : TRADE（Spot）, MARGIN_TRADE (Cross Margin), MARGIN_ISOLATED_TRADE (Isolated Margin). Default is TRADE
+// The type of trading : TRADE（Spot）, MARGIN_TRADE (Cross Margin), MARGIN_ISOLATED_TRADE (Isolated Margin).
 func (builder *BatchCancelStopOrderReqBuilder) SetTradeType(value string) *BatchCancelStopOrderReqBuilder {
 	builder.obj.TradeType = &value
 	return builder

@@ -4,7 +4,7 @@ package order
 
 // GetRecentTradeHistoryData struct for GetRecentTradeHistoryData
 type GetRecentTradeHistoryData struct {
-	// Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)
+	// Symbol of the contract. Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)
 	Symbol string `json:"symbol,omitempty"`
 	// Trade ID
 	TradeId string `json:"tradeId,omitempty"`
@@ -12,7 +12,7 @@ type GetRecentTradeHistoryData struct {
 	OrderId string `json:"orderId,omitempty"`
 	// Transaction side
 	Side string `json:"side,omitempty"`
-	// Liquidity- taker or maker
+	// Liquidity-taker or -maker
 	Liquidity string `json:"liquidity,omitempty"`
 	// Whether to force processing as a taker
 	ForceTaker bool `json:"forceTaker,omitempty"`
@@ -30,11 +30,11 @@ type GetRecentTradeHistoryData struct {
 	Stop string `json:"stop,omitempty"`
 	// Fee Rate
 	FeeRate string `json:"feeRate,omitempty"`
-	// Fixed fees(Deprecated field, no actual use of the value field)
+	// Fixed fees (Deprecated field, no actual use of the value field)
 	FixFee string `json:"fixFee,omitempty"`
 	// Charging currency
 	FeeCurrency string `json:"feeCurrency,omitempty"`
-	// trade time in nanosecond
+	// Trade time in nanoseconds
 	TradeTime int64 `json:"tradeTime,omitempty"`
 	// Deprecated field, no actual use of the value field
 	SubTradeType string `json:"subTradeType,omitempty"`
@@ -50,7 +50,7 @@ type GetRecentTradeHistoryData struct {
 	OrderType string `json:"orderType,omitempty"`
 	// Trade type (trade, liquid, cancel, adl or settlement)
 	TradeType string `json:"tradeType,omitempty"`
-	// Time the order created
+	// Order creation time
 	CreatedAt int64 `json:"createdAt,omitempty"`
 }
 

@@ -2,34 +2,34 @@
 
 package viplending
 
-// GetAccountDetailMargins struct for GetAccountDetailMargins
-type GetAccountDetailMargins struct {
+// GetLoanInfoMargins struct for GetLoanInfoMargins
+type GetLoanInfoMargins struct {
 	// Margin Currency
 	MarginCcy string `json:"marginCcy,omitempty"`
 	// Maintenance Quantity (Calculated with Margin Coefficient)
 	MarginQty string `json:"marginQty,omitempty"`
-	// Margin Coefficient return real time margin discount rate to USDT
+	// Margin Coefficient return real-time margin discount rate to USDT
 	MarginFactor string `json:"marginFactor,omitempty"`
 }
 
-// NewGetAccountDetailMargins instantiates a new GetAccountDetailMargins object
+// NewGetLoanInfoMargins instantiates a new GetLoanInfoMargins object
 // This constructor will assign default values to properties that have it defined
-func NewGetAccountDetailMargins(marginCcy string, marginQty string, marginFactor string) *GetAccountDetailMargins {
-	this := GetAccountDetailMargins{}
+func NewGetLoanInfoMargins(marginCcy string, marginQty string, marginFactor string) *GetLoanInfoMargins {
+	this := GetLoanInfoMargins{}
 	this.MarginCcy = marginCcy
 	this.MarginQty = marginQty
 	this.MarginFactor = marginFactor
 	return &this
 }
 
-// NewGetAccountDetailMarginsWithDefaults instantiates a new GetAccountDetailMargins object
+// NewGetLoanInfoMarginsWithDefaults instantiates a new GetLoanInfoMargins object
 // This constructor will only assign default values to properties that have it defined,
-func NewGetAccountDetailMarginsWithDefaults() *GetAccountDetailMargins {
-	this := GetAccountDetailMargins{}
+func NewGetLoanInfoMarginsWithDefaults() *GetLoanInfoMargins {
+	this := GetLoanInfoMargins{}
 	return &this
 }
 
-func (o *GetAccountDetailMargins) ToMap() map[string]interface{} {
+func (o *GetLoanInfoMargins) ToMap() map[string]interface{} {
 	toSerialize := map[string]interface{}{}
 	toSerialize["marginCcy"] = o.MarginCcy
 	toSerialize["marginQty"] = o.MarginQty

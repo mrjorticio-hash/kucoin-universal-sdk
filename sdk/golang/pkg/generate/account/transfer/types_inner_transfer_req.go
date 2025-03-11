@@ -4,11 +4,11 @@ package transfer
 
 // InnerTransferReq struct for InnerTransferReq
 type InnerTransferReq struct {
-	// Unique order id created by users to identify their orders, e.g. UUID, with a maximum length of 128 bits
+	// Unique order ID created by users to identify their orders, e.g. UUID, with a maximum length of 128 bits
 	ClientOid string `json:"clientOid,omitempty"`
 	// currency
 	Currency string `json:"currency,omitempty"`
-	// Transfer amount, the amount is a positive integer multiple of the currency precision.
+	// Transfer amount: The amount is a positive integer multiple of the currency precision.
 	Amount string `json:"amount,omitempty"`
 	// Receiving Account Type: main, trade, margin, isolated, margin_v2, isolated_v2, contract
 	To string `json:"to,omitempty"`
@@ -59,7 +59,7 @@ func NewInnerTransferReqBuilder() *InnerTransferReqBuilder {
 	return &InnerTransferReqBuilder{obj: NewInnerTransferReqWithDefaults()}
 }
 
-// Unique order id created by users to identify their orders, e.g. UUID, with a maximum length of 128 bits
+// Unique order ID created by users to identify their orders, e.g. UUID, with a maximum length of 128 bits
 func (builder *InnerTransferReqBuilder) SetClientOid(value string) *InnerTransferReqBuilder {
 	builder.obj.ClientOid = value
 	return builder
@@ -71,7 +71,7 @@ func (builder *InnerTransferReqBuilder) SetCurrency(value string) *InnerTransfer
 	return builder
 }
 
-// Transfer amount, the amount is a positive integer multiple of the currency precision.
+// Transfer amount: The amount is a positive integer multiple of the currency precision.
 func (builder *InnerTransferReqBuilder) SetAmount(value string) *InnerTransferReqBuilder {
 	builder.obj.Amount = value
 	return builder

@@ -24,7 +24,7 @@ func TestMarketGetAnnouncementsRespModel(t *testing.T) {
 	// Get Announcements
 	// /api/v3/announcements
 
-	data := "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"totalNum\": 195,\n        \"totalPage\": 13,\n        \"currentPage\": 1,\n        \"pageSize\": 15,\n        \"items\": [\n            {\n                \"annId\": 129045,\n                \"annTitle\": \"KuCoin Isolated Margin Adds the Scroll (SCR) Trading Pair\",\n                \"annType\": [\n                    \"latest-announcements\"\n                ],\n                \"annDesc\": \"To enrich the variety of assets available,\xa0KuCoin\u2019s Isolated Margin Trading platform has added the Scroll (SCR)\xa0asset and trading pair.\",\n                \"cTime\": 1729594043000,\n                \"language\": \"en_US\",\n                \"annUrl\": \"https://www.kucoin.com/announcement/kucoin-isolated-margin-adds-scr?lang=en_US\"\n            },\n            {\n                \"annId\": 129001,\n                \"annTitle\": \"DAPP-30D Fixed Promotion, Enjoy an APR of 200%!\u200b\",\n                \"annType\": [\n                    \"latest-announcements\",\n                    \"activities\"\n                ],\n                \"annDesc\": \"KuCoin Earn will be launching the DAPP Fixed Promotion at 10:00:00 on October 22, 2024 (UTC). The available product is \u201cDAPP-30D'' with an APR of 200%.\",\n                \"cTime\": 1729588460000,\n                \"language\": \"en_US\",\n                \"annUrl\": \"https://www.kucoin.com/announcement/dapp-30d-fixed-promotion-enjoy?lang=en_US\"\n            },\n            {\n                \"annId\": 128581,\n                \"annTitle\": \"NAYM (NAYM) Gets Listed on KuCoin! World Premiere!\",\n                \"annType\": [\n                    \"latest-announcements\",\n                    \"new-listings\"\n                ],\n                \"annDesc\": \"Trading:\xa011:00 on October 22, 2024 (UTC)\",\n                \"cTime\": 1729497729000,\n                \"language\": \"en_US\",\n                \"annUrl\": \"https://www.kucoin.com/announcement/en-naym-naym-gets-listed-on-kucoin-world-premiere?lang=en_US\"\n            }\n        ]\n    }\n}"
+	data := "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"totalNum\": 195,\n        \"totalPage\": 13,\n        \"currentPage\": 1,\n        \"pageSize\": 15,\n        \"items\": [\n            {\n                \"annId\": 129045,\n                \"annTitle\": \"KuCoin Isolated Margin Adds the Scroll (SCR) Trading Pair\",\n                \"annType\": [\n                    \"latest-announcements\"\n                ],\n                \"annDesc\": \"To enrich the variety of assets available, KuCoin\u2019s Isolated Margin Trading platform has added the Scroll (SCR) asset and trading pair.\",\n                \"cTime\": 1729594043000,\n                \"language\": \"en_US\",\n                \"annUrl\": \"https://www.kucoin.com/announcement/kucoin-isolated-margin-adds-scr?lang=en_US\"\n            },\n            {\n                \"annId\": 129001,\n                \"annTitle\": \"DAPP-30D Fixed Promotion, Enjoy an APR of 200%!\u200b\",\n                \"annType\": [\n                    \"latest-announcements\",\n                    \"activities\"\n                ],\n                \"annDesc\": \"KuCoin Earn will be launching the DAPP Fixed Promotion at 10:00:00 on October 22, 2024 (UTC). The available product is \u201cDAPP-30D'' with an APR of 200%.\",\n                \"cTime\": 1729588460000,\n                \"language\": \"en_US\",\n                \"annUrl\": \"https://www.kucoin.com/announcement/dapp-30d-fixed-promotion-enjoy?lang=en_US\"\n            },\n            {\n                \"annId\": 128581,\n                \"annTitle\": \"NAYM (NAYM) Gets Listed on KuCoin! World Premiere!\",\n                \"annType\": [\n                    \"latest-announcements\",\n                    \"new-listings\"\n                ],\n                \"annDesc\": \"Trading: 11:00 on October 22, 2024 (UTC)\",\n                \"cTime\": 1729497729000,\n                \"language\": \"en_US\",\n                \"annUrl\": \"https://www.kucoin.com/announcement/en-naym-naym-gets-listed-on-kucoin-world-premiere?lang=en_US\"\n            }\n        ]\n    }\n}"
 	commonResp := &types.RestResponse{}
 	err := json.Unmarshal([]byte(data), commonResp)
 	assert.Nil(t, err)
@@ -40,7 +40,7 @@ func TestMarketGetCurrencyReqModel(t *testing.T) {
 	// Get Currency
 	// /api/v3/currencies/{currency}
 
-	data := "{\"currency\": \"BTC\", \"chain\": \"eth\"}"
+	data := "{\"chain\": \"eth\", \"currency\": \"BTC\"}"
 	req := &GetCurrencyReq{}
 	err := json.Unmarshal([]byte(data), req)
 	req.ToMap()
@@ -103,7 +103,7 @@ func TestMarketGetSymbolRespModel(t *testing.T) {
 	// Get Symbol
 	// /api/v2/symbols/{symbol}
 
-	data := "{\"code\":\"200000\",\"data\":{\"symbol\":\"BTC-USDT\",\"name\":\"BTC-USDT\",\"baseCurrency\":\"BTC\",\"quoteCurrency\":\"USDT\",\"feeCurrency\":\"USDT\",\"market\":\"USDS\",\"baseMinSize\":\"0.00001\",\"quoteMinSize\":\"0.1\",\"baseMaxSize\":\"10000000000\",\"quoteMaxSize\":\"99999999\",\"baseIncrement\":\"0.00000001\",\"quoteIncrement\":\"0.000001\",\"priceIncrement\":\"0.1\",\"priceLimitRate\":\"0.1\",\"minFunds\":\"0.1\",\"isMarginEnabled\":true,\"enableTrading\":true,\"feeCategory\":1,\"makerFeeCoefficient\":\"1.00\",\"takerFeeCoefficient\":\"1.00\",\"st\":false}}"
+	data := "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"symbol\": \"BTC-USDT\",\n        \"name\": \"BTC-USDT\",\n        \"baseCurrency\": \"BTC\",\n        \"quoteCurrency\": \"USDT\",\n        \"feeCurrency\": \"USDT\",\n        \"market\": \"USDS\",\n        \"baseMinSize\": \"0.00001\",\n        \"quoteMinSize\": \"0.1\",\n        \"baseMaxSize\": \"10000000000\",\n        \"quoteMaxSize\": \"99999999\",\n        \"baseIncrement\": \"0.00000001\",\n        \"quoteIncrement\": \"0.000001\",\n        \"priceIncrement\": \"0.1\",\n        \"priceLimitRate\": \"0.1\",\n        \"minFunds\": \"0.1\",\n        \"isMarginEnabled\": true,\n        \"enableTrading\": true,\n        \"feeCategory\": 1,\n        \"makerFeeCoefficient\": \"1.00\",\n        \"takerFeeCoefficient\": \"1.00\",\n        \"st\": false,\n        \"callauctionIsEnabled\": false,\n        \"callauctionPriceFloor\": null,\n        \"callauctionPriceCeiling\": null,\n        \"callauctionFirstStageStartTime\": null,\n        \"callauctionSecondStageStartTime\": null,\n        \"callauctionThirdStageStartTime\": null,\n        \"tradingStartTime\": null\n    }\n}"
 	commonResp := &types.RestResponse{}
 	err := json.Unmarshal([]byte(data), commonResp)
 	assert.Nil(t, err)
@@ -131,7 +131,7 @@ func TestMarketGetAllSymbolsRespModel(t *testing.T) {
 	// Get All Symbols
 	// /api/v2/symbols
 
-	data := "{\n    \"code\": \"200000\",\n    \"data\": [\n        {\n            \"symbol\": \"BTC-USDT\",\n            \"name\": \"BTC-USDT\",\n            \"baseCurrency\": \"BTC\",\n            \"quoteCurrency\": \"USDT\",\n            \"feeCurrency\": \"USDT\",\n            \"market\": \"USDS\",\n            \"baseMinSize\": \"0.00001\",\n            \"quoteMinSize\": \"0.1\",\n            \"baseMaxSize\": \"10000000000\",\n            \"quoteMaxSize\": \"99999999\",\n            \"baseIncrement\": \"0.00000001\",\n            \"quoteIncrement\": \"0.000001\",\n            \"priceIncrement\": \"0.1\",\n            \"priceLimitRate\": \"0.1\",\n            \"minFunds\": \"0.1\",\n            \"isMarginEnabled\": true,\n            \"enableTrading\": true,\n            \"feeCategory\": 1,\n            \"makerFeeCoefficient\": \"1.00\",\n            \"takerFeeCoefficient\": \"1.00\",\n            \"st\": false\n        }\n    ]\n}"
+	data := "{\n    \"code\": \"200000\",\n    \"data\": [\n        {\n            \"symbol\": \"BTC-USDT\",\n            \"name\": \"BTC-USDT\",\n            \"baseCurrency\": \"BTC\",\n            \"quoteCurrency\": \"USDT\",\n            \"feeCurrency\": \"USDT\",\n            \"market\": \"USDS\",\n            \"baseMinSize\": \"0.00001\",\n            \"quoteMinSize\": \"0.1\",\n            \"baseMaxSize\": \"10000000000\",\n            \"quoteMaxSize\": \"99999999\",\n            \"baseIncrement\": \"0.00000001\",\n            \"quoteIncrement\": \"0.000001\",\n            \"priceIncrement\": \"0.1\",\n            \"priceLimitRate\": \"0.1\",\n            \"minFunds\": \"0.1\",\n            \"isMarginEnabled\": true,\n            \"enableTrading\": true,\n            \"feeCategory\": 1,\n            \"makerFeeCoefficient\": \"1.00\",\n            \"takerFeeCoefficient\": \"1.00\",\n            \"st\": false,\n            \"callauctionIsEnabled\": false,\n            \"callauctionPriceFloor\": null,\n            \"callauctionPriceCeiling\": null,\n            \"callauctionFirstStageStartTime\": null,\n            \"callauctionSecondStageStartTime\": null,\n            \"callauctionThirdStageStartTime\": null,\n            \"tradingStartTime\": null\n        }\n    ]\n}"
 	commonResp := &types.RestResponse{}
 	err := json.Unmarshal([]byte(data), commonResp)
 	assert.Nil(t, err)
@@ -305,6 +305,62 @@ func TestMarketGetFullOrderBookRespModel(t *testing.T) {
 	assert.Nil(t, err)
 }
 
+func TestMarketGetCallAuctionPartOrderBookReqModel(t *testing.T) {
+	// GetCallAuctionPartOrderBook
+	// Get Call Auction Part OrderBook
+	// /api/v1/market/orderbook/callauction/level2_{size}
+
+	data := "{\"symbol\": \"BTC-USDT\", \"size\": \"20\"}"
+	req := &GetCallAuctionPartOrderBookReq{}
+	err := json.Unmarshal([]byte(data), req)
+	req.ToMap()
+	assert.Nil(t, err)
+}
+
+func TestMarketGetCallAuctionPartOrderBookRespModel(t *testing.T) {
+	// GetCallAuctionPartOrderBook
+	// Get Call Auction Part OrderBook
+	// /api/v1/market/orderbook/callauction/level2_{size}
+
+	data := "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"time\": 1729176273859,\n        \"sequence\": \"14610502970\",\n        \"bids\": [\n            [\n                \"66976.4\",\n                \"0.69109872\"\n            ],\n            [\n                \"66976.3\",\n                \"0.14377\"\n            ]\n        ],\n        \"asks\": [\n            [\n                \"66976.5\",\n                \"0.05408199\"\n            ],\n            [\n                \"66976.8\",\n                \"0.0005\"\n            ]\n        ]\n    }\n}"
+	commonResp := &types.RestResponse{}
+	err := json.Unmarshal([]byte(data), commonResp)
+	assert.Nil(t, err)
+	assert.NotNil(t, commonResp.Data)
+	resp := &GetCallAuctionPartOrderBookResp{}
+	err = json.Unmarshal([]byte(commonResp.Data), resp)
+	resp.ToMap()
+	assert.Nil(t, err)
+}
+
+func TestMarketGetCallAuctionInfoReqModel(t *testing.T) {
+	// GetCallAuctionInfo
+	// Get Call Auction Info
+	// /api/v1/market/callauctionData
+
+	data := "{\"symbol\": \"BTC-USDT\"}"
+	req := &GetCallAuctionInfoReq{}
+	err := json.Unmarshal([]byte(data), req)
+	req.ToMap()
+	assert.Nil(t, err)
+}
+
+func TestMarketGetCallAuctionInfoRespModel(t *testing.T) {
+	// GetCallAuctionInfo
+	// Get Call Auction Info
+	// /api/v1/market/callauctionData
+
+	data := "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"symbol\": \"BTC-USDT\",\n        \"estimatedPrice\": \"0.17\",\n        \"estimatedSize\": \"0.03715004\",\n        \"sellOrderRangeLowPrice\": \"1.788\",\n        \"sellOrderRangeHighPrice\": \"2.788\",\n        \"buyOrderRangeLowPrice\": \"1.788\",\n        \"buyOrderRangeHighPrice\": \"2.788\",\n        \"time\": 1550653727731\n    }\n}"
+	commonResp := &types.RestResponse{}
+	err := json.Unmarshal([]byte(data), commonResp)
+	assert.Nil(t, err)
+	assert.NotNil(t, commonResp.Data)
+	resp := &GetCallAuctionInfoResp{}
+	err = json.Unmarshal([]byte(commonResp.Data), resp)
+	resp.ToMap()
+	assert.Nil(t, err)
+}
+
 func TestMarketGetFiatPriceReqModel(t *testing.T) {
 	// GetFiatPrice
 	// Get Fiat Price
@@ -335,7 +391,7 @@ func TestMarketGetFiatPriceRespModel(t *testing.T) {
 
 func TestMarketGet24hrStatsReqModel(t *testing.T) {
 	// Get24hrStats
-	// Get 24hr Stats
+	// Get 24hr stats
 	// /api/v1/market/stats
 
 	data := "{\"symbol\": \"BTC-USDT\"}"
@@ -347,7 +403,7 @@ func TestMarketGet24hrStatsReqModel(t *testing.T) {
 
 func TestMarketGet24hrStatsRespModel(t *testing.T) {
 	// Get24hrStats
-	// Get 24hr Stats
+	// Get 24hr stats
 	// /api/v1/market/stats
 
 	data := "{\"code\":\"200000\",\"data\":{\"time\":1729175612158,\"symbol\":\"BTC-USDT\",\"buy\":\"66982.4\",\"sell\":\"66982.5\",\"changeRate\":\"-0.0114\",\"changePrice\":\"-778.1\",\"high\":\"68107.7\",\"low\":\"66683.3\",\"vol\":\"1738.02898182\",\"volValue\":\"117321982.415978333\",\"last\":\"66981.5\",\"averagePrice\":\"67281.21437289\",\"takerFeeRate\":\"0.001\",\"makerFeeRate\":\"0.001\",\"takerCoefficient\":\"1\",\"makerCoefficient\":\"1\"}}"
@@ -379,6 +435,29 @@ func TestMarketGetMarketListRespModel(t *testing.T) {
 	assert.Nil(t, err)
 	assert.NotNil(t, commonResp.Data)
 	resp := &GetMarketListResp{}
+	err = json.Unmarshal([]byte(commonResp.Data), resp)
+	resp.ToMap()
+	assert.Nil(t, err)
+}
+
+func TestMarketGetClientIPAddressReqModel(t *testing.T) {
+	// GetClientIPAddress
+	// Get Client IP Address
+	// /api/v1/my-ip
+
+}
+
+func TestMarketGetClientIPAddressRespModel(t *testing.T) {
+	// GetClientIPAddress
+	// Get Client IP Address
+	// /api/v1/my-ip
+
+	data := "{\"code\":\"200000\",\"data\":\"20.***.***.128\"}"
+	commonResp := &types.RestResponse{}
+	err := json.Unmarshal([]byte(data), commonResp)
+	assert.Nil(t, err)
+	assert.NotNil(t, commonResp.Data)
+	resp := &GetClientIPAddressResp{}
 	err = json.Unmarshal([]byte(commonResp.Data), resp)
 	resp.ToMap()
 	assert.Nil(t, err)

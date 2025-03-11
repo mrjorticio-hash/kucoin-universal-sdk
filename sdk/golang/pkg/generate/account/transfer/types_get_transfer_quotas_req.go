@@ -6,9 +6,9 @@ package transfer
 type GetTransferQuotasReq struct {
 	// currency
 	Currency *string `json:"currency,omitempty" url:"currency,omitempty"`
-	// The account type:MAIN、TRADE、MARGIN、ISOLATED
+	// The account type:MAIN, TRADE, MARGIN, ISOLATED, MARGIN_V2, ISOLATED_V2
 	Type *string `json:"type,omitempty" url:"type,omitempty"`
-	// Trading pair, required when the account type is ISOLATED; other types are not passed, e.g.: BTC-USDT
+	// Trading pair required when the account type is ISOLATED; other types do not pass, e.g.: BTC-USDT
 	Tag *string `json:"tag,omitempty" url:"tag,omitempty"`
 }
 
@@ -52,13 +52,13 @@ func (builder *GetTransferQuotasReqBuilder) SetCurrency(value string) *GetTransf
 	return builder
 }
 
-// The account type:MAIN、TRADE、MARGIN、ISOLATED
+// The account type:MAIN, TRADE, MARGIN, ISOLATED, MARGIN_V2, ISOLATED_V2
 func (builder *GetTransferQuotasReqBuilder) SetType(value string) *GetTransferQuotasReqBuilder {
 	builder.obj.Type = &value
 	return builder
 }
 
-// Trading pair, required when the account type is ISOLATED; other types are not passed, e.g.: BTC-USDT
+// Trading pair required when the account type is ISOLATED; other types do not pass, e.g.: BTC-USDT
 func (builder *GetTransferQuotasReqBuilder) SetTag(value string) *GetTransferQuotasReqBuilder {
 	builder.obj.Tag = &value
 	return builder

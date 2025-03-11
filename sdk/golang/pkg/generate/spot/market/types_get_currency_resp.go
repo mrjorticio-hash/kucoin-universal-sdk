@@ -12,9 +12,9 @@ type GetCurrencyResp struct {
 	CommonResponse *types.RestResponse
 	// A unique currency code that will never change
 	Currency string `json:"currency,omitempty"`
-	// Currency name, will change after renaming
+	// Currency name; will change after renaming
 	Name string `json:"name,omitempty"`
-	// Full name of a currency, will change after renaming
+	// Full currency name; will change after renaming
 	FullName string `json:"fullName,omitempty"`
 	// Currency precision
 	Precision int32 `json:"precision,omitempty"`
@@ -22,11 +22,11 @@ type GetCurrencyResp struct {
 	Confirms int32 `json:"confirms,omitempty"`
 	// Contract address
 	ContractAddress string `json:"contractAddress,omitempty"`
-	// Support margin or not
+	// Margin support or not
 	IsMarginEnabled bool `json:"isMarginEnabled,omitempty"`
-	// Support debit or not
+	// Debit support or not
 	IsDebitEnabled bool `json:"isDebitEnabled,omitempty"`
-	// chain list
+	// Chain list
 	Chains []GetCurrencyChains `json:"chains,omitempty"`
 }
 

@@ -10,7 +10,7 @@ import (
 type GetPublicTokenResp struct {
 	// common response
 	CommonResponse *types.RestResponse
-	// The token required to establish a websocket connection
+	// The token required to establish a Websocket connection
 	Token           string                          `json:"token,omitempty"`
 	InstanceServers []GetPublicTokenInstanceServers `json:"instanceServers,omitempty"`
 }

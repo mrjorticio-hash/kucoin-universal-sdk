@@ -12,103 +12,103 @@ type TransferAPI interface {
 	// GetTransferQuotas Get Transfer Quotas
 	// Description: This endpoint returns the transferable balance of a specified account.
 	// Documentation: https://www.kucoin.com/docs-new/api-3470148
-	// +---------------------+------------+
-	// | Extra API Info      | Value      |
-	// +---------------------+------------+
-	// | API-DOMAIN          | SPOT       |
-	// | API-CHANNEL         | PRIVATE    |
-	// | API-PERMISSION      | GENERAL    |
-	// | API-RATE-LIMIT-POOL | MANAGEMENT |
-	// | API-RATE-LIMIT      | 20         |
-	// +---------------------+------------+
+	// +-----------------------+------------+
+	// | Extra API Info        | Value      |
+	// +-----------------------+------------+
+	// | API-DOMAIN            | SPOT       |
+	// | API-CHANNEL           | PRIVATE    |
+	// | API-PERMISSION        | GENERAL    |
+	// | API-RATE-LIMIT-POOL   | MANAGEMENT |
+	// | API-RATE-LIMIT-WEIGHT | 20         |
+	// +-----------------------+------------+
 	GetTransferQuotas(req *GetTransferQuotasReq, ctx context.Context) (*GetTransferQuotasResp, error)
 
 	// FlexTransfer Flex Transfer
-	// Description: This interface can be used for transfers between master and sub accounts and inner transfers
+	// Description: This interface can be used for transfers between master- and sub-accounts and transfers
 	// Documentation: https://www.kucoin.com/docs-new/api-3470147
-	// +---------------------+---------------+
-	// | Extra API Info      | Value         |
-	// +---------------------+---------------+
-	// | API-DOMAIN          | SPOT          |
-	// | API-CHANNEL         | PRIVATE       |
-	// | API-PERMISSION      | FLEXTRANSFERS |
-	// | API-RATE-LIMIT-POOL | MANAGEMENT    |
-	// | API-RATE-LIMIT      | 4             |
-	// +---------------------+---------------+
+	// +-----------------------+---------------+
+	// | Extra API Info        | Value         |
+	// +-----------------------+---------------+
+	// | API-DOMAIN            | SPOT          |
+	// | API-CHANNEL           | PRIVATE       |
+	// | API-PERMISSION        | FLEXTRANSFERS |
+	// | API-RATE-LIMIT-POOL   | MANAGEMENT    |
+	// | API-RATE-LIMIT-WEIGHT | 4             |
+	// +-----------------------+---------------+
 	FlexTransfer(req *FlexTransferReq, ctx context.Context) (*FlexTransferResp, error)
 
-	// SubAccountTransfer SubAccount Transfer
+	// SubAccountTransfer Sub-account Transfer
 	// Description: Funds in the main account, trading account and margin account of a Master Account can be transferred to the main account, trading account, futures account and margin account of its Sub-Account. The futures account of both the Master Account and Sub-Account can only accept funds transferred in from the main account, trading account and margin account and cannot transfer out to these accounts.
 	// Documentation: https://www.kucoin.com/docs-new/api-3470301
-	// +---------------------+------------+
-	// | Extra API Info      | Value      |
-	// +---------------------+------------+
-	// | API-DOMAIN          | SPOT       |
-	// | API-CHANNEL         | PRIVATE    |
-	// | API-PERMISSION      | SPOT       |
-	// | API-RATE-LIMIT-POOL | MANAGEMENT |
-	// | API-RATE-LIMIT      | 30         |
-	// +---------------------+------------+
+	// +-----------------------+------------+
+	// | Extra API Info        | Value      |
+	// +-----------------------+------------+
+	// | API-DOMAIN            | SPOT       |
+	// | API-CHANNEL           | PRIVATE    |
+	// | API-PERMISSION        | SPOT       |
+	// | API-RATE-LIMIT-POOL   | MANAGEMENT |
+	// | API-RATE-LIMIT-WEIGHT | 30         |
+	// +-----------------------+------------+
 	// Deprecated
 	SubAccountTransfer(req *SubAccountTransferReq, ctx context.Context) (*SubAccountTransferResp, error)
 
-	// InnerTransfer Inner Transfer
-	// Description: This API endpoint can be used to transfer funds between accounts internally. Users can transfer funds between their account free of charge.
+	// InnerTransfer Internal Transfer
+	// Description: This API endpoint can be used to transfer funds between accounts internally. Users can transfer funds between their accounts free of charge.
 	// Documentation: https://www.kucoin.com/docs-new/api-3470302
-	// +---------------------+------------+
-	// | Extra API Info      | Value      |
-	// +---------------------+------------+
-	// | API-DOMAIN          | SPOT       |
-	// | API-CHANNEL         | PRIVATE    |
-	// | API-PERMISSION      | SPOT       |
-	// | API-RATE-LIMIT-POOL | MANAGEMENT |
-	// | API-RATE-LIMIT      | 10         |
-	// +---------------------+------------+
+	// +-----------------------+------------+
+	// | Extra API Info        | Value      |
+	// +-----------------------+------------+
+	// | API-DOMAIN            | SPOT       |
+	// | API-CHANNEL           | PRIVATE    |
+	// | API-PERMISSION        | SPOT       |
+	// | API-RATE-LIMIT-POOL   | MANAGEMENT |
+	// | API-RATE-LIMIT-WEIGHT | 10         |
+	// +-----------------------+------------+
 	// Deprecated
 	InnerTransfer(req *InnerTransferReq, ctx context.Context) (*InnerTransferResp, error)
 
 	// FuturesAccountTransferOut Futures Account Transfer Out
 	// Description: The amount to be transferred will be deducted from the KuCoin Futures Account. Please ensure that you have sufficient funds in your KuCoin Futures Account, or the transfer will fail.
 	// Documentation: https://www.kucoin.com/docs-new/api-3470303
-	// +---------------------+------------+
-	// | Extra API Info      | Value      |
-	// +---------------------+------------+
-	// | API-DOMAIN          | FUTURES    |
-	// | API-CHANNEL         | PRIVATE    |
-	// | API-PERMISSION      | FUTURES    |
-	// | API-RATE-LIMIT-POOL | MANAGEMENT |
-	// | API-RATE-LIMIT      | 20         |
-	// +---------------------+------------+
+	// +-----------------------+------------+
+	// | Extra API Info        | Value      |
+	// +-----------------------+------------+
+	// | API-DOMAIN            | FUTURES    |
+	// | API-CHANNEL           | PRIVATE    |
+	// | API-PERMISSION        | FUTURES    |
+	// | API-RATE-LIMIT-POOL   | MANAGEMENT |
+	// | API-RATE-LIMIT-WEIGHT | 20         |
+	// +-----------------------+------------+
 	// Deprecated
 	FuturesAccountTransferOut(req *FuturesAccountTransferOutReq, ctx context.Context) (*FuturesAccountTransferOutResp, error)
 
 	// FuturesAccountTransferIn Futures Account Transfer In
-	// Description: The amount to be transferred will be deducted from the payAccount. Please ensure that you have sufficient funds in your payAccount Account, or the transfer will fail.
+	// Description: The amount to be transferred will be deducted from the payAccount. Please ensure that you have sufficient funds in your payAccount account, or the transfer will fail.
 	// Documentation: https://www.kucoin.com/docs-new/api-3470304
-	// +---------------------+------------+
-	// | Extra API Info      | Value      |
-	// +---------------------+------------+
-	// | API-DOMAIN          | FUTURES    |
-	// | API-CHANNEL         | PRIVATE    |
-	// | API-PERMISSION      | FUTURES    |
-	// | API-RATE-LIMIT-POOL | MANAGEMENT |
-	// | API-RATE-LIMIT      | 20         |
-	// +---------------------+------------+
+	// +-----------------------+------------+
+	// | Extra API Info        | Value      |
+	// +-----------------------+------------+
+	// | API-DOMAIN            | FUTURES    |
+	// | API-CHANNEL           | PRIVATE    |
+	// | API-PERMISSION        | FUTURES    |
+	// | API-RATE-LIMIT-POOL   | MANAGEMENT |
+	// | API-RATE-LIMIT-WEIGHT | 20         |
+	// +-----------------------+------------+
 	// Deprecated
 	FuturesAccountTransferIn(req *FuturesAccountTransferInReq, ctx context.Context) (*FuturesAccountTransferInResp, error)
 
 	// GetFuturesAccountTransferOutLedger Get Futures Account Transfer Out Ledger
-	// Description: This endpoint can get futures account transfer out ledger
+	// Description: Futures account transfer out ledgers can be obtained at this endpoint.
 	// Documentation: https://www.kucoin.com/docs-new/api-3470307
-	// +---------------------+------------+
-	// | Extra API Info      | Value      |
-	// +---------------------+------------+
-	// | API-DOMAIN          | FUTURES    |
-	// | API-CHANNEL         | PRIVATE    |
-	// | API-PERMISSION      | GENERAL    |
-	// | API-RATE-LIMIT-POOL | MANAGEMENT |
-	// | API-RATE-LIMIT      | 20         |
-	// +---------------------+------------+
+	// +-----------------------+------------+
+	// | Extra API Info        | Value      |
+	// +-----------------------+------------+
+	// | API-DOMAIN            | FUTURES    |
+	// | API-CHANNEL           | PRIVATE    |
+	// | API-PERMISSION        | GENERAL    |
+	// | API-RATE-LIMIT-POOL   | MANAGEMENT |
+	// | API-RATE-LIMIT-WEIGHT | 20         |
+	// +-----------------------+------------+
 	// Deprecated
 	GetFuturesAccountTransferOutLedger(req *GetFuturesAccountTransferOutLedgerReq, ctx context.Context) (*GetFuturesAccountTransferOutLedgerResp, error)
 }

@@ -4,11 +4,11 @@ package transfer
 
 // FuturesAccountTransferInReq struct for FuturesAccountTransferInReq
 type FuturesAccountTransferInReq struct {
-	// Currency, including XBT,USDT...
+	// Currency, including XBT, USDT...
 	Currency string `json:"currency,omitempty"`
-	// Amount to be transfered in
+	// Amount to be transferred in
 	Amount float32 `json:"amount,omitempty"`
-	// Payment account type, including MAIN,TRADE
+	// Payment account type, including MAIN, TRADE
 	PayAccountType string `json:"payAccountType,omitempty"`
 }
 
@@ -45,19 +45,19 @@ func NewFuturesAccountTransferInReqBuilder() *FuturesAccountTransferInReqBuilder
 	return &FuturesAccountTransferInReqBuilder{obj: NewFuturesAccountTransferInReqWithDefaults()}
 }
 
-// Currency, including XBT,USDT...
+// Currency, including XBT, USDT...
 func (builder *FuturesAccountTransferInReqBuilder) SetCurrency(value string) *FuturesAccountTransferInReqBuilder {
 	builder.obj.Currency = value
 	return builder
 }
 
-// Amount to be transfered in
+// Amount to be transferred in
 func (builder *FuturesAccountTransferInReqBuilder) SetAmount(value float32) *FuturesAccountTransferInReqBuilder {
 	builder.obj.Amount = value
 	return builder
 }
 
-// Payment account type, including MAIN,TRADE
+// Payment account type, including MAIN, TRADE
 func (builder *FuturesAccountTransferInReqBuilder) SetPayAccountType(value string) *FuturesAccountTransferInReqBuilder {
 	builder.obj.PayAccountType = value
 	return builder

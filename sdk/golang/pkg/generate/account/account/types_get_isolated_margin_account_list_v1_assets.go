@@ -6,7 +6,7 @@ package account
 type GetIsolatedMarginAccountListV1Assets struct {
 	// Symbol
 	Symbol string `json:"symbol,omitempty"`
-	// The position status: Existing liabilities-DEBT, No liabilities-CLEAR, Bankrupcy (after position enters a negative balance)-BANKRUPTCY, Existing borrowings-IN_BORROW, Existing repayments-IN_REPAY, Under liquidation-IN_LIQUIDATION, Under auto-renewal assets-IN_AUTO_RENEW .
+	// Position status: Existing liabilities-DEBT, No liabilities-CLEAR, Bankrupcy (after position enters a negative balance)-BANKRUPTCY, Existing borrowings-IN_BORROW, Existing repayments-IN_REPAY, Under liquidation-IN_LIQUIDATION, Under auto-renewal assets-IN_AUTO_RENEW .
 	Status string `json:"status,omitempty"`
 	// debt ratio
 	DebtRatio  string                                         `json:"debtRatio,omitempty"`

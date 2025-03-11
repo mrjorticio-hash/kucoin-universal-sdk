@@ -4,7 +4,7 @@ package account
 
 // GetFuturesLedgerDataList struct for GetFuturesLedgerDataList
 type GetFuturesLedgerDataList struct {
-	// ledger time
+	// Ledger time
 	Time int64 `json:"time,omitempty"`
 	// Type: RealisedPNL, Deposit, Withdrawal, TransferIn, TransferOut
 	Type string `json:"type,omitempty"`

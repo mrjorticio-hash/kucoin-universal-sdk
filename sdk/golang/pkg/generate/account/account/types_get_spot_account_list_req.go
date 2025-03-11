@@ -6,7 +6,7 @@ package account
 type GetSpotAccountListReq struct {
 	// currency
 	Currency *string `json:"currency,omitempty" url:"currency,omitempty"`
-	// Account type main、trade
+	// Account type
 	Type *string `json:"type,omitempty" url:"type,omitempty"`
 }
 
@@ -45,7 +45,7 @@ func (builder *GetSpotAccountListReqBuilder) SetCurrency(value string) *GetSpotA
 	return builder
 }
 
-// Account type main、trade
+// Account type
 func (builder *GetSpotAccountListReqBuilder) SetType(value string) *GetSpotAccountListReqBuilder {
 	builder.obj.Type = &value
 	return builder

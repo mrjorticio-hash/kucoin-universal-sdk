@@ -4,11 +4,11 @@ package market
 
 // GetPremiumIndexDataList struct for GetPremiumIndexDataList
 type GetPremiumIndexDataList struct {
-	// Symbol of the contract, Please refer to [Get Symbol endpoint: premiumsSymbol1M, premiumsSymbol8H](https://www.kucoin.com/docs-new/api-3470220)
+	// Symbol of the contract. Please refer to [Get Symbol endpoint: premiumsSymbol1M, premiumsSymbol8H](https://www.kucoin.com/docs-new/api-3470220)
 	Symbol string `json:"symbol,omitempty"`
-	// Granularity(milisecond)
+	// Granularity (milliseconds)
 	Granularity int32 `json:"granularity,omitempty"`
-	// Timestamp(milisecond)
+	// Timestamp (milliseconds)
 	TimePoint int64 `json:"timePoint,omitempty"`
 	// Premium index
 	Value float32 `json:"value,omitempty"`

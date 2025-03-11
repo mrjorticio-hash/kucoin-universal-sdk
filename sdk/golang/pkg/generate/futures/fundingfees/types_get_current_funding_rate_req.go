@@ -4,7 +4,7 @@ package fundingfees
 
 // GetCurrentFundingRateReq struct for GetCurrentFundingRateReq
 type GetCurrentFundingRateReq struct {
-	// Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)
+	// Symbol of the contract. Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)
 	Symbol *string `json:"symbol,omitempty" path:"symbol" url:"-"`
 }
 
@@ -36,7 +36,7 @@ func NewGetCurrentFundingRateReqBuilder() *GetCurrentFundingRateReqBuilder {
 	return &GetCurrentFundingRateReqBuilder{obj: NewGetCurrentFundingRateReqWithDefaults()}
 }
 
-// Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)
+// Symbol of the contract. Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)
 func (builder *GetCurrentFundingRateReqBuilder) SetSymbol(value string) *GetCurrentFundingRateReqBuilder {
 	builder.obj.Symbol = &value
 	return builder

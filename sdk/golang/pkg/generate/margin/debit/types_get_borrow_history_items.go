@@ -4,7 +4,7 @@ package debit
 
 // GetBorrowHistoryItems struct for GetBorrowHistoryItems
 type GetBorrowHistoryItems struct {
-	// Borrow Order Id
+	// Borrow Order ID
 	OrderNo string `json:"orderNo,omitempty"`
 	// Isolated Margin symbol; empty for cross margin
 	Symbol string `json:"symbol,omitempty"`
@@ -16,7 +16,7 @@ type GetBorrowHistoryItems struct {
 	ActualSize string `json:"actualSize,omitempty"`
 	// PENDING: Processing, SUCCESS: Successful, FAILED: Failed
 	Status string `json:"status,omitempty"`
-	// borrow time
+	// Borrow time
 	CreatedTime int64 `json:"createdTime,omitempty"`
 }
 

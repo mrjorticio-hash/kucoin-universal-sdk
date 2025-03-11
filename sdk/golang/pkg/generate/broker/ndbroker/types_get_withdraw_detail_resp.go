@@ -12,7 +12,7 @@ type GetWithdrawDetailResp struct {
 	CommonResponse *types.RestResponse
 	// Withdrawal ID
 	Id string `json:"id,omitempty"`
-	// chain id of currency
+	// Chain id of currency
 	Chain string `json:"chain,omitempty"`
 	// Wallet Transaction ID
 	WalletTxId string `json:"walletTxId,omitempty"`

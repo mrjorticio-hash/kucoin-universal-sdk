@@ -6,7 +6,7 @@ package withdrawal
 type GetWithdrawalHistoryOldItems struct {
 	// Currency
 	Currency *string `json:"currency,omitempty"`
-	// Creation time of the database record
+	// Database record creation time
 	CreateAt *int32 `json:"createAt,omitempty"`
 	// Withdrawal amount
 	Amount *string `json:"amount,omitempty"`

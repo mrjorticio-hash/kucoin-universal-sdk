@@ -4,7 +4,7 @@ package subaccount
 
 // GetFuturesSubAccountListV2Req struct for GetFuturesSubAccountListV2Req
 type GetFuturesSubAccountListV2Req struct {
-	// Currecny, Default XBT
+	// Currency, Default XBT
 	Currency *string `json:"currency,omitempty" url:"currency,omitempty"`
 }
 
@@ -40,7 +40,7 @@ func NewGetFuturesSubAccountListV2ReqBuilder() *GetFuturesSubAccountListV2ReqBui
 	return &GetFuturesSubAccountListV2ReqBuilder{obj: NewGetFuturesSubAccountListV2ReqWithDefaults()}
 }
 
-// Currecny, Default XBT
+// Currency, Default XBT
 func (builder *GetFuturesSubAccountListV2ReqBuilder) SetCurrency(value string) *GetFuturesSubAccountListV2ReqBuilder {
 	builder.obj.Currency = &value
 	return builder

@@ -13,11 +13,11 @@ type GetWithdrawalQuotasResp struct {
 	Currency       string `json:"currency,omitempty"`
 	LimitBTCAmount string `json:"limitBTCAmount,omitempty"`
 	UsedBTCAmount  string `json:"usedBTCAmount,omitempty"`
-	// withdrawal limit currency
+	// Withdrawal limit currency
 	QuotaCurrency string `json:"quotaCurrency,omitempty"`
-	// The intraday available withdrawal amount(withdrawal limit currency)
+	// The intraday available withdrawal amount (withdrawal limit currency)
 	LimitQuotaCurrencyAmount string `json:"limitQuotaCurrencyAmount,omitempty"`
-	// The intraday cumulative withdrawal amount(withdrawal limit currency)
+	// The intraday cumulative withdrawal amount (withdrawal limit currency)
 	UsedQuotaCurrencyAmount string `json:"usedQuotaCurrencyAmount,omitempty"`
 	// Remaining amount available to withdraw the current day
 	RemainAmount string `json:"remainAmount,omitempty"`
@@ -29,13 +29,13 @@ type GetWithdrawalQuotasResp struct {
 	InnerWithdrawMinFee string `json:"innerWithdrawMinFee,omitempty"`
 	// Minimum withdrawal amount
 	WithdrawMinSize string `json:"withdrawMinSize,omitempty"`
-	// Is the withdraw function enabled or not
+	// Is the withdraw function enabled?
 	IsWithdrawEnabled bool `json:"isWithdrawEnabled,omitempty"`
 	// Floating point precision.
 	Precision int32 `json:"precision,omitempty"`
 	// The chainName of currency
 	Chain string `json:"chain,omitempty"`
-	// Reasons for restriction, Usually empty
+	// Reasons for restriction. Usually empty.
 	Reason string `json:"reason,omitempty"`
 	// Total locked amount (including the amount locked into USDT for each currency)
 	LockedAmount string `json:"lockedAmount,omitempty"`

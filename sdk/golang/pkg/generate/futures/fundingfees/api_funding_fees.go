@@ -9,46 +9,46 @@ import (
 
 type FundingFeesAPI interface {
 
-	// GetCurrentFundingRate Get Current Funding Rate
-	// Description: get Current Funding Rate
+	// GetCurrentFundingRate Get Current Funding Rate.
+	// Description: Get Current Funding Rate.
 	// Documentation: https://www.kucoin.com/docs-new/api-3470265
-	// +---------------------+---------+
-	// | Extra API Info      | Value   |
-	// +---------------------+---------+
-	// | API-DOMAIN          | FUTURES |
-	// | API-CHANNEL         | PRIVATE |
-	// | API-PERMISSION      | FUTURES |
-	// | API-RATE-LIMIT-POOL | PUBLIC  |
-	// | API-RATE-LIMIT      | 2       |
-	// +---------------------+---------+
+	// +-----------------------+---------+
+	// | Extra API Info        | Value   |
+	// +-----------------------+---------+
+	// | API-DOMAIN            | FUTURES |
+	// | API-CHANNEL           | PRIVATE |
+	// | API-PERMISSION        | FUTURES |
+	// | API-RATE-LIMIT-POOL   | PUBLIC  |
+	// | API-RATE-LIMIT-WEIGHT | 2       |
+	// +-----------------------+---------+
 	GetCurrentFundingRate(req *GetCurrentFundingRateReq, ctx context.Context) (*GetCurrentFundingRateResp, error)
 
 	// GetPublicFundingHistory Get Public Funding History
-	// Description: Query the funding rate at each settlement time point within a certain time range of the corresponding contract
+	// Description: Query the funding rate at each settlement time point within a certain time range of the corresponding contract.
 	// Documentation: https://www.kucoin.com/docs-new/api-3470266
-	// +---------------------+---------+
-	// | Extra API Info      | Value   |
-	// +---------------------+---------+
-	// | API-DOMAIN          | FUTURES |
-	// | API-CHANNEL         | PRIVATE |
-	// | API-PERMISSION      | FUTURES |
-	// | API-RATE-LIMIT-POOL | PUBLIC  |
-	// | API-RATE-LIMIT      | 5       |
-	// +---------------------+---------+
+	// +-----------------------+---------+
+	// | Extra API Info        | Value   |
+	// +-----------------------+---------+
+	// | API-DOMAIN            | FUTURES |
+	// | API-CHANNEL           | PRIVATE |
+	// | API-PERMISSION        | FUTURES |
+	// | API-RATE-LIMIT-POOL   | PUBLIC  |
+	// | API-RATE-LIMIT-WEIGHT | 5       |
+	// +-----------------------+---------+
 	GetPublicFundingHistory(req *GetPublicFundingHistoryReq, ctx context.Context) (*GetPublicFundingHistoryResp, error)
 
 	// GetPrivateFundingHistory Get Private Funding History
 	// Description: Submit request to get the funding history.
 	// Documentation: https://www.kucoin.com/docs-new/api-3470267
-	// +---------------------+---------+
-	// | Extra API Info      | Value   |
-	// +---------------------+---------+
-	// | API-DOMAIN          | FUTURES |
-	// | API-CHANNEL         | PRIVATE |
-	// | API-PERMISSION      | FUTURES |
-	// | API-RATE-LIMIT-POOL | FUTURES |
-	// | API-RATE-LIMIT      | 5       |
-	// +---------------------+---------+
+	// +-----------------------+---------+
+	// | Extra API Info        | Value   |
+	// +-----------------------+---------+
+	// | API-DOMAIN            | FUTURES |
+	// | API-CHANNEL           | PRIVATE |
+	// | API-PERMISSION        | FUTURES |
+	// | API-RATE-LIMIT-POOL   | FUTURES |
+	// | API-RATE-LIMIT-WEIGHT | 5       |
+	// +-----------------------+---------+
 	GetPrivateFundingHistory(req *GetPrivateFundingHistoryReq, ctx context.Context) (*GetPrivateFundingHistoryResp, error)
 }
 

@@ -2,8 +2,8 @@
 
 package viplending
 
-// GetAccountDetailOrders struct for GetAccountDetailOrders
-type GetAccountDetailOrders struct {
+// GetLoanInfoOrders struct for GetLoanInfoOrders
+type GetLoanInfoOrders struct {
 	// Loan Orders ID
 	OrderId string `json:"orderId,omitempty"`
 	// Principal to Be Repaid
@@ -14,10 +14,10 @@ type GetAccountDetailOrders struct {
 	Currency string `json:"currency,omitempty"`
 }
 
-// NewGetAccountDetailOrders instantiates a new GetAccountDetailOrders object
+// NewGetLoanInfoOrders instantiates a new GetLoanInfoOrders object
 // This constructor will assign default values to properties that have it defined
-func NewGetAccountDetailOrders(orderId string, principal string, interest string, currency string) *GetAccountDetailOrders {
-	this := GetAccountDetailOrders{}
+func NewGetLoanInfoOrders(orderId string, principal string, interest string, currency string) *GetLoanInfoOrders {
+	this := GetLoanInfoOrders{}
 	this.OrderId = orderId
 	this.Principal = principal
 	this.Interest = interest
@@ -25,14 +25,14 @@ func NewGetAccountDetailOrders(orderId string, principal string, interest string
 	return &this
 }
 
-// NewGetAccountDetailOrdersWithDefaults instantiates a new GetAccountDetailOrders object
+// NewGetLoanInfoOrdersWithDefaults instantiates a new GetLoanInfoOrders object
 // This constructor will only assign default values to properties that have it defined,
-func NewGetAccountDetailOrdersWithDefaults() *GetAccountDetailOrders {
-	this := GetAccountDetailOrders{}
+func NewGetLoanInfoOrdersWithDefaults() *GetLoanInfoOrders {
+	this := GetLoanInfoOrders{}
 	return &this
 }
 
-func (o *GetAccountDetailOrders) ToMap() map[string]interface{} {
+func (o *GetLoanInfoOrders) ToMap() map[string]interface{} {
 	toSerialize := map[string]interface{}{}
 	toSerialize["orderId"] = o.OrderId
 	toSerialize["principal"] = o.Principal

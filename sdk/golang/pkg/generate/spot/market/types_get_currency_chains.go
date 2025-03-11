@@ -4,19 +4,19 @@ package market
 
 // GetCurrencyChains struct for GetCurrencyChains
 type GetCurrencyChains struct {
-	// chain name of currency
+	// Chain name of currency
 	ChainName string `json:"chainName,omitempty"`
 	// Minimum withdrawal amount
 	WithdrawalMinSize string `json:"withdrawalMinSize,omitempty"`
 	// Minimum deposit amount
 	DepositMinSize string `json:"depositMinSize,omitempty"`
-	// withdraw fee rate
+	// Withdraw fee rate
 	WithdrawFeeRate string `json:"withdrawFeeRate,omitempty"`
 	// Minimum fees charged for withdrawal
 	WithdrawalMinFee string `json:"withdrawalMinFee,omitempty"`
-	// Support withdrawal or not
+	// Withdrawal support or not
 	IsWithdrawEnabled bool `json:"isWithdrawEnabled,omitempty"`
-	// Support deposit or not
+	// Deposit support or not
 	IsDepositEnabled bool `json:"isDepositEnabled,omitempty"`
 	// Number of block confirmations
 	Confirms int32 `json:"confirms,omitempty"`
@@ -30,9 +30,9 @@ type GetCurrencyChains struct {
 	MaxWithdraw float32 `json:"maxWithdraw,omitempty"`
 	// Maximum amount of single deposit (only applicable to Lightning Network)
 	MaxDeposit string `json:"maxDeposit,omitempty"`
-	// whether memo/tag is needed
+	// Need for memo/tag or not
 	NeedTag bool `json:"needTag,omitempty"`
-	// chain id of currency
+	// Chain id of currency
 	ChainId string `json:"chainId,omitempty"`
 }
 

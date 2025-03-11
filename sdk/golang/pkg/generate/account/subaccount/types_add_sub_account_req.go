@@ -4,11 +4,11 @@ package subaccount
 
 // AddSubAccountReq struct for AddSubAccountReq
 type AddSubAccountReq struct {
-	// Password(7-24 characters, must contain letters and numbers, cannot only contain numbers or include special characters)
+	// Password (7–24 characters, must contain letters and numbers, cannot only contain numbers or include special characters)
 	Password string `json:"password,omitempty"`
-	// Remarks(1~24 characters)
+	// Remarks (1–24 characters)
 	Remarks *string `json:"remarks,omitempty"`
-	// Sub-account name(must contain 7-32 characters, at least one number and one letter. Cannot contain any spaces.)
+	// Sub-account name (must contain 7–32 characters, at least one number and one letter. Cannot contain any spaces.)
 	SubName string `json:"subName,omitempty"`
 	// Permission (types include Spot, Futures, Margin permissions, which can be used alone or in combination).
 	Access string `json:"access,omitempty"`
@@ -48,19 +48,19 @@ func NewAddSubAccountReqBuilder() *AddSubAccountReqBuilder {
 	return &AddSubAccountReqBuilder{obj: NewAddSubAccountReqWithDefaults()}
 }
 
-// Password(7-24 characters, must contain letters and numbers, cannot only contain numbers or include special characters)
+// Password (7–24 characters, must contain letters and numbers, cannot only contain numbers or include special characters)
 func (builder *AddSubAccountReqBuilder) SetPassword(value string) *AddSubAccountReqBuilder {
 	builder.obj.Password = value
 	return builder
 }
 
-// Remarks(1~24 characters)
+// Remarks (1–24 characters)
 func (builder *AddSubAccountReqBuilder) SetRemarks(value string) *AddSubAccountReqBuilder {
 	builder.obj.Remarks = &value
 	return builder
 }
 
-// Sub-account name(must contain 7-32 characters, at least one number and one letter. Cannot contain any spaces.)
+// Sub-account name (must contain 7–32 characters, at least one number and one letter. Cannot contain any spaces.)
 func (builder *AddSubAccountReqBuilder) SetSubName(value string) *AddSubAccountReqBuilder {
 	builder.obj.SubName = value
 	return builder

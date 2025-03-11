@@ -2,8 +2,8 @@
 
 package viplending
 
-// GetAccountDetailLtv Loan-to-Value Ratio
-type GetAccountDetailLtv struct {
+// GetLoanInfoLtv Loan-to-Value Ratio
+type GetLoanInfoLtv struct {
 	// LTV of Restricted Transfers to Funding Account
 	TransferLtv string `json:"transferLtv,omitempty"`
 	// LTV of Reduce Only (Restricted Open Positions)
@@ -16,10 +16,10 @@ type GetAccountDetailLtv struct {
 	CurrentLtv string `json:"currentLtv,omitempty"`
 }
 
-// NewGetAccountDetailLtv instantiates a new GetAccountDetailLtv object
+// NewGetLoanInfoLtv instantiates a new GetLoanInfoLtv object
 // This constructor will assign default values to properties that have it defined
-func NewGetAccountDetailLtv(transferLtv string, onlyClosePosLtv string, delayedLiquidationLtv string, instantLiquidationLtv string, currentLtv string) *GetAccountDetailLtv {
-	this := GetAccountDetailLtv{}
+func NewGetLoanInfoLtv(transferLtv string, onlyClosePosLtv string, delayedLiquidationLtv string, instantLiquidationLtv string, currentLtv string) *GetLoanInfoLtv {
+	this := GetLoanInfoLtv{}
 	this.TransferLtv = transferLtv
 	this.OnlyClosePosLtv = onlyClosePosLtv
 	this.DelayedLiquidationLtv = delayedLiquidationLtv
@@ -28,14 +28,14 @@ func NewGetAccountDetailLtv(transferLtv string, onlyClosePosLtv string, delayedL
 	return &this
 }
 
-// NewGetAccountDetailLtvWithDefaults instantiates a new GetAccountDetailLtv object
+// NewGetLoanInfoLtvWithDefaults instantiates a new GetLoanInfoLtv object
 // This constructor will only assign default values to properties that have it defined,
-func NewGetAccountDetailLtvWithDefaults() *GetAccountDetailLtv {
-	this := GetAccountDetailLtv{}
+func NewGetLoanInfoLtvWithDefaults() *GetLoanInfoLtv {
+	this := GetLoanInfoLtv{}
 	return &this
 }
 
-func (o *GetAccountDetailLtv) ToMap() map[string]interface{} {
+func (o *GetLoanInfoLtv) ToMap() map[string]interface{} {
 	toSerialize := map[string]interface{}{}
 	toSerialize["transferLtv"] = o.TransferLtv
 	toSerialize["onlyClosePosLtv"] = o.OnlyClosePosLtv

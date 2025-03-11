@@ -10,7 +10,7 @@ import (
 type RedeemResp struct {
 	// common response
 	CommonResponse *types.RestResponse
-	// Redeem order id
+	// Redeem order ID
 	OrderNo string `json:"orderNo,omitempty"`
 }
 

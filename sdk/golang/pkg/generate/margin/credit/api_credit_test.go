@@ -124,7 +124,7 @@ func TestCreditGetPurchaseOrdersReqModel(t *testing.T) {
 	// Get Purchase Orders
 	// /api/v3/purchase/orders
 
-	data := "{\"currency\": \"BTC\", \"status\": \"DONE\", \"purchaseOrderNo\": \"example_string_default_value\", \"currentPage\": 1, \"pageSize\": 50}"
+	data := "{\"status\": \"DONE\", \"currency\": \"BTC\", \"purchaseOrderNo\": \"example_string_default_value\", \"currentPage\": 1, \"pageSize\": 50}"
 	req := &GetPurchaseOrdersReq{}
 	err := json.Unmarshal([]byte(data), req)
 	req.ToMap()
@@ -180,7 +180,7 @@ func TestCreditGetRedeemOrdersReqModel(t *testing.T) {
 	// Get Redeem Orders
 	// /api/v3/redeem/orders
 
-	data := "{\"currency\": \"BTC\", \"status\": \"DONE\", \"redeemOrderNo\": \"example_string_default_value\", \"currentPage\": 1, \"pageSize\": 50}"
+	data := "{\"status\": \"DONE\", \"currency\": \"BTC\", \"redeemOrderNo\": \"example_string_default_value\", \"currentPage\": 1, \"pageSize\": 50}"
 	req := &GetRedeemOrdersReq{}
 	err := json.Unmarshal([]byte(data), req)
 	req.ToMap()

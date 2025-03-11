@@ -10,7 +10,7 @@ import (
 type GetFullOrderBookResp struct {
 	// common response
 	CommonResponse *types.RestResponse
-	// Timestamp(millisecond)
+	// Timestamp (milliseconds)
 	Time int64 `json:"time,omitempty"`
 	// Sequence number
 	Sequence string `json:"sequence,omitempty"`

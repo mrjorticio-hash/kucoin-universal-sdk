@@ -8,7 +8,7 @@ type GetSubAccountItems struct {
 	AccountName string `json:"accountName,omitempty"`
 	// Sub-account UID
 	Uid string `json:"uid,omitempty"`
-	// Creation time, unix timestamp (milliseconds)
+	// Creation time, Unix timestamp (milliseconds)
 	CreatedAt int64 `json:"createdAt,omitempty"`
 	// Sub-account VIP level
 	Level int32 `json:"level,omitempty"`
