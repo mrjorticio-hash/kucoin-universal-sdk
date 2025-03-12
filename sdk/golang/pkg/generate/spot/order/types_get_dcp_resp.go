@@ -10,14 +10,14 @@ import (
 type GetDCPResp struct {
 	// common response
 	CommonResponse *types.RestResponse
-	// Auto cancel order trigger setting time, the unit is second. range: timeout=-1 (meaning unset) or 5 <= timeout <= 86400
+	// Auto cancel order trigger setting time, the unit is second. Range: timeout=-1 (meaning unset) or 5 <= timeout <= 86400
 	Timeout *int32 `json:"timeout,omitempty"`
-	// List of trading pairs. Separated by commas, empty means all trading pairs
+	// List of trading pairs. Separated by commas; empty means all trading pairs
 	Symbols *string `json:"symbols,omitempty"`
 	// System current time (in seconds)
-	CurrentTime *int32 `json:"currentTime,omitempty"`
+	CurrentTime *int64 `json:"currentTime,omitempty"`
 	// Trigger cancellation time (in seconds)
-	TriggerTime *int32 `json:"triggerTime,omitempty"`
+	TriggerTime *int64 `json:"triggerTime,omitempty"`
 }
 
 // NewGetDCPResp instantiates a new GetDCPResp object

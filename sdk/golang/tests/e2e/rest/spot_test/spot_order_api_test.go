@@ -527,12 +527,7 @@ func TestOrderGetRecentTradeHistoryOldReq(t *testing.T) {
 	// GetRecentTradeHistoryOld
 	// Get Recent Trade History - Old
 	// /api/v1/limit/fills
-
-	builder := order.NewGetRecentTradeHistoryOldReqBuilder()
-	builder.SetCurrentPage(1).SetPageSize(10)
-	req := builder.Build()
-
-	resp, err := orderApi.GetRecentTradeHistoryOld(req, context.TODO())
+	resp, err := orderApi.GetRecentTradeHistoryOld(context.TODO())
 	if err != nil {
 		panic(err)
 	}
@@ -549,12 +544,7 @@ func TestOrderGetRecentOrdersListOldReq(t *testing.T) {
 	// GetRecentOrdersListOld
 	// Get Recent Orders List - Old
 	// /api/v1/limit/orders
-
-	builder := order.NewGetRecentOrdersListOldReqBuilder()
-	builder.SetCurrentPage(1).SetPageSize(10)
-	req := builder.Build()
-
-	resp, err := orderApi.GetRecentOrdersListOld(req, context.TODO())
+	resp, err := orderApi.GetRecentOrdersListOld(context.TODO())
 	if err != nil {
 		panic(err)
 	}
@@ -574,7 +564,7 @@ func TestOrderCancelOrderByClientOidOldReq(t *testing.T) {
 	// /api/v1/order/client-order/{clientOid}
 
 	builder := order.NewCancelOrderByClientOidOldReqBuilder()
-	builder.SetSymbol("BTC-USDT").SetClientOid("674d80d664640c00078351c0")
+	builder.SetClientOid("5d1962d9-5010-4d59-8872-75264c86c95e")
 	req := builder.Build()
 
 	resp, err := orderApi.CancelOrderByClientOidOld(req, context.TODO())
@@ -689,7 +679,7 @@ func TestOrderCancelOrderByOrderIdOldReq(t *testing.T) {
 	// /api/v1/orders/{orderId}
 
 	builder := order.NewCancelOrderByOrderIdOldReqBuilder()
-	builder.SetSymbol("BTC-USDT").SetOrderId("674e6ed5725fc60007502ef0")
+	builder.SetOrderId("674e6ed5725fc60007502ef0")
 
 	req := builder.Build()
 

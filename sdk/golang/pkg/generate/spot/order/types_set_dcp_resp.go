@@ -11,14 +11,14 @@ type SetDCPResp struct {
 	// common response
 	CommonResponse *types.RestResponse
 	// System current time (in seconds)
-	CurrentTime int32 `json:"currentTime,omitempty"`
+	CurrentTime int64 `json:"currentTime,omitempty"`
 	// Trigger cancellation time (in seconds)
-	TriggerTime int32 `json:"triggerTime,omitempty"`
+	TriggerTime int64 `json:"triggerTime,omitempty"`
 }
 
 // NewSetDCPResp instantiates a new SetDCPResp object
 // This constructor will assign default values to properties that have it defined
-func NewSetDCPResp(currentTime int32, triggerTime int32) *SetDCPResp {
+func NewSetDCPResp(currentTime int64, triggerTime int64) *SetDCPResp {
 	this := SetDCPResp{}
 	this.CurrentTime = currentTime
 	this.TriggerTime = triggerTime

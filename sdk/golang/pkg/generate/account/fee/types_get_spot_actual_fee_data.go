@@ -4,12 +4,16 @@ package fee
 
 // GetSpotActualFeeData struct for GetSpotActualFeeData
 type GetSpotActualFeeData struct {
-	// The unique identity of the trading pair and will not change even if the trading pair is renamed
+	// The unique identity of the trading pair; will not change even if the trading pair is renamed
 	Symbol string `json:"symbol,omitempty"`
 	// Actual taker fee rate of the symbol
 	TakerFeeRate string `json:"takerFeeRate,omitempty"`
 	// Actual maker fee rate of the symbol
 	MakerFeeRate string `json:"makerFeeRate,omitempty"`
+	// Buy tax rate, This field is visible to users in certain countries
+	SellTaxRate *string `json:"sellTaxRate,omitempty"`
+	// Sell tax rate, This field is visible to users in certain countries
+	BuyTaxRate *string `json:"buyTaxRate,omitempty"`
 }
 
 // NewGetSpotActualFeeData instantiates a new GetSpotActualFeeData object
@@ -34,5 +38,7 @@ func (o *GetSpotActualFeeData) ToMap() map[string]interface{} {
 	toSerialize["symbol"] = o.Symbol
 	toSerialize["takerFeeRate"] = o.TakerFeeRate
 	toSerialize["makerFeeRate"] = o.MakerFeeRate
+	toSerialize["sellTaxRate"] = o.SellTaxRate
+	toSerialize["buyTaxRate"] = o.BuyTaxRate
 	return toSerialize
 }

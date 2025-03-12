@@ -11,20 +11,25 @@ type GetStopOrdersListResp struct {
 	// common response
 	CommonResponse *types.RestResponse
 	// current page id
-	CurrentPage *int32 `json:"currentPage,omitempty"`
-	PageSize    *int32 `json:"pageSize,omitempty"`
+	CurrentPage int32 `json:"currentPage,omitempty"`
+	PageSize    int32 `json:"pageSize,omitempty"`
 	// the stop order count
-	TotalNum *int32 `json:"totalNum,omitempty"`
+	TotalNum int32 `json:"totalNum,omitempty"`
 	// total page count of the list
-	TotalPage *int32 `json:"totalPage,omitempty"`
+	TotalPage int32 `json:"totalPage,omitempty"`
 	// the list of stop orders
 	Items []GetStopOrdersListItems `json:"items,omitempty"`
 }
 
 // NewGetStopOrdersListResp instantiates a new GetStopOrdersListResp object
 // This constructor will assign default values to properties that have it defined
-func NewGetStopOrdersListResp() *GetStopOrdersListResp {
+func NewGetStopOrdersListResp(currentPage int32, pageSize int32, totalNum int32, totalPage int32, items []GetStopOrdersListItems) *GetStopOrdersListResp {
 	this := GetStopOrdersListResp{}
+	this.CurrentPage = currentPage
+	this.PageSize = pageSize
+	this.TotalNum = totalNum
+	this.TotalPage = totalPage
+	this.Items = items
 	return &this
 }
 

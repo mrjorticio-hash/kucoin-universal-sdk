@@ -77,6 +77,50 @@ func TestPublicAllTickers(t *testing.T) {
 	assert.Nil(t, err)
 }
 
+func TestPublicCallAuctionInfo(t *testing.T) {
+	wg := sync.WaitGroup{}
+	wg.Add(1)
+
+	i := 0
+	id, err := spotPublicApi.CallAuctionInfo("PAWS-USDT", func(topic string, subject string, data *spotpublic.CallAuctionInfoEvent) error {
+		assert.NotNil(t, data)
+		i++
+		if i == 1 {
+			wg.Done()
+		}
+		str, _ := json.Marshal(data)
+		fmt.Println(topic, subject, string(str))
+		return nil
+	})
+	assert.Nil(t, err)
+	wg.Wait()
+
+	err = spotPublicApi.UnSubscribe(id)
+	assert.Nil(t, err)
+}
+
+func TestPublicCallAuctionOrderbookLevel50(t *testing.T) {
+	wg := sync.WaitGroup{}
+	wg.Add(1)
+
+	i := 0
+	id, err := spotPublicApi.CallAuctionOrderbookLevel50("PAWS-USDT", func(topic string, subject string, data *spotpublic.CallAuctionOrderbookLevel50Event) error {
+		assert.NotNil(t, data)
+		i++
+		if i == 1 {
+			wg.Done()
+		}
+		str, _ := json.Marshal(data)
+		fmt.Println(topic, subject, string(str))
+		return nil
+	})
+	assert.Nil(t, err)
+	wg.Wait()
+
+	err = spotPublicApi.UnSubscribe(id)
+	assert.Nil(t, err)
+}
+
 func TestPublicKlines(t *testing.T) {
 	wg := sync.WaitGroup{}
 	wg.Add(1)

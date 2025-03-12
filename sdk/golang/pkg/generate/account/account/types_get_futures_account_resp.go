@@ -10,11 +10,11 @@ import (
 type GetFuturesAccountResp struct {
 	// common response
 	CommonResponse *types.RestResponse
-	// Account equity = marginBalance + Unrealised PNL
+	// Account equity = marginBalance + unrealizedPNL
 	AccountEquity float32 `json:"accountEquity,omitempty"`
-	// Unrealised profit and loss
+	// Unrealized profit and loss
 	UnrealisedPNL float32 `json:"unrealisedPNL,omitempty"`
-	// Margin balance = positionMargin + orderMargin + frozenFunds + availableBalance - unrealisedPNL
+	// Margin balance = positionMargin + orderMargin + frozenFunds + availableBalance - unrealizedPNL
 	MarginBalance float32 `json:"marginBalance,omitempty"`
 	// Position margin
 	PositionMargin float32 `json:"positionMargin,omitempty"`
@@ -28,11 +28,13 @@ type GetFuturesAccountResp struct {
 	Currency string `json:"currency,omitempty"`
 	// Cross margin risk rate
 	RiskRatio float32 `json:"riskRatio,omitempty"`
+	// Maximum amount that can be withdrawn/transferred.
+	MaxWithdrawAmount float32 `json:"maxWithdrawAmount,omitempty"`
 }
 
 // NewGetFuturesAccountResp instantiates a new GetFuturesAccountResp object
 // This constructor will assign default values to properties that have it defined
-func NewGetFuturesAccountResp(accountEquity float32, unrealisedPNL float32, marginBalance float32, positionMargin float32, orderMargin float32, frozenFunds float32, availableBalance float32, currency string, riskRatio float32) *GetFuturesAccountResp {
+func NewGetFuturesAccountResp(accountEquity float32, unrealisedPNL float32, marginBalance float32, positionMargin float32, orderMargin float32, frozenFunds float32, availableBalance float32, currency string, riskRatio float32, maxWithdrawAmount float32) *GetFuturesAccountResp {
 	this := GetFuturesAccountResp{}
 	this.AccountEquity = accountEquity
 	this.UnrealisedPNL = unrealisedPNL
@@ -43,6 +45,7 @@ func NewGetFuturesAccountResp(accountEquity float32, unrealisedPNL float32, marg
 	this.AvailableBalance = availableBalance
 	this.Currency = currency
 	this.RiskRatio = riskRatio
+	this.MaxWithdrawAmount = maxWithdrawAmount
 	return &this
 }
 
@@ -64,6 +67,7 @@ func (o *GetFuturesAccountResp) ToMap() map[string]interface{} {
 	toSerialize["availableBalance"] = o.AvailableBalance
 	toSerialize["currency"] = o.Currency
 	toSerialize["riskRatio"] = o.RiskRatio
+	toSerialize["maxWithdrawAmount"] = o.MaxWithdrawAmount
 	return toSerialize
 }
 

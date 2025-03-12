@@ -4,8 +4,6 @@ package order
 
 // CancelOrderByClientOidOldReq struct for CancelOrderByClientOidOldReq
 type CancelOrderByClientOidOldReq struct {
-	// symbol
-	Symbol *string `json:"symbol,omitempty" url:"symbol,omitempty"`
 	// Client Order Id，unique identifier created by the user
 	ClientOid *string `json:"clientOid,omitempty" path:"clientOid" url:"-"`
 }
@@ -26,7 +24,6 @@ func NewCancelOrderByClientOidOldReqWithDefaults() *CancelOrderByClientOidOldReq
 
 func (o *CancelOrderByClientOidOldReq) ToMap() map[string]interface{} {
 	toSerialize := map[string]interface{}{}
-	toSerialize["symbol"] = o.Symbol
 	toSerialize["clientOid"] = o.ClientOid
 	return toSerialize
 }
@@ -37,12 +34,6 @@ type CancelOrderByClientOidOldReqBuilder struct {
 
 func NewCancelOrderByClientOidOldReqBuilder() *CancelOrderByClientOidOldReqBuilder {
 	return &CancelOrderByClientOidOldReqBuilder{obj: NewCancelOrderByClientOidOldReqWithDefaults()}
-}
-
-// symbol
-func (builder *CancelOrderByClientOidOldReqBuilder) SetSymbol(value string) *CancelOrderByClientOidOldReqBuilder {
-	builder.obj.Symbol = &value
-	return builder
 }
 
 // Client Order Id，unique identifier created by the user

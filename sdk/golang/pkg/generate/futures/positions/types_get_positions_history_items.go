@@ -35,12 +35,20 @@ type GetPositionsHistoryItems struct {
 	// Closing price of the position
 	ClosePrice string `json:"closePrice,omitempty"`
 	// Margin Mode: CROSS，ISOLATED
-	MarginMode string `json:"marginMode,omitempty"`
+	MarginMode           string `json:"marginMode,omitempty"`
+	RealisedGrossCostNew string `json:"realisedGrossCostNew,omitempty"`
+	// Tax
+	Tax          string  `json:"tax,omitempty"`
+	Roe          *string `json:"roe,omitempty"`
+	LiquidAmount string  `json:"liquidAmount,omitempty"`
+	LiquidPrice  string  `json:"liquidPrice,omitempty"`
+	// Position side
+	Side string `json:"side,omitempty"`
 }
 
 // NewGetPositionsHistoryItems instantiates a new GetPositionsHistoryItems object
 // This constructor will assign default values to properties that have it defined
-func NewGetPositionsHistoryItems(closeId string, userId string, symbol string, settleCurrency string, leverage string, Type_ string, pnl string, realisedGrossCost string, withdrawPnl string, tradeFee string, fundingFee string, openTime int64, closeTime int64, openPrice string, closePrice string, marginMode string) *GetPositionsHistoryItems {
+func NewGetPositionsHistoryItems(closeId string, userId string, symbol string, settleCurrency string, leverage string, Type_ string, pnl string, realisedGrossCost string, withdrawPnl string, tradeFee string, fundingFee string, openTime int64, closeTime int64, openPrice string, closePrice string, marginMode string, realisedGrossCostNew string, tax string, liquidAmount string, liquidPrice string, side string) *GetPositionsHistoryItems {
 	this := GetPositionsHistoryItems{}
 	this.CloseId = closeId
 	this.UserId = userId
@@ -58,6 +66,11 @@ func NewGetPositionsHistoryItems(closeId string, userId string, symbol string, s
 	this.OpenPrice = openPrice
 	this.ClosePrice = closePrice
 	this.MarginMode = marginMode
+	this.RealisedGrossCostNew = realisedGrossCostNew
+	this.Tax = tax
+	this.LiquidAmount = liquidAmount
+	this.LiquidPrice = liquidPrice
+	this.Side = side
 	return &this
 }
 
@@ -86,5 +99,11 @@ func (o *GetPositionsHistoryItems) ToMap() map[string]interface{} {
 	toSerialize["openPrice"] = o.OpenPrice
 	toSerialize["closePrice"] = o.ClosePrice
 	toSerialize["marginMode"] = o.MarginMode
+	toSerialize["realisedGrossCostNew"] = o.RealisedGrossCostNew
+	toSerialize["tax"] = o.Tax
+	toSerialize["roe"] = o.Roe
+	toSerialize["liquidAmount"] = o.LiquidAmount
+	toSerialize["liquidPrice"] = o.LiquidPrice
+	toSerialize["side"] = o.Side
 	return toSerialize
 }

@@ -88,7 +88,8 @@ func TestSubAccountGetSpotSubAccountDetailReq(t *testing.T) {
 	// /api/v1/sub-accounts/{subUserId}
 
 	builder := subaccount.NewGetSpotSubAccountDetailReqBuilder()
-	builder.SetSubUserId("65b9ef85eddfa500011de2d3").SetIncludeBaseAmount(false)
+	builder.SetSubUserId("6745b7bc890ba20001911363").
+		SetIncludeBaseAmount(false).SetBaseCurrency("USDT").SetBaseAmount("0.1")
 	req := builder.Build()
 
 	resp, err := subaccountApi.GetSpotSubAccountDetail(req, context.TODO())

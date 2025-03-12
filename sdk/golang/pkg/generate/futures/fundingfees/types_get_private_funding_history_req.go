@@ -4,19 +4,19 @@ package fundingfees
 
 // GetPrivateFundingHistoryReq struct for GetPrivateFundingHistoryReq
 type GetPrivateFundingHistoryReq struct {
-	// Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)
+	// Symbol of the contract. Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)
 	Symbol *string `json:"symbol,omitempty" url:"symbol,omitempty"`
-	// Begin time (milisecond)
-	From *int64 `json:"from,omitempty" url:"from,omitempty"`
-	// End time (milisecond)
-	To *int64 `json:"to,omitempty" url:"to,omitempty"`
-	// This parameter functions to judge whether the lookup is forward or not. True means “yes” and False means “no”. This parameter is set as true by default
+	// Begin time (milliseconds)
+	StartAt *int64 `json:"startAt,omitempty" url:"startAt,omitempty"`
+	// End time (milliseconds)
+	EndAt *int64 `json:"endAt,omitempty" url:"endAt,omitempty"`
+	// This parameter functions to judge whether the lookup is forward or not. True means “yes” and False means “no”. This parameter is set as true by default.
 	Reverse *bool `json:"reverse,omitempty" url:"reverse,omitempty"`
 	// Start offset. The unique attribute of the last returned result of the last request. The data of the first page will be returned by default.
 	Offset *int32 `json:"offset,omitempty" url:"offset,omitempty"`
-	// This parameter functions to judge whether the lookup is forward or not. True means “yes” and False means “no”. This parameter is set as true by default
+	// This parameter functions to judge whether the lookup is forward or not. True means “yes” and False means “no”. This parameter is set as true by default.
 	Forward *bool `json:"forward,omitempty" url:"forward,omitempty"`
-	// Max record count. The default record count is 10
+	// Max. record count. The default record count is 10
 	MaxCount *int32 `json:"maxCount,omitempty" url:"maxCount,omitempty"`
 }
 
@@ -37,8 +37,8 @@ func NewGetPrivateFundingHistoryReqWithDefaults() *GetPrivateFundingHistoryReq {
 func (o *GetPrivateFundingHistoryReq) ToMap() map[string]interface{} {
 	toSerialize := map[string]interface{}{}
 	toSerialize["symbol"] = o.Symbol
-	toSerialize["from"] = o.From
-	toSerialize["to"] = o.To
+	toSerialize["startAt"] = o.StartAt
+	toSerialize["endAt"] = o.EndAt
 	toSerialize["reverse"] = o.Reverse
 	toSerialize["offset"] = o.Offset
 	toSerialize["forward"] = o.Forward
@@ -54,25 +54,25 @@ func NewGetPrivateFundingHistoryReqBuilder() *GetPrivateFundingHistoryReqBuilder
 	return &GetPrivateFundingHistoryReqBuilder{obj: NewGetPrivateFundingHistoryReqWithDefaults()}
 }
 
-// Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)
+// Symbol of the contract. Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)
 func (builder *GetPrivateFundingHistoryReqBuilder) SetSymbol(value string) *GetPrivateFundingHistoryReqBuilder {
 	builder.obj.Symbol = &value
 	return builder
 }
 
-// Begin time (milisecond)
-func (builder *GetPrivateFundingHistoryReqBuilder) SetFrom(value int64) *GetPrivateFundingHistoryReqBuilder {
-	builder.obj.From = &value
+// Begin time (milliseconds)
+func (builder *GetPrivateFundingHistoryReqBuilder) SetStartAt(value int64) *GetPrivateFundingHistoryReqBuilder {
+	builder.obj.StartAt = &value
 	return builder
 }
 
-// End time (milisecond)
-func (builder *GetPrivateFundingHistoryReqBuilder) SetTo(value int64) *GetPrivateFundingHistoryReqBuilder {
-	builder.obj.To = &value
+// End time (milliseconds)
+func (builder *GetPrivateFundingHistoryReqBuilder) SetEndAt(value int64) *GetPrivateFundingHistoryReqBuilder {
+	builder.obj.EndAt = &value
 	return builder
 }
 
-// This parameter functions to judge whether the lookup is forward or not. True means “yes” and False means “no”. This parameter is set as true by default
+// This parameter functions to judge whether the lookup is forward or not. True means “yes” and False means “no”. This parameter is set as true by default.
 func (builder *GetPrivateFundingHistoryReqBuilder) SetReverse(value bool) *GetPrivateFundingHistoryReqBuilder {
 	builder.obj.Reverse = &value
 	return builder
@@ -84,13 +84,13 @@ func (builder *GetPrivateFundingHistoryReqBuilder) SetOffset(value int32) *GetPr
 	return builder
 }
 
-// This parameter functions to judge whether the lookup is forward or not. True means “yes” and False means “no”. This parameter is set as true by default
+// This parameter functions to judge whether the lookup is forward or not. True means “yes” and False means “no”. This parameter is set as true by default.
 func (builder *GetPrivateFundingHistoryReqBuilder) SetForward(value bool) *GetPrivateFundingHistoryReqBuilder {
 	builder.obj.Forward = &value
 	return builder
 }
 
-// Max record count. The default record count is 10
+// Max. record count. The default record count is 10
 func (builder *GetPrivateFundingHistoryReqBuilder) SetMaxCount(value int32) *GetPrivateFundingHistoryReqBuilder {
 	builder.obj.MaxCount = &value
 	return builder
