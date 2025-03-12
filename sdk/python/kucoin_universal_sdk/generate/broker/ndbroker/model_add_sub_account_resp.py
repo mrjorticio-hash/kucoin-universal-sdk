@@ -17,24 +17,24 @@ class AddSubAccountResp(BaseModel, Response):
     AddSubAccountResp
 
     Attributes:
-        account_name (str): Sub-Account name 
-        uid (str): Sub-Account UID
-        created_at (int): Creation time, unix timestamp (milliseconds)
-        level (int): Subaccount VIP level
+        account_name (str): Sub-account name 
+        uid (str): Sub-account UID
+        created_at (int): Creation time, Unix timestamp (milliseconds)
+        level (int): Sub-account VIP level
     """
 
     common_response: Optional[RestResponse] = Field(
         default=None, description="Common response")
     account_name: Optional[str] = Field(default=None,
-                                        description="Sub-Account name ",
+                                        description="Sub-account name ",
                                         alias="accountName")
-    uid: Optional[str] = Field(default=None, description="Sub-Account UID")
+    uid: Optional[str] = Field(default=None, description="Sub-account UID")
     created_at: Optional[int] = Field(
         default=None,
-        description="Creation time, unix timestamp (milliseconds)",
+        description="Creation time, Unix timestamp (milliseconds)",
         alias="createdAt")
     level: Optional[int] = Field(default=None,
-                                 description="Subaccount VIP level")
+                                 description="Sub-account VIP level")
 
     __properties: ClassVar[List[str]] = [
         "accountName", "uid", "createdAt", "level"

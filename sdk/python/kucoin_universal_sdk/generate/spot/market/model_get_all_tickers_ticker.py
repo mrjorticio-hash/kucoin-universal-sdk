@@ -17,7 +17,7 @@ class GetAllTickersTicker(BaseModel):
 
     Attributes:
         symbol (str): Symbol
-        symbol_name (str): Name of trading pairs, it would change after renaming
+        symbol_name (str): Name of trading pairs, it will change after renaming
         buy (str): Best bid price
         best_bid_size (str): Best bid size
         sell (str): Best ask price
@@ -39,8 +39,8 @@ class GetAllTickersTicker(BaseModel):
     class TakerCoefficientEnum(Enum):
         """
         Attributes:
-            T_1: the taker fee coefficient is 1
-            T_0: no fee
+            T_1: The taker fee coefficient is 1
+            T_0: No fee
         """
         T_1 = '1'
         T_0 = '0'
@@ -48,8 +48,8 @@ class GetAllTickersTicker(BaseModel):
     class MakerCoefficientEnum(Enum):
         """
         Attributes:
-            T_1: the maker fee coefficient is 1
-            T_0: no fee
+            T_1: The maker fee coefficient is 1
+            T_0: No fee
         """
         T_1 = '1'
         T_0 = '0'
@@ -57,7 +57,7 @@ class GetAllTickersTicker(BaseModel):
     symbol: Optional[str] = Field(default=None, description="Symbol")
     symbol_name: Optional[str] = Field(
         default=None,
-        description="Name of trading pairs, it would change after renaming",
+        description="Name of trading pairs, it will change after renaming",
         alias="symbolName")
     buy: Optional[str] = Field(default=None, description="Best bid price")
     best_bid_size: Optional[str] = Field(default=None,

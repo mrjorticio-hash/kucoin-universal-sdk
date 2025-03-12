@@ -15,12 +15,12 @@ class GetEtfInfoReq(BaseModel):
     GetEtfInfoReq
 
     Attributes:
-        currency (str): ETF Currency, if empty query all currencies 
+        currency (str): ETF Currency: If empty, query all currencies 
     """
 
     currency: Optional[str] = Field(
         default=None,
-        description="ETF Currency, if empty query all currencies ")
+        description="ETF Currency: If empty, query all currencies ")
 
     __properties: ClassVar[List[str]] = ["currency"]
 
@@ -67,7 +67,7 @@ class GetEtfInfoReqBuilder:
 
     def set_currency(self, value: str) -> GetEtfInfoReqBuilder:
         """
-        ETF Currency, if empty query all currencies 
+        ETF Currency: If empty, query all currencies 
         """
         self.obj['currency'] = value
         return self

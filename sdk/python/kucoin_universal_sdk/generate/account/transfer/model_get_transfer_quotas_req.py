@@ -17,8 +17,8 @@ class GetTransferQuotasReq(BaseModel):
 
     Attributes:
         currency (str): currency
-        type (TypeEnum): The account type:MAIN、TRADE、MARGIN、ISOLATED
-        tag (str): Trading pair, required when the account type is ISOLATED; other types are not passed, e.g.: BTC-USDT
+        type (TypeEnum): The account type:MAIN, TRADE, MARGIN, ISOLATED, MARGIN_V2, ISOLATED_V2
+        tag (str): Trading pair required when the account type is ISOLATED; other types do not pass, e.g.: BTC-USDT
     """
 
     class TypeEnum(Enum):
@@ -26,24 +26,30 @@ class GetTransferQuotasReq(BaseModel):
         Attributes:
             MAIN: Funding account
             TRADE: Spot account
-            MARGIN: Cross margin account
-            ISOLATED: Isolated margin account
+            MARGIN: Spot cross margin account
+            ISOLATED: Spot isolated margin account
             OPTION: Option account
+            MARGIN_V2: Spot cross margin HF account
+            ISOLATED_V2: Spot isolated margin HF account
         """
         MAIN = 'MAIN'
         TRADE = 'TRADE'
         MARGIN = 'MARGIN'
         ISOLATED = 'ISOLATED'
         OPTION = 'OPTION'
+        MARGIN_V2 = 'MARGIN_V2'
+        ISOLATED_V2 = 'ISOLATED_V2'
 
     currency: Optional[str] = Field(default=None, description="currency")
     type: Optional[TypeEnum] = Field(
         default=None,
-        description="The account type:MAIN、TRADE、MARGIN、ISOLATED")
+        description=
+        "The account type:MAIN, TRADE, MARGIN, ISOLATED, MARGIN_V2, ISOLATED_V2"
+    )
     tag: Optional[str] = Field(
         default='BTC-USDT',
         description=
-        "Trading pair, required when the account type is ISOLATED; other types are not passed, e.g.: BTC-USDT"
+        "Trading pair required when the account type is ISOLATED; other types do not pass, e.g.: BTC-USDT"
     )
 
     __properties: ClassVar[List[str]] = ["currency", "type", "tag"]
@@ -108,14 +114,14 @@ class GetTransferQuotasReqBuilder:
             self, value: GetTransferQuotasReq.TypeEnum
     ) -> GetTransferQuotasReqBuilder:
         """
-        The account type:MAIN、TRADE、MARGIN、ISOLATED
+        The account type:MAIN, TRADE, MARGIN, ISOLATED, MARGIN_V2, ISOLATED_V2
         """
         self.obj['type'] = value
         return self
 
     def set_tag(self, value: str) -> GetTransferQuotasReqBuilder:
         """
-        Trading pair, required when the account type is ISOLATED; other types are not passed, e.g.: BTC-USDT
+        Trading pair required when the account type is ISOLATED; other types do not pass, e.g.: BTC-USDT
         """
         self.obj['tag'] = value
         return self

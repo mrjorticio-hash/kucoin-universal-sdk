@@ -5,6 +5,7 @@ from kucoin_universal_sdk.internal.interfaces.websocket import WebSocketService
 from .model_account_event import AccountEventCallback, AccountEventCallbackWrapper
 from .model_order_v1_event import OrderV1EventCallback, OrderV1EventCallbackWrapper
 from .model_order_v2_event import OrderV2EventCallback, OrderV2EventCallbackWrapper
+from .model_stop_order_event import StopOrderEventCallback, StopOrderEventCallbackWrapper
 
 
 class SpotPrivateWS(ABC):
@@ -32,6 +33,15 @@ class SpotPrivateWS(ABC):
         """
         summary: Get Order(V2)
         description: This topic will push all change events of your orders. Compared with v1, v2 adds an Order Status: \&quot;new\&quot;, there is no difference in push speed
+        push frequency: real-time
+        """
+        pass
+
+    @abstractmethod
+    def stop_order(self, callback: StopOrderEventCallback) -> str:
+        """
+        summary: Get Stop Order
+        description: This topic will push all change events of your stop orders.
         push frequency: real-time
         """
         pass
@@ -77,6 +87,14 @@ class SpotPrivateWSImpl(SpotPrivateWS):
 
         return self.transport.subscribe(topic_prefix, args,
                                         OrderV2EventCallbackWrapper(callback))
+
+    def stop_order(self, callback: StopOrderEventCallback) -> str:
+        topic_prefix = "/spotMarket/advancedOrders"
+
+        args = []
+
+        return self.transport.subscribe(
+            topic_prefix, args, StopOrderEventCallbackWrapper(callback))
 
     def unsubscribe(self, id: str):
         self.transport.unsubscribe(id)

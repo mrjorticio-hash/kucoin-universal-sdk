@@ -17,13 +17,13 @@ class GetSpotHfLedgerReq(BaseModel):
     GetSpotHfLedgerReq
 
     Attributes:
-        currency (str): Currency ( you can choose more than one currency). You can specify 10 currencies at most for one time. If not specified, all currencies will be inquired by default.
+        currency (str): Currency (you can choose more than one currency). You can specify a max. of 10 currencies in one go. If not specified, all currencies will be queried by default.
         direction (DirectionEnum): direction: in, out
-        biz_type (BizTypeEnum): Transaction type: TRANSFER-transfer funds,TRADE_EXCHANGE-Trade
-        last_id (int): The id of the last set of data from the previous batch of data. By default, the latest information is given.
-        limit (int): Default100，Max200
-        start_at (int): Start time (milisecond)
-        end_at (int): End time (milisecond)
+        biz_type (BizTypeEnum): Transaction type
+        last_id (int): The ID of the last set of data from the previous data batch. By default, the latest information is given.
+        limit (int): Default100, Max200
+        start_at (int): Start time (milliseconds)
+        end_at (int): End time (milliseconds)
     """
 
     class DirectionEnum(Enum):
@@ -38,37 +38,43 @@ class GetSpotHfLedgerReq(BaseModel):
     class BizTypeEnum(Enum):
         """
         Attributes:
-            TRADE_EXCHANGE: 
-            TRANSFER: 
+            TRADE_EXCHANGE: trade exchange
+            TRANSFER: transffer
+            RETURNED_FEES: returned fees
+            DEDUCTION_FEES: deduction fees
+            OTHER: Other
         """
         TRADE_EXCHANGE = 'TRADE_EXCHANGE'
         TRANSFER = 'TRANSFER'
+        RETURNED_FEES = 'RETURNED_FEES'
+        DEDUCTION_FEES = 'DEDUCTION_FEES'
+        OTHER = 'OTHER'
 
     currency: Optional[str] = Field(
         default=None,
         description=
-        "Currency ( you can choose more than one currency). You can specify 10 currencies at most for one time. If not specified, all currencies will be inquired by default."
+        "Currency (you can choose more than one currency). You can specify a max. of 10 currencies in one go. If not specified, all currencies will be queried by default."
     )
     direction: Optional[DirectionEnum] = Field(
         default=None, description="direction: in, out")
-    biz_type: Optional[BizTypeEnum] = Field(
-        default=None,
-        description=
-        "Transaction type: TRANSFER-transfer funds,TRADE_EXCHANGE-Trade",
-        alias="bizType")
+    biz_type: Optional[BizTypeEnum] = Field(default=None,
+                                            description="Transaction type",
+                                            alias="bizType")
     last_id: Optional[int] = Field(
         default=None,
         description=
-        "The id of the last set of data from the previous batch of data. By default, the latest information is given.",
+        "The ID of the last set of data from the previous data batch. By default, the latest information is given.",
         alias="lastId")
     limit: Optional[Annotated[int, Field(le=200, strict=True, ge=1)]] = Field(
-        default=100, description="Default100，Max200")
-    start_at: Optional[int] = Field(default=None,
-                                    description="Start time (milisecond)",
-                                    alias="startAt")
-    end_at: Optional[int] = Field(default=None,
-                                  description="End time (milisecond)",
-                                  alias="endAt")
+        default=100, description="Default100, Max200")
+    start_at: Optional[Annotated[
+        int, Field(le=9999999999999, strict=True, ge=0)]] = Field(
+            default=None,
+            description="Start time (milliseconds)",
+            alias="startAt")
+    end_at: Optional[Annotated[
+        int, Field(le=9999999999999, strict=True, ge=0)]] = Field(
+            default=None, description="End time (milliseconds)", alias="endAt")
 
     __properties: ClassVar[List[str]] = [
         "currency", "direction", "bizType", "lastId", "limit", "startAt",
@@ -134,7 +140,7 @@ class GetSpotHfLedgerReqBuilder:
 
     def set_currency(self, value: str) -> GetSpotHfLedgerReqBuilder:
         """
-        Currency ( you can choose more than one currency). You can specify 10 currencies at most for one time. If not specified, all currencies will be inquired by default.
+        Currency (you can choose more than one currency). You can specify a max. of 10 currencies in one go. If not specified, all currencies will be queried by default.
         """
         self.obj['currency'] = value
         return self
@@ -152,35 +158,35 @@ class GetSpotHfLedgerReqBuilder:
             self, value: GetSpotHfLedgerReq.BizTypeEnum
     ) -> GetSpotHfLedgerReqBuilder:
         """
-        Transaction type: TRANSFER-transfer funds,TRADE_EXCHANGE-Trade
+        Transaction type
         """
         self.obj['bizType'] = value
         return self
 
     def set_last_id(self, value: int) -> GetSpotHfLedgerReqBuilder:
         """
-        The id of the last set of data from the previous batch of data. By default, the latest information is given.
+        The ID of the last set of data from the previous data batch. By default, the latest information is given.
         """
         self.obj['lastId'] = value
         return self
 
     def set_limit(self, value: int) -> GetSpotHfLedgerReqBuilder:
         """
-        Default100，Max200
+        Default100, Max200
         """
         self.obj['limit'] = value
         return self
 
     def set_start_at(self, value: int) -> GetSpotHfLedgerReqBuilder:
         """
-        Start time (milisecond)
+        Start time (milliseconds)
         """
         self.obj['startAt'] = value
         return self
 
     def set_end_at(self, value: int) -> GetSpotHfLedgerReqBuilder:
         """
-        End time (milisecond)
+        End time (milliseconds)
         """
         self.obj['endAt'] = value
         return self

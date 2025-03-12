@@ -16,11 +16,14 @@ class GetDepositAddressV2Req(BaseModel):
 
     Attributes:
         currency (str): currency
+        chain (str): Chain id of currency
     """
 
     currency: Optional[str] = Field(default=None, description="currency")
+    chain: Optional[str] = Field(default=None,
+                                 description="Chain id of currency")
 
-    __properties: ClassVar[List[str]] = ["currency"]
+    __properties: ClassVar[List[str]] = ["currency", "chain"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -55,7 +58,10 @@ class GetDepositAddressV2Req(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({"currency": obj.get("currency")})
+        _obj = cls.model_validate({
+            "currency": obj.get("currency"),
+            "chain": obj.get("chain")
+        })
         return _obj
 
 
@@ -69,6 +75,13 @@ class GetDepositAddressV2ReqBuilder:
         currency
         """
         self.obj['currency'] = value
+        return self
+
+    def set_chain(self, value: str) -> GetDepositAddressV2ReqBuilder:
+        """
+        Chain id of currency
+        """
+        self.obj['chain'] = value
         return self
 
     def build(self) -> GetDepositAddressV2Req:

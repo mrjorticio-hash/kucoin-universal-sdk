@@ -15,11 +15,11 @@ class GetFuturesSubAccountListV2Req(BaseModel):
     GetFuturesSubAccountListV2Req
 
     Attributes:
-        currency (str): Currecny, Default XBT
+        currency (str): Currency, Default XBT
     """
 
     currency: Optional[str] = Field(default='XBT',
-                                    description="Currecny, Default XBT")
+                                    description="Currency, Default XBT")
 
     __properties: ClassVar[List[str]] = ["currency"]
 
@@ -72,7 +72,7 @@ class GetFuturesSubAccountListV2ReqBuilder:
 
     def set_currency(self, value: str) -> GetFuturesSubAccountListV2ReqBuilder:
         """
-        Currecny, Default XBT
+        Currency, Default XBT
         """
         self.obj['currency'] = value
         return self

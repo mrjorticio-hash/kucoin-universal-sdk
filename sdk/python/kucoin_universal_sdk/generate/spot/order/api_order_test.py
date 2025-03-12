@@ -73,9 +73,7 @@ from .model_get_order_by_order_id_req import GetOrderByOrderIdReq
 from .model_get_order_by_order_id_resp import GetOrderByOrderIdResp
 from .model_get_orders_list_old_req import GetOrdersListOldReq
 from .model_get_orders_list_old_resp import GetOrdersListOldResp
-from .model_get_recent_orders_list_old_req import GetRecentOrdersListOldReq
 from .model_get_recent_orders_list_old_resp import GetRecentOrdersListOldResp
-from .model_get_recent_trade_history_old_req import GetRecentTradeHistoryOldReq
 from .model_get_recent_trade_history_old_resp import GetRecentTradeHistoryOldResp
 from .model_get_stop_order_by_client_oid_req import GetStopOrderByClientOidReq
 from .model_get_stop_order_by_client_oid_resp import GetStopOrderByClientOidResp
@@ -199,7 +197,7 @@ class OrderAPITest(unittest.TestCase):
        Cancel Order By OrderId
        /api/v1/hf/orders/{orderId}
        """
-        data = "{\"orderId\": \"671124f9365ccb00073debd4\", \"symbol\": \"BTC-USDT\"}"
+        data = "{\"symbol\": \"BTC-USDT\", \"orderId\": \"671124f9365ccb00073debd4\"}"
         req = CancelOrderByOrderIdReq.from_json(data)
 
     def test_cancel_order_by_order_id_resp_model(self):
@@ -218,7 +216,7 @@ class OrderAPITest(unittest.TestCase):
        Cancel Order By OrderId Sync
        /api/v1/hf/orders/sync/{orderId}
        """
-        data = "{\"orderId\": \"671128ee365ccb0007534d45\", \"symbol\": \"BTC-USDT\"}"
+        data = "{\"symbol\": \"BTC-USDT\", \"orderId\": \"671128ee365ccb0007534d45\"}"
         req = CancelOrderByOrderIdSyncReq.from_json(data)
 
     def test_cancel_order_by_order_id_sync_resp_model(self):
@@ -256,7 +254,7 @@ class OrderAPITest(unittest.TestCase):
        Cancel Order By ClientOid Sync
        /api/v1/hf/orders/sync/client-order/{clientOid}
        """
-        data = "{\"clientOid\": \"5c52e11203aa677f33e493fb\", \"symbol\": \"BTC-USDT\"}"
+        data = "{\"symbol\": \"BTC-USDT\", \"clientOid\": \"5c52e11203aa677f33e493fb\"}"
         req = CancelOrderByClientOidSyncReq.from_json(data)
 
     def test_cancel_order_by_client_oid_sync_resp_model(self):
@@ -497,7 +495,7 @@ class OrderAPITest(unittest.TestCase):
        Add Stop Order
        /api/v1/stop-order
        """
-        data = "{\"type\": \"limit\", \"symbol\": \"BTC-USDT\", \"side\": \"buy\", \"price\": \"50000\", \"size\": \"0.00001\", \"clientOid\": \"5c52e11203aa677f33e493fb\", \"remark\": \"order remarks\"}"
+        data = "{\"type\": \"limit\", \"symbol\": \"BTC-USDT\", \"side\": \"buy\", \"price\": \"50000\", \"stopPrice\": \"50000\", \"size\": \"0.00001\", \"clientOid\": \"5c52e11203aa677f33e493fb\", \"remark\": \"order remarks\"}"
         req = AddStopOrderReq.from_json(data)
 
     def test_add_stop_order_resp_model(self):
@@ -506,7 +504,7 @@ class OrderAPITest(unittest.TestCase):
         Add Stop Order
         /api/v1/stop-order
         """
-        data = "{\"code\":\"200000\",\"data\":{\"orderId\":\"670fd33bf9406e0007ab3945\",\"clientOid\":\"5c52e11203aa677f33e493fb\"}}"
+        data = "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"orderId\": \"670fd33bf9406e0007ab3945\"\n    }\n}"
         common_response = RestResponse.from_json(data)
         resp = AddStopOrderResp.from_dict(common_response.data)
 
@@ -573,7 +571,7 @@ class OrderAPITest(unittest.TestCase):
        Get Stop Orders List
        /api/v1/stop-order
        """
-        data = "{\"symbol\": \"BTC-USDT\", \"orderId\": \"670fd33bf9406e0007ab3945\", \"newPrice\": \"30000\", \"newSize\": \"0.0001\"}"
+        data = "{\"symbol\": \"example_string_default_value\", \"side\": \"example_string_default_value\", \"type\": \"limit\", \"tradeType\": \"example_string_default_value\", \"startAt\": 123456, \"endAt\": 123456, \"currentPage\": 1, \"orderIds\": \"example_string_default_value\", \"pageSize\": 50, \"stop\": \"example_string_default_value\"}"
         req = GetStopOrdersListReq.from_json(data)
 
     def test_get_stop_orders_list_resp_model(self):
@@ -582,7 +580,7 @@ class OrderAPITest(unittest.TestCase):
         Get Stop Orders List
         /api/v1/stop-order
         """
-        data = "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"currentPage\": 1,\n        \"pageSize\": 50,\n        \"totalNum\": 1,\n        \"totalPage\": 1,\n        \"items\": [\n            {\n                \"id\": \"vs8hoo8kqjnklv4m0038lrfq\",\n                \"symbol\": \"KCS-USDT\",\n                \"userId\": \"60fe4956c43cbc0006562c2c\",\n                \"status\": \"NEW\",\n                \"type\": \"limit\",\n                \"side\": \"buy\",\n                \"price\": \"0.01000000000000000000\",\n                \"size\": \"0.01000000000000000000\",\n                \"funds\": null,\n                \"stp\": null,\n                \"timeInForce\": \"GTC\",\n                \"cancelAfter\": -1,\n                \"postOnly\": false,\n                \"hidden\": false,\n                \"iceberg\": false,\n                \"visibleSize\": null,\n                \"channel\": \"API\",\n                \"clientOid\": \"404814a0fb4311eb9098acde48001122\",\n                \"remark\": null,\n                \"tags\": null,\n                \"orderTime\": 1628755183702150100,\n                \"domainId\": \"kucoin\",\n                \"tradeSource\": \"USER\",\n                \"tradeType\": \"TRADE\",\n                \"feeCurrency\": \"USDT\",\n                \"takerFeeRate\": \"0.00200000000000000000\",\n                \"makerFeeRate\": \"0.00200000000000000000\",\n                \"createdAt\": 1628755183704,\n                \"stop\": \"loss\",\n                \"stopTriggerTime\": null,\n                \"stopPrice\": \"10.00000000000000000000\"\n            }\n        ]\n    }\n}"
+        data = "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"currentPage\": 1,\n        \"pageSize\": 50,\n        \"totalNum\": 2,\n        \"totalPage\": 1,\n        \"items\": [\n            {\n                \"id\": \"vs93gptvr9t2fsql003l8k5p\",\n                \"symbol\": \"BTC-USDT\",\n                \"userId\": \"633559791e1cbc0001f319bc\",\n                \"status\": \"NEW\",\n                \"type\": \"limit\",\n                \"side\": \"buy\",\n                \"price\": \"50000.00000000000000000000\",\n                \"size\": \"0.00001000000000000000\",\n                \"funds\": null,\n                \"stp\": null,\n                \"timeInForce\": \"GTC\",\n                \"cancelAfter\": -1,\n                \"postOnly\": false,\n                \"hidden\": false,\n                \"iceberg\": false,\n                \"visibleSize\": null,\n                \"channel\": \"API\",\n                \"clientOid\": \"5c52e11203aa677f222233e493fb\",\n                \"remark\": \"order remarks\",\n                \"tags\": null,\n                \"relatedNo\": null,\n                \"orderTime\": 1740626554883000024,\n                \"domainId\": \"kucoin\",\n                \"tradeSource\": \"USER\",\n                \"tradeType\": \"TRADE\",\n                \"feeCurrency\": \"USDT\",\n                \"takerFeeRate\": \"0.00100000000000000000\",\n                \"makerFeeRate\": \"0.00100000000000000000\",\n                \"createdAt\": 1740626554884,\n                \"stop\": \"loss\",\n                \"stopTriggerTime\": null,\n                \"stopPrice\": \"60000.00000000000000000000\",\n                \"limitPrice\": null,\n                \"pop\": null,\n                \"activateCondition\": null\n            }\n        ]\n    }\n}"
         common_response = RestResponse.from_json(data)
         resp = GetStopOrdersListResp.from_dict(common_response.data)
 
@@ -839,7 +837,7 @@ class OrderAPITest(unittest.TestCase):
        Cancel Order By OrderId - Old
        /api/v1/orders/{orderId}
        """
-        data = "{\"symbol\": \"BTC-USDT\", \"orderId\": \"674a97dfef434f0007efc431\"}"
+        data = "{\"orderId\": \"674a97dfef434f0007efc431\"}"
         req = CancelOrderByOrderIdOldReq.from_json(data)
 
     def test_cancel_order_by_order_id_old_resp_model(self):
@@ -858,7 +856,7 @@ class OrderAPITest(unittest.TestCase):
        Cancel Order By ClientOid - Old
        /api/v1/order/client-order/{clientOid}
        """
-        data = "{\"symbol\": \"BTC-USDT\", \"clientOid\": \"5c52e11203aa677f33e4923fb\"}"
+        data = "{\"clientOid\": \"5c52e11203aa677f331e493fb\"}"
         req = CancelOrderByClientOidOldReq.from_json(data)
 
     def test_cancel_order_by_client_oid_old_resp_model(self):
@@ -867,7 +865,7 @@ class OrderAPITest(unittest.TestCase):
         Cancel Order By ClientOid - Old
         /api/v1/order/client-order/{clientOid}
         """
-        data = "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"cancelledOrderId\": \"674a9a872033a50007e2790d\",\n        \"clientOid\": \"5c52e11203aa677f33e4923fb\",\n        \"cancelledOcoOrderIds\": null\n    }\n}"
+        data = "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"cancelledOrderId\": \"67c3252a63d25e0007f91de9\",\n        \"clientOid\": \"5c52e11203aa677f331e493fb\",\n        \"cancelledOcoOrderIds\": null\n    }\n}"
         common_response = RestResponse.from_json(data)
         resp = CancelOrderByClientOidOldResp.from_dict(common_response.data)
 
@@ -915,8 +913,6 @@ class OrderAPITest(unittest.TestCase):
        Get Recent Orders List - Old
        /api/v1/limit/orders
        """
-        data = "{\"currentPage\": 1, \"pageSize\": 50}"
-        req = GetRecentOrdersListOldReq.from_json(data)
 
     def test_get_recent_orders_list_old_resp_model(self):
         """
@@ -991,8 +987,6 @@ class OrderAPITest(unittest.TestCase):
        Get Recent Trade History - Old
        /api/v1/limit/fills
        """
-        data = "{\"currentPage\": 1, \"pageSize\": 50}"
-        req = GetRecentTradeHistoryOldReq.from_json(data)
 
     def test_get_recent_trade_history_old_resp_model(self):
         """

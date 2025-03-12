@@ -4,7 +4,7 @@
 def test_get_current_funding_rate_req(self):
     """
         get_current_funding_rate
-        Get Current Funding Rate
+        Get Current Funding Rate.
         /api/v1/funding-rate/{symbol}/current
     """
 
@@ -47,7 +47,7 @@ def test_get_private_funding_history_req(self):
     """
 
     builder = GetPrivateFundingHistoryReqBuilder()
-    builder.set_symbol(?).set_from_(?).set_to(?).set_reverse(?).set_offset(?).set_forward(?).set_max_count(?)
+    builder.set_symbol(?).set_start_at(?).set_end_at(?).set_reverse(?).set_offset(?).set_forward(?).set_max_count(?)
     req = builder.build()
     try:
         resp = self.api.get_private_funding_history(req)

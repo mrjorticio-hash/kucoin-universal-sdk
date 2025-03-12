@@ -17,11 +17,11 @@ class GetSpotLedgerReq(BaseModel):
     GetSpotLedgerReq
 
     Attributes:
-        currency (str): Currency ( you can choose more than one currency). You can specify 10 currencies at most for one time. If not specified, all currencies will be inquired by default.
+        currency (str): Currency (you can choose more than one currency). You can specify a max. of 10 currencies in one go. If not specified, all currencies will be queried by default.
         direction (DirectionEnum): direction: in, out
-        biz_type (str): Type: DEPOSIT -deposit, WITHDRAW -withdraw, TRANSFER -transfer, SUB_TRANSFER -subaccount transfer,TRADE_EXCHANGE -trade, MARGIN_EXCHANGE -margin trade, KUCOIN_BONUS -bonus, BROKER_TRANSFER -Broker transfer record
-        start_at (int): Start time (milisecond)
-        end_at (int): End time (milisecond)
+        biz_type (str): Type: DEPOSIT-deposit, WITHDRAW-withdraw, TRANSFER-transfer, SUB_TRANSFER-sub-account transfer, TRADE_EXCHANGE-trade, MARGIN_EXCHANGE-margin trade, KUCOIN_BONUS-bonus, BROKER_TRANSFER-Broker transfer record
+        start_at (int): Start time (milliseconds)
+        end_at (int): End time (milliseconds)
         current_page (int): Current request page.
         page_size (int): Number of results per request. Minimum is 10, maximum is 500.
     """
@@ -29,8 +29,8 @@ class GetSpotLedgerReq(BaseModel):
     class DirectionEnum(Enum):
         """
         Attributes:
-            IN_: 
-            OUT: 
+            IN_: Funds in
+            OUT: Funds out
         """
         IN_ = 'in'
         OUT = 'out'
@@ -38,20 +38,20 @@ class GetSpotLedgerReq(BaseModel):
     currency: Optional[str] = Field(
         default=None,
         description=
-        "Currency ( you can choose more than one currency). You can specify 10 currencies at most for one time. If not specified, all currencies will be inquired by default."
+        "Currency (you can choose more than one currency). You can specify a max. of 10 currencies in one go. If not specified, all currencies will be queried by default."
     )
     direction: Optional[DirectionEnum] = Field(
         default=None, description="direction: in, out")
     biz_type: Optional[str] = Field(
         default=None,
         description=
-        "Type: DEPOSIT -deposit, WITHDRAW -withdraw, TRANSFER -transfer, SUB_TRANSFER -subaccount transfer,TRADE_EXCHANGE -trade, MARGIN_EXCHANGE -margin trade, KUCOIN_BONUS -bonus, BROKER_TRANSFER -Broker transfer record",
+        "Type: DEPOSIT-deposit, WITHDRAW-withdraw, TRANSFER-transfer, SUB_TRANSFER-sub-account transfer, TRADE_EXCHANGE-trade, MARGIN_EXCHANGE-margin trade, KUCOIN_BONUS-bonus, BROKER_TRANSFER-Broker transfer record",
         alias="bizType")
     start_at: Optional[int] = Field(default=None,
-                                    description="Start time (milisecond)",
+                                    description="Start time (milliseconds)",
                                     alias="startAt")
     end_at: Optional[int] = Field(default=None,
-                                  description="End time (milisecond)",
+                                  description="End time (milliseconds)",
                                   alias="endAt")
     current_page: Optional[int] = Field(default=1,
                                         description="Current request page.",
@@ -127,7 +127,7 @@ class GetSpotLedgerReqBuilder:
 
     def set_currency(self, value: str) -> GetSpotLedgerReqBuilder:
         """
-        Currency ( you can choose more than one currency). You can specify 10 currencies at most for one time. If not specified, all currencies will be inquired by default.
+        Currency (you can choose more than one currency). You can specify a max. of 10 currencies in one go. If not specified, all currencies will be queried by default.
         """
         self.obj['currency'] = value
         return self
@@ -143,21 +143,21 @@ class GetSpotLedgerReqBuilder:
 
     def set_biz_type(self, value: str) -> GetSpotLedgerReqBuilder:
         """
-        Type: DEPOSIT -deposit, WITHDRAW -withdraw, TRANSFER -transfer, SUB_TRANSFER -subaccount transfer,TRADE_EXCHANGE -trade, MARGIN_EXCHANGE -margin trade, KUCOIN_BONUS -bonus, BROKER_TRANSFER -Broker transfer record
+        Type: DEPOSIT-deposit, WITHDRAW-withdraw, TRANSFER-transfer, SUB_TRANSFER-sub-account transfer, TRADE_EXCHANGE-trade, MARGIN_EXCHANGE-margin trade, KUCOIN_BONUS-bonus, BROKER_TRANSFER-Broker transfer record
         """
         self.obj['bizType'] = value
         return self
 
     def set_start_at(self, value: int) -> GetSpotLedgerReqBuilder:
         """
-        Start time (milisecond)
+        Start time (milliseconds)
         """
         self.obj['startAt'] = value
         return self
 
     def set_end_at(self, value: int) -> GetSpotLedgerReqBuilder:
         """
-        End time (milisecond)
+        End time (milliseconds)
         """
         self.obj['endAt'] = value
         return self

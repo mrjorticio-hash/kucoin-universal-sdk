@@ -17,14 +17,14 @@ class BorrowResp(BaseModel, Response):
     BorrowResp
 
     Attributes:
-        order_no (str): Borrow Order Id
+        order_no (str): Borrow Order ID
         actual_size (str): Actual borrowed amount
     """
 
     common_response: Optional[RestResponse] = Field(
         default=None, description="Common response")
     order_no: Optional[str] = Field(default=None,
-                                    description="Borrow Order Id",
+                                    description="Borrow Order ID",
                                     alias="orderNo")
     actual_size: Optional[str] = Field(default=None,
                                        description="Actual borrowed amount",

@@ -22,7 +22,7 @@ class GetRepayHistoryResp(BaseModel, Response):
         current_page (int): current page
         page_size (int): page size
         total_num (int): total number
-        total_page (int): total page
+        total_page (int): total pages
         items (list[GetRepayHistoryItems]): 
     """
 
@@ -39,7 +39,7 @@ class GetRepayHistoryResp(BaseModel, Response):
                                      description="total number",
                                      alias="totalNum")
     total_page: Optional[int] = Field(default=None,
-                                      description="total page",
+                                      description="total pages",
                                       alias="totalPage")
     items: Optional[List[GetRepayHistoryItems]] = None
 

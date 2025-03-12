@@ -16,7 +16,7 @@ class GetBasicFeeReq(BaseModel):
     GetBasicFeeReq
 
     Attributes:
-        currency_type (CurrencyTypeEnum): Currency type: 0-crypto currency, 1-fiat currency. default is 0-crypto currency 
+        currency_type (CurrencyTypeEnum): Currency type: 0-crypto currency, 1-fiat currency. Default is 0-crypto currency
     """
 
     class CurrencyTypeEnum(Enum):
@@ -31,7 +31,7 @@ class GetBasicFeeReq(BaseModel):
     currency_type: Optional[CurrencyTypeEnum] = Field(
         default=CurrencyTypeEnum.T_0,
         description=
-        "Currency type: 0-crypto currency, 1-fiat currency. default is 0-crypto currency ",
+        "Currency type: 0-crypto currency, 1-fiat currency. Default is 0-crypto currency",
         alias="currencyType")
 
     __properties: ClassVar[List[str]] = ["currencyType"]
@@ -85,7 +85,7 @@ class GetBasicFeeReqBuilder:
             self,
             value: GetBasicFeeReq.CurrencyTypeEnum) -> GetBasicFeeReqBuilder:
         """
-        Currency type: 0-crypto currency, 1-fiat currency. default is 0-crypto currency 
+        Currency type: 0-crypto currency, 1-fiat currency. Default is 0-crypto currency
         """
         self.obj['currencyType'] = value
         return self

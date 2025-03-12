@@ -18,13 +18,13 @@ class GetAllSymbolsResp(BaseModel, Response):
     GetAllSymbolsResp
 
     Attributes:
-        data (list[GetAllSymbolsData]): the list of all contracts
+        data (list[GetAllSymbolsData]): List of all contracts
     """
 
     common_response: Optional[RestResponse] = Field(
         default=None, description="Common response")
     data: Optional[List[GetAllSymbolsData]] = Field(
-        default=None, description="the list of all contracts")
+        default=None, description="List of all contracts")
 
     __properties: ClassVar[List[str]] = ["data"]
 

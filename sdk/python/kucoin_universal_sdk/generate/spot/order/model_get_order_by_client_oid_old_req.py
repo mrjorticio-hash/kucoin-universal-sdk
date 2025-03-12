@@ -15,13 +15,13 @@ class GetOrderByClientOidOldReq(BaseModel):
     GetOrderByClientOidOldReq
 
     Attributes:
-        client_oid (str): Unique order id created by users to identify their orders
+        client_oid (str): Unique order ID created by users to identify their orders
     """
 
     client_oid: Optional[str] = Field(
         default=None,
         path_variable="True",
-        description="Unique order id created by users to identify their orders",
+        description="Unique order ID created by users to identify their orders",
         alias="clientOid")
 
     __properties: ClassVar[List[str]] = ["clientOid"]
@@ -71,7 +71,7 @@ class GetOrderByClientOidOldReqBuilder:
 
     def set_client_oid(self, value: str) -> GetOrderByClientOidOldReqBuilder:
         """
-        Unique order id created by users to identify their orders
+        Unique order ID created by users to identify their orders
         """
         self.obj['clientOid'] = value
         return self

@@ -15,28 +15,28 @@ class GetAllCurrenciesDataChains(BaseModel):
     GetAllCurrenciesDataChains
 
     Attributes:
-        chain_name (str): chain name of currency
+        chain_name (str): Chain name of currency
         withdrawal_min_size (str): Minimum withdrawal amount
         deposit_min_size (str): Minimum deposit amount
-        withdraw_fee_rate (str): withdraw fee rate
+        withdraw_fee_rate (str): Withdraw fee rate
         withdrawal_min_fee (str): Minimum fees charged for withdrawal
-        is_withdraw_enabled (bool): Support withdrawal or not
-        is_deposit_enabled (bool): Support deposit or not
+        is_withdraw_enabled (bool): Withdrawal support or not
+        is_deposit_enabled (bool): Deposit support or not
         confirms (int): Number of block confirmations
         pre_confirms (int): The number of blocks (confirmations) for advance on-chain verification
         contract_address (str): Contract address
         withdraw_precision (int): Withdrawal precision bit, indicating the maximum supported length after the decimal point of the withdrawal amount
         max_withdraw (str): Maximum amount of single withdrawal
         max_deposit (str): Maximum amount of single deposit (only applicable to Lightning Network)
-        need_tag (bool): whether memo/tag is needed
-        chain_id (str): chain id of currency
-        deposit_fee_rate (str): deposit fee rate (some currencies have this param, the default is empty)
-        withdraw_max_fee (str): withdraw max fee(some currencies have this param, the default is empty)
+        need_tag (bool): Need for memo/tag or not
+        chain_id (str): Chain id of currency
+        deposit_fee_rate (str): Deposit fee rate (some currencies have this param; the default is empty)
+        withdraw_max_fee (str): Withdraw max. fee (some currencies have this param; the default is empty)
         deposit_tier_fee (str): 
     """
 
     chain_name: Optional[str] = Field(default=None,
-                                      description="chain name of currency",
+                                      description="Chain name of currency",
                                       alias="chainName")
     withdrawal_min_size: Optional[str] = Field(
         default=None,
@@ -47,7 +47,7 @@ class GetAllCurrenciesDataChains(BaseModel):
         description="Minimum deposit amount",
         alias="depositMinSize")
     withdraw_fee_rate: Optional[str] = Field(default=None,
-                                             description="withdraw fee rate",
+                                             description="Withdraw fee rate",
                                              alias="withdrawFeeRate")
     withdrawal_min_fee: Optional[str] = Field(
         default=None,
@@ -55,11 +55,11 @@ class GetAllCurrenciesDataChains(BaseModel):
         alias="withdrawalMinFee")
     is_withdraw_enabled: Optional[bool] = Field(
         default=None,
-        description="Support withdrawal or not",
+        description="Withdrawal support or not",
         alias="isWithdrawEnabled")
     is_deposit_enabled: Optional[bool] = Field(
         default=None,
-        description="Support deposit or not",
+        description="Deposit support or not",
         alias="isDepositEnabled")
     confirms: Optional[int] = Field(
         default=None, description="Number of block confirmations")
@@ -86,20 +86,20 @@ class GetAllCurrenciesDataChains(BaseModel):
         "Maximum amount of single deposit (only applicable to Lightning Network)",
         alias="maxDeposit")
     need_tag: Optional[bool] = Field(default=None,
-                                     description="whether memo/tag is needed",
+                                     description="Need for memo/tag or not",
                                      alias="needTag")
     chain_id: Optional[str] = Field(default=None,
-                                    description="chain id of currency",
+                                    description="Chain id of currency",
                                     alias="chainId")
     deposit_fee_rate: Optional[str] = Field(
         default=None,
         description=
-        "deposit fee rate (some currencies have this param, the default is empty)",
+        "Deposit fee rate (some currencies have this param; the default is empty)",
         alias="depositFeeRate")
     withdraw_max_fee: Optional[str] = Field(
         default=None,
         description=
-        "withdraw max fee(some currencies have this param, the default is empty)",
+        "Withdraw max. fee (some currencies have this param; the default is empty)",
         alias="withdrawMaxFee")
     deposit_tier_fee: Optional[str] = Field(default=None,
                                             alias="depositTierFee")

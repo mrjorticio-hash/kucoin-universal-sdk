@@ -23,12 +23,12 @@ class GetAccountInfoResp(BaseModel, Response):
         margin_sub_quantity (int): Number of sub-accounts with margin trading permissions enabled
         futures_sub_quantity (int): Number of sub-accounts with futures trading permissions enabled
         option_sub_quantity (int): Number of sub-accounts with option trading permissions enabled
-        max_sub_quantity (int): Max number of sub-accounts = maxDefaultSubQuantity + maxSpotSubQuantity
-        max_default_sub_quantity (int): Max number of default open sub-accounts (according to VIP level)
-        max_spot_sub_quantity (int): Max number of sub-accounts with additional Spot trading permissions
-        max_margin_sub_quantity (int): Max number of sub-accounts with additional margin trading permissions
-        max_futures_sub_quantity (int): Max number of sub-accounts with additional futures trading permissions
-        max_option_sub_quantity (int): Max number of sub-accounts with additional Option trading permissions
+        max_sub_quantity (int): Max. number of sub-accounts = maxDefaultSubQuantity + maxSpotSubQuantity
+        max_default_sub_quantity (int): Max. number of default open sub-accounts (according to VIP level)
+        max_spot_sub_quantity (int): Max. number of sub-accounts with additional spot trading permissions
+        max_margin_sub_quantity (int): Max. number of sub-accounts with additional margin trading permissions
+        max_futures_sub_quantity (int): Max. number of sub-accounts with additional futures trading permissions
+        max_option_sub_quantity (int): Max. number of sub-accounts with additional option trading permissions
     """
 
     common_response: Optional[RestResponse] = Field(
@@ -60,32 +60,32 @@ class GetAccountInfoResp(BaseModel, Response):
     max_sub_quantity: Optional[int] = Field(
         default=None,
         description=
-        "Max number of sub-accounts = maxDefaultSubQuantity + maxSpotSubQuantity",
+        "Max. number of sub-accounts = maxDefaultSubQuantity + maxSpotSubQuantity",
         alias="maxSubQuantity")
     max_default_sub_quantity: Optional[int] = Field(
         default=None,
         description=
-        "Max number of default open sub-accounts (according to VIP level)",
+        "Max. number of default open sub-accounts (according to VIP level)",
         alias="maxDefaultSubQuantity")
     max_spot_sub_quantity: Optional[int] = Field(
         default=None,
         description=
-        "Max number of sub-accounts with additional Spot trading permissions",
+        "Max. number of sub-accounts with additional spot trading permissions",
         alias="maxSpotSubQuantity")
     max_margin_sub_quantity: Optional[int] = Field(
         default=None,
         description=
-        "Max number of sub-accounts with additional margin trading permissions",
+        "Max. number of sub-accounts with additional margin trading permissions",
         alias="maxMarginSubQuantity")
     max_futures_sub_quantity: Optional[int] = Field(
         default=None,
         description=
-        "Max number of sub-accounts with additional futures trading permissions",
+        "Max. number of sub-accounts with additional futures trading permissions",
         alias="maxFuturesSubQuantity")
     max_option_sub_quantity: Optional[int] = Field(
         default=None,
         description=
-        "Max number of sub-accounts with additional Option trading permissions",
+        "Max. number of sub-accounts with additional option trading permissions",
         alias="maxOptionSubQuantity")
 
     __properties: ClassVar[List[str]] = [

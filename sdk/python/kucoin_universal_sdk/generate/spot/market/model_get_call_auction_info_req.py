@@ -6,23 +6,21 @@ from __future__ import annotations
 import pprint
 import json
 
-from pydantic import BaseModel, ConfigDict
-from typing import Any, Callable, ClassVar, Dict, List, Optional
+from pydantic import BaseModel, ConfigDict, Field
+from typing import Any, ClassVar, Dict, List, Optional
 
 
-class OrderbookLevel50Changes(BaseModel):
+class GetCallAuctionInfoReq(BaseModel):
     """
-    OrderbookLevel50Changes
+    GetCallAuctionInfoReq
 
     Attributes:
-        asks (list[list[str]]): 
-        bids (list[list[str]]): 
+        symbol (str): symbol
     """
 
-    asks: Optional[List[List[str]]] = None
-    bids: Optional[List[List[str]]] = None
+    symbol: Optional[str] = Field(default=None, description="symbol")
 
-    __properties: ClassVar[List[str]] = ["asks", "bids"]
+    __properties: ClassVar[List[str]] = ["symbol"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -37,7 +35,7 @@ class OrderbookLevel50Changes(BaseModel):
         return self.model_dump_json(by_alias=True, exclude_none=True)
 
     @classmethod
-    def from_json(cls, json_str: str) -> Optional[OrderbookLevel50Changes]:
+    def from_json(cls, json_str: str) -> Optional[GetCallAuctionInfoReq]:
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -49,17 +47,29 @@ class OrderbookLevel50Changes(BaseModel):
 
     @classmethod
     def from_dict(
-            cls,
-            obj: Optional[Dict[str,
-                               Any]]) -> Optional[OrderbookLevel50Changes]:
+            cls, obj: Optional[Dict[str,
+                                    Any]]) -> Optional[GetCallAuctionInfoReq]:
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "asks": obj.get("asks"),
-            "bids": obj.get("bids")
-        })
+        _obj = cls.model_validate({"symbol": obj.get("symbol")})
         return _obj
+
+
+class GetCallAuctionInfoReqBuilder:
+
+    def __init__(self):
+        self.obj = {}
+
+    def set_symbol(self, value: str) -> GetCallAuctionInfoReqBuilder:
+        """
+        symbol
+        """
+        self.obj['symbol'] = value
+        return self
+
+    def build(self) -> GetCallAuctionInfoReq:
+        return GetCallAuctionInfoReq(**self.obj)

@@ -19,7 +19,7 @@ class GetIsolatedMarginAccountAssets(BaseModel):
 
     Attributes:
         symbol (str): Symbol
-        status (StatusEnum): Position status; EFFECTIVE-effective, BANKRUPTCY-bankruptcy liquidation, LIQUIDATION-closing, REPAY-repayment, BORROW borrowing
+        status (StatusEnum): Position status; EFFECTIVE-effective, BANKRUPTCY-bankruptcy liquidation, LIQUIDATION-closing, REPAY-repayment, BORROW-borrowing
         debt_ratio (str): debt ratio
         base_asset (GetIsolatedMarginAccountAssetsBaseAsset): 
         quote_asset (GetIsolatedMarginAccountAssetsQuoteAsset): 
@@ -44,7 +44,7 @@ class GetIsolatedMarginAccountAssets(BaseModel):
     status: Optional[StatusEnum] = Field(
         default=None,
         description=
-        "Position status; EFFECTIVE-effective, BANKRUPTCY-bankruptcy liquidation, LIQUIDATION-closing, REPAY-repayment, BORROW borrowing"
+        "Position status; EFFECTIVE-effective, BANKRUPTCY-bankruptcy liquidation, LIQUIDATION-closing, REPAY-repayment, BORROW-borrowing"
     )
     debt_ratio: Optional[str] = Field(default=None,
                                       description="debt ratio",

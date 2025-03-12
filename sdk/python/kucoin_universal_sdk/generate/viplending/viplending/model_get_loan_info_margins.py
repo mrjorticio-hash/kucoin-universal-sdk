@@ -10,28 +10,31 @@ from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
 
 
-class GetAccountDetailOrders(BaseModel):
+class GetLoanInfoMargins(BaseModel):
     """
-    GetAccountDetailOrders
+    GetLoanInfoMargins
 
     Attributes:
-        order_id (str): Loan Orders ID
-        principal (str): Principal to Be Repaid
-        interest (str): Interest to Be Repaid
-        currency (str): Loan Currency
+        margin_ccy (str): Margin Currency
+        margin_qty (str): Maintenance Quantity (Calculated with Margin Coefficient)
+        margin_factor (str): Margin Coefficient return real-time margin discount rate to USDT
     """
 
-    order_id: Optional[str] = Field(default=None,
-                                    description="Loan Orders ID",
-                                    alias="orderId")
-    principal: Optional[str] = Field(default=None,
-                                     description="Principal to Be Repaid")
-    interest: Optional[str] = Field(default=None,
-                                    description="Interest to Be Repaid")
-    currency: Optional[str] = Field(default=None, description="Loan Currency")
+    margin_ccy: Optional[str] = Field(default=None,
+                                      description="Margin Currency",
+                                      alias="marginCcy")
+    margin_qty: Optional[str] = Field(
+        default=None,
+        description="Maintenance Quantity (Calculated with Margin Coefficient)",
+        alias="marginQty")
+    margin_factor: Optional[str] = Field(
+        default=None,
+        description=
+        "Margin Coefficient return real-time margin discount rate to USDT",
+        alias="marginFactor")
 
     __properties: ClassVar[List[str]] = [
-        "orderId", "principal", "interest", "currency"
+        "marginCcy", "marginQty", "marginFactor"
     ]
 
     model_config = ConfigDict(
@@ -47,7 +50,7 @@ class GetAccountDetailOrders(BaseModel):
         return self.model_dump_json(by_alias=True, exclude_none=True)
 
     @classmethod
-    def from_json(cls, json_str: str) -> Optional[GetAccountDetailOrders]:
+    def from_json(cls, json_str: str) -> Optional[GetLoanInfoMargins]:
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -60,7 +63,7 @@ class GetAccountDetailOrders(BaseModel):
     @classmethod
     def from_dict(
             cls, obj: Optional[Dict[str,
-                                    Any]]) -> Optional[GetAccountDetailOrders]:
+                                    Any]]) -> Optional[GetLoanInfoMargins]:
         if obj is None:
             return None
 
@@ -68,9 +71,8 @@ class GetAccountDetailOrders(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "orderId": obj.get("orderId"),
-            "principal": obj.get("principal"),
-            "interest": obj.get("interest"),
-            "currency": obj.get("currency")
+            "marginCcy": obj.get("marginCcy"),
+            "marginQty": obj.get("marginQty"),
+            "marginFactor": obj.get("marginFactor")
         })
         return _obj

@@ -17,9 +17,9 @@ class GetMarkPriceResp(BaseModel, Response):
     GetMarkPriceResp
 
     Attributes:
-        symbol (str): Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) 
-        granularity (int): Granularity (milisecond)
-        time_point (int): Time point (milisecond)
+        symbol (str): Symbol of the contract. Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) 
+        granularity (int): Granularity (milliseconds)
+        time_point (int): Time point (milliseconds)
         value (float): Mark price
         index_price (float): Index price
     """
@@ -29,12 +29,12 @@ class GetMarkPriceResp(BaseModel, Response):
     symbol: Optional[str] = Field(
         default=None,
         description=
-        "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) "
+        "Symbol of the contract. Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) "
     )
-    granularity: Optional[int] = Field(default=None,
-                                       description="Granularity (milisecond)")
+    granularity: Optional[int] = Field(
+        default=None, description="Granularity (milliseconds)")
     time_point: Optional[int] = Field(default=None,
-                                      description="Time point (milisecond)",
+                                      description="Time point (milliseconds)",
                                       alias="timePoint")
     value: Optional[float] = Field(default=None, description="Mark price")
     index_price: Optional[float] = Field(default=None,

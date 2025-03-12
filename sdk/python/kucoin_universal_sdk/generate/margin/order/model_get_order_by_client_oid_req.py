@@ -16,14 +16,14 @@ class GetOrderByClientOidReq(BaseModel):
 
     Attributes:
         symbol (str): symbol
-        client_oid (str): Client Order Id，unique identifier created by the user
+        client_oid (str): Client Order Id, unique identifier created by the user
     """
 
     symbol: Optional[str] = Field(default=None, description="symbol")
     client_oid: Optional[str] = Field(
         default=None,
         path_variable="True",
-        description="Client Order Id，unique identifier created by the user",
+        description="Client Order Id, unique identifier created by the user",
         alias="clientOid")
 
     __properties: ClassVar[List[str]] = ["symbol", "clientOid"]
@@ -82,7 +82,7 @@ class GetOrderByClientOidReqBuilder:
 
     def set_client_oid(self, value: str) -> GetOrderByClientOidReqBuilder:
         """
-        Client Order Id，unique identifier created by the user
+        Client Order Id, unique identifier created by the user
         """
         self.obj['clientOid'] = value
         return self

@@ -19,7 +19,7 @@ class GetRepayHistoryReq(BaseModel):
         currency (str): currency
         is_isolated (bool): true-isolated, false-cross; default is false
         symbol (str): symbol, mandatory for isolated margin account
-        order_no (str): Repay Order Id
+        order_no (str): Repay order ID
         start_time (int): The start and end times are not restricted. If the start time is empty or less than 1680278400000, the default value is set to 1680278400000 (April 1, 2023, 00:00:00)
         end_time (int): End time
         current_page (int): Current query page, with a starting value of 1. Default:1 
@@ -35,7 +35,7 @@ class GetRepayHistoryReq(BaseModel):
         default=None,
         description="symbol, mandatory for isolated margin account")
     order_no: Optional[str] = Field(default=None,
-                                    description="Repay Order Id",
+                                    description="Repay order ID",
                                     alias="orderNo")
     start_time: Optional[int] = Field(
         default=None,
@@ -147,7 +147,7 @@ class GetRepayHistoryReqBuilder:
 
     def set_order_no(self, value: str) -> GetRepayHistoryReqBuilder:
         """
-        Repay Order Id
+        Repay order ID
         """
         self.obj['orderNo'] = value
         return self

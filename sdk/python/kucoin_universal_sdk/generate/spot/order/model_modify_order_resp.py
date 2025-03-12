@@ -17,18 +17,18 @@ class ModifyOrderResp(BaseModel, Response):
     ModifyOrderResp
 
     Attributes:
-        new_order_id (str): The new order id
-        client_oid (str): The original client order id
+        new_order_id (str): The new order ID
+        client_oid (str): The original client order ID
     """
 
     common_response: Optional[RestResponse] = Field(
         default=None, description="Common response")
     new_order_id: Optional[str] = Field(default=None,
-                                        description="The new order id",
+                                        description="The new order ID",
                                         alias="newOrderId")
     client_oid: Optional[str] = Field(
         default=None,
-        description="The original client order id",
+        description="The original client order ID",
         alias="clientOid")
 
     __properties: ClassVar[List[str]] = ["newOrderId", "clientOid"]

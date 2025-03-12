@@ -18,7 +18,7 @@ class GetMarginConfigResp(BaseModel, Response):
 
     Attributes:
         currency_list (list[str]): Available currencies for margin trade
-        max_leverage (int): Max leverage available
+        max_leverage (int): Max. leverage available
         warning_debt_ratio (str): The warning debt ratio of the forced liquidation
         liq_debt_ratio (str): The debt ratio of the forced liquidation
     """
@@ -30,7 +30,7 @@ class GetMarginConfigResp(BaseModel, Response):
         description="Available currencies for margin trade",
         alias="currencyList")
     max_leverage: Optional[int] = Field(default=None,
-                                        description="Max leverage available",
+                                        description="Max. leverage available",
                                         alias="maxLeverage")
     warning_debt_ratio: Optional[str] = Field(
         default=None,

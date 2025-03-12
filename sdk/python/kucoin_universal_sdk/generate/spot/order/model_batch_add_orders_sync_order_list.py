@@ -9,6 +9,7 @@ import json
 from enum import Enum
 from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
+from typing_extensions import Annotated
 
 
 class BatchAddOrdersSyncOrderList(BaseModel):
@@ -16,15 +17,15 @@ class BatchAddOrdersSyncOrderList(BaseModel):
     BatchAddOrdersSyncOrderList
 
     Attributes:
-        client_oid (str): Client Order Id，The ClientOid field is a unique ID created by the user（we recommend using a UUID）, and can only contain numbers, letters, underscores （_）, and hyphens （-）. This field is returned when order information is obtained. You can use clientOid to tag your orders. ClientOid is different from the order ID created by the service provider. Please do not initiate requests using the same clientOid. The maximum length for the ClientOid is 40 characters. 
+        client_oid (str): Client Order ID: The ClientOid field is a unique ID created by the user (we recommend using a UUID), and can only contain numbers, letters, underscores (_), and hyphens (-). This field is returned when order information is obtained. You can use clientOid to tag your orders. ClientOid is different from the order ID created by the service provider. Please do not initiate requests using the same clientOid. The maximum length for the ClientOid is 40 characters. 
         symbol (str): symbol
-        type (TypeEnum): Specify if the order is an 'limit' order or 'market' order. 
+        type (TypeEnum): Specify if the order is a 'limit' order or 'market' order. 
         time_in_force (TimeInForceEnum): [Time in force](https://www.kucoin.com/docs-new/doc-338146) is a special strategy used during trading
-        side (SideEnum): Specify if the order is to 'buy' or 'sell'
+        side (SideEnum): Specify if the order is to 'buy' or 'sell'.
         price (str): Specify price for order
-        size (str): Specify quantity for order  When **type** is limit, select one out of two: size or funds, size refers to the amount of trading targets (the asset name written in front) for the trading pair. Teh Size must be based on the baseIncrement of the trading pair. The baseIncrement represents the precision for the trading pair. The size of an order must be a positive-integer multiple of baseIncrement and must be between baseMinSize and baseMaxSize.  When **type** is market, select one out of two: size or funds
+        size (str): Specify quantity for order.  When **type** is limited, select one out of two: size or funds. Size refers to the amount of trading targets (the asset name written in front) for the trading pair. The Size must be based on the baseIncrement of the trading pair. The baseIncrement represents the precision for the trading pair. The size of an order must be a positive-integer multiple of baseIncrement and must be between baseMinSize and baseMaxSize.  When **type** is market, select one out of two: size or funds
         stp (StpEnum): [Self Trade Prevention](https://www.kucoin.com/docs-new/doc-338146) is divided into four strategies: CN, CO, CB , and DC
-        cancel_after (int): Cancel after n seconds，the order timing strategy is GTT
+        cancel_after (int): Cancel after n seconds, the order timing strategy is GTT, -1 means it will not be cancelled automatically, the default value is -1 
         post_only (bool): passive order labels, this is disabled when the order timing strategy is IOC or FOK
         hidden (bool): [Hidden order](https://www.kucoin.com/docs-new/doc-338146) or not (not shown in order book)
         iceberg (bool): Whether or not only visible portions of orders are shown in [Iceberg orders](https://www.kucoin.com/docs-new/doc-338146)
@@ -32,6 +33,8 @@ class BatchAddOrdersSyncOrderList(BaseModel):
         tags (str): Order tag, length cannot exceed 20 characters (ASCII)
         remark (str): Order placement remarks, length cannot exceed 20 characters (ASCII)
         funds (str): When **type** is market, select one out of two: size or funds
+        allow_max_time_window (int): Order failed after timeout of specified milliseconds, If clientTimestamp + allowMaxTimeWindow < the server reaches time, this order will fail.
+        client_timestamp (int): Equal to KC-API-TIMESTAMP, Need to be defined if iceberg is specified.
     """
 
     class TypeEnum(Enum):
@@ -79,36 +82,39 @@ class BatchAddOrdersSyncOrderList(BaseModel):
     client_oid: Optional[str] = Field(
         default=None,
         description=
-        "Client Order Id，The ClientOid field is a unique ID created by the user（we recommend using a UUID）, and can only contain numbers, letters, underscores （_）, and hyphens （-）. This field is returned when order information is obtained. You can use clientOid to tag your orders. ClientOid is different from the order ID created by the service provider. Please do not initiate requests using the same clientOid. The maximum length for the ClientOid is 40 characters. ",
+        "Client Order ID: The ClientOid field is a unique ID created by the user (we recommend using a UUID), and can only contain numbers, letters, underscores (_), and hyphens (-). This field is returned when order information is obtained. You can use clientOid to tag your orders. ClientOid is different from the order ID created by the service provider. Please do not initiate requests using the same clientOid. The maximum length for the ClientOid is 40 characters. ",
         alias="clientOid")
     symbol: Optional[str] = Field(default=None, description="symbol")
     type: Optional[TypeEnum] = Field(
         default=None,
         description=
-        "Specify if the order is an 'limit' order or 'market' order. ")
+        "Specify if the order is a 'limit' order or 'market' order. ")
     time_in_force: Optional[TimeInForceEnum] = Field(
         default=TimeInForceEnum.GTC,
         description=
         "[Time in force](https://www.kucoin.com/docs-new/doc-338146) is a special strategy used during trading",
         alias="timeInForce")
     side: Optional[SideEnum] = Field(
-        default=None, description="Specify if the order is to 'buy' or 'sell'")
+        default=None,
+        description="Specify if the order is to 'buy' or 'sell'.")
     price: Optional[str] = Field(default=None,
                                  description="Specify price for order")
     size: Optional[str] = Field(
         default=None,
         description=
-        "Specify quantity for order  When **type** is limit, select one out of two: size or funds, size refers to the amount of trading targets (the asset name written in front) for the trading pair. Teh Size must be based on the baseIncrement of the trading pair. The baseIncrement represents the precision for the trading pair. The size of an order must be a positive-integer multiple of baseIncrement and must be between baseMinSize and baseMaxSize.  When **type** is market, select one out of two: size or funds"
+        "Specify quantity for order.  When **type** is limited, select one out of two: size or funds. Size refers to the amount of trading targets (the asset name written in front) for the trading pair. The Size must be based on the baseIncrement of the trading pair. The baseIncrement represents the precision for the trading pair. The size of an order must be a positive-integer multiple of baseIncrement and must be between baseMinSize and baseMaxSize.  When **type** is market, select one out of two: size or funds"
     )
     stp: Optional[StpEnum] = Field(
         default=None,
         description=
         "[Self Trade Prevention](https://www.kucoin.com/docs-new/doc-338146) is divided into four strategies: CN, CO, CB , and DC"
     )
-    cancel_after: Optional[int] = Field(
-        default=None,
-        description="Cancel after n seconds，the order timing strategy is GTT",
-        alias="cancelAfter")
+    cancel_after: Optional[Annotated[
+        int, Field(le=2592000, strict=True, ge=0)]] = Field(
+            default=-1,
+            description=
+            "Cancel after n seconds, the order timing strategy is GTT, -1 means it will not be cancelled automatically, the default value is -1 ",
+            alias="cancelAfter")
     post_only: Optional[bool] = Field(
         default=False,
         description=
@@ -139,11 +145,21 @@ class BatchAddOrdersSyncOrderList(BaseModel):
         default=None,
         description=
         "When **type** is market, select one out of two: size or funds")
+    allow_max_time_window: Optional[int] = Field(
+        default=None,
+        description=
+        "Order failed after timeout of specified milliseconds, If clientTimestamp + allowMaxTimeWindow < the server reaches time, this order will fail.",
+        alias="allowMaxTimeWindow")
+    client_timestamp: Optional[int] = Field(
+        default=None,
+        description=
+        "Equal to KC-API-TIMESTAMP, Need to be defined if iceberg is specified.",
+        alias="clientTimestamp")
 
     __properties: ClassVar[List[str]] = [
         "clientOid", "symbol", "type", "timeInForce", "side", "price", "size",
         "stp", "cancelAfter", "postOnly", "hidden", "iceberg", "visibleSize",
-        "tags", "remark", "funds"
+        "tags", "remark", "funds", "allowMaxTimeWindow", "clientTimestamp"
     ]
 
     model_config = ConfigDict(
@@ -199,7 +215,8 @@ class BatchAddOrdersSyncOrderList(BaseModel):
             "stp":
             obj.get("stp"),
             "cancelAfter":
-            obj.get("cancelAfter"),
+            obj.get("cancelAfter")
+            if obj.get("cancelAfter") is not None else -1,
             "postOnly":
             obj.get("postOnly") if obj.get("postOnly") is not None else False,
             "hidden":
@@ -213,7 +230,11 @@ class BatchAddOrdersSyncOrderList(BaseModel):
             "remark":
             obj.get("remark"),
             "funds":
-            obj.get("funds")
+            obj.get("funds"),
+            "allowMaxTimeWindow":
+            obj.get("allowMaxTimeWindow"),
+            "clientTimestamp":
+            obj.get("clientTimestamp")
         })
         return _obj
 
@@ -225,7 +246,7 @@ class BatchAddOrdersSyncOrderListBuilder:
 
     def set_client_oid(self, value: str) -> BatchAddOrdersSyncOrderListBuilder:
         """
-        Client Order Id，The ClientOid field is a unique ID created by the user（we recommend using a UUID）, and can only contain numbers, letters, underscores （_）, and hyphens （-）. This field is returned when order information is obtained. You can use clientOid to tag your orders. ClientOid is different from the order ID created by the service provider. Please do not initiate requests using the same clientOid. The maximum length for the ClientOid is 40 characters. 
+        Client Order ID: The ClientOid field is a unique ID created by the user (we recommend using a UUID), and can only contain numbers, letters, underscores (_), and hyphens (-). This field is returned when order information is obtained. You can use clientOid to tag your orders. ClientOid is different from the order ID created by the service provider. Please do not initiate requests using the same clientOid. The maximum length for the ClientOid is 40 characters. 
         """
         self.obj['clientOid'] = value
         return self
@@ -241,7 +262,7 @@ class BatchAddOrdersSyncOrderListBuilder:
         self, value: BatchAddOrdersSyncOrderList.TypeEnum
     ) -> BatchAddOrdersSyncOrderListBuilder:
         """
-        Specify if the order is an 'limit' order or 'market' order. 
+        Specify if the order is a 'limit' order or 'market' order. 
         """
         self.obj['type'] = value
         return self
@@ -259,7 +280,7 @@ class BatchAddOrdersSyncOrderListBuilder:
         self, value: BatchAddOrdersSyncOrderList.SideEnum
     ) -> BatchAddOrdersSyncOrderListBuilder:
         """
-        Specify if the order is to 'buy' or 'sell'
+        Specify if the order is to 'buy' or 'sell'.
         """
         self.obj['side'] = value
         return self
@@ -273,7 +294,7 @@ class BatchAddOrdersSyncOrderListBuilder:
 
     def set_size(self, value: str) -> BatchAddOrdersSyncOrderListBuilder:
         """
-        Specify quantity for order  When **type** is limit, select one out of two: size or funds, size refers to the amount of trading targets (the asset name written in front) for the trading pair. Teh Size must be based on the baseIncrement of the trading pair. The baseIncrement represents the precision for the trading pair. The size of an order must be a positive-integer multiple of baseIncrement and must be between baseMinSize and baseMaxSize.  When **type** is market, select one out of two: size or funds
+        Specify quantity for order.  When **type** is limited, select one out of two: size or funds. Size refers to the amount of trading targets (the asset name written in front) for the trading pair. The Size must be based on the baseIncrement of the trading pair. The baseIncrement represents the precision for the trading pair. The size of an order must be a positive-integer multiple of baseIncrement and must be between baseMinSize and baseMaxSize.  When **type** is market, select one out of two: size or funds
         """
         self.obj['size'] = value
         return self
@@ -290,7 +311,7 @@ class BatchAddOrdersSyncOrderListBuilder:
     def set_cancel_after(self,
                          value: int) -> BatchAddOrdersSyncOrderListBuilder:
         """
-        Cancel after n seconds，the order timing strategy is GTT
+        Cancel after n seconds, the order timing strategy is GTT, -1 means it will not be cancelled automatically, the default value is -1 
         """
         self.obj['cancelAfter'] = value
         return self
@@ -343,6 +364,22 @@ class BatchAddOrdersSyncOrderListBuilder:
         When **type** is market, select one out of two: size or funds
         """
         self.obj['funds'] = value
+        return self
+
+    def set_allow_max_time_window(
+            self, value: int) -> BatchAddOrdersSyncOrderListBuilder:
+        """
+        Order failed after timeout of specified milliseconds, If clientTimestamp + allowMaxTimeWindow < the server reaches time, this order will fail.
+        """
+        self.obj['allowMaxTimeWindow'] = value
+        return self
+
+    def set_client_timestamp(self,
+                             value: int) -> BatchAddOrdersSyncOrderListBuilder:
+        """
+        Equal to KC-API-TIMESTAMP, Need to be defined if iceberg is specified.
+        """
+        self.obj['clientTimestamp'] = value
         return self
 
     def build(self) -> BatchAddOrdersSyncOrderList:

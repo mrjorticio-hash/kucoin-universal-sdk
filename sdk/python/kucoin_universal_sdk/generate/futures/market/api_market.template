@@ -226,7 +226,7 @@ def test_get_premium_index_req(self):
 def test_get24hr_stats_req(self):
     """
         get24hr_stats
-        Get 24hr Stats
+        Get 24hr stats
         /api/v1/trade-statistics
     """
 

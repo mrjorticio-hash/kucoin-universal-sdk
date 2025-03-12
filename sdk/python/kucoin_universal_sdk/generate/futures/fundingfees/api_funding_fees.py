@@ -17,18 +17,18 @@ class FundingFeesAPI(ABC):
     def get_current_funding_rate(self, req: GetCurrentFundingRateReq,
                                  **kwargs: Any) -> GetCurrentFundingRateResp:
         """
-        summary: Get Current Funding Rate
-        description: get Current Funding Rate
+        summary: Get Current Funding Rate.
+        description: Get Current Funding Rate.
         documentation: https://www.kucoin.com/docs-new/api-3470265
-        +---------------------+---------+
-        | Extra API Info      | Value   |
-        +---------------------+---------+
-        | API-DOMAIN          | FUTURES |
-        | API-CHANNEL         | PRIVATE |
-        | API-PERMISSION      | FUTURES |
-        | API-RATE-LIMIT-POOL | PUBLIC  |
-        | API-RATE-LIMIT      | 2       |
-        +---------------------+---------+
+        +-----------------------+---------+
+        | Extra API Info        | Value   |
+        +-----------------------+---------+
+        | API-DOMAIN            | FUTURES |
+        | API-CHANNEL           | PUBLIC  |
+        | API-PERMISSION        | FUTURES |
+        | API-RATE-LIMIT-POOL   | PUBLIC  |
+        | API-RATE-LIMIT-WEIGHT | 2       |
+        +-----------------------+---------+
         """
         pass
 
@@ -38,17 +38,17 @@ class FundingFeesAPI(ABC):
             **kwargs: Any) -> GetPublicFundingHistoryResp:
         """
         summary: Get Public Funding History
-        description: Query the funding rate at each settlement time point within a certain time range of the corresponding contract
+        description: Query the funding rate at each settlement time point within a certain time range of the corresponding contract.
         documentation: https://www.kucoin.com/docs-new/api-3470266
-        +---------------------+---------+
-        | Extra API Info      | Value   |
-        +---------------------+---------+
-        | API-DOMAIN          | FUTURES |
-        | API-CHANNEL         | PRIVATE |
-        | API-PERMISSION      | FUTURES |
-        | API-RATE-LIMIT-POOL | PUBLIC  |
-        | API-RATE-LIMIT      | 5       |
-        +---------------------+---------+
+        +-----------------------+---------+
+        | Extra API Info        | Value   |
+        +-----------------------+---------+
+        | API-DOMAIN            | FUTURES |
+        | API-CHANNEL           | PUBLIC  |
+        | API-PERMISSION        | FUTURES |
+        | API-RATE-LIMIT-POOL   | PUBLIC  |
+        | API-RATE-LIMIT-WEIGHT | 5       |
+        +-----------------------+---------+
         """
         pass
 
@@ -60,15 +60,15 @@ class FundingFeesAPI(ABC):
         summary: Get Private Funding History
         description: Submit request to get the funding history.
         documentation: https://www.kucoin.com/docs-new/api-3470267
-        +---------------------+---------+
-        | Extra API Info      | Value   |
-        +---------------------+---------+
-        | API-DOMAIN          | FUTURES |
-        | API-CHANNEL         | PRIVATE |
-        | API-PERMISSION      | FUTURES |
-        | API-RATE-LIMIT-POOL | FUTURES |
-        | API-RATE-LIMIT      | 5       |
-        +---------------------+---------+
+        +-----------------------+---------+
+        | Extra API Info        | Value   |
+        +-----------------------+---------+
+        | API-DOMAIN            | FUTURES |
+        | API-CHANNEL           | PRIVATE |
+        | API-PERMISSION        | FUTURES |
+        | API-RATE-LIMIT-POOL   | FUTURES |
+        | API-RATE-LIMIT-WEIGHT | 5       |
+        +-----------------------+---------+
         """
         pass
 

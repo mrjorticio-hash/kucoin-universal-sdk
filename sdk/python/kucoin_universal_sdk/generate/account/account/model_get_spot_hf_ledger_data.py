@@ -16,15 +16,15 @@ class GetSpotHfLedgerData(BaseModel):
     GetSpotHfLedgerData
 
     Attributes:
-        id (str): Unique id
+        id (str): Unique ID
         currency (str): currency
         amount (str): Change in funds balance
-        fee (str): Deposit or withdrawal fee
+        fee (str): Transaction, Deposit or withdrawal fee
         tax (str): 
         balance (str): Total balance of funds after change
         account_type (str): Master account type TRADE_HF
-        biz_type (str): Trnasaction type，such as TRANSFER, TRADE_EXCHANGE, etc.
-        direction (DirectionEnum): Direction of transfer( out or in)
+        biz_type (str): Trnasaction type, such as TRANSFER, TRADE_EXCHANGE, etc.
+        direction (DirectionEnum): Direction of transfer (out or in)
         created_at (str): Created time
         context (str): Core transaction parameter
     """
@@ -38,12 +38,12 @@ class GetSpotHfLedgerData(BaseModel):
         IN_ = 'in'
         OUT = 'out'
 
-    id: Optional[str] = Field(default=None, description="Unique id")
+    id: Optional[str] = Field(default=None, description="Unique ID")
     currency: Optional[str] = Field(default=None, description="currency")
     amount: Optional[str] = Field(default=None,
                                   description="Change in funds balance")
-    fee: Optional[str] = Field(default=None,
-                               description="Deposit or withdrawal fee")
+    fee: Optional[str] = Field(
+        default=None, description="Transaction, Deposit or withdrawal fee")
     tax: Optional[str] = None
     balance: Optional[str] = Field(
         default=None, description="Total balance of funds after change")
@@ -53,10 +53,10 @@ class GetSpotHfLedgerData(BaseModel):
         alias="accountType")
     biz_type: Optional[str] = Field(
         default=None,
-        description="Trnasaction type，such as TRANSFER, TRADE_EXCHANGE, etc.",
+        description="Trnasaction type, such as TRANSFER, TRADE_EXCHANGE, etc.",
         alias="bizType")
     direction: Optional[DirectionEnum] = Field(
-        default=None, description="Direction of transfer( out or in)")
+        default=None, description="Direction of transfer (out or in)")
     created_at: Optional[str] = Field(default=None,
                                       description="Created time",
                                       alias="createdAt")

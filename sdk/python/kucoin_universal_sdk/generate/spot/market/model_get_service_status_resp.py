@@ -18,7 +18,7 @@ class GetServiceStatusResp(BaseModel, Response):
     GetServiceStatusResp
 
     Attributes:
-        status (StatusEnum): Status of service: open：normal transaction, close：Stop Trading/Maintenance, cancelonly：can only cancel the order but not place order
+        status (StatusEnum): Status of service: open: normal transaction; close: Stop Trading/Maintenance; cancelonly: can only cancel the order but not place order
         msg (str): Remark for operation
     """
 
@@ -38,7 +38,7 @@ class GetServiceStatusResp(BaseModel, Response):
     status: Optional[StatusEnum] = Field(
         default=None,
         description=
-        "Status of service: open：normal transaction, close：Stop Trading/Maintenance, cancelonly：can only cancel the order but not place order"
+        "Status of service: open: normal transaction; close: Stop Trading/Maintenance; cancelonly: can only cancel the order but not place order"
     )
     msg: Optional[str] = Field(default=None,
                                description="Remark for operation")

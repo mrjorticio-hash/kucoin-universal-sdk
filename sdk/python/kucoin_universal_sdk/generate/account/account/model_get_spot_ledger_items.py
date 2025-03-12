@@ -16,49 +16,51 @@ class GetSpotLedgerItems(BaseModel):
 
     Attributes:
         id (str): unique id
-        currency (str): The currency of an account
-        amount (str): The total amount of assets (fees included) involved in assets changes such as transaction, withdrawal and bonus distribution.
+        currency (str): Currency
+        amount (str): The total amount of assets (fees included) involved in assets changes such as transactions, withdrawals and bonus distributions.
         fee (str): Fees generated in transaction, withdrawal, etc.
-        balance (str): Remaining funds after the transaction.
-        account_type (str): The account type of the master user: MAIN, TRADE, MARGIN or CONTRACT.
-        biz_type (str): Business type leading to the changes in funds, such as exchange, withdrawal, deposit, KUCOIN_BONUS, REFERRAL_BONUS, Lendings etc.
+        balance (str): Remaining funds after the transaction. (Deprecated field, no actual use of the value field)
+        account_type (str): Master user account types: MAIN, TRADE, MARGIN or CONTRACT.
+        biz_type (str): Business type leading to changes in funds, such as exchange, withdrawal, deposit, KUCOIN_BONUS, REFERRAL_BONUS, Lendings etc.
         direction (str): Side, out or in
-        created_at (int): Time of the event
-        context (str): Business related information such as order ID, serial No., etc.
+        created_at (int): Time of event
+        context (str): Business related information such as order ID, serial no., etc.
     """
 
     id: Optional[str] = Field(default=None, description="unique id")
-    currency: Optional[str] = Field(default=None,
-                                    description="The currency of an account")
+    currency: Optional[str] = Field(default=None, description="Currency")
     amount: Optional[str] = Field(
         default=None,
         description=
-        "The total amount of assets (fees included) involved in assets changes such as transaction, withdrawal and bonus distribution."
+        "The total amount of assets (fees included) involved in assets changes such as transactions, withdrawals and bonus distributions."
     )
     fee: Optional[str] = Field(
         default=None,
         description="Fees generated in transaction, withdrawal, etc.")
     balance: Optional[str] = Field(
-        default=None, description="Remaining funds after the transaction.")
+        default=None,
+        description=
+        "Remaining funds after the transaction. (Deprecated field, no actual use of the value field)"
+    )
     account_type: Optional[str] = Field(
         default=None,
         description=
-        "The account type of the master user: MAIN, TRADE, MARGIN or CONTRACT.",
+        "Master user account types: MAIN, TRADE, MARGIN or CONTRACT.",
         alias="accountType")
     biz_type: Optional[str] = Field(
         default=None,
         description=
-        "Business type leading to the changes in funds, such as exchange, withdrawal, deposit, KUCOIN_BONUS, REFERRAL_BONUS, Lendings etc.",
+        "Business type leading to changes in funds, such as exchange, withdrawal, deposit, KUCOIN_BONUS, REFERRAL_BONUS, Lendings etc.",
         alias="bizType")
     direction: Optional[str] = Field(default=None,
                                      description="Side, out or in")
     created_at: Optional[int] = Field(default=None,
-                                      description="Time of the event",
+                                      description="Time of event",
                                       alias="createdAt")
     context: Optional[str] = Field(
         default=None,
         description=
-        "Business related information such as order ID, serial No., etc.")
+        "Business related information such as order ID, serial no., etc.")
 
     __properties: ClassVar[List[str]] = [
         "id", "currency", "amount", "fee", "balance", "accountType", "bizType",

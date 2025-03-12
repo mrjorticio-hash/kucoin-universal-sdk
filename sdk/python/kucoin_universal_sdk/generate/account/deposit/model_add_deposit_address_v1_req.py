@@ -6,6 +6,7 @@ from __future__ import annotations
 import pprint
 import json
 
+from enum import Enum
 from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
 
@@ -16,17 +17,32 @@ class AddDepositAddressV1Req(BaseModel):
 
     Attributes:
         currency (str): currency
-        chain (str): The chainId of currency, e.g. The available value for USDT are OMNI, ERC20, TRC20, default is ERC20. The available value for BTC are Native, Segwit, TRC20, the parameters are bech32, btc, trx, default is Native. This only apply for multi-chain currency, and there is no need for single chain currency.
+        chain (str): The chainId of currency, e.g. the available values for USDT are OMNI, ERC20, and TRC20; default is ERC20. The available values for BTC are Native, Segwit, TRC20; the parameters are bech32, btc, trx; default is Native. This only applies to multi-chain currencies; no need for single-chain currencies.
+        to (ToEnum): Deposit account type: main (funding account), trade (spot trading account); the default is main
     """
+
+    class ToEnum(Enum):
+        """
+        Attributes:
+            MAIN: Funding account
+            TRADE: Spot account
+        """
+        MAIN = 'main'
+        TRADE = 'trade'
 
     currency: Optional[str] = Field(default=None, description="currency")
     chain: Optional[str] = Field(
         default='eth',
         description=
-        "The chainId of currency, e.g. The available value for USDT are OMNI, ERC20, TRC20, default is ERC20. The available value for BTC are Native, Segwit, TRC20, the parameters are bech32, btc, trx, default is Native. This only apply for multi-chain currency, and there is no need for single chain currency."
+        "The chainId of currency, e.g. the available values for USDT are OMNI, ERC20, and TRC20; default is ERC20. The available values for BTC are Native, Segwit, TRC20; the parameters are bech32, btc, trx; default is Native. This only applies to multi-chain currencies; no need for single-chain currencies."
+    )
+    to: Optional[ToEnum] = Field(
+        default=ToEnum.MAIN,
+        description=
+        "Deposit account type: main (funding account), trade (spot trading account); the default is main"
     )
 
-    __properties: ClassVar[List[str]] = ["currency", "chain"]
+    __properties: ClassVar[List[str]] = ["currency", "chain", "to"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -65,7 +81,10 @@ class AddDepositAddressV1Req(BaseModel):
             "currency":
             obj.get("currency"),
             "chain":
-            obj.get("chain") if obj.get("chain") is not None else 'eth'
+            obj.get("chain") if obj.get("chain") is not None else 'eth',
+            "to":
+            obj.get("to") if obj.get("to") is not None else
+            AddDepositAddressV1Req.ToEnum.MAIN
         })
         return _obj
 
@@ -84,9 +103,18 @@ class AddDepositAddressV1ReqBuilder:
 
     def set_chain(self, value: str) -> AddDepositAddressV1ReqBuilder:
         """
-        The chainId of currency, e.g. The available value for USDT are OMNI, ERC20, TRC20, default is ERC20. The available value for BTC are Native, Segwit, TRC20, the parameters are bech32, btc, trx, default is Native. This only apply for multi-chain currency, and there is no need for single chain currency.
+        The chainId of currency, e.g. the available values for USDT are OMNI, ERC20, and TRC20; default is ERC20. The available values for BTC are Native, Segwit, TRC20; the parameters are bech32, btc, trx; default is Native. This only applies to multi-chain currencies; no need for single-chain currencies.
         """
         self.obj['chain'] = value
+        return self
+
+    def set_to(
+            self, value: AddDepositAddressV1Req.ToEnum
+    ) -> AddDepositAddressV1ReqBuilder:
+        """
+        Deposit account type: main (funding account), trade (spot trading account); the default is main
+        """
+        self.obj['to'] = value
         return self
 
     def build(self) -> AddDepositAddressV1Req:

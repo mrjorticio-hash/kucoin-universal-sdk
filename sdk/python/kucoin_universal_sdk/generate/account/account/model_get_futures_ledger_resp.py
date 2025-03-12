@@ -19,7 +19,7 @@ class GetFuturesLedgerResp(BaseModel, Response):
 
     Attributes:
         data_list (list[GetFuturesLedgerDataList]): 
-        has_more (bool): Is it the last page. If it is false, it means it is the last page, and if it is true, it means need to turn the page.
+        has_more (bool): Is it the last page? If it is false, it means it is the last page, and if it is true, it means you need to move to the next page.
     """
 
     common_response: Optional[RestResponse] = Field(
@@ -29,7 +29,7 @@ class GetFuturesLedgerResp(BaseModel, Response):
     has_more: Optional[bool] = Field(
         default=None,
         description=
-        "Is it the last page. If it is false, it means it is the last page, and if it is true, it means need to turn the page.",
+        "Is it the last page? If it is false, it means it is the last page, and if it is true, it means you need to move to the next page.",
         alias="hasMore")
 
     __properties: ClassVar[List[str]] = ["dataList", "hasMore"]

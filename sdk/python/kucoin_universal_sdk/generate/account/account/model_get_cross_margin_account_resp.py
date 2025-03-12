@@ -22,7 +22,7 @@ class GetCrossMarginAccountResp(BaseModel, Response):
         total_asset_of_quote_currency (str): Total Assets in Quote Currency
         total_liability_of_quote_currency (str): Total Liability in Quote Currency
         debt_ratio (str): debt ratio
-        status (StatusEnum): Position status; EFFECTIVE-effective, BANKRUPTCY-bankruptcy liquidation, LIQUIDATION-closing, REPAY-repayment, BORROW borrowing
+        status (StatusEnum): Position status; EFFECTIVE-effective, BANKRUPTCY-bankruptcy liquidation, LIQUIDATION-closing, REPAY-repayment, BORROW-borrowing
         accounts (list[GetCrossMarginAccountAccounts]): Margin account list
     """
 
@@ -57,7 +57,7 @@ class GetCrossMarginAccountResp(BaseModel, Response):
     status: Optional[StatusEnum] = Field(
         default=None,
         description=
-        "Position status; EFFECTIVE-effective, BANKRUPTCY-bankruptcy liquidation, LIQUIDATION-closing, REPAY-repayment, BORROW borrowing"
+        "Position status; EFFECTIVE-effective, BANKRUPTCY-bankruptcy liquidation, LIQUIDATION-closing, REPAY-repayment, BORROW-borrowing"
     )
     accounts: Optional[List[GetCrossMarginAccountAccounts]] = Field(
         default=None, description="Margin account list")

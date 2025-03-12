@@ -15,21 +15,21 @@ class GetMarginRiskLimitReq(BaseModel):
     GetMarginRiskLimitReq
 
     Attributes:
-        is_isolated (bool): true-isolated, false-cross
-        currency (str): currency, This field is only required for cross margin
-        symbol (str): symbol, This field is only required for isolated margin
+        is_isolated (bool): True-isolated, false-cross
+        currency (str): Currency: This field is only required for cross margin
+        symbol (str): Symbol: This field is only required for isolated margin
     """
 
     is_isolated: Optional[bool] = Field(
         default=None,
-        description="true-isolated, false-cross",
+        description="True-isolated, false-cross",
         alias="isIsolated")
     currency: Optional[str] = Field(
         default=None,
-        description="currency, This field is only required for cross margin")
+        description="Currency: This field is only required for cross margin")
     symbol: Optional[str] = Field(
         default=None,
-        description="symbol, This field is only required for isolated margin")
+        description="Symbol: This field is only required for isolated margin")
 
     __properties: ClassVar[List[str]] = ["isIsolated", "currency", "symbol"]
 
@@ -81,21 +81,21 @@ class GetMarginRiskLimitReqBuilder:
 
     def set_is_isolated(self, value: bool) -> GetMarginRiskLimitReqBuilder:
         """
-        true-isolated, false-cross
+        True-isolated, false-cross
         """
         self.obj['isIsolated'] = value
         return self
 
     def set_currency(self, value: str) -> GetMarginRiskLimitReqBuilder:
         """
-        currency, This field is only required for cross margin
+        Currency: This field is only required for cross margin
         """
         self.obj['currency'] = value
         return self
 
     def set_symbol(self, value: str) -> GetMarginRiskLimitReqBuilder:
         """
-        symbol, This field is only required for isolated margin
+        Symbol: This field is only required for isolated margin
         """
         self.obj['symbol'] = value
         return self

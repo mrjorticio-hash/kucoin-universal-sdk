@@ -22,7 +22,7 @@ class GetAnnouncementsResp(BaseModel, Response):
         items (list[GetAnnouncementsItems]): 
         current_page (int): Current page
         page_size (int): Page size
-        total_page (int): Total Page
+        total_page (int): Total Pages
     """
 
     common_response: Optional[RestResponse] = Field(
@@ -38,7 +38,7 @@ class GetAnnouncementsResp(BaseModel, Response):
                                      description="Page size",
                                      alias="pageSize")
     total_page: Optional[int] = Field(default=None,
-                                      description="Total Page",
+                                      description="Total Pages",
                                       alias="totalPage")
 
     __properties: ClassVar[List[str]] = [

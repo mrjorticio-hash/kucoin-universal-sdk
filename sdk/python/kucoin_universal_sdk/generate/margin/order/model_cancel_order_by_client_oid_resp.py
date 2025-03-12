@@ -17,14 +17,14 @@ class CancelOrderByClientOidResp(BaseModel, Response):
     CancelOrderByClientOidResp
 
     Attributes:
-        client_oid (str): Client Order Id，unique identifier created by the user
+        client_oid (str): Client Order Id, unique identifier created by the user
     """
 
     common_response: Optional[RestResponse] = Field(
         default=None, description="Common response")
     client_oid: Optional[str] = Field(
         default=None,
-        description="Client Order Id，unique identifier created by the user",
+        description="Client Order Id, unique identifier created by the user",
         alias="clientOid")
 
     __properties: ClassVar[List[str]] = ["clientOid"]

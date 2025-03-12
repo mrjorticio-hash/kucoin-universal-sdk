@@ -17,15 +17,15 @@ class GetTradeHistoryReq(BaseModel):
     GetTradeHistoryReq
 
     Attributes:
-        order_id (str): List fills for a specific order only (If you specify orderId, other parameters can be ignored)
-        symbol (str): Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) 
+        order_id (str): List fills for a specific order only (if you specify orderId, other parameters can be ignored)
+        symbol (str): Symbol of the contract. Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) 
         side (SideEnum): Order side
         type (TypeEnum): Order Type
-        trade_types (str): Transaction type: trade, adl, liquid, settlement. Supports querying multiple types at the same time, separated by commas. Query all type when empty
-        start_at (int): Start time (milisecond)
-        end_at (int): End time (milisecond)
-        current_page (int): Current request page, The default currentPage is 1
-        page_size (int): pageSize, The default pageSize is 50, The maximum cannot exceed 1000
+        trade_types (str): Transaction type: trade, adl, liquid, settlement. Supports querying multiple types at the same time, separated by commas. Query all types when empty
+        start_at (int): Start time (milliseconds)
+        end_at (int): End time (milliseconds)
+        current_page (int): Current request page. The default currentPage is 1
+        page_size (int): pageSize, The default pageSize is 50; the maximum cannot exceed 1000
     """
 
     class SideEnum(Enum):
@@ -53,34 +53,34 @@ class GetTradeHistoryReq(BaseModel):
     order_id: Optional[str] = Field(
         default=None,
         description=
-        "List fills for a specific order only (If you specify orderId, other parameters can be ignored)",
+        "List fills for a specific order only (if you specify orderId, other parameters can be ignored)",
         alias="orderId")
     symbol: Optional[str] = Field(
         default=None,
         description=
-        "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) "
+        "Symbol of the contract. Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) "
     )
     side: Optional[SideEnum] = Field(default=None, description="Order side")
     type: Optional[TypeEnum] = Field(default=None, description="Order Type")
     trade_types: Optional[str] = Field(
         default=None,
         description=
-        "Transaction type: trade, adl, liquid, settlement. Supports querying multiple types at the same time, separated by commas. Query all type when empty",
+        "Transaction type: trade, adl, liquid, settlement. Supports querying multiple types at the same time, separated by commas. Query all types when empty",
         alias="tradeTypes")
     start_at: Optional[int] = Field(default=None,
-                                    description="Start time (milisecond)",
+                                    description="Start time (milliseconds)",
                                     alias="startAt")
     end_at: Optional[int] = Field(default=None,
-                                  description="End time (milisecond)",
+                                  description="End time (milliseconds)",
                                   alias="endAt")
     current_page: Optional[int] = Field(
         default=1,
-        description="Current request page, The default currentPage is 1",
+        description="Current request page. The default currentPage is 1",
         alias="currentPage")
     page_size: Optional[Annotated[int, Field(le=1000, strict=True)]] = Field(
         default=50,
         description=
-        "pageSize, The default pageSize is 50, The maximum cannot exceed 1000",
+        "pageSize, The default pageSize is 50; the maximum cannot exceed 1000",
         alias="pageSize")
 
     __properties: ClassVar[List[str]] = [
@@ -152,14 +152,14 @@ class GetTradeHistoryReqBuilder:
 
     def set_order_id(self, value: str) -> GetTradeHistoryReqBuilder:
         """
-        List fills for a specific order only (If you specify orderId, other parameters can be ignored)
+        List fills for a specific order only (if you specify orderId, other parameters can be ignored)
         """
         self.obj['orderId'] = value
         return self
 
     def set_symbol(self, value: str) -> GetTradeHistoryReqBuilder:
         """
-        Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) 
+        Symbol of the contract. Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) 
         """
         self.obj['symbol'] = value
         return self
@@ -184,35 +184,35 @@ class GetTradeHistoryReqBuilder:
 
     def set_trade_types(self, value: str) -> GetTradeHistoryReqBuilder:
         """
-        Transaction type: trade, adl, liquid, settlement. Supports querying multiple types at the same time, separated by commas. Query all type when empty
+        Transaction type: trade, adl, liquid, settlement. Supports querying multiple types at the same time, separated by commas. Query all types when empty
         """
         self.obj['tradeTypes'] = value
         return self
 
     def set_start_at(self, value: int) -> GetTradeHistoryReqBuilder:
         """
-        Start time (milisecond)
+        Start time (milliseconds)
         """
         self.obj['startAt'] = value
         return self
 
     def set_end_at(self, value: int) -> GetTradeHistoryReqBuilder:
         """
-        End time (milisecond)
+        End time (milliseconds)
         """
         self.obj['endAt'] = value
         return self
 
     def set_current_page(self, value: int) -> GetTradeHistoryReqBuilder:
         """
-        Current request page, The default currentPage is 1
+        Current request page. The default currentPage is 1
         """
         self.obj['currentPage'] = value
         return self
 
     def set_page_size(self, value: int) -> GetTradeHistoryReqBuilder:
         """
-        pageSize, The default pageSize is 50, The maximum cannot exceed 1000
+        pageSize, The default pageSize is 50; the maximum cannot exceed 1000
         """
         self.obj['pageSize'] = value
         return self

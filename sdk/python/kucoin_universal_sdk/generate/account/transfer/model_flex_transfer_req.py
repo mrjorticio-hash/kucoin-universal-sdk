@@ -16,16 +16,16 @@ class FlexTransferReq(BaseModel):
     FlexTransferReq
 
     Attributes:
-        client_oid (str): Unique order id created by users to identify their orders, e.g. UUID, with a maximum length of 128 bits
+        client_oid (str): Unique order ID created by users to identify their orders, e.g. UUID, with a maximum length of 128 bits
         currency (str): currency
-        amount (str): Transfer amount, the amount is a positive integer multiple of the currency precision.
-        from_user_id (str): Transfer out UserId， This is required when transferring sub-account to master-account. It is optional for internal transfers.
-        from_account_type (FromAccountTypeEnum): Account type：MAIN、TRADE、CONTRACT、MARGIN、ISOLATED、MARGIN_V2、ISOLATED_V2
-        from_account_tag (str): Symbol, required when the account type is ISOLATED or ISOLATED_V2, for example: BTC-USDT
-        type (TypeEnum): Transfer type：INTERNAL(Transfer within account)、PARENT_TO_SUB(Transfer from master-account to sub-account)，SUB_TO_PARENT(Transfer from sub-account to master-account)
-        to_user_id (str): Transfer in UserId， This is required when transferring master-account to sub-account. It is optional for internal transfers.
-        to_account_type (ToAccountTypeEnum): Account type：MAIN、TRADE、CONTRACT、MARGIN、ISOLATED、MARGIN_V2、ISOLATED_V2
-        to_account_tag (str): Symbol, required when the account type is ISOLATED or ISOLATED_V2, for example: BTC-USDT
+        amount (str): Transfer amount: The amount is a positive integer multiple of the currency precision.
+        from_user_id (str): Transfer out UserId: This is required when transferring from sub-account to master-account. It is optional for internal transfers.
+        from_account_type (FromAccountTypeEnum): Account type: MAIN, TRADE, CONTRACT, MARGIN, ISOLATED, MARGIN_V2, ISOLATED_V2
+        from_account_tag (str): Symbol: Required when the account type is ISOLATED or ISOLATED_V2, for example: BTC-USDT
+        type (TypeEnum): Transfer type: INTERNAL (Transfer within account), PARENT_TO_SUB (Transfer from master-account to sub-account), SUB_TO_PARENT (Transfer from sub-account to master-account)
+        to_user_id (str): Transfer in UserId: This is required when transferring master-account to sub-account. It is optional for internal transfers.
+        to_account_type (ToAccountTypeEnum): Account type: MAIN, TRADE, CONTRACT, MARGIN, ISOLATED, MARGIN_V2, ISOLATED_V2
+        to_account_tag (str): Symbol: Required when the account type is ISOLATED or ISOLATED_V2, for example: BTC-USDT
     """
 
     class FromAccountTypeEnum(Enum):
@@ -84,48 +84,48 @@ class FlexTransferReq(BaseModel):
     client_oid: Optional[str] = Field(
         default=None,
         description=
-        "Unique order id created by users to identify their orders, e.g. UUID, with a maximum length of 128 bits",
+        "Unique order ID created by users to identify their orders, e.g. UUID, with a maximum length of 128 bits",
         alias="clientOid")
     currency: Optional[str] = Field(default=None, description="currency")
     amount: Optional[str] = Field(
         default=None,
         description=
-        "Transfer amount, the amount is a positive integer multiple of the currency precision."
+        "Transfer amount: The amount is a positive integer multiple of the currency precision."
     )
     from_user_id: Optional[str] = Field(
         default=None,
         description=
-        "Transfer out UserId， This is required when transferring sub-account to master-account. It is optional for internal transfers.",
+        "Transfer out UserId: This is required when transferring from sub-account to master-account. It is optional for internal transfers.",
         alias="fromUserId")
     from_account_type: Optional[FromAccountTypeEnum] = Field(
         default=None,
         description=
-        "Account type：MAIN、TRADE、CONTRACT、MARGIN、ISOLATED、MARGIN_V2、ISOLATED_V2",
+        "Account type: MAIN, TRADE, CONTRACT, MARGIN, ISOLATED, MARGIN_V2, ISOLATED_V2",
         alias="fromAccountType")
     from_account_tag: Optional[str] = Field(
         default=None,
         description=
-        "Symbol, required when the account type is ISOLATED or ISOLATED_V2, for example: BTC-USDT",
+        "Symbol: Required when the account type is ISOLATED or ISOLATED_V2, for example: BTC-USDT",
         alias="fromAccountTag")
     type: Optional[TypeEnum] = Field(
         default=None,
         description=
-        "Transfer type：INTERNAL(Transfer within account)、PARENT_TO_SUB(Transfer from master-account to sub-account)，SUB_TO_PARENT(Transfer from sub-account to master-account)"
+        "Transfer type: INTERNAL (Transfer within account), PARENT_TO_SUB (Transfer from master-account to sub-account), SUB_TO_PARENT (Transfer from sub-account to master-account)"
     )
     to_user_id: Optional[str] = Field(
         default=None,
         description=
-        "Transfer in UserId， This is required when transferring master-account to sub-account. It is optional for internal transfers.",
+        "Transfer in UserId: This is required when transferring master-account to sub-account. It is optional for internal transfers.",
         alias="toUserId")
     to_account_type: Optional[ToAccountTypeEnum] = Field(
         default=None,
         description=
-        "Account type：MAIN、TRADE、CONTRACT、MARGIN、ISOLATED、MARGIN_V2、ISOLATED_V2",
+        "Account type: MAIN, TRADE, CONTRACT, MARGIN, ISOLATED, MARGIN_V2, ISOLATED_V2",
         alias="toAccountType")
     to_account_tag: Optional[str] = Field(
         default=None,
         description=
-        "Symbol, required when the account type is ISOLATED or ISOLATED_V2, for example: BTC-USDT",
+        "Symbol: Required when the account type is ISOLATED or ISOLATED_V2, for example: BTC-USDT",
         alias="toAccountTag")
 
     __properties: ClassVar[List[str]] = [
@@ -187,7 +187,7 @@ class FlexTransferReqBuilder:
 
     def set_client_oid(self, value: str) -> FlexTransferReqBuilder:
         """
-        Unique order id created by users to identify their orders, e.g. UUID, with a maximum length of 128 bits
+        Unique order ID created by users to identify their orders, e.g. UUID, with a maximum length of 128 bits
         """
         self.obj['clientOid'] = value
         return self
@@ -201,14 +201,14 @@ class FlexTransferReqBuilder:
 
     def set_amount(self, value: str) -> FlexTransferReqBuilder:
         """
-        Transfer amount, the amount is a positive integer multiple of the currency precision.
+        Transfer amount: The amount is a positive integer multiple of the currency precision.
         """
         self.obj['amount'] = value
         return self
 
     def set_from_user_id(self, value: str) -> FlexTransferReqBuilder:
         """
-        Transfer out UserId， This is required when transferring sub-account to master-account. It is optional for internal transfers.
+        Transfer out UserId: This is required when transferring from sub-account to master-account. It is optional for internal transfers.
         """
         self.obj['fromUserId'] = value
         return self
@@ -217,14 +217,14 @@ class FlexTransferReqBuilder:
             self, value: FlexTransferReq.FromAccountTypeEnum
     ) -> FlexTransferReqBuilder:
         """
-        Account type：MAIN、TRADE、CONTRACT、MARGIN、ISOLATED、MARGIN_V2、ISOLATED_V2
+        Account type: MAIN, TRADE, CONTRACT, MARGIN, ISOLATED, MARGIN_V2, ISOLATED_V2
         """
         self.obj['fromAccountType'] = value
         return self
 
     def set_from_account_tag(self, value: str) -> FlexTransferReqBuilder:
         """
-        Symbol, required when the account type is ISOLATED or ISOLATED_V2, for example: BTC-USDT
+        Symbol: Required when the account type is ISOLATED or ISOLATED_V2, for example: BTC-USDT
         """
         self.obj['fromAccountTag'] = value
         return self
@@ -232,14 +232,14 @@ class FlexTransferReqBuilder:
     def set_type(self,
                  value: FlexTransferReq.TypeEnum) -> FlexTransferReqBuilder:
         """
-        Transfer type：INTERNAL(Transfer within account)、PARENT_TO_SUB(Transfer from master-account to sub-account)，SUB_TO_PARENT(Transfer from sub-account to master-account)
+        Transfer type: INTERNAL (Transfer within account), PARENT_TO_SUB (Transfer from master-account to sub-account), SUB_TO_PARENT (Transfer from sub-account to master-account)
         """
         self.obj['type'] = value
         return self
 
     def set_to_user_id(self, value: str) -> FlexTransferReqBuilder:
         """
-        Transfer in UserId， This is required when transferring master-account to sub-account. It is optional for internal transfers.
+        Transfer in UserId: This is required when transferring master-account to sub-account. It is optional for internal transfers.
         """
         self.obj['toUserId'] = value
         return self
@@ -248,14 +248,14 @@ class FlexTransferReqBuilder:
             self, value: FlexTransferReq.ToAccountTypeEnum
     ) -> FlexTransferReqBuilder:
         """
-        Account type：MAIN、TRADE、CONTRACT、MARGIN、ISOLATED、MARGIN_V2、ISOLATED_V2
+        Account type: MAIN, TRADE, CONTRACT, MARGIN, ISOLATED, MARGIN_V2, ISOLATED_V2
         """
         self.obj['toAccountType'] = value
         return self
 
     def set_to_account_tag(self, value: str) -> FlexTransferReqBuilder:
         """
-        Symbol, required when the account type is ISOLATED or ISOLATED_V2, for example: BTC-USDT
+        Symbol: Required when the account type is ISOLATED or ISOLATED_V2, for example: BTC-USDT
         """
         self.obj['toAccountTag'] = value
         return self

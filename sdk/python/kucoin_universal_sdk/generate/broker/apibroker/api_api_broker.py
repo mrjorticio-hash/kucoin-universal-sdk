@@ -13,17 +13,17 @@ class APIBrokerAPI(ABC):
     def get_rebase(self, req: GetRebaseReq, **kwargs: Any) -> GetRebaseResp:
         """
         summary: Get Broker Rebate
-        description: This interface supports downloading Broker rebate orders
+        description: This interface supports the downloading of Broker rebate orders.
         documentation: https://www.kucoin.com/docs-new/api-3470280
-        +---------------------+------------+
-        | Extra API Info      | Value      |
-        +---------------------+------------+
-        | API-DOMAIN          | SPOT       |
-        | API-CHANNEL         | PRIVATE    |
-        | API-PERMISSION      | GENERAL    |
-        | API-RATE-LIMIT-POOL | MANAGEMENT |
-        | API-RATE-LIMIT      | 3          |
-        +---------------------+------------+
+        +-----------------------+------------+
+        | Extra API Info        | Value      |
+        +-----------------------+------------+
+        | API-DOMAIN            | SPOT       |
+        | API-CHANNEL           | PRIVATE    |
+        | API-PERMISSION        | GENERAL    |
+        | API-RATE-LIMIT-POOL   | MANAGEMENT |
+        | API-RATE-LIMIT-WEIGHT | 3          |
+        +-----------------------+------------+
         """
         pass
 

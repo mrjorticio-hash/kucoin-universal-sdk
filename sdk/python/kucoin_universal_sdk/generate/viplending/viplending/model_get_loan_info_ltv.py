@@ -10,7 +10,7 @@ from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
 
 
-class GetAccountDetailLtv(BaseModel):
+class GetLoanInfoLtv(BaseModel):
     """
     Loan-to-Value Ratio 
 
@@ -60,7 +60,7 @@ class GetAccountDetailLtv(BaseModel):
         return self.model_dump_json(by_alias=True, exclude_none=True)
 
     @classmethod
-    def from_json(cls, json_str: str) -> Optional[GetAccountDetailLtv]:
+    def from_json(cls, json_str: str) -> Optional[GetLoanInfoLtv]:
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -71,9 +71,8 @@ class GetAccountDetailLtv(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(
-            cls, obj: Optional[Dict[str,
-                                    Any]]) -> Optional[GetAccountDetailLtv]:
+    def from_dict(cls, obj: Optional[Dict[str,
+                                          Any]]) -> Optional[GetLoanInfoLtv]:
         if obj is None:
             return None
 

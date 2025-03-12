@@ -16,8 +16,8 @@ class GetRedeemOrdersItems(BaseModel):
 
     Attributes:
         currency (str): Currency
-        purchase_order_no (str): Purchase order id
-        redeem_order_no (str): Redeem order id
+        purchase_order_no (str): Purchase order ID
+        redeem_order_no (str): Redeem order ID
         redeem_size (str): Redemption size
         receipt_size (str): Redeemed size
         apply_time (str): Time of redeem
@@ -26,10 +26,10 @@ class GetRedeemOrdersItems(BaseModel):
 
     currency: Optional[str] = Field(default=None, description="Currency")
     purchase_order_no: Optional[str] = Field(default=None,
-                                             description="Purchase order id",
+                                             description="Purchase order ID",
                                              alias="purchaseOrderNo")
     redeem_order_no: Optional[str] = Field(default=None,
-                                           description="Redeem order id",
+                                           description="Redeem order ID",
                                            alias="redeemOrderNo")
     redeem_size: Optional[str] = Field(default=None,
                                        description="Redemption size",

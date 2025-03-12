@@ -17,7 +17,7 @@ class GetWithdrawalHistoryOldItems(BaseModel):
 
     Attributes:
         currency (str): Currency
-        create_at (int): Creation time of the database record
+        create_at (int): Database record creation time
         amount (str): Withdrawal amount
         address (str): Withdrawal address
         wallet_tx_id (str): Wallet Txid
@@ -39,7 +39,7 @@ class GetWithdrawalHistoryOldItems(BaseModel):
     currency: Optional[str] = Field(default=None, description="Currency")
     create_at: Optional[int] = Field(
         default=None,
-        description="Creation time of the database record",
+        description="Database record creation time",
         alias="createAt")
     amount: Optional[str] = Field(default=None,
                                   description="Withdrawal amount")

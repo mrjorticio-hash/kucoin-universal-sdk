@@ -32,6 +32,9 @@ class GetRecentTradeHistoryOldData(BaseModel):
         trade_type (str): 
         type (str): 
         created_at (int): 
+        tax (str): 
+        tax_currency (str): 
+        tax_rate (str): 
     """
 
     symbol: Optional[str] = None
@@ -52,11 +55,15 @@ class GetRecentTradeHistoryOldData(BaseModel):
     trade_type: Optional[str] = Field(default=None, alias="tradeType")
     type: Optional[str] = None
     created_at: Optional[int] = Field(default=None, alias="createdAt")
+    tax: Optional[str] = None
+    tax_currency: Optional[str] = Field(default=None, alias="taxCurrency")
+    tax_rate: Optional[str] = Field(default=None, alias="taxRate")
 
     __properties: ClassVar[List[str]] = [
         "symbol", "tradeId", "orderId", "counterOrderId", "side", "liquidity",
         "forceTaker", "price", "size", "funds", "fee", "feeRate",
-        "feeCurrency", "stop", "tradeType", "type", "createdAt"
+        "feeCurrency", "stop", "tradeType", "type", "createdAt", "tax",
+        "taxCurrency", "taxRate"
     ]
 
     model_config = ConfigDict(
@@ -111,6 +118,9 @@ class GetRecentTradeHistoryOldData(BaseModel):
             "stop": obj.get("stop"),
             "tradeType": obj.get("tradeType"),
             "type": obj.get("type"),
-            "createdAt": obj.get("createdAt")
+            "createdAt": obj.get("createdAt"),
+            "tax": obj.get("tax"),
+            "taxCurrency": obj.get("taxCurrency"),
+            "taxRate": obj.get("taxRate")
         })
         return _obj

@@ -16,9 +16,9 @@ class InnerTransferReq(BaseModel):
     InnerTransferReq
 
     Attributes:
-        client_oid (str): Unique order id created by users to identify their orders, e.g. UUID, with a maximum length of 128 bits
+        client_oid (str): Unique order ID created by users to identify their orders, e.g. UUID, with a maximum length of 128 bits
         currency (str): currency
-        amount (str): Transfer amount, the amount is a positive integer multiple of the currency precision.
+        amount (str): Transfer amount: The amount is a positive integer multiple of the currency precision.
         to (ToEnum): Receiving Account Type: main, trade, margin, isolated, margin_v2, isolated_v2, contract
         from_tag (str): Trading pair, required when the payment account type is isolated, e.g.: BTC-USDT
         to_tag (str): Trading pair, required when the payment account type is isolated, e.g.: BTC-USDT
@@ -66,13 +66,13 @@ class InnerTransferReq(BaseModel):
     client_oid: Optional[str] = Field(
         default=None,
         description=
-        "Unique order id created by users to identify their orders, e.g. UUID, with a maximum length of 128 bits",
+        "Unique order ID created by users to identify their orders, e.g. UUID, with a maximum length of 128 bits",
         alias="clientOid")
     currency: Optional[str] = Field(default=None, description="currency")
     amount: Optional[str] = Field(
         default=None,
         description=
-        "Transfer amount, the amount is a positive integer multiple of the currency precision."
+        "Transfer amount: The amount is a positive integer multiple of the currency precision."
     )
     to: Optional[ToEnum] = Field(
         default=None,
@@ -150,7 +150,7 @@ class InnerTransferReqBuilder:
 
     def set_client_oid(self, value: str) -> InnerTransferReqBuilder:
         """
-        Unique order id created by users to identify their orders, e.g. UUID, with a maximum length of 128 bits
+        Unique order ID created by users to identify their orders, e.g. UUID, with a maximum length of 128 bits
         """
         self.obj['clientOid'] = value
         return self
@@ -164,7 +164,7 @@ class InnerTransferReqBuilder:
 
     def set_amount(self, value: str) -> InnerTransferReqBuilder:
         """
-        Transfer amount, the amount is a positive integer multiple of the currency precision.
+        Transfer amount: The amount is a positive integer multiple of the currency precision.
         """
         self.obj['amount'] = value
         return self

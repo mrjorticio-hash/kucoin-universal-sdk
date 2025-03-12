@@ -9,6 +9,7 @@ import json
 from enum import Enum
 from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
+from typing_extensions import Annotated
 
 
 class AddOrderTestReq(BaseModel):
@@ -21,21 +22,19 @@ class AddOrderTestReq(BaseModel):
         symbol (str): Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) 
         leverage (int): Used to calculate the margin to be frozen for the order. If you are to close the position, this parameter is not required.
         type (TypeEnum): specify if the order is an 'limit' order or 'market' order
-        remark (str): remark for the order, length cannot exceed 100 utf8 characters
         stop (StopEnum): Either 'down' or 'up'.  If stop is used,parameter stopPrice and stopPriceType also need to be provieded.
-        stop_price_type (StopPriceTypeEnum): Either 'TP', 'IP' or 'MP', Need to be defined if stop is specified.
+        stop_price_type (StopPriceTypeEnum): Either 'TP' or 'MP', Need to be defined if stop is specified.
         stop_price (str): Need to be defined if stop is specified. 
         reduce_only (bool): A mark to reduce the position size only. Set to false by default. Need to set the position size when reduceOnly is true. If set to true, only the orders reducing the position size will be executed. If the reduce-only order size exceeds the position size, the extra size will be canceled.
         close_order (bool): A mark to close the position. Set to false by default. If closeOrder is set to true, the system will close the position and the position size will become 0. Side, Size and Leverage fields can be left empty and the system will determine the side and size automatically.
-        force_hold (bool): A mark to forcely hold the funds for an order, even though it's an order to reduce the position size. This helps the order stay on the order book and not get canceled when the position size changes. Set to false by default. The system will forcely freeze certain amount of funds for this order, including orders whose direction is opposite to the current positions. This feature is to ensure that the order won’t be canceled by the matching engine in such a circumstance that not enough funds are frozen for the order.
-        margin_mode (MarginModeEnum): Margin mode: ISOLATED, CROSS, default: ISOLATED
+        margin_mode (MarginModeEnum): Margin mode: ISOLATED, default: ISOLATED
         price (str): Required for type is 'limit' order, indicating the operating price
         size (int): Order size (Lot), must be a positive integer. The quantity unit of coin-swap contracts is size(lot), and other units are not supported.
         time_in_force (TimeInForceEnum): Optional for type is 'limit' order, [Time in force](https://www.kucoin.com/docs-new/doc-338146) is a special strategy used during trading, default is GTC
         post_only (bool): Optional for type is 'limit' order,  post only flag, invalid when timeInForce is IOC. When postOnly is true, not allowed choose hidden or iceberg. The post-only flag ensures that the trader always pays the maker fee and provides liquidity to the order book. If any part of the order is going to pay taker fee, the order will be fully rejected.
         hidden (bool): Optional for type is 'limit' order, orders not displaying in order book. When hidden chose, not allowed choose postOnly.
         iceberg (bool): Optional for type is 'limit' order, Only visible portion of the order is displayed in the order book. When iceberg chose, not allowed choose postOnly.
-        visible_size (str): Optional for type is 'limit' order, The maximum visible size of an iceberg order. please place order in size (lots), The units of qty (base currency) and valueQty (value) are not supported.
+        visible_size (str): Optional for type is 'limit' order, The maximum visible size of an iceberg order. please place order in size (lots), The units of qty (base currency) and valueQty (value) are not supported. Need to be defined if iceberg is specified.
     """
 
     class SideEnum(Enum):
@@ -70,20 +69,16 @@ class AddOrderTestReq(BaseModel):
         Attributes:
             TRADE_PRICE: TP for trade price, The last trade price is the last price at which an order was filled. This price can be found in the latest match message.
             MARK_PRICE: MP for mark price, The mark price can be obtained through relevant OPEN API for index services
-            INDEX_PRICE: IP for index price, The index price can be obtained through relevant OPEN API for index services
         """
         TRADE_PRICE = 'TP'
         MARK_PRICE = 'MP'
-        INDEX_PRICE = 'IP'
 
     class MarginModeEnum(Enum):
         """
         Attributes:
-            ISOLATED: 
-            CROSS: 
+            ISOLATED: Isolated Margin
         """
         ISOLATED = 'ISOLATED'
-        CROSS = 'CROSS'
 
     class TimeInForceEnum(Enum):
         """
@@ -106,7 +101,7 @@ class AddOrderTestReq(BaseModel):
         description=
         "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) "
     )
-    leverage: Optional[int] = Field(
+    leverage: Optional[Annotated[int, Field(le=10, strict=True, ge=1)]] = Field(
         default=None,
         description=
         "Used to calculate the margin to be frozen for the order. If you are to close the position, this parameter is not required."
@@ -115,10 +110,6 @@ class AddOrderTestReq(BaseModel):
         default=TypeEnum.LIMIT,
         description="specify if the order is an 'limit' order or 'market' order"
     )
-    remark: Optional[str] = Field(
-        default=None,
-        description=
-        "remark for the order, length cannot exceed 100 utf8 characters")
     stop: Optional[StopEnum] = Field(
         default=None,
         description=
@@ -127,7 +118,7 @@ class AddOrderTestReq(BaseModel):
     stop_price_type: Optional[StopPriceTypeEnum] = Field(
         default=None,
         description=
-        "Either 'TP', 'IP' or 'MP', Need to be defined if stop is specified.",
+        "Either 'TP' or 'MP', Need to be defined if stop is specified.",
         alias="stopPriceType")
     stop_price: Optional[str] = Field(
         default=None,
@@ -143,14 +134,9 @@ class AddOrderTestReq(BaseModel):
         description=
         "A mark to close the position. Set to false by default. If closeOrder is set to true, the system will close the position and the position size will become 0. Side, Size and Leverage fields can be left empty and the system will determine the side and size automatically.",
         alias="closeOrder")
-    force_hold: Optional[bool] = Field(
-        default=False,
-        description=
-        "A mark to forcely hold the funds for an order, even though it's an order to reduce the position size. This helps the order stay on the order book and not get canceled when the position size changes. Set to false by default. The system will forcely freeze certain amount of funds for this order, including orders whose direction is opposite to the current positions. This feature is to ensure that the order won’t be canceled by the matching engine in such a circumstance that not enough funds are frozen for the order.",
-        alias="forceHold")
     margin_mode: Optional[MarginModeEnum] = Field(
         default=MarginModeEnum.ISOLATED,
-        description="Margin mode: ISOLATED, CROSS, default: ISOLATED",
+        description="Margin mode: ISOLATED, default: ISOLATED",
         alias="marginMode")
     price: Optional[str] = Field(
         default=None,
@@ -184,14 +170,14 @@ class AddOrderTestReq(BaseModel):
     visible_size: Optional[str] = Field(
         default=None,
         description=
-        "Optional for type is 'limit' order, The maximum visible size of an iceberg order. please place order in size (lots), The units of qty (base currency) and valueQty (value) are not supported.",
+        "Optional for type is 'limit' order, The maximum visible size of an iceberg order. please place order in size (lots), The units of qty (base currency) and valueQty (value) are not supported. Need to be defined if iceberg is specified.",
         alias="visibleSize")
 
     __properties: ClassVar[List[str]] = [
-        "clientOid", "side", "symbol", "leverage", "type", "remark", "stop",
-        "stopPriceType", "stopPrice", "reduceOnly", "closeOrder", "forceHold",
-        "marginMode", "price", "size", "timeInForce", "postOnly", "hidden",
-        "iceberg", "visibleSize"
+        "clientOid", "side", "symbol", "leverage", "type", "stop",
+        "stopPriceType", "stopPrice", "reduceOnly", "closeOrder", "marginMode",
+        "price", "size", "timeInForce", "postOnly", "hidden", "iceberg",
+        "visibleSize"
     ]
 
     model_config = ConfigDict(
@@ -238,8 +224,6 @@ class AddOrderTestReq(BaseModel):
             "type":
             obj.get("type")
             if obj.get("type") is not None else AddOrderTestReq.TypeEnum.LIMIT,
-            "remark":
-            obj.get("remark"),
             "stop":
             obj.get("stop"),
             "stopPriceType":
@@ -252,9 +236,6 @@ class AddOrderTestReq(BaseModel):
             "closeOrder":
             obj.get("closeOrder")
             if obj.get("closeOrder") is not None else False,
-            "forceHold":
-            obj.get("forceHold")
-            if obj.get("forceHold") is not None else False,
             "marginMode":
             obj.get("marginMode") if obj.get("marginMode") is not None else
             AddOrderTestReq.MarginModeEnum.ISOLATED,
@@ -319,13 +300,6 @@ class AddOrderTestReqBuilder:
         self.obj['type'] = value
         return self
 
-    def set_remark(self, value: str) -> AddOrderTestReqBuilder:
-        """
-        remark for the order, length cannot exceed 100 utf8 characters
-        """
-        self.obj['remark'] = value
-        return self
-
     def set_stop(self,
                  value: AddOrderTestReq.StopEnum) -> AddOrderTestReqBuilder:
         """
@@ -338,7 +312,7 @@ class AddOrderTestReqBuilder:
             self, value: AddOrderTestReq.StopPriceTypeEnum
     ) -> AddOrderTestReqBuilder:
         """
-        Either 'TP', 'IP' or 'MP', Need to be defined if stop is specified.
+        Either 'TP' or 'MP', Need to be defined if stop is specified.
         """
         self.obj['stopPriceType'] = value
         return self
@@ -364,18 +338,11 @@ class AddOrderTestReqBuilder:
         self.obj['closeOrder'] = value
         return self
 
-    def set_force_hold(self, value: bool) -> AddOrderTestReqBuilder:
-        """
-        A mark to forcely hold the funds for an order, even though it's an order to reduce the position size. This helps the order stay on the order book and not get canceled when the position size changes. Set to false by default. The system will forcely freeze certain amount of funds for this order, including orders whose direction is opposite to the current positions. This feature is to ensure that the order won’t be canceled by the matching engine in such a circumstance that not enough funds are frozen for the order.
-        """
-        self.obj['forceHold'] = value
-        return self
-
     def set_margin_mode(
             self,
             value: AddOrderTestReq.MarginModeEnum) -> AddOrderTestReqBuilder:
         """
-        Margin mode: ISOLATED, CROSS, default: ISOLATED
+        Margin mode: ISOLATED, default: ISOLATED
         """
         self.obj['marginMode'] = value
         return self
@@ -426,7 +393,7 @@ class AddOrderTestReqBuilder:
 
     def set_visible_size(self, value: str) -> AddOrderTestReqBuilder:
         """
-        Optional for type is 'limit' order, The maximum visible size of an iceberg order. please place order in size (lots), The units of qty (base currency) and valueQty (value) are not supported.
+        Optional for type is 'limit' order, The maximum visible size of an iceberg order. please place order in size (lots), The units of qty (base currency) and valueQty (value) are not supported. Need to be defined if iceberg is specified.
         """
         self.obj['visibleSize'] = value
         return self

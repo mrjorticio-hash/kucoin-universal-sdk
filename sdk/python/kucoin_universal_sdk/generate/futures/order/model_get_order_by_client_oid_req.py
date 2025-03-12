@@ -15,12 +15,12 @@ class GetOrderByClientOidReq(BaseModel):
     GetOrderByClientOidReq
 
     Attributes:
-        client_oid (str): The user self-defined order id.
+        client_oid (str): The user self-defined order ID.
     """
 
     client_oid: Optional[str] = Field(
         default=None,
-        description="The user self-defined order id.",
+        description="The user self-defined order ID.",
         alias="clientOid")
 
     __properties: ClassVar[List[str]] = ["clientOid"]
@@ -69,7 +69,7 @@ class GetOrderByClientOidReqBuilder:
 
     def set_client_oid(self, value: str) -> GetOrderByClientOidReqBuilder:
         """
-        The user self-defined order id.
+        The user self-defined order ID.
         """
         self.obj['clientOid'] = value
         return self

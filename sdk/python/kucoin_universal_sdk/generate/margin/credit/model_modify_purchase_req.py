@@ -17,7 +17,7 @@ class ModifyPurchaseReq(BaseModel):
     Attributes:
         currency (str): Currency
         interest_rate (str): Modified purchase interest rate
-        purchase_order_no (str): Purchase order id
+        purchase_order_no (str): Purchase order ID
     """
 
     currency: Optional[str] = Field(default=None, description="Currency")
@@ -26,7 +26,7 @@ class ModifyPurchaseReq(BaseModel):
         description="Modified purchase interest rate",
         alias="interestRate")
     purchase_order_no: Optional[str] = Field(default=None,
-                                             description="Purchase order id",
+                                             description="Purchase order ID",
                                              alias="purchaseOrderNo")
 
     __properties: ClassVar[List[str]] = [
@@ -94,7 +94,7 @@ class ModifyPurchaseReqBuilder:
 
     def set_purchase_order_no(self, value: str) -> ModifyPurchaseReqBuilder:
         """
-        Purchase order id
+        Purchase order ID
         """
         self.obj['purchaseOrderNo'] = value
         return self

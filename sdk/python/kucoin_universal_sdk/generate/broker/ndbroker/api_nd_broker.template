@@ -23,7 +23,7 @@ def test_get_broker_info_req(self):
 def test_add_sub_account_req(self):
     """
         add_sub_account
-        Add SubAccount
+        Add sub-account
         /api/v1/broker/nd/account
     """
 
@@ -42,7 +42,7 @@ def test_add_sub_account_req(self):
 def test_get_sub_account_req(self):
     """
         get_sub_account
-        Get SubAccount
+        Get sub-account
         /api/v1/broker/nd/account
     """
 
@@ -61,7 +61,7 @@ def test_get_sub_account_req(self):
 def test_add_sub_account_api_req(self):
     """
         add_sub_account_api
-        Add SubAccount API
+        Add sub-account API
         /api/v1/broker/nd/account/apikey
     """
 
@@ -80,7 +80,7 @@ def test_add_sub_account_api_req(self):
 def test_get_sub_account_api_req(self):
     """
         get_sub_account_api
-        Get SubAccount API
+        Get sub-account API
         /api/v1/broker/nd/account/apikey
     """
 
@@ -99,7 +99,7 @@ def test_get_sub_account_api_req(self):
 def test_modify_sub_account_api_req(self):
     """
         modify_sub_account_api
-        Modify SubAccount API
+        Modify sub-account API
         /api/v1/broker/nd/account/update-apikey
     """
 
@@ -118,7 +118,7 @@ def test_modify_sub_account_api_req(self):
 def test_delete_sub_account_api_req(self):
     """
         delete_sub_account_api
-        Delete SubAccount API
+        Delete sub-account API
         /api/v1/broker/nd/account/apikey
     """
 

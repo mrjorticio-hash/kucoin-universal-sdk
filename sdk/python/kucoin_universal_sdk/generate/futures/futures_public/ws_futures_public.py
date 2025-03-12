@@ -31,7 +31,7 @@ class FuturesPublicWS(ABC):
         """
         summary: Match execution data.
         description: For each order executed, the system will send you the match messages in the format as following.
-        push frequency: realtime
+        push frequency: real-time
         """
         pass
 
@@ -60,8 +60,8 @@ class FuturesPublicWS(ABC):
                             callback: OrderbookIncrementEventCallback) -> str:
         """
         summary: Orderbook - Increment
-        description: The system will return the increment change orderbook data(All depth), If there is no change in the market, data will not be pushed
-        push frequency: realtime
+        description: The system will return the increment change orderbook data (all depth). If there is no change in the market, data will not be pushed.
+        push frequency: real-time
         """
         pass
 
@@ -80,7 +80,7 @@ class FuturesPublicWS(ABC):
                          callback: OrderbookLevel5EventCallback) -> str:
         """
         summary: Orderbook - Level5
-        description: The system will return the 5 best ask/bid orders data, If there is no change in the market, data will not be pushed
+        description: The system will return the 5 best ask/bid orders data. If there is no change in the market, data will not be pushed
         push frequency: 100ms
         """
         pass
@@ -90,7 +90,7 @@ class FuturesPublicWS(ABC):
                         callback: SymbolSnapshotEventCallback) -> str:
         """
         summary: Symbol Snapshot
-        description: Get symbol&#39;s snapshot.
+        description: Get symbol snapshot.
         push frequency: 5000ms
         """
         pass
@@ -99,8 +99,8 @@ class FuturesPublicWS(ABC):
     def ticker_v1(self, symbol: str, callback: TickerV1EventCallback) -> str:
         """
         summary: Get Ticker(not recommended)
-        description: Subscribe this topic to get the realtime push of BBO changes.It is not recommended to use this topic any more. For real-time ticker information, please subscribe /contractMarket/tickerV2:{symbol}.
-        push frequency: realtime
+        description: Subscribe to this topic to get real-time pushes on BBO changes. It is not recommended to use this topic any more. For real-time ticker information, please subscribe /contractMarket/tickerV2:{symbol}.
+        push frequency: real-time
         """
         pass
 
@@ -108,8 +108,8 @@ class FuturesPublicWS(ABC):
     def ticker_v2(self, symbol: str, callback: TickerV2EventCallback) -> str:
         """
         summary: Get Ticker V2
-        description: Subscribe this topic to get the realtime push of BBO changes. After subscription, when there are changes in the order book（Not necessarily ask1/bid1 changes）, the system will push the real-time ticker symbol information to you.
-        push frequency: realtime
+        description: Subscribe to this topic to get real-time pushes of BBO changes. After subscription, when there are changes in the order book (not necessarily ask1/bid1 changes), the system will push the real-time ticker symbol information to you.
+        push frequency: real-time
         """
         pass
 

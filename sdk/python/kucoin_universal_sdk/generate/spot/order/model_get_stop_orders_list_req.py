@@ -9,6 +9,7 @@ import json
 from enum import Enum
 from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
+from typing_extensions import Annotated
 
 
 class GetStopOrdersListReq(BaseModel):
@@ -17,76 +18,52 @@ class GetStopOrdersListReq(BaseModel):
 
     Attributes:
         symbol (str): Only list orders for a specific symbol
-        side (SideEnum): buy or sell
-        type (TypeEnum): limit, market, limit_stop or market_stop
-        trade_type (TradeTypeEnum): The type of trading : TRADE（Spot）, MARGIN_TRADE (Cross Margin), MARGIN_ISOLATED_TRADE (Isolated Margin). Default is TRADE
-        start_at (float): Start time (milisecond)
-        end_at (float): End time (milisecond)
-        current_page (int): current page
-        order_ids (str): comma seperated order ID list
-        page_size (int): page size
+        side (str): buy or sell
+        type (TypeEnum): limit, market
+        trade_type (str): The type of trading : TRADE（Spot）, MARGIN_TRADE (Cross Margin), MARGIN_ISOLATED_TRADE (Isolated Margin). Default is TRADE
+        start_at (int): Start time (milisecond)
+        end_at (int): End time (milisecond)
+        current_page (int): Current page 
+        order_ids (str): Comma seperated order ID list
+        page_size (int): Page size
         stop (str): Order type: stop: stop loss order, oco: oco order
     """
-
-    class SideEnum(Enum):
-        """
-        Attributes:
-            BUY: 
-            SELL: 
-        """
-        BUY = 'buy'
-        SELL = 'sell'
 
     class TypeEnum(Enum):
         """
         Attributes:
-            LIMIT: 
-            MARKET: 
-            LIMIT_STOP: 
-            MARKET_STOP: 
+            LIMIT: limit order
+            MARKET: market order
         """
         LIMIT = 'limit'
         MARKET = 'market'
-        LIMIT_STOP = 'limit_stop'
-        MARKET_STOP = 'market_stop'
-
-    class TradeTypeEnum(Enum):
-        """
-        Attributes:
-            TRADE: 
-            MARGIN_TRADE: 
-            MARGIN_ISOLATED_TRADE: 
-        """
-        TRADE = 'TRADE'
-        MARGIN_TRADE = 'MARGIN_TRADE'
-        MARGIN_ISOLATED_TRADE = 'MARGIN_ISOLATED_TRADE'
 
     symbol: Optional[str] = Field(
         default=None, description="Only list orders for a specific symbol")
-    side: Optional[SideEnum] = Field(default=None, description="buy or sell")
-    type: Optional[TypeEnum] = Field(
-        default=None, description="limit, market, limit_stop or market_stop")
-    trade_type: Optional[TradeTypeEnum] = Field(
+    side: Optional[str] = Field(default=None, description="buy or sell")
+    type: Optional[TypeEnum] = Field(default=None, description="limit, market")
+    trade_type: Optional[str] = Field(
         default=None,
         description=
         "The type of trading : TRADE（Spot）, MARGIN_TRADE (Cross Margin), MARGIN_ISOLATED_TRADE (Isolated Margin). Default is TRADE",
         alias="tradeType")
-    start_at: Optional[float] = Field(default=None,
-                                      description="Start time (milisecond)",
-                                      alias="startAt")
-    end_at: Optional[float] = Field(default=None,
-                                    description="End time (milisecond)",
-                                    alias="endAt")
-    current_page: Optional[int] = Field(default=None,
-                                        description="current page",
-                                        alias="currentPage")
+    start_at: Optional[int] = Field(default=None,
+                                    description="Start time (milisecond)",
+                                    alias="startAt")
+    end_at: Optional[int] = Field(default=None,
+                                  description="End time (milisecond)",
+                                  alias="endAt")
+    current_page: Optional[Annotated[int, Field(strict=True, ge=1)]] = Field(
+        default=1, description="Current page ", alias="currentPage")
     order_ids: Optional[str] = Field(
         default=None,
-        description="comma seperated order ID list",
+        description="Comma seperated order ID list",
         alias="orderIds")
-    page_size: Optional[int] = Field(default=None,
-                                     description="page size",
-                                     alias="pageSize")
+    page_size: Optional[Annotated[int,
+                                  Field(le=500, strict=True, ge=10)]] = Field(
+                                      default=50,
+                                      description="Page size",
+                                      alias="pageSize")
     stop: Optional[str] = Field(
         default=None,
         description="Order type: stop: stop loss order, oco: oco order")
@@ -130,16 +107,27 @@ class GetStopOrdersListReq(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "symbol": obj.get("symbol"),
-            "side": obj.get("side"),
-            "type": obj.get("type"),
-            "tradeType": obj.get("tradeType"),
-            "startAt": obj.get("startAt"),
-            "endAt": obj.get("endAt"),
-            "currentPage": obj.get("currentPage"),
-            "orderIds": obj.get("orderIds"),
-            "pageSize": obj.get("pageSize"),
-            "stop": obj.get("stop")
+            "symbol":
+            obj.get("symbol"),
+            "side":
+            obj.get("side"),
+            "type":
+            obj.get("type"),
+            "tradeType":
+            obj.get("tradeType"),
+            "startAt":
+            obj.get("startAt"),
+            "endAt":
+            obj.get("endAt"),
+            "currentPage":
+            obj.get("currentPage")
+            if obj.get("currentPage") is not None else 1,
+            "orderIds":
+            obj.get("orderIds"),
+            "pageSize":
+            obj.get("pageSize") if obj.get("pageSize") is not None else 50,
+            "stop":
+            obj.get("stop")
         })
         return _obj
 
@@ -156,9 +144,7 @@ class GetStopOrdersListReqBuilder:
         self.obj['symbol'] = value
         return self
 
-    def set_side(
-            self, value: GetStopOrdersListReq.SideEnum
-    ) -> GetStopOrdersListReqBuilder:
+    def set_side(self, value: str) -> GetStopOrdersListReqBuilder:
         """
         buy or sell
         """
@@ -169,28 +155,26 @@ class GetStopOrdersListReqBuilder:
             self, value: GetStopOrdersListReq.TypeEnum
     ) -> GetStopOrdersListReqBuilder:
         """
-        limit, market, limit_stop or market_stop
+        limit, market
         """
         self.obj['type'] = value
         return self
 
-    def set_trade_type(
-        self, value: GetStopOrdersListReq.TradeTypeEnum
-    ) -> GetStopOrdersListReqBuilder:
+    def set_trade_type(self, value: str) -> GetStopOrdersListReqBuilder:
         """
         The type of trading : TRADE（Spot）, MARGIN_TRADE (Cross Margin), MARGIN_ISOLATED_TRADE (Isolated Margin). Default is TRADE
         """
         self.obj['tradeType'] = value
         return self
 
-    def set_start_at(self, value: float) -> GetStopOrdersListReqBuilder:
+    def set_start_at(self, value: int) -> GetStopOrdersListReqBuilder:
         """
         Start time (milisecond)
         """
         self.obj['startAt'] = value
         return self
 
-    def set_end_at(self, value: float) -> GetStopOrdersListReqBuilder:
+    def set_end_at(self, value: int) -> GetStopOrdersListReqBuilder:
         """
         End time (milisecond)
         """
@@ -199,21 +183,21 @@ class GetStopOrdersListReqBuilder:
 
     def set_current_page(self, value: int) -> GetStopOrdersListReqBuilder:
         """
-        current page
+        Current page 
         """
         self.obj['currentPage'] = value
         return self
 
     def set_order_ids(self, value: str) -> GetStopOrdersListReqBuilder:
         """
-        comma seperated order ID list
+        Comma seperated order ID list
         """
         self.obj['orderIds'] = value
         return self
 
     def set_page_size(self, value: int) -> GetStopOrdersListReqBuilder:
         """
-        page size
+        Page size
         """
         self.obj['pageSize'] = value
         return self

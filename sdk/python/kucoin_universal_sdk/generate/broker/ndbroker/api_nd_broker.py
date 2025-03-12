@@ -38,17 +38,17 @@ class NDBrokerAPI(ABC):
                         **kwargs: Any) -> GetBrokerInfoResp:
         """
         summary: Get Broker Info
-        description: This endpoint supports querying the basic information of the current Broker
+        description: This endpoint supports querying the basic information of the current Broker.
         documentation: https://www.kucoin.com/docs-new/api-3470282
-        +---------------------+---------+
-        | Extra API Info      | Value   |
-        +---------------------+---------+
-        | API-DOMAIN          | BROKER  |
-        | API-CHANNEL         | PRIVATE |
-        | API-PERMISSION      | GENERAL |
-        | API-RATE-LIMIT-POOL | BROKER  |
-        | API-RATE-LIMIT      | 2       |
-        +---------------------+---------+
+        +-----------------------+---------+
+        | Extra API Info        | Value   |
+        +-----------------------+---------+
+        | API-DOMAIN            | BROKER  |
+        | API-CHANNEL           | PRIVATE |
+        | API-PERMISSION        | GENERAL |
+        | API-RATE-LIMIT-POOL   | BROKER  |
+        | API-RATE-LIMIT-WEIGHT | 2       |
+        +-----------------------+---------+
         """
         pass
 
@@ -56,18 +56,18 @@ class NDBrokerAPI(ABC):
     def add_sub_account(self, req: AddSubAccountReq,
                         **kwargs: Any) -> AddSubAccountResp:
         """
-        summary: Add SubAccount
-        description: This endpoint supports Broker users to create sub-accounts
+        summary: Add sub-account
+        description: This endpoint supports Broker users creating sub-accounts.
         documentation: https://www.kucoin.com/docs-new/api-3470290
-        +---------------------+---------+
-        | Extra API Info      | Value   |
-        +---------------------+---------+
-        | API-DOMAIN          | BROKER  |
-        | API-CHANNEL         | PRIVATE |
-        | API-PERMISSION      | GENERAL |
-        | API-RATE-LIMIT-POOL | BROKER  |
-        | API-RATE-LIMIT      | 3       |
-        +---------------------+---------+
+        +-----------------------+---------+
+        | Extra API Info        | Value   |
+        +-----------------------+---------+
+        | API-DOMAIN            | BROKER  |
+        | API-CHANNEL           | PRIVATE |
+        | API-PERMISSION        | GENERAL |
+        | API-RATE-LIMIT-POOL   | BROKER  |
+        | API-RATE-LIMIT-WEIGHT | 3       |
+        +-----------------------+---------+
         """
         pass
 
@@ -75,18 +75,18 @@ class NDBrokerAPI(ABC):
     def get_sub_account(self, req: GetSubAccountReq,
                         **kwargs: Any) -> GetSubAccountResp:
         """
-        summary: Get SubAccount
-        description: This interface supports querying sub-accounts created by Broker
+        summary: Get sub-account
+        description: This interface supports querying sub-accounts created by Broker.
         documentation: https://www.kucoin.com/docs-new/api-3470283
-        +---------------------+---------+
-        | Extra API Info      | Value   |
-        +---------------------+---------+
-        | API-DOMAIN          | BROKER  |
-        | API-CHANNEL         | PRIVATE |
-        | API-PERMISSION      | GENERAL |
-        | API-RATE-LIMIT-POOL | BROKER  |
-        | API-RATE-LIMIT      | 2       |
-        +---------------------+---------+
+        +-----------------------+---------+
+        | Extra API Info        | Value   |
+        +-----------------------+---------+
+        | API-DOMAIN            | BROKER  |
+        | API-CHANNEL           | PRIVATE |
+        | API-PERMISSION        | GENERAL |
+        | API-RATE-LIMIT-POOL   | BROKER  |
+        | API-RATE-LIMIT-WEIGHT | 2       |
+        +-----------------------+---------+
         """
         pass
 
@@ -94,18 +94,18 @@ class NDBrokerAPI(ABC):
     def add_sub_account_api(self, req: AddSubAccountApiReq,
                             **kwargs: Any) -> AddSubAccountApiResp:
         """
-        summary: Add SubAccount API
-        description: This interface supports the creation of Broker sub-account APIKEY
+        summary: Add sub-account API
+        description: This interface supports the creation of Broker sub-account APIKEY.
         documentation: https://www.kucoin.com/docs-new/api-3470291
-        +---------------------+---------+
-        | Extra API Info      | Value   |
-        +---------------------+---------+
-        | API-DOMAIN          | BROKER  |
-        | API-CHANNEL         | PRIVATE |
-        | API-PERMISSION      | GENERAL |
-        | API-RATE-LIMIT-POOL | BROKER  |
-        | API-RATE-LIMIT      | 3       |
-        +---------------------+---------+
+        +-----------------------+---------+
+        | Extra API Info        | Value   |
+        +-----------------------+---------+
+        | API-DOMAIN            | BROKER  |
+        | API-CHANNEL           | PRIVATE |
+        | API-PERMISSION        | GENERAL |
+        | API-RATE-LIMIT-POOL   | BROKER  |
+        | API-RATE-LIMIT-WEIGHT | 3       |
+        +-----------------------+---------+
         """
         pass
 
@@ -113,18 +113,18 @@ class NDBrokerAPI(ABC):
     def get_sub_account_api(self, req: GetSubAccountApiReq,
                             **kwargs: Any) -> GetSubAccountApiResp:
         """
-        summary: Get SubAccount API
-        description: This interface supports querying the Broker’s sub-account APIKEY
+        summary: Get sub-account API
+        description: This interface supports querying the Broker’s sub-account APIKEY.
         documentation: https://www.kucoin.com/docs-new/api-3470284
-        +---------------------+---------+
-        | Extra API Info      | Value   |
-        +---------------------+---------+
-        | API-DOMAIN          | BROKER  |
-        | API-CHANNEL         | PRIVATE |
-        | API-PERMISSION      | GENERAL |
-        | API-RATE-LIMIT-POOL | BROKER  |
-        | API-RATE-LIMIT      | 2       |
-        +---------------------+---------+
+        +-----------------------+---------+
+        | Extra API Info        | Value   |
+        +-----------------------+---------+
+        | API-DOMAIN            | BROKER  |
+        | API-CHANNEL           | PRIVATE |
+        | API-PERMISSION        | GENERAL |
+        | API-RATE-LIMIT-POOL   | BROKER  |
+        | API-RATE-LIMIT-WEIGHT | 2       |
+        +-----------------------+---------+
         """
         pass
 
@@ -132,18 +132,18 @@ class NDBrokerAPI(ABC):
     def modify_sub_account_api(self, req: ModifySubAccountApiReq,
                                **kwargs: Any) -> ModifySubAccountApiResp:
         """
-        summary: Modify SubAccount API
-        description: This interface supports modify the Broker’s sub-account APIKEY
+        summary: Modify sub-account API
+        description: This interface supports modifying the Broker’s sub-account APIKEY.
         documentation: https://www.kucoin.com/docs-new/api-3470292
-        +---------------------+---------+
-        | Extra API Info      | Value   |
-        +---------------------+---------+
-        | API-DOMAIN          | BROKER  |
-        | API-CHANNEL         | PRIVATE |
-        | API-PERMISSION      | GENERAL |
-        | API-RATE-LIMIT-POOL | BROKER  |
-        | API-RATE-LIMIT      | 3       |
-        +---------------------+---------+
+        +-----------------------+---------+
+        | Extra API Info        | Value   |
+        +-----------------------+---------+
+        | API-DOMAIN            | BROKER  |
+        | API-CHANNEL           | PRIVATE |
+        | API-PERMISSION        | GENERAL |
+        | API-RATE-LIMIT-POOL   | BROKER  |
+        | API-RATE-LIMIT-WEIGHT | 3       |
+        +-----------------------+---------+
         """
         pass
 
@@ -151,18 +151,18 @@ class NDBrokerAPI(ABC):
     def delete_sub_account_api(self, req: DeleteSubAccountApiReq,
                                **kwargs: Any) -> DeleteSubAccountApiResp:
         """
-        summary: Delete SubAccount API
-        description: This interface supports deleting Broker’s sub-account APIKEY
+        summary: Delete sub-account API
+        description: This interface supports deleting Broker’s sub-account APIKEY.
         documentation: https://www.kucoin.com/docs-new/api-3470289
-        +---------------------+---------+
-        | Extra API Info      | Value   |
-        +---------------------+---------+
-        | API-DOMAIN          | BROKER  |
-        | API-CHANNEL         | PRIVATE |
-        | API-PERMISSION      | GENERAL |
-        | API-RATE-LIMIT-POOL | BROKER  |
-        | API-RATE-LIMIT      | 3       |
-        +---------------------+---------+
+        +-----------------------+---------+
+        | Extra API Info        | Value   |
+        +-----------------------+---------+
+        | API-DOMAIN            | BROKER  |
+        | API-CHANNEL           | PRIVATE |
+        | API-PERMISSION        | GENERAL |
+        | API-RATE-LIMIT-POOL   | BROKER  |
+        | API-RATE-LIMIT-WEIGHT | 3       |
+        +-----------------------+---------+
         """
         pass
 
@@ -170,17 +170,17 @@ class NDBrokerAPI(ABC):
     def transfer(self, req: TransferReq, **kwargs: Any) -> TransferResp:
         """
         summary: Transfer
-        description: This endpoint supports fund transfer between Broker account and Broker sub-accounts.  Please be aware that withdrawal from sub-account is not directly supported. Broker has to transfer funds from broker sub-account to broker account to initiate the withdrawals.
+        description: This endpoint supports fund transfer between Broker accounts and Broker sub-accounts.  Please be aware that withdrawal from sub-accounts is not directly supported. Broker has to transfer funds from broker sub-account to broker account to initiate the withdrawals.
         documentation: https://www.kucoin.com/docs-new/api-3470293
-        +---------------------+---------+
-        | Extra API Info      | Value   |
-        +---------------------+---------+
-        | API-DOMAIN          | BROKER  |
-        | API-CHANNEL         | PRIVATE |
-        | API-PERMISSION      | GENERAL |
-        | API-RATE-LIMIT-POOL | BROKER  |
-        | API-RATE-LIMIT      | 1       |
-        +---------------------+---------+
+        +-----------------------+---------+
+        | Extra API Info        | Value   |
+        +-----------------------+---------+
+        | API-DOMAIN            | BROKER  |
+        | API-CHANNEL           | PRIVATE |
+        | API-PERMISSION        | GENERAL |
+        | API-RATE-LIMIT-POOL   | BROKER  |
+        | API-RATE-LIMIT-WEIGHT | 1       |
+        +-----------------------+---------+
         """
         pass
 
@@ -189,17 +189,17 @@ class NDBrokerAPI(ABC):
                              **kwargs: Any) -> GetTransferHistoryResp:
         """
         summary: Get Transfer History
-        description: This endpoint supports querying transfer records of the broker itself and its created sub-accounts.
+        description: This endpoint supports querying the transfer records of the broker itself and its created sub-accounts.
         documentation: https://www.kucoin.com/docs-new/api-3470286
-        +---------------------+---------+
-        | Extra API Info      | Value   |
-        +---------------------+---------+
-        | API-DOMAIN          | BROKER  |
-        | API-CHANNEL         | PRIVATE |
-        | API-PERMISSION      | GENERAL |
-        | API-RATE-LIMIT-POOL | BROKER  |
-        | API-RATE-LIMIT      | 1       |
-        +---------------------+---------+
+        +-----------------------+---------+
+        | Extra API Info        | Value   |
+        +-----------------------+---------+
+        | API-DOMAIN            | BROKER  |
+        | API-CHANNEL           | PRIVATE |
+        | API-PERMISSION        | GENERAL |
+        | API-RATE-LIMIT-POOL   | BROKER  |
+        | API-RATE-LIMIT-WEIGHT | 1       |
+        +-----------------------+---------+
         """
         pass
 
@@ -208,17 +208,17 @@ class NDBrokerAPI(ABC):
                          **kwargs: Any) -> GetDepositListResp:
         """
         summary: Get Deposit List
-        description: This endpoint can obtain the deposit records of each sub-account under the ND Broker.
+        description: The deposit records of each sub-account under the ND broker can be obtained at this endpoint.
         documentation: https://www.kucoin.com/docs-new/api-3470285
-        +---------------------+---------+
-        | Extra API Info      | Value   |
-        +---------------------+---------+
-        | API-DOMAIN          | BROKER  |
-        | API-CHANNEL         | PRIVATE |
-        | API-PERMISSION      | GENERAL |
-        | API-RATE-LIMIT-POOL | BROKER  |
-        | API-RATE-LIMIT      | 10      |
-        +---------------------+---------+
+        +-----------------------+---------+
+        | Extra API Info        | Value   |
+        +-----------------------+---------+
+        | API-DOMAIN            | BROKER  |
+        | API-CHANNEL           | PRIVATE |
+        | API-PERMISSION        | GENERAL |
+        | API-RATE-LIMIT-POOL   | BROKER  |
+        | API-RATE-LIMIT-WEIGHT | 10      |
+        +-----------------------+---------+
         """
         pass
 
@@ -227,17 +227,17 @@ class NDBrokerAPI(ABC):
                            **kwargs: Any) -> GetDepositDetailResp:
         """
         summary: Get Deposit Detail
-        description: This endpoint supports querying the deposit record of sub-accounts created by a Broker (excluding main account of nd broker)
+        description: This endpoint supports querying the deposit record of sub-accounts created by a Broker (excluding main account of ND broker).
         documentation: https://www.kucoin.com/docs-new/api-3470288
-        +---------------------+---------+
-        | Extra API Info      | Value   |
-        +---------------------+---------+
-        | API-DOMAIN          | BROKER  |
-        | API-CHANNEL         | PRIVATE |
-        | API-PERMISSION      | GENERAL |
-        | API-RATE-LIMIT-POOL | BROKER  |
-        | API-RATE-LIMIT      | 1       |
-        +---------------------+---------+
+        +-----------------------+---------+
+        | Extra API Info        | Value   |
+        +-----------------------+---------+
+        | API-DOMAIN            | BROKER  |
+        | API-CHANNEL           | PRIVATE |
+        | API-PERMISSION        | GENERAL |
+        | API-RATE-LIMIT-POOL   | BROKER  |
+        | API-RATE-LIMIT-WEIGHT | 1       |
+        +-----------------------+---------+
         """
         pass
 
@@ -246,17 +246,17 @@ class NDBrokerAPI(ABC):
                             **kwargs: Any) -> GetWithdrawDetailResp:
         """
         summary: Get Withdraw Detail
-        description: This endpoint supports querying the withdrawal records of sub-accounts created by a Broker (excluding main account of nd broker).
+        description: This endpoint supports querying the withdrawal records of sub-accounts created by a Broker (excluding main account of ND broker).
         documentation: https://www.kucoin.com/docs-new/api-3470287
-        +---------------------+---------+
-        | Extra API Info      | Value   |
-        +---------------------+---------+
-        | API-DOMAIN          | BROKER  |
-        | API-CHANNEL         | PRIVATE |
-        | API-PERMISSION      | GENERAL |
-        | API-RATE-LIMIT-POOL | BROKER  |
-        | API-RATE-LIMIT      | 1       |
-        +---------------------+---------+
+        +-----------------------+---------+
+        | Extra API Info        | Value   |
+        +-----------------------+---------+
+        | API-DOMAIN            | BROKER  |
+        | API-CHANNEL           | PRIVATE |
+        | API-PERMISSION        | GENERAL |
+        | API-RATE-LIMIT-POOL   | BROKER  |
+        | API-RATE-LIMIT-WEIGHT | 1       |
+        +-----------------------+---------+
         """
         pass
 
@@ -264,17 +264,17 @@ class NDBrokerAPI(ABC):
     def get_rebase(self, req: GetRebaseReq, **kwargs: Any) -> GetRebaseResp:
         """
         summary: Get Broker Rebate
-        description: This interface supports downloading Broker rebate orders
+        description: This interface supports the downloading of Broker rebate orders.
         documentation: https://www.kucoin.com/docs-new/api-3470281
-        +---------------------+---------+
-        | Extra API Info      | Value   |
-        +---------------------+---------+
-        | API-DOMAIN          | BROKER  |
-        | API-CHANNEL         | PRIVATE |
-        | API-PERMISSION      | GENERAL |
-        | API-RATE-LIMIT-POOL | BROKER  |
-        | API-RATE-LIMIT      | 3       |
-        +---------------------+---------+
+        +-----------------------+---------+
+        | Extra API Info        | Value   |
+        +-----------------------+---------+
+        | API-DOMAIN            | BROKER  |
+        | API-CHANNEL           | PRIVATE |
+        | API-PERMISSION        | GENERAL |
+        | API-RATE-LIMIT-POOL   | BROKER  |
+        | API-RATE-LIMIT-WEIGHT | 3       |
+        +-----------------------+---------+
         """
         pass
 

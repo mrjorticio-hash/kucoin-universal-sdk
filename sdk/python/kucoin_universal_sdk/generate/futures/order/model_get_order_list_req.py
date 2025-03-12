@@ -9,6 +9,7 @@ import json
 from enum import Enum
 from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
+from typing_extensions import Annotated
 
 
 class GetOrderListReq(BaseModel):
@@ -19,7 +20,7 @@ class GetOrderListReq(BaseModel):
         status (StatusEnum): active or done, done as default. Only list orders for a specific status
         symbol (str): Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) 
         side (SideEnum): buy or sell
-        type (TypeEnum): limit, market, limit_stop or market_stop
+        type (TypeEnum): Order Type
         start_at (int): Start time (milisecond)
         end_at (int): End time (milisecond)
         current_page (int): Current request page, The default currentPage is 1
@@ -47,11 +48,19 @@ class GetOrderListReq(BaseModel):
     class TypeEnum(Enum):
         """
         Attributes:
-            LIMIT: 
-            MARKET: 
+            LIMIT: Limit order
+            MARKET: Market order
+            LIMIT_STOP: Stop limit order
+            MARKET_STOP: Stop market order
+            OCO_LIMIT: Oco limit order
+            OCO_STOP: Oco stop order
         """
         LIMIT = 'limit'
         MARKET = 'market'
+        LIMIT_STOP = 'limit_stop'
+        MARKET_STOP = 'market_stop'
+        OCO_LIMIT = 'oco_limit'
+        OCO_STOP = 'oco_stop'
 
     status: Optional[StatusEnum] = Field(
         default=None,
@@ -64,8 +73,7 @@ class GetOrderListReq(BaseModel):
         "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) "
     )
     side: Optional[SideEnum] = Field(default=None, description="buy or sell")
-    type: Optional[TypeEnum] = Field(
-        default=None, description="limit, market, limit_stop or market_stop")
+    type: Optional[TypeEnum] = Field(default=None, description="Order Type")
     start_at: Optional[int] = Field(default=None,
                                     description="Start time (milisecond)",
                                     alias="startAt")
@@ -73,11 +81,11 @@ class GetOrderListReq(BaseModel):
                                   description="End time (milisecond)",
                                   alias="endAt")
     current_page: Optional[int] = Field(
-        default=None,
+        default=1,
         description="Current request page, The default currentPage is 1",
         alias="currentPage")
-    page_size: Optional[int] = Field(
-        default=None,
+    page_size: Optional[Annotated[int, Field(le=1000, strict=True)]] = Field(
+        default=50,
         description=
         "pageSize, The default pageSize is 50, The maximum cannot exceed 1000",
         alias="pageSize")
@@ -120,14 +128,23 @@ class GetOrderListReq(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "status": obj.get("status"),
-            "symbol": obj.get("symbol"),
-            "side": obj.get("side"),
-            "type": obj.get("type"),
-            "startAt": obj.get("startAt"),
-            "endAt": obj.get("endAt"),
-            "currentPage": obj.get("currentPage"),
-            "pageSize": obj.get("pageSize")
+            "status":
+            obj.get("status"),
+            "symbol":
+            obj.get("symbol"),
+            "side":
+            obj.get("side"),
+            "type":
+            obj.get("type"),
+            "startAt":
+            obj.get("startAt"),
+            "endAt":
+            obj.get("endAt"),
+            "currentPage":
+            obj.get("currentPage")
+            if obj.get("currentPage") is not None else 1,
+            "pageSize":
+            obj.get("pageSize") if obj.get("pageSize") is not None else 50
         })
         return _obj
 
@@ -163,7 +180,7 @@ class GetOrderListReqBuilder:
     def set_type(self,
                  value: GetOrderListReq.TypeEnum) -> GetOrderListReqBuilder:
         """
-        limit, market, limit_stop or market_stop
+        Order Type
         """
         self.obj['type'] = value
         return self

@@ -25,17 +25,17 @@ class WithdrawalAPI(ABC):
                               **kwargs: Any) -> GetWithdrawalQuotasResp:
         """
         summary: Get Withdrawal Quotas
-        description: This interface can obtain the withdrawal quotas information of this currency.
+        description: This interface can obtain the withdrawal quota information of this currency.
         documentation: https://www.kucoin.com/docs-new/api-3470143
-        +---------------------+------------+
-        | Extra API Info      | Value      |
-        +---------------------+------------+
-        | API-DOMAIN          | SPOT       |
-        | API-CHANNEL         | PRIVATE    |
-        | API-PERMISSION      | GENERAL    |
-        | API-RATE-LIMIT-POOL | MANAGEMENT |
-        | API-RATE-LIMIT      | 20         |
-        +---------------------+------------+
+        +-----------------------+------------+
+        | Extra API Info        | Value      |
+        +-----------------------+------------+
+        | API-DOMAIN            | SPOT       |
+        | API-CHANNEL           | PRIVATE    |
+        | API-PERMISSION        | GENERAL    |
+        | API-RATE-LIMIT-POOL   | MANAGEMENT |
+        | API-RATE-LIMIT-WEIGHT | 20         |
+        +-----------------------+------------+
         """
         pass
 
@@ -43,18 +43,18 @@ class WithdrawalAPI(ABC):
     def withdrawal_v3(self, req: WithdrawalV3Req,
                       **kwargs: Any) -> WithdrawalV3Resp:
         """
-        summary: Withdraw(V3)
-        description: Use this interface to withdraw the specified currency
+        summary: Withdraw (V3)
+        description: Use this interface to withdraw the specified currency.
         documentation: https://www.kucoin.com/docs-new/api-3470146
-        +---------------------+------------+
-        | Extra API Info      | Value      |
-        +---------------------+------------+
-        | API-DOMAIN          | SPOT       |
-        | API-CHANNEL         | PRIVATE    |
-        | API-PERMISSION      | WITHDRAWAL |
-        | API-RATE-LIMIT-POOL | MANAGEMENT |
-        | API-RATE-LIMIT      | 5          |
-        +---------------------+------------+
+        +-----------------------+------------+
+        | Extra API Info        | Value      |
+        +-----------------------+------------+
+        | API-DOMAIN            | SPOT       |
+        | API-CHANNEL           | PRIVATE    |
+        | API-PERMISSION        | WITHDRAWAL |
+        | API-RATE-LIMIT-POOL   | MANAGEMENT |
+        | API-RATE-LIMIT-WEIGHT | 5          |
+        +-----------------------+------------+
         """
         pass
 
@@ -63,17 +63,17 @@ class WithdrawalAPI(ABC):
                           **kwargs: Any) -> CancelWithdrawalResp:
         """
         summary: Cancel Withdrawal
-        description: This interface can cancel the withdrawal, Only withdrawals requests of PROCESSING status could be canceled.
+        description: This interface can cancel the withdrawal. Only withdrawal requests with PROCESSING status can be canceled.
         documentation: https://www.kucoin.com/docs-new/api-3470144
-        +---------------------+------------+
-        | Extra API Info      | Value      |
-        +---------------------+------------+
-        | API-DOMAIN          | SPOT       |
-        | API-CHANNEL         | PRIVATE    |
-        | API-PERMISSION      | WITHDRAWAL |
-        | API-RATE-LIMIT-POOL | MANAGEMENT |
-        | API-RATE-LIMIT      | 20         |
-        +---------------------+------------+
+        +-----------------------+------------+
+        | Extra API Info        | Value      |
+        +-----------------------+------------+
+        | API-DOMAIN            | SPOT       |
+        | API-CHANNEL           | PRIVATE    |
+        | API-PERMISSION        | WITHDRAWAL |
+        | API-RATE-LIMIT-POOL   | MANAGEMENT |
+        | API-RATE-LIMIT-WEIGHT | 20         |
+        +-----------------------+------------+
         """
         pass
 
@@ -82,17 +82,17 @@ class WithdrawalAPI(ABC):
                                **kwargs: Any) -> GetWithdrawalHistoryResp:
         """
         summary: Get Withdrawal History
-        description: Request via this endpoint to get deposit list Items are paginated and sorted to show the latest first. See the Pagination section for retrieving additional entries after the first page.
+        description: Request a withdrawal list via this endpoint. Items are paginated and sorted to show the latest first. See the Pagination section for retrieving additional entries after the first page.
         documentation: https://www.kucoin.com/docs-new/api-3470145
-        +---------------------+------------+
-        | Extra API Info      | Value      |
-        +---------------------+------------+
-        | API-DOMAIN          | SPOT       |
-        | API-CHANNEL         | PRIVATE    |
-        | API-PERMISSION      | GENERAL    |
-        | API-RATE-LIMIT-POOL | MANAGEMENT |
-        | API-RATE-LIMIT      | 20         |
-        +---------------------+------------+
+        +-----------------------+------------+
+        | Extra API Info        | Value      |
+        +-----------------------+------------+
+        | API-DOMAIN            | SPOT       |
+        | API-CHANNEL           | PRIVATE    |
+        | API-PERMISSION        | GENERAL    |
+        | API-RATE-LIMIT-POOL   | MANAGEMENT |
+        | API-RATE-LIMIT-WEIGHT | 20         |
+        +-----------------------+------------+
         """
         pass
 
@@ -103,17 +103,17 @@ class WithdrawalAPI(ABC):
             **kwargs: Any) -> GetWithdrawalHistoryOldResp:
         """
         summary: Get Withdrawal History - Old
-        description: Request via this endpoint to get deposit list Items are paginated and sorted to show the latest first. See the Pagination section for retrieving additional entries after the first page.
+        description: Request a deposit list via this endpoint. Items are paginated and sorted to show the latest first. See the Pagination section for retrieving additional entries after the first page.
         documentation: https://www.kucoin.com/docs-new/api-3470308
-        +---------------------+------------+
-        | Extra API Info      | Value      |
-        +---------------------+------------+
-        | API-DOMAIN          | SPOT       |
-        | API-CHANNEL         | PRIVATE    |
-        | API-PERMISSION      | GENERAL    |
-        | API-RATE-LIMIT-POOL | MANAGEMENT |
-        | API-RATE-LIMIT      | 20         |
-        +---------------------+------------+
+        +-----------------------+------------+
+        | Extra API Info        | Value      |
+        +-----------------------+------------+
+        | API-DOMAIN            | SPOT       |
+        | API-CHANNEL           | PRIVATE    |
+        | API-PERMISSION        | GENERAL    |
+        | API-RATE-LIMIT-POOL   | MANAGEMENT |
+        | API-RATE-LIMIT-WEIGHT | 20         |
+        +-----------------------+------------+
         """
         pass
 
@@ -123,17 +123,17 @@ class WithdrawalAPI(ABC):
                       **kwargs: Any) -> WithdrawalV1Resp:
         """
         summary: Withdraw - V1
-        description: Use this interface to withdraw the specified currency
+        description: Use this interface to withdraw the specified currency.
         documentation: https://www.kucoin.com/docs-new/api-3470310
-        +---------------------+------------+
-        | Extra API Info      | Value      |
-        +---------------------+------------+
-        | API-DOMAIN          | SPOT       |
-        | API-CHANNEL         | PRIVATE    |
-        | API-PERMISSION      | WITHDRAWAL |
-        | API-RATE-LIMIT-POOL | MANAGEMENT |
-        | API-RATE-LIMIT      | 5          |
-        +---------------------+------------+
+        +-----------------------+------------+
+        | Extra API Info        | Value      |
+        +-----------------------+------------+
+        | API-DOMAIN            | SPOT       |
+        | API-CHANNEL           | PRIVATE    |
+        | API-PERMISSION        | WITHDRAWAL |
+        | API-RATE-LIMIT-POOL   | MANAGEMENT |
+        | API-RATE-LIMIT-WEIGHT | 5          |
+        +-----------------------+------------+
         """
         pass
 

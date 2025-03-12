@@ -29,8 +29,8 @@ class CancelOrderByClientOidSyncResp(BaseModel, Response):
     class StatusEnum(Enum):
         """
         Attributes:
-            OPEN: 
-            DONE: 
+            OPEN: order is active
+            DONE: order has been completed
         """
         OPEN = 'open'
         DONE = 'done'

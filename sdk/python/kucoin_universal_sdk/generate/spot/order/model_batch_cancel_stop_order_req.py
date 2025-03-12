@@ -16,7 +16,7 @@ class BatchCancelStopOrderReq(BaseModel):
 
     Attributes:
         symbol (str): Cancel the open order for the specified symbol
-        trade_type (str): The type of trading : TRADE（Spot）, MARGIN_TRADE (Cross Margin), MARGIN_ISOLATED_TRADE (Isolated Margin). Default is TRADE
+        trade_type (str): The type of trading : TRADE（Spot）, MARGIN_TRADE (Cross Margin), MARGIN_ISOLATED_TRADE (Isolated Margin).
         order_ids (str): Comma seperated order IDs.
     """
 
@@ -26,7 +26,7 @@ class BatchCancelStopOrderReq(BaseModel):
     trade_type: Optional[str] = Field(
         default=None,
         description=
-        "The type of trading : TRADE（Spot）, MARGIN_TRADE (Cross Margin), MARGIN_ISOLATED_TRADE (Isolated Margin). Default is TRADE",
+        "The type of trading : TRADE（Spot）, MARGIN_TRADE (Cross Margin), MARGIN_ISOLATED_TRADE (Isolated Margin).",
         alias="tradeType")
     order_ids: Optional[str] = Field(default=None,
                                      description="Comma seperated order IDs.",
@@ -90,7 +90,7 @@ class BatchCancelStopOrderReqBuilder:
 
     def set_trade_type(self, value: str) -> BatchCancelStopOrderReqBuilder:
         """
-        The type of trading : TRADE（Spot）, MARGIN_TRADE (Cross Margin), MARGIN_ISOLATED_TRADE (Isolated Margin). Default is TRADE
+        The type of trading : TRADE（Spot）, MARGIN_TRADE (Cross Margin), MARGIN_ISOLATED_TRADE (Isolated Margin).
         """
         self.obj['tradeType'] = value
         return self

@@ -16,10 +16,10 @@ class GetIsolatedMarginSymbolsData(BaseModel):
 
     Attributes:
         symbol (str): symbol
-        symbol_name (str): symbol name
-        base_currency (str): Base currency,e.g. BTC.
-        quote_currency (str): Quote currency,e.g. USDT.
-        max_leverage (int): Max leverage of this symbol
+        symbol_name (str): Symbol name
+        base_currency (str): Base currency, e.g. BTC.
+        quote_currency (str): Quote currency, e.g. USDT.
+        max_leverage (int): Max. leverage of this symbol
         fl_debt_ratio (str): 
         trade_enable (bool): 
         auto_renew_max_debt_ratio (str): 
@@ -33,18 +33,19 @@ class GetIsolatedMarginSymbolsData(BaseModel):
 
     symbol: Optional[str] = Field(default=None, description="symbol")
     symbol_name: Optional[str] = Field(default=None,
-                                       description="symbol name",
+                                       description="Symbol name",
                                        alias="symbolName")
-    base_currency: Optional[str] = Field(default=None,
-                                         description="Base currency,e.g. BTC.",
-                                         alias="baseCurrency")
+    base_currency: Optional[str] = Field(
+        default=None,
+        description="Base currency, e.g. BTC.",
+        alias="baseCurrency")
     quote_currency: Optional[str] = Field(
         default=None,
-        description="Quote currency,e.g. USDT.",
+        description="Quote currency, e.g. USDT.",
         alias="quoteCurrency")
     max_leverage: Optional[int] = Field(
         default=None,
-        description="Max leverage of this symbol",
+        description="Max. leverage of this symbol",
         alias="maxLeverage")
     fl_debt_ratio: Optional[str] = Field(default=None, alias="flDebtRatio")
     trade_enable: Optional[bool] = Field(default=None, alias="tradeEnable")

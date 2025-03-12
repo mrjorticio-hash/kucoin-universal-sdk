@@ -17,7 +17,7 @@ class GetPurchaseOrdersItems(BaseModel):
 
     Attributes:
         currency (str): Currency
-        purchase_order_no (str): Purchase order id
+        purchase_order_no (str): Purchase order ID
         purchase_size (str): Total purchase size
         match_size (str): Executed size
         interest_rate (str): Target annualized interest rate
@@ -37,7 +37,7 @@ class GetPurchaseOrdersItems(BaseModel):
 
     currency: Optional[str] = Field(default=None, description="Currency")
     purchase_order_no: Optional[str] = Field(default=None,
-                                             description="Purchase order id",
+                                             description="Purchase order ID",
                                              alias="purchaseOrderNo")
     purchase_size: Optional[str] = Field(default=None,
                                          description="Total purchase size",

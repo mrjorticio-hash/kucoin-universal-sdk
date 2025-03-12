@@ -17,7 +17,7 @@ class DeleteSubAccountApiReq(BaseModel):
     Attributes:
         api_key (str): API-Key
         sub_name (str): Sub-account name.
-        passphrase (str): Password(Password of the API key)
+        passphrase (str): Password (password of the API key)
     """
 
     api_key: Optional[str] = Field(default=None,
@@ -27,7 +27,7 @@ class DeleteSubAccountApiReq(BaseModel):
                                     description="Sub-account name.",
                                     alias="subName")
     passphrase: Optional[str] = Field(
-        default=None, description="Password(Password of the API key)")
+        default=None, description="Password (password of the API key)")
 
     __properties: ClassVar[List[str]] = ["apiKey", "subName", "passphrase"]
 
@@ -93,7 +93,7 @@ class DeleteSubAccountApiReqBuilder:
 
     def set_passphrase(self, value: str) -> DeleteSubAccountApiReqBuilder:
         """
-        Password(Password of the API key)
+        Password (password of the API key)
         """
         self.obj['passphrase'] = value
         return self

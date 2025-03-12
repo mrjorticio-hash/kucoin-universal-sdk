@@ -60,7 +60,7 @@ class TransferAPITest(unittest.TestCase):
     def test_sub_account_transfer_req_model(self):
         """
        sub_account_transfer
-       SubAccount Transfer
+       Sub-account Transfer
        /api/v2/accounts/sub-transfer
        """
         data = "{\"clientOid\": \"64ccc0f164781800010d8c09\", \"currency\": \"USDT\", \"amount\": \"0.01\", \"direction\": \"OUT\", \"accountType\": \"MAIN\", \"subAccountType\": \"MAIN\", \"subUserId\": \"63743f07e0c5230001761d08\"}"
@@ -69,7 +69,7 @@ class TransferAPITest(unittest.TestCase):
     def test_sub_account_transfer_resp_model(self):
         """
         sub_account_transfer
-        SubAccount Transfer
+        Sub-account Transfer
         /api/v2/accounts/sub-transfer
         """
         data = "{\"code\":\"200000\",\"data\":{\"orderId\":\"670be6b0b1b9080007040a9b\"}}"
@@ -79,7 +79,7 @@ class TransferAPITest(unittest.TestCase):
     def test_inner_transfer_req_model(self):
         """
        inner_transfer
-       Inner Transfer
+       Internal Transfer
        /api/v2/accounts/inner-transfer
        """
         data = "{\"clientOid\": \"64ccc0f164781800010d8c09\", \"currency\": \"USDT\", \"amount\": \"0.01\", \"from\": \"main\", \"to\": \"trade\"}"
@@ -88,7 +88,7 @@ class TransferAPITest(unittest.TestCase):
     def test_inner_transfer_resp_model(self):
         """
         inner_transfer
-        Inner Transfer
+        Internal Transfer
         /api/v2/accounts/inner-transfer
         """
         data = "{\"code\":\"200000\",\"data\":{\"orderId\":\"670beb3482a1bb0007dec644\"}}"

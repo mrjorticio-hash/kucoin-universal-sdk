@@ -8,24 +8,24 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
-from .model_get_account_detail_ltv import GetAccountDetailLtv
-from .model_get_account_detail_margins import GetAccountDetailMargins
-from .model_get_account_detail_orders import GetAccountDetailOrders
+from .model_get_loan_info_ltv import GetLoanInfoLtv
+from .model_get_loan_info_margins import GetLoanInfoMargins
+from .model_get_loan_info_orders import GetLoanInfoOrders
 from kucoin_universal_sdk.internal.interfaces.response import Response
 from kucoin_universal_sdk.model.common import RestResponse
 
 
-class GetAccountDetailResp(BaseModel, Response):
+class GetLoanInfoResp(BaseModel, Response):
     """
-    GetAccountDetailResp
+    GetLoanInfoResp
 
     Attributes:
         parent_uid (str): Master UID
-        orders (list[GetAccountDetailOrders]): Loan Orders
-        ltv (GetAccountDetailLtv): 
+        orders (list[GetLoanInfoOrders]): Loan Orders
+        ltv (GetLoanInfoLtv): 
         total_margin_amount (str): Total Margin Amount (USDT)
         transfer_margin_amount (str): Total Maintenance Margin for Restricted Transfers (USDT)
-        margins (list[GetAccountDetailMargins]): 
+        margins (list[GetLoanInfoMargins]): 
     """
 
     common_response: Optional[RestResponse] = Field(
@@ -33,9 +33,9 @@ class GetAccountDetailResp(BaseModel, Response):
     parent_uid: Optional[str] = Field(default=None,
                                       description="Master UID",
                                       alias="parentUid")
-    orders: Optional[List[GetAccountDetailOrders]] = Field(
+    orders: Optional[List[GetLoanInfoOrders]] = Field(
         default=None, description="Loan Orders")
-    ltv: Optional[GetAccountDetailLtv] = None
+    ltv: Optional[GetLoanInfoLtv] = None
     total_margin_amount: Optional[str] = Field(
         default=None,
         description="Total Margin Amount (USDT)",
@@ -44,7 +44,7 @@ class GetAccountDetailResp(BaseModel, Response):
         default=None,
         description="Total Maintenance Margin for Restricted Transfers (USDT)",
         alias="transferMarginAmount")
-    margins: Optional[List[GetAccountDetailMargins]] = None
+    margins: Optional[List[GetLoanInfoMargins]] = None
 
     __properties: ClassVar[List[str]] = [
         "parentUid", "orders", "ltv", "totalMarginAmount",
@@ -64,7 +64,7 @@ class GetAccountDetailResp(BaseModel, Response):
         return self.model_dump_json(by_alias=True, exclude_none=True)
 
     @classmethod
-    def from_json(cls, json_str: str) -> Optional[GetAccountDetailResp]:
+    def from_json(cls, json_str: str) -> Optional[GetLoanInfoResp]:
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -92,9 +92,8 @@ class GetAccountDetailResp(BaseModel, Response):
         return _dict
 
     @classmethod
-    def from_dict(
-            cls, obj: Optional[Dict[str,
-                                    Any]]) -> Optional[GetAccountDetailResp]:
+    def from_dict(cls, obj: Optional[Dict[str,
+                                          Any]]) -> Optional[GetLoanInfoResp]:
         if obj is None:
             return None
 
@@ -104,21 +103,19 @@ class GetAccountDetailResp(BaseModel, Response):
         _obj = cls.model_validate({
             "parentUid":
             obj.get("parentUid"),
-            "orders": [
-                GetAccountDetailOrders.from_dict(_item)
-                for _item in obj["orders"]
-            ] if obj.get("orders") is not None else None,
+            "orders":
+            [GetLoanInfoOrders.from_dict(_item) for _item in obj["orders"]]
+            if obj.get("orders") is not None else None,
             "ltv":
-            GetAccountDetailLtv.from_dict(obj["ltv"])
+            GetLoanInfoLtv.from_dict(obj["ltv"])
             if obj.get("ltv") is not None else None,
             "totalMarginAmount":
             obj.get("totalMarginAmount"),
             "transferMarginAmount":
             obj.get("transferMarginAmount"),
-            "margins": [
-                GetAccountDetailMargins.from_dict(_item)
-                for _item in obj["margins"]
-            ] if obj.get("margins") is not None else None
+            "margins":
+            [GetLoanInfoMargins.from_dict(_item) for _item in obj["margins"]]
+            if obj.get("margins") is not None else None
         })
         return _obj
 

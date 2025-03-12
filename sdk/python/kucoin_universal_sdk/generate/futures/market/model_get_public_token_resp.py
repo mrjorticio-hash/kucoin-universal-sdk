@@ -18,7 +18,7 @@ class GetPublicTokenResp(BaseModel, Response):
     GetPublicTokenResp
 
     Attributes:
-        token (str): The token required to establish a websocket connection
+        token (str): The token required to establish a Websocket connection
         instance_servers (list[GetPublicTokenInstanceServers]): 
     """
 
@@ -26,7 +26,7 @@ class GetPublicTokenResp(BaseModel, Response):
         default=None, description="Common response")
     token: Optional[str] = Field(
         default=None,
-        description="The token required to establish a websocket connection")
+        description="The token required to establish a Websocket connection")
     instance_servers: Optional[List[GetPublicTokenInstanceServers]] = Field(
         default=None, alias="instanceServers")
 

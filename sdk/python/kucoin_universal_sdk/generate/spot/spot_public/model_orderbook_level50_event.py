@@ -8,7 +8,6 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, Callable, ClassVar, Dict, List, Optional
-from .model_orderbook_level50_changes import OrderbookLevel50Changes
 from kucoin_universal_sdk.internal.interfaces.websocket import WebSocketMessageCallback
 from kucoin_universal_sdk.model.common import WsMessage
 
@@ -18,24 +17,19 @@ class OrderbookLevel50Event(BaseModel):
     OrderbookLevel50Event
 
     Attributes:
-        changes (OrderbookLevel50Changes): 
-        sequence_end (int): 
-        sequence_start (int): 
-        symbol (str): 
-        time (int): 
+        asks (list[list[str]]): price, size
+        bids (list[list[str]]): 
+        timestamp (int): 
     """
 
     common_response: Optional[WsMessage] = Field(default=None,
                                                  description="Common response")
-    changes: Optional[OrderbookLevel50Changes] = None
-    sequence_end: Optional[int] = Field(default=None, alias="sequenceEnd")
-    sequence_start: Optional[int] = Field(default=None, alias="sequenceStart")
-    symbol: Optional[str] = None
-    time: Optional[int] = None
+    asks: Optional[List[List[str]]] = Field(default=None,
+                                            description="price, size")
+    bids: Optional[List[List[str]]] = None
+    timestamp: Optional[int] = None
 
-    __properties: ClassVar[List[str]] = [
-        "changes", "sequenceEnd", "sequenceStart", "symbol", "time"
-    ]
+    __properties: ClassVar[List[str]] = ["asks", "bids", "timestamp"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -58,9 +52,6 @@ class OrderbookLevel50Event(BaseModel):
             by_alias=True,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of changes
-        if self.changes:
-            _dict['changes'] = self.changes.to_dict()
         return _dict
 
     @classmethod
@@ -74,17 +65,9 @@ class OrderbookLevel50Event(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "changes":
-            OrderbookLevel50Changes.from_dict(obj["changes"])
-            if obj.get("changes") is not None else None,
-            "sequenceEnd":
-            obj.get("sequenceEnd"),
-            "sequenceStart":
-            obj.get("sequenceStart"),
-            "symbol":
-            obj.get("symbol"),
-            "time":
-            obj.get("time")
+            "asks": obj.get("asks"),
+            "bids": obj.get("bids"),
+            "timestamp": obj.get("timestamp")
         })
         return _obj
 

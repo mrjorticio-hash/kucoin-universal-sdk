@@ -17,13 +17,13 @@ class CancelStopOrderByOrderIdResp(BaseModel, Response):
     CancelStopOrderByOrderIdResp
 
     Attributes:
-        cancelled_order_ids (list[str]): order id array
+        cancelled_order_ids (list[str]): order ID array
     """
 
     common_response: Optional[RestResponse] = Field(
         default=None, description="Common response")
     cancelled_order_ids: Optional[List[str]] = Field(
-        default=None, description="order id array", alias="cancelledOrderIds")
+        default=None, description="order ID array", alias="cancelledOrderIds")
 
     __properties: ClassVar[List[str]] = ["cancelledOrderIds"]
 

@@ -45,6 +45,9 @@ class GetOrdersListOldItems(BaseModel):
         cancel_exist (bool): 
         created_at (int): 
         trade_type (str): 
+        tax (str): 
+        tax_rate (str): 
+        tax_currency (str): 
     """
 
     id: Optional[str] = None
@@ -77,13 +80,17 @@ class GetOrdersListOldItems(BaseModel):
     cancel_exist: Optional[bool] = Field(default=None, alias="cancelExist")
     created_at: Optional[int] = Field(default=None, alias="createdAt")
     trade_type: Optional[str] = Field(default=None, alias="tradeType")
+    tax: Optional[str] = None
+    tax_rate: Optional[str] = Field(default=None, alias="taxRate")
+    tax_currency: Optional[str] = Field(default=None, alias="taxCurrency")
 
     __properties: ClassVar[List[str]] = [
         "id", "symbol", "opType", "type", "side", "price", "size", "funds",
         "dealFunds", "dealSize", "fee", "feeCurrency", "stp", "stop",
         "stopTriggered", "stopPrice", "timeInForce", "postOnly", "hidden",
         "iceberg", "visibleSize", "cancelAfter", "channel", "clientOid",
-        "remark", "tags", "isActive", "cancelExist", "createdAt", "tradeType"
+        "remark", "tags", "isActive", "cancelExist", "createdAt", "tradeType",
+        "tax", "taxRate", "taxCurrency"
     ]
 
     model_config = ConfigDict(
@@ -149,6 +156,9 @@ class GetOrdersListOldItems(BaseModel):
             "isActive": obj.get("isActive"),
             "cancelExist": obj.get("cancelExist"),
             "createdAt": obj.get("createdAt"),
-            "tradeType": obj.get("tradeType")
+            "tradeType": obj.get("tradeType"),
+            "tax": obj.get("tax"),
+            "taxRate": obj.get("taxRate"),
+            "taxCurrency": obj.get("taxCurrency")
         })
         return _obj

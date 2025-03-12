@@ -4,7 +4,7 @@
 def test_add_deposit_address_v3_req(self):
     """
         add_deposit_address_v3
-        Add Deposit Address(V3)
+        Add Deposit Address (V3)
         /api/v3/deposit-address/create
     """
 
@@ -23,7 +23,7 @@ def test_add_deposit_address_v3_req(self):
 def test_get_deposit_address_v3_req(self):
     """
         get_deposit_address_v3
-        Get Deposit Address(V3)
+        Get Deposit Address (V3)
         /api/v3/deposit-addresses
     """
 
@@ -61,12 +61,12 @@ def test_get_deposit_history_req(self):
 def test_get_deposit_address_v2_req(self):
     """
         get_deposit_address_v2
-        Get Deposit Addresses(V2)
+        Get Deposit Addresses (V2)
         /api/v2/deposit-addresses
     """
 
     builder = GetDepositAddressV2ReqBuilder()
-    builder.set_currency(?)
+    builder.set_currency(?).set_chain(?)
     req = builder.build()
     try:
         resp = self.api.get_deposit_address_v2(req)
@@ -123,7 +123,7 @@ def test_add_deposit_address_v1_req(self):
     """
 
     builder = AddDepositAddressV1ReqBuilder()
-    builder.set_currency(?).set_chain(?)
+    builder.set_currency(?).set_chain(?).set_to(?)
     req = builder.build()
     try:
         resp = self.api.add_deposit_address_v1(req)

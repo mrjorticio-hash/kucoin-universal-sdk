@@ -17,40 +17,40 @@ class GetRedeemOrdersReq(BaseModel):
     GetRedeemOrdersReq
 
     Attributes:
-        currency (str): currency
         status (StatusEnum): DONE-completed; PENDING-settling
-        redeem_order_no (str): Redeem order id
+        currency (str): currency
+        redeem_order_no (str): Redeem order ID
         current_page (int): Current page; default is 1
-        page_size (int): Page size; 1<=pageSize<=100; default is 50
+        page_size (int): Page size; 1<=pageSize<=50; default is 50
     """
 
     class StatusEnum(Enum):
         """
         Attributes:
-            DONE: 
-            PENDING: 
+            DONE: completed
+            PENDING: settling
         """
         DONE = 'DONE'
         PENDING = 'PENDING'
 
-    currency: Optional[str] = Field(default=None, description="currency")
     status: Optional[StatusEnum] = Field(
         default=None, description="DONE-completed; PENDING-settling")
+    currency: Optional[str] = Field(default=None, description="currency")
     redeem_order_no: Optional[str] = Field(default=None,
-                                           description="Redeem order id",
+                                           description="Redeem order ID",
                                            alias="redeemOrderNo")
     current_page: Optional[int] = Field(
         default=1,
         description="Current page; default is 1",
         alias="currentPage")
     page_size: Optional[Annotated[
-        int, Field(le=100, strict=True, ge=1)]] = Field(
+        int, Field(le=50, strict=True, ge=1)]] = Field(
             default=50,
-            description="Page size; 1<=pageSize<=100; default is 50",
+            description="Page size; 1<=pageSize<=50; default is 50",
             alias="pageSize")
 
     __properties: ClassVar[List[str]] = [
-        "currency", "status", "redeemOrderNo", "currentPage", "pageSize"
+        "status", "currency", "redeemOrderNo", "currentPage", "pageSize"
     ]
 
     model_config = ConfigDict(
@@ -87,10 +87,10 @@ class GetRedeemOrdersReq(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "currency":
-            obj.get("currency"),
             "status":
             obj.get("status"),
+            "currency":
+            obj.get("currency"),
             "redeemOrderNo":
             obj.get("redeemOrderNo"),
             "currentPage":
@@ -107,13 +107,6 @@ class GetRedeemOrdersReqBuilder:
     def __init__(self):
         self.obj = {}
 
-    def set_currency(self, value: str) -> GetRedeemOrdersReqBuilder:
-        """
-        currency
-        """
-        self.obj['currency'] = value
-        return self
-
     def set_status(
             self,
             value: GetRedeemOrdersReq.StatusEnum) -> GetRedeemOrdersReqBuilder:
@@ -123,9 +116,16 @@ class GetRedeemOrdersReqBuilder:
         self.obj['status'] = value
         return self
 
+    def set_currency(self, value: str) -> GetRedeemOrdersReqBuilder:
+        """
+        currency
+        """
+        self.obj['currency'] = value
+        return self
+
     def set_redeem_order_no(self, value: str) -> GetRedeemOrdersReqBuilder:
         """
-        Redeem order id
+        Redeem order ID
         """
         self.obj['redeemOrderNo'] = value
         return self
@@ -139,7 +139,7 @@ class GetRedeemOrdersReqBuilder:
 
     def set_page_size(self, value: int) -> GetRedeemOrdersReqBuilder:
         """
-        Page size; 1<=pageSize<=100; default is 50
+        Page size; 1<=pageSize<=50; default is 50
         """
         self.obj['pageSize'] = value
         return self

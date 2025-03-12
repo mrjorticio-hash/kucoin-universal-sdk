@@ -2,6 +2,7 @@ import unittest
 from .model_account_event import AccountEvent
 from .model_order_v1_event import OrderV1Event
 from .model_order_v2_event import OrderV2Event
+from .model_stop_order_event import StopOrderEvent
 from kucoin_universal_sdk.model.common import WsMessage
 
 
@@ -36,3 +37,13 @@ class SpotPrivateAPITest(unittest.TestCase):
         data = "{\"topic\":\"/spotMarket/tradeOrdersV2\",\"type\":\"message\",\"subject\":\"orderChange\",\"userId\":\"633559791e1cbc0001f319bc\",\"channelType\":\"private\",\"data\":{\"clientOid\":\"5c52e11203aa677f33e493fc\",\"orderId\":\"6720da3fa30a360007f5f832\",\"orderTime\":1730206271588,\"orderType\":\"market\",\"originSize\":\"0.00001\",\"side\":\"buy\",\"status\":\"new\",\"symbol\":\"BTC-USDT\",\"ts\":1730206271616000000,\"type\":\"received\"}}"
         common_response = WsMessage.from_json(data)
         resp = OrderV2Event.from_dict(common_response.raw_data)
+
+    def test_stop_order_resp_model(self):
+        """
+        stop_order
+        Get Stop Order
+        /stopOrder/spotMarket/advancedOrders
+        """
+        data = "{\"topic\":\"/spotMarket/tradeOrdersV2\",\"type\":\"message\",\"subject\":\"orderChange\",\"userId\":\"633559791e1cbc0001f319bc\",\"channelType\":\"private\",\"data\":{\"clientOid\":\"5c52e11203aa677f33e493fc\",\"orderId\":\"6720da3fa30a360007f5f832\",\"orderTime\":1730206271588,\"orderType\":\"market\",\"originSize\":\"0.00001\",\"side\":\"buy\",\"status\":\"new\",\"symbol\":\"BTC-USDT\",\"ts\":1730206271616000000,\"type\":\"received\"}}"
+        common_response = WsMessage.from_json(data)
+        resp = StopOrderEvent.from_dict(common_response.raw_data)

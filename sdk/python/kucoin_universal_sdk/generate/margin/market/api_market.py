@@ -23,15 +23,15 @@ class MarketAPI(ABC):
         summary: Get Symbols - Cross Margin
         description: This endpoint allows querying the configuration of cross margin symbol.
         documentation: https://www.kucoin.com/docs-new/api-3470189
-        +---------------------+--------+
-        | Extra API Info      | Value  |
-        +---------------------+--------+
-        | API-DOMAIN          | SPOT   |
-        | API-CHANNEL         | PUBLIC |
-        | API-PERMISSION      | NULL   |
-        | API-RATE-LIMIT-POOL | PUBLIC |
-        | API-RATE-LIMIT      | 3      |
-        +---------------------+--------+
+        +-----------------------+--------+
+        | Extra API Info        | Value  |
+        +-----------------------+--------+
+        | API-DOMAIN            | SPOT   |
+        | API-CHANNEL           | PUBLIC |
+        | API-PERMISSION        | NULL   |
+        | API-RATE-LIMIT-POOL   | PUBLIC |
+        | API-RATE-LIMIT-WEIGHT | 3      |
+        +-----------------------+--------+
         """
         pass
 
@@ -39,17 +39,17 @@ class MarketAPI(ABC):
     def get_margin_config(self, **kwargs: Any) -> GetMarginConfigResp:
         """
         summary: Get Margin Config
-        description: Request via this endpoint to get the configure info of the cross margin.
+        description: Request the configure info of the cross margin via this endpoint.
         documentation: https://www.kucoin.com/docs-new/api-3470190
-        +---------------------+--------+
-        | Extra API Info      | Value  |
-        +---------------------+--------+
-        | API-DOMAIN          | SPOT   |
-        | API-CHANNEL         | PUBLIC |
-        | API-PERMISSION      | NULL   |
-        | API-RATE-LIMIT-POOL | SPOT   |
-        | API-RATE-LIMIT      | 25     |
-        +---------------------+--------+
+        +-----------------------+--------+
+        | Extra API Info        | Value  |
+        +-----------------------+--------+
+        | API-DOMAIN            | SPOT   |
+        | API-CHANNEL           | PUBLIC |
+        | API-PERMISSION        | NULL   |
+        | API-RATE-LIMIT-POOL   | SPOT   |
+        | API-RATE-LIMIT-WEIGHT | 25     |
+        +-----------------------+--------+
         """
         pass
 
@@ -58,17 +58,17 @@ class MarketAPI(ABC):
                      **kwargs: Any) -> GetEtfInfoResp:
         """
         summary: Get ETF Info
-        description: This interface returns leveraged token information
+        description: This interface returns leveraged token information.
         documentation: https://www.kucoin.com/docs-new/api-3470191
-        +---------------------+--------+
-        | Extra API Info      | Value  |
-        +---------------------+--------+
-        | API-DOMAIN          | SPOT   |
-        | API-CHANNEL         | PUBLIC |
-        | API-PERMISSION      | NULL   |
-        | API-RATE-LIMIT-POOL | PUBLIC |
-        | API-RATE-LIMIT      | 3      |
-        +---------------------+--------+
+        +-----------------------+--------+
+        | Extra API Info        | Value  |
+        +-----------------------+--------+
+        | API-DOMAIN            | SPOT   |
+        | API-CHANNEL           | PUBLIC |
+        | API-PERMISSION        | NULL   |
+        | API-RATE-LIMIT-POOL   | PUBLIC |
+        | API-RATE-LIMIT-WEIGHT | 3      |
+        +-----------------------+--------+
         """
         pass
 
@@ -78,15 +78,15 @@ class MarketAPI(ABC):
         summary: Get Mark Price List
         description: This endpoint returns the current Mark price for all margin trading pairs.
         documentation: https://www.kucoin.com/docs-new/api-3470192
-        +---------------------+--------+
-        | Extra API Info      | Value  |
-        +---------------------+--------+
-        | API-DOMAIN          | SPOT   |
-        | API-CHANNEL         | PUBLIC |
-        | API-PERMISSION      | NULL   |
-        | API-RATE-LIMIT-POOL | PUBLIC |
-        | API-RATE-LIMIT      | 10     |
-        +---------------------+--------+
+        +-----------------------+--------+
+        | Extra API Info        | Value  |
+        +-----------------------+--------+
+        | API-DOMAIN            | SPOT   |
+        | API-CHANNEL           | PUBLIC |
+        | API-PERMISSION        | NULL   |
+        | API-RATE-LIMIT-POOL   | PUBLIC |
+        | API-RATE-LIMIT-WEIGHT | 10     |
+        +-----------------------+--------+
         """
         pass
 
@@ -97,15 +97,15 @@ class MarketAPI(ABC):
         summary: Get Mark Price Detail
         description: This endpoint returns the current Mark price for specified margin trading pairs.
         documentation: https://www.kucoin.com/docs-new/api-3470193
-        +---------------------+--------+
-        | Extra API Info      | Value  |
-        +---------------------+--------+
-        | API-DOMAIN          | SPOT   |
-        | API-CHANNEL         | PUBLIC |
-        | API-PERMISSION      | NULL   |
-        | API-RATE-LIMIT-POOL | PUBLIC |
-        | API-RATE-LIMIT      | 2      |
-        +---------------------+--------+
+        +-----------------------+--------+
+        | Extra API Info        | Value  |
+        +-----------------------+--------+
+        | API-DOMAIN            | SPOT   |
+        | API-CHANNEL           | PUBLIC |
+        | API-PERMISSION        | NULL   |
+        | API-RATE-LIMIT-POOL   | PUBLIC |
+        | API-RATE-LIMIT-WEIGHT | 2      |
+        +-----------------------+--------+
         """
         pass
 
@@ -116,15 +116,15 @@ class MarketAPI(ABC):
         summary: Get Symbols - Isolated Margin
         description: This endpoint allows querying the configuration of isolated margin symbol.
         documentation: https://www.kucoin.com/docs-new/api-3470194
-        +---------------------+--------+
-        | Extra API Info      | Value  |
-        +---------------------+--------+
-        | API-DOMAIN          | SPOT   |
-        | API-CHANNEL         | PUBLIC |
-        | API-PERMISSION      | NULL   |
-        | API-RATE-LIMIT-POOL | PUBLIC |
-        | API-RATE-LIMIT      | 3      |
-        +---------------------+--------+
+        +-----------------------+--------+
+        | Extra API Info        | Value  |
+        +-----------------------+--------+
+        | API-DOMAIN            | SPOT   |
+        | API-CHANNEL           | PUBLIC |
+        | API-PERMISSION        | NULL   |
+        | API-RATE-LIMIT-POOL   | PUBLIC |
+        | API-RATE-LIMIT-WEIGHT | 3      |
+        +-----------------------+--------+
         """
         pass
 

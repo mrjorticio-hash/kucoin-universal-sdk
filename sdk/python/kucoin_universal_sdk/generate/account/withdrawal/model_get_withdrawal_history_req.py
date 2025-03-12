@@ -18,9 +18,9 @@ class GetWithdrawalHistoryReq(BaseModel):
 
     Attributes:
         currency (str): currency
-        status (StatusEnum): Status. Available value: PROCESSING, WALLET_PROCESSING, SUCCESS, and FAILURE
-        start_at (int): Start time (milisecond)
-        end_at (int): End time (milisecond)
+        status (StatusEnum): Status. Available value: REVIEW, PROCESSING, WALLET_PROCESSING, SUCCESS and FAILURE
+        start_at (int): Start time (milliseconds)
+        end_at (int): End time (milliseconds)
         current_page (int): Current request page.
         page_size (int): Number of results per request. Minimum is 10, maximum is 500.
     """
@@ -29,11 +29,13 @@ class GetWithdrawalHistoryReq(BaseModel):
         """
         Attributes:
             PROCESSING: 
+            REVIEW: 
             WALLET_PROCESSING: 
             SUCCESS: 
             FAILURE: 
         """
         PROCESSING = 'PROCESSING'
+        REVIEW = 'REVIEW'
         WALLET_PROCESSING = 'WALLET_PROCESSING'
         SUCCESS = 'SUCCESS'
         FAILURE = 'FAILURE'
@@ -42,13 +44,13 @@ class GetWithdrawalHistoryReq(BaseModel):
     status: Optional[StatusEnum] = Field(
         default=None,
         description=
-        "Status. Available value: PROCESSING, WALLET_PROCESSING, SUCCESS, and FAILURE"
+        "Status. Available value: REVIEW, PROCESSING, WALLET_PROCESSING, SUCCESS and FAILURE"
     )
     start_at: Optional[int] = Field(default=None,
-                                    description="Start time (milisecond)",
+                                    description="Start time (milliseconds)",
                                     alias="startAt")
     end_at: Optional[int] = Field(default=None,
-                                  description="End time (milisecond)",
+                                  description="End time (milliseconds)",
                                   alias="endAt")
     current_page: Optional[int] = Field(default=1,
                                         description="Current request page.",
@@ -132,21 +134,21 @@ class GetWithdrawalHistoryReqBuilder:
         self, value: GetWithdrawalHistoryReq.StatusEnum
     ) -> GetWithdrawalHistoryReqBuilder:
         """
-        Status. Available value: PROCESSING, WALLET_PROCESSING, SUCCESS, and FAILURE
+        Status. Available value: REVIEW, PROCESSING, WALLET_PROCESSING, SUCCESS and FAILURE
         """
         self.obj['status'] = value
         return self
 
     def set_start_at(self, value: int) -> GetWithdrawalHistoryReqBuilder:
         """
-        Start time (milisecond)
+        Start time (milliseconds)
         """
         self.obj['startAt'] = value
         return self
 
     def set_end_at(self, value: int) -> GetWithdrawalHistoryReqBuilder:
         """
-        End time (milisecond)
+        End time (milliseconds)
         """
         self.obj['endAt'] = value
         return self

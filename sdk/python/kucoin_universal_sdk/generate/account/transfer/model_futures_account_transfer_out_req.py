@@ -17,9 +17,9 @@ class FuturesAccountTransferOutReq(BaseModel):
     FuturesAccountTransferOutReq
 
     Attributes:
-        currency (str): Currency, including XBT,USDT...
-        amount (float): Amount to be transfered out, the maximum cannot exceed 1000000000
-        rec_account_type (RecAccountTypeEnum): Receive account type, including MAIN,TRADE
+        currency (str): Currency, including XBT, USDT...
+        amount (float): Amount to be transferred out; cannot exceed 1000000000
+        rec_account_type (RecAccountTypeEnum): Receive account type, including MAIN, TRADE
     """
 
     class RecAccountTypeEnum(Enum):
@@ -32,14 +32,13 @@ class FuturesAccountTransferOutReq(BaseModel):
         TRADE = 'TRADE'
 
     currency: Optional[str] = Field(
-        default=None, description="Currency, including XBT,USDT...")
+        default=None, description="Currency, including XBT, USDT...")
     amount: Optional[Annotated[float, Field(le=1000000000)]] = Field(
         default=None,
-        description=
-        "Amount to be transfered out, the maximum cannot exceed 1000000000")
+        description="Amount to be transferred out; cannot exceed 1000000000")
     rec_account_type: Optional[RecAccountTypeEnum] = Field(
         default=None,
-        description="Receive account type, including MAIN,TRADE",
+        description="Receive account type, including MAIN, TRADE",
         alias="recAccountType")
 
     __properties: ClassVar[List[str]] = [
@@ -96,14 +95,14 @@ class FuturesAccountTransferOutReqBuilder:
 
     def set_currency(self, value: str) -> FuturesAccountTransferOutReqBuilder:
         """
-        Currency, including XBT,USDT...
+        Currency, including XBT, USDT...
         """
         self.obj['currency'] = value
         return self
 
     def set_amount(self, value: float) -> FuturesAccountTransferOutReqBuilder:
         """
-        Amount to be transfered out, the maximum cannot exceed 1000000000
+        Amount to be transferred out; cannot exceed 1000000000
         """
         self.obj['amount'] = value
         return self
@@ -112,7 +111,7 @@ class FuturesAccountTransferOutReqBuilder:
         self, value: FuturesAccountTransferOutReq.RecAccountTypeEnum
     ) -> FuturesAccountTransferOutReqBuilder:
         """
-        Receive account type, including MAIN,TRADE
+        Receive account type, including MAIN, TRADE
         """
         self.obj['recAccountType'] = value
         return self

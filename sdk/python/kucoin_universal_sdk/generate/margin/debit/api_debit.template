@@ -80,7 +80,7 @@ def test_get_repay_history_req(self):
 def test_get_interest_history_req(self):
     """
         get_interest_history
-        Get Interest History
+        Get Interest History.
         /api/v3/margin/interest
     """
 

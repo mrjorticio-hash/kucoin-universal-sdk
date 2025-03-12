@@ -18,7 +18,7 @@ class GetPrivateTokenResp(BaseModel, Response):
     GetPrivateTokenResp
 
     Attributes:
-        token (str): The token required to establish a websocket connection
+        token (str): The token required to establish a Websocket connection
         instance_servers (list[GetPrivateTokenInstanceServers]): 
     """
 
@@ -26,7 +26,7 @@ class GetPrivateTokenResp(BaseModel, Response):
         default=None, description="Common response")
     token: Optional[str] = Field(
         default=None,
-        description="The token required to establish a websocket connection")
+        description="The token required to establish a Websocket connection")
     instance_servers: Optional[List[GetPrivateTokenInstanceServers]] = Field(
         default=None, alias="instanceServers")
 

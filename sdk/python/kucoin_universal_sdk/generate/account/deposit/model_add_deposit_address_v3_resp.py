@@ -18,10 +18,10 @@ class AddDepositAddressV3Resp(BaseModel, Response):
 
     Attributes:
         address (str): Deposit address
-        memo (str): Address remark. If there’s no remark, it is empty. When you withdraw from other platforms to the KuCoin, you need to fill in memo(tag). If you do not fill memo (tag), your deposit may not be available, please be cautious.
+        memo (str): Address remark. If there’s no remark, it is empty. When you withdraw from other platforms to KuCoin, you need to fill in memo(tag). Be careful: If you do not fill in memo(tag), your deposit may not be available.
         chain_id (str): The chainId of currency
-        to (str): Deposit account type: main (funding account), trade (spot trading account)
-        expiration_date (int): Expiration time, Lightning network expiration time, non-Lightning network this field is invalid
+        to (str): Deposit account type: MAIN (funding account), TRADE (spot trading account)
+        expiration_date (int): Expiration time; Lightning network expiration time; this field is not applicable to non-Lightning networks
         currency (str): currency
         chain_name (str): The chainName of currency
     """
@@ -32,7 +32,7 @@ class AddDepositAddressV3Resp(BaseModel, Response):
     memo: Optional[str] = Field(
         default=None,
         description=
-        "Address remark. If there’s no remark, it is empty. When you withdraw from other platforms to the KuCoin, you need to fill in memo(tag). If you do not fill memo (tag), your deposit may not be available, please be cautious."
+        "Address remark. If there’s no remark, it is empty. When you withdraw from other platforms to KuCoin, you need to fill in memo(tag). Be careful: If you do not fill in memo(tag), your deposit may not be available."
     )
     chain_id: Optional[str] = Field(default=None,
                                     description="The chainId of currency",
@@ -40,12 +40,12 @@ class AddDepositAddressV3Resp(BaseModel, Response):
     to: Optional[str] = Field(
         default=None,
         description=
-        "Deposit account type: main (funding account), trade (spot trading account)"
+        "Deposit account type: MAIN (funding account), TRADE (spot trading account)"
     )
     expiration_date: Optional[int] = Field(
         default=None,
         description=
-        "Expiration time, Lightning network expiration time, non-Lightning network this field is invalid",
+        "Expiration time; Lightning network expiration time; this field is not applicable to non-Lightning networks",
         alias="expirationDate")
     currency: Optional[str] = Field(default=None, description="currency")
     chain_name: Optional[str] = Field(default=None,

@@ -8,6 +8,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
+from typing_extensions import Annotated
 from .model_get_closed_orders_items import GetClosedOrdersItems
 from kucoin_universal_sdk.internal.interfaces.response import Response
 from kucoin_universal_sdk.model.common import RestResponse
@@ -24,7 +25,7 @@ class GetClosedOrdersResp(BaseModel, Response):
 
     common_response: Optional[RestResponse] = Field(
         default=None, description="Common response")
-    last_id: Optional[int] = Field(
+    last_id: Optional[Annotated[int, Field(strict=True, ge=0)]] = Field(
         default=None,
         description=
         "The id of the last set of data from the previous batch of data. By default, the latest information is given. lastId is used to filter data and paginate. If lastId is not entered, the default is a maximum of 100 returned data items. The return results include lastId，which can be used as a query parameter to look up new data from the next page.",

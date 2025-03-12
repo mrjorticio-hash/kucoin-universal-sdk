@@ -18,7 +18,7 @@ class GetBrokerInfoResp(BaseModel, Response):
 
     Attributes:
         account_size (int): Number of sub-accounts created
-        max_account_size (int): The maximum number of sub-accounts allowed to be created, null means no limit
+        max_account_size (int): The maximum number of sub-accounts allowed to be created; null means no limit
         level (int): Broker level
     """
 
@@ -31,7 +31,7 @@ class GetBrokerInfoResp(BaseModel, Response):
     max_account_size: Optional[int] = Field(
         default=None,
         description=
-        "The maximum number of sub-accounts allowed to be created, null means no limit",
+        "The maximum number of sub-accounts allowed to be created; null means no limit",
         alias="maxAccountSize")
     level: Optional[int] = Field(default=None, description="Broker level")
 

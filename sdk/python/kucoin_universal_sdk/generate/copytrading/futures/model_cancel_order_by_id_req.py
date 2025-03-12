@@ -15,11 +15,11 @@ class CancelOrderByIdReq(BaseModel):
     CancelOrderByIdReq
 
     Attributes:
-        order_id (str): Order id
+        order_id (str): Order ID
     """
 
     order_id: Optional[str] = Field(default=None,
-                                    description="Order id",
+                                    description="Order ID",
                                     alias="orderId")
 
     __properties: ClassVar[List[str]] = ["orderId"]
@@ -68,7 +68,7 @@ class CancelOrderByIdReqBuilder:
 
     def set_order_id(self, value: str) -> CancelOrderByIdReqBuilder:
         """
-        Order id
+        Order ID
         """
         self.obj['orderId'] = value
         return self

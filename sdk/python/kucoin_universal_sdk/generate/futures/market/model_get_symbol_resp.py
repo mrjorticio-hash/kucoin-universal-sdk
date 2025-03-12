@@ -20,10 +20,10 @@ class GetSymbolResp(BaseModel, Response):
     Attributes:
         symbol (str): Symbol
         root_symbol (str): Contract group
-        type (TypeEnum): Type of the contract
-        first_open_date (int): First Open Date(millisecond)
-        expire_date (int): Expiration date(millisecond). Null means it will never expire
-        settle_date (int): Settlement date(millisecond). Null indicates that automatic settlement is not supported
+        type (TypeEnum): Type of contract
+        first_open_date (int): First Open Date (milliseconds)
+        expire_date (int): Expiration date (milliseconds) Null means it will never expire
+        settle_date (int): Settlement date (milliseconds) Null indicates that automatic settlement is not supported
         base_currency (str): Base currency
         quote_currency (str): Quote currency
         settle_currency (str): Currency used to clear and settle the trades
@@ -47,32 +47,32 @@ class GetSymbolResp(BaseModel, Response):
         is_quanto (bool): Deprecated param
         is_inverse (bool): Whether it is a reverse contract
         mark_method (MarkMethodEnum): Marking method
-        fair_method (FairMethodEnum): Fair price marking method, The Futures contract is null
-        funding_base_symbol (str): Ticker symbol of the based currency
+        fair_method (FairMethodEnum): Fair price marking method; the Futures contract is null
+        funding_base_symbol (str): Ticker symbol of the base currency
         funding_quote_symbol (str): Ticker symbol of the quote currency
         funding_rate_symbol (str): Funding rate symbol
         index_symbol (str): Index symbol
-        settlement_symbol (str): Settlement Symbol
+        settlement_symbol (str): Settlement symbol
         status (StatusEnum): Contract status
         funding_fee_rate (float): Funding fee rate
         predicted_funding_fee_rate (float): Predicted funding fee rate
-        funding_rate_granularity (int): Funding interval(millisecond)
-        open_interest (str): Open interest
+        funding_rate_granularity (int): Funding interval (milliseconds)
+        open_interest (str): Open interest (unit: lots)
         turnover_of24h (float): 24-hour turnover
         volume_of24h (float): 24-hour volume
         mark_price (float): Mark price
         index_price (float): Index price
         last_trade_price (float): Last trade price
-        next_funding_rate_time (int): Next funding rate time(millisecond)
+        next_funding_rate_time (int): Next funding rate time (milliseconds)
         max_leverage (int): Maximum leverage
         source_exchanges (list[str]): The contract index price source exchange
-        premiums_symbol1_m (str): Premium index symbol(1 minute)
-        premiums_symbol8_h (str): Premium index symbol(8 hours)
-        funding_base_symbol1_m (str): Base currency interest rate symbol(1 minute)
-        funding_quote_symbol1_m (str): Quote currency interest rate symbol(1 minute)
+        premiums_symbol1_m (str): Premium index symbol (1 minute)
+        premiums_symbol8_h (str): Premium index symbol (8 hours)
+        funding_base_symbol1_m (str): Base currency interest rate symbol (1 minute)
+        funding_quote_symbol1_m (str): Quote currency interest rate symbol (1 minute)
         low_price (float): 24-hour lowest price
         high_price (float): 24-hour highest price
-        price_chg_pct (float): 24-hour price change% 
+        price_chg_pct (float): 24-hour % price change 
         price_chg (float): 24-hour price change
         k (float): 
         m (float): 
@@ -80,12 +80,14 @@ class GetSymbolResp(BaseModel, Response):
         mmr_limit (float): 
         mmr_lev_constant (float): 
         support_cross (bool): Whether support Cross Margin
+        buy_limit (float): The current maximum allowed buying price
+        sell_limit (float): The current minimum allowed selling price
     """
 
     class TypeEnum(Enum):
         """
         Attributes:
-            FFWCSX: Standardized swap contracts standard financial futures on swap, expiration swap funding rate
+            FFWCSX: Standardized swap contracts, standard financial futures on swaps, expiration swap funding rates
             FFICSX: Futures Contract
         """
         FFWCSX = 'FFWCSX'
@@ -94,7 +96,7 @@ class GetSymbolResp(BaseModel, Response):
     class MarkMethodEnum(Enum):
         """
         Attributes:
-            FAIR_PRICE: Fair Price
+            FAIR_PRICE: FairPrice
         """
         FAIR_PRICE = 'FairPrice'
 
@@ -110,7 +112,7 @@ class GetSymbolResp(BaseModel, Response):
         Attributes:
             INIT: Initial
             OPEN: Online
-            BEING_SETTLED: Setting
+            BEING_SETTLED: Settling
             SETTLED: Settled
             PAUSED: Suspended
             CLOSED: Offline
@@ -131,20 +133,20 @@ class GetSymbolResp(BaseModel, Response):
                                        description="Contract group",
                                        alias="rootSymbol")
     type: Optional[TypeEnum] = Field(default=None,
-                                     description="Type of the contract")
+                                     description="Type of contract")
     first_open_date: Optional[int] = Field(
         default=None,
-        description="First Open Date(millisecond)",
+        description="First Open Date (milliseconds)",
         alias="firstOpenDate")
     expire_date: Optional[int] = Field(
         default=None,
         description=
-        "Expiration date(millisecond). Null means it will never expire",
+        "Expiration date (milliseconds) Null means it will never expire",
         alias="expireDate")
     settle_date: Optional[int] = Field(
         default=None,
         description=
-        "Settlement date(millisecond). Null indicates that automatic settlement is not supported",
+        "Settlement date (milliseconds) Null indicates that automatic settlement is not supported",
         alias="settleDate")
     base_currency: Optional[str] = Field(default=None,
                                          description="Base currency",
@@ -227,11 +229,11 @@ class GetSymbolResp(BaseModel, Response):
                                                   alias="markMethod")
     fair_method: Optional[FairMethodEnum] = Field(
         default=None,
-        description="Fair price marking method, The Futures contract is null",
+        description="Fair price marking method; the Futures contract is null",
         alias="fairMethod")
     funding_base_symbol: Optional[str] = Field(
         default=None,
-        description="Ticker symbol of the based currency",
+        description="Ticker symbol of the base currency",
         alias="fundingBaseSymbol")
     funding_quote_symbol: Optional[str] = Field(
         default=None,
@@ -245,7 +247,7 @@ class GetSymbolResp(BaseModel, Response):
                                         description="Index symbol",
                                         alias="indexSymbol")
     settlement_symbol: Optional[str] = Field(default=None,
-                                             description="Settlement Symbol",
+                                             description="Settlement symbol",
                                              alias="settlementSymbol")
     status: Optional[StatusEnum] = Field(default=None,
                                          description="Contract status")
@@ -258,11 +260,12 @@ class GetSymbolResp(BaseModel, Response):
         alias="predictedFundingFeeRate")
     funding_rate_granularity: Optional[int] = Field(
         default=None,
-        description="Funding interval(millisecond)",
+        description="Funding interval (milliseconds)",
         alias="fundingRateGranularity")
-    open_interest: Optional[str] = Field(default=None,
-                                         description="Open interest",
-                                         alias="openInterest")
+    open_interest: Optional[str] = Field(
+        default=None,
+        description="Open interest (unit: lots)",
+        alias="openInterest")
     turnover_of24h: Optional[float] = Field(default=None,
                                             description="24-hour turnover",
                                             alias="turnoverOf24h")
@@ -280,7 +283,7 @@ class GetSymbolResp(BaseModel, Response):
                                               alias="lastTradePrice")
     next_funding_rate_time: Optional[int] = Field(
         default=None,
-        description="Next funding rate time(millisecond)",
+        description="Next funding rate time (milliseconds)",
         alias="nextFundingRateTime")
     max_leverage: Optional[int] = Field(default=None,
                                         description="Maximum leverage",
@@ -291,19 +294,19 @@ class GetSymbolResp(BaseModel, Response):
         alias="sourceExchanges")
     premiums_symbol1_m: Optional[str] = Field(
         default=None,
-        description="Premium index symbol(1 minute)",
+        description="Premium index symbol (1 minute)",
         alias="premiumsSymbol1M")
     premiums_symbol8_h: Optional[str] = Field(
         default=None,
-        description="Premium index symbol(8 hours)",
+        description="Premium index symbol (8 hours)",
         alias="premiumsSymbol8H")
     funding_base_symbol1_m: Optional[str] = Field(
         default=None,
-        description="Base currency interest rate symbol(1 minute)",
+        description="Base currency interest rate symbol (1 minute)",
         alias="fundingBaseSymbol1M")
     funding_quote_symbol1_m: Optional[str] = Field(
         default=None,
-        description="Quote currency interest rate symbol(1 minute)",
+        description="Quote currency interest rate symbol (1 minute)",
         alias="fundingQuoteSymbol1M")
     low_price: Optional[float] = Field(default=None,
                                        description="24-hour lowest price",
@@ -313,7 +316,7 @@ class GetSymbolResp(BaseModel, Response):
                                         alias="highPrice")
     price_chg_pct: Optional[float] = Field(
         default=None,
-        description="24-hour price change% ",
+        description="24-hour % price change ",
         alias="priceChgPct")
     price_chg: Optional[float] = Field(default=None,
                                        description="24-hour price change",
@@ -328,6 +331,14 @@ class GetSymbolResp(BaseModel, Response):
         default=None,
         description="Whether support Cross Margin",
         alias="supportCross")
+    buy_limit: Optional[float] = Field(
+        default=None,
+        description="The current maximum allowed buying price",
+        alias="buyLimit")
+    sell_limit: Optional[float] = Field(
+        default=None,
+        description="The current minimum allowed selling price",
+        alias="sellLimit")
 
     __properties: ClassVar[List[str]] = [
         "symbol", "rootSymbol", "type", "firstOpenDate", "expireDate",
@@ -345,7 +356,7 @@ class GetSymbolResp(BaseModel, Response):
         "sourceExchanges", "premiumsSymbol1M", "premiumsSymbol8H",
         "fundingBaseSymbol1M", "fundingQuoteSymbol1M", "lowPrice", "highPrice",
         "priceChgPct", "priceChg", "k", "m", "f", "mmrLimit", "mmrLevConstant",
-        "supportCross"
+        "supportCross", "buyLimit", "sellLimit"
     ]
 
     model_config = ConfigDict(
@@ -504,7 +515,11 @@ class GetSymbolResp(BaseModel, Response):
             "mmrLevConstant":
             obj.get("mmrLevConstant"),
             "supportCross":
-            obj.get("supportCross")
+            obj.get("supportCross"),
+            "buyLimit":
+            obj.get("buyLimit"),
+            "sellLimit":
+            obj.get("sellLimit")
         })
         return _obj
 
