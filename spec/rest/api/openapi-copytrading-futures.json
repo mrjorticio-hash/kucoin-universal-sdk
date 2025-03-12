@@ -1003,11 +1003,11 @@
                                                     "description": "Symbol of the contract. Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) "
                                                 },
                                                 "maxBuyOpenSize": {
-                                                    "type": "integer",
+                                                    "type": "string",
                                                     "description": "Maximum buy size\n"
                                                 },
                                                 "maxSellOpenSize": {
-                                                    "type": "integer",
+                                                    "type": "string",
                                                     "description": "Maximum buy size\n"
                                                 }
                                             },
@@ -1038,7 +1038,7 @@
                 "x-sdk-method-name": "GetMaxOpenSize",
                 "x-sdk-method-description": "Get Maximum Open Position Size.",
                 "x-api-rate-limit-weight": 4,
-                "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"symbol\\\": \\\"XBTUSDTM\\\",\\n        \\\"maxBuyOpenSize\\\": 8,\\n        \\\"maxSellOpenSize\\\": 5\\n    }\\n}",
+                "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"symbol\\\": \\\"XBTUSDTM\\\",\\n        \\\"maxBuyOpenSize\\\": \\\"1000000\\\",\\n        \\\"maxSellOpenSize\\\": \\\"51\\\"\\n    }\\n}",
                 "x-request-example": "{\\\"symbol\\\": \\\"XBTUSDTM\\\", \\\"price\\\": 123456.0, \\\"leverage\\\": 123456}",
                 "operationId": "006"
             }
@@ -1426,12 +1426,12 @@
                                     "withdrawAmount"
                                 ]
                             },
-                            "example": "{\n    \"symbol\": \"XBTUSDTM\",\n    \"withdrawAmount\": \"0.0000001\"\n}"
+                            "example": "{\n    \"symbol\": \"XBTUSDTM\",\n    \"withdrawAmount\": 0.0000001\n}"
                         }
                     }
                 },
                 "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": \\\"0.1\\\"\\n}",
-                "x-request-example": "{\\\"symbol\\\": \\\"XBTUSDTM\\\", \\\"withdrawAmount\\\": \\\"0.0000001\\\"}",
+                "x-request-example": "{\\\"symbol\\\": \\\"XBTUSDTM\\\", \\\"withdrawAmount\\\": 1e-07}",
                 "operationId": "009"
             }
         },

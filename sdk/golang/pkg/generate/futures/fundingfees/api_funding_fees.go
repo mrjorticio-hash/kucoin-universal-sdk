@@ -16,7 +16,7 @@ type FundingFeesAPI interface {
 	// | Extra API Info        | Value   |
 	// +-----------------------+---------+
 	// | API-DOMAIN            | FUTURES |
-	// | API-CHANNEL           | PRIVATE |
+	// | API-CHANNEL           | PUBLIC  |
 	// | API-PERMISSION        | FUTURES |
 	// | API-RATE-LIMIT-POOL   | PUBLIC  |
 	// | API-RATE-LIMIT-WEIGHT | 2       |
@@ -30,7 +30,7 @@ type FundingFeesAPI interface {
 	// | Extra API Info        | Value   |
 	// +-----------------------+---------+
 	// | API-DOMAIN            | FUTURES |
-	// | API-CHANNEL           | PRIVATE |
+	// | API-CHANNEL           | PUBLIC  |
 	// | API-PERMISSION        | FUTURES |
 	// | API-RATE-LIMIT-POOL   | PUBLIC  |
 	// | API-RATE-LIMIT-WEIGHT | 5       |

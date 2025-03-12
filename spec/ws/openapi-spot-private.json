@@ -971,8 +971,9 @@
                                 ]
                             },
                             "ts": {
-                                "type": "string",
-                                "description": "Push time (nanoseconds)"
+                                "type": "integer",
+                                "description": "Push time (nanoseconds)",
+                                "format": "int64"
                             },
                             "type": {
                                 "type": "string",

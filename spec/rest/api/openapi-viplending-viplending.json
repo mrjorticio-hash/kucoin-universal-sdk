@@ -45,11 +45,13 @@
                                                             "properties": {
                                                                 "left": {
                                                                     "type": "integer",
-                                                                    "description": "Left end point of gradient interval, left<amount<=right"
+                                                                    "description": "Left end point of gradient interval, left<amount<=right",
+                                                                    "format": "int64"
                                                                 },
                                                                 "right": {
                                                                     "type": "integer",
-                                                                    "description": "Right end point of gradient interval, left<amount<=right"
+                                                                    "description": "Right end point of gradient interval, left<amount<=right",
+                                                                    "format": "int64"
                                                                 },
                                                                 "discountRate": {
                                                                     "type": "string",

@@ -140,19 +140,19 @@
                                         "type": "string",
                                         "description": "Deposit account type: MAIN (funding account), TRADE (spot trading account); the default is MAIN",
                                         "enum": [
-                                            "main",
-                                            "trade"
+                                            "MAIN",
+                                            "TRADE"
                                         ],
                                         "default": "MAIN",
                                         "x-api-enum": [
                                             {
-                                                "value": "main",
-                                                "name": "main",
+                                                "value": "MAIN",
+                                                "name": "MAIN",
                                                 "description": "Funding account"
                                             },
                                             {
-                                                "value": "trade",
-                                                "name": "trade",
+                                                "value": "TRADE",
+                                                "name": "TRADE",
                                                 "description": "Spot account"
                                             }
                                         ]

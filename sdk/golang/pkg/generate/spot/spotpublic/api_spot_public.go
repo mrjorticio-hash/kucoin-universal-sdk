@@ -10,9 +10,19 @@ import (
 type SpotPublicWS interface {
 
 	// AllTickers Get All Tickers
-	// Subscribe to this topic to get the push of all market symbols BBO change.
+	// Subscribe to this topic to get pushes on all market symbol BBO changes.
 	// push frequency: once every 100ms
 	AllTickers(callback AllTickersEventCallback) (id string, err error)
+
+	// CallAuctionInfo Get Call Auction Info
+	// Subscribe to this topic to get the specified symbol call auction info.
+	// push frequency: once every 100ms
+	CallAuctionInfo(symbol string, callback CallAuctionInfoEventCallback) (id string, err error)
+
+	// CallAuctionOrderbookLevel50 CallAuctionOrderbook - Level50
+	// The system will return the call auction 50 best ask/bid orders data, If there is no change in the market, data will not be pushed
+	// push frequency: once every 100ms
+	CallAuctionOrderbookLevel50(symbol string, callback CallAuctionOrderbookLevel50EventCallback) (id string, err error)
 
 	// Klines Klines
 	// Subscribe to this topic to get K-Line data.
@@ -20,27 +30,27 @@ type SpotPublicWS interface {
 	Klines(symbol string, type_ string, callback KlinesEventCallback) (id string, err error)
 
 	// MarketSnapshot Market Snapshot
-	// Subscribe this topic to get the snapshot data of for the entire market.
+	// Subscribe this topic to get snapshot data for the entire market.
 	// push frequency: once every 2s
 	MarketSnapshot(market string, callback MarketSnapshotEventCallback) (id string, err error)
 
 	// OrderbookIncrement Orderbook - Increment
-	// The system will return the increment change orderbook data(All depth), A topic supports up to 100 symbols. If there is no change in the market, data will not be pushed
+	// The system will return the increment change orderbook data (all depths); a topic supports up to 100 symbols. If there is no change in the market, data will not be pushed
 	// push frequency: real-time
 	OrderbookIncrement(symbol []string, callback OrderbookIncrementEventCallback) (id string, err error)
 
 	// OrderbookLevel1 Orderbook - Level1
-	// The system will return the 1 best ask/bid orders data, A topic supports up to 100 symbols. If there is no change in the market, data will not be pushed
+	// The system will return the 1 best ask/bid orders data; a topic supports up to 100 symbols. If there is no change in the market, data will not be pushed
 	// push frequency: once every 10ms
 	OrderbookLevel1(symbol []string, callback OrderbookLevel1EventCallback) (id string, err error)
 
 	// OrderbookLevel50 Orderbook - Level50
-	// The system will return the 50 best ask/bid orders data, A topic supports up to 100 symbols. If there is no change in the market, data will not be pushed
+	// The system will return data for the 50 best ask/bid orders; a topic supports up to 100 symbols. If there is no change in the market, data will not be pushed
 	// push frequency: once every 100ms
 	OrderbookLevel50(symbol []string, callback OrderbookLevel50EventCallback) (id string, err error)
 
 	// OrderbookLevel5 Orderbook - Level5
-	// The system will return the 5 best ask/bid orders data,A topic supports up to 100 symbols. If there is no change in the market, data will not be pushed
+	// The system will return the 5 best ask/bid orders data; a topic supports up to 100 symbols. If there is no change in the market, data will not be pushed
 	// push frequency: once every 100ms
 	OrderbookLevel5(symbol []string, callback OrderbookLevel5EventCallback) (id string, err error)
 
@@ -50,12 +60,12 @@ type SpotPublicWS interface {
 	SymbolSnapshot(symbol string, callback SymbolSnapshotEventCallback) (id string, err error)
 
 	// Ticker Get Ticker
-	// Subscribe to this topic to get the specified symbol push of BBO changes.
+	// Subscribe to this topic to get specified symbol pushes on BBO changes.
 	// push frequency: once every 100ms
 	Ticker(symbol []string, callback TickerEventCallback) (id string, err error)
 
 	// Trade Trade
-	// Subscribe to this topic to get the matching event data flow of Level 3. A topic supports up to 100 symbols.
+	// Subscribe to this topic to get Level 3 matching event data flows. A topic supports up to 100 symbols.
 	// push frequency: real-time
 	Trade(symbol []string, callback TradeEventCallback) (id string, err error)
 
@@ -83,6 +93,22 @@ func (impl *SpotPublicWSImpl) AllTickers(callback AllTickersEventCallback) (stri
 	args := []string{}
 
 	return impl.wsService.Subscribe(topicPrefix, args, &AllTickersEventCallbackWrapper{callback: callback})
+}
+
+func (impl *SpotPublicWSImpl) CallAuctionInfo(symbol string, callback CallAuctionInfoEventCallback) (string, error) {
+	topicPrefix := "/callauction/callauctionData"
+
+	args := []string{symbol}
+
+	return impl.wsService.Subscribe(topicPrefix, args, &CallAuctionInfoEventCallbackWrapper{callback: callback})
+}
+
+func (impl *SpotPublicWSImpl) CallAuctionOrderbookLevel50(symbol string, callback CallAuctionOrderbookLevel50EventCallback) (string, error) {
+	topicPrefix := "/callauction/level2Depth50"
+
+	args := []string{symbol}
+
+	return impl.wsService.Subscribe(topicPrefix, args, &CallAuctionOrderbookLevel50EventCallbackWrapper{callback: callback})
 }
 
 func (impl *SpotPublicWSImpl) Klines(symbol string, type_ string, callback KlinesEventCallback) (string, error) {
@@ -118,7 +144,7 @@ func (impl *SpotPublicWSImpl) OrderbookLevel1(symbol []string, callback Orderboo
 }
 
 func (impl *SpotPublicWSImpl) OrderbookLevel50(symbol []string, callback OrderbookLevel50EventCallback) (string, error) {
-	topicPrefix := "/market/level2"
+	topicPrefix := "/spotMarket/level2Depth50"
 
 	args := symbol
 

@@ -44,7 +44,7 @@ type GetStopOrdersListItems struct {
 	// tag order source
 	Tags *string `json:"tags,omitempty"`
 	// Time of place a stop order, accurate to nanoseconds
-	OrderTime int32 `json:"orderTime,omitempty"`
+	OrderTime int64 `json:"orderTime,omitempty"`
 	// domainId, e.g: kucoin
 	DomainId string `json:"domainId,omitempty"`
 	// trade source: USER（Order by user）, MARGIN_SYSTEM（Order by margin system）
@@ -58,11 +58,11 @@ type GetStopOrdersListItems struct {
 	// Fee Rate of maker
 	MakerFeeRate string `json:"makerFeeRate,omitempty"`
 	// order creation time
-	CreatedAt int32 `json:"createdAt,omitempty"`
+	CreatedAt int64 `json:"createdAt,omitempty"`
 	// Stop order type, include loss and entry
 	Stop string `json:"stop,omitempty"`
 	// The trigger time of the stop order
-	StopTriggerTime *int32 `json:"stopTriggerTime,omitempty"`
+	StopTriggerTime *int64 `json:"stopTriggerTime,omitempty"`
 	// stop price
 	StopPrice         string  `json:"stopPrice,omitempty"`
 	RelatedNo         *string `json:"relatedNo,omitempty"`
@@ -73,7 +73,7 @@ type GetStopOrdersListItems struct {
 
 // NewGetStopOrdersListItems instantiates a new GetStopOrdersListItems object
 // This constructor will assign default values to properties that have it defined
-func NewGetStopOrdersListItems(id string, symbol string, userId string, status string, Type_ string, side string, price string, size string, timeInForce string, cancelAfter int32, postOnly bool, hidden bool, iceberg bool, channel string, clientOid string, remark string, orderTime int32, domainId string, tradeSource string, tradeType string, feeCurrency string, takerFeeRate string, makerFeeRate string, createdAt int32, stop string, stopPrice string) *GetStopOrdersListItems {
+func NewGetStopOrdersListItems(id string, symbol string, userId string, status string, Type_ string, side string, price string, size string, timeInForce string, cancelAfter int32, postOnly bool, hidden bool, iceberg bool, channel string, clientOid string, remark string, orderTime int64, domainId string, tradeSource string, tradeType string, feeCurrency string, takerFeeRate string, makerFeeRate string, createdAt int64, stop string, stopPrice string) *GetStopOrdersListItems {
 	this := GetStopOrdersListItems{}
 	this.Id = id
 	this.Symbol = symbol

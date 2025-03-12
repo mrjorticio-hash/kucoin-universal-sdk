@@ -23,6 +23,11 @@ type SpotPrivateWS interface {
 	// push frequency: real-time
 	OrderV2(callback OrderV2EventCallback) (id string, err error)
 
+	// StopOrder Get Stop Order
+	// This topic will push all change events of your stop orders.
+	// push frequency: real-time
+	StopOrder(callback StopOrderEventCallback) (id string, err error)
+
 	// Unsubscribe from topics
 	UnSubscribe(id string) error
 
@@ -63,6 +68,14 @@ func (impl *SpotPrivateWSImpl) OrderV2(callback OrderV2EventCallback) (string, e
 	args := []string{}
 
 	return impl.wsService.Subscribe(topicPrefix, args, &OrderV2EventCallbackWrapper{callback: callback})
+}
+
+func (impl *SpotPrivateWSImpl) StopOrder(callback StopOrderEventCallback) (string, error) {
+	topicPrefix := "/spotMarket/advancedOrders"
+
+	args := []string{}
+
+	return impl.wsService.Subscribe(topicPrefix, args, &StopOrderEventCallbackWrapper{callback: callback})
 }
 
 func (impl *SpotPrivateWSImpl) UnSubscribe(id string) error {

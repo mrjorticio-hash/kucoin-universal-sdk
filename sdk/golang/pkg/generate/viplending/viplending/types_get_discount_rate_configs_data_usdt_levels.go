@@ -5,16 +5,16 @@ package viplending
 // GetDiscountRateConfigsDataUsdtLevels struct for GetDiscountRateConfigsDataUsdtLevels
 type GetDiscountRateConfigsDataUsdtLevels struct {
 	// Left end point of gradient interval, left<amount<=right
-	Left int32 `json:"left,omitempty"`
+	Left int64 `json:"left,omitempty"`
 	// Right end point of gradient interval, left<amount<=right
-	Right int32 `json:"right,omitempty"`
+	Right int64 `json:"right,omitempty"`
 	// Discount rate
 	DiscountRate string `json:"discountRate,omitempty"`
 }
 
 // NewGetDiscountRateConfigsDataUsdtLevels instantiates a new GetDiscountRateConfigsDataUsdtLevels object
 // This constructor will assign default values to properties that have it defined
-func NewGetDiscountRateConfigsDataUsdtLevels(left int32, right int32, discountRate string) *GetDiscountRateConfigsDataUsdtLevels {
+func NewGetDiscountRateConfigsDataUsdtLevels(left int64, right int64, discountRate string) *GetDiscountRateConfigsDataUsdtLevels {
 	this := GetDiscountRateConfigsDataUsdtLevels{}
 	this.Left = left
 	this.Right = right

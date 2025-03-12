@@ -234,7 +234,7 @@ type OrderAPI interface {
 	GetSymbolsWithOpenOrder(ctx context.Context) (*GetSymbolsWithOpenOrderResp, error)
 
 	// GetOpenOrders Get Open Orders
-	// Description: This interface is to obtain all Spot active order lists, and the return value of the active order interface is the paged data of all uncompleted order lists. The returned data is sorted in descending order according to the latest update time of the order.  After the user successfully places an order, the order is in Active state, and the user can use inOrderBook to determine whether the order has entered the order. Canceled or fully filled orders are marked as completed Done status.
+	// Description: This interface is to obtain all Spot active order (uncompleted order) lists. The returned data is sorted in descending order according to the create time of the order.  After the user successfully places an order, the order is in Active state, and the user can use inOrderBook to determine whether the order has entered the order. Canceled or fully filled orders are marked as completed Done status.
 	// Documentation: https://www.kucoin.com/docs-new/api-3470178
 	// +-----------------------+---------+
 	// | Extra API Info        | Value   |

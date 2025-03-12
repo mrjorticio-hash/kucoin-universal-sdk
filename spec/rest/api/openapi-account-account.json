@@ -1270,7 +1270,7 @@
                                                             },
                                                             "balance": {
                                                                 "type": "string",
-                                                                "description": "Remaining funds after the transaction."
+                                                                "description": "Remaining funds after the transaction. (Deprecated field, no actual use of the value field)"
                                                             },
                                                             "accountType": {
                                                                 "type": "string",

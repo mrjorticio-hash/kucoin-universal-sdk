@@ -12,7 +12,7 @@ type GetSpotLedgerItems struct {
 	Amount *string `json:"amount,omitempty"`
 	// Fees generated in transaction, withdrawal, etc.
 	Fee *string `json:"fee,omitempty"`
-	// Remaining funds after the transaction.
+	// Remaining funds after the transaction. (Deprecated field, no actual use of the value field)
 	Balance *string `json:"balance,omitempty"`
 	// Master user account types: MAIN, TRADE, MARGIN or CONTRACT.
 	AccountType *string `json:"accountType,omitempty"`

@@ -26,7 +26,7 @@ func TestSpotPublicCallAuctionInfoRespModel(t *testing.T) {
 	// CallAuctionInfo
 	// Get Call Auction Info
 
-	data := ""
+	data := "{\"type\":\"message\",\"topic\":\"/callauction/callauctionData:BTC-USDT\",\"subject\":\"callauction.callauctionData\",\"data\":{\"symbol\":\"BTC-USDT\",\"estimatedPrice\":\"0.17\",\"estimatedSize\":\"0.03715004\",\"sellOrderRangeLowPrice\":\"1.788\",\"sellOrderRangeHighPrice\":\"2.788\",\"buyOrderRangeLowPrice\":\"1.788\",\"buyOrderRangeHighPrice\":\"2.788\",\"time\":1550653727731}}"
 
 	commonResp := &types.WsMessage{}
 	err := json.Unmarshal([]byte(data), commonResp)
