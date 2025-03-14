@@ -9,7 +9,6 @@ import json
 from enum import Enum
 from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
-from typing_extensions import Annotated
 
 
 class GetTradeHistoryReq(BaseModel):
@@ -77,7 +76,7 @@ class GetTradeHistoryReq(BaseModel):
         default=1,
         description="Current request page. The default currentPage is 1",
         alias="currentPage")
-    page_size: Optional[Annotated[int, Field(le=1000, strict=True)]] = Field(
+    page_size: Optional[int] = Field(
         default=50,
         description=
         "pageSize, The default pageSize is 50; the maximum cannot exceed 1000",

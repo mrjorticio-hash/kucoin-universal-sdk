@@ -8,7 +8,6 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
-from typing_extensions import Annotated
 
 
 class GetOcoOrderListReq(BaseModel):
@@ -35,11 +34,10 @@ class GetOcoOrderListReq(BaseModel):
         default=None,
         description="Specify orderId collection, up to 500 orders ",
         alias="orderIds")
-    page_size: Optional[Annotated[
-        int, Field(le=500, strict=True, ge=10)]] = Field(
-            default=50,
-            description="Size per page, minimum value 10, maximum value 500",
-            alias="pageSize")
+    page_size: Optional[int] = Field(
+        default=50,
+        description="Size per page, minimum value 10, maximum value 500",
+        alias="pageSize")
     current_page: Optional[int] = Field(
         default=1,
         description="Page number, minimum value 1 ",

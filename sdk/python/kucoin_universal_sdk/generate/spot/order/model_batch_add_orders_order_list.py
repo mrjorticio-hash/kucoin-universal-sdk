@@ -9,7 +9,6 @@ import json
 from enum import Enum
 from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
-from typing_extensions import Annotated
 
 
 class BatchAddOrdersOrderList(BaseModel):
@@ -109,12 +108,11 @@ class BatchAddOrdersOrderList(BaseModel):
         description=
         "[Self Trade Prevention](https://www.kucoin.com/docs-new/doc-338146) is divided into four strategies: CN, CO, CB , and DC"
     )
-    cancel_after: Optional[Annotated[
-        int, Field(le=2592000, strict=True, ge=0)]] = Field(
-            default=-1,
-            description=
-            "Cancel after n seconds, the order timing strategy is GTT, -1 means it will not be cancelled automatically, the default value is -1 ",
-            alias="cancelAfter")
+    cancel_after: Optional[int] = Field(
+        default=-1,
+        description=
+        "Cancel after n seconds, the order timing strategy is GTT, -1 means it will not be cancelled automatically, the default value is -1 ",
+        alias="cancelAfter")
     post_only: Optional[bool] = Field(
         default=False,
         description=

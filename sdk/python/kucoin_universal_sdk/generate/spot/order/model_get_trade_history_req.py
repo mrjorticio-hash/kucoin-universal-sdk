@@ -9,7 +9,6 @@ import json
 from enum import Enum
 from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
-from typing_extensions import Annotated
 
 
 class GetTradeHistoryReq(BaseModel):
@@ -57,21 +56,18 @@ class GetTradeHistoryReq(BaseModel):
         default=None,
         description=
         "specify if the order is an 'limit' order or 'market' order. ")
-    last_id: Optional[Annotated[int, Field(strict=True, ge=0)]] = Field(
+    last_id: Optional[int] = Field(
         default=None,
         description=
         "The id of the last set of data from the previous batch of data. By default, the latest information is given. lastId is used to filter data and paginate. If lastId is not entered, the default is a maximum of 100 returned data items. The return results include lastId，which can be used as a query parameter to look up new data from the next page.",
         alias="lastId")
-    limit: Optional[Annotated[int, Field(le=100, strict=True, ge=1)]] = Field(
-        default=20, description="Default20，Max100")
-    start_at: Optional[Annotated[
-        int, Field(le=9999999999999, strict=True, ge=1000000000000)]] = Field(
-            default=None,
-            description="Start time (milisecond)",
-            alias="startAt")
-    end_at: Optional[Annotated[
-        int, Field(le=9999999999999, strict=True, ge=1000000000000)]] = Field(
-            default=None, description="End time (milisecond)", alias="endAt")
+    limit: Optional[int] = Field(default=20, description="Default20，Max100")
+    start_at: Optional[int] = Field(default=None,
+                                    description="Start time (milisecond)",
+                                    alias="startAt")
+    end_at: Optional[int] = Field(default=None,
+                                  description="End time (milisecond)",
+                                  alias="endAt")
 
     __properties: ClassVar[List[str]] = [
         "symbol", "orderId", "side", "type", "lastId", "limit", "startAt",

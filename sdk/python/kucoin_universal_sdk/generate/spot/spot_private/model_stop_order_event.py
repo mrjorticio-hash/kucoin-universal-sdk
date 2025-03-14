@@ -37,9 +37,11 @@ class StopOrderEvent(BaseModel):
         Attributes:
             LIMIT: limit
             MARKET: market
+            STOP: stop
         """
         LIMIT = 'limit'
         MARKET = 'market'
+        STOP = 'stop'
 
     class SideEnum(Enum):
         """

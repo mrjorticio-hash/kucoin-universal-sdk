@@ -9,7 +9,6 @@ import json
 from enum import Enum
 from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
-from typing_extensions import Annotated
 
 
 class GetPurchaseOrdersReq(BaseModel):
@@ -43,11 +42,10 @@ class GetPurchaseOrdersReq(BaseModel):
         default=1,
         description="Current page; default is 1",
         alias="currentPage")
-    page_size: Optional[Annotated[
-        int, Field(le=50, strict=True, ge=1)]] = Field(
-            default=50,
-            description="Page size; 1<=pageSize<=50; default is 50",
-            alias="pageSize")
+    page_size: Optional[int] = Field(
+        default=50,
+        description="Page size; 1<=pageSize<=50; default is 50",
+        alias="pageSize")
 
     __properties: ClassVar[List[str]] = [
         "status", "currency", "purchaseOrderNo", "currentPage", "pageSize"

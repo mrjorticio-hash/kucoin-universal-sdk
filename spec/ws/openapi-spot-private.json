@@ -877,7 +877,8 @@
                                 "description": "User-specified order type",
                                 "enum": [
                                     "limit",
-                                    "market"
+                                    "market",
+                                    "stop"
                                 ],
                                 "x-api-enum": [
                                     {
@@ -889,6 +890,11 @@
                                         "value": "market",
                                         "name": "market",
                                         "description": "market"
+                                    },
+                                    {
+                                        "value": "stop",
+                                        "name": "stop",
+                                        "description": "stop"
                                     }
                                 ]
                             },

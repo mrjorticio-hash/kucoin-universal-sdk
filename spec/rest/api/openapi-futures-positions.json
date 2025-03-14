@@ -276,11 +276,11 @@
                                                 },
                                                 "maxBuyOpenSize": {
                                                     "type": "integer",
-                                                    "description": "Maximum buy size\n"
+                                                    "description": "Maximum buy size (unit: lot)\n"
                                                 },
                                                 "maxSellOpenSize": {
                                                     "type": "integer",
-                                                    "description": "Maximum buy size\n"
+                                                    "description": "Maximum buy size (unit: lot)\n"
                                                 }
                                             },
                                             "required": [

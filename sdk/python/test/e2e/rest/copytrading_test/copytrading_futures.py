@@ -68,8 +68,7 @@ class FuturesApiTest(unittest.TestCase):
 
         builder = AddOrderReqBuilder()
         builder.set_client_oid(uuid.uuid4().__str__()).set_side(AddOrderReq.SideEnum.BUY).set_symbol(
-            'XBTUSDTM').set_leverage(3).set_type(AddOrderReq.TypeEnum.MARKET).set_remark(
-            'order remarks').set_size(1)
+            'XBTUSDTM').set_leverage(3).set_type(AddOrderReq.TypeEnum.MARKET).set_size(1)
         req = builder.build()
         try:
             resp = self.api.add_order(req)
@@ -111,8 +110,7 @@ class FuturesApiTest(unittest.TestCase):
 
         builder = AddTpslOrderReqBuilder()
         builder.set_client_oid(uuid.uuid4().__str__()).set_side(AddTpslOrderReq.SideEnum.BUY).set_symbol(
-            'XBTUSDTM').set_leverage(3).set_type(AddTpslOrderReq.TypeEnum.LIMIT).set_remark(
-            'order remarks').set_reduce_only(False).set_margin_mode(AddTpslOrderReq.MarginModeEnum.ISOLATED).set_price(
+            'XBTUSDTM').set_leverage(3).set_type(AddTpslOrderReq.TypeEnum.LIMIT).set_reduce_only(False).set_margin_mode(AddTpslOrderReq.MarginModeEnum.ISOLATED).set_price(
             '0.1').set_size(1).set_time_in_force(
             AddTpslOrderReq.TimeInForceEnum.GOOD_TILL_CANCELED).set_trigger_stop_up_price(
             '0.3').set_trigger_stop_down_price('0.1').set_stop_price_type(AddTpslOrderReq.StopPriceTypeEnum.TRADE_PRICE)
@@ -172,7 +170,7 @@ class FuturesApiTest(unittest.TestCase):
         """
 
         builder = GetMaxOpenSizeReqBuilder()
-        builder.set_symbol('XBTUSDTM').set_price('0.1').set_leverage(10)
+        builder.set_symbol('XBTUSDTM').set_price(0.1).set_leverage(10)
         req = builder.build()
         try:
             resp = self.api.get_max_open_size(req)
@@ -229,7 +227,7 @@ class FuturesApiTest(unittest.TestCase):
         """
 
         builder = RemoveIsolatedMarginReqBuilder()
-        builder.set_symbol('XBTUSDTM').set_withdraw_amount('0.0000001')
+        builder.set_symbol('XBTUSDTM').set_withdraw_amount(0.0000001)
         req = builder.build()
         try:
             resp = self.api.remove_isolated_margin(req)

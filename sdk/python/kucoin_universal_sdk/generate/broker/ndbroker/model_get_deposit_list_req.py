@@ -8,7 +8,6 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
-from typing_extensions import Annotated
 
 
 class GetDepositListReq(BaseModel):
@@ -38,7 +37,7 @@ class GetDepositListReq(BaseModel):
         description=
         "End time (milliseconds); default sorting in descending order",
         alias="endTimestamp")
-    limit: Optional[Annotated[int, Field(le=1000, strict=True)]] = Field(
+    limit: Optional[int] = Field(
         default=1000,
         description=
         "Maximum number of returned items, maximum 1000, default 1000")

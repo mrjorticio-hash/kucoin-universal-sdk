@@ -452,13 +452,13 @@ public class PythonSdkGenerator extends AbstractPythonCodegen implements NameSer
 
                     case API:
                     case TEST: {
-                        allModels.forEach(m-> {
-                            String importName =  (String)m.get("importPath");
+                        allModels.forEach(m -> {
+                            String importName = (String) m.get("importPath");
                             String fileName = m.getModel().getClassFilename();
                             // from .model_get_part_order_book_req import GetPartOrderBookReqBuilder
                             exports.add(String.format("from .%s import %s", fileName, importName));
                             if (m.getModel().getVendorExtensions().containsKey("x-request-model")) {
-                                exports.add(String.format("from .%s import %s", fileName, importName+"Builder"));
+                                exports.add(String.format("from .%s import %s", fileName, importName + "Builder"));
                             }
                         });
                         exports.add(String.format("from .%s import %sAPI", toApiFilename(meta.getSubService()), formatService(meta.getSubService())));
@@ -477,8 +477,8 @@ public class PythonSdkGenerator extends AbstractPythonCodegen implements NameSer
                     }
                     case WS:
                     case WS_TEST: {
-                        allModels.forEach(m-> {
-                            String importName =  (String)m.get("importPath");
+                        allModels.forEach(m -> {
+                            String importName = (String) m.get("importPath");
                             String fileName = m.getModel().getClassFilename();
                             // from .model_get_part_order_book_req import GetPartOrderBookReqBuilder
                             exports.add(String.format("from .%s import %s", fileName, importName));
@@ -775,8 +775,8 @@ public class PythonSdkGenerator extends AbstractPythonCodegen implements NameSer
             throw new RuntimeException("read csv fail", e);
         }
 
-        services.forEach(s-> {
-            Map<String,String> specialKeywords = Map.of("copytrading", "CopyTrading", "viplending", "VIPLending");
+        services.forEach(s -> {
+            Map<String, String> specialKeywords = Map.of("copytrading", "CopyTrading", "viplending", "VIPLending");
             String service = formatService(specialKeywords.getOrDefault(s, s));
             serviceExports.add(String.format("from .%s_api import %sService", s, service));
         });
@@ -1178,100 +1178,23 @@ public class PythonSdkGenerator extends AbstractPythonCodegen implements NameSer
         }
 
         private PythonType numberType(IJsonSchemaValidationProperties cp) {
-            if (cp.getHasValidation()) {
-                PythonType floatt = new PythonType("float");
-
-                // e.g. confloat(ge=10, le=100, strict=True)
-                if (cp.getMaximum() != null) {
-                    if (cp.getExclusiveMaximum()) {
-                        floatt.constrain("lt", cp.getMaximum(), false);
-                    } else {
-                        floatt.constrain("le", cp.getMaximum(), false);
-                    }
-                }
-                if (cp.getMinimum() != null) {
-                    if (cp.getExclusiveMinimum()) {
-                        floatt.constrain("gt", cp.getMinimum(), false);
-                    } else {
-                        floatt.constrain("ge", cp.getMinimum(), false);
-                    }
-                }
-                if (cp.getMultipleOf() != null) {
-                    floatt.constrain("multiple_of", cp.getMultipleOf());
-                }
-
-                return floatt;
-            } else {
-                return new PythonType("float");
-            }
+            return new PythonType("float");
         }
 
         private PythonType intType(IJsonSchemaValidationProperties cp) {
-            if (cp.getHasValidation()) {
-                PythonType pt = new PythonType("int");
-                // e.g. conint(ge=10, le=100, strict=True)
-                pt.constrain("strict", true);
-                if (cp.getMaximum() != null) {
-                    if (cp.getExclusiveMaximum()) {
-                        pt.constrain("lt", cp.getMaximum(), false);
-                    } else {
-                        pt.constrain("le", cp.getMaximum(), false);
-                    }
-                }
-                if (cp.getMinimum() != null) {
-                    if (cp.getExclusiveMinimum()) {
-                        pt.constrain("gt", cp.getMinimum(), false);
-                    } else {
-                        pt.constrain("ge", cp.getMinimum(), false);
-                    }
-                }
-                if (cp.getMultipleOf() != null) {
-                    pt.constrain("multiple_of", cp.getMultipleOf());
-                }
-                return pt;
-            } else {
-                return new PythonType("int");
-            }
+            return new PythonType("int");
         }
 
         private PythonType binaryType(IJsonSchemaValidationProperties cp) {
-            if (cp.getHasValidation()) {
-                PythonType bytest = new PythonType("bytes");
-                PythonType strt = new PythonType("str");
+            // same as above which has validation
+            moduleImports.add("pydantic", "StrictBytes");
+            moduleImports.add("pydantic", "StrictStr");
+            moduleImports.add("typing", "Union");
 
-                // e.g. conbytes(min_length=2, max_length=10)
-                bytest.constrain("strict", true);
-                strt.constrain("strict", true);
-                if (cp.getMaxLength() != null) {
-                    bytest.constrain("max_length", cp.getMaxLength());
-                    strt.constrain("max_length", cp.getMaxLength());
-                }
-                if (cp.getMinLength() != null) {
-                    bytest.constrain("min_length", cp.getMinLength());
-                    strt.constrain("min_length", cp.getMinLength());
-                }
-                if (cp.getPattern() != null) {
-                    moduleImports.add("pydantic", "field_validator");
-                    // use validator instead as regex doesn't support flags, e.g. IGNORECASE
-                    //fieldCustomization.add(Locale.ROOT, String.format(Locale.ROOT, "regex=r'%s'", cp.getPattern()));
-                }
-
-                moduleImports.add("typing", "Union");
-                PythonType pt = new PythonType("Union");
-                pt.addTypeParam(bytest);
-                pt.addTypeParam(strt);
-                return pt;
-            } else {
-                // same as above which has validation
-                moduleImports.add("pydantic", "StrictBytes");
-                moduleImports.add("pydantic", "StrictStr");
-                moduleImports.add("typing", "Union");
-
-                PythonType pt = new PythonType("Union");
-                pt.addTypeParam(new PythonType("StrictBytes"));
-                pt.addTypeParam(new PythonType("StrictStr"));
-                return pt;
-            }
+            PythonType pt = new PythonType("Union");
+            pt.addTypeParam(new PythonType("StrictBytes"));
+            pt.addTypeParam(new PythonType("StrictStr"));
+            return pt;
         }
 
         private PythonType boolType(IJsonSchemaValidationProperties cp) {
@@ -1281,29 +1204,6 @@ public class PythonSdkGenerator extends AbstractPythonCodegen implements NameSer
         private PythonType decimalType(IJsonSchemaValidationProperties cp) {
             PythonType pt = new PythonType("Decimal");
             moduleImports.add("decimal", "Decimal");
-
-            if (cp.getHasValidation()) {
-                // e.g. condecimal(ge=10, le=100, strict=True)
-                pt.constrain("strict", true);
-                if (cp.getMaximum() != null) {
-                    if (cp.getExclusiveMaximum()) {
-                        pt.constrain("gt", cp.getMaximum(), false);
-                    } else {
-                        pt.constrain("ge", cp.getMaximum(), false);
-                    }
-                }
-                if (cp.getMinimum() != null) {
-                    if (cp.getExclusiveMinimum()) {
-                        pt.constrain("lt", cp.getMinimum(), false);
-                    } else {
-                        pt.constrain("le", cp.getMinimum(), false);
-                    }
-                }
-                if (cp.getMultipleOf() != null) {
-                    pt.constrain("multiple_of", cp.getMultipleOf());
-                }
-            }
-
             return pt;
         }
 

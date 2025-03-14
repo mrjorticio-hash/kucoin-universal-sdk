@@ -9,7 +9,6 @@ import json
 from enum import Enum
 from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
-from typing_extensions import Annotated
 
 
 class GetClosedOrdersReq(BaseModel):
@@ -72,8 +71,7 @@ class GetClosedOrdersReq(BaseModel):
         description=
         "The ID of the last set of data from the previous data batch. By default, the latest information is given. lastId is used to filter data and paginate. If lastId is not entered, the default is a maximum of 100 returned data items. The return results include lastId, which can be used as a query parameter to look up new data from the next page.",
         alias="lastId")
-    limit: Optional[Annotated[int, Field(le=100, strict=True, ge=1)]] = Field(
-        default=20, description="Default20, Max100")
+    limit: Optional[int] = Field(default=20, description="Default20, Max100")
     start_at: Optional[int] = Field(default=None,
                                     description="Start time (milliseconds)",
                                     alias="startAt")

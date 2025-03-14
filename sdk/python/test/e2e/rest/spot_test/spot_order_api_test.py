@@ -4,6 +4,7 @@ import uuid
 
 from kucoin_universal_sdk.api.client import DefaultClient
 from kucoin_universal_sdk.extension.interceptor.logging import LoggingInterceptor
+from kucoin_universal_sdk.generate.spot.order import CancelOrderByClientOidOldReqBuilder
 from kucoin_universal_sdk.generate.spot.order.model_add_oco_order_req import AddOcoOrderReqBuilder, AddOcoOrderReq
 from kucoin_universal_sdk.generate.spot.order.model_add_order_old_req import AddOrderOldReqBuilder, AddOrderOldReq
 from kucoin_universal_sdk.generate.spot.order.model_add_order_req import AddOrderReqBuilder, AddOrderReq
@@ -31,8 +32,6 @@ from kucoin_universal_sdk.generate.spot.order.model_cancel_oco_order_by_client_o
     CancelOcoOrderByClientOidReqBuilder
 from kucoin_universal_sdk.generate.spot.order.model_cancel_oco_order_by_order_id_req import \
     CancelOcoOrderByOrderIdReqBuilder
-from kucoin_universal_sdk.generate.spot.order.model_cancel_order_by_client_oid_old_req import \
-    CancelOrderByClientOidOldReqBuilder
 from kucoin_universal_sdk.generate.spot.order.model_cancel_order_by_client_oid_req import \
     CancelOrderByClientOidReqBuilder
 from kucoin_universal_sdk.generate.spot.order.model_cancel_order_by_client_oid_sync_req import \
@@ -63,10 +62,6 @@ from kucoin_universal_sdk.generate.spot.order.model_get_order_by_order_id_old_re
 from kucoin_universal_sdk.generate.spot.order.model_get_order_by_order_id_req import GetOrderByOrderIdReqBuilder
 from kucoin_universal_sdk.generate.spot.order.model_get_orders_list_old_req import GetOrdersListOldReqBuilder, \
     GetOrdersListOldReq
-from kucoin_universal_sdk.generate.spot.order.model_get_recent_orders_list_old_req import \
-    GetRecentOrdersListOldReqBuilder
-from kucoin_universal_sdk.generate.spot.order.model_get_recent_trade_history_old_req import \
-    GetRecentTradeHistoryOldReqBuilder
 from kucoin_universal_sdk.generate.spot.order.model_get_stop_order_by_client_oid_req import \
     GetStopOrderByClientOidReqBuilder
 from kucoin_universal_sdk.generate.spot.order.model_get_stop_order_by_order_id_req import \
@@ -561,12 +556,8 @@ class SpotApiTest(unittest.TestCase):
             Get Recent Trade History - Old
             /api/v1/limit/fills
         """
-
-        builder = GetRecentTradeHistoryOldReqBuilder()
-        builder.set_current_page(1).set_page_size(10)
-        req = builder.build()
         try:
-            resp = self.api.get_recent_trade_history_old(req)
+            resp = self.api.get_recent_trade_history_old()
             print("code: ", resp.common_response.code)
             print("msg: ", resp.common_response.message)
             print("data: ", resp.to_json())
@@ -580,12 +571,8 @@ class SpotApiTest(unittest.TestCase):
             Get Recent Orders List - Old
             /api/v1/limit/orders
         """
-
-        builder = GetRecentOrdersListOldReqBuilder()
-        builder.set_current_page(1).set_page_size(10)
-        req = builder.build()
         try:
-            resp = self.api.get_recent_orders_list_old(req)
+            resp = self.api.get_recent_orders_list_old()
             print("code: ", resp.common_response.code)
             print("msg: ", resp.common_response.message)
             print("data: ", resp.to_json())
@@ -593,7 +580,6 @@ class SpotApiTest(unittest.TestCase):
             print("error: ", e)
             raise e
 
-    # TODO limit
     def test_cancel_order_by_client_oid_old_req(self):
         """
             cancel_order_by_client_oid_old
@@ -602,7 +588,7 @@ class SpotApiTest(unittest.TestCase):
         """
 
         builder = CancelOrderByClientOidOldReqBuilder()
-        builder.set_symbol("BTC-USDT").set_client_oid("27e2e92f-29d5-41b2-9580-d010c6277239")
+        builder.set_client_oid("5d1962d9-5010-4d59-8872-75264c86c95e")
         req = builder.build()
         try:
             resp = self.api.cancel_order_by_client_oid_old(req)

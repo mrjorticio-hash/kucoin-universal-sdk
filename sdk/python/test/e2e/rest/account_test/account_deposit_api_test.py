@@ -3,7 +3,8 @@ import unittest
 
 from kucoin_universal_sdk.api.client import DefaultClient
 from kucoin_universal_sdk.extension.interceptor.logging import LoggingInterceptor
-from kucoin_universal_sdk.generate.account.deposit.model_add_deposit_address_v1_req import AddDepositAddressV1ReqBuilder
+from kucoin_universal_sdk.generate.account.deposit.model_add_deposit_address_v1_req import \
+    AddDepositAddressV1ReqBuilder, AddDepositAddressV1Req
 from kucoin_universal_sdk.generate.account.deposit.model_add_deposit_address_v3_req import \
     AddDepositAddressV3ReqBuilder, AddDepositAddressV3Req
 from kucoin_universal_sdk.generate.account.deposit.model_get_deposit_address_v1_req import GetDepositAddressV1ReqBuilder
@@ -76,7 +77,7 @@ class AccountApiTest(unittest.TestCase):
        """
 
        builder = AddDepositAddressV1ReqBuilder()
-       builder.set_currency('ETH').set_chain('eth')
+       builder.set_currency('ETH').set_chain('eth').set_to(AddDepositAddressV1Req.ToEnum.MAIN)
        req = builder.build()
        try:
            resp = self.api.add_deposit_address_v1(req)
@@ -134,7 +135,7 @@ class AccountApiTest(unittest.TestCase):
        """
 
        builder = GetDepositAddressV2ReqBuilder()
-       builder.set_currency("USDT")
+       builder.set_currency("USDT").set_chain("SOL")
        req = builder.build()
        try:
            resp = self.api.get_deposit_address_v2(req)

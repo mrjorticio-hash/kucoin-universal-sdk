@@ -8,7 +8,6 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
-from typing_extensions import Annotated
 
 
 class GetPositionsHistoryReq(BaseModel):
@@ -33,7 +32,7 @@ class GetPositionsHistoryReq(BaseModel):
                                  alias="from")
     to: Optional[int] = Field(default=None,
                               description="Closing end time(ms) ")
-    limit: Optional[Annotated[int, Field(le=200, strict=True)]] = Field(
+    limit: Optional[int] = Field(
         default=10,
         description="Number of requests per page, max 200, default 10 ")
     page_id: Optional[int] = Field(

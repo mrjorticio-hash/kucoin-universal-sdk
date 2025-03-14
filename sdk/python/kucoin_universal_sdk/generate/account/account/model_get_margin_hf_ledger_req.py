@@ -9,7 +9,6 @@ import json
 from enum import Enum
 from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
-from typing_extensions import Annotated
 
 
 class GetMarginHfLedgerReq(BaseModel):
@@ -52,8 +51,7 @@ class GetMarginHfLedgerReq(BaseModel):
         description=
         "The ID of the last set of data from the previous data batch. By default, the latest information is given.",
         alias="lastId")
-    limit: Optional[Annotated[int, Field(le=200, strict=True, ge=1)]] = Field(
-        default=100, description="Default100, Max200")
+    limit: Optional[int] = Field(default=100, description="Default100, Max200")
     start_at: Optional[int] = Field(default=None,
                                     description="Start time (milliseconds)",
                                     alias="startAt")

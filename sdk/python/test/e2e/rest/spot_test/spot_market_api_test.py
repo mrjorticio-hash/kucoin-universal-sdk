@@ -3,6 +3,8 @@ import unittest
 
 from kucoin_universal_sdk.api.client import DefaultClient
 from kucoin_universal_sdk.extension.interceptor.logging import LoggingInterceptor
+from kucoin_universal_sdk.generate.spot.market import GetCallAuctionPartOrderBookReqBuilder, \
+    GetCallAuctionInfoReqBuilder
 from kucoin_universal_sdk.generate.spot.market.model_get24hr_stats_req import Get24hrStatsReqBuilder
 from kucoin_universal_sdk.generate.spot.market.model_get_all_symbols_req import GetAllSymbolsReqBuilder
 from kucoin_universal_sdk.generate.spot.market.model_get_announcements_req import GetAnnouncementsReqBuilder, \
@@ -367,6 +369,60 @@ class SpotApiTest(unittest.TestCase):
         req = builder.build()
         try:
             resp = self.api.get_full_order_book(req)
+            print("code: ", resp.common_response.code)
+            print("msg: ", resp.common_response.message)
+            print("data: ", resp.to_json())
+        except Exception as e:
+            print("error: ", e)
+            raise e
+
+    def test_get_call_auction_part_order_book_req(self):
+        """
+            get_call_auction_part_order_book
+            Get Call Auction Part OrderBook
+            /api/v1/market/orderbook/callauction/level2_{size}
+        """
+
+        builder = GetCallAuctionPartOrderBookReqBuilder()
+        builder.set_symbol("PAWS-USDT").set_size("20")
+        req = builder.build()
+        try:
+            resp = self.api.get_call_auction_part_order_book(req)
+            print("code: ", resp.common_response.code)
+            print("msg: ", resp.common_response.message)
+            print("data: ", resp.to_json())
+        except Exception as e:
+            print("error: ", e)
+            raise e
+
+    def test_get_call_auction_info_req(self):
+        """
+            get_call_auction_info
+            Get Call Auction Info
+            /api/v1/market/callauctionData
+        """
+
+        builder = GetCallAuctionInfoReqBuilder()
+        builder.set_symbol("PAWS-USDT")
+        req = builder.build()
+        try:
+            resp = self.api.get_call_auction_info(req)
+            print("code: ", resp.common_response.code)
+            print("msg: ", resp.common_response.message)
+            print("data: ", resp.to_json())
+        except Exception as e:
+            print("error: ", e)
+            raise e
+
+    def test_get_client_ip_address_req(self):
+        """
+            get_client_ip_address
+            Get Client IP Address
+            /api/v1/my-ip
+        """
+
+        try:
+            resp = self.api.get_client_ip_address()
             print("code: ", resp.common_response.code)
             print("msg: ", resp.common_response.message)
             print("data: ", resp.to_json())

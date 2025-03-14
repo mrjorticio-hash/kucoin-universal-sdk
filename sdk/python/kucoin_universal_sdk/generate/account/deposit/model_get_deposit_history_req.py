@@ -9,7 +9,6 @@ import json
 from enum import Enum
 from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
-from typing_extensions import Annotated
 
 
 class GetDepositHistoryReq(BaseModel):
@@ -50,12 +49,11 @@ class GetDepositHistoryReq(BaseModel):
     current_page: Optional[int] = Field(default=None,
                                         description="Current request page.",
                                         alias="currentPage")
-    page_size: Optional[Annotated[
-        int, Field(le=500, strict=True, ge=10)]] = Field(
-            default=50,
-            description=
-            "Number of results per request. Minimum is 10, maximum is 500.",
-            alias="pageSize")
+    page_size: Optional[int] = Field(
+        default=50,
+        description=
+        "Number of results per request. Minimum is 10, maximum is 500.",
+        alias="pageSize")
 
     __properties: ClassVar[List[str]] = [
         "currency", "status", "startAt", "endAt", "currentPage", "pageSize"

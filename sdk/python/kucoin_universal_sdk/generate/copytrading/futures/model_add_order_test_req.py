@@ -9,7 +9,6 @@ import json
 from enum import Enum
 from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
-from typing_extensions import Annotated
 
 
 class AddOrderTestReq(BaseModel):
@@ -101,7 +100,7 @@ class AddOrderTestReq(BaseModel):
         description=
         "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) "
     )
-    leverage: Optional[Annotated[int, Field(le=10, strict=True, ge=1)]] = Field(
+    leverage: Optional[int] = Field(
         default=None,
         description=
         "Used to calculate the margin to be frozen for the order. If you are to close the position, this parameter is not required."

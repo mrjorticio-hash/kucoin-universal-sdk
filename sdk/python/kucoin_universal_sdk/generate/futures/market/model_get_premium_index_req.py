@@ -8,7 +8,6 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
-from typing_extensions import Annotated
 
 
 class GetPremiumIndexReq(BaseModel):
@@ -51,7 +50,7 @@ class GetPremiumIndexReq(BaseModel):
         description=
         "This parameter functions to judge whether the lookup is forward or not. True means “yes” and False means “no”. This parameter is set as true by default."
     )
-    max_count: Optional[Annotated[int, Field(le=100, strict=True)]] = Field(
+    max_count: Optional[int] = Field(
         default=10,
         description=
         "Max. record count. The default record count is 10; the maximum length cannot exceed 100",

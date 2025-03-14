@@ -9,7 +9,6 @@ import json
 from enum import Enum
 from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
-from typing_extensions import Annotated
 
 
 class GetSpotHfLedgerReq(BaseModel):
@@ -65,16 +64,13 @@ class GetSpotHfLedgerReq(BaseModel):
         description=
         "The ID of the last set of data from the previous data batch. By default, the latest information is given.",
         alias="lastId")
-    limit: Optional[Annotated[int, Field(le=200, strict=True, ge=1)]] = Field(
-        default=100, description="Default100, Max200")
-    start_at: Optional[Annotated[
-        int, Field(le=9999999999999, strict=True, ge=0)]] = Field(
-            default=None,
-            description="Start time (milliseconds)",
-            alias="startAt")
-    end_at: Optional[Annotated[
-        int, Field(le=9999999999999, strict=True, ge=0)]] = Field(
-            default=None, description="End time (milliseconds)", alias="endAt")
+    limit: Optional[int] = Field(default=100, description="Default100, Max200")
+    start_at: Optional[int] = Field(default=None,
+                                    description="Start time (milliseconds)",
+                                    alias="startAt")
+    end_at: Optional[int] = Field(default=None,
+                                  description="End time (milliseconds)",
+                                  alias="endAt")
 
     __properties: ClassVar[List[str]] = [
         "currency", "direction", "bizType", "lastId", "limit", "startAt",

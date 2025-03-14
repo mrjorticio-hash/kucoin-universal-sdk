@@ -73,7 +73,7 @@ class FuturesApiTest(unittest.TestCase):
         """
 
         builder = GetPrivateFundingHistoryReqBuilder()
-        builder.set_symbol("DOGEUSDTM").set_from_(1732550400000).set_to(1732723200000).set_reverse(True).set_max_count(
+        builder.set_symbol("DOGEUSDTM").set_start_at(1732550400000).set_end_at(1732723200000).set_reverse(True).set_max_count(
             100)
         req = builder.build()
         try:

@@ -9,7 +9,6 @@ import json
 from enum import Enum
 from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
-from typing_extensions import Annotated
 
 
 class FuturesAccountTransferOutReq(BaseModel):
@@ -33,7 +32,7 @@ class FuturesAccountTransferOutReq(BaseModel):
 
     currency: Optional[str] = Field(
         default=None, description="Currency, including XBT, USDT...")
-    amount: Optional[Annotated[float, Field(le=1000000000)]] = Field(
+    amount: Optional[float] = Field(
         default=None,
         description="Amount to be transferred out; cannot exceed 1000000000")
     rec_account_type: Optional[RecAccountTypeEnum] = Field(
