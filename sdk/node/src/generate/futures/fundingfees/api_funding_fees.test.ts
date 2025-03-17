@@ -10,7 +10,7 @@ describe('Auto Test', () => {
     test('getCurrentFundingRate request test', () => {
         /**
          * getCurrentFundingRate
-         * Get Current Funding Rate
+         * Get Current Funding Rate.
          * /api/v1/funding-rate/{symbol}/current
          */
         let data = '{"symbol": "XBTUSDTM"}';
@@ -24,7 +24,7 @@ describe('Auto Test', () => {
     test('getCurrentFundingRate response test', () => {
         /**
          * getCurrentFundingRate
-         * Get Current Funding Rate
+         * Get Current Funding Rate.
          * /api/v1/funding-rate/{symbol}/current
          */
         let data =
@@ -76,7 +76,7 @@ describe('Auto Test', () => {
          * /api/v1/funding-history
          */
         let data =
-            '{"symbol": "XBTUSDTM", "from": 1700310700000, "to": 1702310700000, "reverse": true, "offset": 123456, "forward": true, "maxCount": 123456}';
+            '{"symbol": "XBTUSDTM", "startAt": 1700310700000, "endAt": 1702310700000, "reverse": true, "offset": 123456, "forward": true, "maxCount": 123456}';
         let req = GetPrivateFundingHistoryReq.fromJson(data);
         expect(Object.values(req).every((value) => value === null || value === undefined)).toBe(
             false,

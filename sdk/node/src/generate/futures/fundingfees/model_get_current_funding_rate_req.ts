@@ -6,7 +6,7 @@ import { Serializable } from '@internal/interfaces/serializable';
 
 export class GetCurrentFundingRateReq implements Serializable {
     /**
-     * Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)
+     * Symbol of the contract. Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)
      */
     @Reflect.metadata('path', 'symbol')
     symbol?: string;
@@ -28,7 +28,7 @@ export class GetCurrentFundingRateReq implements Serializable {
      */
     static create(data: {
         /**
-         * Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)
+         * Symbol of the contract. Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)
          */
         symbol?: string;
     }): GetCurrentFundingRateReq {
@@ -62,7 +62,7 @@ export class GetCurrentFundingRateReqBuilder {
         this.obj = obj;
     }
     /**
-     * Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)
+     * Symbol of the contract. Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)
      */
     setSymbol(value: string): GetCurrentFundingRateReqBuilder {
         this.obj.symbol = value;

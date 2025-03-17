@@ -5,7 +5,7 @@ import { Serializable } from '@internal/interfaces/serializable';
 
 export class GetSpotHFLedgerReq implements Serializable {
     /**
-     * Currency ( you can choose more than one currency). You can specify 10 currencies at most for one time. If not specified, all currencies will be inquired by default.
+     * Currency (you can choose more than one currency). You can specify a max. of 10 currencies in one go. If not specified, all currencies will be queried by default.
      */
     currency?: string;
 
@@ -15,27 +15,27 @@ export class GetSpotHFLedgerReq implements Serializable {
     direction?: GetSpotHFLedgerReq.DirectionEnum;
 
     /**
-     * Transaction type: TRANSFER-transfer funds,TRADE_EXCHANGE-Trade
+     * Transaction type
      */
     bizType?: GetSpotHFLedgerReq.BizTypeEnum;
 
     /**
-     * The id of the last set of data from the previous batch of data. By default, the latest information is given.
+     * The ID of the last set of data from the previous data batch. By default, the latest information is given.
      */
     lastId?: number;
 
     /**
-     * Default100，Max200
+     * Default100, Max200
      */
     limit?: number = 100;
 
     /**
-     * Start time (milisecond)
+     * Start time (milliseconds)
      */
     startAt?: number;
 
     /**
-     * End time (milisecond)
+     * End time (milliseconds)
      */
     endAt?: number;
 
@@ -56,7 +56,7 @@ export class GetSpotHFLedgerReq implements Serializable {
      */
     static create(data: {
         /**
-         * Currency ( you can choose more than one currency). You can specify 10 currencies at most for one time. If not specified, all currencies will be inquired by default.
+         * Currency (you can choose more than one currency). You can specify a max. of 10 currencies in one go. If not specified, all currencies will be queried by default.
          */
         currency?: string;
         /**
@@ -64,23 +64,23 @@ export class GetSpotHFLedgerReq implements Serializable {
          */
         direction?: GetSpotHFLedgerReq.DirectionEnum;
         /**
-         * Transaction type: TRANSFER-transfer funds,TRADE_EXCHANGE-Trade
+         * Transaction type
          */
         bizType?: GetSpotHFLedgerReq.BizTypeEnum;
         /**
-         * The id of the last set of data from the previous batch of data. By default, the latest information is given.
+         * The ID of the last set of data from the previous data batch. By default, the latest information is given.
          */
         lastId?: number;
         /**
-         * Default100，Max200
+         * Default100, Max200
          */
         limit?: number;
         /**
-         * Start time (milisecond)
+         * Start time (milliseconds)
          */
         startAt?: number;
         /**
-         * End time (milisecond)
+         * End time (milliseconds)
          */
         endAt?: number;
     }): GetSpotHFLedgerReq {
@@ -132,13 +132,25 @@ export namespace GetSpotHFLedgerReq {
     }
     export enum BizTypeEnum {
         /**
-         *
+         * trade exchange
          */
         TRADE_EXCHANGE = <any>'TRADE_EXCHANGE',
         /**
-         *
+         * transffer
          */
         TRANSFER = <any>'TRANSFER',
+        /**
+         * returned fees
+         */
+        RETURNED_FEES = <any>'RETURNED_FEES',
+        /**
+         * deduction fees
+         */
+        DEDUCTION_FEES = <any>'DEDUCTION_FEES',
+        /**
+         * Other
+         */
+        OTHER = <any>'OTHER',
     }
 }
 
@@ -147,7 +159,7 @@ export class GetSpotHFLedgerReqBuilder {
         this.obj = obj;
     }
     /**
-     * Currency ( you can choose more than one currency). You can specify 10 currencies at most for one time. If not specified, all currencies will be inquired by default.
+     * Currency (you can choose more than one currency). You can specify a max. of 10 currencies in one go. If not specified, all currencies will be queried by default.
      */
     setCurrency(value: string): GetSpotHFLedgerReqBuilder {
         this.obj.currency = value;
@@ -163,7 +175,7 @@ export class GetSpotHFLedgerReqBuilder {
     }
 
     /**
-     * Transaction type: TRANSFER-transfer funds,TRADE_EXCHANGE-Trade
+     * Transaction type
      */
     setBizType(value: GetSpotHFLedgerReq.BizTypeEnum): GetSpotHFLedgerReqBuilder {
         this.obj.bizType = value;
@@ -171,7 +183,7 @@ export class GetSpotHFLedgerReqBuilder {
     }
 
     /**
-     * The id of the last set of data from the previous batch of data. By default, the latest information is given.
+     * The ID of the last set of data from the previous data batch. By default, the latest information is given.
      */
     setLastId(value: number): GetSpotHFLedgerReqBuilder {
         this.obj.lastId = value;
@@ -179,7 +191,7 @@ export class GetSpotHFLedgerReqBuilder {
     }
 
     /**
-     * Default100，Max200
+     * Default100, Max200
      */
     setLimit(value: number): GetSpotHFLedgerReqBuilder {
         this.obj.limit = value;
@@ -187,7 +199,7 @@ export class GetSpotHFLedgerReqBuilder {
     }
 
     /**
-     * Start time (milisecond)
+     * Start time (milliseconds)
      */
     setStartAt(value: number): GetSpotHFLedgerReqBuilder {
         this.obj.startAt = value;
@@ -195,7 +207,7 @@ export class GetSpotHFLedgerReqBuilder {
     }
 
     /**
-     * End time (milisecond)
+     * End time (milliseconds)
      */
     setEndAt(value: number): GetSpotHFLedgerReqBuilder {
         this.obj.endAt = value;

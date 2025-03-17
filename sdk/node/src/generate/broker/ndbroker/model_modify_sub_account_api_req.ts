@@ -5,7 +5,7 @@ import { Serializable } from '@internal/interfaces/serializable';
 
 export class ModifySubAccountApiReq implements Serializable {
     /**
-     * Subaccount UID
+     * Sub-account UID
      */
     uid: string;
 
@@ -15,7 +15,7 @@ export class ModifySubAccountApiReq implements Serializable {
     ipWhitelist: Array<string>;
 
     /**
-     * [Permissions](https://www.kucoin.com/docs-new/doc-338144) group list(Only General、Spot、Futures permissions can be set, such as \"General, Trade\". )
+     * [Permissions](https://www.kucoin.com/docs-new/doc-338144) group list (Only General, Spot and Futures permissions can be set, such as \"General, Trade\").
      */
     permissions: Array<ModifySubAccountApiReq.PermissionsEnum>;
 
@@ -25,7 +25,7 @@ export class ModifySubAccountApiReq implements Serializable {
     label: string;
 
     /**
-     * Subaccount apiKey
+     * Sub-account apiKey
      */
     apiKey: string;
 
@@ -57,7 +57,7 @@ export class ModifySubAccountApiReq implements Serializable {
      */
     static create(data: {
         /**
-         * Subaccount UID
+         * Sub-account UID
          */
         uid: string;
         /**
@@ -65,7 +65,7 @@ export class ModifySubAccountApiReq implements Serializable {
          */
         ipWhitelist: Array<string>;
         /**
-         * [Permissions](https://www.kucoin.com/docs-new/doc-338144) group list(Only General、Spot、Futures permissions can be set, such as \"General, Trade\". )
+         * [Permissions](https://www.kucoin.com/docs-new/doc-338144) group list (Only General, Spot and Futures permissions can be set, such as \"General, Trade\").
          */
         permissions: Array<ModifySubAccountApiReq.PermissionsEnum>;
         /**
@@ -73,7 +73,7 @@ export class ModifySubAccountApiReq implements Serializable {
          */
         label: string;
         /**
-         * Subaccount apiKey
+         * Sub-account apiKey
          */
         apiKey: string;
     }): ModifySubAccountApiReq {
@@ -128,7 +128,7 @@ export class ModifySubAccountApiReqBuilder {
         this.obj = obj;
     }
     /**
-     * Subaccount UID
+     * Sub-account UID
      */
     setUid(value: string): ModifySubAccountApiReqBuilder {
         this.obj.uid = value;
@@ -144,7 +144,7 @@ export class ModifySubAccountApiReqBuilder {
     }
 
     /**
-     * [Permissions](https://www.kucoin.com/docs-new/doc-338144) group list(Only General、Spot、Futures permissions can be set, such as \"General, Trade\". )
+     * [Permissions](https://www.kucoin.com/docs-new/doc-338144) group list (Only General, Spot and Futures permissions can be set, such as \"General, Trade\").
      */
     setPermissions(
         value: Array<ModifySubAccountApiReq.PermissionsEnum>,
@@ -162,7 +162,7 @@ export class ModifySubAccountApiReqBuilder {
     }
 
     /**
-     * Subaccount apiKey
+     * Sub-account apiKey
      */
     setApiKey(value: string): ModifySubAccountApiReqBuilder {
         this.obj.apiKey = value;

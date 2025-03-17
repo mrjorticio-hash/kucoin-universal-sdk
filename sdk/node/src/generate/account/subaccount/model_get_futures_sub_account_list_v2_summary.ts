@@ -10,7 +10,7 @@ export class GetFuturesSubAccountListV2Summary implements Serializable {
     accountEquityTotal: number;
 
     /**
-     * Total unrealisedPNL
+     * Total unrealizedPNL
      */
     unrealisedPNLTotal: number;
 
@@ -35,7 +35,7 @@ export class GetFuturesSubAccountListV2Summary implements Serializable {
     frozenFundsTotal: number;
 
     /**
-     * total available balance
+     * Total available balance
      */
     availableBalanceTotal: number;
 

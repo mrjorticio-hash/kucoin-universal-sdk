@@ -5,7 +5,7 @@ import { Serializable } from '@internal/interfaces/serializable';
 
 export class GetSpotActualFeeData implements Serializable {
     /**
-     * The unique identity of the trading pair and will not change even if the trading pair is renamed
+     * The unique identity of the trading pair; will not change even if the trading pair is renamed
      */
     symbol: string;
 
@@ -18,6 +18,16 @@ export class GetSpotActualFeeData implements Serializable {
      * Actual maker fee rate of the symbol
      */
     makerFeeRate: string;
+
+    /**
+     * Buy tax rate, This field is visible to users in certain countries
+     */
+    sellTaxRate?: string;
+
+    /**
+     * Sell tax rate, This field is visible to users in certain countries
+     */
+    buyTaxRate?: string;
 
     /**
      * Private constructor, please use the corresponding static methods to construct the object.

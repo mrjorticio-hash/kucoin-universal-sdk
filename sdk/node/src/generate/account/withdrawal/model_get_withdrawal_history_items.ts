@@ -5,7 +5,7 @@ import { Serializable } from '@internal/interfaces/serializable';
 
 export class GetWithdrawalHistoryItems implements Serializable {
     /**
-     * Unique id
+     * Unique ID
      */
     id?: string;
 
@@ -20,7 +20,7 @@ export class GetWithdrawalHistoryItems implements Serializable {
     chain?: string;
 
     /**
-     * Status
+     * Status. Available value: REVIEW, PROCESSING, WALLET_PROCESSING, SUCCESS and FAILURE
      */
     status?: GetWithdrawalHistoryItems.StatusEnum;
 
@@ -55,7 +55,7 @@ export class GetWithdrawalHistoryItems implements Serializable {
     walletTxId?: string;
 
     /**
-     * Creation time of the database record
+     * Database record creation time
      */
     createdAt?: number;
 
@@ -65,7 +65,7 @@ export class GetWithdrawalHistoryItems implements Serializable {
     updatedAt?: number;
 
     /**
-     * remark
+     * Remark
      */
     remark?: string;
 
@@ -98,6 +98,10 @@ export namespace GetWithdrawalHistoryItems {
         /**
          *
          */
+        REVIEW = <any>'REVIEW',
+        /**
+         *
+         */
         PROCESSING = <any>'PROCESSING',
         /**
          *
@@ -106,10 +110,10 @@ export namespace GetWithdrawalHistoryItems {
         /**
          *
          */
-        SUCCESS = <any>'SUCCESS',
+        FAILURE = <any>'FAILURE',
         /**
          *
          */
-        FAILURE = <any>'FAILURE',
+        SUCCESS = <any>'SUCCESS',
     }
 }

@@ -11,7 +11,7 @@ export class GetWithdrawDetailResp implements Response<RestResponse> {
     id: string;
 
     /**
-     * chain id of currency
+     * Chain id of currency
      */
     chain: string;
 

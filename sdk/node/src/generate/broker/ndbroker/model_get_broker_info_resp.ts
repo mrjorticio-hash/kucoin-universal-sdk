@@ -11,7 +11,7 @@ export class GetBrokerInfoResp implements Response<RestResponse> {
     accountSize: number;
 
     /**
-     * The maximum number of sub-accounts allowed to be created, null means no limit
+     * The maximum number of sub-accounts allowed to be created; null means no limit
      */
     maxAccountSize: number;
 

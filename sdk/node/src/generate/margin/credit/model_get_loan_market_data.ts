@@ -55,7 +55,7 @@ export class GetLoanMarketData implements Serializable {
     marketInterestRate?: string;
 
     /**
-     * Whether to allow automatic purchase: true: on, false: off
+     * Whether to allow automatic purchase: True: on; false: off
      */
     autoPurchaseEnable?: boolean;
 

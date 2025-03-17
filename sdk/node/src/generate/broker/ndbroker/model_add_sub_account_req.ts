@@ -5,7 +5,7 @@ import { Serializable } from '@internal/interfaces/serializable';
 
 export class AddSubAccountReq implements Serializable {
     /**
-     * Sub Account Name, Note that this name is unique across the exchange. It is recommended to add a special identifier to prevent name duplication.
+     * Sub-account Name. Note that this name is unique across the exchange. It is recommended to add a special identifier to prevent name duplication.
      */
     accountName: string;
 
@@ -29,7 +29,7 @@ export class AddSubAccountReq implements Serializable {
      */
     static create(data: {
         /**
-         * Sub Account Name, Note that this name is unique across the exchange. It is recommended to add a special identifier to prevent name duplication.
+         * Sub-account Name. Note that this name is unique across the exchange. It is recommended to add a special identifier to prevent name duplication.
          */
         accountName: string;
     }): AddSubAccountReq {
@@ -63,7 +63,7 @@ export class AddSubAccountReqBuilder {
         this.obj = obj;
     }
     /**
-     * Sub Account Name, Note that this name is unique across the exchange. It is recommended to add a special identifier to prevent name duplication.
+     * Sub-account Name. Note that this name is unique across the exchange. It is recommended to add a special identifier to prevent name duplication.
      */
     setAccountName(value: string): AddSubAccountReqBuilder {
         this.obj.accountName = value;

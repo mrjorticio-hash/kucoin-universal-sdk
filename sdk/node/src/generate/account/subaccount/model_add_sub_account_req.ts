@@ -5,17 +5,17 @@ import { Serializable } from '@internal/interfaces/serializable';
 
 export class AddSubAccountReq implements Serializable {
     /**
-     * Password(7-24 characters, must contain letters and numbers, cannot only contain numbers or include special characters)
+     * Password (7–24 characters, must contain letters and numbers, cannot only contain numbers or include special characters)
      */
     password: string;
 
     /**
-     * Remarks(1~24 characters)
+     * Remarks (1–24 characters)
      */
     remarks?: string;
 
     /**
-     * Sub-account name(must contain 7-32 characters, at least one number and one letter. Cannot contain any spaces.)
+     * Sub-account name (must contain 7–32 characters, at least one number and one letter. Cannot contain any spaces.)
      */
     subName: string;
 
@@ -48,15 +48,15 @@ export class AddSubAccountReq implements Serializable {
      */
     static create(data: {
         /**
-         * Password(7-24 characters, must contain letters and numbers, cannot only contain numbers or include special characters)
+         * Password (7–24 characters, must contain letters and numbers, cannot only contain numbers or include special characters)
          */
         password: string;
         /**
-         * Remarks(1~24 characters)
+         * Remarks (1–24 characters)
          */
         remarks?: string;
         /**
-         * Sub-account name(must contain 7-32 characters, at least one number and one letter. Cannot contain any spaces.)
+         * Sub-account name (must contain 7–32 characters, at least one number and one letter. Cannot contain any spaces.)
          */
         subName: string;
         /**
@@ -114,7 +114,7 @@ export class AddSubAccountReqBuilder {
         this.obj = obj;
     }
     /**
-     * Password(7-24 characters, must contain letters and numbers, cannot only contain numbers or include special characters)
+     * Password (7–24 characters, must contain letters and numbers, cannot only contain numbers or include special characters)
      */
     setPassword(value: string): AddSubAccountReqBuilder {
         this.obj.password = value;
@@ -122,7 +122,7 @@ export class AddSubAccountReqBuilder {
     }
 
     /**
-     * Remarks(1~24 characters)
+     * Remarks (1–24 characters)
      */
     setRemarks(value: string): AddSubAccountReqBuilder {
         this.obj.remarks = value;
@@ -130,7 +130,7 @@ export class AddSubAccountReqBuilder {
     }
 
     /**
-     * Sub-account name(must contain 7-32 characters, at least one number and one letter. Cannot contain any spaces.)
+     * Sub-account name (must contain 7–32 characters, at least one number and one letter. Cannot contain any spaces.)
      */
     setSubName(value: string): AddSubAccountReqBuilder {
         this.obj.subName = value;

@@ -1,4 +1,5 @@
 import { OrderV2Event } from './model_order_v2_event';
+import { StopOrderEvent } from './model_stop_order_event';
 import { AccountEvent } from './model_account_event';
 import { OrderV1Event } from './model_order_v1_event';
 import { WsMessage } from '@model/common';
@@ -44,6 +45,21 @@ describe('Auto Test', () => {
             '{"topic":"/spotMarket/tradeOrdersV2","type":"message","subject":"orderChange","userId":"633559791e1cbc0001f319bc","channelType":"private","data":{"clientOid":"5c52e11203aa677f33e493fc","orderId":"6720da3fa30a360007f5f832","orderTime":1730206271588,"orderType":"market","originSize":"0.00001","side":"buy","status":"new","symbol":"BTC-USDT","ts":1730206271616000000,"type":"received"}}';
         let commonResp = WsMessage.fromJson(data);
         let resp = OrderV2Event.fromObject(commonResp.data);
+        expect(Object.values(resp).every((value) => value === null || value === undefined)).toBe(
+            false,
+        );
+        console.log(resp);
+    });
+    test('stopOrder response test', () => {
+        /**
+         * stopOrder
+         * Get Stop Order
+         * /stopOrder/spotMarket/advancedOrders
+         */
+        let data =
+            '{"topic":"/spotMarket/tradeOrdersV2","type":"message","subject":"orderChange","userId":"633559791e1cbc0001f319bc","channelType":"private","data":{"clientOid":"5c52e11203aa677f33e493fc","orderId":"6720da3fa30a360007f5f832","orderTime":1730206271588,"orderType":"market","originSize":"0.00001","side":"buy","status":"new","symbol":"BTC-USDT","ts":1730206271616000000,"type":"received"}}';
+        let commonResp = WsMessage.fromJson(data);
+        let resp = StopOrderEvent.fromObject(commonResp.data);
         expect(Object.values(resp).every((value) => value === null || value === undefined)).toBe(
             false,
         );

@@ -6,17 +6,17 @@ import { Response } from '@internal/interfaces/serializable';
 
 export class GetTickerResp implements Response<RestResponse> {
     /**
-     * Sequence number, used to judge whether the messages pushed by Websocket is continuous.
+     * Sequence number, used to judge whether the messages pushed by Websocket are continuous.
      */
     sequence: number;
 
     /**
-     * Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)
+     * Symbol of the contract. Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)
      */
     symbol: string;
 
     /**
-     * Filled side, The trade side indicates the taker order side. A taker order is the order that was matched with orders opened on the order book.
+     * Filled side; the trade side indicates the taker order side. A taker order is the order that was matched with orders opened on the order book.
      */
     side: GetTickerResp.SideEnum;
 
@@ -56,7 +56,7 @@ export class GetTickerResp implements Response<RestResponse> {
     bestAskSize: number;
 
     /**
-     * Filled time(nanosecond)
+     * Filled time (nanoseconds)
      */
     ts: number;
 

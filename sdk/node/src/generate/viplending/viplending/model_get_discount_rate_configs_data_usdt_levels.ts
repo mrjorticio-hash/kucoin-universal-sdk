@@ -3,39 +3,32 @@
 import { instanceToPlain, plainToClassFromExist } from 'class-transformer';
 import { Serializable } from '@internal/interfaces/serializable';
 
-export class GetAccountDetailOrders implements Serializable {
+export class GetDiscountRateConfigsDataUsdtLevels implements Serializable {
     /**
-     * Loan Orders ID
+     * Left end point of gradient interval, left<amount<=right
      */
-    orderId: string;
+    left: number;
 
     /**
-     * Principal to Be Repaid
+     * Right end point of gradient interval, left<amount<=right
      */
-    principal: string;
+    right: number;
 
     /**
-     * Interest to Be Repaid
+     * Discount rate
      */
-    interest: string;
-
-    /**
-     * Loan Currency
-     */
-    currency: string;
+    discountRate: string;
 
     /**
      * Private constructor, please use the corresponding static methods to construct the object.
      */
     private constructor() {
         // @ts-ignore
-        this.orderId = null;
+        this.left = null;
         // @ts-ignore
-        this.principal = null;
+        this.right = null;
         // @ts-ignore
-        this.interest = null;
-        // @ts-ignore
-        this.currency = null;
+        this.discountRate = null;
     }
     /**
      * Convert the object to a JSON string.
@@ -46,13 +39,13 @@ export class GetAccountDetailOrders implements Serializable {
     /**
      * Create an object from a JSON string.
      */
-    static fromJson(input: string): GetAccountDetailOrders {
+    static fromJson(input: string): GetDiscountRateConfigsDataUsdtLevels {
         return this.fromObject(JSON.parse(input));
     }
     /**
      * Create an object from Js Object.
      */
-    static fromObject(jsonObject: Object): GetAccountDetailOrders {
-        return plainToClassFromExist(new GetAccountDetailOrders(), jsonObject);
+    static fromObject(jsonObject: Object): GetDiscountRateConfigsDataUsdtLevels {
+        return plainToClassFromExist(new GetDiscountRateConfigsDataUsdtLevels(), jsonObject);
     }
 }

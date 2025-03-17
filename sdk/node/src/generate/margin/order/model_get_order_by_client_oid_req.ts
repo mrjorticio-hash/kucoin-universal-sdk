@@ -11,7 +11,7 @@ export class GetOrderByClientOidReq implements Serializable {
     symbol?: string;
 
     /**
-     * Client Order Id，unique identifier created by the user
+     * Client Order Id, unique identifier created by the user
      */
     @Reflect.metadata('path', 'clientOid')
     clientOid?: string;
@@ -37,7 +37,7 @@ export class GetOrderByClientOidReq implements Serializable {
          */
         symbol?: string;
         /**
-         * Client Order Id，unique identifier created by the user
+         * Client Order Id, unique identifier created by the user
          */
         clientOid?: string;
     }): GetOrderByClientOidReq {
@@ -80,7 +80,7 @@ export class GetOrderByClientOidReqBuilder {
     }
 
     /**
-     * Client Order Id，unique identifier created by the user
+     * Client Order Id, unique identifier created by the user
      */
     setClientOid(value: string): GetOrderByClientOidReqBuilder {
         this.obj.clientOid = value;

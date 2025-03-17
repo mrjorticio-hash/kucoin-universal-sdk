@@ -10,7 +10,7 @@ export class GetDepositAddressV3Data implements Serializable {
     address: string;
 
     /**
-     * Address remark. If there’s no remark, it is empty. When you withdraw from other platforms to the KuCoin, you need to fill in memo(tag). If you do not fill memo (tag), your deposit may not be available, please be cautious.
+     * Address remark. If there’s no remark, it is empty. When you withdraw from other platforms to KuCoin, you need to fill in memo(tag). Be careful: If you do not fill in memo(tag), your deposit may not be available.
      */
     memo: string;
 
@@ -20,12 +20,12 @@ export class GetDepositAddressV3Data implements Serializable {
     chainId: string;
 
     /**
-     * Deposit account type: main (funding account), trade (spot trading account)
+     * Deposit account type: MAIN(funding account), TRADE (spot trading account)
      */
-    to: string;
+    to: GetDepositAddressV3Data.ToEnum;
 
     /**
-     * Expiration time, Lightning network expiration time, non-Lightning network this field is invalid
+     * Expiration time; Lightning network expiration time; this field is not applicable to non-Lightning networks
      */
     expirationDate: number;
 
@@ -82,5 +82,18 @@ export class GetDepositAddressV3Data implements Serializable {
      */
     static fromObject(jsonObject: Object): GetDepositAddressV3Data {
         return plainToClassFromExist(new GetDepositAddressV3Data(), jsonObject);
+    }
+}
+
+export namespace GetDepositAddressV3Data {
+    export enum ToEnum {
+        /**
+         * Funding account
+         */
+        MAIN = <any>'MAIN',
+        /**
+         * Spot account
+         */
+        TRADE = <any>'TRADE',
     }
 }

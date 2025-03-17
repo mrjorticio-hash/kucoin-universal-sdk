@@ -25,7 +25,7 @@ export class TransferReq implements Serializable {
     accountType: TransferReq.AccountTypeEnum;
 
     /**
-     * Broker subaccount uid, must be the Broker subaccount created by the current Broker user.
+     * Broker sub-account uid, must be the Broker sub-account created by the current Broker user.
      */
     specialUid: string;
 
@@ -35,7 +35,7 @@ export class TransferReq implements Serializable {
     specialAccountType: TransferReq.SpecialAccountTypeEnum;
 
     /**
-     * Client Order Id, The unique identifier created by the client. It is recommended to use UUID. The maximum length is 128 bits.
+     * Client Order ID, The unique identifier created by the client. It is recommended to use UUID. The maximum length is 128 bits.
      */
     clientOid: string;
 
@@ -87,7 +87,7 @@ export class TransferReq implements Serializable {
          */
         accountType: TransferReq.AccountTypeEnum;
         /**
-         * Broker subaccount uid, must be the Broker subaccount created by the current Broker user.
+         * Broker sub-account uid, must be the Broker sub-account created by the current Broker user.
          */
         specialUid: string;
         /**
@@ -95,7 +95,7 @@ export class TransferReq implements Serializable {
          */
         specialAccountType: TransferReq.SpecialAccountTypeEnum;
         /**
-         * Client Order Id, The unique identifier created by the client. It is recommended to use UUID. The maximum length is 128 bits.
+         * Client Order ID, The unique identifier created by the client. It is recommended to use UUID. The maximum length is 128 bits.
          */
         clientOid: string;
     }): TransferReq {
@@ -200,7 +200,7 @@ export class TransferReqBuilder {
     }
 
     /**
-     * Broker subaccount uid, must be the Broker subaccount created by the current Broker user.
+     * Broker sub-account uid, must be the Broker sub-account created by the current Broker user.
      */
     setSpecialUid(value: string): TransferReqBuilder {
         this.obj.specialUid = value;
@@ -216,7 +216,7 @@ export class TransferReqBuilder {
     }
 
     /**
-     * Client Order Id, The unique identifier created by the client. It is recommended to use UUID. The maximum length is 128 bits.
+     * Client Order ID, The unique identifier created by the client. It is recommended to use UUID. The maximum length is 128 bits.
      */
     setClientOid(value: string): TransferReqBuilder {
         this.obj.clientOid = value;

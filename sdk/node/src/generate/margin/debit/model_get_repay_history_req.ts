@@ -20,7 +20,7 @@ export class GetRepayHistoryReq implements Serializable {
     symbol?: string;
 
     /**
-     * Repay Order Id
+     * Repay order ID
      */
     orderNo?: string;
 
@@ -73,7 +73,7 @@ export class GetRepayHistoryReq implements Serializable {
          */
         symbol?: string;
         /**
-         * Repay Order Id
+         * Repay order ID
          */
         orderNo?: string;
         /**
@@ -166,7 +166,7 @@ export class GetRepayHistoryReqBuilder {
     }
 
     /**
-     * Repay Order Id
+     * Repay order ID
      */
     setOrderNo(value: string): GetRepayHistoryReqBuilder {
         this.obj.orderNo = value;

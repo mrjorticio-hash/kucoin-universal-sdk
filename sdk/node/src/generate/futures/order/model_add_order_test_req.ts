@@ -106,7 +106,7 @@ export class AddOrderTestReq implements Serializable {
     iceberg?: boolean = false;
 
     /**
-     * Optional for type is \'limit\' order, The maximum visible size of an iceberg order. please place order in size (lots), The units of qty (base currency) and valueQty (value) are not supported.
+     * Optional for type is \'limit\' order, The maximum visible size of an iceberg order. please place order in size (lots), The units of qty (base currency) and valueQty (value) are not supported. Need to be defined if iceberg is specified.
      */
     visibleSize?: string;
 
@@ -228,7 +228,7 @@ export class AddOrderTestReq implements Serializable {
          */
         iceberg?: boolean;
         /**
-         * Optional for type is \'limit\' order, The maximum visible size of an iceberg order. please place order in size (lots), The units of qty (base currency) and valueQty (value) are not supported.
+         * Optional for type is \'limit\' order, The maximum visible size of an iceberg order. please place order in size (lots), The units of qty (base currency) and valueQty (value) are not supported. Need to be defined if iceberg is specified.
          */
         visibleSize?: string;
         /**
@@ -569,7 +569,7 @@ export class AddOrderTestReqBuilder {
     }
 
     /**
-     * Optional for type is \'limit\' order, The maximum visible size of an iceberg order. please place order in size (lots), The units of qty (base currency) and valueQty (value) are not supported.
+     * Optional for type is \'limit\' order, The maximum visible size of an iceberg order. please place order in size (lots), The units of qty (base currency) and valueQty (value) are not supported. Need to be defined if iceberg is specified.
      */
     setVisibleSize(value: string): AddOrderTestReqBuilder {
         this.obj.visibleSize = value;

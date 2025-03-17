@@ -22,7 +22,7 @@ export class GetPurchaseOrdersResp implements Response<RestResponse> {
     totalNum: number;
 
     /**
-     * Total Page
+     * Total Pages
      */
     totalPage: number;
 

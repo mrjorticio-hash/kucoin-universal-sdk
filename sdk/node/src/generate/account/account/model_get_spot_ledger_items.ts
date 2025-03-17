@@ -10,12 +10,12 @@ export class GetSpotLedgerItems implements Serializable {
     id?: string;
 
     /**
-     * The currency of an account
+     * Currency
      */
     currency?: string;
 
     /**
-     * The total amount of assets (fees included) involved in assets changes such as transaction, withdrawal and bonus distribution.
+     * The total amount of assets (fees included) involved in assets changes such as transactions, withdrawals and bonus distributions.
      */
     amount?: string;
 
@@ -25,17 +25,17 @@ export class GetSpotLedgerItems implements Serializable {
     fee?: string;
 
     /**
-     * Remaining funds after the transaction.
+     * Remaining funds after the transaction. (Deprecated field, no actual use of the value field)
      */
     balance?: string;
 
     /**
-     * The account type of the master user: MAIN, TRADE, MARGIN or CONTRACT.
+     * Master user account types: MAIN, TRADE, MARGIN or CONTRACT.
      */
     accountType?: string;
 
     /**
-     * Business type leading to the changes in funds, such as exchange, withdrawal, deposit, KUCOIN_BONUS, REFERRAL_BONUS, Lendings etc.
+     * Business type leading to changes in funds, such as exchange, withdrawal, deposit, KUCOIN_BONUS, REFERRAL_BONUS, Lendings etc.
      */
     bizType?: string;
 
@@ -45,12 +45,12 @@ export class GetSpotLedgerItems implements Serializable {
     direction?: string;
 
     /**
-     * Time of the event
+     * Time of event
      */
     createdAt?: number;
 
     /**
-     * Business related information such as order ID, serial No., etc.
+     * Business related information such as order ID, serial no., etc.
      */
     context?: string;
 

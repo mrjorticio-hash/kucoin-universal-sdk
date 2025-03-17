@@ -5,17 +5,17 @@ import { Serializable } from '@internal/interfaces/serializable';
 
 export class GetPrivateFundingHistoryDataList implements Serializable {
     /**
-     * id
+     * ID
      */
     id: number;
 
     /**
-     * Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)
+     * Symbol of the contract. Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)
      */
     symbol: string;
 
     /**
-     * Time point (milisecond)
+     * Time point (milliseconds)
      */
     timePoint: number;
 
@@ -40,17 +40,17 @@ export class GetPrivateFundingHistoryDataList implements Serializable {
     positionCost: number;
 
     /**
-     * Settled funding fees. A positive number means that the user received the funding fee, and vice versa.
+     * Settled funding fees A positive number means that the user received the funding fee, and vice versa.
      */
     funding: number;
 
     /**
-     * settlement currency
+     * Settlement currency
      */
     settleCurrency: string;
 
     /**
-     * context
+     * Context
      */
     context: string;
 

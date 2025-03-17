@@ -5,17 +5,17 @@ import { Serializable } from '@internal/interfaces/serializable';
 
 export class AddTPSLOrderReq implements Serializable {
     /**
-     * Unique order id created by users to identify their orders, the maximum length cannot exceed 40, e.g. UUID, Only allows numbers, characters, underline(_), and separator(-)
+     * Unique order ID created by users to identify their orders. The maximum length cannot exceed 40, e.g. UUID only allows numbers, characters, underline(_), and separator (-).
      */
     clientOid: string;
 
     /**
-     * specify if the order is to \'buy\' or \'sell\'
+     * Specify if the order is to \'buy\' or \'sell\'.
      */
     side: AddTPSLOrderReq.SideEnum;
 
     /**
-     * Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)
+     * Symbol of the contract. Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)
      */
     symbol: string;
 
@@ -25,17 +25,12 @@ export class AddTPSLOrderReq implements Serializable {
     leverage: number;
 
     /**
-     * specify if the order is an \'limit\' order or \'market\' order
+     * Specify if the order is a \'limit\' order or \'market\' order
      */
     type: AddTPSLOrderReq.TypeEnum = AddTPSLOrderReq.TypeEnum.LIMIT;
 
     /**
-     * remark for the order, length cannot exceed 100 utf8 characters
-     */
-    remark?: string;
-
-    /**
-     * Either \'TP\', \'IP\' or \'MP\'
+     * Either \'TP\' or \'MP\'
      */
     stopPriceType?: AddTPSLOrderReq.StopPriceTypeEnum;
 
@@ -50,12 +45,7 @@ export class AddTPSLOrderReq implements Serializable {
     closeOrder?: boolean = false;
 
     /**
-     * A mark to forcely hold the funds for an order, even though it\'s an order to reduce the position size. This helps the order stay on the order book and not get canceled when the position size changes. Set to false by default. The system will forcely freeze certain amount of funds for this order, including orders whose direction is opposite to the current positions. This feature is to ensure that the order won’t be canceled by the matching engine in such a circumstance that not enough funds are frozen for the order.
-     */
-    forceHold?: boolean = false;
-
-    /**
-     * Margin mode: ISOLATED, CROSS, default: ISOLATED
+     * Margin mode: ISOLATED, default: ISOLATED
      */
     marginMode?: AddTPSLOrderReq.MarginModeEnum = AddTPSLOrderReq.MarginModeEnum.ISOLATED;
 
@@ -65,7 +55,7 @@ export class AddTPSLOrderReq implements Serializable {
     price?: string;
 
     /**
-     * Order size (Lot), must be a positive integer. The quantity unit of coin-swap contracts is size(lot), and other units are not supported.
+     * Order size (lot), must be a positive integer. The quantity unit of coin-swap contracts is size (lot), and other units are not supported.
      */
     size: number;
 
@@ -76,22 +66,22 @@ export class AddTPSLOrderReq implements Serializable {
         AddTPSLOrderReq.TimeInForceEnum.GOOD_TILL_CANCELED;
 
     /**
-     * Optional for type is \'limit\' order,  post only flag, invalid when timeInForce is IOC. When postOnly is true, not allowed choose hidden or iceberg. The post-only flag ensures that the trader always pays the maker fee and provides liquidity to the order book. If any part of the order is going to pay taker fee, the order will be fully rejected.
+     * Optional for type is \'limit\' order, post only flag, invalid when timeInForce is IOC. When postOnly is true, choosing hidden or iceberg is not allowed. The post-only flag ensures that the trader always pays the maker fee and provides liquidity to the order book. If any part of the order is going to pay taker fees, the order will be fully rejected.
      */
     postOnly?: boolean = false;
 
     /**
-     * Optional for type is \'limit\' order, orders not displaying in order book. When hidden chose, not allowed choose postOnly.
+     * Optional for type is \'limit\' order, orders not displaying in order book. When hidden is chosen, choosing postOnly is not allowed.
      */
     hidden?: boolean = false;
 
     /**
-     * Optional for type is \'limit\' order, Only visible portion of the order is displayed in the order book. When iceberg chose, not allowed choose postOnly.
+     * Optional for type is \'limit\' order, Only visible portion of the order is displayed in the order book. When iceberg is chosen, choosing postOnly is not allowed.
      */
     iceberg?: boolean = false;
 
     /**
-     * Optional for type is \'limit\' order, The maximum visible size of an iceberg order. please place order in size (lots), The units of qty (base currency) and valueQty (value) are not supported.
+     * Optional for type is \'limit\' order, the maximum visible size of an iceberg order. Please place order in size (lots). The units of qty (base currency) and valueQty (value) are not supported. Need to be defined if iceberg is specified.
      */
     visibleSize?: string;
 
@@ -135,15 +125,15 @@ export class AddTPSLOrderReq implements Serializable {
      */
     static create(data: {
         /**
-         * Unique order id created by users to identify their orders, the maximum length cannot exceed 40, e.g. UUID, Only allows numbers, characters, underline(_), and separator(-)
+         * Unique order ID created by users to identify their orders. The maximum length cannot exceed 40, e.g. UUID only allows numbers, characters, underline(_), and separator (-).
          */
         clientOid: string;
         /**
-         * specify if the order is to \'buy\' or \'sell\'
+         * Specify if the order is to \'buy\' or \'sell\'.
          */
         side: AddTPSLOrderReq.SideEnum;
         /**
-         * Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)
+         * Symbol of the contract. Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)
          */
         symbol: string;
         /**
@@ -151,15 +141,11 @@ export class AddTPSLOrderReq implements Serializable {
          */
         leverage: number;
         /**
-         * specify if the order is an \'limit\' order or \'market\' order
+         * Specify if the order is a \'limit\' order or \'market\' order
          */
         type: AddTPSLOrderReq.TypeEnum;
         /**
-         * remark for the order, length cannot exceed 100 utf8 characters
-         */
-        remark?: string;
-        /**
-         * Either \'TP\', \'IP\' or \'MP\'
+         * Either \'TP\' or \'MP\'
          */
         stopPriceType?: AddTPSLOrderReq.StopPriceTypeEnum;
         /**
@@ -171,11 +157,7 @@ export class AddTPSLOrderReq implements Serializable {
          */
         closeOrder?: boolean;
         /**
-         * A mark to forcely hold the funds for an order, even though it\'s an order to reduce the position size. This helps the order stay on the order book and not get canceled when the position size changes. Set to false by default. The system will forcely freeze certain amount of funds for this order, including orders whose direction is opposite to the current positions. This feature is to ensure that the order won’t be canceled by the matching engine in such a circumstance that not enough funds are frozen for the order.
-         */
-        forceHold?: boolean;
-        /**
-         * Margin mode: ISOLATED, CROSS, default: ISOLATED
+         * Margin mode: ISOLATED, default: ISOLATED
          */
         marginMode?: AddTPSLOrderReq.MarginModeEnum;
         /**
@@ -183,7 +165,7 @@ export class AddTPSLOrderReq implements Serializable {
          */
         price?: string;
         /**
-         * Order size (Lot), must be a positive integer. The quantity unit of coin-swap contracts is size(lot), and other units are not supported.
+         * Order size (lot), must be a positive integer. The quantity unit of coin-swap contracts is size (lot), and other units are not supported.
          */
         size: number;
         /**
@@ -191,19 +173,19 @@ export class AddTPSLOrderReq implements Serializable {
          */
         timeInForce?: AddTPSLOrderReq.TimeInForceEnum;
         /**
-         * Optional for type is \'limit\' order,  post only flag, invalid when timeInForce is IOC. When postOnly is true, not allowed choose hidden or iceberg. The post-only flag ensures that the trader always pays the maker fee and provides liquidity to the order book. If any part of the order is going to pay taker fee, the order will be fully rejected.
+         * Optional for type is \'limit\' order, post only flag, invalid when timeInForce is IOC. When postOnly is true, choosing hidden or iceberg is not allowed. The post-only flag ensures that the trader always pays the maker fee and provides liquidity to the order book. If any part of the order is going to pay taker fees, the order will be fully rejected.
          */
         postOnly?: boolean;
         /**
-         * Optional for type is \'limit\' order, orders not displaying in order book. When hidden chose, not allowed choose postOnly.
+         * Optional for type is \'limit\' order, orders not displaying in order book. When hidden is chosen, choosing postOnly is not allowed.
          */
         hidden?: boolean;
         /**
-         * Optional for type is \'limit\' order, Only visible portion of the order is displayed in the order book. When iceberg chose, not allowed choose postOnly.
+         * Optional for type is \'limit\' order, Only visible portion of the order is displayed in the order book. When iceberg is chosen, choosing postOnly is not allowed.
          */
         iceberg?: boolean;
         /**
-         * Optional for type is \'limit\' order, The maximum visible size of an iceberg order. please place order in size (lots), The units of qty (base currency) and valueQty (value) are not supported.
+         * Optional for type is \'limit\' order, the maximum visible size of an iceberg order. Please place order in size (lots). The units of qty (base currency) and valueQty (value) are not supported. Need to be defined if iceberg is specified.
          */
         visibleSize?: string;
         /**
@@ -225,7 +207,6 @@ export class AddTPSLOrderReq implements Serializable {
         } else {
             obj.type = AddTPSLOrderReq.TypeEnum.LIMIT;
         }
-        obj.remark = data.remark;
         obj.stopPriceType = data.stopPriceType;
         if (data.reduceOnly) {
             obj.reduceOnly = data.reduceOnly;
@@ -236,11 +217,6 @@ export class AddTPSLOrderReq implements Serializable {
             obj.closeOrder = data.closeOrder;
         } else {
             obj.closeOrder = false;
-        }
-        if (data.forceHold) {
-            obj.forceHold = data.forceHold;
-        } else {
-            obj.forceHold = false;
         }
         if (data.marginMode) {
             obj.marginMode = data.marginMode;
@@ -322,31 +298,23 @@ export namespace AddTPSLOrderReq {
          */
         TRADE_PRICE = <any>'TP',
         /**
-         * MP for mark price, The mark price can be obtained through relevant OPEN API for index services
+         * MP for mark price. The mark price can be obtained through relevant OPEN API for index services.
          */
         MARK_PRICE = <any>'MP',
-        /**
-         * IP for index price, The index price can be obtained through relevant OPEN API for index services
-         */
-        INDEX_PRICE = <any>'IP',
     }
     export enum MarginModeEnum {
         /**
          *
          */
         ISOLATED = <any>'ISOLATED',
-        /**
-         *
-         */
-        CROSS = <any>'CROSS',
     }
     export enum TimeInForceEnum {
         /**
-         * order remains open on the order book until canceled. This is the default type if the field is left empty.
+         * Order remains open on the order book until canceled. This is the default type if the field is left empty.
          */
         GOOD_TILL_CANCELED = <any>'GTC',
         /**
-         * being matched or not, the remaining size of the order will be instantly canceled instead of entering the order book.
+         * Being matched or not, the remaining size of the order will be instantly canceled instead of entering the order book.
          */
         IMMEDIATE_OR_CANCEL = <any>'IOC',
     }
@@ -357,7 +325,7 @@ export class AddTPSLOrderReqBuilder {
         this.obj = obj;
     }
     /**
-     * Unique order id created by users to identify their orders, the maximum length cannot exceed 40, e.g. UUID, Only allows numbers, characters, underline(_), and separator(-)
+     * Unique order ID created by users to identify their orders. The maximum length cannot exceed 40, e.g. UUID only allows numbers, characters, underline(_), and separator (-).
      */
     setClientOid(value: string): AddTPSLOrderReqBuilder {
         this.obj.clientOid = value;
@@ -365,7 +333,7 @@ export class AddTPSLOrderReqBuilder {
     }
 
     /**
-     * specify if the order is to \'buy\' or \'sell\'
+     * Specify if the order is to \'buy\' or \'sell\'.
      */
     setSide(value: AddTPSLOrderReq.SideEnum): AddTPSLOrderReqBuilder {
         this.obj.side = value;
@@ -373,7 +341,7 @@ export class AddTPSLOrderReqBuilder {
     }
 
     /**
-     * Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)
+     * Symbol of the contract. Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)
      */
     setSymbol(value: string): AddTPSLOrderReqBuilder {
         this.obj.symbol = value;
@@ -389,7 +357,7 @@ export class AddTPSLOrderReqBuilder {
     }
 
     /**
-     * specify if the order is an \'limit\' order or \'market\' order
+     * Specify if the order is a \'limit\' order or \'market\' order
      */
     setType(value: AddTPSLOrderReq.TypeEnum): AddTPSLOrderReqBuilder {
         this.obj.type = value;
@@ -397,15 +365,7 @@ export class AddTPSLOrderReqBuilder {
     }
 
     /**
-     * remark for the order, length cannot exceed 100 utf8 characters
-     */
-    setRemark(value: string): AddTPSLOrderReqBuilder {
-        this.obj.remark = value;
-        return this;
-    }
-
-    /**
-     * Either \'TP\', \'IP\' or \'MP\'
+     * Either \'TP\' or \'MP\'
      */
     setStopPriceType(value: AddTPSLOrderReq.StopPriceTypeEnum): AddTPSLOrderReqBuilder {
         this.obj.stopPriceType = value;
@@ -429,15 +389,7 @@ export class AddTPSLOrderReqBuilder {
     }
 
     /**
-     * A mark to forcely hold the funds for an order, even though it\'s an order to reduce the position size. This helps the order stay on the order book and not get canceled when the position size changes. Set to false by default. The system will forcely freeze certain amount of funds for this order, including orders whose direction is opposite to the current positions. This feature is to ensure that the order won’t be canceled by the matching engine in such a circumstance that not enough funds are frozen for the order.
-     */
-    setForceHold(value: boolean): AddTPSLOrderReqBuilder {
-        this.obj.forceHold = value;
-        return this;
-    }
-
-    /**
-     * Margin mode: ISOLATED, CROSS, default: ISOLATED
+     * Margin mode: ISOLATED, default: ISOLATED
      */
     setMarginMode(value: AddTPSLOrderReq.MarginModeEnum): AddTPSLOrderReqBuilder {
         this.obj.marginMode = value;
@@ -453,7 +405,7 @@ export class AddTPSLOrderReqBuilder {
     }
 
     /**
-     * Order size (Lot), must be a positive integer. The quantity unit of coin-swap contracts is size(lot), and other units are not supported.
+     * Order size (lot), must be a positive integer. The quantity unit of coin-swap contracts is size (lot), and other units are not supported.
      */
     setSize(value: number): AddTPSLOrderReqBuilder {
         this.obj.size = value;
@@ -469,7 +421,7 @@ export class AddTPSLOrderReqBuilder {
     }
 
     /**
-     * Optional for type is \'limit\' order,  post only flag, invalid when timeInForce is IOC. When postOnly is true, not allowed choose hidden or iceberg. The post-only flag ensures that the trader always pays the maker fee and provides liquidity to the order book. If any part of the order is going to pay taker fee, the order will be fully rejected.
+     * Optional for type is \'limit\' order, post only flag, invalid when timeInForce is IOC. When postOnly is true, choosing hidden or iceberg is not allowed. The post-only flag ensures that the trader always pays the maker fee and provides liquidity to the order book. If any part of the order is going to pay taker fees, the order will be fully rejected.
      */
     setPostOnly(value: boolean): AddTPSLOrderReqBuilder {
         this.obj.postOnly = value;
@@ -477,7 +429,7 @@ export class AddTPSLOrderReqBuilder {
     }
 
     /**
-     * Optional for type is \'limit\' order, orders not displaying in order book. When hidden chose, not allowed choose postOnly.
+     * Optional for type is \'limit\' order, orders not displaying in order book. When hidden is chosen, choosing postOnly is not allowed.
      */
     setHidden(value: boolean): AddTPSLOrderReqBuilder {
         this.obj.hidden = value;
@@ -485,7 +437,7 @@ export class AddTPSLOrderReqBuilder {
     }
 
     /**
-     * Optional for type is \'limit\' order, Only visible portion of the order is displayed in the order book. When iceberg chose, not allowed choose postOnly.
+     * Optional for type is \'limit\' order, Only visible portion of the order is displayed in the order book. When iceberg is chosen, choosing postOnly is not allowed.
      */
     setIceberg(value: boolean): AddTPSLOrderReqBuilder {
         this.obj.iceberg = value;
@@ -493,7 +445,7 @@ export class AddTPSLOrderReqBuilder {
     }
 
     /**
-     * Optional for type is \'limit\' order, The maximum visible size of an iceberg order. please place order in size (lots), The units of qty (base currency) and valueQty (value) are not supported.
+     * Optional for type is \'limit\' order, the maximum visible size of an iceberg order. Please place order in size (lots). The units of qty (base currency) and valueQty (value) are not supported. Need to be defined if iceberg is specified.
      */
     setVisibleSize(value: string): AddTPSLOrderReqBuilder {
         this.obj.visibleSize = value;

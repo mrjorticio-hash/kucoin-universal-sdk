@@ -28,7 +28,7 @@ describe('Auto Test', () => {
     test('addSubAccount request test', () => {
         /**
          * addSubAccount
-         * Add SubAccount
+         * Add sub-account
          * /api/v2/sub/user/created
          */
         let data =
@@ -43,7 +43,7 @@ describe('Auto Test', () => {
     test('addSubAccount response test', () => {
         /**
          * addSubAccount
-         * Add SubAccount
+         * Add sub-account
          * /api/v2/sub/user/created
          */
         let data =
@@ -60,7 +60,7 @@ describe('Auto Test', () => {
     test('addSubAccountMarginPermission request test', () => {
         /**
          * addSubAccountMarginPermission
-         * Add SubAccount Margin Permission
+         * Add sub-account Margin Permission
          * /api/v3/sub/user/margin/enable
          */
         let data = '{"uid": "169579801"}';
@@ -74,7 +74,7 @@ describe('Auto Test', () => {
     test('addSubAccountMarginPermission response test', () => {
         /**
          * addSubAccountMarginPermission
-         * Add SubAccount Margin Permission
+         * Add sub-account Margin Permission
          * /api/v3/sub/user/margin/enable
          */
         let data = '{\n    "code": "200000",\n    "data": null\n}';
@@ -90,7 +90,7 @@ describe('Auto Test', () => {
     test('addSubAccountFuturesPermission request test', () => {
         /**
          * addSubAccountFuturesPermission
-         * Add SubAccount Futures Permission
+         * Add sub-account Futures Permission
          * /api/v3/sub/user/futures/enable
          */
         let data = '{"uid": "169579801"}';
@@ -104,7 +104,7 @@ describe('Auto Test', () => {
     test('addSubAccountFuturesPermission response test', () => {
         /**
          * addSubAccountFuturesPermission
-         * Add SubAccount Futures Permission
+         * Add sub-account Futures Permission
          * /api/v3/sub/user/futures/enable
          */
         let data = '{\n    "code": "200000",\n    "data": null\n}';
@@ -120,7 +120,7 @@ describe('Auto Test', () => {
     test('getSpotSubAccountsSummaryV2 request test', () => {
         /**
          * getSpotSubAccountsSummaryV2
-         * Get SubAccount List - Summary Info
+         * Get sub-account List - Summary Info
          * /api/v2/sub/user
          */
         let data = '{"currentPage": 1, "pageSize": 10}';
@@ -134,7 +134,7 @@ describe('Auto Test', () => {
     test('getSpotSubAccountsSummaryV2 response test', () => {
         /**
          * getSpotSubAccountsSummaryV2
-         * Get SubAccount List - Summary Info
+         * Get sub-account List - Summary Info
          * /api/v2/sub/user
          */
         let data =
@@ -151,10 +151,11 @@ describe('Auto Test', () => {
     test('getSpotSubAccountDetail request test', () => {
         /**
          * getSpotSubAccountDetail
-         * Get SubAccount Detail - Balance
+         * Get sub-account Detail - Balance
          * /api/v1/sub-accounts/{subUserId}
          */
-        let data = '{"subUserId": "63743f07e0c5230001761d08", "includeBaseAmount": true}';
+        let data =
+            '{"includeBaseAmount": true, "baseCurrency": "example_string_default_value", "baseAmount": "example_string_default_value", "subUserId": "63743f07e0c5230001761d08"}';
         let req = GetSpotSubAccountDetailReq.fromJson(data);
         expect(Object.values(req).every((value) => value === null || value === undefined)).toBe(
             false,
@@ -165,7 +166,7 @@ describe('Auto Test', () => {
     test('getSpotSubAccountDetail response test', () => {
         /**
          * getSpotSubAccountDetail
-         * Get SubAccount Detail - Balance
+         * Get sub-account Detail - Balance
          * /api/v1/sub-accounts/{subUserId}
          */
         let data =
@@ -182,7 +183,7 @@ describe('Auto Test', () => {
     test('getSpotSubAccountListV2 request test', () => {
         /**
          * getSpotSubAccountListV2
-         * Get SubAccount List - Spot Balance(V2)
+         * Get sub-account List - Spot Balance (V2)
          * /api/v2/sub-accounts
          */
         let data = '{"currentPage": 1, "pageSize": 10}';
@@ -196,7 +197,7 @@ describe('Auto Test', () => {
     test('getSpotSubAccountListV2 response test', () => {
         /**
          * getSpotSubAccountListV2
-         * Get SubAccount List - Spot Balance(V2)
+         * Get sub-account List - Spot Balance (V2)
          * /api/v2/sub-accounts
          */
         let data =
@@ -213,7 +214,7 @@ describe('Auto Test', () => {
     test('getFuturesSubAccountListV2 request test', () => {
         /**
          * getFuturesSubAccountListV2
-         * Get SubAccount List - Futures Balance(V2)
+         * Get sub-account List - Futures Balance (V2)
          * /api/v1/account-overview-all
          */
         let data = '{"currency": "USDT"}';
@@ -227,7 +228,7 @@ describe('Auto Test', () => {
     test('getFuturesSubAccountListV2 response test', () => {
         /**
          * getFuturesSubAccountListV2
-         * Get SubAccount List - Futures Balance(V2)
+         * Get sub-account List - Futures Balance (V2)
          * /api/v1/account-overview-all
          */
         let data =
@@ -244,7 +245,7 @@ describe('Auto Test', () => {
     test('addSubAccountApi request test', () => {
         /**
          * addSubAccountApi
-         * Add SubAccount API
+         * Add sub-account API
          * /api/v1/sub/api-key
          */
         let data =
@@ -259,7 +260,7 @@ describe('Auto Test', () => {
     test('addSubAccountApi response test', () => {
         /**
          * addSubAccountApi
-         * Add SubAccount API
+         * Add sub-account API
          * /api/v1/sub/api-key
          */
         let data =
@@ -276,7 +277,7 @@ describe('Auto Test', () => {
     test('modifySubAccountApi request test', () => {
         /**
          * modifySubAccountApi
-         * Modify SubAccount API
+         * Modify sub-account API
          * /api/v1/sub/api-key/update
          */
         let data =
@@ -291,7 +292,7 @@ describe('Auto Test', () => {
     test('modifySubAccountApi response test', () => {
         /**
          * modifySubAccountApi
-         * Modify SubAccount API
+         * Modify sub-account API
          * /api/v1/sub/api-key/update
          */
         let data =
@@ -308,7 +309,7 @@ describe('Auto Test', () => {
     test('getSubAccountApiList request test', () => {
         /**
          * getSubAccountApiList
-         * Get SubAccount API List
+         * Get sub-account API List
          * /api/v1/sub/api-key
          */
         let data = '{"apiKey": "example_string_default_value", "subName": "testapi6"}';
@@ -322,7 +323,7 @@ describe('Auto Test', () => {
     test('getSubAccountApiList response test', () => {
         /**
          * getSubAccountApiList
-         * Get SubAccount API List
+         * Get sub-account API List
          * /api/v1/sub/api-key
          */
         let data =
@@ -339,7 +340,7 @@ describe('Auto Test', () => {
     test('deleteSubAccountApi request test', () => {
         /**
          * deleteSubAccountApi
-         * Delete SubAccount API
+         * Delete sub-account API
          * /api/v1/sub/api-key
          */
         let data =
@@ -354,7 +355,7 @@ describe('Auto Test', () => {
     test('deleteSubAccountApi response test', () => {
         /**
          * deleteSubAccountApi
-         * Delete SubAccount API
+         * Delete sub-account API
          * /api/v1/sub/api-key
          */
         let data =
@@ -371,7 +372,7 @@ describe('Auto Test', () => {
     test('getSpotSubAccountsSummaryV1 request test', () => {
         /**
          * getSpotSubAccountsSummaryV1
-         * Get SubAccount List - Summary Info(V1)
+         * Get sub-account List - Summary Info (V1)
          * /api/v1/sub/user
          */
     });
@@ -379,14 +380,14 @@ describe('Auto Test', () => {
     test('getSpotSubAccountsSummaryV1 response test', () => {
         /**
          * getSpotSubAccountsSummaryV1
-         * Get SubAccount List - Summary Info(V1)
+         * Get sub-account List - Summary Info (V1)
          * /api/v1/sub/user
          */
     });
     test('getSpotSubAccountListV1 request test', () => {
         /**
          * getSpotSubAccountListV1
-         * Get SubAccount List - Spot Balance(V1)
+         * Get sub-account List - Spot Balance (V1)
          * /api/v1/sub-accounts
          */
     });
@@ -394,7 +395,7 @@ describe('Auto Test', () => {
     test('getSpotSubAccountListV1 response test', () => {
         /**
          * getSpotSubAccountListV1
-         * Get SubAccount List - Spot Balance(V1)
+         * Get sub-account List - Spot Balance (V1)
          * /api/v1/sub-accounts
          */
     });

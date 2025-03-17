@@ -46,7 +46,7 @@ export class AddSubAccountApiResp implements Response<RestResponse> {
     ipWhitelist?: string;
 
     /**
-     * Time of the event
+     * Time of event
      */
     createdAt: number;
 

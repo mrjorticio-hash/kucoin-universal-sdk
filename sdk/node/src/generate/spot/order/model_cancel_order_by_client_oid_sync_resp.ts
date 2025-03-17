@@ -85,11 +85,11 @@ export class CancelOrderByClientOidSyncResp implements Response<RestResponse> {
 export namespace CancelOrderByClientOidSyncResp {
     export enum StatusEnum {
         /**
-         *
+         * order is active
          */
         OPEN = <any>'open',
         /**
-         *
+         * order has been completed
          */
         DONE = <any>'done',
     }

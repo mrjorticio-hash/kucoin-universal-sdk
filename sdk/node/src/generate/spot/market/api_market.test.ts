@@ -3,7 +3,10 @@ import { GetTradeHistoryResp } from './model_get_trade_history_resp';
 import { Get24hrStatsReq } from './model_get24hr_stats_req';
 import { GetServiceStatusResp } from './model_get_service_status_resp';
 import { GetAllSymbolsReq } from './model_get_all_symbols_req';
+import { GetCallAuctionPartOrderBookReq } from './model_get_call_auction_part_order_book_req';
+import { GetCallAuctionPartOrderBookResp } from './model_get_call_auction_part_order_book_resp';
 import { GetTickerReq } from './model_get_ticker_req';
+import { GetClientIPAddressResp } from './model_get_client_ip_address_resp';
 import { GetPrivateTokenResp } from './model_get_private_token_resp';
 import { GetFiatPriceResp } from './model_get_fiat_price_resp';
 import { GetPartOrderBookReq } from './model_get_part_order_book_req';
@@ -16,6 +19,8 @@ import { GetAllSymbolsResp } from './model_get_all_symbols_resp';
 import { GetPublicTokenResp } from './model_get_public_token_resp';
 import { GetTradeHistoryReq } from './model_get_trade_history_req';
 import { GetMarketListResp } from './model_get_market_list_resp';
+import { GetCallAuctionInfoResp } from './model_get_call_auction_info_resp';
+import { GetCallAuctionInfoReq } from './model_get_call_auction_info_req';
 import { GetCurrencyReq } from './model_get_currency_req';
 import { GetAllCurrenciesResp } from './model_get_all_currencies_resp';
 import { Get24hrStatsResp } from './model_get24hr_stats_resp';
@@ -52,7 +57,7 @@ describe('Auto Test', () => {
          * /api/v3/announcements
          */
         let data =
-            '{\n    "code": "200000",\n    "data": {\n        "totalNum": 195,\n        "totalPage": 13,\n        "currentPage": 1,\n        "pageSize": 15,\n        "items": [\n            {\n                "annId": 129045,\n                "annTitle": "KuCoin Isolated Margin Adds the Scroll (SCR) Trading Pair",\n                "annType": [\n                    "latest-announcements"\n                ],\n                "annDesc": "To enrich the variety of assets available,\xa0KuCoin\u2019s Isolated Margin Trading platform has added the Scroll (SCR)\xa0asset and trading pair.",\n                "cTime": 1729594043000,\n                "language": "en_US",\n                "annUrl": "https://www.kucoin.com/announcement/kucoin-isolated-margin-adds-scr?lang=en_US"\n            },\n            {\n                "annId": 129001,\n                "annTitle": "DAPP-30D Fixed Promotion, Enjoy an APR of 200%!\u200b",\n                "annType": [\n                    "latest-announcements",\n                    "activities"\n                ],\n                "annDesc": "KuCoin Earn will be launching the DAPP Fixed Promotion at 10:00:00 on October 22, 2024 (UTC). The available product is \u201cDAPP-30D\'\' with an APR of 200%.",\n                "cTime": 1729588460000,\n                "language": "en_US",\n                "annUrl": "https://www.kucoin.com/announcement/dapp-30d-fixed-promotion-enjoy?lang=en_US"\n            },\n            {\n                "annId": 128581,\n                "annTitle": "NAYM (NAYM) Gets Listed on KuCoin! World Premiere!",\n                "annType": [\n                    "latest-announcements",\n                    "new-listings"\n                ],\n                "annDesc": "Trading:\xa011:00 on October 22, 2024 (UTC)",\n                "cTime": 1729497729000,\n                "language": "en_US",\n                "annUrl": "https://www.kucoin.com/announcement/en-naym-naym-gets-listed-on-kucoin-world-premiere?lang=en_US"\n            }\n        ]\n    }\n}';
+            '{\n    "code": "200000",\n    "data": {\n        "totalNum": 195,\n        "totalPage": 13,\n        "currentPage": 1,\n        "pageSize": 15,\n        "items": [\n            {\n                "annId": 129045,\n                "annTitle": "KuCoin Isolated Margin Adds the Scroll (SCR) Trading Pair",\n                "annType": [\n                    "latest-announcements"\n                ],\n                "annDesc": "To enrich the variety of assets available, KuCoin\u2019s Isolated Margin Trading platform has added the Scroll (SCR) asset and trading pair.",\n                "cTime": 1729594043000,\n                "language": "en_US",\n                "annUrl": "https://www.kucoin.com/announcement/kucoin-isolated-margin-adds-scr?lang=en_US"\n            },\n            {\n                "annId": 129001,\n                "annTitle": "DAPP-30D Fixed Promotion, Enjoy an APR of 200%!\u200b",\n                "annType": [\n                    "latest-announcements",\n                    "activities"\n                ],\n                "annDesc": "KuCoin Earn will be launching the DAPP Fixed Promotion at 10:00:00 on October 22, 2024 (UTC). The available product is \u201cDAPP-30D\'\' with an APR of 200%.",\n                "cTime": 1729588460000,\n                "language": "en_US",\n                "annUrl": "https://www.kucoin.com/announcement/dapp-30d-fixed-promotion-enjoy?lang=en_US"\n            },\n            {\n                "annId": 128581,\n                "annTitle": "NAYM (NAYM) Gets Listed on KuCoin! World Premiere!",\n                "annType": [\n                    "latest-announcements",\n                    "new-listings"\n                ],\n                "annDesc": "Trading: 11:00 on October 22, 2024 (UTC)",\n                "cTime": 1729497729000,\n                "language": "en_US",\n                "annUrl": "https://www.kucoin.com/announcement/en-naym-naym-gets-listed-on-kucoin-world-premiere?lang=en_US"\n            }\n        ]\n    }\n}';
         let commonResp = RestResponse.fromJson(data);
         let resp = GetAnnouncementsResp.fromObject(commonResp.data);
         if (commonResp.data !== null) {
@@ -68,7 +73,7 @@ describe('Auto Test', () => {
          * Get Currency
          * /api/v3/currencies/{currency}
          */
-        let data = '{"currency": "BTC", "chain": "eth"}';
+        let data = '{"chain": "eth", "currency": "BTC"}';
         let req = GetCurrencyReq.fromJson(data);
         expect(Object.values(req).every((value) => value === null || value === undefined)).toBe(
             false,
@@ -129,7 +134,7 @@ describe('Auto Test', () => {
          * /api/v2/symbols/{symbol}
          */
         let data =
-            '{"code":"200000","data":{"symbol":"BTC-USDT","name":"BTC-USDT","baseCurrency":"BTC","quoteCurrency":"USDT","feeCurrency":"USDT","market":"USDS","baseMinSize":"0.00001","quoteMinSize":"0.1","baseMaxSize":"10000000000","quoteMaxSize":"99999999","baseIncrement":"0.00000001","quoteIncrement":"0.000001","priceIncrement":"0.1","priceLimitRate":"0.1","minFunds":"0.1","isMarginEnabled":true,"enableTrading":true,"feeCategory":1,"makerFeeCoefficient":"1.00","takerFeeCoefficient":"1.00","st":false}}';
+            '{\n    "code": "200000",\n    "data": {\n        "symbol": "BTC-USDT",\n        "name": "BTC-USDT",\n        "baseCurrency": "BTC",\n        "quoteCurrency": "USDT",\n        "feeCurrency": "USDT",\n        "market": "USDS",\n        "baseMinSize": "0.00001",\n        "quoteMinSize": "0.1",\n        "baseMaxSize": "10000000000",\n        "quoteMaxSize": "99999999",\n        "baseIncrement": "0.00000001",\n        "quoteIncrement": "0.000001",\n        "priceIncrement": "0.1",\n        "priceLimitRate": "0.1",\n        "minFunds": "0.1",\n        "isMarginEnabled": true,\n        "enableTrading": true,\n        "feeCategory": 1,\n        "makerFeeCoefficient": "1.00",\n        "takerFeeCoefficient": "1.00",\n        "st": false,\n        "callauctionIsEnabled": false,\n        "callauctionPriceFloor": null,\n        "callauctionPriceCeiling": null,\n        "callauctionFirstStageStartTime": null,\n        "callauctionSecondStageStartTime": null,\n        "callauctionThirdStageStartTime": null,\n        "tradingStartTime": null\n    }\n}';
         let commonResp = RestResponse.fromJson(data);
         let resp = GetSymbolResp.fromObject(commonResp.data);
         if (commonResp.data !== null) {
@@ -160,7 +165,7 @@ describe('Auto Test', () => {
          * /api/v2/symbols
          */
         let data =
-            '{\n    "code": "200000",\n    "data": [\n        {\n            "symbol": "BTC-USDT",\n            "name": "BTC-USDT",\n            "baseCurrency": "BTC",\n            "quoteCurrency": "USDT",\n            "feeCurrency": "USDT",\n            "market": "USDS",\n            "baseMinSize": "0.00001",\n            "quoteMinSize": "0.1",\n            "baseMaxSize": "10000000000",\n            "quoteMaxSize": "99999999",\n            "baseIncrement": "0.00000001",\n            "quoteIncrement": "0.000001",\n            "priceIncrement": "0.1",\n            "priceLimitRate": "0.1",\n            "minFunds": "0.1",\n            "isMarginEnabled": true,\n            "enableTrading": true,\n            "feeCategory": 1,\n            "makerFeeCoefficient": "1.00",\n            "takerFeeCoefficient": "1.00",\n            "st": false\n        }\n    ]\n}';
+            '{\n    "code": "200000",\n    "data": [\n        {\n            "symbol": "BTC-USDT",\n            "name": "BTC-USDT",\n            "baseCurrency": "BTC",\n            "quoteCurrency": "USDT",\n            "feeCurrency": "USDT",\n            "market": "USDS",\n            "baseMinSize": "0.00001",\n            "quoteMinSize": "0.1",\n            "baseMaxSize": "10000000000",\n            "quoteMaxSize": "99999999",\n            "baseIncrement": "0.00000001",\n            "quoteIncrement": "0.000001",\n            "priceIncrement": "0.1",\n            "priceLimitRate": "0.1",\n            "minFunds": "0.1",\n            "isMarginEnabled": true,\n            "enableTrading": true,\n            "feeCategory": 1,\n            "makerFeeCoefficient": "1.00",\n            "takerFeeCoefficient": "1.00",\n            "st": false,\n            "callauctionIsEnabled": false,\n            "callauctionPriceFloor": null,\n            "callauctionPriceCeiling": null,\n            "callauctionFirstStageStartTime": null,\n            "callauctionSecondStageStartTime": null,\n            "callauctionThirdStageStartTime": null,\n            "tradingStartTime": null\n        }\n    ]\n}';
         let commonResp = RestResponse.fromJson(data);
         let resp = GetAllSymbolsResp.fromObject(commonResp.data);
         if (commonResp.data !== null) {
@@ -341,6 +346,68 @@ describe('Auto Test', () => {
             console.log(resp);
         }
     });
+    test('getCallAuctionPartOrderBook request test', () => {
+        /**
+         * getCallAuctionPartOrderBook
+         * Get Call Auction Part OrderBook
+         * /api/v1/market/orderbook/callauction/level2_{size}
+         */
+        let data = '{"symbol": "BTC-USDT", "size": "20"}';
+        let req = GetCallAuctionPartOrderBookReq.fromJson(data);
+        expect(Object.values(req).every((value) => value === null || value === undefined)).toBe(
+            false,
+        );
+        console.log(req);
+    });
+
+    test('getCallAuctionPartOrderBook response test', () => {
+        /**
+         * getCallAuctionPartOrderBook
+         * Get Call Auction Part OrderBook
+         * /api/v1/market/orderbook/callauction/level2_{size}
+         */
+        let data =
+            '{\n    "code": "200000",\n    "data": {\n        "time": 1729176273859,\n        "sequence": "14610502970",\n        "bids": [\n            [\n                "66976.4",\n                "0.69109872"\n            ],\n            [\n                "66976.3",\n                "0.14377"\n            ]\n        ],\n        "asks": [\n            [\n                "66976.5",\n                "0.05408199"\n            ],\n            [\n                "66976.8",\n                "0.0005"\n            ]\n        ]\n    }\n}';
+        let commonResp = RestResponse.fromJson(data);
+        let resp = GetCallAuctionPartOrderBookResp.fromObject(commonResp.data);
+        if (commonResp.data !== null) {
+            expect(
+                Object.values(resp).every((value) => value === null || value === undefined),
+            ).toBe(false);
+            console.log(resp);
+        }
+    });
+    test('getCallAuctionInfo request test', () => {
+        /**
+         * getCallAuctionInfo
+         * Get Call Auction Info
+         * /api/v1/market/callauctionData
+         */
+        let data = '{"symbol": "BTC-USDT"}';
+        let req = GetCallAuctionInfoReq.fromJson(data);
+        expect(Object.values(req).every((value) => value === null || value === undefined)).toBe(
+            false,
+        );
+        console.log(req);
+    });
+
+    test('getCallAuctionInfo response test', () => {
+        /**
+         * getCallAuctionInfo
+         * Get Call Auction Info
+         * /api/v1/market/callauctionData
+         */
+        let data =
+            '{\n    "code": "200000",\n    "data": {\n        "symbol": "BTC-USDT",\n        "estimatedPrice": "0.17",\n        "estimatedSize": "0.03715004",\n        "sellOrderRangeLowPrice": "1.788",\n        "sellOrderRangeHighPrice": "2.788",\n        "buyOrderRangeLowPrice": "1.788",\n        "buyOrderRangeHighPrice": "2.788",\n        "time": 1550653727731\n    }\n}';
+        let commonResp = RestResponse.fromJson(data);
+        let resp = GetCallAuctionInfoResp.fromObject(commonResp.data);
+        if (commonResp.data !== null) {
+            expect(
+                Object.values(resp).every((value) => value === null || value === undefined),
+            ).toBe(false);
+            console.log(resp);
+        }
+    });
     test('getFiatPrice request test', () => {
         /**
          * getFiatPrice
@@ -375,7 +442,7 @@ describe('Auto Test', () => {
     test('get24hrStats request test', () => {
         /**
          * get24hrStats
-         * Get 24hr Stats
+         * Get 24hr stats
          * /api/v1/market/stats
          */
         let data = '{"symbol": "BTC-USDT"}';
@@ -389,7 +456,7 @@ describe('Auto Test', () => {
     test('get24hrStats response test', () => {
         /**
          * get24hrStats
-         * Get 24hr Stats
+         * Get 24hr stats
          * /api/v1/market/stats
          */
         let data =
@@ -416,6 +483,21 @@ describe('Auto Test', () => {
          * getMarketList
          * Get Market List
          * /api/v1/markets
+         */
+    });
+    test('getClientIPAddress request test', () => {
+        /**
+         * getClientIPAddress
+         * Get Client IP Address
+         * /api/v1/my-ip
+         */
+    });
+
+    test('getClientIPAddress response test', () => {
+        /**
+         * getClientIPAddress
+         * Get Client IP Address
+         * /api/v1/my-ip
          */
     });
     test('getServerTime request test', () => {

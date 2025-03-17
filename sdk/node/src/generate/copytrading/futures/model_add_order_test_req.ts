@@ -30,17 +30,12 @@ export class AddOrderTestReq implements Serializable {
     type: AddOrderTestReq.TypeEnum = AddOrderTestReq.TypeEnum.LIMIT;
 
     /**
-     * remark for the order, length cannot exceed 100 utf8 characters
-     */
-    remark?: string;
-
-    /**
      * Either \'down\' or \'up\'.  If stop is used,parameter stopPrice and stopPriceType also need to be provieded.
      */
     stop?: AddOrderTestReq.StopEnum;
 
     /**
-     * Either \'TP\', \'IP\' or \'MP\', Need to be defined if stop is specified.
+     * Either \'TP\' or \'MP\', Need to be defined if stop is specified.
      */
     stopPriceType?: AddOrderTestReq.StopPriceTypeEnum;
 
@@ -60,12 +55,7 @@ export class AddOrderTestReq implements Serializable {
     closeOrder?: boolean = false;
 
     /**
-     * A mark to forcely hold the funds for an order, even though it\'s an order to reduce the position size. This helps the order stay on the order book and not get canceled when the position size changes. Set to false by default. The system will forcely freeze certain amount of funds for this order, including orders whose direction is opposite to the current positions. This feature is to ensure that the order won’t be canceled by the matching engine in such a circumstance that not enough funds are frozen for the order.
-     */
-    forceHold?: boolean = false;
-
-    /**
-     * Margin mode: ISOLATED, CROSS, default: ISOLATED
+     * Margin mode: ISOLATED, default: ISOLATED
      */
     marginMode?: AddOrderTestReq.MarginModeEnum = AddOrderTestReq.MarginModeEnum.ISOLATED;
 
@@ -101,7 +91,7 @@ export class AddOrderTestReq implements Serializable {
     iceberg?: boolean = false;
 
     /**
-     * Optional for type is \'limit\' order, The maximum visible size of an iceberg order. please place order in size (lots), The units of qty (base currency) and valueQty (value) are not supported.
+     * Optional for type is \'limit\' order, The maximum visible size of an iceberg order. please place order in size (lots), The units of qty (base currency) and valueQty (value) are not supported. Need to be defined if iceberg is specified.
      */
     visibleSize?: string;
 
@@ -155,15 +145,11 @@ export class AddOrderTestReq implements Serializable {
          */
         type: AddOrderTestReq.TypeEnum;
         /**
-         * remark for the order, length cannot exceed 100 utf8 characters
-         */
-        remark?: string;
-        /**
          * Either \'down\' or \'up\'.  If stop is used,parameter stopPrice and stopPriceType also need to be provieded.
          */
         stop?: AddOrderTestReq.StopEnum;
         /**
-         * Either \'TP\', \'IP\' or \'MP\', Need to be defined if stop is specified.
+         * Either \'TP\' or \'MP\', Need to be defined if stop is specified.
          */
         stopPriceType?: AddOrderTestReq.StopPriceTypeEnum;
         /**
@@ -179,11 +165,7 @@ export class AddOrderTestReq implements Serializable {
          */
         closeOrder?: boolean;
         /**
-         * A mark to forcely hold the funds for an order, even though it\'s an order to reduce the position size. This helps the order stay on the order book and not get canceled when the position size changes. Set to false by default. The system will forcely freeze certain amount of funds for this order, including orders whose direction is opposite to the current positions. This feature is to ensure that the order won’t be canceled by the matching engine in such a circumstance that not enough funds are frozen for the order.
-         */
-        forceHold?: boolean;
-        /**
-         * Margin mode: ISOLATED, CROSS, default: ISOLATED
+         * Margin mode: ISOLATED, default: ISOLATED
          */
         marginMode?: AddOrderTestReq.MarginModeEnum;
         /**
@@ -211,7 +193,7 @@ export class AddOrderTestReq implements Serializable {
          */
         iceberg?: boolean;
         /**
-         * Optional for type is \'limit\' order, The maximum visible size of an iceberg order. please place order in size (lots), The units of qty (base currency) and valueQty (value) are not supported.
+         * Optional for type is \'limit\' order, The maximum visible size of an iceberg order. please place order in size (lots), The units of qty (base currency) and valueQty (value) are not supported. Need to be defined if iceberg is specified.
          */
         visibleSize?: string;
     }): AddOrderTestReq {
@@ -225,7 +207,6 @@ export class AddOrderTestReq implements Serializable {
         } else {
             obj.type = AddOrderTestReq.TypeEnum.LIMIT;
         }
-        obj.remark = data.remark;
         obj.stop = data.stop;
         obj.stopPriceType = data.stopPriceType;
         obj.stopPrice = data.stopPrice;
@@ -238,11 +219,6 @@ export class AddOrderTestReq implements Serializable {
             obj.closeOrder = data.closeOrder;
         } else {
             obj.closeOrder = false;
-        }
-        if (data.forceHold) {
-            obj.forceHold = data.forceHold;
-        } else {
-            obj.forceHold = false;
         }
         if (data.marginMode) {
             obj.marginMode = data.marginMode;
@@ -335,20 +311,12 @@ export namespace AddOrderTestReq {
          * MP for mark price, The mark price can be obtained through relevant OPEN API for index services
          */
         MARK_PRICE = <any>'MP',
-        /**
-         * IP for index price, The index price can be obtained through relevant OPEN API for index services
-         */
-        INDEX_PRICE = <any>'IP',
     }
     export enum MarginModeEnum {
         /**
-         *
+         * Isolated Margin
          */
         ISOLATED = <any>'ISOLATED',
-        /**
-         *
-         */
-        CROSS = <any>'CROSS',
     }
     export enum TimeInForceEnum {
         /**
@@ -407,14 +375,6 @@ export class AddOrderTestReqBuilder {
     }
 
     /**
-     * remark for the order, length cannot exceed 100 utf8 characters
-     */
-    setRemark(value: string): AddOrderTestReqBuilder {
-        this.obj.remark = value;
-        return this;
-    }
-
-    /**
      * Either \'down\' or \'up\'.  If stop is used,parameter stopPrice and stopPriceType also need to be provieded.
      */
     setStop(value: AddOrderTestReq.StopEnum): AddOrderTestReqBuilder {
@@ -423,7 +383,7 @@ export class AddOrderTestReqBuilder {
     }
 
     /**
-     * Either \'TP\', \'IP\' or \'MP\', Need to be defined if stop is specified.
+     * Either \'TP\' or \'MP\', Need to be defined if stop is specified.
      */
     setStopPriceType(value: AddOrderTestReq.StopPriceTypeEnum): AddOrderTestReqBuilder {
         this.obj.stopPriceType = value;
@@ -455,15 +415,7 @@ export class AddOrderTestReqBuilder {
     }
 
     /**
-     * A mark to forcely hold the funds for an order, even though it\'s an order to reduce the position size. This helps the order stay on the order book and not get canceled when the position size changes. Set to false by default. The system will forcely freeze certain amount of funds for this order, including orders whose direction is opposite to the current positions. This feature is to ensure that the order won’t be canceled by the matching engine in such a circumstance that not enough funds are frozen for the order.
-     */
-    setForceHold(value: boolean): AddOrderTestReqBuilder {
-        this.obj.forceHold = value;
-        return this;
-    }
-
-    /**
-     * Margin mode: ISOLATED, CROSS, default: ISOLATED
+     * Margin mode: ISOLATED, default: ISOLATED
      */
     setMarginMode(value: AddOrderTestReq.MarginModeEnum): AddOrderTestReqBuilder {
         this.obj.marginMode = value;
@@ -519,7 +471,7 @@ export class AddOrderTestReqBuilder {
     }
 
     /**
-     * Optional for type is \'limit\' order, The maximum visible size of an iceberg order. please place order in size (lots), The units of qty (base currency) and valueQty (value) are not supported.
+     * Optional for type is \'limit\' order, The maximum visible size of an iceberg order. please place order in size (lots), The units of qty (base currency) and valueQty (value) are not supported. Need to be defined if iceberg is specified.
      */
     setVisibleSize(value: string): AddOrderTestReqBuilder {
         this.obj.visibleSize = value;

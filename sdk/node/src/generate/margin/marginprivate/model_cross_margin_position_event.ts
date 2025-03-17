@@ -12,7 +12,7 @@ export class CrossMarginPositionEvent implements Response<WsMessage> {
      */
     debtRatio: number;
     /**
-     * Total asset in BTC (interest included)
+     * Total assets in BTC (interest included)
      */
     totalAsset: number;
     /**
@@ -111,7 +111,7 @@ export namespace CrossMarginPositionEvent {
          */
         LIABILITY = <any>'LIABILITY',
         /**
-         * When all the liabilities is repaid and the position returns to “EFFECTIVE” status, the system will push this event.
+         * When all the liabilities are repaid and the position returns to “EFFECTIVE” status, the system will push this event.
          */
         UNLIABILITY = <any>'UNLIABILITY',
     }

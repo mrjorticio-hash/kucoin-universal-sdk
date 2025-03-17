@@ -15,7 +15,7 @@ export class DeleteSubAccountApiReq implements Serializable {
     subName?: string;
 
     /**
-     * Password(Password of the API key)
+     * Password (password of the API key)
      */
     passphrase?: string;
 
@@ -44,7 +44,7 @@ export class DeleteSubAccountApiReq implements Serializable {
          */
         subName?: string;
         /**
-         * Password(Password of the API key)
+         * Password (password of the API key)
          */
         passphrase?: string;
     }): DeleteSubAccountApiReq {
@@ -96,7 +96,7 @@ export class DeleteSubAccountApiReqBuilder {
     }
 
     /**
-     * Password(Password of the API key)
+     * Password (password of the API key)
      */
     setPassphrase(value: string): DeleteSubAccountApiReqBuilder {
         this.obj.passphrase = value;

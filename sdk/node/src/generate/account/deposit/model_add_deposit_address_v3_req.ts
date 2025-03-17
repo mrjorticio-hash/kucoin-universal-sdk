@@ -10,12 +10,12 @@ export class AddDepositAddressV3Req implements Serializable {
     currency: string;
 
     /**
-     * The chainId of currency, e.g. The available value for USDT are OMNI, ERC20, TRC20, default is ERC20. The available value for BTC are Native, Segwit, TRC20, the parameters are bech32, btc, trx, default is Native. This only apply for multi-chain currency, and there is no need for single chain currency.
+     * The chainId of currency, e.g. the available values for USDT are OMNI, ERC20, and TRC20; default is ERC20. The available values for BTC are Native, Segwit, TRC20; the parameters are bech32, btc, trx; default is Native.
      */
-    chain?: string = 'eth';
+    chain: string = 'eth';
 
     /**
-     * Deposit account type: main (funding account), trade (spot trading account), the default is main
+     * Deposit account type: MAIN (funding account), TRADE (spot trading account); the default is MAIN
      */
     to?: AddDepositAddressV3Req.ToEnum = AddDepositAddressV3Req.ToEnum.MAIN;
 
@@ -30,6 +30,8 @@ export class AddDepositAddressV3Req implements Serializable {
     private constructor() {
         // @ts-ignore
         this.currency = null;
+        // @ts-ignore
+        this.chain = null;
     }
     /**
      * Creates a new instance of the `AddDepositAddressV3Req` class.
@@ -48,11 +50,11 @@ export class AddDepositAddressV3Req implements Serializable {
          */
         currency: string;
         /**
-         * The chainId of currency, e.g. The available value for USDT are OMNI, ERC20, TRC20, default is ERC20. The available value for BTC are Native, Segwit, TRC20, the parameters are bech32, btc, trx, default is Native. This only apply for multi-chain currency, and there is no need for single chain currency.
+         * The chainId of currency, e.g. the available values for USDT are OMNI, ERC20, and TRC20; default is ERC20. The available values for BTC are Native, Segwit, TRC20; the parameters are bech32, btc, trx; default is Native.
          */
-        chain?: string;
+        chain: string;
         /**
-         * Deposit account type: main (funding account), trade (spot trading account), the default is main
+         * Deposit account type: MAIN (funding account), TRADE (spot trading account); the default is MAIN
          */
         to?: AddDepositAddressV3Req.ToEnum;
         /**
@@ -99,13 +101,13 @@ export class AddDepositAddressV3Req implements Serializable {
 export namespace AddDepositAddressV3Req {
     export enum ToEnum {
         /**
-         *
+         * Funding account
          */
-        MAIN = <any>'main',
+        MAIN = <any>'MAIN',
         /**
-         *
+         * Spot account
          */
-        TRADE = <any>'trade',
+        TRADE = <any>'TRADE',
     }
 }
 
@@ -122,7 +124,7 @@ export class AddDepositAddressV3ReqBuilder {
     }
 
     /**
-     * The chainId of currency, e.g. The available value for USDT are OMNI, ERC20, TRC20, default is ERC20. The available value for BTC are Native, Segwit, TRC20, the parameters are bech32, btc, trx, default is Native. This only apply for multi-chain currency, and there is no need for single chain currency.
+     * The chainId of currency, e.g. the available values for USDT are OMNI, ERC20, and TRC20; default is ERC20. The available values for BTC are Native, Segwit, TRC20; the parameters are bech32, btc, trx; default is Native.
      */
     setChain(value: string): AddDepositAddressV3ReqBuilder {
         this.obj.chain = value;
@@ -130,7 +132,7 @@ export class AddDepositAddressV3ReqBuilder {
     }
 
     /**
-     * Deposit account type: main (funding account), trade (spot trading account), the default is main
+     * Deposit account type: MAIN (funding account), TRADE (spot trading account); the default is MAIN
      */
     setTo(value: AddDepositAddressV3Req.ToEnum): AddDepositAddressV3ReqBuilder {
         this.obj.to = value;

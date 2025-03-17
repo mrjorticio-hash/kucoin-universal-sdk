@@ -3,46 +3,39 @@
 import { instanceToPlain, plainToClassFromExist } from 'class-transformer';
 import { Serializable } from '@internal/interfaces/serializable';
 
-export class GetAccountDetailLtv implements Serializable {
+export class GetLoanInfoOrders implements Serializable {
     /**
-     * LTV of Restricted Transfers to Funding Account
+     * Loan Orders ID
      */
-    transferLtv: string;
+    orderId: string;
 
     /**
-     * LTV of Reduce Only (Restricted Open Positions)
+     * Principal to Be Repaid
      */
-    onlyClosePosLtv: string;
+    principal: string;
 
     /**
-     * LTV of Delayed Liquidation
+     * Interest to Be Repaid
      */
-    delayedLiquidationLtv: string;
+    interest: string;
 
     /**
-     * LTV of Instant Liquidation
+     * Loan Currency
      */
-    instantLiquidationLtv: string;
-
-    /**
-     * Current LTV
-     */
-    currentLtv: string;
+    currency: string;
 
     /**
      * Private constructor, please use the corresponding static methods to construct the object.
      */
     private constructor() {
         // @ts-ignore
-        this.transferLtv = null;
+        this.orderId = null;
         // @ts-ignore
-        this.onlyClosePosLtv = null;
+        this.principal = null;
         // @ts-ignore
-        this.delayedLiquidationLtv = null;
+        this.interest = null;
         // @ts-ignore
-        this.instantLiquidationLtv = null;
-        // @ts-ignore
-        this.currentLtv = null;
+        this.currency = null;
     }
     /**
      * Convert the object to a JSON string.
@@ -53,13 +46,13 @@ export class GetAccountDetailLtv implements Serializable {
     /**
      * Create an object from a JSON string.
      */
-    static fromJson(input: string): GetAccountDetailLtv {
+    static fromJson(input: string): GetLoanInfoOrders {
         return this.fromObject(JSON.parse(input));
     }
     /**
      * Create an object from Js Object.
      */
-    static fromObject(jsonObject: Object): GetAccountDetailLtv {
-        return plainToClassFromExist(new GetAccountDetailLtv(), jsonObject);
+    static fromObject(jsonObject: Object): GetLoanInfoOrders {
+        return plainToClassFromExist(new GetLoanInfoOrders(), jsonObject);
     }
 }

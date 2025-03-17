@@ -39,7 +39,7 @@ describe('Auto Test', ()=> {
     test('withdrawalV3 request test', ()=> {
     /**
     * withdrawalV3
-    * Withdraw(V3)
+    * Withdraw (V3)
     * /api/v3/withdrawals
     */
     let builder = WithdrawalV3Req.builder();

@@ -5,7 +5,7 @@ import { Serializable } from '@internal/interfaces/serializable';
 
 export class GetFuturesLedgerDataList implements Serializable {
     /**
-     * ledger time
+     * Ledger time
      */
     time: number;
 

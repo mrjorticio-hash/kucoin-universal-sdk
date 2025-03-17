@@ -22,7 +22,7 @@ export class GetRedeemOrdersResp implements Response<RestResponse> {
     totalNum: number;
 
     /**
-     * Total Page
+     * Total Pages
      */
     totalPage: number;
 

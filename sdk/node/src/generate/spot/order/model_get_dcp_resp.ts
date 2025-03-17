@@ -6,12 +6,12 @@ import { Response } from '@internal/interfaces/serializable';
 
 export class GetDCPResp implements Response<RestResponse> {
     /**
-     * Auto cancel order trigger setting time, the unit is second. range: timeout=-1 (meaning unset) or 5 <= timeout <= 86400
+     * Auto cancel order trigger setting time, the unit is second. Range: timeout=-1 (meaning unset) or 5 <= timeout <= 86400
      */
     timeout?: number;
 
     /**
-     * List of trading pairs. Separated by commas, empty means all trading pairs
+     * List of trading pairs. Separated by commas; empty means all trading pairs
      */
     symbols?: string;
 

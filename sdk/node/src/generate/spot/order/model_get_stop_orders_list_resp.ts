@@ -9,33 +9,44 @@ export class GetStopOrdersListResp implements Response<RestResponse> {
     /**
      * current page id
      */
-    currentPage?: number;
+    currentPage: number;
 
     /**
      *
      */
-    pageSize?: number;
+    pageSize: number;
 
     /**
      * the stop order count
      */
-    totalNum?: number;
+    totalNum: number;
 
     /**
      * total page count of the list
      */
-    totalPage?: number;
+    totalPage: number;
 
     /**
      * the list of stop orders
      */
     @Type(() => GetStopOrdersListItems)
-    items?: Array<GetStopOrdersListItems>;
+    items: Array<GetStopOrdersListItems>;
 
     /**
      * Private constructor, please use the corresponding static methods to construct the object.
      */
-    private constructor() {}
+    private constructor() {
+        // @ts-ignore
+        this.currentPage = null;
+        // @ts-ignore
+        this.pageSize = null;
+        // @ts-ignore
+        this.totalNum = null;
+        // @ts-ignore
+        this.totalPage = null;
+        // @ts-ignore
+        this.items = null;
+    }
     /**
      * common response
      */

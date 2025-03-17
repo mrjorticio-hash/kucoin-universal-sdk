@@ -5,7 +5,7 @@ import { Serializable } from '@internal/interfaces/serializable';
 
 export class BatchAddOrdersOrderList implements Serializable {
     /**
-     * Client Order Id，The ClientOid field is a unique ID created by the user（we recommend using a UUID）, and can only contain numbers, letters, underscores （_）, and hyphens （-）. This field is returned when order information is obtained. You can use clientOid to tag your orders. ClientOid is different from the order ID created by the service provider. Please do not initiate requests using the same clientOid. The maximum length for the ClientOid is 40 characters.
+     * Client Order ID: The ClientOid field is a unique ID created by the user (we recommend using a UUID), and can only contain numbers, letters, underscores (_), and hyphens (-). This field is returned when order information is obtained. You can use clientOid to tag your orders. ClientOid is different from the order ID created by the service provider. Please do not initiate requests using the same clientOid. The maximum length for the ClientOid is 40 characters.
      */
     clientOid?: string;
 
@@ -15,7 +15,7 @@ export class BatchAddOrdersOrderList implements Serializable {
     symbol: string;
 
     /**
-     * Specify if the order is an \'limit\' order or \'market\' order.
+     * Specify if the order is a \'limit\' order or \'market\' order.
      */
     type: BatchAddOrdersOrderList.TypeEnum;
 
@@ -26,7 +26,7 @@ export class BatchAddOrdersOrderList implements Serializable {
         BatchAddOrdersOrderList.TimeInForceEnum.GTC;
 
     /**
-     * Specify if the order is to \'buy\' or \'sell\'
+     * Specify if the order is to \'buy\' or \'sell\'.
      */
     side: BatchAddOrdersOrderList.SideEnum;
 
@@ -36,7 +36,7 @@ export class BatchAddOrdersOrderList implements Serializable {
     price: string;
 
     /**
-     * Specify quantity for order  When **type** is limit, select one out of two: size or funds, size refers to the amount of trading targets (the asset name written in front) for the trading pair. Teh Size must be based on the baseIncrement of the trading pair. The baseIncrement represents the precision for the trading pair. The size of an order must be a positive-integer multiple of baseIncrement and must be between baseMinSize and baseMaxSize.  When **type** is market, select one out of two: size or funds
+     * Specify quantity for order.  When **type** is limited, select one out of two: size or funds. Size refers to the amount of trading targets (the asset name written in front) for the trading pair. The Size must be based on the baseIncrement of the trading pair. The baseIncrement represents the precision for the trading pair. The size of an order must be a positive-integer multiple of baseIncrement and must be between baseMinSize and baseMaxSize.  When **type** is market, select one out of two: size or funds
      */
     size?: string;
 
@@ -46,9 +46,9 @@ export class BatchAddOrdersOrderList implements Serializable {
     stp?: BatchAddOrdersOrderList.StpEnum;
 
     /**
-     * Cancel after n seconds，the order timing strategy is GTT
+     * Cancel after n seconds, the order timing strategy is GTT, -1 means it will not be cancelled automatically, the default value is -1
      */
-    cancelAfter?: number;
+    cancelAfter?: number = -1;
 
     /**
      * passive order labels, this is disabled when the order timing strategy is IOC or FOK
@@ -86,6 +86,16 @@ export class BatchAddOrdersOrderList implements Serializable {
     funds?: string;
 
     /**
+     * Equal to KC-API-TIMESTAMP, Need to be defined if iceberg is specified.
+     */
+    clientTimestamp?: number;
+
+    /**
+     * Order failed after timeout of specified milliseconds, If clientTimestamp + allowMaxTimeWindow < the server reaches time, this order will fail.
+     */
+    allowMaxTimeWindow?: number;
+
+    /**
      * Private constructor, please use the corresponding static methods to construct the object.
      */
     private constructor() {
@@ -111,7 +121,7 @@ export class BatchAddOrdersOrderList implements Serializable {
      */
     static create(data: {
         /**
-         * Client Order Id，The ClientOid field is a unique ID created by the user（we recommend using a UUID）, and can only contain numbers, letters, underscores （_）, and hyphens （-）. This field is returned when order information is obtained. You can use clientOid to tag your orders. ClientOid is different from the order ID created by the service provider. Please do not initiate requests using the same clientOid. The maximum length for the ClientOid is 40 characters.
+         * Client Order ID: The ClientOid field is a unique ID created by the user (we recommend using a UUID), and can only contain numbers, letters, underscores (_), and hyphens (-). This field is returned when order information is obtained. You can use clientOid to tag your orders. ClientOid is different from the order ID created by the service provider. Please do not initiate requests using the same clientOid. The maximum length for the ClientOid is 40 characters.
          */
         clientOid?: string;
         /**
@@ -119,7 +129,7 @@ export class BatchAddOrdersOrderList implements Serializable {
          */
         symbol: string;
         /**
-         * Specify if the order is an \'limit\' order or \'market\' order.
+         * Specify if the order is a \'limit\' order or \'market\' order.
          */
         type: BatchAddOrdersOrderList.TypeEnum;
         /**
@@ -127,7 +137,7 @@ export class BatchAddOrdersOrderList implements Serializable {
          */
         timeInForce?: BatchAddOrdersOrderList.TimeInForceEnum;
         /**
-         * Specify if the order is to \'buy\' or \'sell\'
+         * Specify if the order is to \'buy\' or \'sell\'.
          */
         side: BatchAddOrdersOrderList.SideEnum;
         /**
@@ -135,7 +145,7 @@ export class BatchAddOrdersOrderList implements Serializable {
          */
         price: string;
         /**
-         * Specify quantity for order  When **type** is limit, select one out of two: size or funds, size refers to the amount of trading targets (the asset name written in front) for the trading pair. Teh Size must be based on the baseIncrement of the trading pair. The baseIncrement represents the precision for the trading pair. The size of an order must be a positive-integer multiple of baseIncrement and must be between baseMinSize and baseMaxSize.  When **type** is market, select one out of two: size or funds
+         * Specify quantity for order.  When **type** is limited, select one out of two: size or funds. Size refers to the amount of trading targets (the asset name written in front) for the trading pair. The Size must be based on the baseIncrement of the trading pair. The baseIncrement represents the precision for the trading pair. The size of an order must be a positive-integer multiple of baseIncrement and must be between baseMinSize and baseMaxSize.  When **type** is market, select one out of two: size or funds
          */
         size?: string;
         /**
@@ -143,7 +153,7 @@ export class BatchAddOrdersOrderList implements Serializable {
          */
         stp?: BatchAddOrdersOrderList.StpEnum;
         /**
-         * Cancel after n seconds，the order timing strategy is GTT
+         * Cancel after n seconds, the order timing strategy is GTT, -1 means it will not be cancelled automatically, the default value is -1
          */
         cancelAfter?: number;
         /**
@@ -174,6 +184,14 @@ export class BatchAddOrdersOrderList implements Serializable {
          * When **type** is market, select one out of two: size or funds
          */
         funds?: string;
+        /**
+         * Equal to KC-API-TIMESTAMP, Need to be defined if iceberg is specified.
+         */
+        clientTimestamp?: number;
+        /**
+         * Order failed after timeout of specified milliseconds, If clientTimestamp + allowMaxTimeWindow < the server reaches time, this order will fail.
+         */
+        allowMaxTimeWindow?: number;
     }): BatchAddOrdersOrderList {
         let obj = new BatchAddOrdersOrderList();
         obj.clientOid = data.clientOid;
@@ -188,7 +206,11 @@ export class BatchAddOrdersOrderList implements Serializable {
         obj.price = data.price;
         obj.size = data.size;
         obj.stp = data.stp;
-        obj.cancelAfter = data.cancelAfter;
+        if (data.cancelAfter) {
+            obj.cancelAfter = data.cancelAfter;
+        } else {
+            obj.cancelAfter = -1;
+        }
         if (data.postOnly) {
             obj.postOnly = data.postOnly;
         } else {
@@ -208,6 +230,8 @@ export class BatchAddOrdersOrderList implements Serializable {
         obj.tags = data.tags;
         obj.remark = data.remark;
         obj.funds = data.funds;
+        obj.clientTimestamp = data.clientTimestamp;
+        obj.allowMaxTimeWindow = data.allowMaxTimeWindow;
         return obj;
     }
 
@@ -291,7 +315,7 @@ export class BatchAddOrdersOrderListBuilder {
         this.obj = obj;
     }
     /**
-     * Client Order Id，The ClientOid field is a unique ID created by the user（we recommend using a UUID）, and can only contain numbers, letters, underscores （_）, and hyphens （-）. This field is returned when order information is obtained. You can use clientOid to tag your orders. ClientOid is different from the order ID created by the service provider. Please do not initiate requests using the same clientOid. The maximum length for the ClientOid is 40 characters.
+     * Client Order ID: The ClientOid field is a unique ID created by the user (we recommend using a UUID), and can only contain numbers, letters, underscores (_), and hyphens (-). This field is returned when order information is obtained. You can use clientOid to tag your orders. ClientOid is different from the order ID created by the service provider. Please do not initiate requests using the same clientOid. The maximum length for the ClientOid is 40 characters.
      */
     setClientOid(value: string): BatchAddOrdersOrderListBuilder {
         this.obj.clientOid = value;
@@ -307,7 +331,7 @@ export class BatchAddOrdersOrderListBuilder {
     }
 
     /**
-     * Specify if the order is an \'limit\' order or \'market\' order.
+     * Specify if the order is a \'limit\' order or \'market\' order.
      */
     setType(value: BatchAddOrdersOrderList.TypeEnum): BatchAddOrdersOrderListBuilder {
         this.obj.type = value;
@@ -323,7 +347,7 @@ export class BatchAddOrdersOrderListBuilder {
     }
 
     /**
-     * Specify if the order is to \'buy\' or \'sell\'
+     * Specify if the order is to \'buy\' or \'sell\'.
      */
     setSide(value: BatchAddOrdersOrderList.SideEnum): BatchAddOrdersOrderListBuilder {
         this.obj.side = value;
@@ -339,7 +363,7 @@ export class BatchAddOrdersOrderListBuilder {
     }
 
     /**
-     * Specify quantity for order  When **type** is limit, select one out of two: size or funds, size refers to the amount of trading targets (the asset name written in front) for the trading pair. Teh Size must be based on the baseIncrement of the trading pair. The baseIncrement represents the precision for the trading pair. The size of an order must be a positive-integer multiple of baseIncrement and must be between baseMinSize and baseMaxSize.  When **type** is market, select one out of two: size or funds
+     * Specify quantity for order.  When **type** is limited, select one out of two: size or funds. Size refers to the amount of trading targets (the asset name written in front) for the trading pair. The Size must be based on the baseIncrement of the trading pair. The baseIncrement represents the precision for the trading pair. The size of an order must be a positive-integer multiple of baseIncrement and must be between baseMinSize and baseMaxSize.  When **type** is market, select one out of two: size or funds
      */
     setSize(value: string): BatchAddOrdersOrderListBuilder {
         this.obj.size = value;
@@ -355,7 +379,7 @@ export class BatchAddOrdersOrderListBuilder {
     }
 
     /**
-     * Cancel after n seconds，the order timing strategy is GTT
+     * Cancel after n seconds, the order timing strategy is GTT, -1 means it will not be cancelled automatically, the default value is -1
      */
     setCancelAfter(value: number): BatchAddOrdersOrderListBuilder {
         this.obj.cancelAfter = value;
@@ -415,6 +439,22 @@ export class BatchAddOrdersOrderListBuilder {
      */
     setFunds(value: string): BatchAddOrdersOrderListBuilder {
         this.obj.funds = value;
+        return this;
+    }
+
+    /**
+     * Equal to KC-API-TIMESTAMP, Need to be defined if iceberg is specified.
+     */
+    setClientTimestamp(value: number): BatchAddOrdersOrderListBuilder {
+        this.obj.clientTimestamp = value;
+        return this;
+    }
+
+    /**
+     * Order failed after timeout of specified milliseconds, If clientTimestamp + allowMaxTimeWindow < the server reaches time, this order will fail.
+     */
+    setAllowMaxTimeWindow(value: number): BatchAddOrdersOrderListBuilder {
+        this.obj.allowMaxTimeWindow = value;
         return this;
     }
 

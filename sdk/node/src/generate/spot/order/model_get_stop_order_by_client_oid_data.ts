@@ -25,9 +25,9 @@ export class GetStopOrderByClientOidData implements Serializable {
     status?: string;
 
     /**
-     * Order type,limit, market, limit_stop or market_stop
+     * Order type
      */
-    type?: string;
+    type?: GetStopOrderByClientOidData.TypeEnum;
 
     /**
      * transaction direction,include buy and sell
@@ -180,5 +180,18 @@ export class GetStopOrderByClientOidData implements Serializable {
      */
     static fromObject(jsonObject: Object): GetStopOrderByClientOidData {
         return plainToClassFromExist(new GetStopOrderByClientOidData(), jsonObject);
+    }
+}
+
+export namespace GetStopOrderByClientOidData {
+    export enum TypeEnum {
+        /**
+         * Limit order
+         */
+        LIMIT = <any>'limit',
+        /**
+         * Market order
+         */
+        MARKET = <any>'market',
     }
 }

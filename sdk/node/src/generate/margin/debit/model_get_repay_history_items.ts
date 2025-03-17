@@ -5,7 +5,7 @@ import { Serializable } from '@internal/interfaces/serializable';
 
 export class GetRepayHistoryItems implements Serializable {
     /**
-     * Repay Order Id
+     * Repay order ID
      */
     orderNo: string;
 

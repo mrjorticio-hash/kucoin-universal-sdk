@@ -5,12 +5,12 @@ import { Serializable } from '@internal/interfaces/serializable';
 
 export class ModifyIsolatedMarginRiskLimtReq implements Serializable {
     /**
-     * Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)
+     * Symbol of the contract. Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)
      */
     symbol: string;
 
     /**
-     * level
+     * Level
      */
     level: number;
 
@@ -36,11 +36,11 @@ export class ModifyIsolatedMarginRiskLimtReq implements Serializable {
      */
     static create(data: {
         /**
-         * Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)
+         * Symbol of the contract. Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)
          */
         symbol: string;
         /**
-         * level
+         * Level
          */
         level: number;
     }): ModifyIsolatedMarginRiskLimtReq {
@@ -75,7 +75,7 @@ export class ModifyIsolatedMarginRiskLimtReqBuilder {
         this.obj = obj;
     }
     /**
-     * Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)
+     * Symbol of the contract. Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)
      */
     setSymbol(value: string): ModifyIsolatedMarginRiskLimtReqBuilder {
         this.obj.symbol = value;
@@ -83,7 +83,7 @@ export class ModifyIsolatedMarginRiskLimtReqBuilder {
     }
 
     /**
-     * level
+     * Level
      */
     setLevel(value: number): ModifyIsolatedMarginRiskLimtReqBuilder {
         this.obj.level = value;

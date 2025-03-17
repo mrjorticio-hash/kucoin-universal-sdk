@@ -7,7 +7,7 @@ import { Response } from '@internal/interfaces/serializable';
 
 export class GetPrivateTokenResp implements Response<RestResponse> {
     /**
-     * The token required to establish a websocket connection
+     * The token required to establish a Websocket connection
      */
     token: string;
 

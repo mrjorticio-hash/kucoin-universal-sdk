@@ -19,31 +19,31 @@ export interface DebitAPI {
      * borrow Borrow
      * Description: This API endpoint is used to initiate an application for cross or isolated margin borrowing.
      * Documentation: https://www.kucoin.com/docs-new/api-3470206
-     * +---------------------+---------+
-     * | Extra API Info      | Value   |
-     * +---------------------+---------+
-     * | API-DOMAIN          | SPOT    |
-     * | API-CHANNEL         | PRIVATE |
-     * | API-PERMISSION      | MARGIN  |
-     * | API-RATE-LIMIT-POOL | SPOT    |
-     * | API-RATE-LIMIT      | 15      |
-     * +---------------------+---------+
+     * +-----------------------+---------+
+     * | Extra API Info        | Value   |
+     * +-----------------------+---------+
+     * | API-DOMAIN            | SPOT    |
+     * | API-CHANNEL           | PRIVATE |
+     * | API-PERMISSION        | MARGIN  |
+     * | API-RATE-LIMIT-POOL   | SPOT    |
+     * | API-RATE-LIMIT-WEIGHT | 15      |
+     * +-----------------------+---------+
      */
     borrow(req: BorrowReq): Promise<BorrowResp>;
 
     /**
      * getBorrowHistory Get Borrow History
-     * Description: This API endpoint is used to get the borrowing orders for cross and isolated margin accounts
+     * Description: This API endpoint is used to get the borrowing orders for cross and isolated margin accounts.
      * Documentation: https://www.kucoin.com/docs-new/api-3470207
-     * +---------------------+---------+
-     * | Extra API Info      | Value   |
-     * +---------------------+---------+
-     * | API-DOMAIN          | SPOT    |
-     * | API-CHANNEL         | PRIVATE |
-     * | API-PERMISSION      | MARGIN  |
-     * | API-RATE-LIMIT-POOL | SPOT    |
-     * | API-RATE-LIMIT      | 15      |
-     * +---------------------+---------+
+     * +-----------------------+---------+
+     * | Extra API Info        | Value   |
+     * +-----------------------+---------+
+     * | API-DOMAIN            | SPOT    |
+     * | API-CHANNEL           | PRIVATE |
+     * | API-PERMISSION        | MARGIN  |
+     * | API-RATE-LIMIT-POOL   | SPOT    |
+     * | API-RATE-LIMIT-WEIGHT | 15      |
+     * +-----------------------+---------+
      */
     getBorrowHistory(req: GetBorrowHistoryReq): Promise<GetBorrowHistoryResp>;
 
@@ -51,47 +51,47 @@ export interface DebitAPI {
      * repay Repay
      * Description: This API endpoint is used to initiate an application for cross or isolated margin repayment.
      * Documentation: https://www.kucoin.com/docs-new/api-3470210
-     * +---------------------+---------+
-     * | Extra API Info      | Value   |
-     * +---------------------+---------+
-     * | API-DOMAIN          | SPOT    |
-     * | API-CHANNEL         | PRIVATE |
-     * | API-PERMISSION      | MARGIN  |
-     * | API-RATE-LIMIT-POOL | SPOT    |
-     * | API-RATE-LIMIT      | 10      |
-     * +---------------------+---------+
+     * +-----------------------+---------+
+     * | Extra API Info        | Value   |
+     * +-----------------------+---------+
+     * | API-DOMAIN            | SPOT    |
+     * | API-CHANNEL           | PRIVATE |
+     * | API-PERMISSION        | MARGIN  |
+     * | API-RATE-LIMIT-POOL   | SPOT    |
+     * | API-RATE-LIMIT-WEIGHT | 10      |
+     * +-----------------------+---------+
      */
     repay(req: RepayReq): Promise<RepayResp>;
 
     /**
      * getRepayHistory Get Repay History
-     * Description: This API endpoint is used to get the borrowing orders for cross and isolated margin accounts
+     * Description: This API endpoint is used to get the borrowing orders for cross and isolated margin accounts.
      * Documentation: https://www.kucoin.com/docs-new/api-3470208
-     * +---------------------+---------+
-     * | Extra API Info      | Value   |
-     * +---------------------+---------+
-     * | API-DOMAIN          | SPOT    |
-     * | API-CHANNEL         | PRIVATE |
-     * | API-PERMISSION      | MARGIN  |
-     * | API-RATE-LIMIT-POOL | SPOT    |
-     * | API-RATE-LIMIT      | 15      |
-     * +---------------------+---------+
+     * +-----------------------+---------+
+     * | Extra API Info        | Value   |
+     * +-----------------------+---------+
+     * | API-DOMAIN            | SPOT    |
+     * | API-CHANNEL           | PRIVATE |
+     * | API-PERMISSION        | MARGIN  |
+     * | API-RATE-LIMIT-POOL   | SPOT    |
+     * | API-RATE-LIMIT-WEIGHT | 15      |
+     * +-----------------------+---------+
      */
     getRepayHistory(req: GetRepayHistoryReq): Promise<GetRepayHistoryResp>;
 
     /**
-     * getInterestHistory Get Interest History
-     * Description: Request via this endpoint to get the interest records of the cross/isolated margin lending.
+     * getInterestHistory Get Interest History.
+     * Description: Request the interest records of the cross/isolated margin lending via this endpoint.
      * Documentation: https://www.kucoin.com/docs-new/api-3470209
-     * +---------------------+---------+
-     * | Extra API Info      | Value   |
-     * +---------------------+---------+
-     * | API-DOMAIN          | SPOT    |
-     * | API-CHANNEL         | PRIVATE |
-     * | API-PERMISSION      | MARGIN  |
-     * | API-RATE-LIMIT-POOL | SPOT    |
-     * | API-RATE-LIMIT      | 20      |
-     * +---------------------+---------+
+     * +-----------------------+---------+
+     * | Extra API Info        | Value   |
+     * +-----------------------+---------+
+     * | API-DOMAIN            | SPOT    |
+     * | API-CHANNEL           | PRIVATE |
+     * | API-PERMISSION        | MARGIN  |
+     * | API-RATE-LIMIT-POOL   | SPOT    |
+     * | API-RATE-LIMIT-WEIGHT | 20      |
+     * +-----------------------+---------+
      */
     getInterestHistory(req: GetInterestHistoryReq): Promise<GetInterestHistoryResp>;
 
@@ -99,15 +99,15 @@ export interface DebitAPI {
      * modifyLeverage Modify Leverage
      * Description: This endpoint allows modifying the leverage multiplier for cross margin or isolated margin.
      * Documentation: https://www.kucoin.com/docs-new/api-3470211
-     * +---------------------+---------+
-     * | Extra API Info      | Value   |
-     * +---------------------+---------+
-     * | API-DOMAIN          | SPOT    |
-     * | API-CHANNEL         | PRIVATE |
-     * | API-PERMISSION      | MARGIN  |
-     * | API-RATE-LIMIT-POOL | SPOT    |
-     * | API-RATE-LIMIT      | 5       |
-     * +---------------------+---------+
+     * +-----------------------+---------+
+     * | Extra API Info        | Value   |
+     * +-----------------------+---------+
+     * | API-DOMAIN            | SPOT    |
+     * | API-CHANNEL           | PRIVATE |
+     * | API-PERMISSION        | MARGIN  |
+     * | API-RATE-LIMIT-POOL   | SPOT    |
+     * | API-RATE-LIMIT-WEIGHT | 8       |
+     * +-----------------------+---------+
      */
     modifyLeverage(req: ModifyLeverageReq): Promise<ModifyLeverageResp>;
 }

@@ -3,7 +3,7 @@
 import { instanceToPlain, plainToClassFromExist } from 'class-transformer';
 import { Serializable } from '@internal/interfaces/serializable';
 
-export class GetAccountDetailMargins implements Serializable {
+export class GetLoanInfoMargins implements Serializable {
     /**
      * Margin Currency
      */
@@ -15,7 +15,7 @@ export class GetAccountDetailMargins implements Serializable {
     marginQty: string;
 
     /**
-     * Margin Coefficient return real time margin discount rate to USDT
+     * Margin Coefficient return real-time margin discount rate to USDT
      */
     marginFactor: string;
 
@@ -39,13 +39,13 @@ export class GetAccountDetailMargins implements Serializable {
     /**
      * Create an object from a JSON string.
      */
-    static fromJson(input: string): GetAccountDetailMargins {
+    static fromJson(input: string): GetLoanInfoMargins {
         return this.fromObject(JSON.parse(input));
     }
     /**
      * Create an object from Js Object.
      */
-    static fromObject(jsonObject: Object): GetAccountDetailMargins {
-        return plainToClassFromExist(new GetAccountDetailMargins(), jsonObject);
+    static fromObject(jsonObject: Object): GetLoanInfoMargins {
+        return plainToClassFromExist(new GetLoanInfoMargins(), jsonObject);
     }
 }

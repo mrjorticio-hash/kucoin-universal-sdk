@@ -47,7 +47,7 @@ describe('Auto Test', () => {
     test('withdrawalV3 request test', () => {
         /**
          * withdrawalV3
-         * Withdraw(V3)
+         * Withdraw (V3)
          * /api/v3/withdrawals
          */
         let data =
@@ -62,7 +62,7 @@ describe('Auto Test', () => {
     test('withdrawalV3 response test', () => {
         /**
          * withdrawalV3
-         * Withdraw(V3)
+         * Withdraw (V3)
          * /api/v3/withdrawals
          */
         let data = '{"code":"200000","data":{"withdrawalId":"670deec84d64da0007d7c946"}}';

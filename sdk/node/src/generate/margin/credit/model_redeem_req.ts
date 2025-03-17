@@ -15,7 +15,7 @@ export class RedeemReq implements Serializable {
     size: string;
 
     /**
-     * Purchase order id
+     * Purchase order ID
      */
     purchaseOrderNo: string;
 
@@ -51,7 +51,7 @@ export class RedeemReq implements Serializable {
          */
         size: string;
         /**
-         * Purchase order id
+         * Purchase order ID
          */
         purchaseOrderNo: string;
     }): RedeemReq {
@@ -103,7 +103,7 @@ export class RedeemReqBuilder {
     }
 
     /**
-     * Purchase order id
+     * Purchase order ID
      */
     setPurchaseOrderNo(value: string): RedeemReqBuilder {
         this.obj.purchaseOrderNo = value;

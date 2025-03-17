@@ -6,17 +6,17 @@ import { Response } from '@internal/interfaces/serializable';
 
 export class GetMaxOpenSizeResp implements Response<RestResponse> {
     /**
-     * Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)
+     * Symbol of the contract. Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)
      */
     symbol: string;
 
     /**
-     * Maximum buy size
+     * Maximum buy size (unit: lot)
      */
     maxBuyOpenSize: number;
 
     /**
-     * Maximum buy size
+     * Maximum buy size (unit: lot)
      */
     maxSellOpenSize: number;
 

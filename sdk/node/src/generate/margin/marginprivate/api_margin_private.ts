@@ -13,14 +13,14 @@ import { WebSocketService } from '@internal/interfaces/websocket';
 export interface MarginPrivateWS {
     /**
      * crossMarginPosition Get Cross Margin Position change
-     * The system will push the change event when the position status changes, Or push the current debt message periodically when there is a liability.
+     * The system will push the change event when the position status changes, or push the current debt message periodically when there is a liability.
      * push frequency: once every 4s
      */
     crossMarginPosition(callback: CrossMarginPositionEventCallback): Promise<string>;
 
     /**
      * isolatedMarginPosition Get Isolated Margin Position change
-     * The system will push the change event when the position status changes, Or push the current debt message periodically when there is a liability.
+     * The system will push the change event when the position status changes, or push the current debt message periodically when there is a liability.
      * push frequency: real time
      */
     isolatedMarginPosition(

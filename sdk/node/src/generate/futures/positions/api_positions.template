@@ -196,8 +196,7 @@ describe('Auto Test', ()=> {
     let req = builder.build();
     let resp = api.modifyMarginLeverage(req);
     return resp.then(result => {
-        expect(result.symbol).toEqual(expect.anything());
-        expect(result.leverage).toEqual(expect.anything());
+        expect(result.data).toEqual(expect.anything());
         console.log(resp);
     });
     })

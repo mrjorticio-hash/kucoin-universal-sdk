@@ -7,42 +7,42 @@ export class GetStopOrdersListItems implements Serializable {
     /**
      * Order ID, the ID of an order.
      */
-    id?: string;
+    id: string;
 
     /**
      * Symbol name
      */
-    symbol?: string;
+    symbol: string;
 
     /**
      * User ID
      */
-    userId?: string;
+    userId: string;
 
     /**
      * Order status, include NEW, TRIGGERED
      */
-    status?: string;
+    status: string;
 
     /**
-     * Order type,limit, market, limit_stop or market_stop
+     * Order type
      */
-    type?: string;
+    type: GetStopOrdersListItems.TypeEnum;
 
     /**
      * transaction direction,include buy and sell
      */
-    side?: string;
+    side: string;
 
     /**
      * order price
      */
-    price?: string;
+    price: string;
 
     /**
      * order quantity
      */
-    size?: string;
+    size: string;
 
     /**
      * order funds
@@ -57,27 +57,27 @@ export class GetStopOrdersListItems implements Serializable {
     /**
      * time InForce,include GTC,GTT,IOC,FOK
      */
-    timeInForce?: string;
+    timeInForce: string;
 
     /**
      * cancel orders after n seconds，requires timeInForce to be GTT
      */
-    cancelAfter?: number;
+    cancelAfter: number;
 
     /**
      * postOnly
      */
-    postOnly?: boolean;
+    postOnly: boolean;
 
     /**
      * hidden order
      */
-    hidden?: boolean;
+    hidden: boolean;
 
     /**
      * Iceberg order
      */
-    iceberg?: boolean;
+    iceberg: boolean;
 
     /**
      * displayed quantity for iceberg order
@@ -87,17 +87,17 @@ export class GetStopOrdersListItems implements Serializable {
     /**
      * order source
      */
-    channel?: string;
+    channel: string;
 
     /**
      * user-entered order unique mark
      */
-    clientOid?: string;
+    clientOid: string;
 
     /**
      * Remarks at stop order creation
      */
-    remark?: string;
+    remark: string;
 
     /**
      * tag order source
@@ -107,47 +107,47 @@ export class GetStopOrdersListItems implements Serializable {
     /**
      * Time of place a stop order, accurate to nanoseconds
      */
-    orderTime?: number;
+    orderTime: number;
 
     /**
      * domainId, e.g: kucoin
      */
-    domainId?: string;
+    domainId: string;
 
     /**
      * trade source: USER（Order by user）, MARGIN_SYSTEM（Order by margin system）
      */
-    tradeSource?: string;
+    tradeSource: string;
 
     /**
      * The type of trading : TRADE（Spot）, MARGIN_TRADE (Cross Margin), MARGIN_ISOLATED_TRADE (Isolated Margin).
      */
-    tradeType?: string;
+    tradeType: string;
 
     /**
      * The currency of the fee
      */
-    feeCurrency?: string;
+    feeCurrency: string;
 
     /**
      * Fee Rate of taker
      */
-    takerFeeRate?: string;
+    takerFeeRate: string;
 
     /**
      * Fee Rate of maker
      */
-    makerFeeRate?: string;
+    makerFeeRate: string;
 
     /**
      * order creation time
      */
-    createdAt?: number;
+    createdAt: number;
 
     /**
      * Stop order type, include loss and entry
      */
-    stop?: string;
+    stop: string;
 
     /**
      * The trigger time of the stop order
@@ -157,12 +157,85 @@ export class GetStopOrdersListItems implements Serializable {
     /**
      * stop price
      */
-    stopPrice?: string;
+    stopPrice: string;
+
+    /**
+     *
+     */
+    relatedNo?: string;
+
+    /**
+     *
+     */
+    limitPrice?: string;
+
+    /**
+     *
+     */
+    pop?: string;
+
+    /**
+     *
+     */
+    activateCondition?: string;
 
     /**
      * Private constructor, please use the corresponding static methods to construct the object.
      */
-    private constructor() {}
+    private constructor() {
+        // @ts-ignore
+        this.id = null;
+        // @ts-ignore
+        this.symbol = null;
+        // @ts-ignore
+        this.userId = null;
+        // @ts-ignore
+        this.status = null;
+        // @ts-ignore
+        this.type = null;
+        // @ts-ignore
+        this.side = null;
+        // @ts-ignore
+        this.price = null;
+        // @ts-ignore
+        this.size = null;
+        // @ts-ignore
+        this.timeInForce = null;
+        // @ts-ignore
+        this.cancelAfter = null;
+        // @ts-ignore
+        this.postOnly = null;
+        // @ts-ignore
+        this.hidden = null;
+        // @ts-ignore
+        this.iceberg = null;
+        // @ts-ignore
+        this.channel = null;
+        // @ts-ignore
+        this.clientOid = null;
+        // @ts-ignore
+        this.remark = null;
+        // @ts-ignore
+        this.orderTime = null;
+        // @ts-ignore
+        this.domainId = null;
+        // @ts-ignore
+        this.tradeSource = null;
+        // @ts-ignore
+        this.tradeType = null;
+        // @ts-ignore
+        this.feeCurrency = null;
+        // @ts-ignore
+        this.takerFeeRate = null;
+        // @ts-ignore
+        this.makerFeeRate = null;
+        // @ts-ignore
+        this.createdAt = null;
+        // @ts-ignore
+        this.stop = null;
+        // @ts-ignore
+        this.stopPrice = null;
+    }
     /**
      * Convert the object to a JSON string.
      */
@@ -180,5 +253,18 @@ export class GetStopOrdersListItems implements Serializable {
      */
     static fromObject(jsonObject: Object): GetStopOrdersListItems {
         return plainToClassFromExist(new GetStopOrdersListItems(), jsonObject);
+    }
+}
+
+export namespace GetStopOrdersListItems {
+    export enum TypeEnum {
+        /**
+         * Limit order
+         */
+        LIMIT = <any>'limit',
+        /**
+         * Market order
+         */
+        MARKET = <any>'market',
     }
 }

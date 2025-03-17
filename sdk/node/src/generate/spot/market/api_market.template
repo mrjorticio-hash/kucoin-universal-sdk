@@ -32,7 +32,7 @@ describe('Auto Test', ()=> {
     * /api/v3/currencies/{currency}
     */
     let builder = GetCurrencyReq.builder();
-    builder.setCurrency(?).setChain(?);
+    builder.setChain(?).setCurrency(?);
     let req = builder.build();
     let resp = api.getCurrency(req);
     return resp.then(result => {
@@ -94,6 +94,13 @@ describe('Auto Test', ()=> {
         expect(result.makerFeeCoefficient).toEqual(expect.anything());
         expect(result.takerFeeCoefficient).toEqual(expect.anything());
         expect(result.st).toEqual(expect.anything());
+        expect(result.callauctionIsEnabled).toEqual(expect.anything());
+        expect(result.callauctionPriceFloor).toEqual(expect.anything());
+        expect(result.callauctionPriceCeiling).toEqual(expect.anything());
+        expect(result.callauctionFirstStageStartTime).toEqual(expect.anything());
+        expect(result.callauctionSecondStageStartTime).toEqual(expect.anything());
+        expect(result.callauctionThirdStageStartTime).toEqual(expect.anything());
+        expect(result.tradingStartTime).toEqual(expect.anything());
         console.log(resp);
     });
     })
@@ -217,6 +224,48 @@ describe('Auto Test', ()=> {
         expect(result.sequence).toEqual(expect.anything());
         expect(result.bids).toEqual(expect.anything());
         expect(result.asks).toEqual(expect.anything());
+        console.log(resp);
+    });
+    })
+
+    test('getCallAuctionPartOrderBook request test', ()=> {
+    /**
+    * getCallAuctionPartOrderBook
+    * Get Call Auction Part OrderBook
+    * /api/v1/market/orderbook/callauction/level2_{size}
+    */
+    let builder = GetCallAuctionPartOrderBookReq.builder();
+    builder.setSymbol(?).setSize(?);
+    let req = builder.build();
+    let resp = api.getCallAuctionPartOrderBook(req);
+    return resp.then(result => {
+        expect(result.time).toEqual(expect.anything());
+        expect(result.sequence).toEqual(expect.anything());
+        expect(result.bids).toEqual(expect.anything());
+        expect(result.asks).toEqual(expect.anything());
+        console.log(resp);
+    });
+    })
+
+    test('getCallAuctionInfo request test', ()=> {
+    /**
+    * getCallAuctionInfo
+    * Get Call Auction Info
+    * /api/v1/market/callauctionData
+    */
+    let builder = GetCallAuctionInfoReq.builder();
+    builder.setSymbol(?);
+    let req = builder.build();
+    let resp = api.getCallAuctionInfo(req);
+    return resp.then(result => {
+        expect(result.symbol).toEqual(expect.anything());
+        expect(result.estimatedPrice).toEqual(expect.anything());
+        expect(result.estimatedSize).toEqual(expect.anything());
+        expect(result.sellOrderRangeLowPrice).toEqual(expect.anything());
+        expect(result.sellOrderRangeHighPrice).toEqual(expect.anything());
+        expect(result.buyOrderRangeLowPrice).toEqual(expect.anything());
+        expect(result.buyOrderRangeHighPrice).toEqual(expect.anything());
+        expect(result.time).toEqual(expect.anything());
         console.log(resp);
     });
     })
@@ -1135,7 +1184,7 @@ describe('Auto Test', ()=> {
     test('get24hrStats request test', ()=> {
     /**
     * get24hrStats
-    * Get 24hr Stats
+    * Get 24hr stats
     * /api/v1/market/stats
     */
     let builder = Get24hrStatsReq.builder();
@@ -1170,6 +1219,19 @@ describe('Auto Test', ()=> {
     * /api/v1/markets
     */
     let resp = api.getMarketList();
+    return resp.then(result => {
+        expect(result.data).toEqual(expect.anything());
+        console.log(resp);
+    });
+    })
+
+    test('getClientIPAddress request test', ()=> {
+    /**
+    * getClientIPAddress
+    * Get Client IP Address
+    * /api/v1/my-ip
+    */
+    let resp = api.getClientIPAddress();
     return resp.then(result => {
         expect(result.data).toEqual(expect.anything());
         console.log(resp);

@@ -5,7 +5,7 @@ import { Serializable } from '@internal/interfaces/serializable';
 
 export class GetFuturesAccountReq implements Serializable {
     /**
-     * Currecny, Default XBT
+     * Currency, Default XBT
      */
     currency?: string = 'XBT';
 
@@ -26,7 +26,7 @@ export class GetFuturesAccountReq implements Serializable {
      */
     static create(data: {
         /**
-         * Currecny, Default XBT
+         * Currency, Default XBT
          */
         currency?: string;
     }): GetFuturesAccountReq {
@@ -64,7 +64,7 @@ export class GetFuturesAccountReqBuilder {
         this.obj = obj;
     }
     /**
-     * Currecny, Default XBT
+     * Currency, Default XBT
      */
     setCurrency(value: string): GetFuturesAccountReqBuilder {
         this.obj.currency = value;

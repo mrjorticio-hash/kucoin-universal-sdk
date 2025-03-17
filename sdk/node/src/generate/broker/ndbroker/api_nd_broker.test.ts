@@ -61,7 +61,7 @@ describe('Auto Test', () => {
     test('addSubAccount request test', () => {
         /**
          * addSubAccount
-         * Add SubAccount
+         * Add sub-account
          * /api/v1/broker/nd/account
          */
         let data = '{"accountName": "Account1"}';
@@ -75,7 +75,7 @@ describe('Auto Test', () => {
     test('addSubAccount response test', () => {
         /**
          * addSubAccount
-         * Add SubAccount
+         * Add sub-account
          * /api/v1/broker/nd/account
          */
         let data =
@@ -92,7 +92,7 @@ describe('Auto Test', () => {
     test('getSubAccount request test', () => {
         /**
          * getSubAccount
-         * Get SubAccount
+         * Get sub-account
          * /api/v1/broker/nd/account
          */
         let data = '{"uid": "226383154", "currentPage": 1, "pageSize": 20}';
@@ -106,7 +106,7 @@ describe('Auto Test', () => {
     test('getSubAccount response test', () => {
         /**
          * getSubAccount
-         * Get SubAccount
+         * Get sub-account
          * /api/v1/broker/nd/account
          */
         let data =
@@ -123,7 +123,7 @@ describe('Auto Test', () => {
     test('addSubAccountApi request test', () => {
         /**
          * addSubAccountApi
-         * Add SubAccount API
+         * Add sub-account API
          * /api/v1/broker/nd/account/apikey
          */
         let data =
@@ -138,7 +138,7 @@ describe('Auto Test', () => {
     test('addSubAccountApi response test', () => {
         /**
          * addSubAccountApi
-         * Add SubAccount API
+         * Add sub-account API
          * /api/v1/broker/nd/account/apikey
          */
         let data =
@@ -155,7 +155,7 @@ describe('Auto Test', () => {
     test('getSubAccountAPI request test', () => {
         /**
          * getSubAccountAPI
-         * Get SubAccount API
+         * Get sub-account API
          * /api/v1/broker/nd/account/apikey
          */
         let data = '{"uid": "226383154", "apiKey": "671afb36cee20f00015cfaf1"}';
@@ -169,7 +169,7 @@ describe('Auto Test', () => {
     test('getSubAccountAPI response test', () => {
         /**
          * getSubAccountAPI
-         * Get SubAccount API
+         * Get sub-account API
          * /api/v1/broker/nd/account/apikey
          */
         let data =
@@ -186,7 +186,7 @@ describe('Auto Test', () => {
     test('modifySubAccountApi request test', () => {
         /**
          * modifySubAccountApi
-         * Modify SubAccount API
+         * Modify sub-account API
          * /api/v1/broker/nd/account/update-apikey
          */
         let data =
@@ -201,7 +201,7 @@ describe('Auto Test', () => {
     test('modifySubAccountApi response test', () => {
         /**
          * modifySubAccountApi
-         * Modify SubAccount API
+         * Modify sub-account API
          * /api/v1/broker/nd/account/update-apikey
          */
         let data =
@@ -218,7 +218,7 @@ describe('Auto Test', () => {
     test('deleteSubAccountAPI request test', () => {
         /**
          * deleteSubAccountAPI
-         * Delete SubAccount API
+         * Delete sub-account API
          * /api/v1/broker/nd/account/apikey
          */
         let data = '{"uid": "226383154", "apiKey": "671afb36cee20f00015cfaf1"}';
@@ -232,7 +232,7 @@ describe('Auto Test', () => {
     test('deleteSubAccountAPI response test', () => {
         /**
          * deleteSubAccountAPI
-         * Delete SubAccount API
+         * Delete sub-account API
          * /api/v1/broker/nd/account/apikey
          */
         let data = '{\n    "code": "200000",\n    "data": true\n}';

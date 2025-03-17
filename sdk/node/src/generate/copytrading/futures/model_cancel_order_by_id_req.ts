@@ -5,7 +5,7 @@ import { Serializable } from '@internal/interfaces/serializable';
 
 export class CancelOrderByIdReq implements Serializable {
     /**
-     * Order id
+     * Order ID
      */
     orderId?: string;
 
@@ -26,7 +26,7 @@ export class CancelOrderByIdReq implements Serializable {
      */
     static create(data: {
         /**
-         * Order id
+         * Order ID
          */
         orderId?: string;
     }): CancelOrderByIdReq {
@@ -60,7 +60,7 @@ export class CancelOrderByIdReqBuilder {
         this.obj = obj;
     }
     /**
-     * Order id
+     * Order ID
      */
     setOrderId(value: string): CancelOrderByIdReqBuilder {
         this.obj.orderId = value;

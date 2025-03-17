@@ -5,7 +5,7 @@ import { Serializable } from '@internal/interfaces/serializable';
 
 export class GetFiatPriceReq implements Serializable {
     /**
-     * Ticker symbol of a base currency,eg.USD,EUR. Default is USD
+     * Ticker symbol of a base currency, e.g. USD, EUR. Default is USD
      */
     base?: string = 'USD';
 
@@ -31,7 +31,7 @@ export class GetFiatPriceReq implements Serializable {
      */
     static create(data: {
         /**
-         * Ticker symbol of a base currency,eg.USD,EUR. Default is USD
+         * Ticker symbol of a base currency, e.g. USD, EUR. Default is USD
          */
         base?: string;
         /**
@@ -74,7 +74,7 @@ export class GetFiatPriceReqBuilder {
         this.obj = obj;
     }
     /**
-     * Ticker symbol of a base currency,eg.USD,EUR. Default is USD
+     * Ticker symbol of a base currency, e.g. USD, EUR. Default is USD
      */
     setBase(value: string): GetFiatPriceReqBuilder {
         this.obj.base = value;

@@ -10,22 +10,22 @@ export class GetIsolatedMarginSymbolsData implements Serializable {
     symbol: string;
 
     /**
-     * symbol name
+     * Symbol name
      */
     symbolName: string;
 
     /**
-     * Base currency,e.g. BTC.
+     * Base currency, e.g. BTC.
      */
     baseCurrency: string;
 
     /**
-     * Quote currency,e.g. USDT.
+     * Quote currency, e.g. USDT.
      */
     quoteCurrency: string;
 
     /**
-     * Max leverage of this symbol
+     * Max. leverage of this symbol
      */
     maxLeverage: number;
 

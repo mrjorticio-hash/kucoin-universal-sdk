@@ -7,14 +7,14 @@ import { WebSocketService } from '@internal/interfaces/websocket';
 export interface MarginPublicWS {
     /**
      * indexPrice Index Price
-     * Subscribe to this topic to get the index price for the margin trading. The following ticker symbols are supported: List of currently supported symbol.
+     * Subscribe to this topic to get the index price for margin trading. The following ticker symbols are supported: List of currently supported symbols.
      * push frequency: once every 1s
      */
     indexPrice(symbol: Array<string>, callback: IndexPriceEventCallback): Promise<string>;
 
     /**
      * markPrice Mark Price
-     * Subscribe to this topic to get the mark price for margin trading.The following ticker symbols are supported: List of currently supported symbol
+     * Subscribe to this topic to get the mark price for margin trading. The following ticker symbols are supported: List of currently supported symbols
      * push frequency: once every 1s
      */
     markPrice(symbol: Array<string>, callback: MarkPriceEventCallback): Promise<string>;

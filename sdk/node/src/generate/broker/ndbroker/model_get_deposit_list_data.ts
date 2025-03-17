@@ -20,7 +20,7 @@ export class GetDepositListData implements Serializable {
     address: string;
 
     /**
-     * Address remark. If there’s no remark, it is empty. When you withdraw from other platforms to the KuCoin, you need to fill in memo(tag). If you do not fill memo (tag), your deposit may not be available, please be cautious.
+     * Address remark. If there’s no remark, it is empty. When you withdraw from other platforms to KuCoin, you need to fill in memo(tag). Be careful: If you do not fill in memo(tag), your deposit may not be available.
      */
     memo: string;
 
@@ -55,17 +55,17 @@ export class GetDepositListData implements Serializable {
     status: GetDepositListData.StatusEnum;
 
     /**
-     * remark
+     * Remark
      */
     remark: string;
 
     /**
-     * chain name of currency
+     * Chain name of currency
      */
     chain: string;
 
     /**
-     * Creation time of the database record
+     * Database record creation time
      */
     createdAt: number;
 

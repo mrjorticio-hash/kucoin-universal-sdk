@@ -1,5 +1,7 @@
 export namespace SpotPublic {
 export type AllTickersEvent = SPOTPUBLIC.AllTickersEvent;
+export type CallAuctionInfoEvent = SPOTPUBLIC.CallAuctionInfoEvent;
+export type CallAuctionOrderbookLevel50Event = SPOTPUBLIC.CallAuctionOrderbookLevel50Event;
 export type KlinesEvent = SPOTPUBLIC.KlinesEvent;
 export type MarketSnapshotData = SPOTPUBLIC.MarketSnapshotData;
 export type MarketSnapshotDataMarketChange1h = SPOTPUBLIC.MarketSnapshotDataMarketChange1h;
@@ -9,7 +11,6 @@ export type MarketSnapshotEvent = SPOTPUBLIC.MarketSnapshotEvent;
 export type OrderbookIncrementChanges = SPOTPUBLIC.OrderbookIncrementChanges;
 export type OrderbookIncrementEvent = SPOTPUBLIC.OrderbookIncrementEvent;
 export type OrderbookLevel1Event = SPOTPUBLIC.OrderbookLevel1Event;
-export type OrderbookLevel50Changes = SPOTPUBLIC.OrderbookLevel50Changes;
 export type OrderbookLevel50Event = SPOTPUBLIC.OrderbookLevel50Event;
 export type OrderbookLevel5Event = SPOTPUBLIC.OrderbookLevel5Event;
 export type SymbolSnapshotData = SPOTPUBLIC.SymbolSnapshotData;

@@ -10,34 +10,34 @@ import { GetCurrentFundingRateReq } from './model_get_current_funding_rate_req';
 
 export interface FundingFeesAPI {
     /**
-     * getCurrentFundingRate Get Current Funding Rate
-     * Description: get Current Funding Rate
+     * getCurrentFundingRate Get Current Funding Rate.
+     * Description: Get Current Funding Rate.
      * Documentation: https://www.kucoin.com/docs-new/api-3470265
-     * +---------------------+---------+
-     * | Extra API Info      | Value   |
-     * +---------------------+---------+
-     * | API-DOMAIN          | FUTURES |
-     * | API-CHANNEL         | PRIVATE |
-     * | API-PERMISSION      | FUTURES |
-     * | API-RATE-LIMIT-POOL | PUBLIC  |
-     * | API-RATE-LIMIT      | 2       |
-     * +---------------------+---------+
+     * +-----------------------+---------+
+     * | Extra API Info        | Value   |
+     * +-----------------------+---------+
+     * | API-DOMAIN            | FUTURES |
+     * | API-CHANNEL           | PUBLIC  |
+     * | API-PERMISSION        | FUTURES |
+     * | API-RATE-LIMIT-POOL   | PUBLIC  |
+     * | API-RATE-LIMIT-WEIGHT | 2       |
+     * +-----------------------+---------+
      */
     getCurrentFundingRate(req: GetCurrentFundingRateReq): Promise<GetCurrentFundingRateResp>;
 
     /**
      * getPublicFundingHistory Get Public Funding History
-     * Description: Query the funding rate at each settlement time point within a certain time range of the corresponding contract
+     * Description: Query the funding rate at each settlement time point within a certain time range of the corresponding contract.
      * Documentation: https://www.kucoin.com/docs-new/api-3470266
-     * +---------------------+---------+
-     * | Extra API Info      | Value   |
-     * +---------------------+---------+
-     * | API-DOMAIN          | FUTURES |
-     * | API-CHANNEL         | PRIVATE |
-     * | API-PERMISSION      | FUTURES |
-     * | API-RATE-LIMIT-POOL | PUBLIC  |
-     * | API-RATE-LIMIT      | 5       |
-     * +---------------------+---------+
+     * +-----------------------+---------+
+     * | Extra API Info        | Value   |
+     * +-----------------------+---------+
+     * | API-DOMAIN            | FUTURES |
+     * | API-CHANNEL           | PUBLIC  |
+     * | API-PERMISSION        | FUTURES |
+     * | API-RATE-LIMIT-POOL   | PUBLIC  |
+     * | API-RATE-LIMIT-WEIGHT | 5       |
+     * +-----------------------+---------+
      */
     getPublicFundingHistory(req: GetPublicFundingHistoryReq): Promise<GetPublicFundingHistoryResp>;
 
@@ -45,15 +45,15 @@ export interface FundingFeesAPI {
      * getPrivateFundingHistory Get Private Funding History
      * Description: Submit request to get the funding history.
      * Documentation: https://www.kucoin.com/docs-new/api-3470267
-     * +---------------------+---------+
-     * | Extra API Info      | Value   |
-     * +---------------------+---------+
-     * | API-DOMAIN          | FUTURES |
-     * | API-CHANNEL         | PRIVATE |
-     * | API-PERMISSION      | FUTURES |
-     * | API-RATE-LIMIT-POOL | FUTURES |
-     * | API-RATE-LIMIT      | 5       |
-     * +---------------------+---------+
+     * +-----------------------+---------+
+     * | Extra API Info        | Value   |
+     * +-----------------------+---------+
+     * | API-DOMAIN            | FUTURES |
+     * | API-CHANNEL           | PRIVATE |
+     * | API-PERMISSION        | FUTURES |
+     * | API-RATE-LIMIT-POOL   | FUTURES |
+     * | API-RATE-LIMIT-WEIGHT | 5       |
+     * +-----------------------+---------+
      */
     getPrivateFundingHistory(
         req: GetPrivateFundingHistoryReq,

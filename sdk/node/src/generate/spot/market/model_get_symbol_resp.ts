@@ -6,22 +6,22 @@ import { Response } from '@internal/interfaces/serializable';
 
 export class GetSymbolResp implements Response<RestResponse> {
     /**
-     * unique code of a symbol, it would not change after renaming
+     * Unique code of a symbol; it will not change after renaming
      */
     symbol: string;
 
     /**
-     * Name of trading pairs, it would change after renaming
+     * Name of trading pairs, it will change after renaming
      */
     name: string;
 
     /**
-     * Base currency,e.g. BTC.
+     * Base currency, e.g. BTC.
      */
     baseCurrency: string;
 
     /**
-     * Quote currency,e.g. USDT.
+     * Quote currency, e.g. USDT.
      */
     quoteCurrency: string;
 
@@ -36,7 +36,7 @@ export class GetSymbolResp implements Response<RestResponse> {
     market: string;
 
     /**
-     * The minimum order quantity requried to place an order.
+     * The minimum order quantity required to place an order.
      */
     baseMinSize: string;
 
@@ -71,12 +71,12 @@ export class GetSymbolResp implements Response<RestResponse> {
     priceIncrement: string;
 
     /**
-     * Threshold for price portection
+     * Threshold for price protection
      */
     priceLimitRate: string;
 
     /**
-     * the minimum trading amounts
+     * The minimum trading amounts
      */
     minFunds: string;
 
@@ -106,9 +106,44 @@ export class GetSymbolResp implements Response<RestResponse> {
     takerFeeCoefficient: string;
 
     /**
-     *
+     * Whether it is a [Special Treatment](https://www.kucoin.com/legal/special-treatment) symbol
      */
     st: boolean;
+
+    /**
+     * The  [call auction](https://www.kucoin.com/support/40999744334105) status returns true/false
+     */
+    callauctionIsEnabled: boolean;
+
+    /**
+     * The lowest price declared in the call auction
+     */
+    callauctionPriceFloor: string;
+
+    /**
+     * The highest bid price in the call auction
+     */
+    callauctionPriceCeiling: string;
+
+    /**
+     * The first phase of the call auction starts at (Allow add orders, allow cancel orders)
+     */
+    callauctionFirstStageStartTime: number;
+
+    /**
+     * The second phase of the call auction starts at (Allow add orders, don\'t allow cancel orders)
+     */
+    callauctionSecondStageStartTime: number;
+
+    /**
+     * The third phase of the call auction starts at (Don\'t allow add orders, don\'t allow cancel orders)
+     */
+    callauctionThirdStageStartTime: number;
+
+    /**
+     * Official opening time (end time of the third phase of call auction)
+     */
+    tradingStartTime: number;
 
     /**
      * Private constructor, please use the corresponding static methods to construct the object.
@@ -156,6 +191,20 @@ export class GetSymbolResp implements Response<RestResponse> {
         this.takerFeeCoefficient = null;
         // @ts-ignore
         this.st = null;
+        // @ts-ignore
+        this.callauctionIsEnabled = null;
+        // @ts-ignore
+        this.callauctionPriceFloor = null;
+        // @ts-ignore
+        this.callauctionPriceCeiling = null;
+        // @ts-ignore
+        this.callauctionFirstStageStartTime = null;
+        // @ts-ignore
+        this.callauctionSecondStageStartTime = null;
+        // @ts-ignore
+        this.callauctionThirdStageStartTime = null;
+        // @ts-ignore
+        this.tradingStartTime = null;
     }
     /**
      * common response

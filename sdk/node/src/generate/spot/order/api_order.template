@@ -12,7 +12,7 @@ describe('Auto Test', ()=> {
     * /api/v1/hf/orders
     */
     let builder = AddOrderReq.builder();
-    builder.setClientOid(?).setSide(?).setSymbol(?).setType(?).setRemark(?).setStp(?).setPrice(?).setSize(?).setTimeInForce(?).setPostOnly(?).setHidden(?).setIceberg(?).setVisibleSize(?).setTags(?).setCancelAfter(?).setFunds(?);
+    builder.setClientOid(?).setSide(?).setSymbol(?).setType(?).setRemark(?).setStp(?).setPrice(?).setSize(?).setTimeInForce(?).setPostOnly(?).setHidden(?).setIceberg(?).setVisibleSize(?).setTags(?).setCancelAfter(?).setFunds(?).setAllowMaxTimeWindow(?).setClientTimestamp(?);
     let req = builder.build();
     let resp = api.addOrder(req);
     return resp.then(result => {
@@ -29,7 +29,7 @@ describe('Auto Test', ()=> {
     * /api/v1/hf/orders/sync
     */
     let builder = AddOrderSyncReq.builder();
-    builder.setClientOid(?).setSide(?).setSymbol(?).setType(?).setRemark(?).setStp(?).setPrice(?).setSize(?).setTimeInForce(?).setPostOnly(?).setHidden(?).setIceberg(?).setVisibleSize(?).setTags(?).setCancelAfter(?).setFunds(?);
+    builder.setClientOid(?).setSide(?).setSymbol(?).setType(?).setRemark(?).setStp(?).setPrice(?).setSize(?).setTimeInForce(?).setPostOnly(?).setHidden(?).setIceberg(?).setVisibleSize(?).setTags(?).setCancelAfter(?).setFunds(?).setAllowMaxTimeWindow(?).setClientTimestamp(?);
     let req = builder.build();
     let resp = api.addOrderSync(req);
     return resp.then(result => {
@@ -53,7 +53,7 @@ describe('Auto Test', ()=> {
     * /api/v1/hf/orders/test
     */
     let builder = AddOrderTestReq.builder();
-    builder.setClientOid(?).setSide(?).setSymbol(?).setType(?).setRemark(?).setStp(?).setPrice(?).setSize(?).setTimeInForce(?).setPostOnly(?).setHidden(?).setIceberg(?).setVisibleSize(?).setTags(?).setCancelAfter(?).setFunds(?);
+    builder.setClientOid(?).setSide(?).setSymbol(?).setType(?).setRemark(?).setStp(?).setPrice(?).setSize(?).setTimeInForce(?).setPostOnly(?).setHidden(?).setIceberg(?).setVisibleSize(?).setTags(?).setCancelAfter(?).setFunds(?).setAllowMaxTimeWindow(?).setClientTimestamp(?);
     let req = builder.build();
     let resp = api.addOrderTest(req);
     return resp.then(result => {
@@ -102,7 +102,7 @@ describe('Auto Test', ()=> {
     * /api/v1/hf/orders/{orderId}
     */
     let builder = CancelOrderByOrderIdReq.builder();
-    builder.setOrderId(?).setSymbol(?);
+    builder.setSymbol(?).setOrderId(?);
     let req = builder.build();
     let resp = api.cancelOrderByOrderId(req);
     return resp.then(result => {
@@ -118,7 +118,7 @@ describe('Auto Test', ()=> {
     * /api/v1/hf/orders/sync/{orderId}
     */
     let builder = CancelOrderByOrderIdSyncReq.builder();
-    builder.setOrderId(?).setSymbol(?);
+    builder.setSymbol(?).setOrderId(?);
     let req = builder.build();
     let resp = api.cancelOrderByOrderIdSync(req);
     return resp.then(result => {
@@ -155,7 +155,7 @@ describe('Auto Test', ()=> {
     * /api/v1/hf/orders/sync/client-order/{clientOid}
     */
     let builder = CancelOrderByClientOidSyncReq.builder();
-    builder.setClientOid(?).setSymbol(?);
+    builder.setSymbol(?).setClientOid(?);
     let req = builder.build();
     let resp = api.cancelOrderByClientOidSync(req);
     return resp.then(result => {
@@ -439,7 +439,6 @@ describe('Auto Test', ()=> {
     let resp = api.addStopOrder(req);
     return resp.then(result => {
         expect(result.orderId).toEqual(expect.anything());
-        expect(result.clientOid).toEqual(expect.anything());
         console.log(resp);
     });
     })
@@ -775,7 +774,7 @@ describe('Auto Test', ()=> {
     * /api/v1/orders/{orderId}
     */
     let builder = CancelOrderByOrderIdOldReq.builder();
-    builder.setSymbol(?).setOrderId(?);
+    builder.setOrderId(?);
     let req = builder.build();
     let resp = api.cancelOrderByOrderIdOld(req);
     return resp.then(result => {
@@ -791,7 +790,7 @@ describe('Auto Test', ()=> {
     * /api/v1/order/client-order/{clientOid}
     */
     let builder = CancelOrderByClientOidOldReq.builder();
-    builder.setSymbol(?).setClientOid(?);
+    builder.setClientOid(?);
     let req = builder.build();
     let resp = api.cancelOrderByClientOidOld(req);
     return resp.then(result => {
@@ -844,10 +843,7 @@ describe('Auto Test', ()=> {
     * Get Recent Orders List - Old
     * /api/v1/limit/orders
     */
-    let builder = GetRecentOrdersListOldReq.builder();
-    builder.setCurrentPage(?).setPageSize(?);
-    let req = builder.build();
-    let resp = api.getRecentOrdersListOld(req);
+    let resp = api.getRecentOrdersListOld();
     return resp.then(result => {
         expect(result.data).toEqual(expect.anything());
         console.log(resp);
@@ -895,6 +891,9 @@ describe('Auto Test', ()=> {
         expect(result.cancelExist).toEqual(expect.anything());
         expect(result.createdAt).toEqual(expect.anything());
         expect(result.tradeType).toEqual(expect.anything());
+        expect(result.tax).toEqual(expect.anything());
+        expect(result.taxRate).toEqual(expect.anything());
+        expect(result.taxCurrency).toEqual(expect.anything());
         console.log(resp);
     });
     })
@@ -940,6 +939,9 @@ describe('Auto Test', ()=> {
         expect(result.cancelExist).toEqual(expect.anything());
         expect(result.createdAt).toEqual(expect.anything());
         expect(result.tradeType).toEqual(expect.anything());
+        expect(result.tax).toEqual(expect.anything());
+        expect(result.taxRate).toEqual(expect.anything());
+        expect(result.taxCurrency).toEqual(expect.anything());
         console.log(resp);
     });
     })
@@ -970,10 +972,7 @@ describe('Auto Test', ()=> {
     * Get Recent Trade History - Old
     * /api/v1/limit/fills
     */
-    let builder = GetRecentTradeHistoryOldReq.builder();
-    builder.setCurrentPage(?).setPageSize(?);
-    let req = builder.build();
-    let resp = api.getRecentTradeHistoryOld(req);
+    let resp = api.getRecentTradeHistoryOld();
     return resp.then(result => {
         expect(result.data).toEqual(expect.anything());
         console.log(resp);

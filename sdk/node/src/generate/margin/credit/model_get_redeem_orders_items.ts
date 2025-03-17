@@ -10,12 +10,12 @@ export class GetRedeemOrdersItems implements Serializable {
     currency: string;
 
     /**
-     * Purchase order id
+     * Purchase order ID
      */
     purchaseOrderNo: string;
 
     /**
-     * Redeem order id
+     * Redeem order ID
      */
     redeemOrderNo: string;
 

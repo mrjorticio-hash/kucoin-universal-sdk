@@ -11,12 +11,12 @@ export class GetAllCurrenciesData implements Serializable {
     currency: string;
 
     /**
-     * Currency name, will change after renaming
+     * Currency name; will change after renaming
      */
     name: string;
 
     /**
-     * Full name of a currency, will change after renaming
+     * Full currency name; will change after renaming
      */
     fullName: string;
 
@@ -36,17 +36,17 @@ export class GetAllCurrenciesData implements Serializable {
     contractAddress: string;
 
     /**
-     * Support margin or not
+     * Margin support or not
      */
     isMarginEnabled: boolean;
 
     /**
-     * Support debit or not
+     * Debit support or not
      */
     isDebitEnabled: boolean;
 
     /**
-     * chain list
+     * Chain list
      */
     @Type(() => GetAllCurrenciesDataChains)
     chains: Array<GetAllCurrenciesDataChains>;

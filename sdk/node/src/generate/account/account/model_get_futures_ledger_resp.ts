@@ -13,7 +13,7 @@ export class GetFuturesLedgerResp implements Response<RestResponse> {
     dataList: Array<GetFuturesLedgerDataList>;
 
     /**
-     * Is it the last page. If it is false, it means it is the last page, and if it is true, it means need to turn the page.
+     * Is it the last page? If it is false, it means it is the last page, and if it is true, it means you need to move to the next page.
      */
     hasMore: boolean;
 

@@ -6,7 +6,7 @@ import { Response } from '@internal/interfaces/serializable';
 
 export class ModifyIsolatedMarginRiskLimtResp implements Response<RestResponse> {
     /**
-     * To adjust the level will cancel the open order, the response can only indicate whether the submit of the adjustment request is successful or not.
+     * Adjusting the level will result in the cancellation of any open orders. The response will indicate only whether the adjustment request was successfully submitted.
      */
     data: boolean;
 

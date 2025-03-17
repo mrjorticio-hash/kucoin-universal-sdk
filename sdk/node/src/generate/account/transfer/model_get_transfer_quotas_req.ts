@@ -10,12 +10,12 @@ export class GetTransferQuotasReq implements Serializable {
     currency?: string;
 
     /**
-     * The account type:MAIN、TRADE、MARGIN、ISOLATED
+     * The account type:MAIN, TRADE, MARGIN, ISOLATED, MARGIN_V2, ISOLATED_V2
      */
     type?: GetTransferQuotasReq.TypeEnum;
 
     /**
-     * Trading pair, required when the account type is ISOLATED; other types are not passed, e.g.: BTC-USDT
+     * Trading pair required when the account type is ISOLATED; other types do not pass, e.g.: BTC-USDT
      */
     tag?: string = 'BTC-USDT';
 
@@ -40,11 +40,11 @@ export class GetTransferQuotasReq implements Serializable {
          */
         currency?: string;
         /**
-         * The account type:MAIN、TRADE、MARGIN、ISOLATED
+         * The account type:MAIN, TRADE, MARGIN, ISOLATED, MARGIN_V2, ISOLATED_V2
          */
         type?: GetTransferQuotasReq.TypeEnum;
         /**
-         * Trading pair, required when the account type is ISOLATED; other types are not passed, e.g.: BTC-USDT
+         * Trading pair required when the account type is ISOLATED; other types do not pass, e.g.: BTC-USDT
          */
         tag?: string;
     }): GetTransferQuotasReq {
@@ -90,17 +90,25 @@ export namespace GetTransferQuotasReq {
          */
         TRADE = <any>'TRADE',
         /**
-         * Cross margin account
+         * Spot cross margin account
          */
         MARGIN = <any>'MARGIN',
         /**
-         * Isolated margin account
+         * Spot isolated margin account
          */
         ISOLATED = <any>'ISOLATED',
         /**
          * Option account
          */
         OPTION = <any>'OPTION',
+        /**
+         * Spot cross margin HF account
+         */
+        MARGIN_V2 = <any>'MARGIN_V2',
+        /**
+         * Spot isolated margin HF account
+         */
+        ISOLATED_V2 = <any>'ISOLATED_V2',
     }
 }
 
@@ -117,7 +125,7 @@ export class GetTransferQuotasReqBuilder {
     }
 
     /**
-     * The account type:MAIN、TRADE、MARGIN、ISOLATED
+     * The account type:MAIN, TRADE, MARGIN, ISOLATED, MARGIN_V2, ISOLATED_V2
      */
     setType(value: GetTransferQuotasReq.TypeEnum): GetTransferQuotasReqBuilder {
         this.obj.type = value;
@@ -125,7 +133,7 @@ export class GetTransferQuotasReqBuilder {
     }
 
     /**
-     * Trading pair, required when the account type is ISOLATED; other types are not passed, e.g.: BTC-USDT
+     * Trading pair required when the account type is ISOLATED; other types do not pass, e.g.: BTC-USDT
      */
     setTag(value: string): GetTransferQuotasReqBuilder {
         this.obj.tag = value;

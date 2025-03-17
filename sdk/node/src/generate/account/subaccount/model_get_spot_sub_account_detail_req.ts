@@ -6,15 +6,25 @@ import { Serializable } from '@internal/interfaces/serializable';
 
 export class GetSpotSubAccountDetailReq implements Serializable {
     /**
+     * false: do not display the currency which asset is 0, true: display all currency
+     */
+    includeBaseAmount?: boolean = false;
+
+    /**
+     * Specify the currency used to convert assets
+     */
+    baseCurrency?: string;
+
+    /**
+     * Specify the currency balance must be greater than or equal to the amount
+     */
+    baseAmount?: string;
+
+    /**
      * the userID of a sub-account.
      */
     @Reflect.metadata('path', 'subUserId')
     subUserId?: string;
-
-    /**
-     * false: do not display the currency which asset is 0, true: display all currency
-     */
-    includeBaseAmount?: boolean;
 
     /**
      * Private constructor, please use the corresponding static methods to construct the object.
@@ -33,17 +43,31 @@ export class GetSpotSubAccountDetailReq implements Serializable {
      */
     static create(data: {
         /**
-         * the userID of a sub-account.
-         */
-        subUserId?: string;
-        /**
          * false: do not display the currency which asset is 0, true: display all currency
          */
         includeBaseAmount?: boolean;
+        /**
+         * Specify the currency used to convert assets
+         */
+        baseCurrency?: string;
+        /**
+         * Specify the currency balance must be greater than or equal to the amount
+         */
+        baseAmount?: string;
+        /**
+         * the userID of a sub-account.
+         */
+        subUserId?: string;
     }): GetSpotSubAccountDetailReq {
         let obj = new GetSpotSubAccountDetailReq();
+        if (data.includeBaseAmount) {
+            obj.includeBaseAmount = data.includeBaseAmount;
+        } else {
+            obj.includeBaseAmount = false;
+        }
+        obj.baseCurrency = data.baseCurrency;
+        obj.baseAmount = data.baseAmount;
         obj.subUserId = data.subUserId;
-        obj.includeBaseAmount = data.includeBaseAmount;
         return obj;
     }
 
@@ -72,18 +96,34 @@ export class GetSpotSubAccountDetailReqBuilder {
         this.obj = obj;
     }
     /**
-     * the userID of a sub-account.
-     */
-    setSubUserId(value: string): GetSpotSubAccountDetailReqBuilder {
-        this.obj.subUserId = value;
-        return this;
-    }
-
-    /**
      * false: do not display the currency which asset is 0, true: display all currency
      */
     setIncludeBaseAmount(value: boolean): GetSpotSubAccountDetailReqBuilder {
         this.obj.includeBaseAmount = value;
+        return this;
+    }
+
+    /**
+     * Specify the currency used to convert assets
+     */
+    setBaseCurrency(value: string): GetSpotSubAccountDetailReqBuilder {
+        this.obj.baseCurrency = value;
+        return this;
+    }
+
+    /**
+     * Specify the currency balance must be greater than or equal to the amount
+     */
+    setBaseAmount(value: string): GetSpotSubAccountDetailReqBuilder {
+        this.obj.baseAmount = value;
+        return this;
+    }
+
+    /**
+     * the userID of a sub-account.
+     */
+    setSubUserId(value: string): GetSpotSubAccountDetailReqBuilder {
+        this.obj.subUserId = value;
         return this;
     }
 

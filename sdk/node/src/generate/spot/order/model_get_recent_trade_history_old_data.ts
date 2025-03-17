@@ -7,92 +7,142 @@ export class GetRecentTradeHistoryOldData implements Serializable {
     /**
      *
      */
-    symbol?: string;
+    symbol: string;
 
     /**
      *
      */
-    tradeId?: string;
+    tradeId: string;
 
     /**
      *
      */
-    orderId?: string;
+    orderId: string;
 
     /**
      *
      */
-    counterOrderId?: string;
+    counterOrderId: string;
 
     /**
      *
      */
-    side?: string;
+    side: string;
 
     /**
      *
      */
-    liquidity?: string;
+    liquidity: string;
 
     /**
      *
      */
-    forceTaker?: boolean;
+    forceTaker: boolean;
 
     /**
      *
      */
-    price?: string;
+    price: string;
 
     /**
      *
      */
-    size?: string;
+    size: string;
 
     /**
      *
      */
-    funds?: string;
+    funds: string;
 
     /**
      *
      */
-    fee?: string;
+    fee: string;
 
     /**
      *
      */
-    feeRate?: string;
+    feeRate: string;
 
     /**
      *
      */
-    feeCurrency?: string;
+    feeCurrency: string;
 
     /**
      *
      */
-    stop?: string;
+    stop: string;
 
     /**
      *
      */
-    tradeType?: string;
+    tradeType: string;
 
     /**
      *
      */
-    type?: string;
+    type: string;
 
     /**
      *
      */
-    createdAt?: number;
+    createdAt: number;
+
+    /**
+     *
+     */
+    tax?: string;
+
+    /**
+     *
+     */
+    taxCurrency?: string;
+
+    /**
+     *
+     */
+    taxRate?: string;
 
     /**
      * Private constructor, please use the corresponding static methods to construct the object.
      */
-    private constructor() {}
+    private constructor() {
+        // @ts-ignore
+        this.symbol = null;
+        // @ts-ignore
+        this.tradeId = null;
+        // @ts-ignore
+        this.orderId = null;
+        // @ts-ignore
+        this.counterOrderId = null;
+        // @ts-ignore
+        this.side = null;
+        // @ts-ignore
+        this.liquidity = null;
+        // @ts-ignore
+        this.forceTaker = null;
+        // @ts-ignore
+        this.price = null;
+        // @ts-ignore
+        this.size = null;
+        // @ts-ignore
+        this.funds = null;
+        // @ts-ignore
+        this.fee = null;
+        // @ts-ignore
+        this.feeRate = null;
+        // @ts-ignore
+        this.feeCurrency = null;
+        // @ts-ignore
+        this.stop = null;
+        // @ts-ignore
+        this.tradeType = null;
+        // @ts-ignore
+        this.type = null;
+        // @ts-ignore
+        this.createdAt = null;
+    }
     /**
      * Convert the object to a JSON string.
      */

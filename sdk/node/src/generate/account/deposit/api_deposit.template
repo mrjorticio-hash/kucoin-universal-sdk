@@ -8,7 +8,7 @@ describe('Auto Test', ()=> {
     test('addDepositAddressV3 request test', ()=> {
     /**
     * addDepositAddressV3
-    * Add Deposit Address(V3)
+    * Add Deposit Address (V3)
     * /api/v3/deposit-address/create
     */
     let builder = AddDepositAddressV3Req.builder();
@@ -30,7 +30,7 @@ describe('Auto Test', ()=> {
     test('getDepositAddressV3 request test', ()=> {
     /**
     * getDepositAddressV3
-    * Get Deposit Address(V3)
+    * Get Deposit Address (V3)
     * /api/v3/deposit-addresses
     */
     let builder = GetDepositAddressV3Req.builder();
@@ -66,11 +66,11 @@ describe('Auto Test', ()=> {
     test('getDepositAddressV2 request test', ()=> {
     /**
     * getDepositAddressV2
-    * Get Deposit Addresses(V2)
+    * Get Deposit Addresses (V2)
     * /api/v2/deposit-addresses
     */
     let builder = GetDepositAddressV2Req.builder();
-    builder.setCurrency(?);
+    builder.setCurrency(?).setChain(?);
     let req = builder.build();
     let resp = api.getDepositAddressV2(req);
     return resp.then(result => {
@@ -128,7 +128,7 @@ describe('Auto Test', ()=> {
     * /api/v1/deposit-addresses
     */
     let builder = AddDepositAddressV1Req.builder();
-    builder.setCurrency(?).setChain(?);
+    builder.setCurrency(?).setChain(?).setTo(?);
     let req = builder.build();
     let resp = api.addDepositAddressV1(req);
     return resp.then(result => {

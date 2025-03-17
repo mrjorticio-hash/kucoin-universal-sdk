@@ -81,7 +81,7 @@ describe('Auto Test', () => {
     test('subAccountTransfer request test', () => {
         /**
          * subAccountTransfer
-         * SubAccount Transfer
+         * Sub-account Transfer
          * /api/v2/accounts/sub-transfer
          */
         let data =
@@ -96,7 +96,7 @@ describe('Auto Test', () => {
     test('subAccountTransfer response test', () => {
         /**
          * subAccountTransfer
-         * SubAccount Transfer
+         * Sub-account Transfer
          * /api/v2/accounts/sub-transfer
          */
         let data = '{"code":"200000","data":{"orderId":"670be6b0b1b9080007040a9b"}}';
@@ -112,7 +112,7 @@ describe('Auto Test', () => {
     test('innerTransfer request test', () => {
         /**
          * innerTransfer
-         * Inner Transfer
+         * Internal Transfer
          * /api/v2/accounts/inner-transfer
          */
         let data =
@@ -127,7 +127,7 @@ describe('Auto Test', () => {
     test('innerTransfer response test', () => {
         /**
          * innerTransfer
-         * Inner Transfer
+         * Internal Transfer
          * /api/v2/accounts/inner-transfer
          */
         let data = '{"code":"200000","data":{"orderId":"670beb3482a1bb0007dec644"}}';

@@ -22,7 +22,7 @@ export class GetWithdrawalHistoryOldResp implements Response<RestResponse> {
     totalNum: number;
 
     /**
-     * total page
+     * total pages
      */
     totalPage: number;
 

@@ -101,10 +101,8 @@ export namespace Spot {
         export type GetOrdersListOldReq = ORDER.GetOrdersListOldReq;
         export type GetOrdersListOldResp = ORDER.GetOrdersListOldResp;
         export type GetRecentOrdersListOldData = ORDER.GetRecentOrdersListOldData;
-        export type GetRecentOrdersListOldReq = ORDER.GetRecentOrdersListOldReq;
         export type GetRecentOrdersListOldResp = ORDER.GetRecentOrdersListOldResp;
         export type GetRecentTradeHistoryOldData = ORDER.GetRecentTradeHistoryOldData;
-        export type GetRecentTradeHistoryOldReq = ORDER.GetRecentTradeHistoryOldReq;
         export type GetRecentTradeHistoryOldResp = ORDER.GetRecentTradeHistoryOldResp;
         export type GetStopOrderByClientOidData = ORDER.GetStopOrderByClientOidData;
         export type GetStopOrderByClientOidReq = ORDER.GetStopOrderByClientOidReq;
@@ -131,6 +129,7 @@ export namespace Spot {
         export type AccountRelationContext = SPOTPRIVATE.AccountRelationContext;
         export type OrderV1Event = SPOTPRIVATE.OrderV1Event;
         export type OrderV2Event = SPOTPRIVATE.OrderV2Event;
+        export type StopOrderEvent = SPOTPRIVATE.StopOrderEvent;
     }
     export namespace Market {
         export type Get24hrStatsReq = MARKET.Get24hrStatsReq;
@@ -146,6 +145,11 @@ export namespace Spot {
         export type GetAnnouncementsItems = MARKET.GetAnnouncementsItems;
         export type GetAnnouncementsReq = MARKET.GetAnnouncementsReq;
         export type GetAnnouncementsResp = MARKET.GetAnnouncementsResp;
+        export type GetCallAuctionInfoReq = MARKET.GetCallAuctionInfoReq;
+        export type GetCallAuctionInfoResp = MARKET.GetCallAuctionInfoResp;
+        export type GetCallAuctionPartOrderBookReq = MARKET.GetCallAuctionPartOrderBookReq;
+        export type GetCallAuctionPartOrderBookResp = MARKET.GetCallAuctionPartOrderBookResp;
+        export type GetClientIPAddressResp = MARKET.GetClientIPAddressResp;
         export type GetCurrencyChains = MARKET.GetCurrencyChains;
         export type GetCurrencyReq = MARKET.GetCurrencyReq;
         export type GetCurrencyResp = MARKET.GetCurrencyResp;
@@ -174,6 +178,8 @@ export namespace Spot {
     }
     export namespace SpotPublic {
         export type AllTickersEvent = SPOTPUBLIC.AllTickersEvent;
+        export type CallAuctionInfoEvent = SPOTPUBLIC.CallAuctionInfoEvent;
+        export type CallAuctionOrderbookLevel50Event = SPOTPUBLIC.CallAuctionOrderbookLevel50Event;
         export type KlinesEvent = SPOTPUBLIC.KlinesEvent;
         export type MarketSnapshotData = SPOTPUBLIC.MarketSnapshotData;
         export type MarketSnapshotDataMarketChange1h = SPOTPUBLIC.MarketSnapshotDataMarketChange1h;
@@ -184,7 +190,6 @@ export namespace Spot {
         export type OrderbookIncrementChanges = SPOTPUBLIC.OrderbookIncrementChanges;
         export type OrderbookIncrementEvent = SPOTPUBLIC.OrderbookIncrementEvent;
         export type OrderbookLevel1Event = SPOTPUBLIC.OrderbookLevel1Event;
-        export type OrderbookLevel50Changes = SPOTPUBLIC.OrderbookLevel50Changes;
         export type OrderbookLevel50Event = SPOTPUBLIC.OrderbookLevel50Event;
         export type OrderbookLevel5Event = SPOTPUBLIC.OrderbookLevel5Event;
         export type SymbolSnapshotData = SPOTPUBLIC.SymbolSnapshotData;

@@ -5,7 +5,7 @@ import { Serializable } from '@internal/interfaces/serializable';
 
 export class GetSpotActualFeeReq implements Serializable {
     /**
-     * Trading pair (optional, you can inquire fee rates of 10 trading pairs each time at most)
+     * Trading pair (optional; you can inquire fee rates of 10 trading pairs each time at most)
      */
     symbols?: string;
 
@@ -26,7 +26,7 @@ export class GetSpotActualFeeReq implements Serializable {
      */
     static create(data: {
         /**
-         * Trading pair (optional, you can inquire fee rates of 10 trading pairs each time at most)
+         * Trading pair (optional; you can inquire fee rates of 10 trading pairs each time at most)
          */
         symbols?: string;
     }): GetSpotActualFeeReq {
@@ -60,7 +60,7 @@ export class GetSpotActualFeeReqBuilder {
         this.obj = obj;
     }
     /**
-     * Trading pair (optional, you can inquire fee rates of 10 trading pairs each time at most)
+     * Trading pair (optional; you can inquire fee rates of 10 trading pairs each time at most)
      */
     setSymbols(value: string): GetSpotActualFeeReqBuilder {
         this.obj.symbols = value;

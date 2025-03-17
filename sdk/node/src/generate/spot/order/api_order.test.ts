@@ -72,7 +72,6 @@ import { AddOrderSyncResp } from './model_add_order_sync_resp';
 import { BatchAddOrdersOldReq } from './model_batch_add_orders_old_req';
 import { GetOpenOrdersReq } from './model_get_open_orders_req';
 import { GetStopOrdersListReq } from './model_get_stop_orders_list_req';
-import { GetRecentTradeHistoryOldReq } from './model_get_recent_trade_history_old_req';
 import { AddOrderOldResp } from './model_add_order_old_resp';
 import { BatchCancelStopOrderResp } from './model_batch_cancel_stop_order_resp';
 import { GetTradeHistoryReq } from './model_get_trade_history_req';
@@ -83,7 +82,6 @@ import { CancelOrderByClientOidResp } from './model_cancel_order_by_client_oid_r
 import { CancelOrderByOrderIdResp } from './model_cancel_order_by_order_id_resp';
 import { CancelOrderByClientOidOldReq } from './model_cancel_order_by_client_oid_old_req';
 import { CancelOcoOrderByClientOidResp } from './model_cancel_oco_order_by_client_oid_resp';
-import { GetRecentOrdersListOldReq } from './model_get_recent_orders_list_old_req';
 import { GetOrderByClientOidReq } from './model_get_order_by_client_oid_req';
 import { BatchAddOrdersResp } from './model_batch_add_orders_resp';
 import { BatchAddOrdersReq } from './model_batch_add_orders_req';
@@ -260,7 +258,7 @@ describe('Auto Test', () => {
          * Cancel Order By OrderId
          * /api/v1/hf/orders/{orderId}
          */
-        let data = '{"orderId": "671124f9365ccb00073debd4", "symbol": "BTC-USDT"}';
+        let data = '{"symbol": "BTC-USDT", "orderId": "671124f9365ccb00073debd4"}';
         let req = CancelOrderByOrderIdReq.fromJson(data);
         expect(Object.values(req).every((value) => value === null || value === undefined)).toBe(
             false,
@@ -291,7 +289,7 @@ describe('Auto Test', () => {
          * Cancel Order By OrderId Sync
          * /api/v1/hf/orders/sync/{orderId}
          */
-        let data = '{"orderId": "671128ee365ccb0007534d45", "symbol": "BTC-USDT"}';
+        let data = '{"symbol": "BTC-USDT", "orderId": "671128ee365ccb0007534d45"}';
         let req = CancelOrderByOrderIdSyncReq.fromJson(data);
         expect(Object.values(req).every((value) => value === null || value === undefined)).toBe(
             false,
@@ -352,7 +350,7 @@ describe('Auto Test', () => {
          * Cancel Order By ClientOid Sync
          * /api/v1/hf/orders/sync/client-order/{clientOid}
          */
-        let data = '{"clientOid": "5c52e11203aa677f33e493fb", "symbol": "BTC-USDT"}';
+        let data = '{"symbol": "BTC-USDT", "clientOid": "5c52e11203aa677f33e493fb"}';
         let req = CancelOrderByClientOidSyncReq.fromJson(data);
         expect(Object.values(req).every((value) => value === null || value === undefined)).toBe(
             false,
@@ -710,7 +708,7 @@ describe('Auto Test', () => {
          * /api/v1/stop-order
          */
         let data =
-            '{"type": "limit", "symbol": "BTC-USDT", "side": "buy", "price": "50000", "size": "0.00001", "clientOid": "5c52e11203aa677f33e493fb", "remark": "order remarks"}';
+            '{"type": "limit", "symbol": "BTC-USDT", "side": "buy", "price": "50000", "stopPrice": "50000", "size": "0.00001", "clientOid": "5c52e11203aa677f33e493fb", "remark": "order remarks"}';
         let req = AddStopOrderReq.fromJson(data);
         expect(Object.values(req).every((value) => value === null || value === undefined)).toBe(
             false,
@@ -725,7 +723,7 @@ describe('Auto Test', () => {
          * /api/v1/stop-order
          */
         let data =
-            '{"code":"200000","data":{"orderId":"670fd33bf9406e0007ab3945","clientOid":"5c52e11203aa677f33e493fb"}}';
+            '{\n    "code": "200000",\n    "data": {\n        "orderId": "670fd33bf9406e0007ab3945"\n    }\n}';
         let commonResp = RestResponse.fromJson(data);
         let resp = AddStopOrderResp.fromObject(commonResp.data);
         if (commonResp.data !== null) {
@@ -836,7 +834,7 @@ describe('Auto Test', () => {
          * /api/v1/stop-order
          */
         let data =
-            '{"symbol": "BTC-USDT", "orderId": "670fd33bf9406e0007ab3945", "newPrice": "30000", "newSize": "0.0001"}';
+            '{"symbol": "example_string_default_value", "side": "example_string_default_value", "type": "limit", "tradeType": "example_string_default_value", "startAt": 123456, "endAt": 123456, "currentPage": 1, "orderIds": "example_string_default_value", "pageSize": 50, "stop": "example_string_default_value"}';
         let req = GetStopOrdersListReq.fromJson(data);
         expect(Object.values(req).every((value) => value === null || value === undefined)).toBe(
             false,
@@ -851,7 +849,7 @@ describe('Auto Test', () => {
          * /api/v1/stop-order
          */
         let data =
-            '{\n    "code": "200000",\n    "data": {\n        "currentPage": 1,\n        "pageSize": 50,\n        "totalNum": 1,\n        "totalPage": 1,\n        "items": [\n            {\n                "id": "vs8hoo8kqjnklv4m0038lrfq",\n                "symbol": "KCS-USDT",\n                "userId": "60fe4956c43cbc0006562c2c",\n                "status": "NEW",\n                "type": "limit",\n                "side": "buy",\n                "price": "0.01000000000000000000",\n                "size": "0.01000000000000000000",\n                "funds": null,\n                "stp": null,\n                "timeInForce": "GTC",\n                "cancelAfter": -1,\n                "postOnly": false,\n                "hidden": false,\n                "iceberg": false,\n                "visibleSize": null,\n                "channel": "API",\n                "clientOid": "404814a0fb4311eb9098acde48001122",\n                "remark": null,\n                "tags": null,\n                "orderTime": 1628755183702150100,\n                "domainId": "kucoin",\n                "tradeSource": "USER",\n                "tradeType": "TRADE",\n                "feeCurrency": "USDT",\n                "takerFeeRate": "0.00200000000000000000",\n                "makerFeeRate": "0.00200000000000000000",\n                "createdAt": 1628755183704,\n                "stop": "loss",\n                "stopTriggerTime": null,\n                "stopPrice": "10.00000000000000000000"\n            }\n        ]\n    }\n}';
+            '{\n    "code": "200000",\n    "data": {\n        "currentPage": 1,\n        "pageSize": 50,\n        "totalNum": 2,\n        "totalPage": 1,\n        "items": [\n            {\n                "id": "vs93gptvr9t2fsql003l8k5p",\n                "symbol": "BTC-USDT",\n                "userId": "633559791e1cbc0001f319bc",\n                "status": "NEW",\n                "type": "limit",\n                "side": "buy",\n                "price": "50000.00000000000000000000",\n                "size": "0.00001000000000000000",\n                "funds": null,\n                "stp": null,\n                "timeInForce": "GTC",\n                "cancelAfter": -1,\n                "postOnly": false,\n                "hidden": false,\n                "iceberg": false,\n                "visibleSize": null,\n                "channel": "API",\n                "clientOid": "5c52e11203aa677f222233e493fb",\n                "remark": "order remarks",\n                "tags": null,\n                "relatedNo": null,\n                "orderTime": 1740626554883000024,\n                "domainId": "kucoin",\n                "tradeSource": "USER",\n                "tradeType": "TRADE",\n                "feeCurrency": "USDT",\n                "takerFeeRate": "0.00100000000000000000",\n                "makerFeeRate": "0.00100000000000000000",\n                "createdAt": 1740626554884,\n                "stop": "loss",\n                "stopTriggerTime": null,\n                "stopPrice": "60000.00000000000000000000",\n                "limitPrice": null,\n                "pop": null,\n                "activateCondition": null\n            }\n        ]\n    }\n}';
         let commonResp = RestResponse.fromJson(data);
         let resp = GetStopOrdersListResp.fromObject(commonResp.data);
         if (commonResp.data !== null) {
@@ -1276,7 +1274,7 @@ describe('Auto Test', () => {
          * Cancel Order By OrderId - Old
          * /api/v1/orders/{orderId}
          */
-        let data = '{"symbol": "BTC-USDT", "orderId": "674a97dfef434f0007efc431"}';
+        let data = '{"orderId": "674a97dfef434f0007efc431"}';
         let req = CancelOrderByOrderIdOldReq.fromJson(data);
         expect(Object.values(req).every((value) => value === null || value === undefined)).toBe(
             false,
@@ -1307,7 +1305,7 @@ describe('Auto Test', () => {
          * Cancel Order By ClientOid - Old
          * /api/v1/order/client-order/{clientOid}
          */
-        let data = '{"symbol": "BTC-USDT", "clientOid": "5c52e11203aa677f33e4923fb"}';
+        let data = '{"clientOid": "5c52e11203aa677f331e493fb"}';
         let req = CancelOrderByClientOidOldReq.fromJson(data);
         expect(Object.values(req).every((value) => value === null || value === undefined)).toBe(
             false,
@@ -1322,7 +1320,7 @@ describe('Auto Test', () => {
          * /api/v1/order/client-order/{clientOid}
          */
         let data =
-            '{\n    "code": "200000",\n    "data": {\n        "cancelledOrderId": "674a9a872033a50007e2790d",\n        "clientOid": "5c52e11203aa677f33e4923fb",\n        "cancelledOcoOrderIds": null\n    }\n}';
+            '{\n    "code": "200000",\n    "data": {\n        "cancelledOrderId": "67c3252a63d25e0007f91de9",\n        "clientOid": "5c52e11203aa677f331e493fb",\n        "cancelledOcoOrderIds": null\n    }\n}';
         let commonResp = RestResponse.fromJson(data);
         let resp = CancelOrderByClientOidOldResp.fromObject(commonResp.data);
         if (commonResp.data !== null) {
@@ -1401,12 +1399,6 @@ describe('Auto Test', () => {
          * Get Recent Orders List - Old
          * /api/v1/limit/orders
          */
-        let data = '{"currentPage": 1, "pageSize": 50}';
-        let req = GetRecentOrdersListOldReq.fromJson(data);
-        expect(Object.values(req).every((value) => value === null || value === undefined)).toBe(
-            false,
-        );
-        console.log(req);
     });
 
     test('getRecentOrdersListOld response test', () => {
@@ -1415,16 +1407,6 @@ describe('Auto Test', () => {
          * Get Recent Orders List - Old
          * /api/v1/limit/orders
          */
-        let data =
-            '{\n    "code": "200000",\n    "data": [\n        {\n            "id": "674a9a872033a50007e2790d",\n            "symbol": "BTC-USDT",\n            "opType": "DEAL",\n            "type": "limit",\n            "side": "buy",\n            "price": "50000",\n            "size": "0.00001",\n            "funds": "0",\n            "dealFunds": "0",\n            "dealSize": "0",\n            "fee": "0",\n            "feeCurrency": "USDT",\n            "stp": "",\n            "stop": "",\n            "stopTriggered": false,\n            "stopPrice": "0",\n            "timeInForce": "GTC",\n            "postOnly": false,\n            "hidden": false,\n            "iceberg": false,\n            "visibleSize": "0",\n            "cancelAfter": 0,\n            "channel": "API",\n            "clientOid": "5c52e11203aa677f33e4923fb",\n            "remark": "order remarks",\n            "tags": null,\n            "isActive": false,\n            "cancelExist": true,\n            "createdAt": 1732942471752,\n            "tradeType": "TRADE"\n        }\n    ]\n}';
-        let commonResp = RestResponse.fromJson(data);
-        let resp = GetRecentOrdersListOldResp.fromObject(commonResp.data);
-        if (commonResp.data !== null) {
-            expect(
-                Object.values(resp).every((value) => value === null || value === undefined),
-            ).toBe(false);
-            console.log(resp);
-        }
     });
     test('getOrderByOrderIdOld request test', () => {
         /**
@@ -1526,12 +1508,6 @@ describe('Auto Test', () => {
          * Get Recent Trade History - Old
          * /api/v1/limit/fills
          */
-        let data = '{"currentPage": 1, "pageSize": 50}';
-        let req = GetRecentTradeHistoryOldReq.fromJson(data);
-        expect(Object.values(req).every((value) => value === null || value === undefined)).toBe(
-            false,
-        );
-        console.log(req);
     });
 
     test('getRecentTradeHistoryOld response test', () => {
@@ -1540,15 +1516,5 @@ describe('Auto Test', () => {
          * Get Recent Trade History - Old
          * /api/v1/limit/fills
          */
-        let data =
-            '{\n    "code": "200000",\n    "data": [\n        {\n            "symbol": "BTC-USDT",\n            "tradeId": "11732720444522497",\n            "orderId": "674aab24754b1e00077dbc69",\n            "counterOrderId": "674aab1fb26bfb0007a18b67",\n            "side": "buy",\n            "liquidity": "taker",\n            "forceTaker": false,\n            "price": "96999.6",\n            "size": "0.00001",\n            "funds": "0.969996",\n            "fee": "0.000969996",\n            "feeRate": "0.001",\n            "feeCurrency": "USDT",\n            "stop": "",\n            "tradeType": "TRADE",\n            "type": "limit",\n            "createdAt": 1732946724082\n        }\n    ]\n}';
-        let commonResp = RestResponse.fromJson(data);
-        let resp = GetRecentTradeHistoryOldResp.fromObject(commonResp.data);
-        if (commonResp.data !== null) {
-            expect(
-                Object.values(resp).every((value) => value === null || value === undefined),
-            ).toBe(false);
-            console.log(resp);
-        }
     });
 });

@@ -5,7 +5,7 @@ import { Serializable } from '@internal/interfaces/serializable';
 
 export class GetPrivateTokenInstanceServers implements Serializable {
     /**
-     * Websocket domain URL, It is recommended to use a dynamic URL as the URL may change
+     * Websocket domain URL. It is recommended to use a dynamic URL, as the URL may change.
      */
     endpoint: string;
 
@@ -20,12 +20,12 @@ export class GetPrivateTokenInstanceServers implements Serializable {
     protocol: GetPrivateTokenInstanceServers.ProtocolEnum;
 
     /**
-     * Recommended ping interval(millisecond)
+     * Recommended ping interval (milliseconds)
      */
     pingInterval: number;
 
     /**
-     * Heartbeat timeout(millisecond)
+     * Heartbeat timeout (milliseconds)
      */
     pingTimeout: number;
 
@@ -67,7 +67,7 @@ export class GetPrivateTokenInstanceServers implements Serializable {
 export namespace GetPrivateTokenInstanceServers {
     export enum ProtocolEnum {
         /**
-         * websocket
+         * Websocket
          */
         WEBSOCKET = <any>'websocket',
     }

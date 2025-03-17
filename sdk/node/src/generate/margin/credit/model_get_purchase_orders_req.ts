@@ -5,17 +5,17 @@ import { Serializable } from '@internal/interfaces/serializable';
 
 export class GetPurchaseOrdersReq implements Serializable {
     /**
-     * currency
-     */
-    currency?: string;
-
-    /**
      * DONE-completed; PENDING-settling
      */
     status?: GetPurchaseOrdersReq.StatusEnum;
 
     /**
-     *
+     * Currency
+     */
+    currency?: string;
+
+    /**
+     * Purchase order ID
      */
     purchaseOrderNo?: string;
 
@@ -25,7 +25,7 @@ export class GetPurchaseOrdersReq implements Serializable {
     currentPage?: number = 1;
 
     /**
-     * Page size; 1<=pageSize<=100; default is 50
+     * Page size; 1<=pageSize<=50; default is 50
      */
     pageSize?: number = 50;
 
@@ -46,15 +46,15 @@ export class GetPurchaseOrdersReq implements Serializable {
      */
     static create(data: {
         /**
-         * currency
-         */
-        currency?: string;
-        /**
          * DONE-completed; PENDING-settling
          */
         status?: GetPurchaseOrdersReq.StatusEnum;
         /**
-         *
+         * Currency
+         */
+        currency?: string;
+        /**
+         * Purchase order ID
          */
         purchaseOrderNo?: string;
         /**
@@ -62,13 +62,13 @@ export class GetPurchaseOrdersReq implements Serializable {
          */
         currentPage?: number;
         /**
-         * Page size; 1<=pageSize<=100; default is 50
+         * Page size; 1<=pageSize<=50; default is 50
          */
         pageSize?: number;
     }): GetPurchaseOrdersReq {
         let obj = new GetPurchaseOrdersReq();
-        obj.currency = data.currency;
         obj.status = data.status;
+        obj.currency = data.currency;
         obj.purchaseOrderNo = data.purchaseOrderNo;
         if (data.currentPage) {
             obj.currentPage = data.currentPage;
@@ -106,11 +106,11 @@ export class GetPurchaseOrdersReq implements Serializable {
 export namespace GetPurchaseOrdersReq {
     export enum StatusEnum {
         /**
-         *
+         * completed
          */
         DONE = <any>'DONE',
         /**
-         *
+         * settling
          */
         PENDING = <any>'PENDING',
     }
@@ -121,14 +121,6 @@ export class GetPurchaseOrdersReqBuilder {
         this.obj = obj;
     }
     /**
-     * currency
-     */
-    setCurrency(value: string): GetPurchaseOrdersReqBuilder {
-        this.obj.currency = value;
-        return this;
-    }
-
-    /**
      * DONE-completed; PENDING-settling
      */
     setStatus(value: GetPurchaseOrdersReq.StatusEnum): GetPurchaseOrdersReqBuilder {
@@ -137,7 +129,15 @@ export class GetPurchaseOrdersReqBuilder {
     }
 
     /**
-     *
+     * Currency
+     */
+    setCurrency(value: string): GetPurchaseOrdersReqBuilder {
+        this.obj.currency = value;
+        return this;
+    }
+
+    /**
+     * Purchase order ID
      */
     setPurchaseOrderNo(value: string): GetPurchaseOrdersReqBuilder {
         this.obj.purchaseOrderNo = value;
@@ -153,7 +153,7 @@ export class GetPurchaseOrdersReqBuilder {
     }
 
     /**
-     * Page size; 1<=pageSize<=100; default is 50
+     * Page size; 1<=pageSize<=50; default is 50
      */
     setPageSize(value: number): GetPurchaseOrdersReqBuilder {
         this.obj.pageSize = value;

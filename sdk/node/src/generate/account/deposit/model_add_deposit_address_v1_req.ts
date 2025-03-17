@@ -10,9 +10,14 @@ export class AddDepositAddressV1Req implements Serializable {
     currency: string;
 
     /**
-     * The chainId of currency, e.g. The available value for USDT are OMNI, ERC20, TRC20, default is ERC20. The available value for BTC are Native, Segwit, TRC20, the parameters are bech32, btc, trx, default is Native. This only apply for multi-chain currency, and there is no need for single chain currency.
+     * The chainId of currency, e.g. the available values for USDT are OMNI, ERC20, and TRC20; default is ERC20. The available values for BTC are Native, Segwit, TRC20; the parameters are bech32, btc, trx; default is Native. This only applies to multi-chain currencies; no need for single-chain currencies.
      */
     chain?: string = 'eth';
+
+    /**
+     * Deposit account type: main (funding account), trade (spot trading account); the default is main
+     */
+    to?: AddDepositAddressV1Req.ToEnum = AddDepositAddressV1Req.ToEnum.MAIN;
 
     /**
      * Private constructor, please use the corresponding static methods to construct the object.
@@ -38,9 +43,13 @@ export class AddDepositAddressV1Req implements Serializable {
          */
         currency: string;
         /**
-         * The chainId of currency, e.g. The available value for USDT are OMNI, ERC20, TRC20, default is ERC20. The available value for BTC are Native, Segwit, TRC20, the parameters are bech32, btc, trx, default is Native. This only apply for multi-chain currency, and there is no need for single chain currency.
+         * The chainId of currency, e.g. the available values for USDT are OMNI, ERC20, and TRC20; default is ERC20. The available values for BTC are Native, Segwit, TRC20; the parameters are bech32, btc, trx; default is Native. This only applies to multi-chain currencies; no need for single-chain currencies.
          */
         chain?: string;
+        /**
+         * Deposit account type: main (funding account), trade (spot trading account); the default is main
+         */
+        to?: AddDepositAddressV1Req.ToEnum;
     }): AddDepositAddressV1Req {
         let obj = new AddDepositAddressV1Req();
         obj.currency = data.currency;
@@ -48,6 +57,11 @@ export class AddDepositAddressV1Req implements Serializable {
             obj.chain = data.chain;
         } else {
             obj.chain = 'eth';
+        }
+        if (data.to) {
+            obj.to = data.to;
+        } else {
+            obj.to = AddDepositAddressV1Req.ToEnum.MAIN;
         }
         return obj;
     }
@@ -72,6 +86,19 @@ export class AddDepositAddressV1Req implements Serializable {
     }
 }
 
+export namespace AddDepositAddressV1Req {
+    export enum ToEnum {
+        /**
+         * Funding account
+         */
+        MAIN = <any>'main',
+        /**
+         * Spot account
+         */
+        TRADE = <any>'trade',
+    }
+}
+
 export class AddDepositAddressV1ReqBuilder {
     constructor(readonly obj: AddDepositAddressV1Req) {
         this.obj = obj;
@@ -85,10 +112,18 @@ export class AddDepositAddressV1ReqBuilder {
     }
 
     /**
-     * The chainId of currency, e.g. The available value for USDT are OMNI, ERC20, TRC20, default is ERC20. The available value for BTC are Native, Segwit, TRC20, the parameters are bech32, btc, trx, default is Native. This only apply for multi-chain currency, and there is no need for single chain currency.
+     * The chainId of currency, e.g. the available values for USDT are OMNI, ERC20, and TRC20; default is ERC20. The available values for BTC are Native, Segwit, TRC20; the parameters are bech32, btc, trx; default is Native. This only applies to multi-chain currencies; no need for single-chain currencies.
      */
     setChain(value: string): AddDepositAddressV1ReqBuilder {
         this.obj.chain = value;
+        return this;
+    }
+
+    /**
+     * Deposit account type: main (funding account), trade (spot trading account); the default is main
+     */
+    setTo(value: AddDepositAddressV1Req.ToEnum): AddDepositAddressV1ReqBuilder {
+        this.obj.to = value;
         return this;
     }
 

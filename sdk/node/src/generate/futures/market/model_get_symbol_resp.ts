@@ -16,22 +16,22 @@ export class GetSymbolResp implements Response<RestResponse> {
     rootSymbol: string;
 
     /**
-     * Type of the contract
+     * Type of contract
      */
     type: GetSymbolResp.TypeEnum;
 
     /**
-     * First Open Date(millisecond)
+     * First Open Date (milliseconds)
      */
     firstOpenDate: number;
 
     /**
-     * Expiration date(millisecond). Null means it will never expire
+     * Expiration date (milliseconds) Null means it will never expire
      */
     expireDate: number;
 
     /**
-     * Settlement date(millisecond). Null indicates that automatic settlement is not supported
+     * Settlement date (milliseconds) Null indicates that automatic settlement is not supported
      */
     settleDate: number;
 
@@ -151,12 +151,12 @@ export class GetSymbolResp implements Response<RestResponse> {
     markMethod: GetSymbolResp.MarkMethodEnum;
 
     /**
-     * Fair price marking method, The Futures contract is null
+     * Fair price marking method; the Futures contract is null
      */
     fairMethod: GetSymbolResp.FairMethodEnum;
 
     /**
-     * Ticker symbol of the based currency
+     * Ticker symbol of the base currency
      */
     fundingBaseSymbol: string;
 
@@ -176,7 +176,7 @@ export class GetSymbolResp implements Response<RestResponse> {
     indexSymbol: string;
 
     /**
-     * Settlement Symbol
+     * Settlement symbol
      */
     settlementSymbol: string;
 
@@ -196,12 +196,12 @@ export class GetSymbolResp implements Response<RestResponse> {
     predictedFundingFeeRate: number;
 
     /**
-     * Funding interval(millisecond)
+     * Funding interval (milliseconds)
      */
     fundingRateGranularity: number;
 
     /**
-     * Open interest
+     * Open interest (unit: lots)
      */
     openInterest: string;
 
@@ -231,7 +231,7 @@ export class GetSymbolResp implements Response<RestResponse> {
     lastTradePrice: number;
 
     /**
-     * Next funding rate time(millisecond)
+     * Next funding rate time (milliseconds)
      */
     nextFundingRateTime: number;
 
@@ -246,22 +246,22 @@ export class GetSymbolResp implements Response<RestResponse> {
     sourceExchanges: Array<string>;
 
     /**
-     * Premium index symbol(1 minute)
+     * Premium index symbol (1 minute)
      */
     premiumsSymbol1M: string;
 
     /**
-     * Premium index symbol(8 hours)
+     * Premium index symbol (8 hours)
      */
     premiumsSymbol8H: string;
 
     /**
-     * Base currency interest rate symbol(1 minute)
+     * Base currency interest rate symbol (1 minute)
      */
     fundingBaseSymbol1M: string;
 
     /**
-     * Quote currency interest rate symbol(1 minute)
+     * Quote currency interest rate symbol (1 minute)
      */
     fundingQuoteSymbol1M: string;
 
@@ -276,7 +276,7 @@ export class GetSymbolResp implements Response<RestResponse> {
     highPrice: number;
 
     /**
-     * 24-hour price change%
+     * 24-hour % price change
      */
     priceChgPct: number;
 
@@ -314,6 +314,16 @@ export class GetSymbolResp implements Response<RestResponse> {
      * Whether support Cross Margin
      */
     supportCross: boolean;
+
+    /**
+     * The current maximum allowed buying price
+     */
+    buyLimit: number;
+
+    /**
+     * The current minimum allowed selling price
+     */
+    sellLimit: number;
 
     /**
      * Private constructor, please use the corresponding static methods to construct the object.
@@ -443,6 +453,10 @@ export class GetSymbolResp implements Response<RestResponse> {
         this.mmrLevConstant = null;
         // @ts-ignore
         this.supportCross = null;
+        // @ts-ignore
+        this.buyLimit = null;
+        // @ts-ignore
+        this.sellLimit = null;
     }
     /**
      * common response
@@ -477,7 +491,7 @@ export class GetSymbolResp implements Response<RestResponse> {
 export namespace GetSymbolResp {
     export enum TypeEnum {
         /**
-         * Standardized swap contracts standard financial futures on swap, expiration swap funding rate
+         * Standardized swap contracts, standard financial futures on swaps, expiration swap funding rates
          */
         FFWCSX = <any>'FFWCSX',
         /**
@@ -487,7 +501,7 @@ export namespace GetSymbolResp {
     }
     export enum MarkMethodEnum {
         /**
-         * Fair Price
+         * FairPrice
          */
         FAIRPRICE = <any>'FairPrice',
     }
@@ -507,7 +521,7 @@ export namespace GetSymbolResp {
          */
         OPEN = <any>'Open',
         /**
-         * Setting
+         * Settling
          */
         BEINGSETTLED = <any>'BeingSettled',
         /**

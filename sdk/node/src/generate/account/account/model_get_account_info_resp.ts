@@ -36,32 +36,32 @@ export class GetAccountInfoResp implements Response<RestResponse> {
     optionSubQuantity: number;
 
     /**
-     * Max number of sub-accounts = maxDefaultSubQuantity + maxSpotSubQuantity
+     * Max. number of sub-accounts = maxDefaultSubQuantity + maxSpotSubQuantity
      */
     maxSubQuantity: number;
 
     /**
-     * Max number of default open sub-accounts (according to VIP level)
+     * Max. number of default open sub-accounts (according to VIP level)
      */
     maxDefaultSubQuantity: number;
 
     /**
-     * Max number of sub-accounts with additional Spot trading permissions
+     * Max. number of sub-accounts with additional spot trading permissions
      */
     maxSpotSubQuantity: number;
 
     /**
-     * Max number of sub-accounts with additional margin trading permissions
+     * Max. number of sub-accounts with additional margin trading permissions
      */
     maxMarginSubQuantity: number;
 
     /**
-     * Max number of sub-accounts with additional futures trading permissions
+     * Max. number of sub-accounts with additional futures trading permissions
      */
     maxFuturesSubQuantity: number;
 
     /**
-     * Max number of sub-accounts with additional Option trading permissions
+     * Max. number of sub-accounts with additional option trading permissions
      */
     maxOptionSubQuantity: number;
 

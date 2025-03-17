@@ -20,7 +20,7 @@ export class GetBorrowHistoryReq implements Serializable {
     symbol?: string;
 
     /**
-     * Borrow Order Id
+     * Borrow Order ID
      */
     orderNo?: string;
 
@@ -73,7 +73,7 @@ export class GetBorrowHistoryReq implements Serializable {
          */
         symbol?: string;
         /**
-         * Borrow Order Id
+         * Borrow Order ID
          */
         orderNo?: string;
         /**
@@ -166,7 +166,7 @@ export class GetBorrowHistoryReqBuilder {
     }
 
     /**
-     * Borrow Order Id
+     * Borrow Order ID
      */
     setOrderNo(value: string): GetBorrowHistoryReqBuilder {
         this.obj.orderNo = value;

@@ -5,17 +5,17 @@ import { Serializable } from '@internal/interfaces/serializable';
 
 export class GetMarginRiskLimitReq implements Serializable {
     /**
-     * true-isolated, false-cross
+     * True-isolated, false-cross
      */
     isIsolated?: boolean;
 
     /**
-     * currency, This field is only required for cross margin
+     * Currency: This field is only required for cross margin
      */
     currency?: string;
 
     /**
-     * symbol, This field is only required for isolated margin
+     * Symbol: This field is only required for isolated margin
      */
     symbol?: string;
 
@@ -36,15 +36,15 @@ export class GetMarginRiskLimitReq implements Serializable {
      */
     static create(data: {
         /**
-         * true-isolated, false-cross
+         * True-isolated, false-cross
          */
         isIsolated?: boolean;
         /**
-         * currency, This field is only required for cross margin
+         * Currency: This field is only required for cross margin
          */
         currency?: string;
         /**
-         * symbol, This field is only required for isolated margin
+         * Symbol: This field is only required for isolated margin
          */
         symbol?: string;
     }): GetMarginRiskLimitReq {
@@ -80,7 +80,7 @@ export class GetMarginRiskLimitReqBuilder {
         this.obj = obj;
     }
     /**
-     * true-isolated, false-cross
+     * True-isolated, false-cross
      */
     setIsIsolated(value: boolean): GetMarginRiskLimitReqBuilder {
         this.obj.isIsolated = value;
@@ -88,7 +88,7 @@ export class GetMarginRiskLimitReqBuilder {
     }
 
     /**
-     * currency, This field is only required for cross margin
+     * Currency: This field is only required for cross margin
      */
     setCurrency(value: string): GetMarginRiskLimitReqBuilder {
         this.obj.currency = value;
@@ -96,7 +96,7 @@ export class GetMarginRiskLimitReqBuilder {
     }
 
     /**
-     * symbol, This field is only required for isolated margin
+     * Symbol: This field is only required for isolated margin
      */
     setSymbol(value: string): GetMarginRiskLimitReqBuilder {
         this.obj.symbol = value;
