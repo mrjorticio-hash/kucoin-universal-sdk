@@ -68,7 +68,6 @@ describe('Auto Test', () => {
             .setSymbol('XBTUSDTM')
             .setLeverage(3)
             .setType(AddOrderReq.TypeEnum.LIMIT)
-            .setRemark('order remarks"')
             .setReduceOnly(false)
             .setMarginMode(AddOrderReq.MarginModeEnum.ISOLATED)
             .setPrice('0.1')
@@ -96,7 +95,6 @@ describe('Auto Test', () => {
             .setSymbol('XBTUSDTM')
             .setLeverage(3)
             .setType(AddOrderTestReq.TypeEnum.LIMIT)
-            .setRemark('order remarks"')
             .setReduceOnly(false)
             .setMarginMode(AddOrderTestReq.MarginModeEnum.ISOLATED)
             .setPrice('0.1')
@@ -124,7 +122,6 @@ describe('Auto Test', () => {
             .setSymbol('XBTUSDTM')
             .setLeverage(3)
             .setType(AddTPSLOrderReq.TypeEnum.LIMIT)
-            .setRemark('order remarks"')
             .setReduceOnly(false)
             .setMarginMode(AddTPSLOrderReq.MarginModeEnum.ISOLATED)
             .setPrice('0.1')
@@ -181,7 +178,7 @@ describe('Auto Test', () => {
          * /api/v1/copy-trade/futures/get-max-open-size
          */
         let builder = GetMaxOpenSizeReq.builder();
-        builder.setSymbol('XBTUSDTM').setPrice('0.1').setLeverage(10);
+        builder.setSymbol('XBTUSDTM').setPrice(0.1).setLeverage(10);
         let req = builder.build();
         let resp = api.getMaxOpenSize(req);
         return resp.then((result) => {
@@ -266,7 +263,7 @@ describe('Auto Test', () => {
          * /api/v1/copy-trade/futures/position/margin/withdraw-margin
          */
         let builder = RemoveIsolatedMarginReq.builder();
-        builder.setSymbol('XBTUSDTM').setWithdrawAmount('0.0000001');
+        builder.setSymbol('XBTUSDTM').setWithdrawAmount(0.0000001);
         let req = builder.build();
         let resp = api.removeIsolatedMargin(req);
         return resp.then((result) => {
