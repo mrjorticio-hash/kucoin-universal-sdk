@@ -88,7 +88,11 @@ SUBDIRS := $(shell find ./sdk -mindepth 1 -maxdepth 1 -type d)
 test: $(SUBDIRS)
 $(SUBDIRS):
 	@echo "Running tests in $@"
-	@docker run --rm -v ./$@:/app -w /app $(IMAGE_NAME):$(IMAGE_TAG) \
+	@docker run --rm \
+		-v venv-test-cache:/app/.venv-test \
+		-v go-mod-cache:/go/pkg/mod \
+		-v go-build-cache:/root/.cache/go-build \
+		-v ./$@:/app -w /app $(IMAGE_NAME):$(IMAGE_TAG) \
 		bash run_test.sh
 	@echo "Completed tests in $@"
 
@@ -97,7 +101,7 @@ generate: setup-logs
 	$(call generate-postman)
 	$(call generate-code,golang,/pkg/generate)
 	$(call generate-code,python,/kucoin_universal_sdk/generate)
-	$(call generate-code,node,/src/generate,v0.1.1-alpha)
+	$(call generate-code,node,/src/generate)
 
 .PHONY: gen-postman
 gen-postman: preprocessor
