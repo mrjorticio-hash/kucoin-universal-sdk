@@ -116,7 +116,8 @@ class WebSocketClient:
         logging.info("WebSocket connection opened.")
 
     def on_message(self, ws, message):
-        logging.debug(f"Received message: {message}")
+        if logging.root.level <= logging.DEBUG:
+           logging.debug(f"Received message: {message}")
         m = WsMessage.from_json(message)
         if m.type == WsMessageType.WELCOME.value:
             self.welcome_received.set()
