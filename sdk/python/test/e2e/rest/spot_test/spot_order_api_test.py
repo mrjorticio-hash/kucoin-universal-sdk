@@ -438,7 +438,7 @@ class SpotApiTest(unittest.TestCase):
         """
 
         builder = GetOrderByOrderIdReqBuilder()
-        builder.set_symbol("BTC-USDT").set_order_id("674693c0f1bf4000077dc838")
+        builder.set_symbol("BTC-USDT").set_order_id("67d8dc675de54400076be9f2")
         req = builder.build()
         try:
             resp = self.api.get_order_by_order_id(req)
@@ -497,7 +497,7 @@ class SpotApiTest(unittest.TestCase):
         """
 
         builder = CancelOrderByOrderIdSyncReqBuilder()
-        builder.set_order_id("6746915837061e00071f0047").set_symbol("BTC-USDT")
+        builder.set_order_id("67d8dc675de54400076be9f2").set_symbol("BTC-USDT")
         req = builder.build()
         try:
             resp = self.api.cancel_order_by_order_id_sync(req)

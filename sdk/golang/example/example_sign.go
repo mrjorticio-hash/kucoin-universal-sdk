@@ -7,12 +7,13 @@ import (
 	"encoding/base64"
 	"encoding/json"
 	"fmt"
-	"github.com/google/uuid"
 	"io"
 	"net/http"
 	"os"
 	"strconv"
 	"time"
+
+	"github.com/google/uuid"
 )
 
 type KcSigner struct {
@@ -37,7 +38,7 @@ func (ks *KcSigner) Headers(plain string) map[string]string {
 		"KC-API-PASSPHRASE":  ks.apiPassPhrase,
 		"KC-API-TIMESTAMP":   t,
 		"KC-API-SIGN":        s,
-		"KC-API-KEY-VERSION": "2",
+		"KC-API-KEY-VERSION": "3",
 	}
 	return ksHeaders
 }

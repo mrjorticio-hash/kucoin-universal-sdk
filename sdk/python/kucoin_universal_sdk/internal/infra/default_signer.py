@@ -41,7 +41,7 @@ class KcSigner:
             "KC-API-PASSPHRASE": self.api_passphrase,
             "KC-API-TIMESTAMP": timestamp,
             "KC-API-SIGN": signature,
-            "KC-API-KEY-VERSION": "2"
+            "KC-API-KEY-VERSION": "3"
         }
 
     def broker_headers(self, plain: str) -> dict:
@@ -59,7 +59,7 @@ class KcSigner:
             "KC-API-PASSPHRASE": self.api_passphrase,
             "KC-API-TIMESTAMP": timestamp,
             "KC-API-SIGN": signature,
-            "KC-API-KEY-VERSION": "2",
+            "KC-API-KEY-VERSION": "3",
             "KC-API-PARTNER": self.broker_partner,
             "KC-BROKER-NAME": self.broker_name,
             "KC-API-PARTNER-VERIFY": "true",

@@ -37,7 +37,7 @@ class KcSigner {
             "KC-API-PASSPHRASE": this.apiPassphrase,
             "KC-API-TIMESTAMP": timestamp,
             "KC-API-SIGN": signature,
-            "KC-API-KEY-VERSION": "2",
+            "KC-API-KEY-VERSION": "3",
             "Content-Type": "application/json",
         };
     }

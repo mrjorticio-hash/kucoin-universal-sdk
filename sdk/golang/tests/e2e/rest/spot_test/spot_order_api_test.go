@@ -375,7 +375,7 @@ func TestOrderCancelOrderByOrderIdReq(t *testing.T) {
 	// /api/v1/hf/orders/{orderId}
 
 	builder := order.NewCancelOrderByOrderIdReqBuilder()
-	builder.SetOrderId("67404cf8d52cb800078f38af").SetSymbol("BTC-USDT")
+	builder.SetOrderId("67d8dbb38c961a0007628179").SetSymbol("BTC-USDT")
 	req := builder.Build()
 
 	resp, err := orderApi.CancelOrderByOrderId(req, context.TODO())
@@ -397,7 +397,7 @@ func TestOrderGetOrderByOrderIdReq(t *testing.T) {
 	// /api/v1/hf/orders/{orderId}
 
 	builder := order.NewGetOrderByOrderIdReqBuilder()
-	builder.SetSymbol("BTC-USDT").SetOrderId("67404a42df6f6e0007f76011")
+	builder.SetSymbol("BTC-USDT").SetOrderId("67d8dbb38c961a0007628179")
 	req := builder.Build()
 
 	resp, err := orderApi.GetOrderByOrderId(req, context.TODO())

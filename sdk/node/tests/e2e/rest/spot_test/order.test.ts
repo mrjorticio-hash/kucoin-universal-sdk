@@ -250,7 +250,7 @@ describe('Auto Test', () => {
          * /api/v1/hf/orders/{orderId}
          */
         let builder = CancelOrderByOrderIdReq.builder();
-        builder.setOrderId('67ac0e57ae86dc0008981482').setSymbol('BTC-USDT');
+        builder.setOrderId('67d8da811ecaf60007e9f590').setSymbol('BTC-USDT');
         let req = builder.build();
         let resp = api.cancelOrderByOrderId(req);
         return resp.then((result) => {
@@ -395,7 +395,7 @@ describe('Auto Test', () => {
          * /api/v1/hf/orders/{orderId}
          */
         let builder = GetOrderByOrderIdReq.builder();
-        builder.setSymbol('BTC-USDT').setOrderId('67ac106d07813c000779486e');
+        builder.setSymbol('BTC-USDT').setOrderId('67d8da811ecaf60007e9f590');
         let req = builder.build();
         let resp = api.getOrderByOrderId(req);
         return resp.then((result) => {
