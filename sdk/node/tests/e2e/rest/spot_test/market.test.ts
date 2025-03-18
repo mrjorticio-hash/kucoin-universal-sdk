@@ -339,7 +339,7 @@ describe('Auto Test', () => {
          * /api/v1/market/orderbook/callauction/level2_{size}
          */
         let builder = GetCallAuctionPartOrderBookReq.builder();
-        builder.setSymbol("PAWS-USDT").setSize("20");
+        builder.setSymbol("HBAR-USDC").setSize("20");
         let req = builder.build();
         let resp = api.getCallAuctionPartOrderBook(req);
         return resp.then(result => {
@@ -358,7 +358,7 @@ describe('Auto Test', () => {
          * /api/v1/market/callauctionData
          */
         let builder = GetCallAuctionInfoReq.builder();
-        builder.setSymbol("PAWS-USDT");
+        builder.setSymbol("HBAR-USDC");
         let req = builder.build();
         let resp = api.getCallAuctionInfo(req);
         return resp.then(result => {

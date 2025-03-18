@@ -415,7 +415,7 @@ func TestMarketGetCallAuctionPartOrderBookReq(t *testing.T) {
 	// Get Call Auction Part OrderBook
 	// /api/v1/market/orderbook/callauction/level2_{size}
 	builder := market.NewGetCallAuctionPartOrderBookReqBuilder()
-	builder.SetSymbol("PAWS-USDT").SetSize("20")
+	builder.SetSymbol("HBAR-USDC").SetSize("20")
 	req := builder.Build()
 
 	resp, err := marketApi.GetCallAuctionPartOrderBook(req, context.TODO())
@@ -437,7 +437,7 @@ func TestMarketGetCallAuctionInfoReq(t *testing.T) {
 	// /api/v1/market/callauctionData
 
 	builder := market.NewGetCallAuctionInfoReqBuilder()
-	builder.SetSymbol("PAWS-USDT")
+	builder.SetSymbol("HBAR-USDC")
 	req := builder.Build()
 
 	resp, err := marketApi.GetCallAuctionInfo(req, context.TODO())

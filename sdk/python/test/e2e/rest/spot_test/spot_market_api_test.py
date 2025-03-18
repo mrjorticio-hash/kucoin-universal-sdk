@@ -384,7 +384,7 @@ class SpotApiTest(unittest.TestCase):
         """
 
         builder = GetCallAuctionPartOrderBookReqBuilder()
-        builder.set_symbol("PAWS-USDT").set_size("20")
+        builder.set_symbol("HBAR-USDC").set_size("20")
         req = builder.build()
         try:
             resp = self.api.get_call_auction_part_order_book(req)
@@ -403,7 +403,7 @@ class SpotApiTest(unittest.TestCase):
         """
 
         builder = GetCallAuctionInfoReqBuilder()
-        builder.set_symbol("PAWS-USDT")
+        builder.set_symbol("HBAR-USDC")
         req = builder.build()
         try:
             resp = self.api.get_call_auction_info(req)
