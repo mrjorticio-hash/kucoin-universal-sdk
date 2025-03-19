@@ -8,9 +8,7 @@ For an overview of the project and SDKs in other languages, refer to the [Main R
 
 ## 📦 Installation
 
-### Latest Version: `0.1.1-alpha`
-Note: This SDK is currently in the Alpha phase. We are actively iterating and improving its features, stability, and documentation. Feedback and contributions are highly encouraged to help us refine the SDK.
-
+### Latest Version: `1.2.0`
 Install the SDK using `npm`:
 
 ```bash
