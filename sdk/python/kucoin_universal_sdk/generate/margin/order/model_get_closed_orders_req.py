@@ -9,7 +9,6 @@ import json
 from enum import Enum
 from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
-from typing_extensions import Annotated
 
 
 class GetClosedOrdersReq(BaseModel):
@@ -19,12 +18,12 @@ class GetClosedOrdersReq(BaseModel):
     Attributes:
         symbol (str): symbol
         trade_type (TradeTypeEnum): Transaction type: MARGIN_TRADE - cross margin trade, MARGIN_ISOLATED_TRADE - isolated margin trade
-        side (SideEnum): specify if the order is to 'buy' or 'sell'
-        type (TypeEnum): specify if the order is an 'limit' order or 'market' order. 
-        last_id (int): The id of the last set of data from the previous batch of data. By default, the latest information is given. lastId is used to filter data and paginate. If lastId is not entered, the default is a maximum of 100 returned data items. The return results include lastId，which can be used as a query parameter to look up new data from the next page.
-        limit (int): Default20，Max100
-        start_at (int): Start time (milisecond)
-        end_at (int): End time (milisecond)
+        side (SideEnum): Specify if the order is to 'buy' or 'sell'.
+        type (TypeEnum): Specify if the order is a 'limit' order or 'market' order. 
+        last_id (int): The ID of the last set of data from the previous data batch. By default, the latest information is given. lastId is used to filter data and paginate. If lastId is not entered, the default is a maximum of 100 returned data items. The return results include lastId, which can be used as a query parameter to look up new data from the next page.
+        limit (int): Default20, Max100
+        start_at (int): Start time (milliseconds)
+        end_at (int): End time (milliseconds)
     """
 
     class TradeTypeEnum(Enum):
@@ -61,23 +60,23 @@ class GetClosedOrdersReq(BaseModel):
         "Transaction type: MARGIN_TRADE - cross margin trade, MARGIN_ISOLATED_TRADE - isolated margin trade",
         alias="tradeType")
     side: Optional[SideEnum] = Field(
-        default=None, description="specify if the order is to 'buy' or 'sell'")
+        default=None,
+        description="Specify if the order is to 'buy' or 'sell'.")
     type: Optional[TypeEnum] = Field(
         default=None,
         description=
-        "specify if the order is an 'limit' order or 'market' order. ")
+        "Specify if the order is a 'limit' order or 'market' order. ")
     last_id: Optional[int] = Field(
         default=None,
         description=
-        "The id of the last set of data from the previous batch of data. By default, the latest information is given. lastId is used to filter data and paginate. If lastId is not entered, the default is a maximum of 100 returned data items. The return results include lastId，which can be used as a query parameter to look up new data from the next page.",
+        "The ID of the last set of data from the previous data batch. By default, the latest information is given. lastId is used to filter data and paginate. If lastId is not entered, the default is a maximum of 100 returned data items. The return results include lastId, which can be used as a query parameter to look up new data from the next page.",
         alias="lastId")
-    limit: Optional[Annotated[int, Field(le=100, strict=True, ge=1)]] = Field(
-        default=20, description="Default20，Max100")
+    limit: Optional[int] = Field(default=20, description="Default20, Max100")
     start_at: Optional[int] = Field(default=None,
-                                    description="Start time (milisecond)",
+                                    description="Start time (milliseconds)",
                                     alias="startAt")
     end_at: Optional[int] = Field(default=None,
-                                  description="End time (milisecond)",
+                                  description="End time (milliseconds)",
                                   alias="endAt")
 
     __properties: ClassVar[List[str]] = [
@@ -164,7 +163,7 @@ class GetClosedOrdersReqBuilder:
             self,
             value: GetClosedOrdersReq.SideEnum) -> GetClosedOrdersReqBuilder:
         """
-        specify if the order is to 'buy' or 'sell'
+        Specify if the order is to 'buy' or 'sell'.
         """
         self.obj['side'] = value
         return self
@@ -173,35 +172,35 @@ class GetClosedOrdersReqBuilder:
             self,
             value: GetClosedOrdersReq.TypeEnum) -> GetClosedOrdersReqBuilder:
         """
-        specify if the order is an 'limit' order or 'market' order. 
+        Specify if the order is a 'limit' order or 'market' order. 
         """
         self.obj['type'] = value
         return self
 
     def set_last_id(self, value: int) -> GetClosedOrdersReqBuilder:
         """
-        The id of the last set of data from the previous batch of data. By default, the latest information is given. lastId is used to filter data and paginate. If lastId is not entered, the default is a maximum of 100 returned data items. The return results include lastId，which can be used as a query parameter to look up new data from the next page.
+        The ID of the last set of data from the previous data batch. By default, the latest information is given. lastId is used to filter data and paginate. If lastId is not entered, the default is a maximum of 100 returned data items. The return results include lastId, which can be used as a query parameter to look up new data from the next page.
         """
         self.obj['lastId'] = value
         return self
 
     def set_limit(self, value: int) -> GetClosedOrdersReqBuilder:
         """
-        Default20，Max100
+        Default20, Max100
         """
         self.obj['limit'] = value
         return self
 
     def set_start_at(self, value: int) -> GetClosedOrdersReqBuilder:
         """
-        Start time (milisecond)
+        Start time (milliseconds)
         """
         self.obj['startAt'] = value
         return self
 
     def set_end_at(self, value: int) -> GetClosedOrdersReqBuilder:
         """
-        End time (milisecond)
+        End time (milliseconds)
         """
         self.obj['endAt'] = value
         return self

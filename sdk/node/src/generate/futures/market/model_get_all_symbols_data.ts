@@ -15,22 +15,22 @@ export class GetAllSymbolsData implements Serializable {
     rootSymbol: string;
 
     /**
-     * Type of the contract
+     * Type of contract
      */
     type: GetAllSymbolsData.TypeEnum;
 
     /**
-     * First Open Date(millisecond)
+     * First Open Date (milliseconds)
      */
     firstOpenDate: number;
 
     /**
-     * Expiration date(millisecond). Null means it will never expire
+     * Expiration date (milliseconds) Null means it will never expire
      */
     expireDate?: number;
 
     /**
-     * Settlement date(millisecond). Null indicates that automatic settlement is not supported
+     * Settlement date (milliseconds) Null indicates that automatic settlement is not supported
      */
     settleDate?: number;
 
@@ -150,12 +150,12 @@ export class GetAllSymbolsData implements Serializable {
     markMethod: GetAllSymbolsData.MarkMethodEnum;
 
     /**
-     * Fair price marking method, The Futures contract is null
+     * Fair price marking method; the Futures contract is null
      */
     fairMethod: GetAllSymbolsData.FairMethodEnum;
 
     /**
-     * Ticker symbol of the based currency
+     * Ticker symbol of the base currency
      */
     fundingBaseSymbol: string;
 
@@ -175,7 +175,7 @@ export class GetAllSymbolsData implements Serializable {
     indexSymbol: string;
 
     /**
-     * Settlement Symbol
+     * Settlement symbol
      */
     settlementSymbol: string;
 
@@ -195,12 +195,12 @@ export class GetAllSymbolsData implements Serializable {
     predictedFundingFeeRate: number;
 
     /**
-     * Funding interval(millisecond)
+     * Funding interval (milliseconds)
      */
     fundingRateGranularity: number;
 
     /**
-     * Open interest
+     * Open interest (unit: lots)
      */
     openInterest: string;
 
@@ -230,7 +230,7 @@ export class GetAllSymbolsData implements Serializable {
     lastTradePrice: number;
 
     /**
-     * Next funding rate time(millisecond)
+     * Next funding rate time (milliseconds)
      */
     nextFundingRateTime: number;
 
@@ -245,22 +245,22 @@ export class GetAllSymbolsData implements Serializable {
     sourceExchanges: Array<string>;
 
     /**
-     * Premium index symbol(1 minute)
+     * Premium index symbol (1 minute)
      */
     premiumsSymbol1M: string;
 
     /**
-     * Premium index symbol(8 hours)
+     * Premium index symbol (8 hours)
      */
     premiumsSymbol8H: string;
 
     /**
-     * Base currency interest rate symbol(1 minute)
+     * Base currency interest rate symbol (1 minute)
      */
     fundingBaseSymbol1M: string;
 
     /**
-     * Quote currency interest rate symbol(1 minute)
+     * Quote currency interest rate symbol (1 minute)
      */
     fundingQuoteSymbol1M: string;
 
@@ -275,7 +275,7 @@ export class GetAllSymbolsData implements Serializable {
     highPrice: number;
 
     /**
-     * 24-hour price change%
+     * 24-hour % price change
      */
     priceChgPct: number;
 
@@ -313,6 +313,16 @@ export class GetAllSymbolsData implements Serializable {
      * Whether support Cross Margin
      */
     supportCross: boolean;
+
+    /**
+     * The current maximum buying price allowed
+     */
+    buyLimit: number;
+
+    /**
+     * The current minimum selling price allowed
+     */
+    sellLimit: number;
 
     /**
      * Private constructor, please use the corresponding static methods to construct the object.
@@ -438,6 +448,10 @@ export class GetAllSymbolsData implements Serializable {
         this.mmrLevConstant = null;
         // @ts-ignore
         this.supportCross = null;
+        // @ts-ignore
+        this.buyLimit = null;
+        // @ts-ignore
+        this.sellLimit = null;
     }
     /**
      * Convert the object to a JSON string.
@@ -462,7 +476,7 @@ export class GetAllSymbolsData implements Serializable {
 export namespace GetAllSymbolsData {
     export enum TypeEnum {
         /**
-         * Standardized swap contracts standard financial futures on swap, expiration swap funding rate
+         * Standardized swap contracts, standard financial futures on swaps, expiration swap funding rates
          */
         FFWCSX = <any>'FFWCSX',
         /**
@@ -472,7 +486,7 @@ export namespace GetAllSymbolsData {
     }
     export enum MarkMethodEnum {
         /**
-         * Fair Price
+         * FairPrice
          */
         FAIRPRICE = <any>'FairPrice',
     }
@@ -492,7 +506,7 @@ export namespace GetAllSymbolsData {
          */
         OPEN = <any>'Open',
         /**
-         * Setting
+         * Settling
          */
         BEINGSETTLED = <any>'BeingSettled',
         /**

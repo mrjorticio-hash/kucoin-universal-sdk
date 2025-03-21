@@ -4,7 +4,7 @@ package ndbroker
 
 // AddSubAccountReq struct for AddSubAccountReq
 type AddSubAccountReq struct {
-	// Sub Account Name, Note that this name is unique across the exchange. It is recommended to add a special identifier to prevent name duplication.
+	// Sub-account Name. Note that this name is unique across the exchange. It is recommended to add a special identifier to prevent name duplication.
 	AccountName string `json:"accountName,omitempty"`
 }
 
@@ -37,7 +37,7 @@ func NewAddSubAccountReqBuilder() *AddSubAccountReqBuilder {
 	return &AddSubAccountReqBuilder{obj: NewAddSubAccountReqWithDefaults()}
 }
 
-// Sub Account Name, Note that this name is unique across the exchange. It is recommended to add a special identifier to prevent name duplication.
+// Sub-account Name. Note that this name is unique across the exchange. It is recommended to add a special identifier to prevent name duplication.
 func (builder *AddSubAccountReqBuilder) SetAccountName(value string) *AddSubAccountReqBuilder {
 	builder.obj.AccountName = value
 	return builder

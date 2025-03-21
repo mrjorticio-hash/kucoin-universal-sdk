@@ -16,7 +16,9 @@ class GetSpotSubAccountDetailReq(BaseModel):
 
     Attributes:
         sub_user_id (str): the userID of a sub-account.
-        include_base_amount (bool): false: do not display the currency which asset is 0, true: display all currency
+        include_base_amount (bool): False: Do not display currencies with 0 assets; True: display all currencies
+        base_currency (str): Specify the currency used to convert assets
+        base_amount (str): The currency balance specified must be greater than or equal to the amount
     """
 
     sub_user_id: Optional[str] = Field(
@@ -25,12 +27,23 @@ class GetSpotSubAccountDetailReq(BaseModel):
         description="the userID of a sub-account.",
         alias="subUserId")
     include_base_amount: Optional[bool] = Field(
+        default=False,
+        description=
+        "False: Do not display currencies with 0 assets; True: display all currencies",
+        alias="includeBaseAmount")
+    base_currency: Optional[str] = Field(
+        default=None,
+        description="Specify the currency used to convert assets",
+        alias="baseCurrency")
+    base_amount: Optional[str] = Field(
         default=None,
         description=
-        "false: do not display the currency which asset is 0, true: display all currency",
-        alias="includeBaseAmount")
+        "The currency balance specified must be greater than or equal to the amount",
+        alias="baseAmount")
 
-    __properties: ClassVar[List[str]] = ["subUserId", "includeBaseAmount"]
+    __properties: ClassVar[List[str]] = [
+        "subUserId", "includeBaseAmount", "baseCurrency", "baseAmount"
+    ]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -71,6 +84,11 @@ class GetSpotSubAccountDetailReq(BaseModel):
             obj.get("subUserId"),
             "includeBaseAmount":
             obj.get("includeBaseAmount")
+            if obj.get("includeBaseAmount") is not None else False,
+            "baseCurrency":
+            obj.get("baseCurrency"),
+            "baseAmount":
+            obj.get("baseAmount")
         })
         return _obj
 
@@ -90,9 +108,24 @@ class GetSpotSubAccountDetailReqBuilder:
     def set_include_base_amount(
             self, value: bool) -> GetSpotSubAccountDetailReqBuilder:
         """
-        false: do not display the currency which asset is 0, true: display all currency
+        False: Do not display currencies with 0 assets; True: display all currencies
         """
         self.obj['includeBaseAmount'] = value
+        return self
+
+    def set_base_currency(self,
+                          value: str) -> GetSpotSubAccountDetailReqBuilder:
+        """
+        Specify the currency used to convert assets
+        """
+        self.obj['baseCurrency'] = value
+        return self
+
+    def set_base_amount(self, value: str) -> GetSpotSubAccountDetailReqBuilder:
+        """
+        The currency balance specified must be greater than or equal to the amount
+        """
+        self.obj['baseAmount'] = value
         return self
 
     def build(self) -> GetSpotSubAccountDetailReq:

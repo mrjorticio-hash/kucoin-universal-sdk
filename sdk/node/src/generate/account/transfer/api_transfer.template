@@ -44,11 +44,11 @@ describe('Auto Test', ()=> {
     test('subAccountTransfer request test', ()=> {
     /**
     * subAccountTransfer
-    * SubAccount Transfer
+    * Sub-account Transfer
     * /api/v2/accounts/sub-transfer
     */
     let builder = SubAccountTransferReq.builder();
-    builder.setClientOid(?).setCurrency(?).setAmount(?).setDirection(?).setAccountType(?).setSubAccountType(?).setSubUserId(?);
+    builder.setClientOid(?).setCurrency(?).setAmount(?).setDirection(?).setAccountType(?).setSubAccountType(?).setSubUserId(?).setTag(?).setSubTag(?);
     let req = builder.build();
     let resp = api.subAccountTransfer(req);
     return resp.then(result => {
@@ -60,7 +60,7 @@ describe('Auto Test', ()=> {
     test('innerTransfer request test', ()=> {
     /**
     * innerTransfer
-    * Inner Transfer
+    * Internal Transfer
     * /api/v2/accounts/inner-transfer
     */
     let builder = InnerTransferReq.builder();
@@ -69,6 +69,26 @@ describe('Auto Test', ()=> {
     let resp = api.innerTransfer(req);
     return resp.then(result => {
         expect(result.orderId).toEqual(expect.anything());
+        console.log(resp);
+    });
+    })
+
+    test('getFuturesAccountTransferOutLedger request test', ()=> {
+    /**
+    * getFuturesAccountTransferOutLedger
+    * Get Futures Account Transfer Out Ledger
+    * /api/v1/transfer-list
+    */
+    let builder = GetFuturesAccountTransferOutLedgerReq.builder();
+    builder.setCurrency(?).setType(?).setTag(?).setStartAt(?).setEndAt(?).setCurrentPage(?).setPageSize(?);
+    let req = builder.build();
+    let resp = api.getFuturesAccountTransferOutLedger(req);
+    return resp.then(result => {
+        expect(result.currentPage).toEqual(expect.anything());
+        expect(result.pageSize).toEqual(expect.anything());
+        expect(result.totalNum).toEqual(expect.anything());
+        expect(result.totalPage).toEqual(expect.anything());
+        expect(result.items).toEqual(expect.anything());
         console.log(resp);
     });
     })
@@ -117,26 +137,6 @@ describe('Auto Test', ()=> {
     let resp = api.futuresAccountTransferIn(req);
     return resp.then(result => {
         expect(result.data).toEqual(expect.anything());
-        console.log(resp);
-    });
-    })
-
-    test('getFuturesAccountTransferOutLedger request test', ()=> {
-    /**
-    * getFuturesAccountTransferOutLedger
-    * Get Futures Account Transfer Out Ledger
-    * /api/v1/transfer-list
-    */
-    let builder = GetFuturesAccountTransferOutLedgerReq.builder();
-    builder.setCurrency(?).setType(?).setTag(?).setStartAt(?).setEndAt(?).setCurrentPage(?).setPageSize(?);
-    let req = builder.build();
-    let resp = api.getFuturesAccountTransferOutLedger(req);
-    return resp.then(result => {
-        expect(result.currentPage).toEqual(expect.anything());
-        expect(result.pageSize).toEqual(expect.anything());
-        expect(result.totalNum).toEqual(expect.anything());
-        expect(result.totalPage).toEqual(expect.anything());
-        expect(result.items).toEqual(expect.anything());
         console.log(resp);
     });
     })

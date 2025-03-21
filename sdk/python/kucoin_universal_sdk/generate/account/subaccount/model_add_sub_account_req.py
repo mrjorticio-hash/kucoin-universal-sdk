@@ -16,9 +16,9 @@ class AddSubAccountReq(BaseModel):
     AddSubAccountReq
 
     Attributes:
-        password (str): Password(7-24 characters, must contain letters and numbers, cannot only contain numbers or include special characters)
-        remarks (str): Remarks(1~24 characters)
-        sub_name (str): Sub-account name(must contain 7-32 characters, at least one number and one letter. Cannot contain any spaces.)
+        password (str): Password (7–24 characters, must contain letters and numbers, cannot only contain numbers or include special characters)
+        remarks (str): Remarks (1–24 characters)
+        sub_name (str): Sub-account name (must contain 7–32 characters, at least one number and one letter. Cannot contain any spaces.)
         access (AccessEnum): Permission (types include Spot, Futures, Margin permissions, which can be used alone or in combination).
     """
 
@@ -36,14 +36,14 @@ class AddSubAccountReq(BaseModel):
     password: Optional[str] = Field(
         default=None,
         description=
-        "Password(7-24 characters, must contain letters and numbers, cannot only contain numbers or include special characters)"
+        "Password (7–24 characters, must contain letters and numbers, cannot only contain numbers or include special characters)"
     )
     remarks: Optional[str] = Field(default=None,
-                                   description="Remarks(1~24 characters)")
+                                   description="Remarks (1–24 characters)")
     sub_name: Optional[str] = Field(
         default=None,
         description=
-        "Sub-account name(must contain 7-32 characters, at least one number and one letter. Cannot contain any spaces.)",
+        "Sub-account name (must contain 7–32 characters, at least one number and one letter. Cannot contain any spaces.)",
         alias="subName")
     access: Optional[AccessEnum] = Field(
         default=None,
@@ -103,21 +103,21 @@ class AddSubAccountReqBuilder:
 
     def set_password(self, value: str) -> AddSubAccountReqBuilder:
         """
-        Password(7-24 characters, must contain letters and numbers, cannot only contain numbers or include special characters)
+        Password (7–24 characters, must contain letters and numbers, cannot only contain numbers or include special characters)
         """
         self.obj['password'] = value
         return self
 
     def set_remarks(self, value: str) -> AddSubAccountReqBuilder:
         """
-        Remarks(1~24 characters)
+        Remarks (1–24 characters)
         """
         self.obj['remarks'] = value
         return self
 
     def set_sub_name(self, value: str) -> AddSubAccountReqBuilder:
         """
-        Sub-account name(must contain 7-32 characters, at least one number and one letter. Cannot contain any spaces.)
+        Sub-account name (must contain 7–32 characters, at least one number and one letter. Cannot contain any spaces.)
         """
         self.obj['subName'] = value
         return self

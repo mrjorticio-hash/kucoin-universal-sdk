@@ -5,7 +5,7 @@ import { Serializable } from '@internal/interfaces/serializable';
 
 export class GetFuturesActualFeeReq implements Serializable {
     /**
-     * Trading pair
+     * The unique identity of the trading pair; will not change even if the trading pair is renamed
      */
     symbol?: string;
 
@@ -26,7 +26,7 @@ export class GetFuturesActualFeeReq implements Serializable {
      */
     static create(data: {
         /**
-         * Trading pair
+         * The unique identity of the trading pair; will not change even if the trading pair is renamed
          */
         symbol?: string;
     }): GetFuturesActualFeeReq {
@@ -60,7 +60,7 @@ export class GetFuturesActualFeeReqBuilder {
         this.obj = obj;
     }
     /**
-     * Trading pair
+     * The unique identity of the trading pair; will not change even if the trading pair is renamed
      */
     setSymbol(value: string): GetFuturesActualFeeReqBuilder {
         this.obj.symbol = value;

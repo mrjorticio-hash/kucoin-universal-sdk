@@ -16,7 +16,7 @@ class GetCurrencyReq(BaseModel):
 
     Attributes:
         currency (str): Path parameter, Currency
-        chain (str): Support for querying the chain of currency, e.g. The available value for USDT are OMNI, ERC20, TRC20. This only apply for multi-chain currency, and there is no need for single chain currency.
+        chain (str): Support for querying the chain of currency, e.g. the available values for USDT are OMNI, ERC20, TRC20. This only applies to multi-chain currencies; no need for single-chain currencies.
     """
 
     currency: Optional[str] = Field(default=None,
@@ -25,7 +25,7 @@ class GetCurrencyReq(BaseModel):
     chain: Optional[str] = Field(
         default=None,
         description=
-        "Support for querying the chain of currency, e.g. The available value for USDT are OMNI, ERC20, TRC20. This only apply for multi-chain currency, and there is no need for single chain currency."
+        "Support for querying the chain of currency, e.g. the available values for USDT are OMNI, ERC20, TRC20. This only applies to multi-chain currencies; no need for single-chain currencies."
     )
 
     __properties: ClassVar[List[str]] = ["currency", "chain"]
@@ -83,7 +83,7 @@ class GetCurrencyReqBuilder:
 
     def set_chain(self, value: str) -> GetCurrencyReqBuilder:
         """
-        Support for querying the chain of currency, e.g. The available value for USDT are OMNI, ERC20, TRC20. This only apply for multi-chain currency, and there is no need for single chain currency.
+        Support for querying the chain of currency, e.g. the available values for USDT are OMNI, ERC20, TRC20. This only applies to multi-chain currencies; no need for single-chain currencies.
         """
         self.obj['chain'] = value
         return self

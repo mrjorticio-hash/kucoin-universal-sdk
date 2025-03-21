@@ -5,7 +5,7 @@ import { Serializable } from '@internal/interfaces/serializable';
 
 export class GetSpotLedgerReq implements Serializable {
     /**
-     * Currency ( you can choose more than one currency). You can specify 10 currencies at most for one time. If not specified, all currencies will be inquired by default.
+     * Currency (you can choose more than one currency). You can specify a max. of 10 currencies in one go. If not specified, all currencies will be queried by default.
      */
     currency?: string;
 
@@ -15,17 +15,17 @@ export class GetSpotLedgerReq implements Serializable {
     direction?: GetSpotLedgerReq.DirectionEnum;
 
     /**
-     * Type: DEPOSIT -deposit, WITHDRAW -withdraw, TRANSFER -transfer, SUB_TRANSFER -subaccount transfer,TRADE_EXCHANGE -trade, MARGIN_EXCHANGE -margin trade, KUCOIN_BONUS -bonus, BROKER_TRANSFER -Broker transfer record
+     * Type: DEPOSIT-deposit, WITHDRAW-withdraw, TRANSFER-transfer, SUB_TRANSFER-sub-account transfer, TRADE_EXCHANGE-trade, MARGIN_EXCHANGE-margin trade, KUCOIN_BONUS-bonus, BROKER_TRANSFER-Broker transfer record
      */
     bizType?: string;
 
     /**
-     * Start time (milisecond)
+     * Start time (milliseconds)
      */
     startAt?: number;
 
     /**
-     * End time (milisecond)
+     * End time (milliseconds)
      */
     endAt?: number;
 
@@ -56,7 +56,7 @@ export class GetSpotLedgerReq implements Serializable {
      */
     static create(data: {
         /**
-         * Currency ( you can choose more than one currency). You can specify 10 currencies at most for one time. If not specified, all currencies will be inquired by default.
+         * Currency (you can choose more than one currency). You can specify a max. of 10 currencies in one go. If not specified, all currencies will be queried by default.
          */
         currency?: string;
         /**
@@ -64,15 +64,15 @@ export class GetSpotLedgerReq implements Serializable {
          */
         direction?: GetSpotLedgerReq.DirectionEnum;
         /**
-         * Type: DEPOSIT -deposit, WITHDRAW -withdraw, TRANSFER -transfer, SUB_TRANSFER -subaccount transfer,TRADE_EXCHANGE -trade, MARGIN_EXCHANGE -margin trade, KUCOIN_BONUS -bonus, BROKER_TRANSFER -Broker transfer record
+         * Type: DEPOSIT-deposit, WITHDRAW-withdraw, TRANSFER-transfer, SUB_TRANSFER-sub-account transfer, TRADE_EXCHANGE-trade, MARGIN_EXCHANGE-margin trade, KUCOIN_BONUS-bonus, BROKER_TRANSFER-Broker transfer record
          */
         bizType?: string;
         /**
-         * Start time (milisecond)
+         * Start time (milliseconds)
          */
         startAt?: number;
         /**
-         * End time (milisecond)
+         * End time (milliseconds)
          */
         endAt?: number;
         /**
@@ -126,11 +126,11 @@ export class GetSpotLedgerReq implements Serializable {
 export namespace GetSpotLedgerReq {
     export enum DirectionEnum {
         /**
-         *
+         * Funds in
          */
         _IN = <any>'in',
         /**
-         *
+         * Funds out
          */
         OUT = <any>'out',
     }
@@ -141,7 +141,7 @@ export class GetSpotLedgerReqBuilder {
         this.obj = obj;
     }
     /**
-     * Currency ( you can choose more than one currency). You can specify 10 currencies at most for one time. If not specified, all currencies will be inquired by default.
+     * Currency (you can choose more than one currency). You can specify a max. of 10 currencies in one go. If not specified, all currencies will be queried by default.
      */
     setCurrency(value: string): GetSpotLedgerReqBuilder {
         this.obj.currency = value;
@@ -157,7 +157,7 @@ export class GetSpotLedgerReqBuilder {
     }
 
     /**
-     * Type: DEPOSIT -deposit, WITHDRAW -withdraw, TRANSFER -transfer, SUB_TRANSFER -subaccount transfer,TRADE_EXCHANGE -trade, MARGIN_EXCHANGE -margin trade, KUCOIN_BONUS -bonus, BROKER_TRANSFER -Broker transfer record
+     * Type: DEPOSIT-deposit, WITHDRAW-withdraw, TRANSFER-transfer, SUB_TRANSFER-sub-account transfer, TRADE_EXCHANGE-trade, MARGIN_EXCHANGE-margin trade, KUCOIN_BONUS-bonus, BROKER_TRANSFER-Broker transfer record
      */
     setBizType(value: string): GetSpotLedgerReqBuilder {
         this.obj.bizType = value;
@@ -165,7 +165,7 @@ export class GetSpotLedgerReqBuilder {
     }
 
     /**
-     * Start time (milisecond)
+     * Start time (milliseconds)
      */
     setStartAt(value: number): GetSpotLedgerReqBuilder {
         this.obj.startAt = value;
@@ -173,7 +173,7 @@ export class GetSpotLedgerReqBuilder {
     }
 
     /**
-     * End time (milisecond)
+     * End time (milliseconds)
      */
     setEndAt(value: number): GetSpotLedgerReqBuilder {
         this.obj.endAt = value;

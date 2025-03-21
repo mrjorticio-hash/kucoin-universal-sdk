@@ -14,6 +14,12 @@ logging.basicConfig(level=logging.DEBUG)
 
 class SpotPrivateWsTest(unittest.TestCase):
     def setUp(self):
+        logging.basicConfig(
+            level=logging.INFO,
+            format='%(asctime)s %(levelname)s - %(message)s',
+            datefmt='%Y-%m-%d %H:%M:%S'
+        )
+
         key = os.getenv("API_KEY")
         secret = os.getenv("API_SECRET")
         passphrase = os.getenv("API_PASSPHRASE")
@@ -75,3 +81,6 @@ class SpotPrivateWsTest(unittest.TestCase):
 
     def test_private_order_v2(self):
         self._test_subscription(self.api.order_v2)
+
+    def test_private_stop_order(self):
+        self._test_subscription(self.api.stop_order)

@@ -28,7 +28,7 @@ export class GetAccountHoldingResp implements Response<RestResponse> {
     pageSize: number;
 
     /**
-     * total page
+     * total pages
      */
     totalPage: number;
 

@@ -4,15 +4,15 @@ package credit
 
 // GetPurchaseOrdersReq struct for GetPurchaseOrdersReq
 type GetPurchaseOrdersReq struct {
-	// currency
-	Currency *string `json:"currency,omitempty" url:"currency,omitempty"`
 	// DONE-completed; PENDING-settling
 	Status *string `json:"status,omitempty" url:"status,omitempty"`
-	//
+	// Currency
+	Currency *string `json:"currency,omitempty" url:"currency,omitempty"`
+	// Purchase order ID
 	PurchaseOrderNo *string `json:"purchaseOrderNo,omitempty" url:"purchaseOrderNo,omitempty"`
 	// Current page; default is 1
 	CurrentPage *int32 `json:"currentPage,omitempty" url:"currentPage,omitempty"`
-	// Page size; 1<=pageSize<=100; default is 50
+	// Page size; 1<=pageSize<=50; default is 50
 	PageSize *int32 `json:"pageSize,omitempty" url:"pageSize,omitempty"`
 }
 
@@ -40,8 +40,8 @@ func NewGetPurchaseOrdersReqWithDefaults() *GetPurchaseOrdersReq {
 
 func (o *GetPurchaseOrdersReq) ToMap() map[string]interface{} {
 	toSerialize := map[string]interface{}{}
-	toSerialize["currency"] = o.Currency
 	toSerialize["status"] = o.Status
+	toSerialize["currency"] = o.Currency
 	toSerialize["purchaseOrderNo"] = o.PurchaseOrderNo
 	toSerialize["currentPage"] = o.CurrentPage
 	toSerialize["pageSize"] = o.PageSize
@@ -56,18 +56,19 @@ func NewGetPurchaseOrdersReqBuilder() *GetPurchaseOrdersReqBuilder {
 	return &GetPurchaseOrdersReqBuilder{obj: NewGetPurchaseOrdersReqWithDefaults()}
 }
 
-// currency
-func (builder *GetPurchaseOrdersReqBuilder) SetCurrency(value string) *GetPurchaseOrdersReqBuilder {
-	builder.obj.Currency = &value
-	return builder
-}
-
 // DONE-completed; PENDING-settling
 func (builder *GetPurchaseOrdersReqBuilder) SetStatus(value string) *GetPurchaseOrdersReqBuilder {
 	builder.obj.Status = &value
 	return builder
 }
 
+// Currency
+func (builder *GetPurchaseOrdersReqBuilder) SetCurrency(value string) *GetPurchaseOrdersReqBuilder {
+	builder.obj.Currency = &value
+	return builder
+}
+
+// Purchase order ID
 func (builder *GetPurchaseOrdersReqBuilder) SetPurchaseOrderNo(value string) *GetPurchaseOrdersReqBuilder {
 	builder.obj.PurchaseOrderNo = &value
 	return builder
@@ -79,7 +80,7 @@ func (builder *GetPurchaseOrdersReqBuilder) SetCurrentPage(value int32) *GetPurc
 	return builder
 }
 
-// Page size; 1<=pageSize<=100; default is 50
+// Page size; 1<=pageSize<=50; default is 50
 func (builder *GetPurchaseOrdersReqBuilder) SetPageSize(value int32) *GetPurchaseOrdersReqBuilder {
 	builder.obj.PageSize = &value
 	return builder

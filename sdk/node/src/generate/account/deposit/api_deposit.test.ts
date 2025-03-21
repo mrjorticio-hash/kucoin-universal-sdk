@@ -18,7 +18,7 @@ describe('Auto Test', () => {
     test('addDepositAddressV3 request test', () => {
         /**
          * addDepositAddressV3
-         * Add Deposit Address(V3)
+         * Add Deposit Address (V3)
          * /api/v3/deposit-address/create
          */
         let data = '{"currency": "TON", "chain": "ton", "to": "trade"}';
@@ -32,7 +32,7 @@ describe('Auto Test', () => {
     test('addDepositAddressV3 response test', () => {
         /**
          * addDepositAddressV3
-         * Add Deposit Address(V3)
+         * Add Deposit Address (V3)
          * /api/v3/deposit-address/create
          */
         let data =
@@ -49,11 +49,10 @@ describe('Auto Test', () => {
     test('getDepositAddressV3 request test', () => {
         /**
          * getDepositAddressV3
-         * Get Deposit Address(V3)
+         * Get Deposit Address (V3)
          * /api/v3/deposit-addresses
          */
-        let data =
-            '{"currency": "BTC", "amount": "example_string_default_value", "chain": "example_string_default_value"}';
+        let data = '{"currency": "BTC", "amount": "example_string_default_value", "chain": "eth"}';
         let req = GetDepositAddressV3Req.fromJson(data);
         expect(Object.values(req).every((value) => value === null || value === undefined)).toBe(
             false,
@@ -64,7 +63,7 @@ describe('Auto Test', () => {
     test('getDepositAddressV3 response test', () => {
         /**
          * getDepositAddressV3
-         * Get Deposit Address(V3)
+         * Get Deposit Address (V3)
          * /api/v3/deposit-addresses
          */
         let data =
@@ -113,10 +112,10 @@ describe('Auto Test', () => {
     test('getDepositAddressV2 request test', () => {
         /**
          * getDepositAddressV2
-         * Get Deposit Addresses(V2)
+         * Get Deposit Addresses (V2)
          * /api/v2/deposit-addresses
          */
-        let data = '{"currency": "BTC"}';
+        let data = '{"currency": "BTC", "chain": "eth"}';
         let req = GetDepositAddressV2Req.fromJson(data);
         expect(Object.values(req).every((value) => value === null || value === undefined)).toBe(
             false,
@@ -127,7 +126,7 @@ describe('Auto Test', () => {
     test('getDepositAddressV2 response test', () => {
         /**
          * getDepositAddressV2
-         * Get Deposit Addresses(V2)
+         * Get Deposit Addresses (V2)
          * /api/v2/deposit-addresses
          */
         let data =

@@ -4,7 +4,7 @@ package order
 
 // GetOpenOrderValueReq struct for GetOpenOrderValueReq
 type GetOpenOrderValueReq struct {
-	// Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)
+	// Symbol of the contract. Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)
 	Symbol *string `json:"symbol,omitempty" url:"symbol,omitempty"`
 }
 
@@ -36,7 +36,7 @@ func NewGetOpenOrderValueReqBuilder() *GetOpenOrderValueReqBuilder {
 	return &GetOpenOrderValueReqBuilder{obj: NewGetOpenOrderValueReqWithDefaults()}
 }
 
-// Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)
+// Symbol of the contract. Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)
 func (builder *GetOpenOrderValueReqBuilder) SetSymbol(value string) *GetOpenOrderValueReqBuilder {
 	builder.obj.Symbol = &value
 	return builder

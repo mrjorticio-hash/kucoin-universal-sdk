@@ -5,12 +5,12 @@ import { Serializable } from '@internal/interfaces/serializable';
 
 export class GetTradeHistoryReq implements Serializable {
     /**
-     * List fills for a specific order only (If you specify orderId, other parameters can be ignored)
+     * List fills for a specific order only (if you specify orderId, other parameters can be ignored)
      */
     orderId?: string;
 
     /**
-     * Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)
+     * Symbol of the contract. Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)
      */
     symbol?: string;
 
@@ -25,27 +25,27 @@ export class GetTradeHistoryReq implements Serializable {
     type?: GetTradeHistoryReq.TypeEnum;
 
     /**
-     * Transaction type: trade, adl, liquid, settlement. Supports querying multiple types at the same time, separated by commas. Query all type when empty
+     * Transaction type: trade, adl, liquid, settlement. Supports querying multiple types at the same time, separated by commas. Query all types when empty
      */
     tradeTypes?: string;
 
     /**
-     * Start time (milisecond)
+     * Start time (milliseconds)
      */
     startAt?: number;
 
     /**
-     * End time (milisecond)
+     * End time (milliseconds)
      */
     endAt?: number;
 
     /**
-     * Current request page, The default currentPage is 1
+     * Current request page. The default currentPage is 1
      */
     currentPage?: number = 1;
 
     /**
-     * pageSize, The default pageSize is 50, The maximum cannot exceed 1000
+     * pageSize, The default pageSize is 50; the maximum cannot exceed 1000
      */
     pageSize?: number = 50;
 
@@ -66,11 +66,11 @@ export class GetTradeHistoryReq implements Serializable {
      */
     static create(data: {
         /**
-         * List fills for a specific order only (If you specify orderId, other parameters can be ignored)
+         * List fills for a specific order only (if you specify orderId, other parameters can be ignored)
          */
         orderId?: string;
         /**
-         * Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)
+         * Symbol of the contract. Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)
          */
         symbol?: string;
         /**
@@ -82,23 +82,23 @@ export class GetTradeHistoryReq implements Serializable {
          */
         type?: GetTradeHistoryReq.TypeEnum;
         /**
-         * Transaction type: trade, adl, liquid, settlement. Supports querying multiple types at the same time, separated by commas. Query all type when empty
+         * Transaction type: trade, adl, liquid, settlement. Supports querying multiple types at the same time, separated by commas. Query all types when empty
          */
         tradeTypes?: string;
         /**
-         * Start time (milisecond)
+         * Start time (milliseconds)
          */
         startAt?: number;
         /**
-         * End time (milisecond)
+         * End time (milliseconds)
          */
         endAt?: number;
         /**
-         * Current request page, The default currentPage is 1
+         * Current request page. The default currentPage is 1
          */
         currentPage?: number;
         /**
-         * pageSize, The default pageSize is 50, The maximum cannot exceed 1000
+         * pageSize, The default pageSize is 50; the maximum cannot exceed 1000
          */
         pageSize?: number;
     }): GetTradeHistoryReq {
@@ -179,7 +179,7 @@ export class GetTradeHistoryReqBuilder {
         this.obj = obj;
     }
     /**
-     * List fills for a specific order only (If you specify orderId, other parameters can be ignored)
+     * List fills for a specific order only (if you specify orderId, other parameters can be ignored)
      */
     setOrderId(value: string): GetTradeHistoryReqBuilder {
         this.obj.orderId = value;
@@ -187,7 +187,7 @@ export class GetTradeHistoryReqBuilder {
     }
 
     /**
-     * Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)
+     * Symbol of the contract. Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)
      */
     setSymbol(value: string): GetTradeHistoryReqBuilder {
         this.obj.symbol = value;
@@ -211,7 +211,7 @@ export class GetTradeHistoryReqBuilder {
     }
 
     /**
-     * Transaction type: trade, adl, liquid, settlement. Supports querying multiple types at the same time, separated by commas. Query all type when empty
+     * Transaction type: trade, adl, liquid, settlement. Supports querying multiple types at the same time, separated by commas. Query all types when empty
      */
     setTradeTypes(value: string): GetTradeHistoryReqBuilder {
         this.obj.tradeTypes = value;
@@ -219,7 +219,7 @@ export class GetTradeHistoryReqBuilder {
     }
 
     /**
-     * Start time (milisecond)
+     * Start time (milliseconds)
      */
     setStartAt(value: number): GetTradeHistoryReqBuilder {
         this.obj.startAt = value;
@@ -227,7 +227,7 @@ export class GetTradeHistoryReqBuilder {
     }
 
     /**
-     * End time (milisecond)
+     * End time (milliseconds)
      */
     setEndAt(value: number): GetTradeHistoryReqBuilder {
         this.obj.endAt = value;
@@ -235,7 +235,7 @@ export class GetTradeHistoryReqBuilder {
     }
 
     /**
-     * Current request page, The default currentPage is 1
+     * Current request page. The default currentPage is 1
      */
     setCurrentPage(value: number): GetTradeHistoryReqBuilder {
         this.obj.currentPage = value;
@@ -243,7 +243,7 @@ export class GetTradeHistoryReqBuilder {
     }
 
     /**
-     * pageSize, The default pageSize is 50, The maximum cannot exceed 1000
+     * pageSize, The default pageSize is 50; the maximum cannot exceed 1000
      */
     setPageSize(value: number): GetTradeHistoryReqBuilder {
         this.obj.pageSize = value;

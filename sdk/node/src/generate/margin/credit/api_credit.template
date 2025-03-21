@@ -76,7 +76,7 @@ describe('Auto Test', ()=> {
     * /api/v3/purchase/orders
     */
     let builder = GetPurchaseOrdersReq.builder();
-    builder.setCurrency(?).setStatus(?).setPurchaseOrderNo(?).setCurrentPage(?).setPageSize(?);
+    builder.setStatus(?).setCurrency(?).setPurchaseOrderNo(?).setCurrentPage(?).setPageSize(?);
     let req = builder.build();
     let resp = api.getPurchaseOrders(req);
     return resp.then(result => {
@@ -112,7 +112,7 @@ describe('Auto Test', ()=> {
     * /api/v3/redeem/orders
     */
     let builder = GetRedeemOrdersReq.builder();
-    builder.setCurrency(?).setStatus(?).setRedeemOrderNo(?).setCurrentPage(?).setPageSize(?);
+    builder.setStatus(?).setCurrency(?).setRedeemOrderNo(?).setCurrentPage(?).setPageSize(?);
     let req = builder.build();
     let resp = api.getRedeemOrders(req);
     return resp.then(result => {

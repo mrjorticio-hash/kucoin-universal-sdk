@@ -60,7 +60,7 @@ class TransferAPITest(unittest.TestCase):
     def test_sub_account_transfer_req_model(self):
         """
        sub_account_transfer
-       SubAccount Transfer
+       Sub-account Transfer
        /api/v2/accounts/sub-transfer
        """
         data = "{\"clientOid\": \"64ccc0f164781800010d8c09\", \"currency\": \"USDT\", \"amount\": \"0.01\", \"direction\": \"OUT\", \"accountType\": \"MAIN\", \"subAccountType\": \"MAIN\", \"subUserId\": \"63743f07e0c5230001761d08\"}"
@@ -69,7 +69,7 @@ class TransferAPITest(unittest.TestCase):
     def test_sub_account_transfer_resp_model(self):
         """
         sub_account_transfer
-        SubAccount Transfer
+        Sub-account Transfer
         /api/v2/accounts/sub-transfer
         """
         data = "{\"code\":\"200000\",\"data\":{\"orderId\":\"670be6b0b1b9080007040a9b\"}}"
@@ -79,7 +79,7 @@ class TransferAPITest(unittest.TestCase):
     def test_inner_transfer_req_model(self):
         """
        inner_transfer
-       Inner Transfer
+       Internal Transfer
        /api/v2/accounts/inner-transfer
        """
         data = "{\"clientOid\": \"64ccc0f164781800010d8c09\", \"currency\": \"USDT\", \"amount\": \"0.01\", \"from\": \"main\", \"to\": \"trade\"}"
@@ -88,12 +88,32 @@ class TransferAPITest(unittest.TestCase):
     def test_inner_transfer_resp_model(self):
         """
         inner_transfer
-        Inner Transfer
+        Internal Transfer
         /api/v2/accounts/inner-transfer
         """
         data = "{\"code\":\"200000\",\"data\":{\"orderId\":\"670beb3482a1bb0007dec644\"}}"
         common_response = RestResponse.from_json(data)
         resp = InnerTransferResp.from_dict(common_response.data)
+
+    def test_get_futures_account_transfer_out_ledger_req_model(self):
+        """
+       get_futures_account_transfer_out_ledger
+       Get Futures Account Transfer Out Ledger
+       /api/v1/transfer-list
+       """
+        data = "{\"currency\": \"XBT\", \"type\": \"MAIN\", \"tag\": [\"mock_a\", \"mock_b\"], \"startAt\": 1728663338000, \"endAt\": 1728692138000, \"currentPage\": 1, \"pageSize\": 50}"
+        req = GetFuturesAccountTransferOutLedgerReq.from_json(data)
+
+    def test_get_futures_account_transfer_out_ledger_resp_model(self):
+        """
+        get_futures_account_transfer_out_ledger
+        Get Futures Account Transfer Out Ledger
+        /api/v1/transfer-list
+        """
+        data = "{\"code\":\"200000\",\"data\":{\"currentPage\":1,\"pageSize\":50,\"totalNum\":1,\"totalPage\":1,\"items\":[{\"applyId\":\"670bf84c577f6c00017a1c48\",\"currency\":\"USDT\",\"recRemark\":\"\",\"recSystem\":\"KUCOIN\",\"status\":\"SUCCESS\",\"amount\":\"0.01\",\"reason\":\"\",\"offset\":1519769124134806,\"createdAt\":1728837708000,\"remark\":\"\"}]}}"
+        common_response = RestResponse.from_json(data)
+        resp = GetFuturesAccountTransferOutLedgerResp.from_dict(
+            common_response.data)
 
     def test_futures_account_transfer_out_req_model(self):
         """
@@ -132,23 +152,3 @@ class TransferAPITest(unittest.TestCase):
         data = "{\"code\":\"200000\",\"data\":null}"
         common_response = RestResponse.from_json(data)
         resp = FuturesAccountTransferInResp.from_dict(common_response.data)
-
-    def test_get_futures_account_transfer_out_ledger_req_model(self):
-        """
-       get_futures_account_transfer_out_ledger
-       Get Futures Account Transfer Out Ledger
-       /api/v1/transfer-list
-       """
-        data = "{\"currency\": \"XBT\", \"type\": \"MAIN\", \"tag\": [\"mock_a\", \"mock_b\"], \"startAt\": 1728663338000, \"endAt\": 1728692138000, \"currentPage\": 1, \"pageSize\": 50}"
-        req = GetFuturesAccountTransferOutLedgerReq.from_json(data)
-
-    def test_get_futures_account_transfer_out_ledger_resp_model(self):
-        """
-        get_futures_account_transfer_out_ledger
-        Get Futures Account Transfer Out Ledger
-        /api/v1/transfer-list
-        """
-        data = "{\"code\":\"200000\",\"data\":{\"currentPage\":1,\"pageSize\":50,\"totalNum\":1,\"totalPage\":1,\"items\":[{\"applyId\":\"670bf84c577f6c00017a1c48\",\"currency\":\"USDT\",\"recRemark\":\"\",\"recSystem\":\"KUCOIN\",\"status\":\"SUCCESS\",\"amount\":\"0.01\",\"reason\":\"\",\"offset\":1519769124134806,\"createdAt\":1728837708000,\"remark\":\"\"}]}}"
-        common_response = RestResponse.from_json(data)
-        resp = GetFuturesAccountTransferOutLedgerResp.from_dict(
-            common_response.data)

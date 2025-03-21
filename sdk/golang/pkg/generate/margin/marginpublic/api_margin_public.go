@@ -9,12 +9,12 @@ import (
 type MarginPublicWS interface {
 
 	// IndexPrice Index Price
-	// Subscribe to this topic to get the index price for the margin trading. The following ticker symbols are supported: List of currently supported symbol.
+	// Subscribe to this topic to get the index price for margin trading. The following ticker symbols are supported: List of currently supported symbols.
 	// push frequency: once every 1s
 	IndexPrice(symbol []string, callback IndexPriceEventCallback) (id string, err error)
 
 	// MarkPrice Mark Price
-	// Subscribe to this topic to get the mark price for margin trading.The following ticker symbols are supported: List of currently supported symbol
+	// Subscribe to this topic to get the mark price for margin trading. The following ticker symbols are supported: List of currently supported symbols
 	// push frequency: once every 1s
 	MarkPrice(symbol []string, callback MarkPriceEventCallback) (id string, err error)
 

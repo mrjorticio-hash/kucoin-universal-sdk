@@ -22,7 +22,7 @@ export class GetSpotSubAccountsSummaryV2Resp implements Response<RestResponse> {
     totalNum: number;
 
     /**
-     * Total number of page
+     * Total number of pages
      */
     totalPage: number;
 

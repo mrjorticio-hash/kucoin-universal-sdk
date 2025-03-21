@@ -1,7 +1,7 @@
 # KuCoin Universal SDK
 
 ![License Badge](https://img.shields.io/badge/license-MIT-green)  
-![Language](https://img.shields.io/badge/language-Python|Go-blue)
+![Language](https://img.shields.io/badge/language-Python|Go|Node.js-blue)
 
 The  **KuCoin Universal SDK** is the official SDK provided by KuCoin, offering a unified and seamless interface for accessing KuCoin's trading platform. Built using code generation technology, it ensures consistency and rapid updates across multiple programming languages, simplifying integration with consistent APIs.
 
@@ -32,9 +32,9 @@ The  **KuCoin Universal SDK** is the official SDK provided by KuCoin, offering a
 
 ## 🛠️ Installation
 
-### Latest Version: `1.1.0`(Global API version)
+### Latest Version: `1.2.0`(Global API version)
 
-### Python Installation(`1.1.1`)
+### Python Installation
 
 ```bash
 pip install kucoin-universal-sdk
@@ -47,8 +47,7 @@ go get github.com/Kucoin/kucoin-universal-sdk/sdk/golang
 go mod tidy
 ```
 
-### Node.js Installation (`0.1.1-alpha`)
-Note: This SDK is currently in the Alpha phase. We are actively iterating and improving its features, stability, and documentation. Feedback and contributions are highly encouraged to help us refine the SDK.
+### Node.js Installation
 ```bash
 npm install kucoin-universal-sdk
 ```
@@ -64,12 +63,12 @@ Here's a quick example to get you started with the SDK in **Python**.
 import logging
 import os
 
-from kucoin_universal_sdk.api.client import DefaultClient
-from kucoin_universal_sdk.generate.spot.market.model_get_part_order_book_req import GetPartOrderBookReqBuilder
-from kucoin_universal_sdk.model.client_option import ClientOptionBuilder
-from kucoin_universal_sdk.model.constants import GLOBAL_API_ENDPOINT, GLOBAL_FUTURES_API_ENDPOINT, \
+from kucoin_universal_sdk.api import DefaultClient
+from kucoin_universal_sdk.generate.spot.market import GetPartOrderBookReqBuilder
+from kucoin_universal_sdk.model import ClientOptionBuilder
+from kucoin_universal_sdk.model import GLOBAL_API_ENDPOINT, GLOBAL_FUTURES_API_ENDPOINT, \
     GLOBAL_BROKER_API_ENDPOINT
-from kucoin_universal_sdk.model.transport_option import TransportOptionBuilder
+from kucoin_universal_sdk.model import TransportOptionBuilder
 
 
 def example():

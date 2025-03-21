@@ -20,18 +20,18 @@ class GetWithdrawalQuotasResp(BaseModel, Response):
         currency (str): 
         limit_btc_amount (str): 
         used_btc_amount (str): 
-        quota_currency (str): withdrawal limit currency
-        limit_quota_currency_amount (str): The intraday available withdrawal amount(withdrawal limit currency)
-        used_quota_currency_amount (str): The intraday cumulative withdrawal amount(withdrawal limit currency)
+        quota_currency (str): Withdrawal limit currency
+        limit_quota_currency_amount (str): The intraday available withdrawal amount (withdrawal limit currency)
+        used_quota_currency_amount (str): The intraday cumulative withdrawal amount (withdrawal limit currency)
         remain_amount (str): Remaining amount available to withdraw the current day 
         available_amount (str): Current available withdrawal amount
         withdraw_min_fee (str): Minimum withdrawal fee
         inner_withdraw_min_fee (str): Fees for internal withdrawal
         withdraw_min_size (str): Minimum withdrawal amount
-        is_withdraw_enabled (bool): Is the withdraw function enabled or not
+        is_withdraw_enabled (bool): Is the withdraw function enabled?
         precision (int): Floating point precision.
         chain (str): The chainName of currency
-        reason (str): Reasons for restriction, Usually empty
+        reason (str): Reasons for restriction. Usually empty.
         locked_amount (str): Total locked amount (including the amount locked into USDT for each currency)
     """
 
@@ -43,17 +43,17 @@ class GetWithdrawalQuotasResp(BaseModel, Response):
     used_btc_amount: Optional[str] = Field(default=None, alias="usedBTCAmount")
     quota_currency: Optional[str] = Field(
         default=None,
-        description="withdrawal limit currency",
+        description="Withdrawal limit currency",
         alias="quotaCurrency")
     limit_quota_currency_amount: Optional[str] = Field(
         default=None,
         description=
-        "The intraday available withdrawal amount(withdrawal limit currency)",
+        "The intraday available withdrawal amount (withdrawal limit currency)",
         alias="limitQuotaCurrencyAmount")
     used_quota_currency_amount: Optional[str] = Field(
         default=None,
         description=
-        "The intraday cumulative withdrawal amount(withdrawal limit currency)",
+        "The intraday cumulative withdrawal amount (withdrawal limit currency)",
         alias="usedQuotaCurrencyAmount")
     remain_amount: Optional[str] = Field(
         default=None,
@@ -77,14 +77,14 @@ class GetWithdrawalQuotasResp(BaseModel, Response):
         alias="withdrawMinSize")
     is_withdraw_enabled: Optional[bool] = Field(
         default=None,
-        description="Is the withdraw function enabled or not",
+        description="Is the withdraw function enabled?",
         alias="isWithdrawEnabled")
     precision: Optional[int] = Field(default=None,
                                      description="Floating point precision.")
     chain: Optional[str] = Field(default=None,
                                  description="The chainName of currency")
     reason: Optional[str] = Field(
-        default=None, description="Reasons for restriction, Usually empty")
+        default=None, description="Reasons for restriction. Usually empty.")
     locked_amount: Optional[str] = Field(
         default=None,
         description=

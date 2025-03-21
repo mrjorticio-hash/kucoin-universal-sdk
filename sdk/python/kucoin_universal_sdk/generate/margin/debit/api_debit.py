@@ -25,15 +25,15 @@ class DebitAPI(ABC):
         summary: Borrow
         description: This API endpoint is used to initiate an application for cross or isolated margin borrowing.
         documentation: https://www.kucoin.com/docs-new/api-3470206
-        +---------------------+---------+
-        | Extra API Info      | Value   |
-        +---------------------+---------+
-        | API-DOMAIN          | SPOT    |
-        | API-CHANNEL         | PRIVATE |
-        | API-PERMISSION      | MARGIN  |
-        | API-RATE-LIMIT-POOL | SPOT    |
-        | API-RATE-LIMIT      | 15      |
-        +---------------------+---------+
+        +-----------------------+---------+
+        | Extra API Info        | Value   |
+        +-----------------------+---------+
+        | API-DOMAIN            | SPOT    |
+        | API-CHANNEL           | PRIVATE |
+        | API-PERMISSION        | MARGIN  |
+        | API-RATE-LIMIT-POOL   | SPOT    |
+        | API-RATE-LIMIT-WEIGHT | 15      |
+        +-----------------------+---------+
         """
         pass
 
@@ -42,17 +42,17 @@ class DebitAPI(ABC):
                            **kwargs: Any) -> GetBorrowHistoryResp:
         """
         summary: Get Borrow History
-        description: This API endpoint is used to get the borrowing orders for cross and isolated margin accounts
+        description: This API endpoint is used to get the borrowing orders for cross and isolated margin accounts.
         documentation: https://www.kucoin.com/docs-new/api-3470207
-        +---------------------+---------+
-        | Extra API Info      | Value   |
-        +---------------------+---------+
-        | API-DOMAIN          | SPOT    |
-        | API-CHANNEL         | PRIVATE |
-        | API-PERMISSION      | MARGIN  |
-        | API-RATE-LIMIT-POOL | SPOT    |
-        | API-RATE-LIMIT      | 15      |
-        +---------------------+---------+
+        +-----------------------+---------+
+        | Extra API Info        | Value   |
+        +-----------------------+---------+
+        | API-DOMAIN            | SPOT    |
+        | API-CHANNEL           | PRIVATE |
+        | API-PERMISSION        | MARGIN  |
+        | API-RATE-LIMIT-POOL   | SPOT    |
+        | API-RATE-LIMIT-WEIGHT | 15      |
+        +-----------------------+---------+
         """
         pass
 
@@ -62,15 +62,15 @@ class DebitAPI(ABC):
         summary: Repay
         description: This API endpoint is used to initiate an application for cross or isolated margin repayment.
         documentation: https://www.kucoin.com/docs-new/api-3470210
-        +---------------------+---------+
-        | Extra API Info      | Value   |
-        +---------------------+---------+
-        | API-DOMAIN          | SPOT    |
-        | API-CHANNEL         | PRIVATE |
-        | API-PERMISSION      | MARGIN  |
-        | API-RATE-LIMIT-POOL | SPOT    |
-        | API-RATE-LIMIT      | 10      |
-        +---------------------+---------+
+        +-----------------------+---------+
+        | Extra API Info        | Value   |
+        +-----------------------+---------+
+        | API-DOMAIN            | SPOT    |
+        | API-CHANNEL           | PRIVATE |
+        | API-PERMISSION        | MARGIN  |
+        | API-RATE-LIMIT-POOL   | SPOT    |
+        | API-RATE-LIMIT-WEIGHT | 10      |
+        +-----------------------+---------+
         """
         pass
 
@@ -79,17 +79,17 @@ class DebitAPI(ABC):
                           **kwargs: Any) -> GetRepayHistoryResp:
         """
         summary: Get Repay History
-        description: This API endpoint is used to get the borrowing orders for cross and isolated margin accounts
+        description: This API endpoint is used to get the borrowing orders for cross and isolated margin accounts.
         documentation: https://www.kucoin.com/docs-new/api-3470208
-        +---------------------+---------+
-        | Extra API Info      | Value   |
-        +---------------------+---------+
-        | API-DOMAIN          | SPOT    |
-        | API-CHANNEL         | PRIVATE |
-        | API-PERMISSION      | MARGIN  |
-        | API-RATE-LIMIT-POOL | SPOT    |
-        | API-RATE-LIMIT      | 15      |
-        +---------------------+---------+
+        +-----------------------+---------+
+        | Extra API Info        | Value   |
+        +-----------------------+---------+
+        | API-DOMAIN            | SPOT    |
+        | API-CHANNEL           | PRIVATE |
+        | API-PERMISSION        | MARGIN  |
+        | API-RATE-LIMIT-POOL   | SPOT    |
+        | API-RATE-LIMIT-WEIGHT | 15      |
+        +-----------------------+---------+
         """
         pass
 
@@ -97,18 +97,18 @@ class DebitAPI(ABC):
     def get_interest_history(self, req: GetInterestHistoryReq,
                              **kwargs: Any) -> GetInterestHistoryResp:
         """
-        summary: Get Interest History
-        description: Request via this endpoint to get the interest records of the cross/isolated margin lending.
+        summary: Get Interest History.
+        description: Request the interest records of the cross/isolated margin lending via this endpoint.
         documentation: https://www.kucoin.com/docs-new/api-3470209
-        +---------------------+---------+
-        | Extra API Info      | Value   |
-        +---------------------+---------+
-        | API-DOMAIN          | SPOT    |
-        | API-CHANNEL         | PRIVATE |
-        | API-PERMISSION      | MARGIN  |
-        | API-RATE-LIMIT-POOL | SPOT    |
-        | API-RATE-LIMIT      | 20      |
-        +---------------------+---------+
+        +-----------------------+---------+
+        | Extra API Info        | Value   |
+        +-----------------------+---------+
+        | API-DOMAIN            | SPOT    |
+        | API-CHANNEL           | PRIVATE |
+        | API-PERMISSION        | MARGIN  |
+        | API-RATE-LIMIT-POOL   | SPOT    |
+        | API-RATE-LIMIT-WEIGHT | 20      |
+        +-----------------------+---------+
         """
         pass
 
@@ -119,15 +119,15 @@ class DebitAPI(ABC):
         summary: Modify Leverage
         description: This endpoint allows modifying the leverage multiplier for cross margin or isolated margin.
         documentation: https://www.kucoin.com/docs-new/api-3470211
-        +---------------------+---------+
-        | Extra API Info      | Value   |
-        +---------------------+---------+
-        | API-DOMAIN          | SPOT    |
-        | API-CHANNEL         | PRIVATE |
-        | API-PERMISSION      | MARGIN  |
-        | API-RATE-LIMIT-POOL | SPOT    |
-        | API-RATE-LIMIT      | 5       |
-        +---------------------+---------+
+        +-----------------------+---------+
+        | Extra API Info        | Value   |
+        +-----------------------+---------+
+        | API-DOMAIN            | SPOT    |
+        | API-CHANNEL           | PRIVATE |
+        | API-PERMISSION        | MARGIN  |
+        | API-RATE-LIMIT-POOL   | SPOT    |
+        | API-RATE-LIMIT-WEIGHT | 8       |
+        +-----------------------+---------+
         """
         pass
 

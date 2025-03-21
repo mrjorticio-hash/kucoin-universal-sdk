@@ -11,7 +11,7 @@ export class GetMarginConfigResp implements Response<RestResponse> {
     currencyList: Array<string>;
 
     /**
-     * Max leverage available
+     * Max. leverage available
      */
     maxLeverage: number;
 

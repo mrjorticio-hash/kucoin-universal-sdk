@@ -2,7 +2,7 @@
 
 VENV_DIR=".venv-test"
 
-if [ ! -d "$VENV_DIR" ]; then
+if [ ! -d "$VENV_DIR" ] || [ -z "$(ls -A "$VENV_DIR" 2>/dev/null)" ]; then
     echo "Virtual environment not found. Creating a new one..."
     python3 -m venv "$VENV_DIR" || { echo "Failed to create virtual environment"; exit 1; }
     echo "Virtual environment created at $VENV_DIR."

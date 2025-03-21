@@ -4,19 +4,19 @@ package account
 
 // GetSpotHFLedgerReq struct for GetSpotHFLedgerReq
 type GetSpotHFLedgerReq struct {
-	// Currency ( you can choose more than one currency). You can specify 10 currencies at most for one time. If not specified, all currencies will be inquired by default.
+	// Currency (you can choose more than one currency). You can specify a max. of 10 currencies in one go. If not specified, all currencies will be queried by default.
 	Currency *string `json:"currency,omitempty" url:"currency,omitempty"`
 	// direction: in, out
 	Direction *string `json:"direction,omitempty" url:"direction,omitempty"`
-	// Transaction type: TRANSFER-transfer funds,TRADE_EXCHANGE-Trade
+	// Transaction type
 	BizType *string `json:"bizType,omitempty" url:"bizType,omitempty"`
-	// The id of the last set of data from the previous batch of data. By default, the latest information is given.
+	// The ID of the last set of data from the previous data batch. By default, the latest information is given.
 	LastId *int64 `json:"lastId,omitempty" url:"lastId,omitempty"`
-	// Default100，Max200
+	// Default100, Max200
 	Limit *int32 `json:"limit,omitempty" url:"limit,omitempty"`
-	// Start time (milisecond)
+	// Start time (milliseconds)
 	StartAt *int64 `json:"startAt,omitempty" url:"startAt,omitempty"`
-	// End time (milisecond)
+	// End time (milliseconds)
 	EndAt *int64 `json:"endAt,omitempty" url:"endAt,omitempty"`
 }
 
@@ -58,7 +58,7 @@ func NewGetSpotHFLedgerReqBuilder() *GetSpotHFLedgerReqBuilder {
 	return &GetSpotHFLedgerReqBuilder{obj: NewGetSpotHFLedgerReqWithDefaults()}
 }
 
-// Currency ( you can choose more than one currency). You can specify 10 currencies at most for one time. If not specified, all currencies will be inquired by default.
+// Currency (you can choose more than one currency). You can specify a max. of 10 currencies in one go. If not specified, all currencies will be queried by default.
 func (builder *GetSpotHFLedgerReqBuilder) SetCurrency(value string) *GetSpotHFLedgerReqBuilder {
 	builder.obj.Currency = &value
 	return builder
@@ -70,31 +70,31 @@ func (builder *GetSpotHFLedgerReqBuilder) SetDirection(value string) *GetSpotHFL
 	return builder
 }
 
-// Transaction type: TRANSFER-transfer funds,TRADE_EXCHANGE-Trade
+// Transaction type
 func (builder *GetSpotHFLedgerReqBuilder) SetBizType(value string) *GetSpotHFLedgerReqBuilder {
 	builder.obj.BizType = &value
 	return builder
 }
 
-// The id of the last set of data from the previous batch of data. By default, the latest information is given.
+// The ID of the last set of data from the previous data batch. By default, the latest information is given.
 func (builder *GetSpotHFLedgerReqBuilder) SetLastId(value int64) *GetSpotHFLedgerReqBuilder {
 	builder.obj.LastId = &value
 	return builder
 }
 
-// Default100，Max200
+// Default100, Max200
 func (builder *GetSpotHFLedgerReqBuilder) SetLimit(value int32) *GetSpotHFLedgerReqBuilder {
 	builder.obj.Limit = &value
 	return builder
 }
 
-// Start time (milisecond)
+// Start time (milliseconds)
 func (builder *GetSpotHFLedgerReqBuilder) SetStartAt(value int64) *GetSpotHFLedgerReqBuilder {
 	builder.obj.StartAt = &value
 	return builder
 }
 
-// End time (milisecond)
+// End time (milliseconds)
 func (builder *GetSpotHFLedgerReqBuilder) SetEndAt(value int64) *GetSpotHFLedgerReqBuilder {
 	builder.obj.EndAt = &value
 	return builder

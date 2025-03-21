@@ -17,14 +17,14 @@ class WithdrawalV3Req(BaseModel):
 
     Attributes:
         currency (str): currency
-        chain (str): The chainId of currency, For a currency with multiple chains, it is recommended to specify chain parameter instead of using the default chain; you can query the chainId through the response of the GET /api/v3/currencies/{currency} interface.
+        chain (str): The chainId of currency, For a currency with multiple chains, it is recommended to specify the chain parameter instead of using the default chain; you can query the chainId through the response of the GET /api/v3/currencies/{currency} interface.
         amount (int): Withdrawal amount, a positive number which is a multiple of the amount precision
-        memo (str): Address remark. If there’s no remark, it is empty. When you withdraw from other platforms to the KuCoin, you need to fill in memo(tag). If you do not fill memo (tag), your deposit may not be available, please be cautious.
-        is_inner (bool): Internal withdrawal or not. Default : false
-        remark (str): remark
-        fee_deduct_type (str): Withdrawal fee deduction type: INTERNAL or EXTERNAL or not specified  1. INTERNAL- deduct the transaction fees from your withdrawal amount 2. EXTERNAL- deduct the transaction fees from your main account 3. If you don't specify the feeDeductType parameter, when the balance in your main account is sufficient to support the withdrawal, the system will initially deduct the transaction fees from your main account. But if the balance in your main account is not sufficient to support the withdrawal, the system will deduct the fees from your withdrawal amount. For example: Suppose you are going to withdraw 1 BTC from the KuCoin platform (transaction fee: 0.0001BTC), if the balance in your main account is insufficient, the system will deduct the transaction fees from your withdrawal amount. In this case, you will be receiving 0.9999BTC.
+        memo (str): Address remark. If there’s no remark, it is empty. When you withdraw from other platforms to KuCoin, you need to fill in memo(tag). Be careful: If you do not fill in memo(tag), your deposit may not be available.
+        is_inner (bool): Internal withdrawal or not. Default: False
+        remark (str): Remark
+        fee_deduct_type (str): Withdrawal fee deduction type: INTERNAL, EXTERNAL, or not specified  1. INTERNAL: Deduct the transaction fees from your withdrawal amount 2. EXTERNAL: Deduct the transaction fees from your main account 3. If you don't specify the feeDeductType parameter, when the balance in your main account is sufficient to support the withdrawal, the system will initially deduct the transaction fees from your main account. But if the balance in your main account is not sufficient to support the withdrawal, the system will deduct the fees from your withdrawal amount. For example: Suppose you are going to withdraw 1 BTC from the KuCoin platform (transaction fee: 0.0001BTC), if the balance in your main account is insufficient, the system will deduct the transaction fees from your withdrawal amount. In this case, you will be receiving 0.9999BTC.
         to_address (str): Withdrawal address
-        withdraw_type (WithdrawTypeEnum): Withdrawal type, ADDRESS (withdrawal address), UID, MAIL (email), PHONE (mobile phone number). Note: If you withdraw by uid/mail/phone, there will have rate limited: 3 times/10 seconds, 50 times/24 hours (calculated on a rolling basis based on the first request time)
+        withdraw_type (WithdrawTypeEnum): Withdrawal type, ADDRESS (withdrawal address), UID, MAIL (email), PHONE (mobile phone number). Note: If you withdraw by uid/mail/phone, there will be rate limits: 3 times/10 seconds, 50 times/24 hours (calculated on a rolling basis based on the first request time)
     """
 
     class WithdrawTypeEnum(Enum):
@@ -44,7 +44,7 @@ class WithdrawalV3Req(BaseModel):
     chain: Optional[str] = Field(
         default='eth',
         description=
-        "The chainId of currency, For a currency with multiple chains, it is recommended to specify chain parameter instead of using the default chain; you can query the chainId through the response of the GET /api/v3/currencies/{currency} interface."
+        "The chainId of currency, For a currency with multiple chains, it is recommended to specify the chain parameter instead of using the default chain; you can query the chainId through the response of the GET /api/v3/currencies/{currency} interface."
     )
     amount: Optional[int] = Field(
         default=None,
@@ -54,17 +54,17 @@ class WithdrawalV3Req(BaseModel):
     memo: Optional[str] = Field(
         default=None,
         description=
-        "Address remark. If there’s no remark, it is empty. When you withdraw from other platforms to the KuCoin, you need to fill in memo(tag). If you do not fill memo (tag), your deposit may not be available, please be cautious."
+        "Address remark. If there’s no remark, it is empty. When you withdraw from other platforms to KuCoin, you need to fill in memo(tag). Be careful: If you do not fill in memo(tag), your deposit may not be available."
     )
     is_inner: Optional[bool] = Field(
         default=False,
-        description="Internal withdrawal or not. Default : false",
+        description="Internal withdrawal or not. Default: False",
         alias="isInner")
-    remark: Optional[str] = Field(default=None, description="remark")
+    remark: Optional[str] = Field(default=None, description="Remark")
     fee_deduct_type: Optional[str] = Field(
         default=None,
         description=
-        "Withdrawal fee deduction type: INTERNAL or EXTERNAL or not specified  1. INTERNAL- deduct the transaction fees from your withdrawal amount 2. EXTERNAL- deduct the transaction fees from your main account 3. If you don't specify the feeDeductType parameter, when the balance in your main account is sufficient to support the withdrawal, the system will initially deduct the transaction fees from your main account. But if the balance in your main account is not sufficient to support the withdrawal, the system will deduct the fees from your withdrawal amount. For example: Suppose you are going to withdraw 1 BTC from the KuCoin platform (transaction fee: 0.0001BTC), if the balance in your main account is insufficient, the system will deduct the transaction fees from your withdrawal amount. In this case, you will be receiving 0.9999BTC.",
+        "Withdrawal fee deduction type: INTERNAL, EXTERNAL, or not specified  1. INTERNAL: Deduct the transaction fees from your withdrawal amount 2. EXTERNAL: Deduct the transaction fees from your main account 3. If you don't specify the feeDeductType parameter, when the balance in your main account is sufficient to support the withdrawal, the system will initially deduct the transaction fees from your main account. But if the balance in your main account is not sufficient to support the withdrawal, the system will deduct the fees from your withdrawal amount. For example: Suppose you are going to withdraw 1 BTC from the KuCoin platform (transaction fee: 0.0001BTC), if the balance in your main account is insufficient, the system will deduct the transaction fees from your withdrawal amount. In this case, you will be receiving 0.9999BTC.",
         alias="feeDeductType")
     to_address: Optional[str] = Field(default=None,
                                       description="Withdrawal address",
@@ -72,7 +72,7 @@ class WithdrawalV3Req(BaseModel):
     withdraw_type: Optional[WithdrawTypeEnum] = Field(
         default=None,
         description=
-        "Withdrawal type, ADDRESS (withdrawal address), UID, MAIL (email), PHONE (mobile phone number). Note: If you withdraw by uid/mail/phone, there will have rate limited: 3 times/10 seconds, 50 times/24 hours (calculated on a rolling basis based on the first request time)",
+        "Withdrawal type, ADDRESS (withdrawal address), UID, MAIL (email), PHONE (mobile phone number). Note: If you withdraw by uid/mail/phone, there will be rate limits: 3 times/10 seconds, 50 times/24 hours (calculated on a rolling basis based on the first request time)",
         alias="withdrawType")
 
     __properties: ClassVar[List[str]] = [
@@ -149,7 +149,7 @@ class WithdrawalV3ReqBuilder:
 
     def set_chain(self, value: str) -> WithdrawalV3ReqBuilder:
         """
-        The chainId of currency, For a currency with multiple chains, it is recommended to specify chain parameter instead of using the default chain; you can query the chainId through the response of the GET /api/v3/currencies/{currency} interface.
+        The chainId of currency, For a currency with multiple chains, it is recommended to specify the chain parameter instead of using the default chain; you can query the chainId through the response of the GET /api/v3/currencies/{currency} interface.
         """
         self.obj['chain'] = value
         return self
@@ -163,28 +163,28 @@ class WithdrawalV3ReqBuilder:
 
     def set_memo(self, value: str) -> WithdrawalV3ReqBuilder:
         """
-        Address remark. If there’s no remark, it is empty. When you withdraw from other platforms to the KuCoin, you need to fill in memo(tag). If you do not fill memo (tag), your deposit may not be available, please be cautious.
+        Address remark. If there’s no remark, it is empty. When you withdraw from other platforms to KuCoin, you need to fill in memo(tag). Be careful: If you do not fill in memo(tag), your deposit may not be available.
         """
         self.obj['memo'] = value
         return self
 
     def set_is_inner(self, value: bool) -> WithdrawalV3ReqBuilder:
         """
-        Internal withdrawal or not. Default : false
+        Internal withdrawal or not. Default: False
         """
         self.obj['isInner'] = value
         return self
 
     def set_remark(self, value: str) -> WithdrawalV3ReqBuilder:
         """
-        remark
+        Remark
         """
         self.obj['remark'] = value
         return self
 
     def set_fee_deduct_type(self, value: str) -> WithdrawalV3ReqBuilder:
         """
-        Withdrawal fee deduction type: INTERNAL or EXTERNAL or not specified  1. INTERNAL- deduct the transaction fees from your withdrawal amount 2. EXTERNAL- deduct the transaction fees from your main account 3. If you don't specify the feeDeductType parameter, when the balance in your main account is sufficient to support the withdrawal, the system will initially deduct the transaction fees from your main account. But if the balance in your main account is not sufficient to support the withdrawal, the system will deduct the fees from your withdrawal amount. For example: Suppose you are going to withdraw 1 BTC from the KuCoin platform (transaction fee: 0.0001BTC), if the balance in your main account is insufficient, the system will deduct the transaction fees from your withdrawal amount. In this case, you will be receiving 0.9999BTC.
+        Withdrawal fee deduction type: INTERNAL, EXTERNAL, or not specified  1. INTERNAL: Deduct the transaction fees from your withdrawal amount 2. EXTERNAL: Deduct the transaction fees from your main account 3. If you don't specify the feeDeductType parameter, when the balance in your main account is sufficient to support the withdrawal, the system will initially deduct the transaction fees from your main account. But if the balance in your main account is not sufficient to support the withdrawal, the system will deduct the fees from your withdrawal amount. For example: Suppose you are going to withdraw 1 BTC from the KuCoin platform (transaction fee: 0.0001BTC), if the balance in your main account is insufficient, the system will deduct the transaction fees from your withdrawal amount. In this case, you will be receiving 0.9999BTC.
         """
         self.obj['feeDeductType'] = value
         return self
@@ -200,7 +200,7 @@ class WithdrawalV3ReqBuilder:
             self,
             value: WithdrawalV3Req.WithdrawTypeEnum) -> WithdrawalV3ReqBuilder:
         """
-        Withdrawal type, ADDRESS (withdrawal address), UID, MAIL (email), PHONE (mobile phone number). Note: If you withdraw by uid/mail/phone, there will have rate limited: 3 times/10 seconds, 50 times/24 hours (calculated on a rolling basis based on the first request time)
+        Withdrawal type, ADDRESS (withdrawal address), UID, MAIL (email), PHONE (mobile phone number). Note: If you withdraw by uid/mail/phone, there will be rate limits: 3 times/10 seconds, 50 times/24 hours (calculated on a rolling basis based on the first request time)
         """
         self.obj['withdrawType'] = value
         return self

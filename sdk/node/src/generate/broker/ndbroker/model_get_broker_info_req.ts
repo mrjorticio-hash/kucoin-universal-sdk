@@ -15,7 +15,7 @@ export class GetBrokerInfoReq implements Serializable {
     end?: string;
 
     /**
-     * Transaction type, 1: spot 2: futures
+     * Transaction type: 1, spot; 2: futures
      */
     tradeType?: GetBrokerInfoReq.TradeTypeEnum;
 
@@ -44,7 +44,7 @@ export class GetBrokerInfoReq implements Serializable {
          */
         end?: string;
         /**
-         * Transaction type, 1: spot 2: futures
+         * Transaction type: 1, spot; 2: futures
          */
         tradeType?: GetBrokerInfoReq.TradeTypeEnum;
     }): GetBrokerInfoReq {
@@ -109,7 +109,7 @@ export class GetBrokerInfoReqBuilder {
     }
 
     /**
-     * Transaction type, 1: spot 2: futures
+     * Transaction type: 1, spot; 2: futures
      */
     setTradeType(value: GetBrokerInfoReq.TradeTypeEnum): GetBrokerInfoReqBuilder {
         this.obj.tradeType = value;

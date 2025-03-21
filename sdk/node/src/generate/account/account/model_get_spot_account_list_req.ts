@@ -10,7 +10,7 @@ export class GetSpotAccountListReq implements Serializable {
     currency?: string;
 
     /**
-     * Account type main、trade
+     * Account type
      */
     type?: GetSpotAccountListReq.TypeEnum;
 
@@ -35,7 +35,7 @@ export class GetSpotAccountListReq implements Serializable {
          */
         currency?: string;
         /**
-         * Account type main、trade
+         * Account type
          */
         type?: GetSpotAccountListReq.TypeEnum;
     }): GetSpotAccountListReq {
@@ -75,6 +75,10 @@ export namespace GetSpotAccountListReq {
          * Spot account
          */
         TRADE = <any>'trade',
+        /**
+         * Option account
+         */
+        OPTION = <any>'option',
     }
 }
 
@@ -91,7 +95,7 @@ export class GetSpotAccountListReqBuilder {
     }
 
     /**
-     * Account type main、trade
+     * Account type
      */
     setType(value: GetSpotAccountListReq.TypeEnum): GetSpotAccountListReqBuilder {
         this.obj.type = value;

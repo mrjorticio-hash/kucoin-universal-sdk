@@ -4,7 +4,7 @@
 def test_purchase_req(self):
     """
         purchase
-        purchase
+        Purchase
         /api/v1/earn/orders
     """
 
@@ -96,25 +96,6 @@ def test_get_promotion_products_req(self):
         print("error: ", e)
         raise e
 
-def test_get_account_holding_req(self):
-    """
-        get_account_holding
-        Get Account Holding
-        /api/v1/earn/hold-assets
-    """
-
-    builder = GetAccountHoldingReqBuilder()
-    builder.set_currency(?).set_product_id(?).set_product_category(?).set_current_page(?).set_page_size(?)
-    req = builder.build()
-    try:
-        resp = self.api.get_account_holding(req)
-        print("code: ", resp.common_response.code)
-        print("msg: ", resp.common_response.message)
-        print("data: ", resp.to_json())
-    except Exception as e:
-        print("error: ", e)
-        raise e
-
 def test_get_staking_products_req(self):
     """
         get_staking_products
@@ -165,6 +146,25 @@ def test_get_eth_staking_products_req(self):
     req = builder.build()
     try:
         resp = self.api.get_eth_staking_products(req)
+        print("code: ", resp.common_response.code)
+        print("msg: ", resp.common_response.message)
+        print("data: ", resp.to_json())
+    except Exception as e:
+        print("error: ", e)
+        raise e
+
+def test_get_account_holding_req(self):
+    """
+        get_account_holding
+        Get Account Holding
+        /api/v1/earn/hold-assets
+    """
+
+    builder = GetAccountHoldingReqBuilder()
+    builder.set_currency(?).set_product_id(?).set_product_category(?).set_current_page(?).set_page_size(?)
+    req = builder.build()
+    try:
+        resp = self.api.get_account_holding(req)
         print("code: ", resp.common_response.code)
         print("msg: ", resp.common_response.message)
         print("data: ", resp.to_json())

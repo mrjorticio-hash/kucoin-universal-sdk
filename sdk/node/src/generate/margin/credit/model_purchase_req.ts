@@ -10,12 +10,12 @@ export class PurchaseReq implements Serializable {
     currency: string;
 
     /**
-     * purchase amount
+     * Purchase amount
      */
     size: string;
 
     /**
-     * purchase interest rate
+     * Purchase interest rate
      */
     interestRate: string;
 
@@ -47,11 +47,11 @@ export class PurchaseReq implements Serializable {
          */
         currency: string;
         /**
-         * purchase amount
+         * Purchase amount
          */
         size: string;
         /**
-         * purchase interest rate
+         * Purchase interest rate
          */
         interestRate: string;
     }): PurchaseReq {
@@ -95,7 +95,7 @@ export class PurchaseReqBuilder {
     }
 
     /**
-     * purchase amount
+     * Purchase amount
      */
     setSize(value: string): PurchaseReqBuilder {
         this.obj.size = value;
@@ -103,7 +103,7 @@ export class PurchaseReqBuilder {
     }
 
     /**
-     * purchase interest rate
+     * Purchase interest rate
      */
     setInterestRate(value: string): PurchaseReqBuilder {
         this.obj.interestRate = value;

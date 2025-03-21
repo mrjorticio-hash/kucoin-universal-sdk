@@ -9,12 +9,12 @@ import (
 type MarginPrivateWS interface {
 
 	// CrossMarginPosition Get Cross Margin Position change
-	// The system will push the change event when the position status changes, Or push the current debt message periodically when there is a liability.
+	// The system will push the change event when the position status changes, or push the current debt message periodically when there is a liability.
 	// push frequency: once every 4s
 	CrossMarginPosition(callback CrossMarginPositionEventCallback) (id string, err error)
 
 	// IsolatedMarginPosition Get Isolated Margin Position change
-	// The system will push the change event when the position status changes, Or push the current debt message periodically when there is a liability.
+	// The system will push the change event when the position status changes, or push the current debt message periodically when there is a liability.
 	// push frequency: real time
 	IsolatedMarginPosition(symbol string, callback IsolatedMarginPositionEventCallback) (id string, err error)
 

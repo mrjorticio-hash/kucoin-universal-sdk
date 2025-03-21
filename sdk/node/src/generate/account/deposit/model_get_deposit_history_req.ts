@@ -15,12 +15,12 @@ export class GetDepositHistoryReq implements Serializable {
     status?: GetDepositHistoryReq.StatusEnum;
 
     /**
-     * Start time (milisecond)
+     * Start time (milliseconds)
      */
     startAt?: number;
 
     /**
-     * End time (milisecond)
+     * End time (milliseconds)
      */
     endAt?: number;
 
@@ -59,11 +59,11 @@ export class GetDepositHistoryReq implements Serializable {
          */
         status?: GetDepositHistoryReq.StatusEnum;
         /**
-         * Start time (milisecond)
+         * Start time (milliseconds)
          */
         startAt?: number;
         /**
-         * End time (milisecond)
+         * End time (milliseconds)
          */
         endAt?: number;
         /**
@@ -112,15 +112,15 @@ export class GetDepositHistoryReq implements Serializable {
 export namespace GetDepositHistoryReq {
     export enum StatusEnum {
         /**
-         *
+         * Deposit processing
          */
         PROCESSING = <any>'PROCESSING',
         /**
-         *
+         * Deposit success
          */
         SUCCESS = <any>'SUCCESS',
         /**
-         *
+         * Deposit fail
          */
         FAILURE = <any>'FAILURE',
     }
@@ -147,7 +147,7 @@ export class GetDepositHistoryReqBuilder {
     }
 
     /**
-     * Start time (milisecond)
+     * Start time (milliseconds)
      */
     setStartAt(value: number): GetDepositHistoryReqBuilder {
         this.obj.startAt = value;
@@ -155,7 +155,7 @@ export class GetDepositHistoryReqBuilder {
     }
 
     /**
-     * End time (milisecond)
+     * End time (milliseconds)
      */
     setEndAt(value: number): GetDepositHistoryReqBuilder {
         this.obj.endAt = value;

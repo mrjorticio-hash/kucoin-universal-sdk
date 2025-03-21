@@ -44,7 +44,7 @@ class KcSigner:
             "KC-API-PASSPHRASE": self.api_passphrase,
             "KC-API-TIMESTAMP": timestamp,
             "KC-API-SIGN": signature,
-            "KC-API-KEY-VERSION": "2"
+            "KC-API-KEY-VERSION": "3"
         }
 
 

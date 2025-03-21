@@ -21,17 +21,17 @@ export class GetWithdrawalQuotasResp implements Response<RestResponse> {
     usedBTCAmount: string;
 
     /**
-     * withdrawal limit currency
+     * Withdrawal limit currency
      */
     quotaCurrency: string;
 
     /**
-     * The intraday available withdrawal amount(withdrawal limit currency)
+     * The intraday available withdrawal amount (withdrawal limit currency)
      */
     limitQuotaCurrencyAmount: string;
 
     /**
-     * The intraday cumulative withdrawal amount(withdrawal limit currency)
+     * The intraday cumulative withdrawal amount (withdrawal limit currency)
      */
     usedQuotaCurrencyAmount: string;
 
@@ -61,7 +61,7 @@ export class GetWithdrawalQuotasResp implements Response<RestResponse> {
     withdrawMinSize: string;
 
     /**
-     * Is the withdraw function enabled or not
+     * Is the withdraw function enabled?
      */
     isWithdrawEnabled: boolean;
 
@@ -76,7 +76,7 @@ export class GetWithdrawalQuotasResp implements Response<RestResponse> {
     chain: string;
 
     /**
-     * Reasons for restriction, Usually empty
+     * Reasons for restriction. Usually empty.
      */
     reason: string;
 

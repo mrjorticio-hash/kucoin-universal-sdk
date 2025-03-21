@@ -15,14 +15,14 @@ class CancelOrderByClientOidReq(BaseModel):
     CancelOrderByClientOidReq
 
     Attributes:
-        client_oid (str): Client Order Id，unique identifier created by the user
+        client_oid (str): Client Order Id, unique identifier created by the user
         symbol (str): symbol
     """
 
     client_oid: Optional[str] = Field(
         default=None,
         path_variable="True",
-        description="Client Order Id，unique identifier created by the user",
+        description="Client Order Id, unique identifier created by the user",
         alias="clientOid")
     symbol: Optional[str] = Field(default=None, description="symbol")
 
@@ -76,7 +76,7 @@ class CancelOrderByClientOidReqBuilder:
 
     def set_client_oid(self, value: str) -> CancelOrderByClientOidReqBuilder:
         """
-        Client Order Id，unique identifier created by the user
+        Client Order Id, unique identifier created by the user
         """
         self.obj['clientOid'] = value
         return self

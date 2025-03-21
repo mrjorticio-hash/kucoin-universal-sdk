@@ -32,10 +32,14 @@ type AddOrderReq struct {
 	VisibleSize *string `json:"visibleSize,omitempty"`
 	// Order tag, length cannot exceed 20 characters (ASCII)
 	Tags *string `json:"tags,omitempty"`
-	// Cancel after n seconds，the order timing strategy is GTT
+	// Cancel after n seconds, the order timing strategy is GTT, -1 means it will not be cancelled automatically, the default value is -1
 	CancelAfter *int64 `json:"cancelAfter,omitempty"`
-	// When **type** is market, select one out of two: size or funds
+	// When **type** is market, select one out of two: size or funds  When placing a market order, the funds field refers to the funds for the priced asset (the asset name written latter) of the trading pair. The funds must be based on the quoteIncrement of the trading pair. The quoteIncrement represents the precision of the trading pair. The funds value for an order must be a multiple of quoteIncrement and must be between quoteMinSize and quoteMaxSize.
 	Funds *string `json:"funds,omitempty"`
+	// Order failed after timeout of specified milliseconds, If clientTimestamp + allowMaxTimeWindow < the server reaches time, this order will fail.
+	AllowMaxTimeWindow *int64 `json:"allowMaxTimeWindow,omitempty"`
+	// Equal to KC-API-TIMESTAMP, Need to be defined if iceberg is specified.
+	ClientTimestamp *int64 `json:"clientTimestamp,omitempty"`
 }
 
 // NewAddOrderReq instantiates a new AddOrderReq object
@@ -53,6 +57,8 @@ func NewAddOrderReq(side string, symbol string, Type_ string) *AddOrderReq {
 	this.Hidden = &hidden
 	var iceberg bool = false
 	this.Iceberg = &iceberg
+	var cancelAfter int64 = -1
+	this.CancelAfter = &cancelAfter
 	return &this
 }
 
@@ -68,6 +74,8 @@ func NewAddOrderReqWithDefaults() *AddOrderReq {
 	this.Hidden = &hidden
 	var iceberg bool = false
 	this.Iceberg = &iceberg
+	var cancelAfter int64 = -1
+	this.CancelAfter = &cancelAfter
 	return &this
 }
 
@@ -89,6 +97,8 @@ func (o *AddOrderReq) ToMap() map[string]interface{} {
 	toSerialize["tags"] = o.Tags
 	toSerialize["cancelAfter"] = o.CancelAfter
 	toSerialize["funds"] = o.Funds
+	toSerialize["allowMaxTimeWindow"] = o.AllowMaxTimeWindow
+	toSerialize["clientTimestamp"] = o.ClientTimestamp
 	return toSerialize
 }
 
@@ -184,15 +194,27 @@ func (builder *AddOrderReqBuilder) SetTags(value string) *AddOrderReqBuilder {
 	return builder
 }
 
-// Cancel after n seconds，the order timing strategy is GTT
+// Cancel after n seconds, the order timing strategy is GTT, -1 means it will not be cancelled automatically, the default value is -1
 func (builder *AddOrderReqBuilder) SetCancelAfter(value int64) *AddOrderReqBuilder {
 	builder.obj.CancelAfter = &value
 	return builder
 }
 
-// When **type** is market, select one out of two: size or funds
+// When **type** is market, select one out of two: size or funds  When placing a market order, the funds field refers to the funds for the priced asset (the asset name written latter) of the trading pair. The funds must be based on the quoteIncrement of the trading pair. The quoteIncrement represents the precision of the trading pair. The funds value for an order must be a multiple of quoteIncrement and must be between quoteMinSize and quoteMaxSize.
 func (builder *AddOrderReqBuilder) SetFunds(value string) *AddOrderReqBuilder {
 	builder.obj.Funds = &value
+	return builder
+}
+
+// Order failed after timeout of specified milliseconds, If clientTimestamp + allowMaxTimeWindow < the server reaches time, this order will fail.
+func (builder *AddOrderReqBuilder) SetAllowMaxTimeWindow(value int64) *AddOrderReqBuilder {
+	builder.obj.AllowMaxTimeWindow = &value
+	return builder
+}
+
+// Equal to KC-API-TIMESTAMP, Need to be defined if iceberg is specified.
+func (builder *AddOrderReqBuilder) SetClientTimestamp(value int64) *AddOrderReqBuilder {
+	builder.obj.ClientTimestamp = &value
 	return builder
 }
 

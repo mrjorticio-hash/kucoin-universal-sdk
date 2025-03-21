@@ -4,13 +4,13 @@ package order
 
 // AddOrderSyncReq struct for AddOrderSyncReq
 type AddOrderSyncReq struct {
-	// Client Order Id，The ClientOid field is a unique ID created by the user（we recommend using a UUID）, and can only contain numbers, letters, underscores （_）, and hyphens （-）. This field is returned when order information is obtained. You can use clientOid to tag your orders. ClientOid is different from the order ID created by the service provider. Please do not initiate requests using the same clientOid. The maximum length for the ClientOid is 40 characters.  Please remember the orderId created by the service provider, it used to check for updates in order status.
+	// Client Order ID: The ClientOid field is a unique ID created by the user (we recommend using a UUID), and can only contain numbers, letters, underscores (_), and hyphens (-). This field is returned when order information is obtained. You can use clientOid to tag your orders. ClientOid is different from the order ID created by the service provider. Please do not initiate requests using the same clientOid. The maximum length for the ClientOid is 40 characters.  Please remember the orderId created by the service provider, it used to check for updates in order status.
 	ClientOid *string `json:"clientOid,omitempty"`
-	// specify if the order is to 'buy' or 'sell'
+	// Specify if the order is to 'buy' or 'sell'.
 	Side string `json:"side,omitempty"`
 	// symbol
 	Symbol string `json:"symbol,omitempty"`
-	// specify if the order is an 'limit' order or 'market' order.   The type of order you specify when you place your order determines whether or not you need to request other parameters and also affects the execution of the matching engine.  When placing a limit order, you must specify a price and size. The system will try to match the order according to market price or a price better than market price. If the order cannot be immediately matched, it will stay in the order book until it is matched or the user cancels.  Unlike limit orders, the price for market orders fluctuates with market prices. When placing a market order, you do not need to specify a price, you only need to specify a quantity. Market orders are filled immediately and will not enter the order book. All market orders are takers and a taker fee will be charged.
+	// Specify if the order is a 'limit' order or 'market' order.   The type of order you specify when you place your order determines whether or not you need to request other parameters and also affects the execution of the matching engine.  When placing a limit order, you must specify a price and size. The system will try to match the order according to market price or a price better than market price. If the order cannot be immediately matched, it will stay in the order book until it is matched or the user cancels.  Unlike limit orders, the price for market orders fluctuates with market prices. When placing a market order, you do not need to specify a price; you only need to specify a quantity. Market orders are filled immediately and will not enter the order book. All market orders are takers and a taker fee will be charged.
 	Type string `json:"type,omitempty"`
 	// Order placement remarks, length cannot exceed 20 characters (ASCII)
 	Remark *string `json:"remark,omitempty"`
@@ -18,7 +18,7 @@ type AddOrderSyncReq struct {
 	Stp *string `json:"stp,omitempty"`
 	// Specify price for order  When placing a limit order, the price must be based on priceIncrement for the trading pair. The price increment (priceIncrement) is the price precision for the trading pair. For example, for the BTC-USDT trading pair, the priceIncrement is 0.00001000. So the price for your orders cannot be less than 0.00001000 and must be a multiple of priceIncrement. Otherwise, the order will return an invalid priceIncrement error.
 	Price *string `json:"price,omitempty"`
-	// Specify quantity for order  When **type** is limit, size refers to the amount of trading targets (the asset name written in front) for the trading pair. Teh Size must be based on the baseIncrement of the trading pair. The baseIncrement represents the precision for the trading pair. The size of an order must be a positive-integer multiple of baseIncrement and must be between baseMinSize and baseMaxSize.  When **type** is market, select one out of two: size or funds
+	// Specify quantity for order.  When **type** is limited, size refers to the amount of trading targets (the asset name written in front) for the trading pair. The Size must be based on the baseIncrement of the trading pair. The baseIncrement represents the precision for the trading pair. The size of an order must be a positive-integer multiple of baseIncrement and must be between baseMinSize and baseMaxSize.  When **type** is market, select one out of two: size or funds
 	Size *string `json:"size,omitempty"`
 	// [Time in force](https://www.kucoin.com/docs-new/doc-338146) is a special strategy used during trading
 	TimeInForce *string `json:"timeInForce,omitempty"`
@@ -32,10 +32,14 @@ type AddOrderSyncReq struct {
 	VisibleSize *string `json:"visibleSize,omitempty"`
 	// Order tag, length cannot exceed 20 characters (ASCII)
 	Tags *string `json:"tags,omitempty"`
-	// Cancel after n seconds，the order timing strategy is GTT
+	// Cancel after n seconds, the order timing strategy is GTT, -1 means it will not be cancelled automatically, the default value is -1
 	CancelAfter *int64 `json:"cancelAfter,omitempty"`
 	// When **type** is market, select one out of two: size or funds
 	Funds *string `json:"funds,omitempty"`
+	// The order will fail if it times out after the specified duration in milliseconds. Specifically, if clientTimestamp + allowMaxTimeWindow (in milliseconds) is less than the time the server receives the message, the order will fail.
+	AllowMaxTimeWindow *int64 `json:"allowMaxTimeWindow,omitempty"`
+	// Equal to KC-API-TIMESTAMP. Needs to be defined if iceberg is specified.
+	ClientTimestamp *int64 `json:"clientTimestamp,omitempty"`
 }
 
 // NewAddOrderSyncReq instantiates a new AddOrderSyncReq object
@@ -53,6 +57,8 @@ func NewAddOrderSyncReq(side string, symbol string, Type_ string) *AddOrderSyncR
 	this.Hidden = &hidden
 	var iceberg bool = false
 	this.Iceberg = &iceberg
+	var cancelAfter int64 = -1
+	this.CancelAfter = &cancelAfter
 	return &this
 }
 
@@ -68,6 +74,8 @@ func NewAddOrderSyncReqWithDefaults() *AddOrderSyncReq {
 	this.Hidden = &hidden
 	var iceberg bool = false
 	this.Iceberg = &iceberg
+	var cancelAfter int64 = -1
+	this.CancelAfter = &cancelAfter
 	return &this
 }
 
@@ -89,6 +97,8 @@ func (o *AddOrderSyncReq) ToMap() map[string]interface{} {
 	toSerialize["tags"] = o.Tags
 	toSerialize["cancelAfter"] = o.CancelAfter
 	toSerialize["funds"] = o.Funds
+	toSerialize["allowMaxTimeWindow"] = o.AllowMaxTimeWindow
+	toSerialize["clientTimestamp"] = o.ClientTimestamp
 	return toSerialize
 }
 
@@ -100,13 +110,13 @@ func NewAddOrderSyncReqBuilder() *AddOrderSyncReqBuilder {
 	return &AddOrderSyncReqBuilder{obj: NewAddOrderSyncReqWithDefaults()}
 }
 
-// Client Order Id，The ClientOid field is a unique ID created by the user（we recommend using a UUID）, and can only contain numbers, letters, underscores （_）, and hyphens （-）. This field is returned when order information is obtained. You can use clientOid to tag your orders. ClientOid is different from the order ID created by the service provider. Please do not initiate requests using the same clientOid. The maximum length for the ClientOid is 40 characters.  Please remember the orderId created by the service provider, it used to check for updates in order status.
+// Client Order ID: The ClientOid field is a unique ID created by the user (we recommend using a UUID), and can only contain numbers, letters, underscores (_), and hyphens (-). This field is returned when order information is obtained. You can use clientOid to tag your orders. ClientOid is different from the order ID created by the service provider. Please do not initiate requests using the same clientOid. The maximum length for the ClientOid is 40 characters.  Please remember the orderId created by the service provider, it used to check for updates in order status.
 func (builder *AddOrderSyncReqBuilder) SetClientOid(value string) *AddOrderSyncReqBuilder {
 	builder.obj.ClientOid = &value
 	return builder
 }
 
-// specify if the order is to 'buy' or 'sell'
+// Specify if the order is to 'buy' or 'sell'.
 func (builder *AddOrderSyncReqBuilder) SetSide(value string) *AddOrderSyncReqBuilder {
 	builder.obj.Side = value
 	return builder
@@ -118,7 +128,7 @@ func (builder *AddOrderSyncReqBuilder) SetSymbol(value string) *AddOrderSyncReqB
 	return builder
 }
 
-// specify if the order is an 'limit' order or 'market' order.   The type of order you specify when you place your order determines whether or not you need to request other parameters and also affects the execution of the matching engine.  When placing a limit order, you must specify a price and size. The system will try to match the order according to market price or a price better than market price. If the order cannot be immediately matched, it will stay in the order book until it is matched or the user cancels.  Unlike limit orders, the price for market orders fluctuates with market prices. When placing a market order, you do not need to specify a price, you only need to specify a quantity. Market orders are filled immediately and will not enter the order book. All market orders are takers and a taker fee will be charged.
+// Specify if the order is a 'limit' order or 'market' order.   The type of order you specify when you place your order determines whether or not you need to request other parameters and also affects the execution of the matching engine.  When placing a limit order, you must specify a price and size. The system will try to match the order according to market price or a price better than market price. If the order cannot be immediately matched, it will stay in the order book until it is matched or the user cancels.  Unlike limit orders, the price for market orders fluctuates with market prices. When placing a market order, you do not need to specify a price; you only need to specify a quantity. Market orders are filled immediately and will not enter the order book. All market orders are takers and a taker fee will be charged.
 func (builder *AddOrderSyncReqBuilder) SetType(value string) *AddOrderSyncReqBuilder {
 	builder.obj.Type = value
 	return builder
@@ -142,7 +152,7 @@ func (builder *AddOrderSyncReqBuilder) SetPrice(value string) *AddOrderSyncReqBu
 	return builder
 }
 
-// Specify quantity for order  When **type** is limit, size refers to the amount of trading targets (the asset name written in front) for the trading pair. Teh Size must be based on the baseIncrement of the trading pair. The baseIncrement represents the precision for the trading pair. The size of an order must be a positive-integer multiple of baseIncrement and must be between baseMinSize and baseMaxSize.  When **type** is market, select one out of two: size or funds
+// Specify quantity for order.  When **type** is limited, size refers to the amount of trading targets (the asset name written in front) for the trading pair. The Size must be based on the baseIncrement of the trading pair. The baseIncrement represents the precision for the trading pair. The size of an order must be a positive-integer multiple of baseIncrement and must be between baseMinSize and baseMaxSize.  When **type** is market, select one out of two: size or funds
 func (builder *AddOrderSyncReqBuilder) SetSize(value string) *AddOrderSyncReqBuilder {
 	builder.obj.Size = &value
 	return builder
@@ -184,7 +194,7 @@ func (builder *AddOrderSyncReqBuilder) SetTags(value string) *AddOrderSyncReqBui
 	return builder
 }
 
-// Cancel after n seconds，the order timing strategy is GTT
+// Cancel after n seconds, the order timing strategy is GTT, -1 means it will not be cancelled automatically, the default value is -1
 func (builder *AddOrderSyncReqBuilder) SetCancelAfter(value int64) *AddOrderSyncReqBuilder {
 	builder.obj.CancelAfter = &value
 	return builder
@@ -193,6 +203,18 @@ func (builder *AddOrderSyncReqBuilder) SetCancelAfter(value int64) *AddOrderSync
 // When **type** is market, select one out of two: size or funds
 func (builder *AddOrderSyncReqBuilder) SetFunds(value string) *AddOrderSyncReqBuilder {
 	builder.obj.Funds = &value
+	return builder
+}
+
+// The order will fail if it times out after the specified duration in milliseconds. Specifically, if clientTimestamp + allowMaxTimeWindow (in milliseconds) is less than the time the server receives the message, the order will fail.
+func (builder *AddOrderSyncReqBuilder) SetAllowMaxTimeWindow(value int64) *AddOrderSyncReqBuilder {
+	builder.obj.AllowMaxTimeWindow = &value
+	return builder
+}
+
+// Equal to KC-API-TIMESTAMP. Needs to be defined if iceberg is specified.
+func (builder *AddOrderSyncReqBuilder) SetClientTimestamp(value int64) *AddOrderSyncReqBuilder {
+	builder.obj.ClientTimestamp = &value
 	return builder
 }
 

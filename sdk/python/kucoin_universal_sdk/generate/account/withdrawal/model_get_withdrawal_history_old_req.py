@@ -9,7 +9,6 @@ import json
 from enum import Enum
 from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
-from typing_extensions import Annotated
 
 
 class GetWithdrawalHistoryOldReq(BaseModel):
@@ -19,8 +18,8 @@ class GetWithdrawalHistoryOldReq(BaseModel):
     Attributes:
         currency (str): currency
         status (StatusEnum): Status. Available value: PROCESSING, SUCCESS, and FAILURE
-        start_at (int): Start time (milisecond)
-        end_at (int): End time (milisecond)
+        start_at (int): Start time (milliseconds)
+        end_at (int): End time (milliseconds)
         current_page (int): Current request page.
         page_size (int): Number of results per request. Minimum is 10, maximum is 500.
     """
@@ -42,20 +41,19 @@ class GetWithdrawalHistoryOldReq(BaseModel):
         description="Status. Available value: PROCESSING, SUCCESS, and FAILURE"
     )
     start_at: Optional[int] = Field(default=None,
-                                    description="Start time (milisecond)",
+                                    description="Start time (milliseconds)",
                                     alias="startAt")
     end_at: Optional[int] = Field(default=None,
-                                  description="End time (milisecond)",
+                                  description="End time (milliseconds)",
                                   alias="endAt")
     current_page: Optional[int] = Field(default=1,
                                         description="Current request page.",
                                         alias="currentPage")
-    page_size: Optional[Annotated[
-        int, Field(le=500, strict=True, ge=10)]] = Field(
-            default=50,
-            description=
-            "Number of results per request. Minimum is 10, maximum is 500.",
-            alias="pageSize")
+    page_size: Optional[int] = Field(
+        default=50,
+        description=
+        "Number of results per request. Minimum is 10, maximum is 500.",
+        alias="pageSize")
 
     __properties: ClassVar[List[str]] = [
         "currency", "status", "startAt", "endAt", "currentPage", "pageSize"
@@ -136,14 +134,14 @@ class GetWithdrawalHistoryOldReqBuilder:
 
     def set_start_at(self, value: int) -> GetWithdrawalHistoryOldReqBuilder:
         """
-        Start time (milisecond)
+        Start time (milliseconds)
         """
         self.obj['startAt'] = value
         return self
 
     def set_end_at(self, value: int) -> GetWithdrawalHistoryOldReqBuilder:
         """
-        End time (milisecond)
+        End time (milliseconds)
         """
         self.obj['endAt'] = value
         return self

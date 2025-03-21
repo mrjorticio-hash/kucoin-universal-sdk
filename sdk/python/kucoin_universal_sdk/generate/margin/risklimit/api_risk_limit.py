@@ -14,17 +14,17 @@ class RiskLimitAPI(ABC):
                               **kwargs: Any) -> GetMarginRiskLimitResp:
         """
         summary: Get Margin Risk Limit
-        description: Request via this endpoint to get the Configure and Risk limit info of the margin.
+        description: Request Configure and Risk limit info of the margin via this endpoint.
         documentation: https://www.kucoin.com/docs-new/api-3470219
-        +---------------------+---------+
-        | Extra API Info      | Value   |
-        +---------------------+---------+
-        | API-DOMAIN          | SPOT    |
-        | API-CHANNEL         | PRIVATE |
-        | API-PERMISSION      | GENERAL |
-        | API-RATE-LIMIT-POOL | SPOT    |
-        | API-RATE-LIMIT      | 20      |
-        +---------------------+---------+
+        +-----------------------+---------+
+        | Extra API Info        | Value   |
+        +-----------------------+---------+
+        | API-DOMAIN            | SPOT    |
+        | API-CHANNEL           | PRIVATE |
+        | API-PERMISSION        | GENERAL |
+        | API-RATE-LIMIT-POOL   | SPOT    |
+        | API-RATE-LIMIT-WEIGHT | 20      |
+        +-----------------------+---------+
         """
         pass
 

@@ -6,15 +6,15 @@ import { Serializable } from '@internal/interfaces/serializable';
 
 export class CancelOrderByClientOidSyncReq implements Serializable {
     /**
+     * symbol
+     */
+    symbol?: string;
+
+    /**
      * Client Order Id，unique identifier created by the user
      */
     @Reflect.metadata('path', 'clientOid')
     clientOid?: string;
-
-    /**
-     * symbol
-     */
-    symbol?: string;
 
     /**
      * Private constructor, please use the corresponding static methods to construct the object.
@@ -33,17 +33,17 @@ export class CancelOrderByClientOidSyncReq implements Serializable {
      */
     static create(data: {
         /**
-         * Client Order Id，unique identifier created by the user
-         */
-        clientOid?: string;
-        /**
          * symbol
          */
         symbol?: string;
+        /**
+         * Client Order Id，unique identifier created by the user
+         */
+        clientOid?: string;
     }): CancelOrderByClientOidSyncReq {
         let obj = new CancelOrderByClientOidSyncReq();
-        obj.clientOid = data.clientOid;
         obj.symbol = data.symbol;
+        obj.clientOid = data.clientOid;
         return obj;
     }
 
@@ -72,18 +72,18 @@ export class CancelOrderByClientOidSyncReqBuilder {
         this.obj = obj;
     }
     /**
-     * Client Order Id，unique identifier created by the user
-     */
-    setClientOid(value: string): CancelOrderByClientOidSyncReqBuilder {
-        this.obj.clientOid = value;
-        return this;
-    }
-
-    /**
      * symbol
      */
     setSymbol(value: string): CancelOrderByClientOidSyncReqBuilder {
         this.obj.symbol = value;
+        return this;
+    }
+
+    /**
+     * Client Order Id，unique identifier created by the user
+     */
+    setClientOid(value: string): CancelOrderByClientOidSyncReqBuilder {
+        this.obj.clientOid = value;
         return this;
     }
 

@@ -20,7 +20,7 @@ class CrossMarginPositionEvent(BaseModel):
 
     Attributes:
         debt_ratio (float): Debt ratio
-        total_asset (float): Total asset in BTC (interest included)
+        total_asset (float): Total assets in BTC (interest included)
         margin_coefficient_total_asset (str): 
         total_debt (str): Total debt in BTC (interest included)
         asset_list (dict[str, CrossMarginPositionAssetListValue]): Asset list (interest included)
@@ -37,7 +37,7 @@ class CrossMarginPositionEvent(BaseModel):
             FROZEN_RENEW: When the auto-borrow renewing is complete and the position returns to “EFFECTIVE” status, the system will push this event.
             UNFROZEN_RENEW: When the account reaches a negative balance, the system will push this event.
             LIABILITY: When the account reaches a negative balance, the system will push this event.
-            UNLIABILITY: When all the liabilities is repaid and the position returns to “EFFECTIVE” status, the system will push this event.
+            UNLIABILITY: When all the liabilities are repaid and the position returns to “EFFECTIVE” status, the system will push this event.
         """
         FROZEN_FL = 'FROZEN_FL'
         UNFROZEN_FL = 'UNFROZEN_FL'
@@ -53,7 +53,7 @@ class CrossMarginPositionEvent(BaseModel):
                                         alias="debtRatio")
     total_asset: Optional[float] = Field(
         default=None,
-        description="Total asset in BTC (interest included)",
+        description="Total assets in BTC (interest included)",
         alias="totalAsset")
     margin_coefficient_total_asset: Optional[str] = Field(
         default=None, alias="marginCoefficientTotalAsset")

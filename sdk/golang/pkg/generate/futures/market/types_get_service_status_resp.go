@@ -11,7 +11,7 @@ type GetServiceStatusResp struct {
 	// common response
 	CommonResponse *types.RestResponse
 	Msg            string `json:"msg,omitempty"`
-	// Status of service: open：normal transaction, close：Stop Trading/Maintenance, cancelonly：can only cancel the order but not place order
+	// Status of service: open: normal transaction; close: Stop Trading/Maintenance; cancelonly: can only cancel the order but not place order
 	Status string `json:"status,omitempty"`
 }
 

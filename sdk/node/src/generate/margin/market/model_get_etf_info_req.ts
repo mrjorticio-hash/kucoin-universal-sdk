@@ -5,7 +5,7 @@ import { Serializable } from '@internal/interfaces/serializable';
 
 export class GetETFInfoReq implements Serializable {
     /**
-     * ETF Currency, if empty query all currencies
+     * ETF Currency: If empty, query all currencies
      */
     currency?: string;
 
@@ -26,7 +26,7 @@ export class GetETFInfoReq implements Serializable {
      */
     static create(data: {
         /**
-         * ETF Currency, if empty query all currencies
+         * ETF Currency: If empty, query all currencies
          */
         currency?: string;
     }): GetETFInfoReq {
@@ -60,7 +60,7 @@ export class GetETFInfoReqBuilder {
         this.obj = obj;
     }
     /**
-     * ETF Currency, if empty query all currencies
+     * ETF Currency: If empty, query all currencies
      */
     setCurrency(value: string): GetETFInfoReqBuilder {
         this.obj.currency = value;

@@ -5,7 +5,7 @@ import { Serializable } from '@internal/interfaces/serializable';
 
 export class GetTradeHistoryItems implements Serializable {
     /**
-     * Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)
+     * Symbol of the contract. Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)
      */
     symbol: string;
 
@@ -25,7 +25,7 @@ export class GetTradeHistoryItems implements Serializable {
     side: GetTradeHistoryItems.SideEnum;
 
     /**
-     * Liquidity- taker or maker
+     * Liquidity-taker or -maker
      */
     liquidity: GetTradeHistoryItems.LiquidityEnum;
 
@@ -70,7 +70,7 @@ export class GetTradeHistoryItems implements Serializable {
     feeRate: string;
 
     /**
-     * Fixed fees(Deprecated field, no actual use of the value field)
+     * Fixed fees (Deprecated field, no actual use of the value field)
      */
     fixFee: string;
 
@@ -80,7 +80,7 @@ export class GetTradeHistoryItems implements Serializable {
     feeCurrency: string;
 
     /**
-     * trade time in nanosecond
+     * Trade time in nanoseconds
      */
     tradeTime: number;
 
@@ -95,17 +95,17 @@ export class GetTradeHistoryItems implements Serializable {
     marginMode: GetTradeHistoryItems.MarginModeEnum;
 
     /**
-     * Settle Currency
+     * Settle currency
      */
     settleCurrency: string;
 
     /**
-     * Order Type
+     * Order type
      */
     displayType: GetTradeHistoryItems.DisplayTypeEnum;
 
     /**
-     *
+     * Trading fee
      */
     fee: string;
 
@@ -120,9 +120,19 @@ export class GetTradeHistoryItems implements Serializable {
     tradeType: GetTradeHistoryItems.TradeTypeEnum;
 
     /**
-     * Time the order created
+     * Order creation time
      */
     createdAt: number;
+
+    /**
+     * Opening tax fee (Only KYC users in some regions have this parameter)
+     */
+    openFeeTaxPay: string;
+
+    /**
+     * Close tax fee (Only KYC users in some regions have this parameter)
+     */
+    closeFeeTaxPay: string;
 
     /**
      * Private constructor, please use the corresponding static methods to construct the object.
@@ -176,6 +186,10 @@ export class GetTradeHistoryItems implements Serializable {
         this.tradeType = null;
         // @ts-ignore
         this.createdAt = null;
+        // @ts-ignore
+        this.openFeeTaxPay = null;
+        // @ts-ignore
+        this.closeFeeTaxPay = null;
     }
     /**
      * Convert the object to a JSON string.
@@ -220,29 +234,29 @@ export namespace GetTradeHistoryItems {
     }
     export enum MarginModeEnum {
         /**
-         * Isolated Margin
+         * Isolated margin
          */
         ISOLATED = <any>'ISOLATED',
         /**
-         * Cross Margin
+         * Cross margin
          */
         CROSS = <any>'CROSS',
     }
     export enum DisplayTypeEnum {
         /**
-         * Limit order
+         * limit order
          */
         LIMIT = <any>'limit',
         /**
-         * Market order
+         * market order
          */
         MARKET = <any>'market',
         /**
-         * Stop limit order
+         * stop limit order
          */
         LIMIT_STOP = <any>'limit_stop',
         /**
-         * Stop Market order
+         * stop market order
          */
         MARKET_STOP = <any>'market_stop',
     }

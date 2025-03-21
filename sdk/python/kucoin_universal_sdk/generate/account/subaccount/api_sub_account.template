@@ -4,7 +4,7 @@
 def test_add_sub_account_req(self):
     """
         add_sub_account
-        Add SubAccount
+        Add sub-account
         /api/v2/sub/user/created
     """
 
@@ -23,7 +23,7 @@ def test_add_sub_account_req(self):
 def test_add_sub_account_margin_permission_req(self):
     """
         add_sub_account_margin_permission
-        Add SubAccount Margin Permission
+        Add sub-account Margin Permission
         /api/v3/sub/user/margin/enable
     """
 
@@ -42,7 +42,7 @@ def test_add_sub_account_margin_permission_req(self):
 def test_add_sub_account_futures_permission_req(self):
     """
         add_sub_account_futures_permission
-        Add SubAccount Futures Permission
+        Add sub-account Futures Permission
         /api/v3/sub/user/futures/enable
     """
 
@@ -61,7 +61,7 @@ def test_add_sub_account_futures_permission_req(self):
 def test_get_spot_sub_accounts_summary_v2_req(self):
     """
         get_spot_sub_accounts_summary_v2
-        Get SubAccount List - Summary Info
+        Get sub-account List - Summary Info
         /api/v2/sub/user
     """
 
@@ -80,12 +80,12 @@ def test_get_spot_sub_accounts_summary_v2_req(self):
 def test_get_spot_sub_account_detail_req(self):
     """
         get_spot_sub_account_detail
-        Get SubAccount Detail - Balance
+        Get sub-account Detail - Balance
         /api/v1/sub-accounts/{subUserId}
     """
 
     builder = GetSpotSubAccountDetailReqBuilder()
-    builder.set_sub_user_id(?).set_include_base_amount(?)
+    builder.set_sub_user_id(?).set_include_base_amount(?).set_base_currency(?).set_base_amount(?)
     req = builder.build()
     try:
         resp = self.api.get_spot_sub_account_detail(req)
@@ -99,7 +99,7 @@ def test_get_spot_sub_account_detail_req(self):
 def test_get_spot_sub_account_list_v2_req(self):
     """
         get_spot_sub_account_list_v2
-        Get SubAccount List - Spot Balance(V2)
+        Get sub-account List - Spot Balance (V2)
         /api/v2/sub-accounts
     """
 
@@ -118,7 +118,7 @@ def test_get_spot_sub_account_list_v2_req(self):
 def test_get_futures_sub_account_list_v2_req(self):
     """
         get_futures_sub_account_list_v2
-        Get SubAccount List - Futures Balance(V2)
+        Get sub-account List - Futures Balance (V2)
         /api/v1/account-overview-all
     """
 
@@ -137,7 +137,7 @@ def test_get_futures_sub_account_list_v2_req(self):
 def test_add_sub_account_api_req(self):
     """
         add_sub_account_api
-        Add SubAccount API
+        Add sub-account API
         /api/v1/sub/api-key
     """
 
@@ -156,7 +156,7 @@ def test_add_sub_account_api_req(self):
 def test_modify_sub_account_api_req(self):
     """
         modify_sub_account_api
-        Modify SubAccount API
+        Modify sub-account API
         /api/v1/sub/api-key/update
     """
 
@@ -175,7 +175,7 @@ def test_modify_sub_account_api_req(self):
 def test_get_sub_account_api_list_req(self):
     """
         get_sub_account_api_list
-        Get SubAccount API List
+        Get sub-account API List
         /api/v1/sub/api-key
     """
 
@@ -194,7 +194,7 @@ def test_get_sub_account_api_list_req(self):
 def test_delete_sub_account_api_req(self):
     """
         delete_sub_account_api
-        Delete SubAccount API
+        Delete sub-account API
         /api/v1/sub/api-key
     """
 
@@ -213,7 +213,7 @@ def test_delete_sub_account_api_req(self):
 def test_get_spot_sub_accounts_summary_v1_req(self):
     """
         get_spot_sub_accounts_summary_v1
-        Get SubAccount List - Summary Info(V1)
+        Get sub-account List - Summary Info (V1)
         /api/v1/sub/user
     """
 
@@ -229,7 +229,7 @@ def test_get_spot_sub_accounts_summary_v1_req(self):
 def test_get_spot_sub_account_list_v1_req(self):
     """
         get_spot_sub_account_list_v1
-        Get SubAccount List - Spot Balance(V1)
+        Get sub-account List - Spot Balance (V1)
         /api/v1/sub-accounts
     """
 

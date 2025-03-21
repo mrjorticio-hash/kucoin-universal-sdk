@@ -4,7 +4,7 @@ package market
 
 // GetETFInfoReq struct for GetETFInfoReq
 type GetETFInfoReq struct {
-	// ETF Currency, if empty query all currencies
+	// ETF Currency: If empty, query all currencies
 	Currency *string `json:"currency,omitempty" url:"currency,omitempty"`
 }
 
@@ -36,7 +36,7 @@ func NewGetETFInfoReqBuilder() *GetETFInfoReqBuilder {
 	return &GetETFInfoReqBuilder{obj: NewGetETFInfoReqWithDefaults()}
 }
 
-// ETF Currency, if empty query all currencies
+// ETF Currency: If empty, query all currencies
 func (builder *GetETFInfoReqBuilder) SetCurrency(value string) *GetETFInfoReqBuilder {
 	builder.obj.Currency = &value
 	return builder

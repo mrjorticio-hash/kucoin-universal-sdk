@@ -10,12 +10,12 @@ export class GetCrossMarginSymbolsItems implements Serializable {
     symbol: string;
 
     /**
-     * symbol name
+     * Symbol name
      */
     name: string;
 
     /**
-     * Whether trading is enabled: true for enabled, false for disabled
+     * Whether trading is enabled: True for enabled; false for disabled
      */
     enableTrading: boolean;
 
@@ -25,12 +25,12 @@ export class GetCrossMarginSymbolsItems implements Serializable {
     market: string;
 
     /**
-     * Base currency,e.g. BTC.
+     * Base currency, e.g. BTC.
      */
     baseCurrency: string;
 
     /**
-     * Quote currency,e.g. USDT.
+     * Quote currency, e.g. USDT.
      */
     quoteCurrency: string;
 
@@ -40,7 +40,7 @@ export class GetCrossMarginSymbolsItems implements Serializable {
     baseIncrement: string;
 
     /**
-     * The minimum order quantity requried to place an order.
+     * The minimum order quantity required to place an order.
      */
     baseMinSize: string;
 
@@ -65,7 +65,7 @@ export class GetCrossMarginSymbolsItems implements Serializable {
     quoteMaxSize: string;
 
     /**
-     * Price increment: The price of an order must be a positive integer multiple of this increment. For example, for the ETH-USDT trading pair, if the priceIncrement is 0.01, the order price can be 3000.01 but not 3000.001.  specifies the min order price as well as the price increment.This also applies to quote currency.
+     * Price increment: The price of an order must be a positive integer multiple of this increment. For example, for the ETH-USDT trading pair, if the priceIncrement is 0.01, the order price can be 3000.01 but not 3000.001.  Specifies the min. order price as well as the price increment.This also applies to quote currency.
      */
     priceIncrement: string;
 
@@ -75,12 +75,12 @@ export class GetCrossMarginSymbolsItems implements Serializable {
     feeCurrency: string;
 
     /**
-     * Threshold for price portection
+     * Threshold for price protection
      */
     priceLimitRate: string;
 
     /**
-     * the minimum trading amounts
+     * The minimum trading amounts
      */
     minFunds: string;
 

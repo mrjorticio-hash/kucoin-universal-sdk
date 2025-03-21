@@ -8,7 +8,7 @@ type DeleteSubAccountApiReq struct {
 	ApiKey *string `json:"apiKey,omitempty" url:"apiKey,omitempty"`
 	// Sub-account name.
 	SubName *string `json:"subName,omitempty" url:"subName,omitempty"`
-	// Password(Password of the API key)
+	// Password (password of the API key)
 	Passphrase *string `json:"passphrase,omitempty" url:"passphrase,omitempty"`
 }
 
@@ -54,7 +54,7 @@ func (builder *DeleteSubAccountApiReqBuilder) SetSubName(value string) *DeleteSu
 	return builder
 }
 
-// Password(Password of the API key)
+// Password (password of the API key)
 func (builder *DeleteSubAccountApiReqBuilder) SetPassphrase(value string) *DeleteSubAccountApiReqBuilder {
 	builder.obj.Passphrase = &value
 	return builder

@@ -10,42 +10,42 @@ type FuturesPrivateWS interface {
 
 	// AllOrder All Order change pushes.
 	// Push order changes for all symbol
-	// push frequency: realtime
+	// push frequency: real-time
 	AllOrder(callback AllOrderEventCallback) (id string, err error)
 
 	// AllPosition All symbol position change events push
-	// Subscribe this topic to get the realtime push of position change event of all symbol
-	// push frequency: realtime
+	// Subscribe to this topic to get real-time pushes on all symbols’ position change events
+	// push frequency: real-time
 	AllPosition(callback AllPositionEventCallback) (id string, err error)
 
 	// Balance the balance change push
-	// Subscribe this topic to get the realtime push of balance change
-	// push frequency: realtime
+	// Subscribe to this topic to get real-time balance change pushes
+	// push frequency: real-time
 	Balance(callback BalanceEventCallback) (id string, err error)
 
 	// CrossLeverage the leverage change push
-	// Subscribe this topic to get the realtime push of leverage change of contracts that are in cross margin mode
-	// push frequency: realtime
+	// Subscribe to this topic to get real-time pushes on leverage changes of contracts that are in cross margin mode
+	// push frequency: real-time
 	CrossLeverage(callback CrossLeverageEventCallback) (id string, err error)
 
 	// MarginMode the margin mode change
-	// Subscribe this topic to get the realtime push of margin mode change event of a symbol
-	// push frequency: realtime
+	// Subscribe to this topic to get real-time pushes on symbols’ margin mode change events
+	// push frequency: real-time
 	MarginMode(callback MarginModeEventCallback) (id string, err error)
 
 	// Order Order change pushes.
 	// Push order changes for the specified symbol
-	// push frequency: realtime
+	// push frequency: real-time
 	Order(symbol string, callback OrderEventCallback) (id string, err error)
 
 	// Position the position change events push
-	// Subscribe this topic to get the realtime push of position change event of a symbol
-	// push frequency: realtime
+	// Subscribe this topic to get real-time pushes on symbols’ position change events
+	// push frequency: real-time
 	Position(symbol string, callback PositionEventCallback) (id string, err error)
 
 	// StopOrders stop order change pushes.
-	// Subscribe this topic to get the realtime push of stop order changes.
-	// push frequency: realtime
+	// Subscribe to this topic to get real-time pushes on stop order changes.
+	// push frequency: real-time
 	StopOrders(callback StopOrdersEventCallback) (id string, err error)
 
 	// Unsubscribe from topics

@@ -15,7 +15,7 @@ export class ModifyPurchaseReq implements Serializable {
     interestRate: string;
 
     /**
-     * Purchase order id
+     * Purchase order ID
      */
     purchaseOrderNo: string;
 
@@ -51,7 +51,7 @@ export class ModifyPurchaseReq implements Serializable {
          */
         interestRate: string;
         /**
-         * Purchase order id
+         * Purchase order ID
          */
         purchaseOrderNo: string;
     }): ModifyPurchaseReq {
@@ -103,7 +103,7 @@ export class ModifyPurchaseReqBuilder {
     }
 
     /**
-     * Purchase order id
+     * Purchase order ID
      */
     setPurchaseOrderNo(value: string): ModifyPurchaseReqBuilder {
         this.obj.purchaseOrderNo = value;

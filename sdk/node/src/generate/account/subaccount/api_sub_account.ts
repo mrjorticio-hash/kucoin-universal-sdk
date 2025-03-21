@@ -28,220 +28,220 @@ import { GetSpotSubAccountsSummaryV2Resp } from './model_get_spot_sub_accounts_s
 
 export interface SubAccountAPI {
     /**
-     * addSubAccount Add SubAccount
+     * addSubAccount Add sub-account
      * Description: This endpoint can be used to create sub-accounts.
      * Documentation: https://www.kucoin.com/docs-new/api-3470135
-     * +---------------------+------------+
-     * | Extra API Info      | Value      |
-     * +---------------------+------------+
-     * | API-DOMAIN          | SPOT       |
-     * | API-CHANNEL         | PRIVATE    |
-     * | API-PERMISSION      | GENERAL    |
-     * | API-RATE-LIMIT-POOL | MANAGEMENT |
-     * | API-RATE-LIMIT      | 15         |
-     * +---------------------+------------+
+     * +-----------------------+------------+
+     * | Extra API Info        | Value      |
+     * +-----------------------+------------+
+     * | API-DOMAIN            | SPOT       |
+     * | API-CHANNEL           | PRIVATE    |
+     * | API-PERMISSION        | GENERAL    |
+     * | API-RATE-LIMIT-POOL   | MANAGEMENT |
+     * | API-RATE-LIMIT-WEIGHT | 15         |
+     * +-----------------------+------------+
      */
     addSubAccount(req: AddSubAccountReq): Promise<AddSubAccountResp>;
 
     /**
-     * addSubAccountMarginPermission Add SubAccount Margin Permission
-     * Description: This endpoint can be used to add sub-accounts Margin permission. Before using this endpoints, you need to ensure that the master account apikey has Margin permissions and the Margin function has been activated.
+     * addSubAccountMarginPermission Add sub-account Margin Permission
+     * Description: This endpoint can be used to add sub-account Margin permissions. Before using this endpoint, you need to ensure that the master account apikey has Margin permissions and the Margin function has been activated.
      * Documentation: https://www.kucoin.com/docs-new/api-3470331
-     * +---------------------+------------+
-     * | Extra API Info      | Value      |
-     * +---------------------+------------+
-     * | API-DOMAIN          | SPOT       |
-     * | API-CHANNEL         | PRIVATE    |
-     * | API-PERMISSION      | MARGIN     |
-     * | API-RATE-LIMIT-POOL | MANAGEMENT |
-     * | API-RATE-LIMIT      | 15         |
-     * +---------------------+------------+
+     * +-----------------------+------------+
+     * | Extra API Info        | Value      |
+     * +-----------------------+------------+
+     * | API-DOMAIN            | SPOT       |
+     * | API-CHANNEL           | PRIVATE    |
+     * | API-PERMISSION        | MARGIN     |
+     * | API-RATE-LIMIT-POOL   | MANAGEMENT |
+     * | API-RATE-LIMIT-WEIGHT | 15         |
+     * +-----------------------+------------+
      */
     addSubAccountMarginPermission(
         req: AddSubAccountMarginPermissionReq,
     ): Promise<AddSubAccountMarginPermissionResp>;
 
     /**
-     * addSubAccountFuturesPermission Add SubAccount Futures Permission
-     * Description: This endpoint can be used to add sub-accounts Futures permission. Before using this endpoints, you need to ensure that the master account apikey has Futures permissions and the Futures function has been activated.
+     * addSubAccountFuturesPermission Add sub-account Futures Permission
+     * Description: This endpoint can be used to add sub-account Futures permissions. Before using this endpoint, you need to ensure that the master account apikey has Futures permissions and the Futures function has been activated.
      * Documentation: https://www.kucoin.com/docs-new/api-3470332
-     * +---------------------+------------+
-     * | Extra API Info      | Value      |
-     * +---------------------+------------+
-     * | API-DOMAIN          | SPOT       |
-     * | API-CHANNEL         | PRIVATE    |
-     * | API-PERMISSION      | FUTURES    |
-     * | API-RATE-LIMIT-POOL | MANAGEMENT |
-     * | API-RATE-LIMIT      | 15         |
-     * +---------------------+------------+
+     * +-----------------------+------------+
+     * | Extra API Info        | Value      |
+     * +-----------------------+------------+
+     * | API-DOMAIN            | SPOT       |
+     * | API-CHANNEL           | PRIVATE    |
+     * | API-PERMISSION        | FUTURES    |
+     * | API-RATE-LIMIT-POOL   | MANAGEMENT |
+     * | API-RATE-LIMIT-WEIGHT | 15         |
+     * +-----------------------+------------+
      */
     addSubAccountFuturesPermission(
         req: AddSubAccountFuturesPermissionReq,
     ): Promise<AddSubAccountFuturesPermissionResp>;
 
     /**
-     * getSpotSubAccountsSummaryV2 Get SubAccount List - Summary Info
+     * getSpotSubAccountsSummaryV2 Get sub-account List - Summary Info
      * Description: This endpoint can be used to get a paginated list of sub-accounts. Pagination is required.
      * Documentation: https://www.kucoin.com/docs-new/api-3470131
-     * +---------------------+------------+
-     * | Extra API Info      | Value      |
-     * +---------------------+------------+
-     * | API-DOMAIN          | SPOT       |
-     * | API-CHANNEL         | PRIVATE    |
-     * | API-PERMISSION      | GENERAL    |
-     * | API-RATE-LIMIT-POOL | MANAGEMENT |
-     * | API-RATE-LIMIT      | 20         |
-     * +---------------------+------------+
+     * +-----------------------+------------+
+     * | Extra API Info        | Value      |
+     * +-----------------------+------------+
+     * | API-DOMAIN            | SPOT       |
+     * | API-CHANNEL           | PRIVATE    |
+     * | API-PERMISSION        | GENERAL    |
+     * | API-RATE-LIMIT-POOL   | MANAGEMENT |
+     * | API-RATE-LIMIT-WEIGHT | 20         |
+     * +-----------------------+------------+
      */
     getSpotSubAccountsSummaryV2(
         req: GetSpotSubAccountsSummaryV2Req,
     ): Promise<GetSpotSubAccountsSummaryV2Resp>;
 
     /**
-     * getSpotSubAccountDetail Get SubAccount Detail - Balance
+     * getSpotSubAccountDetail Get sub-account Detail - Balance
      * Description: This endpoint returns the account info of a sub-user specified by the subUserId.
      * Documentation: https://www.kucoin.com/docs-new/api-3470132
-     * +---------------------+------------+
-     * | Extra API Info      | Value      |
-     * +---------------------+------------+
-     * | API-DOMAIN          | SPOT       |
-     * | API-CHANNEL         | PRIVATE    |
-     * | API-PERMISSION      | GENERAL    |
-     * | API-RATE-LIMIT-POOL | MANAGEMENT |
-     * | API-RATE-LIMIT      | 15         |
-     * +---------------------+------------+
+     * +-----------------------+------------+
+     * | Extra API Info        | Value      |
+     * +-----------------------+------------+
+     * | API-DOMAIN            | SPOT       |
+     * | API-CHANNEL           | PRIVATE    |
+     * | API-PERMISSION        | GENERAL    |
+     * | API-RATE-LIMIT-POOL   | MANAGEMENT |
+     * | API-RATE-LIMIT-WEIGHT | 15         |
+     * +-----------------------+------------+
      */
     getSpotSubAccountDetail(req: GetSpotSubAccountDetailReq): Promise<GetSpotSubAccountDetailResp>;
 
     /**
-     * getSpotSubAccountListV2 Get SubAccount List - Spot Balance(V2)
+     * getSpotSubAccountListV2 Get sub-account List - Spot Balance (V2)
      * Description: This endpoint can be used to get paginated Spot sub-account information. Pagination is required.
      * Documentation: https://www.kucoin.com/docs-new/api-3470133
-     * +---------------------+------------+
-     * | Extra API Info      | Value      |
-     * +---------------------+------------+
-     * | API-DOMAIN          | SPOT       |
-     * | API-CHANNEL         | PRIVATE    |
-     * | API-PERMISSION      | GENERAL    |
-     * | API-RATE-LIMIT-POOL | MANAGEMENT |
-     * | API-RATE-LIMIT      | 20         |
-     * +---------------------+------------+
+     * +-----------------------+------------+
+     * | Extra API Info        | Value      |
+     * +-----------------------+------------+
+     * | API-DOMAIN            | SPOT       |
+     * | API-CHANNEL           | PRIVATE    |
+     * | API-PERMISSION        | GENERAL    |
+     * | API-RATE-LIMIT-POOL   | MANAGEMENT |
+     * | API-RATE-LIMIT-WEIGHT | 20         |
+     * +-----------------------+------------+
      */
     getSpotSubAccountListV2(req: GetSpotSubAccountListV2Req): Promise<GetSpotSubAccountListV2Resp>;
 
     /**
-     * getFuturesSubAccountListV2 Get SubAccount List - Futures Balance(V2)
+     * getFuturesSubAccountListV2 Get sub-account List - Futures Balance (V2)
      * Description: This endpoint can be used to get Futures sub-account information.
      * Documentation: https://www.kucoin.com/docs-new/api-3470134
-     * +---------------------+---------+
-     * | Extra API Info      | Value   |
-     * +---------------------+---------+
-     * | API-DOMAIN          | FUTURES |
-     * | API-CHANNEL         | PRIVATE |
-     * | API-PERMISSION      | GENERAL |
-     * | API-RATE-LIMIT-POOL | FUTURES |
-     * | API-RATE-LIMIT      | 6       |
-     * +---------------------+---------+
+     * +-----------------------+---------+
+     * | Extra API Info        | Value   |
+     * +-----------------------+---------+
+     * | API-DOMAIN            | FUTURES |
+     * | API-CHANNEL           | PRIVATE |
+     * | API-PERMISSION        | GENERAL |
+     * | API-RATE-LIMIT-POOL   | FUTURES |
+     * | API-RATE-LIMIT-WEIGHT | 6       |
+     * +-----------------------+---------+
      */
     getFuturesSubAccountListV2(
         req: GetFuturesSubAccountListV2Req,
     ): Promise<GetFuturesSubAccountListV2Resp>;
 
     /**
-     * addSubAccountApi Add SubAccount API
+     * addSubAccountApi Add sub-account API
      * Description: This endpoint can be used to create APIs for sub-accounts.
      * Documentation: https://www.kucoin.com/docs-new/api-3470138
-     * +---------------------+------------+
-     * | Extra API Info      | Value      |
-     * +---------------------+------------+
-     * | API-DOMAIN          | SPOT       |
-     * | API-CHANNEL         | PRIVATE    |
-     * | API-PERMISSION      | GENERAL    |
-     * | API-RATE-LIMIT-POOL | MANAGEMENT |
-     * | API-RATE-LIMIT      | 20         |
-     * +---------------------+------------+
+     * +-----------------------+------------+
+     * | Extra API Info        | Value      |
+     * +-----------------------+------------+
+     * | API-DOMAIN            | SPOT       |
+     * | API-CHANNEL           | PRIVATE    |
+     * | API-PERMISSION        | GENERAL    |
+     * | API-RATE-LIMIT-POOL   | MANAGEMENT |
+     * | API-RATE-LIMIT-WEIGHT | 20         |
+     * +-----------------------+------------+
      */
     addSubAccountApi(req: AddSubAccountApiReq): Promise<AddSubAccountApiResp>;
 
     /**
-     * modifySubAccountApi Modify SubAccount API
+     * modifySubAccountApi Modify sub-account API
      * Description: This endpoint can be used to modify sub-account APIs.
      * Documentation: https://www.kucoin.com/docs-new/api-3470139
-     * +---------------------+------------+
-     * | Extra API Info      | Value      |
-     * +---------------------+------------+
-     * | API-DOMAIN          | SPOT       |
-     * | API-CHANNEL         | PRIVATE    |
-     * | API-PERMISSION      | GENERAL    |
-     * | API-RATE-LIMIT-POOL | MANAGEMENT |
-     * | API-RATE-LIMIT      | 30         |
-     * +---------------------+------------+
+     * +-----------------------+------------+
+     * | Extra API Info        | Value      |
+     * +-----------------------+------------+
+     * | API-DOMAIN            | SPOT       |
+     * | API-CHANNEL           | PRIVATE    |
+     * | API-PERMISSION        | GENERAL    |
+     * | API-RATE-LIMIT-POOL   | MANAGEMENT |
+     * | API-RATE-LIMIT-WEIGHT | 30         |
+     * +-----------------------+------------+
      */
     modifySubAccountApi(req: ModifySubAccountApiReq): Promise<ModifySubAccountApiResp>;
 
     /**
-     * getSubAccountApiList Get SubAccount API List
-     * Description: This endpoint can be used to obtain a list of APIs pertaining to a sub-account.(Not contain ND Broker Sub Account)
+     * getSubAccountApiList Get sub-account API List
+     * Description: This endpoint can be used to obtain a list of APIs pertaining to a sub-account (not including ND broker sub-accounts).
      * Documentation: https://www.kucoin.com/docs-new/api-3470136
-     * +---------------------+------------+
-     * | Extra API Info      | Value      |
-     * +---------------------+------------+
-     * | API-DOMAIN          | SPOT       |
-     * | API-CHANNEL         | PRIVATE    |
-     * | API-PERMISSION      | GENERAL    |
-     * | API-RATE-LIMIT-POOL | MANAGEMENT |
-     * | API-RATE-LIMIT      | 20         |
-     * +---------------------+------------+
+     * +-----------------------+------------+
+     * | Extra API Info        | Value      |
+     * +-----------------------+------------+
+     * | API-DOMAIN            | SPOT       |
+     * | API-CHANNEL           | PRIVATE    |
+     * | API-PERMISSION        | GENERAL    |
+     * | API-RATE-LIMIT-POOL   | MANAGEMENT |
+     * | API-RATE-LIMIT-WEIGHT | 20         |
+     * +-----------------------+------------+
      */
     getSubAccountApiList(req: GetSubAccountApiListReq): Promise<GetSubAccountApiListResp>;
 
     /**
-     * deleteSubAccountApi Delete SubAccount API
+     * deleteSubAccountApi Delete sub-account API
      * Description: This endpoint can be used to delete sub-account APIs.
      * Documentation: https://www.kucoin.com/docs-new/api-3470137
-     * +---------------------+------------+
-     * | Extra API Info      | Value      |
-     * +---------------------+------------+
-     * | API-DOMAIN          | SPOT       |
-     * | API-CHANNEL         | PRIVATE    |
-     * | API-PERMISSION      | GENERAL    |
-     * | API-RATE-LIMIT-POOL | MANAGEMENT |
-     * | API-RATE-LIMIT      | 30         |
-     * +---------------------+------------+
+     * +-----------------------+------------+
+     * | Extra API Info        | Value      |
+     * +-----------------------+------------+
+     * | API-DOMAIN            | SPOT       |
+     * | API-CHANNEL           | PRIVATE    |
+     * | API-PERMISSION        | GENERAL    |
+     * | API-RATE-LIMIT-POOL   | MANAGEMENT |
+     * | API-RATE-LIMIT-WEIGHT | 30         |
+     * +-----------------------+------------+
      */
     deleteSubAccountApi(req: DeleteSubAccountApiReq): Promise<DeleteSubAccountApiResp>;
 
     /**
      * @deprecated
-     * getSpotSubAccountsSummaryV1 Get SubAccount List - Summary Info(V1)
-     * Description: You can get the user info of all sub-account via this interface It is recommended to use the GET /api/v2/sub/user interface for paging query
+     * getSpotSubAccountsSummaryV1 Get sub-account List - Summary Info (V1)
+     * Description: You can get the user info of all sub-account via this interface; it is recommended to use the GET /api/v2/sub/user interface for paging query
      * Documentation: https://www.kucoin.com/docs-new/api-3470298
-     * +---------------------+------------+
-     * | Extra API Info      | Value      |
-     * +---------------------+------------+
-     * | API-DOMAIN          | SPOT       |
-     * | API-CHANNEL         | PRIVATE    |
-     * | API-PERMISSION      | GENERAL    |
-     * | API-RATE-LIMIT-POOL | MANAGEMENT |
-     * | API-RATE-LIMIT      | 20         |
-     * +---------------------+------------+
+     * +-----------------------+------------+
+     * | Extra API Info        | Value      |
+     * +-----------------------+------------+
+     * | API-DOMAIN            | SPOT       |
+     * | API-CHANNEL           | PRIVATE    |
+     * | API-PERMISSION        | GENERAL    |
+     * | API-RATE-LIMIT-POOL   | MANAGEMENT |
+     * | API-RATE-LIMIT-WEIGHT | 20         |
+     * +-----------------------+------------+
      */
     getSpotSubAccountsSummaryV1(): Promise<GetSpotSubAccountsSummaryV1Resp>;
 
     /**
      * @deprecated
-     * getSpotSubAccountListV1 Get SubAccount List - Spot Balance(V1)
+     * getSpotSubAccountListV1 Get sub-account List - Spot Balance (V1)
      * Description: This endpoint returns the account info of all sub-users.
      * Documentation: https://www.kucoin.com/docs-new/api-3470299
-     * +---------------------+------------+
-     * | Extra API Info      | Value      |
-     * +---------------------+------------+
-     * | API-DOMAIN          | SPOT       |
-     * | API-CHANNEL         | PRIVATE    |
-     * | API-PERMISSION      | GENERAL    |
-     * | API-RATE-LIMIT-POOL | MANAGEMENT |
-     * | API-RATE-LIMIT      | 20         |
-     * +---------------------+------------+
+     * +-----------------------+------------+
+     * | Extra API Info        | Value      |
+     * +-----------------------+------------+
+     * | API-DOMAIN            | SPOT       |
+     * | API-CHANNEL           | PRIVATE    |
+     * | API-PERMISSION        | GENERAL    |
+     * | API-RATE-LIMIT-POOL   | MANAGEMENT |
+     * | API-RATE-LIMIT-WEIGHT | 20         |
+     * +-----------------------+------------+
      */
     getSpotSubAccountListV1(): Promise<GetSpotSubAccountListV1Resp>;
 }

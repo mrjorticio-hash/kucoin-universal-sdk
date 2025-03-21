@@ -15,12 +15,12 @@ export class GetWithdrawalHistoryOldReq implements Serializable {
     status?: GetWithdrawalHistoryOldReq.StatusEnum;
 
     /**
-     * Start time (milisecond)
+     * Start time (milliseconds)
      */
     startAt?: number;
 
     /**
-     * End time (milisecond)
+     * End time (milliseconds)
      */
     endAt?: number;
 
@@ -59,11 +59,11 @@ export class GetWithdrawalHistoryOldReq implements Serializable {
          */
         status?: GetWithdrawalHistoryOldReq.StatusEnum;
         /**
-         * Start time (milisecond)
+         * Start time (milliseconds)
          */
         startAt?: number;
         /**
-         * End time (milisecond)
+         * End time (milliseconds)
          */
         endAt?: number;
         /**
@@ -151,7 +151,7 @@ export class GetWithdrawalHistoryOldReqBuilder {
     }
 
     /**
-     * Start time (milisecond)
+     * Start time (milliseconds)
      */
     setStartAt(value: number): GetWithdrawalHistoryOldReqBuilder {
         this.obj.startAt = value;
@@ -159,7 +159,7 @@ export class GetWithdrawalHistoryOldReqBuilder {
     }
 
     /**
-     * End time (milisecond)
+     * End time (milliseconds)
      */
     setEndAt(value: number): GetWithdrawalHistoryOldReqBuilder {
         this.obj.endAt = value;

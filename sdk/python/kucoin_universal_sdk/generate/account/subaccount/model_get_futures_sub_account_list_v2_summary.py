@@ -16,12 +16,12 @@ class GetFuturesSubAccountListV2Summary(BaseModel):
 
     Attributes:
         account_equity_total (float): Total Account Equity
-        unrealised_pnl_total (float): Total unrealisedPNL
+        unrealised_pnl_total (float): Total unrealizedPNL
         margin_balance_total (float): Total Margin Balance
         position_margin_total (float): Total Position margin
         order_margin_total (float): 
         frozen_funds_total (float): Total frozen funds for withdrawal and out-transfer
-        available_balance_total (float): total available balance
+        available_balance_total (float): Total available balance
         currency (str): 
     """
 
@@ -31,7 +31,7 @@ class GetFuturesSubAccountListV2Summary(BaseModel):
         alias="accountEquityTotal")
     unrealised_pnl_total: Optional[float] = Field(
         default=None,
-        description="Total unrealisedPNL",
+        description="Total unrealizedPNL",
         alias="unrealisedPNLTotal")
     margin_balance_total: Optional[float] = Field(
         default=None,
@@ -49,7 +49,7 @@ class GetFuturesSubAccountListV2Summary(BaseModel):
         alias="frozenFundsTotal")
     available_balance_total: Optional[float] = Field(
         default=None,
-        description="total available balance",
+        description="Total available balance",
         alias="availableBalanceTotal")
     currency: Optional[str] = None
 

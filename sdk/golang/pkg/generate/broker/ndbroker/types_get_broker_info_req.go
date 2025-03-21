@@ -8,7 +8,7 @@ type GetBrokerInfoReq struct {
 	Begin *string `json:"begin,omitempty" url:"begin,omitempty"`
 	// End time, for example: 20230210 (query data with a maximum interval of 6 months)
 	End *string `json:"end,omitempty" url:"end,omitempty"`
-	// Transaction type, 1: spot 2: futures
+	// Transaction type: 1, spot; 2: futures
 	TradeType *string `json:"tradeType,omitempty" url:"tradeType,omitempty"`
 }
 
@@ -54,7 +54,7 @@ func (builder *GetBrokerInfoReqBuilder) SetEnd(value string) *GetBrokerInfoReqBu
 	return builder
 }
 
-// Transaction type, 1: spot 2: futures
+// Transaction type: 1, spot; 2: futures
 func (builder *GetBrokerInfoReqBuilder) SetTradeType(value string) *GetBrokerInfoReqBuilder {
 	builder.obj.TradeType = &value
 	return builder

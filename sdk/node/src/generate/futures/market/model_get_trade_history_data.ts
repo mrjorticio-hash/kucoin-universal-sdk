@@ -30,7 +30,7 @@ export class GetTradeHistoryData implements Serializable {
     takerOrderId: string;
 
     /**
-     * Filled timestamp(nanosecond)
+     * Filled timestamp (nanosecond)
      */
     ts: number;
 
@@ -45,7 +45,7 @@ export class GetTradeHistoryData implements Serializable {
     price: string;
 
     /**
-     * Filled side, The trade side indicates the taker order side. A taker order is the order that was matched with orders opened on the order book.
+     * Filled side; the trade side indicates the taker order side. A taker order is the order that was matched with orders opened on the order book.
      */
     side: GetTradeHistoryData.SideEnum;
 

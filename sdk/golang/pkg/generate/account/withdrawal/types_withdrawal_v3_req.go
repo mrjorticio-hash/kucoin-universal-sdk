@@ -6,21 +6,21 @@ package withdrawal
 type WithdrawalV3Req struct {
 	// currency
 	Currency string `json:"currency,omitempty"`
-	// The chainId of currency, For a currency with multiple chains, it is recommended to specify chain parameter instead of using the default chain; you can query the chainId through the response of the GET /api/v3/currencies/{currency} interface.
+	// The chainId of currency, For a currency with multiple chains, it is recommended to specify the chain parameter instead of using the default chain; you can query the chainId through the response of the GET /api/v3/currencies/{currency} interface.
 	Chain *string `json:"chain,omitempty"`
 	// Withdrawal amount, a positive number which is a multiple of the amount precision
 	Amount int64 `json:"amount,omitempty"`
-	// Address remark. If there’s no remark, it is empty. When you withdraw from other platforms to the KuCoin, you need to fill in memo(tag). If you do not fill memo (tag), your deposit may not be available, please be cautious.
+	// Address remark. If there’s no remark, it is empty. When you withdraw from other platforms to KuCoin, you need to fill in memo(tag). Be careful: If you do not fill in memo(tag), your deposit may not be available.
 	Memo *string `json:"memo,omitempty"`
-	// Internal withdrawal or not. Default : false
+	// Internal withdrawal or not. Default: False
 	IsInner *bool `json:"isInner,omitempty"`
-	// remark
+	// Remark
 	Remark *string `json:"remark,omitempty"`
-	// Withdrawal fee deduction type: INTERNAL or EXTERNAL or not specified  1. INTERNAL- deduct the transaction fees from your withdrawal amount 2. EXTERNAL- deduct the transaction fees from your main account 3. If you don't specify the feeDeductType parameter, when the balance in your main account is sufficient to support the withdrawal, the system will initially deduct the transaction fees from your main account. But if the balance in your main account is not sufficient to support the withdrawal, the system will deduct the fees from your withdrawal amount. For example: Suppose you are going to withdraw 1 BTC from the KuCoin platform (transaction fee: 0.0001BTC), if the balance in your main account is insufficient, the system will deduct the transaction fees from your withdrawal amount. In this case, you will be receiving 0.9999BTC.
+	// Withdrawal fee deduction type: INTERNAL, EXTERNAL, or not specified  1. INTERNAL: Deduct the transaction fees from your withdrawal amount 2. EXTERNAL: Deduct the transaction fees from your main account 3. If you don't specify the feeDeductType parameter, when the balance in your main account is sufficient to support the withdrawal, the system will initially deduct the transaction fees from your main account. But if the balance in your main account is not sufficient to support the withdrawal, the system will deduct the fees from your withdrawal amount. For example: Suppose you are going to withdraw 1 BTC from the KuCoin platform (transaction fee: 0.0001BTC), if the balance in your main account is insufficient, the system will deduct the transaction fees from your withdrawal amount. In this case, you will be receiving 0.9999BTC.
 	FeeDeductType *string `json:"feeDeductType,omitempty"`
 	// Withdrawal address
 	ToAddress string `json:"toAddress,omitempty"`
-	// Withdrawal type, ADDRESS (withdrawal address), UID, MAIL (email), PHONE (mobile phone number). Note: If you withdraw by uid/mail/phone, there will have rate limited: 3 times/10 seconds, 50 times/24 hours (calculated on a rolling basis based on the first request time)
+	// Withdrawal type, ADDRESS (withdrawal address), UID, MAIL (email), PHONE (mobile phone number). Note: If you withdraw by uid/mail/phone, there will be rate limits: 3 times/10 seconds, 50 times/24 hours (calculated on a rolling basis based on the first request time)
 	WithdrawType string `json:"withdrawType,omitempty"`
 }
 
@@ -78,7 +78,7 @@ func (builder *WithdrawalV3ReqBuilder) SetCurrency(value string) *WithdrawalV3Re
 	return builder
 }
 
-// The chainId of currency, For a currency with multiple chains, it is recommended to specify chain parameter instead of using the default chain; you can query the chainId through the response of the GET /api/v3/currencies/{currency} interface.
+// The chainId of currency, For a currency with multiple chains, it is recommended to specify the chain parameter instead of using the default chain; you can query the chainId through the response of the GET /api/v3/currencies/{currency} interface.
 func (builder *WithdrawalV3ReqBuilder) SetChain(value string) *WithdrawalV3ReqBuilder {
 	builder.obj.Chain = &value
 	return builder
@@ -90,25 +90,25 @@ func (builder *WithdrawalV3ReqBuilder) SetAmount(value int64) *WithdrawalV3ReqBu
 	return builder
 }
 
-// Address remark. If there’s no remark, it is empty. When you withdraw from other platforms to the KuCoin, you need to fill in memo(tag). If you do not fill memo (tag), your deposit may not be available, please be cautious.
+// Address remark. If there’s no remark, it is empty. When you withdraw from other platforms to KuCoin, you need to fill in memo(tag). Be careful: If you do not fill in memo(tag), your deposit may not be available.
 func (builder *WithdrawalV3ReqBuilder) SetMemo(value string) *WithdrawalV3ReqBuilder {
 	builder.obj.Memo = &value
 	return builder
 }
 
-// Internal withdrawal or not. Default : false
+// Internal withdrawal or not. Default: False
 func (builder *WithdrawalV3ReqBuilder) SetIsInner(value bool) *WithdrawalV3ReqBuilder {
 	builder.obj.IsInner = &value
 	return builder
 }
 
-// remark
+// Remark
 func (builder *WithdrawalV3ReqBuilder) SetRemark(value string) *WithdrawalV3ReqBuilder {
 	builder.obj.Remark = &value
 	return builder
 }
 
-// Withdrawal fee deduction type: INTERNAL or EXTERNAL or not specified  1. INTERNAL- deduct the transaction fees from your withdrawal amount 2. EXTERNAL- deduct the transaction fees from your main account 3. If you don't specify the feeDeductType parameter, when the balance in your main account is sufficient to support the withdrawal, the system will initially deduct the transaction fees from your main account. But if the balance in your main account is not sufficient to support the withdrawal, the system will deduct the fees from your withdrawal amount. For example: Suppose you are going to withdraw 1 BTC from the KuCoin platform (transaction fee: 0.0001BTC), if the balance in your main account is insufficient, the system will deduct the transaction fees from your withdrawal amount. In this case, you will be receiving 0.9999BTC.
+// Withdrawal fee deduction type: INTERNAL, EXTERNAL, or not specified  1. INTERNAL: Deduct the transaction fees from your withdrawal amount 2. EXTERNAL: Deduct the transaction fees from your main account 3. If you don't specify the feeDeductType parameter, when the balance in your main account is sufficient to support the withdrawal, the system will initially deduct the transaction fees from your main account. But if the balance in your main account is not sufficient to support the withdrawal, the system will deduct the fees from your withdrawal amount. For example: Suppose you are going to withdraw 1 BTC from the KuCoin platform (transaction fee: 0.0001BTC), if the balance in your main account is insufficient, the system will deduct the transaction fees from your withdrawal amount. In this case, you will be receiving 0.9999BTC.
 func (builder *WithdrawalV3ReqBuilder) SetFeeDeductType(value string) *WithdrawalV3ReqBuilder {
 	builder.obj.FeeDeductType = &value
 	return builder
@@ -120,7 +120,7 @@ func (builder *WithdrawalV3ReqBuilder) SetToAddress(value string) *WithdrawalV3R
 	return builder
 }
 
-// Withdrawal type, ADDRESS (withdrawal address), UID, MAIL (email), PHONE (mobile phone number). Note: If you withdraw by uid/mail/phone, there will have rate limited: 3 times/10 seconds, 50 times/24 hours (calculated on a rolling basis based on the first request time)
+// Withdrawal type, ADDRESS (withdrawal address), UID, MAIL (email), PHONE (mobile phone number). Note: If you withdraw by uid/mail/phone, there will be rate limits: 3 times/10 seconds, 50 times/24 hours (calculated on a rolling basis based on the first request time)
 func (builder *WithdrawalV3ReqBuilder) SetWithdrawType(value string) *WithdrawalV3ReqBuilder {
 	builder.obj.WithdrawType = value
 	return builder

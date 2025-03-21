@@ -9,15 +9,15 @@
     "paths": {
         "/api/v1/funding-rate/{symbol}/current": {
             "get": {
-                "summary": "Get Current Funding Rate",
+                "summary": "Get Current Funding Rate.",
                 "deprecated": false,
-                "description": "get Current Funding Rate",
+                "description": "Get Current Funding Rate.",
                 "tags": [],
                 "parameters": [
                     {
                         "name": "symbol",
                         "in": "path",
-                        "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) ",
+                        "description": "Symbol of the contract. Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) ",
                         "required": true,
                         "schema": {
                             "type": "string"
@@ -44,11 +44,11 @@
                                                 },
                                                 "granularity": {
                                                     "type": "integer",
-                                                    "description": "Granularity (milisecond)\n"
+                                                    "description": "Granularity (milliseconds)\n"
                                                 },
                                                 "timePoint": {
                                                     "type": "integer",
-                                                    "description": "The funding rate settlement time point of the previous cycle\n(milisecond)\n",
+                                                    "description": "The funding rate settlement time point of the previous cycle\n(milliseconds)\n",
                                                     "format": "int64"
                                                 },
                                                 "value": {
@@ -91,14 +91,14 @@
                 "x-api-doc": "https://www.kucoin.com/docs-new/api-3470265",
                 "x-abandon": "normal",
                 "x-domain": "Futures",
-                "x-api-channel": "Private",
+                "x-api-channel": "Public",
                 "x-api-permission": "Futures",
                 "x-api-rate-limit-pool": "Public",
                 "x-sdk-service": "Futures",
                 "x-sdk-sub-service": "FundingFees",
-                "x-sdk-method-name": "GetCurrentFundingRate",
-                "x-sdk-method-description": "get Current Funding Rate",
-                "x-api-rate-limit": 2,
+                "x-sdk-method-name": "getCurrentFundingRate",
+                "x-sdk-method-description": "Get Current Funding Rate.",
+                "x-api-rate-limit-weight": 2,
                 "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"symbol\\\": \\\".XBTUSDTMFPI8H\\\",\\n        \\\"granularity\\\": 28800000,\\n        \\\"timePoint\\\": 1731441600000,\\n        \\\"value\\\": 6.41E-4,\\n        \\\"predictedValue\\\": 5.2E-5,\\n        \\\"fundingRateCap\\\": 0.003,\\n        \\\"fundingRateFloor\\\": -0.003\\n    }\\n}",
                 "x-request-example": "{\\\"symbol\\\": \\\"XBTUSDTM\\\"}",
                 "operationId": "001"
@@ -108,13 +108,13 @@
             "get": {
                 "summary": "Get Public Funding History",
                 "deprecated": false,
-                "description": "Query the funding rate at each settlement time point within a certain time range of the corresponding contract",
+                "description": "Query the funding rate at each settlement time point within a certain time range of the corresponding contract.",
                 "tags": [],
                 "parameters": [
                     {
                         "name": "symbol",
                         "in": "query",
-                        "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) ",
+                        "description": "Symbol of the contract. Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) ",
                         "required": true,
                         "schema": {
                             "type": "string"
@@ -123,7 +123,7 @@
                     {
                         "name": "from",
                         "in": "query",
-                        "description": "Begin time (milisecond)\n",
+                        "description": "Begin time (milliseconds)\n",
                         "required": true,
                         "schema": {
                             "type": "integer",
@@ -133,7 +133,7 @@
                     {
                         "name": "to",
                         "in": "query",
-                        "description": "End time (milisecond)\n",
+                        "description": "End time (milliseconds)\n",
                         "required": true,
                         "schema": {
                             "type": "integer",
@@ -159,7 +159,7 @@
                                                 "properties": {
                                                     "symbol": {
                                                         "type": "string",
-                                                        "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) "
+                                                        "description": "Symbol of the contract. Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) "
                                                     },
                                                     "fundingRate": {
                                                         "type": "number",
@@ -167,7 +167,7 @@
                                                     },
                                                     "timepoint": {
                                                         "type": "integer",
-                                                        "description": "Time point (milisecond)\n\n",
+                                                        "description": "Time point (milliseconds)\n\n",
                                                         "format": "int64"
                                                     }
                                                 },
@@ -191,14 +191,14 @@
                 "x-api-doc": "https://www.kucoin.com/docs-new/api-3470266",
                 "x-abandon": "normal",
                 "x-domain": "Futures",
-                "x-api-channel": "Private",
+                "x-api-channel": "Public",
                 "x-api-permission": "Futures",
                 "x-api-rate-limit-pool": "Public",
                 "x-sdk-service": "Futures",
                 "x-sdk-sub-service": "FundingFees",
-                "x-sdk-method-name": "GetPublicFundingHistory",
-                "x-sdk-method-description": "Query the funding rate at each settlement time point within a certain time range of the corresponding contract",
-                "x-api-rate-limit": 5,
+                "x-sdk-method-name": "getPublicFundingHistory",
+                "x-sdk-method-description": "Query the funding rate at each settlement time point within a certain time range of the corresponding contract.",
+                "x-api-rate-limit-weight": 5,
                 "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": [\\n        {\\n            \\\"symbol\\\": \\\"XBTUSDTM\\\",\\n            \\\"fundingRate\\\": 2.1E-4,\\n            \\\"timepoint\\\": 1702296000000\\n        },\\n        {\\n            \\\"symbol\\\": \\\"XBTUSDTM\\\",\\n            \\\"fundingRate\\\": 3.47E-4,\\n            \\\"timepoint\\\": 1702267200000\\n        },\\n        {\\n            \\\"symbol\\\": \\\"XBTUSDTM\\\",\\n            \\\"fundingRate\\\": 4.52E-4,\\n            \\\"timepoint\\\": 1702238400000\\n        },\\n        {\\n            \\\"symbol\\\": \\\"XBTUSDTM\\\",\\n            \\\"fundingRate\\\": 5.13E-4,\\n            \\\"timepoint\\\": 1702209600000\\n        },\\n        {\\n            \\\"symbol\\\": \\\"XBTUSDTM\\\",\\n            \\\"fundingRate\\\": 4.21E-4,\\n            \\\"timepoint\\\": 1702180800000\\n        },\\n        {\\n            \\\"symbol\\\": \\\"XBTUSDTM\\\",\\n            \\\"fundingRate\\\": 5.06E-4,\\n            \\\"timepoint\\\": 1702152000000\\n        },\\n        {\\n            \\\"symbol\\\": \\\"XBTUSDTM\\\",\\n            \\\"fundingRate\\\": 7.68E-4,\\n            \\\"timepoint\\\": 1702123200000\\n        },\\n        {\\n            \\\"symbol\\\": \\\"XBTUSDTM\\\",\\n            \\\"fundingRate\\\": 4.82E-4,\\n            \\\"timepoint\\\": 1702094400000\\n        },\\n        {\\n            \\\"symbol\\\": \\\"XBTUSDTM\\\",\\n            \\\"fundingRate\\\": 4.0E-4,\\n            \\\"timepoint\\\": 1702065600000\\n        },\\n        {\\n            \\\"symbol\\\": \\\"XBTUSDTM\\\",\\n            \\\"fundingRate\\\": 5.46E-4,\\n            \\\"timepoint\\\": 1702036800000\\n        },\\n        {\\n            \\\"symbol\\\": \\\"XBTUSDTM\\\",\\n            \\\"fundingRate\\\": 7.97E-4,\\n            \\\"timepoint\\\": 1702008000000\\n        },\\n        {\\n            \\\"symbol\\\": \\\"XBTUSDTM\\\",\\n            \\\"fundingRate\\\": 5.76E-4,\\n            \\\"timepoint\\\": 1701979200000\\n        },\\n        {\\n            \\\"symbol\\\": \\\"XBTUSDTM\\\",\\n            \\\"fundingRate\\\": 4.22E-4,\\n            \\\"timepoint\\\": 1701950400000\\n        },\\n        {\\n            \\\"symbol\\\": \\\"XBTUSDTM\\\",\\n            \\\"fundingRate\\\": 3.92E-4,\\n            \\\"timepoint\\\": 1701921600000\\n        },\\n        {\\n            \\\"symbol\\\": \\\"XBTUSDTM\\\",\\n            \\\"fundingRate\\\": 4.1E-4,\\n            \\\"timepoint\\\": 1701892800000\\n        },\\n        {\\n            \\\"symbol\\\": \\\"XBTUSDTM\\\",\\n            \\\"fundingRate\\\": 4.48E-4,\\n            \\\"timepoint\\\": 1701864000000\\n        },\\n        {\\n            \\\"symbol\\\": \\\"XBTUSDTM\\\",\\n            \\\"fundingRate\\\": 3.68E-4,\\n            \\\"timepoint\\\": 1701835200000\\n        },\\n        {\\n            \\\"symbol\\\": \\\"XBTUSDTM\\\",\\n            \\\"fundingRate\\\": 3.51E-4,\\n            \\\"timepoint\\\": 1701806400000\\n        },\\n        {\\n            \\\"symbol\\\": \\\"XBTUSDTM\\\",\\n            \\\"fundingRate\\\": 1.44E-4,\\n            \\\"timepoint\\\": 1701777600000\\n        },\\n        {\\n            \\\"symbol\\\": \\\"XBTUSDTM\\\",\\n            \\\"fundingRate\\\": 4.25E-4,\\n            \\\"timepoint\\\": 1701748800000\\n        },\\n        {\\n            \\\"symbol\\\": \\\"XBTUSDTM\\\",\\n            \\\"fundingRate\\\": -8.2E-5,\\n            \\\"timepoint\\\": 1701720000000\\n        },\\n        {\\n            \\\"symbol\\\": \\\"XBTUSDTM\\\",\\n            \\\"fundingRate\\\": 4.64E-4,\\n            \\\"timepoint\\\": 1701691200000\\n        },\\n        {\\n            \\\"symbol\\\": \\\"XBTUSDTM\\\",\\n            \\\"fundingRate\\\": 4.14E-4,\\n            \\\"timepoint\\\": 1701662400000\\n        },\\n        {\\n            \\\"symbol\\\": \\\"XBTUSDTM\\\",\\n            \\\"fundingRate\\\": 2.44E-4,\\n            \\\"timepoint\\\": 1701633600000\\n        },\\n        {\\n            \\\"symbol\\\": \\\"XBTUSDTM\\\",\\n            \\\"fundingRate\\\": 1.99E-4,\\n            \\\"timepoint\\\": 1701604800000\\n        },\\n        {\\n            \\\"symbol\\\": \\\"XBTUSDTM\\\",\\n            \\\"fundingRate\\\": 1.79E-4,\\n            \\\"timepoint\\\": 1701576000000\\n        },\\n        {\\n            \\\"symbol\\\": \\\"XBTUSDTM\\\",\\n            \\\"fundingRate\\\": 8.7E-5,\\n            \\\"timepoint\\\": 1701547200000\\n        },\\n        {\\n            \\\"symbol\\\": \\\"XBTUSDTM\\\",\\n            \\\"fundingRate\\\": 1.6E-5,\\n            \\\"timepoint\\\": 1701518400000\\n        },\\n        {\\n            \\\"symbol\\\": \\\"XBTUSDTM\\\",\\n            \\\"fundingRate\\\": -3.7E-5,\\n            \\\"timepoint\\\": 1701489600000\\n        },\\n        {\\n            \\\"symbol\\\": \\\"XBTUSDTM\\\",\\n            \\\"fundingRate\\\": 1.5E-5,\\n            \\\"timepoint\\\": 1701460800000\\n        },\\n        {\\n            \\\"symbol\\\": \\\"XBTUSDTM\\\",\\n            \\\"fundingRate\\\": 6.8E-5,\\n            \\\"timepoint\\\": 1701432000000\\n        },\\n        {\\n            \\\"symbol\\\": \\\"XBTUSDTM\\\",\\n            \\\"fundingRate\\\": 7.2E-5,\\n            \\\"timepoint\\\": 1701403200000\\n        },\\n        {\\n            \\\"symbol\\\": \\\"XBTUSDTM\\\",\\n            \\\"fundingRate\\\": 1.45E-4,\\n            \\\"timepoint\\\": 1701374400000\\n        },\\n        {\\n            \\\"symbol\\\": \\\"XBTUSDTM\\\",\\n            \\\"fundingRate\\\": 1.41E-4,\\n            \\\"timepoint\\\": 1701345600000\\n        },\\n        {\\n            \\\"symbol\\\": \\\"XBTUSDTM\\\",\\n            \\\"fundingRate\\\": 9.4E-5,\\n            \\\"timepoint\\\": 1701316800000\\n        },\\n        {\\n            \\\"symbol\\\": \\\"XBTUSDTM\\\",\\n            \\\"fundingRate\\\": 1.08E-4,\\n            \\\"timepoint\\\": 1701288000000\\n        },\\n        {\\n            \\\"symbol\\\": \\\"XBTUSDTM\\\",\\n            \\\"fundingRate\\\": 7.6E-5,\\n            \\\"timepoint\\\": 1701259200000\\n        },\\n        {\\n            \\\"symbol\\\": \\\"XBTUSDTM\\\",\\n            \\\"fundingRate\\\": 1.0E-5,\\n            \\\"timepoint\\\": 1701230400000\\n        },\\n        {\\n            \\\"symbol\\\": \\\"XBTUSDTM\\\",\\n            \\\"fundingRate\\\": 1.0E-5,\\n            \\\"timepoint\\\": 1701201600000\\n        },\\n        {\\n            \\\"symbol\\\": \\\"XBTUSDTM\\\",\\n            \\\"fundingRate\\\": 1.16E-4,\\n            \\\"timepoint\\\": 1701172800000\\n        },\\n        {\\n            \\\"symbol\\\": \\\"XBTUSDTM\\\",\\n            \\\"fundingRate\\\": 2.04E-4,\\n            \\\"timepoint\\\": 1701144000000\\n        },\\n        {\\n            \\\"symbol\\\": \\\"XBTUSDTM\\\",\\n            \\\"fundingRate\\\": 2.3E-4,\\n            \\\"timepoint\\\": 1701115200000\\n        },\\n        {\\n            \\\"symbol\\\": \\\"XBTUSDTM\\\",\\n            \\\"fundingRate\\\": 6.2E-5,\\n            \\\"timepoint\\\": 1701086400000\\n        },\\n        {\\n            \\\"symbol\\\": \\\"XBTUSDTM\\\",\\n            \\\"fundingRate\\\": 1.33E-4,\\n            \\\"timepoint\\\": 1701057600000\\n        },\\n        {\\n            \\\"symbol\\\": \\\"XBTUSDTM\\\",\\n            \\\"fundingRate\\\": 8.0E-5,\\n            \\\"timepoint\\\": 1701028800000\\n        },\\n        {\\n            \\\"symbol\\\": \\\"XBTUSDTM\\\",\\n            \\\"fundingRate\\\": 1.11E-4,\\n            \\\"timepoint\\\": 1701000000000\\n        },\\n        {\\n            \\\"symbol\\\": \\\"XBTUSDTM\\\",\\n            \\\"fundingRate\\\": 7.4E-5,\\n            \\\"timepoint\\\": 1700971200000\\n        },\\n        {\\n            \\\"symbol\\\": \\\"XBTUSDTM\\\",\\n            \\\"fundingRate\\\": 1.01E-4,\\n            \\\"timepoint\\\": 1700942400000\\n        },\\n        {\\n            \\\"symbol\\\": \\\"XBTUSDTM\\\",\\n            \\\"fundingRate\\\": 3.9E-5,\\n            \\\"timepoint\\\": 1700913600000\\n        },\\n        {\\n            \\\"symbol\\\": \\\"XBTUSDTM\\\",\\n            \\\"fundingRate\\\": 1.1E-5,\\n            \\\"timepoint\\\": 1700884800000\\n        },\\n        {\\n            \\\"symbol\\\": \\\"XBTUSDTM\\\",\\n            \\\"fundingRate\\\": 3.0E-6,\\n            \\\"timepoint\\\": 1700856000000\\n        },\\n        {\\n            \\\"symbol\\\": \\\"XBTUSDTM\\\",\\n            \\\"fundingRate\\\": 1.03E-4,\\n            \\\"timepoint\\\": 1700827200000\\n        },\\n        {\\n            \\\"symbol\\\": \\\"XBTUSDTM\\\",\\n            \\\"fundingRate\\\": 3.0E-6,\\n            \\\"timepoint\\\": 1700798400000\\n        },\\n        {\\n            \\\"symbol\\\": \\\"XBTUSDTM\\\",\\n            \\\"fundingRate\\\": 6.7E-5,\\n            \\\"timepoint\\\": 1700769600000\\n        },\\n        {\\n            \\\"symbol\\\": \\\"XBTUSDTM\\\",\\n            \\\"fundingRate\\\": 1.47E-4,\\n            \\\"timepoint\\\": 1700740800000\\n        },\\n        {\\n            \\\"symbol\\\": \\\"XBTUSDTM\\\",\\n            \\\"fundingRate\\\": 7.8E-5,\\n            \\\"timepoint\\\": 1700712000000\\n        },\\n        {\\n            \\\"symbol\\\": \\\"XBTUSDTM\\\",\\n            \\\"fundingRate\\\": 1.39E-4,\\n            \\\"timepoint\\\": 1700683200000\\n        },\\n        {\\n            \\\"symbol\\\": \\\"XBTUSDTM\\\",\\n            \\\"fundingRate\\\": 7.5E-5,\\n            \\\"timepoint\\\": 1700654400000\\n        },\\n        {\\n            \\\"symbol\\\": \\\"XBTUSDTM\\\",\\n            \\\"fundingRate\\\": 1.11E-4,\\n            \\\"timepoint\\\": 1700625600000\\n        },\\n        {\\n            \\\"symbol\\\": \\\"XBTUSDTM\\\",\\n            \\\"fundingRate\\\": 9.8E-5,\\n            \\\"timepoint\\\": 1700596800000\\n        },\\n        {\\n            \\\"symbol\\\": \\\"XBTUSDTM\\\",\\n            \\\"fundingRate\\\": 1.18E-4,\\n            \\\"timepoint\\\": 1700568000000\\n        },\\n        {\\n            \\\"symbol\\\": \\\"XBTUSDTM\\\",\\n            \\\"fundingRate\\\": 1.16E-4,\\n            \\\"timepoint\\\": 1700539200000\\n        },\\n        {\\n            \\\"symbol\\\": \\\"XBTUSDTM\\\",\\n            \\\"fundingRate\\\": 1.6E-4,\\n            \\\"timepoint\\\": 1700510400000\\n        },\\n        {\\n            \\\"symbol\\\": \\\"XBTUSDTM\\\",\\n            \\\"fundingRate\\\": 1.92E-4,\\n            \\\"timepoint\\\": 1700481600000\\n        },\\n        {\\n            \\\"symbol\\\": \\\"XBTUSDTM\\\",\\n            \\\"fundingRate\\\": 1.13E-4,\\n            \\\"timepoint\\\": 1700452800000\\n        },\\n        {\\n            \\\"symbol\\\": \\\"XBTUSDTM\\\",\\n            \\\"fundingRate\\\": 2.47E-4,\\n            \\\"timepoint\\\": 1700424000000\\n        },\\n        {\\n            \\\"symbol\\\": \\\"XBTUSDTM\\\",\\n            \\\"fundingRate\\\": 2.3E-4,\\n            \\\"timepoint\\\": 1700395200000\\n        },\\n        {\\n            \\\"symbol\\\": \\\"XBTUSDTM\\\",\\n            \\\"fundingRate\\\": 2.63E-4,\\n            \\\"timepoint\\\": 1700366400000\\n        },\\n        {\\n            \\\"symbol\\\": \\\"XBTUSDTM\\\",\\n            \\\"fundingRate\\\": 1.32E-4,\\n            \\\"timepoint\\\": 1700337600000\\n        }\\n    ]\\n}",
                 "x-request-example": "{\\\"symbol\\\": \\\"XBTUSDTM\\\", \\\"from\\\": 1700310700000, \\\"to\\\": 1702310700000}",
                 "operationId": "002"
@@ -214,16 +214,16 @@
                     {
                         "name": "symbol",
                         "in": "query",
-                        "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) ",
+                        "description": "Symbol of the contract. Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) ",
                         "required": true,
                         "schema": {
                             "type": "string"
                         }
                     },
                     {
-                        "name": "from",
+                        "name": "startAt",
                         "in": "query",
-                        "description": "Begin time (milisecond)\n",
+                        "description": "Begin time (milliseconds)\n",
                         "required": false,
                         "schema": {
                             "type": "integer",
@@ -231,9 +231,9 @@
                         }
                     },
                     {
-                        "name": "to",
+                        "name": "endAt",
                         "in": "query",
-                        "description": "End time (milisecond)\n",
+                        "description": "End time (milliseconds)\n",
                         "required": false,
                         "schema": {
                             "type": "integer",
@@ -243,7 +243,7 @@
                     {
                         "name": "reverse",
                         "in": "query",
-                        "description": "This parameter functions to judge whether the lookup is forward or not. True means “yes” and False means “no”. This parameter is set as true by default\n",
+                        "description": "This parameter functions to judge whether the lookup is forward or not. True means “yes” and False means “no”. This parameter is set as true by default.\n",
                         "required": false,
                         "schema": {
                             "type": "boolean"
@@ -261,7 +261,7 @@
                     {
                         "name": "forward",
                         "in": "query",
-                        "description": "This parameter functions to judge whether the lookup is forward or not. True means “yes” and False means “no”. This parameter is set as true by default\n",
+                        "description": "This parameter functions to judge whether the lookup is forward or not. True means “yes” and False means “no”. This parameter is set as true by default.\n",
                         "required": false,
                         "schema": {
                             "type": "boolean"
@@ -270,7 +270,7 @@
                     {
                         "name": "maxCount",
                         "in": "query",
-                        "description": "Max record count. The default record count is 10",
+                        "description": "Max. record count. The default record count is 10",
                         "required": false,
                         "schema": {
                             "type": "integer"
@@ -298,16 +298,16 @@
                                                         "properties": {
                                                             "id": {
                                                                 "type": "integer",
-                                                                "description": "id",
+                                                                "description": "ID",
                                                                 "format": "int64"
                                                             },
                                                             "symbol": {
                                                                 "type": "string",
-                                                                "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) "
+                                                                "description": "Symbol of the contract. Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) "
                                                             },
                                                             "timePoint": {
                                                                 "type": "integer",
-                                                                "description": "Time point (milisecond)\n",
+                                                                "description": "Time point (milliseconds)\n",
                                                                 "format": "int64"
                                                             },
                                                             "fundingRate": {
@@ -328,15 +328,15 @@
                                                             },
                                                             "funding": {
                                                                 "type": "number",
-                                                                "description": "Settled funding fees. A positive number means that the user received the funding fee, and vice versa.\n"
+                                                                "description": "Settled funding fees A positive number means that the user received the funding fee, and vice versa.\n"
                                                             },
                                                             "settleCurrency": {
                                                                 "type": "string",
-                                                                "description": "settlement currency\n"
+                                                                "description": "Settlement currency\n"
                                                             },
                                                             "context": {
                                                                 "type": "string",
-                                                                "description": "context"
+                                                                "description": "Context"
                                                             },
                                                             "marginMode": {
                                                                 "type": "string",
@@ -404,9 +404,9 @@
                 "x-sdk-sub-service": "FundingFees",
                 "x-sdk-method-name": "getPrivateFundingHistory",
                 "x-sdk-method-description": "Submit request to get the funding history.",
-                "x-api-rate-limit": 5,
+                "x-api-rate-limit-weight": 5,
                 "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"dataList\\\": [\\n            {\\n                \\\"id\\\": 1472387374042586,\\n                \\\"symbol\\\": \\\"XBTUSDTM\\\",\\n                \\\"timePoint\\\": 1731470400000,\\n                \\\"fundingRate\\\": 6.41E-4,\\n                \\\"markPrice\\\": 87139.92,\\n                \\\"positionQty\\\": 1,\\n                \\\"positionCost\\\": 87.13992,\\n                \\\"funding\\\": -0.05585669,\\n                \\\"settleCurrency\\\": \\\"USDT\\\",\\n                \\\"context\\\": \\\"{\\\\\\\"marginMode\\\\\\\": \\\\\\\"ISOLATED\\\\\\\", \\\\\\\"positionSide\\\\\\\": \\\\\\\"BOTH\\\\\\\"}\\\",\\n                \\\"marginMode\\\": \\\"ISOLATED\\\"\\n            }\\n        ],\\n        \\\"hasMore\\\": true\\n    }\\n}",
-                "x-request-example": "{\\\"symbol\\\": \\\"XBTUSDTM\\\", \\\"from\\\": 1700310700000, \\\"to\\\": 1702310700000, \\\"reverse\\\": true, \\\"offset\\\": 123456, \\\"forward\\\": true, \\\"maxCount\\\": 123456}",
+                "x-request-example": "{\\\"symbol\\\": \\\"XBTUSDTM\\\", \\\"startAt\\\": 1700310700000, \\\"endAt\\\": 1702310700000, \\\"reverse\\\": true, \\\"offset\\\": 123456, \\\"forward\\\": true, \\\"maxCount\\\": 123456}",
                 "operationId": "003"
             }
         }

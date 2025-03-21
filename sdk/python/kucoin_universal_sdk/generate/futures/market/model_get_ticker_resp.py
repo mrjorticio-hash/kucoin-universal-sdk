@@ -18,9 +18,9 @@ class GetTickerResp(BaseModel, Response):
     GetTickerResp
 
     Attributes:
-        sequence (int): Sequence number, used to judge whether the messages pushed by Websocket is continuous.
-        symbol (str): Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) 
-        side (SideEnum): Filled side, The trade side indicates the taker order side. A taker order is the order that was matched with orders opened on the order book.
+        sequence (int): Sequence number, used to judge whether the messages pushed by Websocket are continuous.
+        symbol (str): Symbol of the contract. Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) 
+        side (SideEnum): Filled side; the trade side indicates the taker order side. A taker order is the order that was matched with orders opened on the order book.
         size (int): Filled quantity
         trade_id (str): Transaction ID
         price (str): Filled price
@@ -28,7 +28,7 @@ class GetTickerResp(BaseModel, Response):
         best_bid_size (int): Best bid size
         best_ask_price (str): Best ask price
         best_ask_size (int): Best ask size
-        ts (int): Filled time(nanosecond)
+        ts (int): Filled time (nanoseconds)
     """
 
     class SideEnum(Enum):
@@ -45,17 +45,17 @@ class GetTickerResp(BaseModel, Response):
     sequence: Optional[int] = Field(
         default=None,
         description=
-        "Sequence number, used to judge whether the messages pushed by Websocket is continuous."
+        "Sequence number, used to judge whether the messages pushed by Websocket are continuous."
     )
     symbol: Optional[str] = Field(
         default=None,
         description=
-        "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) "
+        "Symbol of the contract. Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) "
     )
     side: Optional[SideEnum] = Field(
         default=None,
         description=
-        "Filled side, The trade side indicates the taker order side. A taker order is the order that was matched with orders opened on the order book."
+        "Filled side; the trade side indicates the taker order side. A taker order is the order that was matched with orders opened on the order book."
     )
     size: Optional[int] = Field(default=None, description="Filled quantity")
     trade_id: Optional[str] = Field(default=None,
@@ -75,7 +75,7 @@ class GetTickerResp(BaseModel, Response):
                                          description="Best ask size",
                                          alias="bestAskSize")
     ts: Optional[int] = Field(default=None,
-                              description="Filled time(nanosecond)")
+                              description="Filled time (nanoseconds)")
 
     __properties: ClassVar[List[str]] = [
         "sequence", "symbol", "side", "size", "tradeId", "price",

@@ -16,11 +16,11 @@ class GetRecentTradeHistoryData(BaseModel):
     GetRecentTradeHistoryData
 
     Attributes:
-        symbol (str): Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) 
+        symbol (str): Symbol of the contract. Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) 
         trade_id (str): Trade ID 
         order_id (str): Order ID 
         side (SideEnum): Transaction side 
-        liquidity (LiquidityEnum): Liquidity- taker or maker 
+        liquidity (LiquidityEnum): Liquidity-taker or -maker 
         force_taker (bool): Whether to force processing as a taker 
         price (str): Filled price 
         size (int): Filled amount 
@@ -29,9 +29,9 @@ class GetRecentTradeHistoryData(BaseModel):
         close_fee_pay (str): Closing transaction fee 
         stop (str): A mark to the stop order type 
         fee_rate (str): Fee Rate
-        fix_fee (str): Fixed fees(Deprecated field, no actual use of the value field) 
+        fix_fee (str): Fixed fees (Deprecated field, no actual use of the value field) 
         fee_currency (str): Charging currency 
-        trade_time (int): trade time in nanosecond 
+        trade_time (int): Trade time in nanoseconds 
         sub_trade_type (str): Deprecated field, no actual use of the value field
         margin_mode (MarginModeEnum): Margin mode: ISOLATED (isolated), CROSS (cross margin). 
         display_type (DisplayTypeEnum): Order Type
@@ -39,7 +39,7 @@ class GetRecentTradeHistoryData(BaseModel):
         settle_currency (str): Settle Currency
         order_type (OrderTypeEnum): Order type 
         trade_type (TradeTypeEnum): Trade type (trade, liquid, cancel, adl or settlement) 
-        created_at (int): Time the order created 
+        created_at (int): Order creation time 
     """
 
     class SideEnum(Enum):
@@ -95,7 +95,7 @@ class GetRecentTradeHistoryData(BaseModel):
         """
         Attributes:
             TRADE: trade
-            CANCEL: Partially filled and cancelled orders
+            CANCEL: Partially filled and canceled orders
             LIQUID: liquid
             ADL: adl
             SETTLEMENT: settlement
@@ -109,7 +109,7 @@ class GetRecentTradeHistoryData(BaseModel):
     symbol: Optional[str] = Field(
         default=None,
         description=
-        "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) "
+        "Symbol of the contract. Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) "
     )
     trade_id: Optional[str] = Field(default=None,
                                     description="Trade ID ",
@@ -120,7 +120,7 @@ class GetRecentTradeHistoryData(BaseModel):
     side: Optional[SideEnum] = Field(default=None,
                                      description="Transaction side ")
     liquidity: Optional[LiquidityEnum] = Field(
-        default=None, description="Liquidity- taker or maker ")
+        default=None, description="Liquidity-taker or -maker ")
     force_taker: Optional[bool] = Field(
         default=None,
         description="Whether to force processing as a taker ",
@@ -143,13 +143,13 @@ class GetRecentTradeHistoryData(BaseModel):
     fix_fee: Optional[str] = Field(
         default=None,
         description=
-        "Fixed fees(Deprecated field, no actual use of the value field) ",
+        "Fixed fees (Deprecated field, no actual use of the value field) ",
         alias="fixFee")
     fee_currency: Optional[str] = Field(default=None,
                                         description="Charging currency ",
                                         alias="feeCurrency")
     trade_time: Optional[int] = Field(default=None,
-                                      description="trade time in nanosecond ",
+                                      description="Trade time in nanoseconds ",
                                       alias="tradeTime")
     sub_trade_type: Optional[str] = Field(
         default=None,
@@ -174,7 +174,7 @@ class GetRecentTradeHistoryData(BaseModel):
         description="Trade type (trade, liquid, cancel, adl or settlement) ",
         alias="tradeType")
     created_at: Optional[int] = Field(default=None,
-                                      description="Time the order created ",
+                                      description="Order creation time ",
                                       alias="createdAt")
 
     __properties: ClassVar[List[str]] = [

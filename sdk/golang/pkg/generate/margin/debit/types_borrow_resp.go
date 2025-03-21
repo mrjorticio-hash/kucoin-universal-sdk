@@ -10,7 +10,7 @@ import (
 type BorrowResp struct {
 	// common response
 	CommonResponse *types.RestResponse
-	// Borrow Order Id
+	// Borrow Order ID
 	OrderNo string `json:"orderNo,omitempty"`
 	// Actual borrowed amount
 	ActualSize string `json:"actualSize,omitempty"`

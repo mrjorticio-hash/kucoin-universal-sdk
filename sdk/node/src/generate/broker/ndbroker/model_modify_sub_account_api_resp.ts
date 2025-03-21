@@ -6,7 +6,7 @@ import { Response } from '@internal/interfaces/serializable';
 
 export class ModifySubAccountApiResp implements Response<RestResponse> {
     /**
-     * Sub-Account UID
+     * Sub-account UID
      */
     uid: string;
 
@@ -36,7 +36,7 @@ export class ModifySubAccountApiResp implements Response<RestResponse> {
     ipWhitelist: Array<string>;
 
     /**
-     * Creation time, unix timestamp (milliseconds)
+     * Creation time, Unix timestamp (milliseconds)
      */
     createdAt: number;
 

@@ -6,7 +6,7 @@ package withdrawal
 type GetWithdrawalQuotasReq struct {
 	// currency
 	Currency *string `json:"currency,omitempty" url:"currency,omitempty"`
-	// The chainId of currency, e.g. The available value for USDT are OMNI, ERC20, TRC20, default is ERC20. The available value for BTC are Native, Segwit, TRC20, the parameters are bech32, btc, trx, default is Native. This only apply for multi-chain currency, and there is no need for single chain currency.
+	// The chainId of currency, e.g. the available values for USDT are OMNI, ERC20, and TRC20; default is ERC20. The available values for BTC are Native, Segwit, TRC20; the parameters are bech32, btc, trx; default is Native. This only applies to multi-chain currencies; no need for single-chain currencies.
 	Chain *string `json:"chain,omitempty" url:"chain,omitempty"`
 }
 
@@ -49,7 +49,7 @@ func (builder *GetWithdrawalQuotasReqBuilder) SetCurrency(value string) *GetWith
 	return builder
 }
 
-// The chainId of currency, e.g. The available value for USDT are OMNI, ERC20, TRC20, default is ERC20. The available value for BTC are Native, Segwit, TRC20, the parameters are bech32, btc, trx, default is Native. This only apply for multi-chain currency, and there is no need for single chain currency.
+// The chainId of currency, e.g. the available values for USDT are OMNI, ERC20, and TRC20; default is ERC20. The available values for BTC are Native, Segwit, TRC20; the parameters are bech32, btc, trx; default is Native. This only applies to multi-chain currencies; no need for single-chain currencies.
 func (builder *GetWithdrawalQuotasReqBuilder) SetChain(value string) *GetWithdrawalQuotasReqBuilder {
 	builder.obj.Chain = &value
 	return builder

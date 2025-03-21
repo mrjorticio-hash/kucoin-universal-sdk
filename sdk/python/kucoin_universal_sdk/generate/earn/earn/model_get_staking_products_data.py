@@ -21,9 +21,9 @@ class GetStakingProductsData(BaseModel):
         category (CategoryEnum): Product category: STAKING
         type (TypeEnum): Product subtype: TIME (fixed), DEMAND (demand)
         precision (int): Maximum precision supported
-        product_upper_limit (str): Products total subscribe amount
-        user_upper_limit (str): Max user subscribe amount
-        user_lower_limit (str): Min user subscribe amount
+        product_upper_limit (str): Products total subscription amount
+        user_upper_limit (str): Max. user subscription amount
+        user_lower_limit (str): Min. user subscription amount
         redeem_period (int): Redemption waiting period (days)
         lock_start_time (int): Product earliest interest start time, in milliseconds
         lock_end_time (int): Product maturity time, in milliseconds
@@ -32,13 +32,13 @@ class GetStakingProductsData(BaseModel):
         return_rate (str): Annualized Rate of Return, for example, 0.035 is equal to 3.5% annualized rate of return
         income_currency (str): Income currency
         early_redeem_supported (EarlyRedeemSupportedEnum): Whether the fixed product supports early redemption: 0 (no), 1 (yes)
-        product_remain_amount (str): Products remain subscribe amount
-        status (StatusEnum): Product status: ONGOING(Subscription in progress), PENDING(Preheating Subscription), FULL(Subscribed), INTERESTING (Interest in progress)
+        product_remain_amount (str): Remaining product subscription amount
+        status (StatusEnum): Product status: ONGOING (Subscription in progress), PENDING (Preheating Subscription), FULL (Subscribed), INTERESTING (Interest accrual in progress)
         redeem_type (RedeemTypeEnum): Redemption channel: MANUAL (manual redemption), TRANS_DEMAND (transfer to corresponding demand product upon maturity), AUTO (redeem to funding account upon maturity)
         income_release_type (IncomeReleaseTypeEnum): Income release type: DAILY (daily release), AFTER (release after product ends)
-        interest_date (int): Most recent interest date(millisecond)
+        interest_date (int): Most recent interest date (milliseconds)
         duration (int): Product duration (days)
-        new_user_only (NewUserOnlyEnum): Whether the product is exclusive for new users: 0 (no), 1 (yes)
+        new_user_only (NewUserOnlyEnum): Whether the product is exclusive to new users: 0 (no), 1 (yes)
     """
 
     class CategoryEnum(Enum):
@@ -119,15 +119,15 @@ class GetStakingProductsData(BaseModel):
                                      description="Maximum precision supported")
     product_upper_limit: Optional[str] = Field(
         default=None,
-        description="Products total subscribe amount",
+        description="Products total subscription amount",
         alias="productUpperLimit")
     user_upper_limit: Optional[str] = Field(
         default=None,
-        description="Max user subscribe amount",
+        description="Max. user subscription amount",
         alias="userUpperLimit")
     user_lower_limit: Optional[str] = Field(
         default=None,
-        description="Min user subscribe amount",
+        description="Min. user subscription amount",
         alias="userLowerLimit")
     redeem_period: Optional[int] = Field(
         default=None,
@@ -164,12 +164,12 @@ class GetStakingProductsData(BaseModel):
         alias="earlyRedeemSupported")
     product_remain_amount: Optional[str] = Field(
         default=None,
-        description="Products remain subscribe amount",
+        description="Remaining product subscription amount",
         alias="productRemainAmount")
     status: Optional[StatusEnum] = Field(
         default=None,
         description=
-        "Product status: ONGOING(Subscription in progress), PENDING(Preheating Subscription), FULL(Subscribed), INTERESTING (Interest in progress)"
+        "Product status: ONGOING (Subscription in progress), PENDING (Preheating Subscription), FULL (Subscribed), INTERESTING (Interest accrual in progress)"
     )
     redeem_type: Optional[RedeemTypeEnum] = Field(
         default=None,
@@ -183,14 +183,14 @@ class GetStakingProductsData(BaseModel):
         alias="incomeReleaseType")
     interest_date: Optional[int] = Field(
         default=None,
-        description="Most recent interest date(millisecond)",
+        description="Most recent interest date (milliseconds)",
         alias="interestDate")
     duration: Optional[int] = Field(default=None,
                                     description="Product duration (days)")
     new_user_only: Optional[NewUserOnlyEnum] = Field(
         default=None,
         description=
-        "Whether the product is exclusive for new users: 0 (no), 1 (yes)",
+        "Whether the product is exclusive to new users: 0 (no), 1 (yes)",
         alias="newUserOnly")
 
     __properties: ClassVar[List[str]] = [

@@ -8,7 +8,7 @@ import {
 import {
     Get24hrStatsReq,
     GetAllSymbolsReq,
-    GetAnnouncementsReq,
+    GetAnnouncementsReq, GetCallAuctionInfoReq, GetCallAuctionPartOrderBookReq,
     GetCurrencyReq,
     GetFiatPriceReq,
     GetFullOrderBookReq,
@@ -332,6 +332,48 @@ describe('Auto Test', () => {
         });
     });
 
+    test('getCallAuctionPartOrderBook request test', ()=> {
+        /**
+         * getCallAuctionPartOrderBook
+         * Get Call Auction Part OrderBook
+         * /api/v1/market/orderbook/callauction/level2_{size}
+         */
+        let builder = GetCallAuctionPartOrderBookReq.builder();
+        builder.setSymbol("HBAR-USDC").setSize("20");
+        let req = builder.build();
+        let resp = api.getCallAuctionPartOrderBook(req);
+        return resp.then(result => {
+            expect(result.time).toEqual(expect.anything());
+            expect(result.sequence).toEqual(expect.anything());
+            expect(result.bids).toEqual(expect.anything());
+            expect(result.asks).toEqual(expect.anything());
+            console.log(resp);
+        });
+    })
+
+    test('getCallAuctionInfo request test', ()=> {
+        /**
+         * getCallAuctionInfo
+         * Get Call Auction Info
+         * /api/v1/market/callauctionData
+         */
+        let builder = GetCallAuctionInfoReq.builder();
+        builder.setSymbol("HBAR-USDC");
+        let req = builder.build();
+        let resp = api.getCallAuctionInfo(req);
+        return resp.then(result => {
+            expect(result.symbol).toEqual(expect.anything());
+            expect(result.estimatedPrice).toEqual(expect.anything());
+            expect(result.estimatedSize).toEqual(expect.anything());
+            expect(result.sellOrderRangeLowPrice).toEqual(expect.anything());
+            expect(result.sellOrderRangeHighPrice).toEqual(expect.anything());
+            expect(result.buyOrderRangeLowPrice).toEqual(expect.anything());
+            expect(result.buyOrderRangeHighPrice).toEqual(expect.anything());
+            expect(result.time).toEqual(expect.anything());
+            console.log(resp);
+        });
+    })
+
     test('get24hrStats request test', () => {
         /**
          * get24hrStats
@@ -375,6 +417,19 @@ describe('Auto Test', () => {
             console.log(resp);
         });
     });
+
+    test('getClientIPAddress request test', ()=> {
+        /**
+         * getClientIPAddress
+         * Get Client IP Address
+         * /api/v1/my-ip
+         */
+        let resp = api.getClientIPAddress();
+        return resp.then(result => {
+            expect(result.data).toEqual(expect.anything());
+            console.log(resp);
+        });
+    })
 
     test('getServerTime request test', () => {
         /**

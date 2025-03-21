@@ -18,11 +18,11 @@ type GetMarginRiskLimitData struct {
 	BorrowCoefficient *string `json:"borrowCoefficient,omitempty"`
 	// CROSS MARGIN RESPONSES, [Margin Coefficient](https://www.kucoin.com/land/price-protect)
 	MarginCoefficient *string `json:"marginCoefficient,omitempty"`
-	// CROSS MARGIN RESPONSES, Currency precision. the minimum repayment amount of a single transaction should be >= currency precision, for example, the precision of ETH is 8, and the minimum repayment amount is 0.00000001
+	// CROSS MARGIN RESPONSES, Currency precision. The minimum repayment amount of a single transaction should be >= currency precision. For example, the precision of ETH is 8, and the minimum repayment amount is 0.00000001
 	Precision *int32 `json:"precision,omitempty"`
 	// CROSS MARGIN RESPONSES, Minimum personal borrow amount
 	BorrowMinAmount *string `json:"borrowMinAmount,omitempty"`
-	// CROSS MARGIN RESPONSES, Minimum unit for borrowing, the borrowed amount must be an integer multiple of this value
+	// CROSS MARGIN RESPONSES, Minimum unit for borrowing; the borrowed amount must be an integer multiple of this value
 	BorrowMinUnit *string `json:"borrowMinUnit,omitempty"`
 	// CROSS MARGIN RESPONSES, Whether to support borrowing
 	BorrowEnabled *bool `json:"borrowEnabled,omitempty"`
@@ -40,9 +40,9 @@ type GetMarginRiskLimitData struct {
 	BaseMaxHoldAmount *string `json:"baseMaxHoldAmount,omitempty"`
 	// ISOLATED MARGIN RESPONSES, Quote maximum holding amount
 	QuoteMaxHoldAmount *string `json:"quoteMaxHoldAmount,omitempty"`
-	// ISOLATED MARGIN RESPONSES, Base currency precision. the minimum repayment amount of a single transaction should be >= currency precision, for example, the precision of ETH is 8, and the minimum repayment amount is 0.00000001
+	// ISOLATED MARGIN RESPONSES, Base currency precision. The minimum repayment amount of a single transaction should be >= currency precision. For example, the precision of ETH is 8, and the minimum repayment amount is 0.00000001
 	BasePrecision *int32 `json:"basePrecision,omitempty"`
-	// ISOLATED MARGIN RESPONSES, Quote currency precision. the minimum repayment amount of a single transaction should be >= currency precision, for example, the precision of ETH is 8, and the minimum repayment amount is 0.00000001
+	// ISOLATED MARGIN RESPONSES, Quote currency precision. The minimum repayment amount of a single transaction should be >= currency precision. For example, the precision of ETH is 8, and the minimum repayment amount is 0.00000001
 	QuotePrecision *int32 `json:"quotePrecision,omitempty"`
 	// ISOLATED MARGIN RESPONSES, Base minimum personal borrow amount
 	BaseBorrowMinAmount *string `json:"baseBorrowMinAmount,omitempty"`

@@ -18,8 +18,8 @@ class GetIsolatedMarginAccountListV1Resp(BaseModel, Response):
     GetIsolatedMarginAccountListV1Resp
 
     Attributes:
-        total_conversion_balance (str): The total balance of the isolated margin account(in the request coin)
-        liability_conversion_balance (str): Total liabilities of the isolated margin account(in the request coin)
+        total_conversion_balance (str): The total balance of the isolated margin account (in the request coin)
+        liability_conversion_balance (str): Total liabilities of the isolated margin account (in the request coin)
         assets (list[GetIsolatedMarginAccountListV1Assets]): Account list
     """
 
@@ -28,12 +28,12 @@ class GetIsolatedMarginAccountListV1Resp(BaseModel, Response):
     total_conversion_balance: Optional[str] = Field(
         default=None,
         description=
-        "The total balance of the isolated margin account(in the request coin)",
+        "The total balance of the isolated margin account (in the request coin)",
         alias="totalConversionBalance")
     liability_conversion_balance: Optional[str] = Field(
         default=None,
         description=
-        "Total liabilities of the isolated margin account(in the request coin)",
+        "Total liabilities of the isolated margin account (in the request coin)",
         alias="liabilityConversionBalance")
     assets: Optional[List[GetIsolatedMarginAccountListV1Assets]] = Field(
         default=None, description="Account list")

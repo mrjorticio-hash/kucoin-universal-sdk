@@ -4,9 +4,9 @@ package positions
 
 // ModifyIsolatedMarginRiskLimtReq struct for ModifyIsolatedMarginRiskLimtReq
 type ModifyIsolatedMarginRiskLimtReq struct {
-	// Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)
+	// Symbol of the contract. Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)
 	Symbol string `json:"symbol,omitempty"`
-	// level
+	// Level
 	Level int32 `json:"level,omitempty"`
 }
 
@@ -41,13 +41,13 @@ func NewModifyIsolatedMarginRiskLimtReqBuilder() *ModifyIsolatedMarginRiskLimtRe
 	return &ModifyIsolatedMarginRiskLimtReqBuilder{obj: NewModifyIsolatedMarginRiskLimtReqWithDefaults()}
 }
 
-// Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)
+// Symbol of the contract. Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)
 func (builder *ModifyIsolatedMarginRiskLimtReqBuilder) SetSymbol(value string) *ModifyIsolatedMarginRiskLimtReqBuilder {
 	builder.obj.Symbol = value
 	return builder
 }
 
-// level
+// Level
 func (builder *ModifyIsolatedMarginRiskLimtReqBuilder) SetLevel(value int32) *ModifyIsolatedMarginRiskLimtReqBuilder {
 	builder.obj.Level = value
 	return builder

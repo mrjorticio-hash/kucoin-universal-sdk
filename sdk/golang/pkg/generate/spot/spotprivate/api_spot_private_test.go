@@ -51,3 +51,18 @@ func TestSpotPrivateOrderV2RespModel(t *testing.T) {
 	err = json.Unmarshal(commonResp.RawData, obj)
 	assert.Nil(t, err)
 }
+
+func TestSpotPrivateStopOrderRespModel(t *testing.T) {
+	// StopOrder
+	// Get Stop Order
+
+	data := "{\"topic\":\"/spotMarket/advancedOrders\",\"type\":\"message\",\"subject\":\"stopOrder\",\"userId\":\"633559791e1cbc0001f319bc\",\"channelType\":\"private\",\"data\":{\"orderId\":\"vs93gpupfa48anof003u85mb\",\"orderPrice\":\"70000\",\"orderType\":\"stop\",\"side\":\"buy\",\"size\":\"0.00007142\",\"stop\":\"loss\",\"stopPrice\":\"71000\",\"symbol\":\"BTC-USDT\",\"tradeType\":\"TRADE\",\"type\":\"open\",\"createdAt\":1742305928064,\"ts\":1742305928091268493}}"
+
+	commonResp := &types.WsMessage{}
+	err := json.Unmarshal([]byte(data), commonResp)
+	assert.Nil(t, err)
+	assert.NotNil(t, commonResp.RawData)
+	obj := &StopOrderEvent{}
+	err = json.Unmarshal(commonResp.RawData, obj)
+	assert.Nil(t, err)
+}

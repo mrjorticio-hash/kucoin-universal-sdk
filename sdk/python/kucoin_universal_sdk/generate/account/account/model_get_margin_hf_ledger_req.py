@@ -9,7 +9,6 @@ import json
 from enum import Enum
 from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
-from typing_extensions import Annotated
 
 
 class GetMarginHfLedgerReq(BaseModel):
@@ -17,13 +16,13 @@ class GetMarginHfLedgerReq(BaseModel):
     GetMarginHfLedgerReq
 
     Attributes:
-        currency (str): currency, optional，can select more than one，separate with commas，select no more than 10 currencys，the default will be to query for all currencys if left empty
+        currency (str): Currency optional; more than one can be selected; separate using commas; select no more than 10 currencies; the default will be to query for all currencies if left empty
         direction (DirectionEnum): direction: in, out
-        biz_type (str): Transaction type: TRANSFER- transfer funds, MARGIN_EXCHANGE - cross margin trade, ISOLATED_EXCHANGE - isolated margin trade, LIQUIDATION - liquidation, ASSERT_RETURN - forced liquidation asset return
-        last_id (int): The id of the last set of data from the previous batch of data. By default, the latest information is given.
-        limit (int): Default100，Max200
-        start_at (int): Start time (milisecond)
-        end_at (int): End time (milisecond)
+        biz_type (str): Transaction type: TRANSFER- transfer funds, MARGIN_EXCHANGE-cross margin trade, ISOLATED_EXCHANGE-isolated margin trade, LIQUIDATION-liquidation, ASSERT_RETURN-forced liquidation asset return
+        last_id (int): The ID of the last set of data from the previous data batch. By default, the latest information is given.
+        limit (int): Default100, Max200
+        start_at (int): Start time (milliseconds)
+        end_at (int): End time (milliseconds)
     """
 
     class DirectionEnum(Enum):
@@ -38,27 +37,26 @@ class GetMarginHfLedgerReq(BaseModel):
     currency: Optional[str] = Field(
         default=None,
         description=
-        "currency, optional，can select more than one，separate with commas，select no more than 10 currencys，the default will be to query for all currencys if left empty"
+        "Currency optional; more than one can be selected; separate using commas; select no more than 10 currencies; the default will be to query for all currencies if left empty"
     )
     direction: Optional[DirectionEnum] = Field(
         default=None, description="direction: in, out")
     biz_type: Optional[str] = Field(
         default=None,
         description=
-        "Transaction type: TRANSFER- transfer funds, MARGIN_EXCHANGE - cross margin trade, ISOLATED_EXCHANGE - isolated margin trade, LIQUIDATION - liquidation, ASSERT_RETURN - forced liquidation asset return",
+        "Transaction type: TRANSFER- transfer funds, MARGIN_EXCHANGE-cross margin trade, ISOLATED_EXCHANGE-isolated margin trade, LIQUIDATION-liquidation, ASSERT_RETURN-forced liquidation asset return",
         alias="bizType")
     last_id: Optional[int] = Field(
         default=None,
         description=
-        "The id of the last set of data from the previous batch of data. By default, the latest information is given.",
+        "The ID of the last set of data from the previous data batch. By default, the latest information is given.",
         alias="lastId")
-    limit: Optional[Annotated[int, Field(le=200, strict=True, ge=1)]] = Field(
-        default=100, description="Default100，Max200")
+    limit: Optional[int] = Field(default=100, description="Default100, Max200")
     start_at: Optional[int] = Field(default=None,
-                                    description="Start time (milisecond)",
+                                    description="Start time (milliseconds)",
                                     alias="startAt")
     end_at: Optional[int] = Field(default=None,
-                                  description="End time (milisecond)",
+                                  description="End time (milliseconds)",
                                   alias="endAt")
 
     __properties: ClassVar[List[str]] = [
@@ -125,7 +123,7 @@ class GetMarginHfLedgerReqBuilder:
 
     def set_currency(self, value: str) -> GetMarginHfLedgerReqBuilder:
         """
-        currency, optional，can select more than one，separate with commas，select no more than 10 currencys，the default will be to query for all currencys if left empty
+        Currency optional; more than one can be selected; separate using commas; select no more than 10 currencies; the default will be to query for all currencies if left empty
         """
         self.obj['currency'] = value
         return self
@@ -141,35 +139,35 @@ class GetMarginHfLedgerReqBuilder:
 
     def set_biz_type(self, value: str) -> GetMarginHfLedgerReqBuilder:
         """
-        Transaction type: TRANSFER- transfer funds, MARGIN_EXCHANGE - cross margin trade, ISOLATED_EXCHANGE - isolated margin trade, LIQUIDATION - liquidation, ASSERT_RETURN - forced liquidation asset return
+        Transaction type: TRANSFER- transfer funds, MARGIN_EXCHANGE-cross margin trade, ISOLATED_EXCHANGE-isolated margin trade, LIQUIDATION-liquidation, ASSERT_RETURN-forced liquidation asset return
         """
         self.obj['bizType'] = value
         return self
 
     def set_last_id(self, value: int) -> GetMarginHfLedgerReqBuilder:
         """
-        The id of the last set of data from the previous batch of data. By default, the latest information is given.
+        The ID of the last set of data from the previous data batch. By default, the latest information is given.
         """
         self.obj['lastId'] = value
         return self
 
     def set_limit(self, value: int) -> GetMarginHfLedgerReqBuilder:
         """
-        Default100，Max200
+        Default100, Max200
         """
         self.obj['limit'] = value
         return self
 
     def set_start_at(self, value: int) -> GetMarginHfLedgerReqBuilder:
         """
-        Start time (milisecond)
+        Start time (milliseconds)
         """
         self.obj['startAt'] = value
         return self
 
     def set_end_at(self, value: int) -> GetMarginHfLedgerReqBuilder:
         """
-        End time (milisecond)
+        End time (milliseconds)
         """
         self.obj['endAt'] = value
         return self

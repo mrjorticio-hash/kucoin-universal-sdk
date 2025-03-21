@@ -39,7 +39,7 @@ class WithdrawalAPITest(unittest.TestCase):
     def test_withdrawal_v3_req_model(self):
         """
        withdrawal_v3
-       Withdraw(V3)
+       Withdraw (V3)
        /api/v3/withdrawals
        """
         data = "{\"currency\": \"USDT\", \"toAddress\": \"TKFRQXSDcY****GmLrjJggwX8\", \"amount\": 3, \"withdrawType\": \"ADDRESS\", \"chain\": \"trx\", \"isInner\": true, \"remark\": \"this is Remark\"}"
@@ -48,7 +48,7 @@ class WithdrawalAPITest(unittest.TestCase):
     def test_withdrawal_v3_resp_model(self):
         """
         withdrawal_v3
-        Withdraw(V3)
+        Withdraw (V3)
         /api/v3/withdrawals
         """
         data = "{\"code\":\"200000\",\"data\":{\"withdrawalId\":\"670deec84d64da0007d7c946\"}}"

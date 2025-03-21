@@ -6,7 +6,7 @@ import { Response } from '@internal/interfaces/serializable';
 
 export class CancelStopOrderByOrderIdResp implements Response<RestResponse> {
     /**
-     * order id array
+     * order ID array
      */
     cancelledOrderIds: Array<string>;
 

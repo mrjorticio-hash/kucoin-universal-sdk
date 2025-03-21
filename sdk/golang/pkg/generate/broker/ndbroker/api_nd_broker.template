@@ -26,7 +26,7 @@ func TestNDBrokerGetBrokerInfoReq(t *testing.T) {
 
 func TestNDBrokerAddSubAccountReq(t *testing.T) {
     // AddSubAccount
-    // Add SubAccount
+    // Add sub-account
     // /api/v1/broker/nd/account
 
     builder := ndbroker.NewAddSubAccountReqBuilder()
@@ -49,7 +49,7 @@ func TestNDBrokerAddSubAccountReq(t *testing.T) {
 
 func TestNDBrokerGetSubAccountReq(t *testing.T) {
     // GetSubAccount
-    // Get SubAccount
+    // Get sub-account
     // /api/v1/broker/nd/account
 
     builder := ndbroker.NewGetSubAccountReqBuilder()
@@ -72,7 +72,7 @@ func TestNDBrokerGetSubAccountReq(t *testing.T) {
 
 func TestNDBrokerAddSubAccountApiReq(t *testing.T) {
     // AddSubAccountApi
-    // Add SubAccount API
+    // Add sub-account API
     // /api/v1/broker/nd/account/apikey
 
     builder := ndbroker.NewAddSubAccountApiReqBuilder()
@@ -95,7 +95,7 @@ func TestNDBrokerAddSubAccountApiReq(t *testing.T) {
 
 func TestNDBrokerGetSubAccountAPIReq(t *testing.T) {
     // GetSubAccountAPI
-    // Get SubAccount API
+    // Get sub-account API
     // /api/v1/broker/nd/account/apikey
 
     builder := ndbroker.NewGetSubAccountAPIReqBuilder()
@@ -118,7 +118,7 @@ func TestNDBrokerGetSubAccountAPIReq(t *testing.T) {
 
 func TestNDBrokerModifySubAccountApiReq(t *testing.T) {
     // ModifySubAccountApi
-    // Modify SubAccount API
+    // Modify sub-account API
     // /api/v1/broker/nd/account/update-apikey
 
     builder := ndbroker.NewModifySubAccountApiReqBuilder()
@@ -141,7 +141,7 @@ func TestNDBrokerModifySubAccountApiReq(t *testing.T) {
 
 func TestNDBrokerDeleteSubAccountAPIReq(t *testing.T) {
     // DeleteSubAccountAPI
-    // Delete SubAccount API
+    // Delete sub-account API
     // /api/v1/broker/nd/account/apikey
 
     builder := ndbroker.NewDeleteSubAccountAPIReqBuilder()

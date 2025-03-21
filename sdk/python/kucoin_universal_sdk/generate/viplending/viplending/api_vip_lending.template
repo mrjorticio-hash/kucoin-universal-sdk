@@ -1,15 +1,31 @@
 # API FUNCTION TEMPLATE
 
 
-def test_get_account_detail_req(self):
+def test_get_discount_rate_configs_req(self):
     """
-        get_account_detail
-        Get Account Detail
+        get_discount_rate_configs
+        Get Discount Rate Configs
+        /api/v1/otc-loan/discount-rate-configs
+    """
+
+    try:
+        resp = self.api.get_discount_rate_configs()
+        print("code: ", resp.common_response.code)
+        print("msg: ", resp.common_response.message)
+        print("data: ", resp.to_json())
+    except Exception as e:
+        print("error: ", e)
+        raise e
+
+def test_get_loan_info_req(self):
+    """
+        get_loan_info
+        Get Loan Info
         /api/v1/otc-loan/loan
     """
 
     try:
-        resp = self.api.get_account_detail()
+        resp = self.api.get_loan_info()
         print("code: ", resp.common_response.code)
         print("msg: ", resp.common_response.message)
         print("data: ", resp.to_json())

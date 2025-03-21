@@ -17,24 +17,24 @@ class GetAllCurrenciesData(BaseModel):
 
     Attributes:
         currency (str): A unique currency code that will never change
-        name (str): Currency name, will change after renaming
-        full_name (str): Full name of a currency, will change after renaming
+        name (str): Currency name; will change after renaming
+        full_name (str): Full currency name; will change after renaming
         precision (int): Currency precision
         confirms (int): Number of block confirmations
         contract_address (str): Contract address
-        is_margin_enabled (bool): Support margin or not
-        is_debit_enabled (bool): Support debit or not
-        chains (list[GetAllCurrenciesDataChains]): chain list
+        is_margin_enabled (bool): Margin support or not
+        is_debit_enabled (bool): Debit support or not
+        chains (list[GetAllCurrenciesDataChains]): Chain list
     """
 
     currency: Optional[str] = Field(
         default=None,
         description="A unique currency code that will never change")
     name: Optional[str] = Field(
-        default=None, description="Currency name, will change after renaming")
+        default=None, description="Currency name; will change after renaming")
     full_name: Optional[str] = Field(
         default=None,
-        description="Full name of a currency, will change after renaming",
+        description="Full currency name; will change after renaming",
         alias="fullName")
     precision: Optional[int] = Field(default=None,
                                      description="Currency precision")
@@ -45,14 +45,14 @@ class GetAllCurrenciesData(BaseModel):
                                             alias="contractAddress")
     is_margin_enabled: Optional[bool] = Field(
         default=None,
-        description="Support margin or not",
+        description="Margin support or not",
         alias="isMarginEnabled")
     is_debit_enabled: Optional[bool] = Field(
         default=None,
-        description="Support debit or not",
+        description="Debit support or not",
         alias="isDebitEnabled")
     chains: Optional[List[GetAllCurrenciesDataChains]] = Field(
-        default=None, description="chain list")
+        default=None, description="Chain list")
 
     __properties: ClassVar[List[str]] = [
         "currency", "name", "fullName", "precision", "confirms",

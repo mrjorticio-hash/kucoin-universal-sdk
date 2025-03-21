@@ -4,13 +4,13 @@ package withdrawal
 
 // GetWithdrawalHistoryItems struct for GetWithdrawalHistoryItems
 type GetWithdrawalHistoryItems struct {
-	// Unique id
+	// Unique ID
 	Id *string `json:"id,omitempty"`
 	// Currency
 	Currency *string `json:"currency,omitempty"`
 	// The id of currency
 	Chain *string `json:"chain,omitempty"`
-	// Status
+	// Status. Available value: REVIEW, PROCESSING, WALLET_PROCESSING, SUCCESS and FAILURE
 	Status *string `json:"status,omitempty"`
 	// Deposit address
 	Address *string `json:"address,omitempty"`
@@ -24,11 +24,11 @@ type GetWithdrawalHistoryItems struct {
 	Fee *string `json:"fee,omitempty"`
 	// Wallet Txid
 	WalletTxId *string `json:"walletTxId,omitempty"`
-	// Creation time of the database record
+	// Database record creation time
 	CreatedAt *int64 `json:"createdAt,omitempty"`
 	// Update time of the database record
 	UpdatedAt *int64 `json:"updatedAt,omitempty"`
-	// remark
+	// Remark
 	Remark *string `json:"remark,omitempty"`
 }
 

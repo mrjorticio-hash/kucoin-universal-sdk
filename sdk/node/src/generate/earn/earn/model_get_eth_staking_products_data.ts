@@ -40,22 +40,22 @@ export class GetETHStakingProductsData implements Serializable {
     returnRate: string;
 
     /**
-     * Min user subscribe amount
+     * Min. user subscribe amount
      */
     userLowerLimit: string;
 
     /**
-     * Max user subscribe amount
+     * Max. user subscription amount
      */
     userUpperLimit: string;
 
     /**
-     * Products total subscribe amount
+     * Products total subscription amount
      */
     productUpperLimit: string;
 
     /**
-     * Products remain subscribe amount
+     * Remaining product subscription amount
      */
     productRemainAmount: string;
 
@@ -95,12 +95,12 @@ export class GetETHStakingProductsData implements Serializable {
     lockEndTime?: number;
 
     /**
-     * Most recent interest date(millisecond)
+     * Most recent interest date (milliseconds)
      */
     interestDate: number;
 
     /**
-     * Whether the product is exclusive for new users: 0 (no), 1 (yes)
+     * Whether the product is exclusive to new users: 0 (no), 1 (yes)
      */
     newUserOnly: GetETHStakingProductsData.NewUserOnlyEnum;
 
@@ -115,7 +115,7 @@ export class GetETHStakingProductsData implements Serializable {
     duration: number;
 
     /**
-     * Product status: ONGOING(Subscription in progress), PENDING(Preheating Subscription), FULL(Subscribed), INTERESTING (Interest in progress)
+     * Product status: ONGOING (Subscription in progress), PENDING (Preheating Subscription), FULL (Subscribed), INTERESTING (Interest in progress)
      */
     status: GetETHStakingProductsData.StatusEnum;
 

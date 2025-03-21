@@ -10,9 +10,9 @@ type GetDepositListReq struct {
 	Status *string `json:"status,omitempty" url:"status,omitempty"`
 	// hash
 	Hash *string `json:"hash,omitempty" url:"hash,omitempty"`
-	// Start time (milisecond)
+	// Start time (milliseconds)
 	StartTimestamp *int64 `json:"startTimestamp,omitempty" url:"startTimestamp,omitempty"`
-	// End time (milisecond)，Default sorting in descending order
+	// End time (milliseconds); default sorting in descending order
 	EndTimestamp *int64 `json:"endTimestamp,omitempty" url:"endTimestamp,omitempty"`
 	// Maximum number of returned items, maximum 1000, default 1000
 	Limit *int32 `json:"limit,omitempty" url:"limit,omitempty"`
@@ -73,13 +73,13 @@ func (builder *GetDepositListReqBuilder) SetHash(value string) *GetDepositListRe
 	return builder
 }
 
-// Start time (milisecond)
+// Start time (milliseconds)
 func (builder *GetDepositListReqBuilder) SetStartTimestamp(value int64) *GetDepositListReqBuilder {
 	builder.obj.StartTimestamp = &value
 	return builder
 }
 
-// End time (milisecond)，Default sorting in descending order
+// End time (milliseconds); default sorting in descending order
 func (builder *GetDepositListReqBuilder) SetEndTimestamp(value int64) *GetDepositListReqBuilder {
 	builder.obj.EndTimestamp = &value
 	return builder

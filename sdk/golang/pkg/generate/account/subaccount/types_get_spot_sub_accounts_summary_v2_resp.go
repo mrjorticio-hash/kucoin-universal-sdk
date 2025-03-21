@@ -16,7 +16,7 @@ type GetSpotSubAccountsSummaryV2Resp struct {
 	PageSize int32 `json:"pageSize,omitempty"`
 	// Total number of messages
 	TotalNum int32 `json:"totalNum,omitempty"`
-	// Total number of page
+	// Total number of pages
 	TotalPage int32                              `json:"totalPage,omitempty"`
 	Items     []GetSpotSubAccountsSummaryV2Items `json:"items,omitempty"`
 }

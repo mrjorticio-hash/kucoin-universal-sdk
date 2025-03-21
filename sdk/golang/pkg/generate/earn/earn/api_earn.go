@@ -9,131 +9,131 @@ import (
 
 type EarnAPI interface {
 
-	// Purchase purchase
-	// Description: This endpoint allows subscribing earn product
+	// Purchase Purchase
+	// Description: This endpoint allows you to subscribe Earn products.
 	// Documentation: https://www.kucoin.com/docs-new/api-3470268
-	// +---------------------+---------+
-	// | Extra API Info      | Value   |
-	// +---------------------+---------+
-	// | API-DOMAIN          | SPOT    |
-	// | API-CHANNEL         | PRIVATE |
-	// | API-PERMISSION      | EARN    |
-	// | API-RATE-LIMIT-POOL | EARN    |
-	// | API-RATE-LIMIT      | 5       |
-	// +---------------------+---------+
+	// +-----------------------+---------+
+	// | Extra API Info        | Value   |
+	// +-----------------------+---------+
+	// | API-DOMAIN            | SPOT    |
+	// | API-CHANNEL           | PRIVATE |
+	// | API-PERMISSION        | EARN    |
+	// | API-RATE-LIMIT-POOL   | EARN    |
+	// | API-RATE-LIMIT-WEIGHT | 5       |
+	// +-----------------------+---------+
 	Purchase(req *PurchaseReq, ctx context.Context) (*PurchaseResp, error)
 
 	// GetRedeemPreview Get Redeem Preview
-	// Description: This endpoint allows subscribing earn products
+	// Description: This endpoint allows you to subscribe Earn products.
 	// Documentation: https://www.kucoin.com/docs-new/api-3470269
-	// +---------------------+---------+
-	// | Extra API Info      | Value   |
-	// +---------------------+---------+
-	// | API-DOMAIN          | SPOT    |
-	// | API-CHANNEL         | PRIVATE |
-	// | API-PERMISSION      | EARN    |
-	// | API-RATE-LIMIT-POOL | EARN    |
-	// | API-RATE-LIMIT      | 5       |
-	// +---------------------+---------+
+	// +-----------------------+---------+
+	// | Extra API Info        | Value   |
+	// +-----------------------+---------+
+	// | API-DOMAIN            | SPOT    |
+	// | API-CHANNEL           | PRIVATE |
+	// | API-PERMISSION        | EARN    |
+	// | API-RATE-LIMIT-POOL   | EARN    |
+	// | API-RATE-LIMIT-WEIGHT | 5       |
+	// +-----------------------+---------+
 	GetRedeemPreview(req *GetRedeemPreviewReq, ctx context.Context) (*GetRedeemPreviewResp, error)
 
 	// Redeem Redeem
-	// Description: This endpoint allows initiating redemption by holding ID. If the current holding is fully redeemed or in the process of being redeemed, it indicates that the holding does not exist.
+	// Description: This endpoint allows you to redeem Earn products by using holding ID. If the current holding is fully redeemed or in the process of being redeemed, it means that the holding does not exist.
 	// Documentation: https://www.kucoin.com/docs-new/api-3470270
-	// +---------------------+---------+
-	// | Extra API Info      | Value   |
-	// +---------------------+---------+
-	// | API-DOMAIN          | SPOT    |
-	// | API-CHANNEL         | PRIVATE |
-	// | API-PERMISSION      | EARN    |
-	// | API-RATE-LIMIT-POOL | EARN    |
-	// | API-RATE-LIMIT      | 5       |
-	// +---------------------+---------+
+	// +-----------------------+---------+
+	// | Extra API Info        | Value   |
+	// +-----------------------+---------+
+	// | API-DOMAIN            | SPOT    |
+	// | API-CHANNEL           | PRIVATE |
+	// | API-PERMISSION        | EARN    |
+	// | API-RATE-LIMIT-POOL   | EARN    |
+	// | API-RATE-LIMIT-WEIGHT | 5       |
+	// +-----------------------+---------+
 	Redeem(req *RedeemReq, ctx context.Context) (*RedeemResp, error)
 
 	// GetSavingsProducts Get Savings Products
-	// Description: This endpoint can get available savings products. If no products are available, an empty list is returned.
+	// Description: Available savings products can be obtained at this endpoint. If no products are available, an empty list is returned.
 	// Documentation: https://www.kucoin.com/docs-new/api-3470271
-	// +---------------------+---------+
-	// | Extra API Info      | Value   |
-	// +---------------------+---------+
-	// | API-DOMAIN          | SPOT    |
-	// | API-CHANNEL         | PRIVATE |
-	// | API-PERMISSION      | GENERAL |
-	// | API-RATE-LIMIT-POOL | EARN    |
-	// | API-RATE-LIMIT      | 5       |
-	// +---------------------+---------+
+	// +-----------------------+---------+
+	// | Extra API Info        | Value   |
+	// +-----------------------+---------+
+	// | API-DOMAIN            | SPOT    |
+	// | API-CHANNEL           | PRIVATE |
+	// | API-PERMISSION        | GENERAL |
+	// | API-RATE-LIMIT-POOL   | EARN    |
+	// | API-RATE-LIMIT-WEIGHT | 5       |
+	// +-----------------------+---------+
 	GetSavingsProducts(req *GetSavingsProductsReq, ctx context.Context) (*GetSavingsProductsResp, error)
 
 	// GetPromotionProducts Get Promotion Products
-	// Description: This endpoint can get available limited-time promotion products. If no products are available, an empty list is returned.
+	// Description: Available limited-duration products can be obtained at this endpoint. If no products are available, an empty list is returned.
 	// Documentation: https://www.kucoin.com/docs-new/api-3470272
-	// +---------------------+---------+
-	// | Extra API Info      | Value   |
-	// +---------------------+---------+
-	// | API-DOMAIN          | SPOT    |
-	// | API-CHANNEL         | PRIVATE |
-	// | API-PERMISSION      | GENERAL |
-	// | API-RATE-LIMIT-POOL | EARN    |
-	// | API-RATE-LIMIT      | 5       |
-	// +---------------------+---------+
+	// +-----------------------+---------+
+	// | Extra API Info        | Value   |
+	// +-----------------------+---------+
+	// | API-DOMAIN            | SPOT    |
+	// | API-CHANNEL           | PRIVATE |
+	// | API-PERMISSION        | GENERAL |
+	// | API-RATE-LIMIT-POOL   | EARN    |
+	// | API-RATE-LIMIT-WEIGHT | NULL    |
+	// +-----------------------+---------+
 	GetPromotionProducts(req *GetPromotionProductsReq, ctx context.Context) (*GetPromotionProductsResp, error)
 
-	// GetAccountHolding Get Account Holding
-	// Description: This endpoint can get current holding assets information. If no current holding assets are available, an empty list is returned.
-	// Documentation: https://www.kucoin.com/docs-new/api-3470273
-	// +---------------------+---------+
-	// | Extra API Info      | Value   |
-	// +---------------------+---------+
-	// | API-DOMAIN          | SPOT    |
-	// | API-CHANNEL         | PRIVATE |
-	// | API-PERMISSION      | GENERAL |
-	// | API-RATE-LIMIT-POOL | EARN    |
-	// | API-RATE-LIMIT      | 5       |
-	// +---------------------+---------+
-	GetAccountHolding(req *GetAccountHoldingReq, ctx context.Context) (*GetAccountHoldingResp, error)
-
 	// GetStakingProducts Get Staking Products
-	// Description: This endpoint can get available staking products. If no products are available, an empty list is returned.
+	// Description: Available staking products can be obtained at this endpoint. If no products are available, an empty list is returned.
 	// Documentation: https://www.kucoin.com/docs-new/api-3470274
-	// +---------------------+---------+
-	// | Extra API Info      | Value   |
-	// +---------------------+---------+
-	// | API-DOMAIN          | SPOT    |
-	// | API-CHANNEL         | PRIVATE |
-	// | API-PERMISSION      | GENERAL |
-	// | API-RATE-LIMIT-POOL | EARN    |
-	// | API-RATE-LIMIT      | 5       |
-	// +---------------------+---------+
+	// +-----------------------+---------+
+	// | Extra API Info        | Value   |
+	// +-----------------------+---------+
+	// | API-DOMAIN            | SPOT    |
+	// | API-CHANNEL           | PRIVATE |
+	// | API-PERMISSION        | GENERAL |
+	// | API-RATE-LIMIT-POOL   | EARN    |
+	// | API-RATE-LIMIT-WEIGHT | 5       |
+	// +-----------------------+---------+
 	GetStakingProducts(req *GetStakingProductsReq, ctx context.Context) (*GetStakingProductsResp, error)
 
 	// GetKcsStakingProducts Get KCS Staking Products
-	// Description: This endpoint can get available KCS staking products. If no products are available, an empty list is returned.
+	// Description: Available KCS staking products can be obtained at this endpoint. If no products are available, an empty list is returned.
 	// Documentation: https://www.kucoin.com/docs-new/api-3470275
-	// +---------------------+---------+
-	// | Extra API Info      | Value   |
-	// +---------------------+---------+
-	// | API-DOMAIN          | SPOT    |
-	// | API-CHANNEL         | PRIVATE |
-	// | API-PERMISSION      | GENERAL |
-	// | API-RATE-LIMIT-POOL | EARN    |
-	// | API-RATE-LIMIT      | 5       |
-	// +---------------------+---------+
+	// +-----------------------+---------+
+	// | Extra API Info        | Value   |
+	// +-----------------------+---------+
+	// | API-DOMAIN            | SPOT    |
+	// | API-CHANNEL           | PRIVATE |
+	// | API-PERMISSION        | GENERAL |
+	// | API-RATE-LIMIT-POOL   | EARN    |
+	// | API-RATE-LIMIT-WEIGHT | 5       |
+	// +-----------------------+---------+
 	GetKcsStakingProducts(req *GetKcsStakingProductsReq, ctx context.Context) (*GetKcsStakingProductsResp, error)
 
 	// GetETHStakingProducts Get ETH Staking Products
-	// Description: This endpoint can get available ETH staking products. If no products are available, an empty list is returned.
+	// Description: Available ETH staking products can be obtained at this endpoint. If no products are available, an empty list is returned.
 	// Documentation: https://www.kucoin.com/docs-new/api-3470276
-	// +---------------------+---------+
-	// | Extra API Info      | Value   |
-	// +---------------------+---------+
-	// | API-DOMAIN          | SPOT    |
-	// | API-CHANNEL         | PRIVATE |
-	// | API-PERMISSION      | GENERAL |
-	// | API-RATE-LIMIT-POOL | EARN    |
-	// | API-RATE-LIMIT      | 5       |
-	// +---------------------+---------+
+	// +-----------------------+---------+
+	// | Extra API Info        | Value   |
+	// +-----------------------+---------+
+	// | API-DOMAIN            | SPOT    |
+	// | API-CHANNEL           | PRIVATE |
+	// | API-PERMISSION        | GENERAL |
+	// | API-RATE-LIMIT-POOL   | EARN    |
+	// | API-RATE-LIMIT-WEIGHT | 5       |
+	// +-----------------------+---------+
 	GetETHStakingProducts(req *GetETHStakingProductsReq, ctx context.Context) (*GetETHStakingProductsResp, error)
+
+	// GetAccountHolding Get Account Holding
+	// Description: Information on currently held assets can be obtained at this endpoint. If no assets are currently held, an empty list is returned.
+	// Documentation: https://www.kucoin.com/docs-new/api-3470273
+	// +-----------------------+---------+
+	// | Extra API Info        | Value   |
+	// +-----------------------+---------+
+	// | API-DOMAIN            | SPOT    |
+	// | API-CHANNEL           | PRIVATE |
+	// | API-PERMISSION        | GENERAL |
+	// | API-RATE-LIMIT-POOL   | EARN    |
+	// | API-RATE-LIMIT-WEIGHT | 5       |
+	// +-----------------------+---------+
+	GetAccountHolding(req *GetAccountHoldingReq, ctx context.Context) (*GetAccountHoldingResp, error)
 }
 
 type EarnAPIImpl struct {
@@ -174,12 +174,6 @@ func (impl *EarnAPIImpl) GetPromotionProducts(req *GetPromotionProductsReq, ctx 
 	return resp, err
 }
 
-func (impl *EarnAPIImpl) GetAccountHolding(req *GetAccountHoldingReq, ctx context.Context) (*GetAccountHoldingResp, error) {
-	resp := &GetAccountHoldingResp{}
-	err := impl.transport.Call(ctx, "spot", false, "Get", "/api/v1/earn/hold-assets", req, resp, false)
-	return resp, err
-}
-
 func (impl *EarnAPIImpl) GetStakingProducts(req *GetStakingProductsReq, ctx context.Context) (*GetStakingProductsResp, error) {
 	resp := &GetStakingProductsResp{}
 	err := impl.transport.Call(ctx, "spot", false, "Get", "/api/v1/earn/staking/products", req, resp, false)
@@ -195,5 +189,11 @@ func (impl *EarnAPIImpl) GetKcsStakingProducts(req *GetKcsStakingProductsReq, ct
 func (impl *EarnAPIImpl) GetETHStakingProducts(req *GetETHStakingProductsReq, ctx context.Context) (*GetETHStakingProductsResp, error) {
 	resp := &GetETHStakingProductsResp{}
 	err := impl.transport.Call(ctx, "spot", false, "Get", "/api/v1/earn/eth-staking/products", req, resp, false)
+	return resp, err
+}
+
+func (impl *EarnAPIImpl) GetAccountHolding(req *GetAccountHoldingReq, ctx context.Context) (*GetAccountHoldingResp, error) {
+	resp := &GetAccountHoldingResp{}
+	err := impl.transport.Call(ctx, "spot", false, "Get", "/api/v1/earn/hold-assets", req, resp, false)
 	return resp, err
 }

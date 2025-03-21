@@ -155,6 +155,21 @@ export class GetOrdersListOldItems implements Serializable {
     tradeType: string;
 
     /**
+     *
+     */
+    tax?: string;
+
+    /**
+     *
+     */
+    taxRate?: string;
+
+    /**
+     *
+     */
+    taxCurrency?: string;
+
+    /**
      * Private constructor, please use the corresponding static methods to construct the object.
      */
     private constructor() {

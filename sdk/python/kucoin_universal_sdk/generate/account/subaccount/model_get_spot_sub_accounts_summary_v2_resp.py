@@ -21,7 +21,7 @@ class GetSpotSubAccountsSummaryV2Resp(BaseModel, Response):
         current_page (int): Current request page
         page_size (int): Number of results per request. Minimum is 1, maximum is 100
         total_num (int): Total number of messages
-        total_page (int): Total number of page
+        total_page (int): Total number of pages
         items (list[GetSpotSubAccountsSummaryV2Items]): 
     """
 
@@ -39,7 +39,7 @@ class GetSpotSubAccountsSummaryV2Resp(BaseModel, Response):
                                      description="Total number of messages",
                                      alias="totalNum")
     total_page: Optional[int] = Field(default=None,
-                                      description="Total number of page",
+                                      description="Total number of pages",
                                       alias="totalPage")
     items: Optional[List[GetSpotSubAccountsSummaryV2Items]] = None
 

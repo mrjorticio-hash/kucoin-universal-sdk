@@ -4,29 +4,49 @@ package order
 
 // GetRecentTradeHistoryOldData struct for GetRecentTradeHistoryOldData
 type GetRecentTradeHistoryOldData struct {
-	Symbol         *string `json:"symbol,omitempty"`
-	TradeId        *string `json:"tradeId,omitempty"`
-	OrderId        *string `json:"orderId,omitempty"`
-	CounterOrderId *string `json:"counterOrderId,omitempty"`
-	Side           *string `json:"side,omitempty"`
-	Liquidity      *string `json:"liquidity,omitempty"`
-	ForceTaker     *bool   `json:"forceTaker,omitempty"`
-	Price          *string `json:"price,omitempty"`
-	Size           *string `json:"size,omitempty"`
-	Funds          *string `json:"funds,omitempty"`
-	Fee            *string `json:"fee,omitempty"`
-	FeeRate        *string `json:"feeRate,omitempty"`
-	FeeCurrency    *string `json:"feeCurrency,omitempty"`
-	Stop           *string `json:"stop,omitempty"`
-	TradeType      *string `json:"tradeType,omitempty"`
-	Type           *string `json:"type,omitempty"`
-	CreatedAt      *int64  `json:"createdAt,omitempty"`
+	Symbol         string  `json:"symbol,omitempty"`
+	TradeId        string  `json:"tradeId,omitempty"`
+	OrderId        string  `json:"orderId,omitempty"`
+	CounterOrderId string  `json:"counterOrderId,omitempty"`
+	Side           string  `json:"side,omitempty"`
+	Liquidity      string  `json:"liquidity,omitempty"`
+	ForceTaker     bool    `json:"forceTaker,omitempty"`
+	Price          string  `json:"price,omitempty"`
+	Size           string  `json:"size,omitempty"`
+	Funds          string  `json:"funds,omitempty"`
+	Fee            string  `json:"fee,omitempty"`
+	FeeRate        string  `json:"feeRate,omitempty"`
+	FeeCurrency    string  `json:"feeCurrency,omitempty"`
+	Stop           string  `json:"stop,omitempty"`
+	TradeType      string  `json:"tradeType,omitempty"`
+	Type           string  `json:"type,omitempty"`
+	CreatedAt      int64   `json:"createdAt,omitempty"`
+	Tax            *string `json:"tax,omitempty"`
+	TaxCurrency    *string `json:"taxCurrency,omitempty"`
+	TaxRate        *string `json:"taxRate,omitempty"`
 }
 
 // NewGetRecentTradeHistoryOldData instantiates a new GetRecentTradeHistoryOldData object
 // This constructor will assign default values to properties that have it defined
-func NewGetRecentTradeHistoryOldData() *GetRecentTradeHistoryOldData {
+func NewGetRecentTradeHistoryOldData(symbol string, tradeId string, orderId string, counterOrderId string, side string, liquidity string, forceTaker bool, price string, size string, funds string, fee string, feeRate string, feeCurrency string, stop string, tradeType string, Type_ string, createdAt int64) *GetRecentTradeHistoryOldData {
 	this := GetRecentTradeHistoryOldData{}
+	this.Symbol = symbol
+	this.TradeId = tradeId
+	this.OrderId = orderId
+	this.CounterOrderId = counterOrderId
+	this.Side = side
+	this.Liquidity = liquidity
+	this.ForceTaker = forceTaker
+	this.Price = price
+	this.Size = size
+	this.Funds = funds
+	this.Fee = fee
+	this.FeeRate = feeRate
+	this.FeeCurrency = feeCurrency
+	this.Stop = stop
+	this.TradeType = tradeType
+	this.Type = Type_
+	this.CreatedAt = createdAt
 	return &this
 }
 
@@ -56,5 +76,8 @@ func (o *GetRecentTradeHistoryOldData) ToMap() map[string]interface{} {
 	toSerialize["tradeType"] = o.TradeType
 	toSerialize["type"] = o.Type
 	toSerialize["createdAt"] = o.CreatedAt
+	toSerialize["tax"] = o.Tax
+	toSerialize["taxCurrency"] = o.TaxCurrency
+	toSerialize["taxRate"] = o.TaxRate
 	return toSerialize
 }

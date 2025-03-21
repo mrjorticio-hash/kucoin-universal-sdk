@@ -14,7 +14,7 @@ class MarginPublicWS(ABC):
                     callback: IndexPriceEventCallback) -> str:
         """
         summary: Index Price
-        description: Subscribe to this topic to get the index price for the margin trading. The following ticker symbols are supported: List of currently supported symbol.
+        description: Subscribe to this topic to get the index price for margin trading. The following ticker symbols are supported: List of currently supported symbols.
         push frequency: once every 1s
         """
         pass
@@ -24,7 +24,7 @@ class MarginPublicWS(ABC):
                    callback: MarkPriceEventCallback) -> str:
         """
         summary: Mark Price
-        description: Subscribe to this topic to get the mark price for margin trading.The following ticker symbols are supported: List of currently supported symbol
+        description: Subscribe to this topic to get the mark price for margin trading. The following ticker symbols are supported: List of currently supported symbols
         push frequency: once every 1s
         """
         pass

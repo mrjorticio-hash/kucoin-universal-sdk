@@ -4,11 +4,11 @@ package fundingfees
 
 // GetPublicFundingHistoryReq struct for GetPublicFundingHistoryReq
 type GetPublicFundingHistoryReq struct {
-	// Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)
+	// Symbol of the contract. Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)
 	Symbol *string `json:"symbol,omitempty" url:"symbol,omitempty"`
-	// Begin time (milisecond)
+	// Begin time (milliseconds)
 	From *int64 `json:"from,omitempty" url:"from,omitempty"`
-	// End time (milisecond)
+	// End time (milliseconds)
 	To *int64 `json:"to,omitempty" url:"to,omitempty"`
 }
 
@@ -42,19 +42,19 @@ func NewGetPublicFundingHistoryReqBuilder() *GetPublicFundingHistoryReqBuilder {
 	return &GetPublicFundingHistoryReqBuilder{obj: NewGetPublicFundingHistoryReqWithDefaults()}
 }
 
-// Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)
+// Symbol of the contract. Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)
 func (builder *GetPublicFundingHistoryReqBuilder) SetSymbol(value string) *GetPublicFundingHistoryReqBuilder {
 	builder.obj.Symbol = &value
 	return builder
 }
 
-// Begin time (milisecond)
+// Begin time (milliseconds)
 func (builder *GetPublicFundingHistoryReqBuilder) SetFrom(value int64) *GetPublicFundingHistoryReqBuilder {
 	builder.obj.From = &value
 	return builder
 }
 
-// End time (milisecond)
+// End time (milliseconds)
 func (builder *GetPublicFundingHistoryReqBuilder) SetTo(value int64) *GetPublicFundingHistoryReqBuilder {
 	builder.obj.To = &value
 	return builder

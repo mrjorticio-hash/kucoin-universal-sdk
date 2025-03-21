@@ -22,7 +22,7 @@ class GetFuturesAccountTransferOutLedgerItems(BaseModel):
         rec_system (str): Receive system
         status (StatusEnum): Status PROCESSING, SUCCESS, FAILURE
         amount (str): Transaction amount
-        reason (str): Reason caused the failure
+        reason (str): Reason for the failure
         offset (int): Offset
         created_at (int): Request application time
         remark (str): User remark
@@ -54,7 +54,7 @@ class GetFuturesAccountTransferOutLedgerItems(BaseModel):
     amount: Optional[str] = Field(default=None,
                                   description="Transaction amount")
     reason: Optional[str] = Field(default=None,
-                                  description="Reason caused the failure")
+                                  description="Reason for the failure")
     offset: Optional[int] = Field(default=None, description="Offset")
     created_at: Optional[int] = Field(default=None,
                                       description="Request application time",

@@ -16,17 +16,17 @@ class GetAllTickersData(BaseModel):
     GetAllTickersData
 
     Attributes:
-        sequence (int): Sequence number, used to judge whether the messages pushed by Websocket is continuous.
+        sequence (int): Sequence number, used to judge whether the messages pushed by Websocket are continuous.
         symbol (str): Symbol
         side (SideEnum): Trade direction
-        size (int): Filled side, The trade side indicates the taker order side. A taker order is the order that was matched with orders opened on the order book.
+        size (int): Filled side; the trade side indicates the taker order side. A taker order is the order that was matched with orders opened on the order book.
         trade_id (str): Transaction ID
         price (str): Filled price
         best_bid_price (str): Best bid price
         best_bid_size (int): Best bid size
         best_ask_price (str): Best ask price
         best_ask_size (int): Best ask size
-        ts (int): Filled time(nanosecond)
+        ts (int): Filled time (nanoseconds)
     """
 
     class SideEnum(Enum):
@@ -41,7 +41,7 @@ class GetAllTickersData(BaseModel):
     sequence: Optional[int] = Field(
         default=None,
         description=
-        "Sequence number, used to judge whether the messages pushed by Websocket is continuous."
+        "Sequence number, used to judge whether the messages pushed by Websocket are continuous."
     )
     symbol: Optional[str] = Field(default=None, description="Symbol")
     side: Optional[SideEnum] = Field(default=None,
@@ -49,7 +49,7 @@ class GetAllTickersData(BaseModel):
     size: Optional[int] = Field(
         default=None,
         description=
-        "Filled side, The trade side indicates the taker order side. A taker order is the order that was matched with orders opened on the order book."
+        "Filled side; the trade side indicates the taker order side. A taker order is the order that was matched with orders opened on the order book."
     )
     trade_id: Optional[str] = Field(default=None,
                                     description="Transaction ID",
@@ -68,7 +68,7 @@ class GetAllTickersData(BaseModel):
                                          description="Best ask size",
                                          alias="bestAskSize")
     ts: Optional[int] = Field(default=None,
-                              description="Filled time(nanosecond)")
+                              description="Filled time (nanoseconds)")
 
     __properties: ClassVar[List[str]] = [
         "sequence", "symbol", "side", "size", "tradeId", "price",

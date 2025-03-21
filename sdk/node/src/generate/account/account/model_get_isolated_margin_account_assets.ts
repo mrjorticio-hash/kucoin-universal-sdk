@@ -12,7 +12,7 @@ export class GetIsolatedMarginAccountAssets implements Serializable {
     symbol: string;
 
     /**
-     * Position status; EFFECTIVE-effective, BANKRUPTCY-bankruptcy liquidation, LIQUIDATION-closing, REPAY-repayment, BORROW borrowing
+     * Position status; EFFECTIVE-effective, BANKRUPTCY-bankruptcy liquidation, LIQUIDATION-closing, REPAY-repayment, BORROW-borrowing
      */
     status: GetIsolatedMarginAccountAssets.StatusEnum;
 

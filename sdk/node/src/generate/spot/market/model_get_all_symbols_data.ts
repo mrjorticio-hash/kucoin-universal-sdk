@@ -5,22 +5,22 @@ import { Serializable } from '@internal/interfaces/serializable';
 
 export class GetAllSymbolsData implements Serializable {
     /**
-     * unique code of a symbol, it would not change after renaming
+     * Unique code of a symbol; it will not change after renaming
      */
     symbol: string;
 
     /**
-     * Name of trading pairs, it would change after renaming
+     * Name of trading pairs, it will change after renaming
      */
     name: string;
 
     /**
-     * Base currency,e.g. BTC.
+     * Base currency, e.g. BTC.
      */
     baseCurrency: string;
 
     /**
-     * Quote currency,e.g. USDT.
+     * Quote currency, e.g. USDT.
      */
     quoteCurrency: string;
 
@@ -35,7 +35,7 @@ export class GetAllSymbolsData implements Serializable {
     market: string;
 
     /**
-     * The minimum order quantity requried to place an order.
+     * The minimum order quantity required to place an order.
      */
     baseMinSize: string;
 
@@ -65,17 +65,17 @@ export class GetAllSymbolsData implements Serializable {
     quoteIncrement: string;
 
     /**
-     * Price increment: The price of an order must be a positive integer multiple of this increment. For example, for the ETH-USDT trading pair, if the priceIncrement is 0.01, the order price can be 3000.01 but not 3000.001.  specifies the min order price as well as the price increment.This also applies to quote currency.
+     * Price increment: The price of an order must be a positive integer multiple of this increment. For example, for the ETH-USDT trading pair, if the priceIncrement is 0.01, the order price can be 3000.01 but not 3000.001.  Specifies the min. order price as well as the price increment.This also applies to quote currency.
      */
     priceIncrement: string;
 
     /**
-     * Threshold for price portection
+     * Threshold for price protection
      */
     priceLimitRate: string;
 
     /**
-     * the minimum trading amounts
+     * The minimum trading amounts
      */
     minFunds: string;
 
@@ -105,9 +105,44 @@ export class GetAllSymbolsData implements Serializable {
     takerFeeCoefficient: string;
 
     /**
-     * Whether it is an [Special Treatment](https://www.kucoin.com/legal/special-treatment) symbol
+     * Whether it is a [Special Treatment](https://www.kucoin.com/legal/special-treatment) symbol
      */
     st: boolean;
+
+    /**
+     * The [call auction](https://www.kucoin.com/support/40999744334105) status returns true/false
+     */
+    callauctionIsEnabled: boolean;
+
+    /**
+     * The lowest price declared in the call auction
+     */
+    callauctionPriceFloor: string;
+
+    /**
+     * The highest bid price in the call auction
+     */
+    callauctionPriceCeiling: string;
+
+    /**
+     * The first phase of the call auction starts at (Allow add orders, allow cancel orders)
+     */
+    callauctionFirstStageStartTime: number;
+
+    /**
+     * The second phase of the call auction starts at (Allow add orders, don\'t allow cancel orders)
+     */
+    callauctionSecondStageStartTime: number;
+
+    /**
+     * The third phase of the call auction starts at (Don\'t allow add orders, don\'t allow cancel orders)
+     */
+    callauctionThirdStageStartTime: number;
+
+    /**
+     * Official opening time (end time of the third phase of call auction)
+     */
+    tradingStartTime: number;
 
     /**
      * Private constructor, please use the corresponding static methods to construct the object.
@@ -155,6 +190,20 @@ export class GetAllSymbolsData implements Serializable {
         this.takerFeeCoefficient = null;
         // @ts-ignore
         this.st = null;
+        // @ts-ignore
+        this.callauctionIsEnabled = null;
+        // @ts-ignore
+        this.callauctionPriceFloor = null;
+        // @ts-ignore
+        this.callauctionPriceCeiling = null;
+        // @ts-ignore
+        this.callauctionFirstStageStartTime = null;
+        // @ts-ignore
+        this.callauctionSecondStageStartTime = null;
+        // @ts-ignore
+        this.callauctionThirdStageStartTime = null;
+        // @ts-ignore
+        this.tradingStartTime = null;
     }
     /**
      * Convert the object to a JSON string.

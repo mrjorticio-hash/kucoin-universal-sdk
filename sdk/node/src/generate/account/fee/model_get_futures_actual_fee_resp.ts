@@ -6,7 +6,7 @@ import { Response } from '@internal/interfaces/serializable';
 
 export class GetFuturesActualFeeResp implements Response<RestResponse> {
     /**
-     * The unique identity of the trading pair and will not change even if the trading pair is renamed
+     * The unique identity of the trading pair; will not change even if the trading pair is renamed
      */
     symbol: string;
 

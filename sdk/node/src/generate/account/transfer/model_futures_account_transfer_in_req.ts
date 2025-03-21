@@ -5,17 +5,17 @@ import { Serializable } from '@internal/interfaces/serializable';
 
 export class FuturesAccountTransferInReq implements Serializable {
     /**
-     * Currency, including XBT,USDT...
+     * Currency, including XBT, USDT...
      */
     currency: string;
 
     /**
-     * Amount to be transfered in
+     * Amount to be transferred in
      */
     amount: number;
 
     /**
-     * Payment account type, including MAIN,TRADE
+     * Payment account type, including MAIN, TRADE
      */
     payAccountType: FuturesAccountTransferInReq.PayAccountTypeEnum;
 
@@ -43,15 +43,15 @@ export class FuturesAccountTransferInReq implements Serializable {
      */
     static create(data: {
         /**
-         * Currency, including XBT,USDT...
+         * Currency, including XBT, USDT...
          */
         currency: string;
         /**
-         * Amount to be transfered in
+         * Amount to be transferred in
          */
         amount: number;
         /**
-         * Payment account type, including MAIN,TRADE
+         * Payment account type, including MAIN, TRADE
          */
         payAccountType: FuturesAccountTransferInReq.PayAccountTypeEnum;
     }): FuturesAccountTransferInReq {
@@ -100,7 +100,7 @@ export class FuturesAccountTransferInReqBuilder {
         this.obj = obj;
     }
     /**
-     * Currency, including XBT,USDT...
+     * Currency, including XBT, USDT...
      */
     setCurrency(value: string): FuturesAccountTransferInReqBuilder {
         this.obj.currency = value;
@@ -108,7 +108,7 @@ export class FuturesAccountTransferInReqBuilder {
     }
 
     /**
-     * Amount to be transfered in
+     * Amount to be transferred in
      */
     setAmount(value: number): FuturesAccountTransferInReqBuilder {
         this.obj.amount = value;
@@ -116,7 +116,7 @@ export class FuturesAccountTransferInReqBuilder {
     }
 
     /**
-     * Payment account type, including MAIN,TRADE
+     * Payment account type, including MAIN, TRADE
      */
     setPayAccountType(
         value: FuturesAccountTransferInReq.PayAccountTypeEnum,

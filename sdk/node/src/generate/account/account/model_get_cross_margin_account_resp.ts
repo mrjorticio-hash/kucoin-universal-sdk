@@ -22,7 +22,7 @@ export class GetCrossMarginAccountResp implements Response<RestResponse> {
     debtRatio: string;
 
     /**
-     * Position status; EFFECTIVE-effective, BANKRUPTCY-bankruptcy liquidation, LIQUIDATION-closing, REPAY-repayment, BORROW borrowing
+     * Position status; EFFECTIVE-effective, BANKRUPTCY-bankruptcy liquidation, LIQUIDATION-closing, REPAY-repayment, BORROW-borrowing
      */
     status: GetCrossMarginAccountResp.StatusEnum;
 

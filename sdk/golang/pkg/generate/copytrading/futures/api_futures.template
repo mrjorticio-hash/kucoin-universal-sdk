@@ -7,7 +7,7 @@ func TestFuturesAddOrderReq(t *testing.T) {
     // /api/v1/copy-trade/futures/orders
 
     builder := futures.NewAddOrderReqBuilder()
-    builder.SetClientOid(?).SetSide(?).SetSymbol(?).SetLeverage(?).SetType(?).SetRemark(?).SetStop(?).SetStopPriceType(?).SetStopPrice(?).SetReduceOnly(?).SetCloseOrder(?).SetForceHold(?).SetMarginMode(?).SetPrice(?).SetSize(?).SetTimeInForce(?).SetPostOnly(?).SetHidden(?).SetIceberg(?).SetVisibleSize(?)
+    builder.SetClientOid(?).SetSide(?).SetSymbol(?).SetLeverage(?).SetType(?).SetStop(?).SetStopPriceType(?).SetStopPrice(?).SetReduceOnly(?).SetCloseOrder(?).SetMarginMode(?).SetPrice(?).SetSize(?).SetTimeInForce(?).SetPostOnly(?).SetHidden(?).SetIceberg(?).SetVisibleSize(?)
     req := builder.Build()
 
     resp, err := futuresApi.AddOrder(req, context.TODO())
@@ -30,7 +30,7 @@ func TestFuturesAddOrderTestReq(t *testing.T) {
     // /api/v1/copy-trade/futures/orders/test
 
     builder := futures.NewAddOrderTestReqBuilder()
-    builder.SetClientOid(?).SetSide(?).SetSymbol(?).SetLeverage(?).SetType(?).SetRemark(?).SetStop(?).SetStopPriceType(?).SetStopPrice(?).SetReduceOnly(?).SetCloseOrder(?).SetForceHold(?).SetMarginMode(?).SetPrice(?).SetSize(?).SetTimeInForce(?).SetPostOnly(?).SetHidden(?).SetIceberg(?).SetVisibleSize(?)
+    builder.SetClientOid(?).SetSide(?).SetSymbol(?).SetLeverage(?).SetType(?).SetStop(?).SetStopPriceType(?).SetStopPrice(?).SetReduceOnly(?).SetCloseOrder(?).SetMarginMode(?).SetPrice(?).SetSize(?).SetTimeInForce(?).SetPostOnly(?).SetHidden(?).SetIceberg(?).SetVisibleSize(?)
     req := builder.Build()
 
     resp, err := futuresApi.AddOrderTest(req, context.TODO())
@@ -53,7 +53,7 @@ func TestFuturesAddTPSLOrderReq(t *testing.T) {
     // /api/v1/copy-trade/futures/st-orders
 
     builder := futures.NewAddTPSLOrderReqBuilder()
-    builder.SetClientOid(?).SetSide(?).SetSymbol(?).SetLeverage(?).SetType(?).SetRemark(?).SetStopPriceType(?).SetReduceOnly(?).SetCloseOrder(?).SetForceHold(?).SetMarginMode(?).SetPrice(?).SetSize(?).SetTimeInForce(?).SetPostOnly(?).SetHidden(?).SetIceberg(?).SetVisibleSize(?).SetTriggerStopUpPrice(?).SetTriggerStopDownPrice(?)
+    builder.SetClientOid(?).SetSide(?).SetSymbol(?).SetLeverage(?).SetType(?).SetStopPriceType(?).SetReduceOnly(?).SetCloseOrder(?).SetMarginMode(?).SetPrice(?).SetSize(?).SetTimeInForce(?).SetPostOnly(?).SetHidden(?).SetIceberg(?).SetVisibleSize(?).SetTriggerStopUpPrice(?).SetTriggerStopDownPrice(?)
     req := builder.Build()
 
     resp, err := futuresApi.AddTPSLOrder(req, context.TODO())

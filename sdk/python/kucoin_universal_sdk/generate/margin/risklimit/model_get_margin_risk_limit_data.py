@@ -22,9 +22,9 @@ class GetMarginRiskLimitData(BaseModel):
         hold_max_amount (str): CROSS MARGIN RESPONSES, Maximum holding amount
         borrow_coefficient (str): CROSS MARGIN RESPONSES, [Borrow Coefficient](https://www.kucoin.com/land/price-protect)
         margin_coefficient (str): CROSS MARGIN RESPONSES, [Margin Coefficient](https://www.kucoin.com/land/price-protect)
-        precision (int): CROSS MARGIN RESPONSES, Currency precision. the minimum repayment amount of a single transaction should be >= currency precision, for example, the precision of ETH is 8, and the minimum repayment amount is 0.00000001
+        precision (int): CROSS MARGIN RESPONSES, Currency precision. The minimum repayment amount of a single transaction should be >= currency precision. For example, the precision of ETH is 8, and the minimum repayment amount is 0.00000001
         borrow_min_amount (str): CROSS MARGIN RESPONSES, Minimum personal borrow amount
-        borrow_min_unit (str): CROSS MARGIN RESPONSES, Minimum unit for borrowing, the borrowed amount must be an integer multiple of this value
+        borrow_min_unit (str): CROSS MARGIN RESPONSES, Minimum unit for borrowing; the borrowed amount must be an integer multiple of this value
         borrow_enabled (bool): CROSS MARGIN RESPONSES, Whether to support borrowing
         symbol (str): ISOLATED MARGIN RESPONSES, Symbol
         base_max_borrow_amount (str): ISOLATED MARGIN RESPONSES, Base maximum personal borrow amount. If the platform has no borrowing amount, this value will still be displayed.
@@ -33,8 +33,8 @@ class GetMarginRiskLimitData(BaseModel):
         quote_max_buy_amount (str): ISOLATED MARGIN RESPONSES, Quote maximum buy amount
         base_max_hold_amount (str): ISOLATED MARGIN RESPONSES, Base maximum holding amount 
         quote_max_hold_amount (str): ISOLATED MARGIN RESPONSES, Quote maximum holding amount 
-        base_precision (int): ISOLATED MARGIN RESPONSES, Base currency precision. the minimum repayment amount of a single transaction should be >= currency precision, for example, the precision of ETH is 8, and the minimum repayment amount is 0.00000001
-        quote_precision (int): ISOLATED MARGIN RESPONSES, Quote currency precision. the minimum repayment amount of a single transaction should be >= currency precision, for example, the precision of ETH is 8, and the minimum repayment amount is 0.00000001 
+        base_precision (int): ISOLATED MARGIN RESPONSES, Base currency precision. The minimum repayment amount of a single transaction should be >= currency precision. For example, the precision of ETH is 8, and the minimum repayment amount is 0.00000001
+        quote_precision (int): ISOLATED MARGIN RESPONSES, Quote currency precision. The minimum repayment amount of a single transaction should be >= currency precision. For example, the precision of ETH is 8, and the minimum repayment amount is 0.00000001 
         base_borrow_min_amount (str): ISOLATED MARGIN RESPONSES, Base minimum personal borrow amount 
         quote_borrow_min_amount (str): ISOLATED MARGIN RESPONSES, Quote minimum personal borrow amount
         base_borrow_min_unit (str): ISOLATED MARGIN RESPONSES, Base minimum unit for borrowing, the borrowed amount must be an integer multiple of this value
@@ -76,7 +76,7 @@ class GetMarginRiskLimitData(BaseModel):
     precision: Optional[int] = Field(
         default=None,
         description=
-        "CROSS MARGIN RESPONSES, Currency precision. the minimum repayment amount of a single transaction should be >= currency precision, for example, the precision of ETH is 8, and the minimum repayment amount is 0.00000001"
+        "CROSS MARGIN RESPONSES, Currency precision. The minimum repayment amount of a single transaction should be >= currency precision. For example, the precision of ETH is 8, and the minimum repayment amount is 0.00000001"
     )
     borrow_min_amount: Optional[str] = Field(
         default=None,
@@ -85,7 +85,7 @@ class GetMarginRiskLimitData(BaseModel):
     borrow_min_unit: Optional[str] = Field(
         default=None,
         description=
-        "CROSS MARGIN RESPONSES, Minimum unit for borrowing, the borrowed amount must be an integer multiple of this value",
+        "CROSS MARGIN RESPONSES, Minimum unit for borrowing; the borrowed amount must be an integer multiple of this value",
         alias="borrowMinUnit")
     borrow_enabled: Optional[bool] = Field(
         default=None,
@@ -122,12 +122,12 @@ class GetMarginRiskLimitData(BaseModel):
     base_precision: Optional[int] = Field(
         default=None,
         description=
-        "ISOLATED MARGIN RESPONSES, Base currency precision. the minimum repayment amount of a single transaction should be >= currency precision, for example, the precision of ETH is 8, and the minimum repayment amount is 0.00000001",
+        "ISOLATED MARGIN RESPONSES, Base currency precision. The minimum repayment amount of a single transaction should be >= currency precision. For example, the precision of ETH is 8, and the minimum repayment amount is 0.00000001",
         alias="basePrecision")
     quote_precision: Optional[int] = Field(
         default=None,
         description=
-        "ISOLATED MARGIN RESPONSES, Quote currency precision. the minimum repayment amount of a single transaction should be >= currency precision, for example, the precision of ETH is 8, and the minimum repayment amount is 0.00000001 ",
+        "ISOLATED MARGIN RESPONSES, Quote currency precision. The minimum repayment amount of a single transaction should be >= currency precision. For example, the precision of ETH is 8, and the minimum repayment amount is 0.00000001 ",
         alias="quotePrecision")
     base_borrow_min_amount: Optional[str] = Field(
         default=None,

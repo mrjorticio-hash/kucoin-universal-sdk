@@ -5,7 +5,7 @@ import { Serializable } from '@internal/interfaces/serializable';
 
 export class GetOrderByClientOidReq implements Serializable {
     /**
-     * The user self-defined order id.
+     * The user self-defined order ID.
      */
     clientOid?: string;
 
@@ -26,7 +26,7 @@ export class GetOrderByClientOidReq implements Serializable {
      */
     static create(data: {
         /**
-         * The user self-defined order id.
+         * The user self-defined order ID.
          */
         clientOid?: string;
     }): GetOrderByClientOidReq {
@@ -60,7 +60,7 @@ export class GetOrderByClientOidReqBuilder {
         this.obj = obj;
     }
     /**
-     * The user self-defined order id.
+     * The user self-defined order ID.
      */
     setClientOid(value: string): GetOrderByClientOidReqBuilder {
         this.obj.clientOid = value;

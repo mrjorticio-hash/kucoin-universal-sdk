@@ -19,16 +19,16 @@ class GetDepositListData(BaseModel):
         uid (float): deposit uid
         hash (str): hash
         address (str): Deposit address
-        memo (str): Address remark. If there’s no remark, it is empty. When you withdraw from other platforms to the KuCoin, you need to fill in memo(tag). If you do not fill memo (tag), your deposit may not be available, please be cautious.
+        memo (str): Address remark. If there’s no remark, it is empty. When you withdraw from other platforms to KuCoin, you need to fill in memo(tag). Be careful: If you do not fill in memo(tag), your deposit may not be available.
         amount (str): Deposit amount
         fee (str): Fees charged for deposit
         currency (str): currency
         is_inner (bool): Internal deposit or not
         wallet_tx_id (str): Wallet Txid
         status (StatusEnum): Status. Available value: PROCESSING, SUCCESS, FAILURE
-        remark (str): remark
-        chain (str): chain name of currency
-        created_at (int): Creation time of the database record
+        remark (str): Remark
+        chain (str): Chain name of currency
+        created_at (int): Database record creation time
         updated_at (int): Update time of the database record
     """
 
@@ -49,7 +49,7 @@ class GetDepositListData(BaseModel):
     memo: Optional[str] = Field(
         default=None,
         description=
-        "Address remark. If there’s no remark, it is empty. When you withdraw from other platforms to the KuCoin, you need to fill in memo(tag). If you do not fill memo (tag), your deposit may not be available, please be cautious."
+        "Address remark. If there’s no remark, it is empty. When you withdraw from other platforms to KuCoin, you need to fill in memo(tag). Be careful: If you do not fill in memo(tag), your deposit may not be available."
     )
     amount: Optional[str] = Field(default=None, description="Deposit amount")
     fee: Optional[str] = Field(default=None,
@@ -64,12 +64,12 @@ class GetDepositListData(BaseModel):
     status: Optional[StatusEnum] = Field(
         default=None,
         description="Status. Available value: PROCESSING, SUCCESS, FAILURE")
-    remark: Optional[str] = Field(default=None, description="remark")
+    remark: Optional[str] = Field(default=None, description="Remark")
     chain: Optional[str] = Field(default=None,
-                                 description="chain name of currency")
+                                 description="Chain name of currency")
     created_at: Optional[int] = Field(
         default=None,
-        description="Creation time of the database record",
+        description="Database record creation time",
         alias="createdAt")
     updated_at: Optional[int] = Field(
         default=None,

@@ -16,13 +16,13 @@ class GetBorrowHistoryItems(BaseModel):
     GetBorrowHistoryItems
 
     Attributes:
-        order_no (str): Borrow Order Id
+        order_no (str): Borrow Order ID
         symbol (str): Isolated Margin symbol; empty for cross margin
         currency (str): currency
         size (str): Initiated borrow amount
         actual_size (str): Actual borrow amount
         status (StatusEnum): PENDING: Processing, SUCCESS: Successful, FAILED: Failed
-        created_time (int): borrow time
+        created_time (int): Borrow time
     """
 
     class StatusEnum(Enum):
@@ -37,7 +37,7 @@ class GetBorrowHistoryItems(BaseModel):
         FAILED = 'FAILED'
 
     order_no: Optional[str] = Field(default=None,
-                                    description="Borrow Order Id",
+                                    description="Borrow Order ID",
                                     alias="orderNo")
     symbol: Optional[str] = Field(
         default=None,
@@ -52,7 +52,7 @@ class GetBorrowHistoryItems(BaseModel):
         default=None,
         description="PENDING: Processing, SUCCESS: Successful, FAILED: Failed")
     created_time: Optional[int] = Field(default=None,
-                                        description="borrow time",
+                                        description="Borrow time",
                                         alias="createdTime")
 
     __properties: ClassVar[List[str]] = [

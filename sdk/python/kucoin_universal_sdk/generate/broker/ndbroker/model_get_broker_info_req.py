@@ -18,7 +18,7 @@ class GetBrokerInfoReq(BaseModel):
     Attributes:
         begin (str): Start time, for example: 20230110
         end (str): End time, for example: 20230210 (query data with a maximum interval of 6 months) 
-        trade_type (TradeTypeEnum): Transaction type, 1: spot 2: futures
+        trade_type (TradeTypeEnum): Transaction type: 1, spot; 2: futures
     """
 
     class TradeTypeEnum(Enum):
@@ -39,7 +39,7 @@ class GetBrokerInfoReq(BaseModel):
     )
     trade_type: Optional[TradeTypeEnum] = Field(
         default=None,
-        description="Transaction type, 1: spot 2: futures",
+        description="Transaction type: 1, spot; 2: futures",
         alias="tradeType")
 
     __properties: ClassVar[List[str]] = ["begin", "end", "tradeType"]
@@ -107,7 +107,7 @@ class GetBrokerInfoReqBuilder:
             self,
             value: GetBrokerInfoReq.TradeTypeEnum) -> GetBrokerInfoReqBuilder:
         """
-        Transaction type, 1: spot 2: futures
+        Transaction type: 1, spot; 2: futures
         """
         self.obj['tradeType'] = value
         return self

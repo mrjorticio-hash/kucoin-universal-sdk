@@ -16,7 +16,7 @@ type GetFuturesAccountTransferOutLedgerItems struct {
 	Status *string `json:"status,omitempty"`
 	// Transaction amount
 	Amount *string `json:"amount,omitempty"`
-	// Reason caused the failure
+	// Reason for the failure
 	Reason *string `json:"reason,omitempty"`
 	// Offset
 	Offset *int64 `json:"offset,omitempty"`

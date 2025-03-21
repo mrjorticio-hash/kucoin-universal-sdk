@@ -4,7 +4,7 @@ package subaccount
 
 // GetSpotSubAccountsSummaryV2Items struct for GetSpotSubAccountsSummaryV2Items
 type GetSpotSubAccountsSummaryV2Items struct {
-	// Sub-account User Id
+	// Sub-account User ID
 	UserId string `json:"userId,omitempty"`
 	// Sub-account UID
 	Uid int32 `json:"uid,omitempty"`
@@ -16,13 +16,13 @@ type GetSpotSubAccountsSummaryV2Items struct {
 	Type int32 `json:"type,omitempty"`
 	// Sub-account Permission
 	Access string `json:"access,omitempty"`
-	// Time of the event
+	// Time of event
 	CreatedAt int64 `json:"createdAt,omitempty"`
 	// Remarks
 	Remarks string `json:"remarks,omitempty"`
-	// Subaccount Permissions
+	// Sub-account Permissions
 	TradeTypes []string `json:"tradeTypes,omitempty"`
-	// Subaccount active permissions,If do not have the corresponding permissions, need to log in to the sub-account and go to the corresponding web page to activate
+	// Sub-account active permissions: If you do not have the corresponding permissions, you must log in to the sub-account and go to the corresponding web page to activate.
 	OpenedTradeTypes []string `json:"openedTradeTypes,omitempty"`
 	HostedStatus     string   `json:"hostedStatus,omitempty"`
 }

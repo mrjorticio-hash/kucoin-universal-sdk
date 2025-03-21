@@ -10,7 +10,7 @@ type GetBorrowHistoryReq struct {
 	IsIsolated *bool `json:"isIsolated,omitempty" url:"isIsolated,omitempty"`
 	// symbol, mandatory for isolated margin account
 	Symbol *string `json:"symbol,omitempty" url:"symbol,omitempty"`
-	// Borrow Order Id
+	// Borrow Order ID
 	OrderNo *string `json:"orderNo,omitempty" url:"orderNo,omitempty"`
 	// The start and end times are not restricted. If the start time is empty or less than 1680278400000, the default value is set to 1680278400000 (April 1, 2023, 00:00:00)
 	StartTime *int64 `json:"startTime,omitempty" url:"startTime,omitempty"`
@@ -87,7 +87,7 @@ func (builder *GetBorrowHistoryReqBuilder) SetSymbol(value string) *GetBorrowHis
 	return builder
 }
 
-// Borrow Order Id
+// Borrow Order ID
 func (builder *GetBorrowHistoryReqBuilder) SetOrderNo(value string) *GetBorrowHistoryReqBuilder {
 	builder.obj.OrderNo = &value
 	return builder

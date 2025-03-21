@@ -11,22 +11,19 @@ import (
 type OrderbookLevel50Event struct {
 	// common response
 	CommonResponse *types.WsMessage
-	Changes        OrderbookLevel50Changes `json:"changes,omitempty"`
-	SequenceEnd    int64                   `json:"sequenceEnd,omitempty"`
-	SequenceStart  int64                   `json:"sequenceStart,omitempty"`
-	Symbol         string                  `json:"symbol,omitempty"`
-	Time           int64                   `json:"time,omitempty"`
+	// price, size
+	Asks      [][]string `json:"asks,omitempty"`
+	Bids      [][]string `json:"bids,omitempty"`
+	Timestamp int64      `json:"timestamp,omitempty"`
 }
 
 // NewOrderbookLevel50Event instantiates a new OrderbookLevel50Event object
 // This constructor will assign default values to properties that have it defined
-func NewOrderbookLevel50Event(changes OrderbookLevel50Changes, sequenceEnd int64, sequenceStart int64, symbol string, time int64) *OrderbookLevel50Event {
+func NewOrderbookLevel50Event(asks [][]string, bids [][]string, timestamp int64) *OrderbookLevel50Event {
 	this := OrderbookLevel50Event{}
-	this.Changes = changes
-	this.SequenceEnd = sequenceEnd
-	this.SequenceStart = sequenceStart
-	this.Symbol = symbol
-	this.Time = time
+	this.Asks = asks
+	this.Bids = bids
+	this.Timestamp = timestamp
 	return &this
 }
 
@@ -39,11 +36,9 @@ func NewOrderbookLevel50EventWithDefaults() *OrderbookLevel50Event {
 
 func (o *OrderbookLevel50Event) ToMap() map[string]interface{} {
 	toSerialize := map[string]interface{}{}
-	toSerialize["changes"] = o.Changes
-	toSerialize["sequenceEnd"] = o.SequenceEnd
-	toSerialize["sequenceStart"] = o.SequenceStart
-	toSerialize["symbol"] = o.Symbol
-	toSerialize["time"] = o.Time
+	toSerialize["asks"] = o.Asks
+	toSerialize["bids"] = o.Bids
+	toSerialize["timestamp"] = o.Timestamp
 	return toSerialize
 }
 

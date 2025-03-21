@@ -37,7 +37,7 @@ function auth(apiKey, method, url, data) {
         'KC-API-PASSPHRASE': sign(apiKey.passphrase || '', apiKey.secret),
         'Content-Type': 'application/json',
         'User-Agent': `Kucoin-Universal-Postman-SDK/{{SDK-VERSION}}`,
-        'KC-API-KEY-VERSION': 2,
+        'KC-API-KEY-VERSION': 3,
     };
 }
 

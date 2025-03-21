@@ -187,8 +187,7 @@ describe('Auto Test', () => {
          * Get Max Open Size
          * /api/v1/copy-trade/futures/get-max-open-size
          */
-        let data =
-            '{"symbol": "XBTUSDTM", "price": "example_string_default_value", "leverage": 123456}';
+        let data = '{"symbol": "XBTUSDTM", "price": 123456.0, "leverage": 123456}';
         let req = GetMaxOpenSizeReq.fromJson(data);
         expect(Object.values(req).every((value) => value === null || value === undefined)).toBe(
             false,
@@ -203,7 +202,7 @@ describe('Auto Test', () => {
          * /api/v1/copy-trade/futures/get-max-open-size
          */
         let data =
-            '{\n    "code": "200000",\n    "data": {\n        "symbol": "XBTUSDTM",\n        "maxBuyOpenSize": "8",\n        "maxSellOpenSize": "5"\n    }\n}';
+            '{\n    "code": "200000",\n    "data": {\n        "symbol": "XBTUSDTM",\n        "maxBuyOpenSize": "1000000",\n        "maxSellOpenSize": "51"\n    }\n}';
         let commonResp = RestResponse.fromJson(data);
         let resp = GetMaxOpenSizeResp.fromObject(commonResp.data);
         if (commonResp.data !== null) {
@@ -280,7 +279,7 @@ describe('Auto Test', () => {
          * Remove Isolated Margin
          * /api/v1/copy-trade/futures/position/margin/withdraw-margin
          */
-        let data = '{"symbol": "XBTUSDTM", "withdrawAmount": "0.0000001"}';
+        let data = '{"symbol": "XBTUSDTM", "withdrawAmount": 1e-07}';
         let req = RemoveIsolatedMarginReq.fromJson(data);
         expect(Object.values(req).every((value) => value === null || value === undefined)).toBe(
             false,

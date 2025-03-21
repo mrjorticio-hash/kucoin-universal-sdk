@@ -17,7 +17,7 @@ class InstrumentEvent(BaseModel):
     InstrumentEvent
 
     Attributes:
-        granularity (int): Granularity (predicted funding rate: 1-min granularity: 60000; Funding rate: 8-hours granularity: 28800000. )
+        granularity (int): Granularity (predicted funding rate: 1-min granularity: 60000; Funding rate: 8-hours granularity: 28800000.)
         funding_rate (float): 
         timestamp (int): 
         mark_price (float): 
@@ -29,7 +29,7 @@ class InstrumentEvent(BaseModel):
     granularity: Optional[int] = Field(
         default=None,
         description=
-        "Granularity (predicted funding rate: 1-min granularity: 60000; Funding rate: 8-hours granularity: 28800000. )"
+        "Granularity (predicted funding rate: 1-min granularity: 60000; Funding rate: 8-hours granularity: 28800000.)"
     )
     funding_rate: Optional[float] = Field(default=None, alias="fundingRate")
     timestamp: Optional[int] = None

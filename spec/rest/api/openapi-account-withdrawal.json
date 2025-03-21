@@ -11,7 +11,7 @@
             "get": {
                 "summary": "Get Withdrawal Quotas",
                 "deprecated": false,
-                "description": "This interface can obtain the withdrawal quotas information of this currency.",
+                "description": "This interface can obtain the withdrawal quota information of this currency.",
                 "tags": [],
                 "parameters": [
                     {
@@ -31,7 +31,7 @@
                     {
                         "name": "chain",
                         "in": "query",
-                        "description": "The chainId of currency, e.g. The available value for USDT are OMNI, ERC20, TRC20, default is ERC20. The available value for BTC are Native, Segwit, TRC20, the parameters are bech32, btc, trx, default is Native. This only apply for multi-chain currency, and there is no need for single chain currency.",
+                        "description": "The chainId of currency, e.g. the available values for USDT are OMNI, ERC20, and TRC20; default is ERC20. The available values for BTC are Native, Segwit, TRC20; the parameters are bech32, btc, trx; default is Native. This only applies to multi-chain currencies; no need for single-chain currencies.",
                         "required": false,
                         "schema": {
                             "type": "string",
@@ -75,15 +75,15 @@
                                                 },
                                                 "quotaCurrency": {
                                                     "type": "string",
-                                                    "description": "withdrawal limit currency"
+                                                    "description": "Withdrawal limit currency"
                                                 },
                                                 "limitQuotaCurrencyAmount": {
                                                     "type": "string",
-                                                    "description": "The intraday available withdrawal amount(withdrawal limit currency)"
+                                                    "description": "The intraday available withdrawal amount (withdrawal limit currency)"
                                                 },
                                                 "usedQuotaCurrencyAmount": {
                                                     "type": "string",
-                                                    "description": "The intraday cumulative withdrawal amount(withdrawal limit currency)"
+                                                    "description": "The intraday cumulative withdrawal amount (withdrawal limit currency)"
                                                 },
                                                 "remainAmount": {
                                                     "type": "string",
@@ -107,7 +107,7 @@
                                                 },
                                                 "isWithdrawEnabled": {
                                                     "type": "boolean",
-                                                    "description": "Is the withdraw function enabled or not"
+                                                    "description": "Is the withdraw function enabled?"
                                                 },
                                                 "precision": {
                                                     "type": "integer",
@@ -130,7 +130,7 @@
                                                 },
                                                 "reason": {
                                                     "type": "string",
-                                                    "description": "Reasons for restriction, Usually empty"
+                                                    "description": "Reasons for restriction. Usually empty."
                                                 },
                                                 "lockedAmount": {
                                                     "type": "string",
@@ -175,8 +175,8 @@
                 "x-sdk-service": "Account",
                 "x-sdk-sub-service": "Withdrawal",
                 "x-sdk-method-name": "getWithdrawalQuotas",
-                "x-sdk-method-description": "This interface can obtain the withdrawal quotas information of this currency.",
-                "x-api-rate-limit": 20,
+                "x-sdk-method-description": "This interface can obtain the withdrawal quota information of this currency.",
+                "x-api-rate-limit-weight": 20,
                 "x-response-example": "{\\\"code\\\":\\\"200000\\\",\\\"data\\\":{\\\"currency\\\":\\\"BTC\\\",\\\"limitBTCAmount\\\":\\\"15.79590095\\\",\\\"usedBTCAmount\\\":\\\"0.00000000\\\",\\\"quotaCurrency\\\":\\\"USDT\\\",\\\"limitQuotaCurrencyAmount\\\":\\\"999999.00000000\\\",\\\"usedQuotaCurrencyAmount\\\":\\\"0\\\",\\\"remainAmount\\\":\\\"15.79590095\\\",\\\"availableAmount\\\":\\\"0\\\",\\\"withdrawMinFee\\\":\\\"0.0005\\\",\\\"innerWithdrawMinFee\\\":\\\"0\\\",\\\"withdrawMinSize\\\":\\\"0.001\\\",\\\"isWithdrawEnabled\\\":true,\\\"precision\\\":8,\\\"chain\\\":\\\"BTC\\\",\\\"reason\\\":null,\\\"lockedAmount\\\":\\\"0\\\"}}",
                 "x-request-example": "{\\\"currency\\\": \\\"BTC\\\", \\\"chain\\\": \\\"eth\\\"}",
                 "operationId": "001"
@@ -184,9 +184,9 @@
         },
         "/api/v3/withdrawals": {
             "post": {
-                "summary": "Withdraw(V3)",
+                "summary": "Withdraw (V3)",
                 "deprecated": false,
-                "description": "Use this interface to withdraw the specified currency",
+                "description": "Use this interface to withdraw the specified currency.",
                 "tags": [],
                 "parameters": [],
                 "responses": {
@@ -231,8 +231,8 @@
                 "x-sdk-service": "Account",
                 "x-sdk-sub-service": "Withdrawal",
                 "x-sdk-method-name": "withdrawalV3",
-                "x-sdk-method-description": "Use this interface to withdraw the specified currency",
-                "x-api-rate-limit": 5,
+                "x-sdk-method-description": "Use this interface to withdraw the specified currency.",
+                "x-api-rate-limit-weight": 5,
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -251,7 +251,7 @@
                                     },
                                     "chain": {
                                         "type": "string",
-                                        "description": "The chainId of currency, For a currency with multiple chains, it is recommended to specify chain parameter instead of using the default chain; you can query the chainId through the response of the GET /api/v3/currencies/{currency} interface.",
+                                        "description": "The chainId of currency, For a currency with multiple chains, it is recommended to specify the chain parameter instead of using the default chain; you can query the chainId through the response of the GET /api/v3/currencies/{currency} interface.",
                                         "default": "eth",
                                         "example": [
                                             "eth",
@@ -272,20 +272,20 @@
                                     },
                                     "memo": {
                                         "type": "string",
-                                        "description": "Address remark. If there’s no remark, it is empty. When you withdraw from other platforms to the KuCoin, you need to fill in memo(tag). If you do not fill memo (tag), your deposit may not be available, please be cautious."
+                                        "description": "Address remark. If there’s no remark, it is empty. When you withdraw from other platforms to KuCoin, you need to fill in memo(tag). Be careful: If you do not fill in memo(tag), your deposit may not be available."
                                     },
                                     "isInner": {
                                         "type": "boolean",
-                                        "description": "Internal withdrawal or not. Default : false",
+                                        "description": "Internal withdrawal or not. Default: False",
                                         "default": false
                                     },
                                     "remark": {
                                         "type": "string",
-                                        "description": "remark"
+                                        "description": "Remark"
                                     },
                                     "feeDeductType": {
                                         "type": "string",
-                                        "description": "Withdrawal fee deduction type: INTERNAL or EXTERNAL or not specified\n\n1. INTERNAL- deduct the transaction fees from your withdrawal amount\n2. EXTERNAL- deduct the transaction fees from your main account\n3. If you don't specify the feeDeductType parameter, when the balance in your main account is sufficient to support the withdrawal, the system will initially deduct the transaction fees from your main account. But if the balance in your main account is not sufficient to support the withdrawal, the system will deduct the fees from your withdrawal amount. For example: Suppose you are going to withdraw 1 BTC from the KuCoin platform (transaction fee: 0.0001BTC), if the balance in your main account is insufficient, the system will deduct the transaction fees from your withdrawal amount. In this case, you will be receiving 0.9999BTC."
+                                        "description": "Withdrawal fee deduction type: INTERNAL, EXTERNAL, or not specified\n\n1. INTERNAL: Deduct the transaction fees from your withdrawal amount\n2. EXTERNAL: Deduct the transaction fees from your main account\n3. If you don't specify the feeDeductType parameter, when the balance in your main account is sufficient to support the withdrawal, the system will initially deduct the transaction fees from your main account. But if the balance in your main account is not sufficient to support the withdrawal, the system will deduct the fees from your withdrawal amount. For example: Suppose you are going to withdraw 1 BTC from the KuCoin platform (transaction fee: 0.0001BTC), if the balance in your main account is insufficient, the system will deduct the transaction fees from your withdrawal amount. In this case, you will be receiving 0.9999BTC."
                                     },
                                     "toAddress": {
                                         "type": "string",
@@ -299,7 +299,7 @@
                                     },
                                     "withdrawType": {
                                         "type": "string",
-                                        "description": "Withdrawal type, ADDRESS (withdrawal address), UID, MAIL (email), PHONE (mobile phone number). Note: If you withdraw by uid/mail/phone, there will have rate limited: 3 times/10 seconds, 50 times/24 hours (calculated on a rolling basis based on the first request time)",
+                                        "description": "Withdrawal type, ADDRESS (withdrawal address), UID, MAIL (email), PHONE (mobile phone number). Note: If you withdraw by uid/mail/phone, there will be rate limits: 3 times/10 seconds, 50 times/24 hours (calculated on a rolling basis based on the first request time)",
                                         "enum": [
                                             "ADDRESS",
                                             "UID",
@@ -350,7 +350,7 @@
             "delete": {
                 "summary": "Cancel Withdrawal",
                 "deprecated": false,
-                "description": "This interface can cancel the withdrawal, Only withdrawals requests of PROCESSING status could be canceled.",
+                "description": "This interface can cancel the withdrawal. Only withdrawal requests with PROCESSING status can be canceled.",
                 "tags": [],
                 "parameters": [
                     {
@@ -396,8 +396,8 @@
                 "x-sdk-service": "Account",
                 "x-sdk-sub-service": "Withdrawal",
                 "x-sdk-method-name": "cancelWithdrawal",
-                "x-sdk-method-description": "This interface can cancel the withdrawal, Only withdrawals requests of PROCESSING status could be canceled.",
-                "x-api-rate-limit": 20,
+                "x-sdk-method-description": "This interface can cancel the withdrawal. Only withdrawal requests with PROCESSING status can be canceled.",
+                "x-api-rate-limit-weight": 20,
                 "x-response-example": "{\\\"code\\\":\\\"200000\\\",\\\"data\\\":null}",
                 "x-request-example": "{\\\"withdrawalId\\\": \\\"670b891f7e0f440007730692\\\"}",
                 "operationId": "003"
@@ -407,7 +407,7 @@
             "get": {
                 "summary": "Get Withdrawal History",
                 "deprecated": false,
-                "description": "Request via this endpoint to get deposit list Items are paginated and sorted to show the latest first. See the Pagination section for retrieving additional entries after the first page.",
+                "description": "Request a withdrawal list via this endpoint. Items are paginated and sorted to show the latest first. See the Pagination section for retrieving additional entries after the first page.",
                 "tags": [],
                 "parameters": [
                     {
@@ -427,12 +427,13 @@
                     {
                         "name": "status",
                         "in": "query",
-                        "description": "Status. Available value: PROCESSING, WALLET_PROCESSING, SUCCESS, and FAILURE",
+                        "description": "Status. Available value: REVIEW, PROCESSING, WALLET_PROCESSING, SUCCESS and FAILURE",
                         "required": false,
                         "schema": {
                             "type": "string",
                             "enum": [
                                 "PROCESSING",
+                                "REVIEW",
                                 "WALLET_PROCESSING",
                                 "SUCCESS",
                                 "FAILURE"
@@ -440,22 +441,27 @@
                             "x-api-enum": [
                                 {
                                     "value": "PROCESSING",
-                                    "name": "",
+                                    "name": "PROCESSING",
+                                    "description": ""
+                                },
+                                {
+                                    "value": "REVIEW",
+                                    "name": "REVIEW",
                                     "description": ""
                                 },
                                 {
                                     "value": "WALLET_PROCESSING",
-                                    "name": "",
+                                    "name": "WALLET_PROCESSING",
                                     "description": ""
                                 },
                                 {
                                     "value": "SUCCESS",
-                                    "name": "",
+                                    "name": "SUCCESS",
                                     "description": ""
                                 },
                                 {
                                     "value": "FAILURE",
-                                    "name": "",
+                                    "name": "FAILURE",
                                     "description": ""
                                 }
                             ]
@@ -464,7 +470,7 @@
                     {
                         "name": "startAt",
                         "in": "query",
-                        "description": "Start time (milisecond)",
+                        "description": "Start time (milliseconds)",
                         "required": false,
                         "schema": {
                             "type": "integer",
@@ -474,7 +480,7 @@
                     {
                         "name": "endAt",
                         "in": "query",
-                        "description": "End time (milisecond)",
+                        "description": "End time (milliseconds)",
                         "required": false,
                         "schema": {
                             "type": "integer",
@@ -532,7 +538,7 @@
                                                 },
                                                 "totalPage": {
                                                     "type": "integer",
-                                                    "description": "total page"
+                                                    "description": "total pages"
                                                 },
                                                 "items": {
                                                     "type": "array",
@@ -541,7 +547,7 @@
                                                         "properties": {
                                                             "id": {
                                                                 "type": "string",
-                                                                "description": "Unique id"
+                                                                "description": "Unique ID"
                                                             },
                                                             "currency": {
                                                                 "type": "string",
@@ -564,32 +570,38 @@
                                                             },
                                                             "status": {
                                                                 "type": "string",
-                                                                "description": "Status",
                                                                 "enum": [
+                                                                    "REVIEW",
                                                                     "PROCESSING",
                                                                     "WALLET_PROCESSING",
-                                                                    "SUCCESS",
-                                                                    "FAILURE"
+                                                                    "FAILURE",
+                                                                    "SUCCESS"
                                                                 ],
+                                                                "description": "Status. Available value: REVIEW, PROCESSING, WALLET_PROCESSING, SUCCESS and FAILURE",
                                                                 "x-api-enum": [
                                                                     {
+                                                                        "value": "REVIEW",
+                                                                        "name": "REVIEW",
+                                                                        "description": ""
+                                                                    },
+                                                                    {
                                                                         "value": "PROCESSING",
-                                                                        "name": "",
+                                                                        "name": "PROCESSING",
                                                                         "description": ""
                                                                     },
                                                                     {
                                                                         "value": "WALLET_PROCESSING",
-                                                                        "name": "",
-                                                                        "description": ""
-                                                                    },
-                                                                    {
-                                                                        "value": "SUCCESS",
-                                                                        "name": "",
+                                                                        "name": "WALLET_PROCESSING",
                                                                         "description": ""
                                                                     },
                                                                     {
                                                                         "value": "FAILURE",
-                                                                        "name": "",
+                                                                        "name": "FAILURE",
+                                                                        "description": ""
+                                                                    },
+                                                                    {
+                                                                        "value": "SUCCESS",
+                                                                        "name": "SUCCESS",
                                                                         "description": ""
                                                                     }
                                                                 ]
@@ -620,7 +632,7 @@
                                                             },
                                                             "createdAt": {
                                                                 "type": "integer",
-                                                                "description": "Creation time of the database record",
+                                                                "description": "Database record creation time",
                                                                 "format": "int64"
                                                             },
                                                             "updatedAt": {
@@ -630,7 +642,7 @@
                                                             },
                                                             "remark": {
                                                                 "type": "string",
-                                                                "description": "remark"
+                                                                "description": "Remark"
                                                             }
                                                         }
                                                     }
@@ -663,8 +675,8 @@
                 "x-sdk-service": "Account",
                 "x-sdk-sub-service": "Withdrawal",
                 "x-sdk-method-name": "getWithdrawalHistory",
-                "x-sdk-method-description": "Request via this endpoint to get deposit list Items are paginated and sorted to show the latest first. See the Pagination section for retrieving additional entries after the first page.",
-                "x-api-rate-limit": 20,
+                "x-sdk-method-description": "Request a withdrawal list via this endpoint. Items are paginated and sorted to show the latest first. See the Pagination section for retrieving additional entries after the first page.",
+                "x-api-rate-limit-weight": 20,
                 "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"currentPage\\\": 1,\\n        \\\"pageSize\\\": 50,\\n        \\\"totalNum\\\": 5,\\n        \\\"totalPage\\\": 1,\\n        \\\"items\\\": [\\n            {\\n                \\\"currency\\\": \\\"USDT\\\",\\n                \\\"chain\\\": \\\"\\\",\\n                \\\"status\\\": \\\"SUCCESS\\\",\\n                \\\"address\\\": \\\"a435*****@gmail.com\\\",\\n                \\\"memo\\\": \\\"\\\",\\n                \\\"isInner\\\": true,\\n                \\\"amount\\\": \\\"1.00000000\\\",\\n                \\\"fee\\\": \\\"0.00000000\\\",\\n                \\\"walletTxId\\\": null,\\n                \\\"createdAt\\\": 1728555875000,\\n                \\\"updatedAt\\\": 1728555875000,\\n                \\\"remark\\\": \\\"\\\",\\n                \\\"arrears\\\": false\\n            },\\n            {\\n                \\\"currency\\\": \\\"USDT\\\",\\n                \\\"chain\\\": \\\"trx\\\",\\n                \\\"status\\\": \\\"SUCCESS\\\",\\n                \\\"address\\\": \\\"TSv3L1fS7******X4nLP6rqNxYz\\\",\\n                \\\"memo\\\": \\\"\\\",\\n                \\\"isInner\\\": true,\\n                \\\"amount\\\": \\\"6.00000000\\\",\\n                \\\"fee\\\": \\\"0.00000000\\\",\\n                \\\"walletTxId\\\": null,\\n                \\\"createdAt\\\": 1721730920000,\\n                \\\"updatedAt\\\": 1721730920000,\\n                \\\"remark\\\": \\\"\\\",\\n                \\\"arrears\\\": false\\n            }\\n        ]\\n    }\\n}",
                 "x-request-example": "{\\\"currency\\\": \\\"BTC\\\", \\\"status\\\": \\\"SUCCESS\\\", \\\"startAt\\\": 1728663338000, \\\"endAt\\\": 1728692138000, \\\"currentPage\\\": 1, \\\"pageSize\\\": 50}",
                 "operationId": "004"
@@ -672,7 +684,7 @@
             "post": {
                 "summary": "Withdraw - V1",
                 "deprecated": true,
-                "description": "Use this interface to withdraw the specified currency",
+                "description": "Use this interface to withdraw the specified currency.",
                 "tags": [],
                 "parameters": [],
                 "responses": {
@@ -717,8 +729,8 @@
                 "x-sdk-service": "Account",
                 "x-sdk-sub-service": "Withdrawal",
                 "x-sdk-method-name": "withdrawalV1",
-                "x-sdk-method-description": "Use this interface to withdraw the specified currency",
-                "x-api-rate-limit": 5,
+                "x-sdk-method-description": "Use this interface to withdraw the specified currency.",
+                "x-api-rate-limit-weight": 5,
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -737,7 +749,7 @@
                                     },
                                     "chain": {
                                         "type": "string",
-                                        "description": "The chainId of currency, For a currency with multiple chains, it is recommended to specify chain parameter instead of using the default chain; you can query the chainId through the response of the GET /api/v3/currencies/{currency} interface.",
+                                        "description": "The chainId of currency, For a currency with multiple chains, it is recommended to specify the chain parameter instead of using the default chain; you can query the chainId through the response of the GET /api/v3/currencies/{currency} interface.",
                                         "default": "eth",
                                         "example": [
                                             "eth",
@@ -762,20 +774,20 @@
                                     },
                                     "memo": {
                                         "type": "string",
-                                        "description": "Address remark. If there’s no remark, it is empty. When you withdraw from other platforms to the KuCoin, you need to fill in memo(tag). If you do not fill memo (tag), your deposit may not be available, please be cautious."
+                                        "description": "Address remark. If there’s no remark, it is empty. When you withdraw from other platforms to KuCoin, you need to fill in memo(tag). Be careful: If you do not fill in memo(tag), your deposit may not be available."
                                     },
                                     "isInner": {
                                         "type": "boolean",
-                                        "description": "Internal withdrawal or not. Default : false",
+                                        "description": "Internal withdrawal or not. Default: False",
                                         "default": false
                                     },
                                     "remark": {
                                         "type": "string",
-                                        "description": "remark"
+                                        "description": "Remark"
                                     },
                                     "feeDeductType": {
                                         "type": "string",
-                                        "description": "Withdrawal fee deduction type: INTERNAL or EXTERNAL or not specified\n\n1. INTERNAL- deduct the transaction fees from your withdrawal amount\n2. EXTERNAL- deduct the transaction fees from your main account\n3. If you don't specify the feeDeductType parameter, when the balance in your main account is sufficient to support the withdrawal, the system will initially deduct the transaction fees from your main account. But if the balance in your main account is not sufficient to support the withdrawal, the system will deduct the fees from your withdrawal amount. For example: Suppose you are going to withdraw 1 BTC from the KuCoin platform (transaction fee: 0.0001BTC), if the balance in your main account is insufficient, the system will deduct the transaction fees from your withdrawal amount. In this case, you will be receiving 0.9999BTC."
+                                        "description": "Withdrawal fee deduction type: INTERNAL, EXTERNAL, or not specified\n\n1. INTERNAL: Deduct the transaction fees from your withdrawal amount\n2. EXTERNAL: Deduct the transaction fees from your main account\n3. If you don't specify the feeDeductType parameter, when the balance in your main account is sufficient to support the withdrawal, the system will initially deduct the transaction fees from your main account. But if the balance in your main account is not sufficient to support the withdrawal, the system will deduct the fees from your withdrawal amount. For example: Suppose you are going to withdraw 1 BTC from the KuCoin platform (transaction fee: 0.0001BTC), if the balance in your main account is insufficient, the system will deduct the transaction fees from your withdrawal amount. In this case, you will be receiving 0.9999BTC."
                                     }
                                 },
                                 "required": [
@@ -797,7 +809,7 @@
             "get": {
                 "summary": "Get Withdrawal History - Old",
                 "deprecated": true,
-                "description": "Request via this endpoint to get deposit list Items are paginated and sorted to show the latest first. See the Pagination section for retrieving additional entries after the first page.",
+                "description": "Request a deposit list via this endpoint. Items are paginated and sorted to show the latest first. See the Pagination section for retrieving additional entries after the first page.",
                 "tags": [],
                 "parameters": [
                     {
@@ -848,7 +860,7 @@
                     {
                         "name": "startAt",
                         "in": "query",
-                        "description": "Start time (milisecond)",
+                        "description": "Start time (milliseconds)",
                         "required": false,
                         "schema": {
                             "type": "integer",
@@ -858,7 +870,7 @@
                     {
                         "name": "endAt",
                         "in": "query",
-                        "description": "End time (milisecond)",
+                        "description": "End time (milliseconds)",
                         "required": false,
                         "schema": {
                             "type": "integer",
@@ -916,7 +928,7 @@
                                                 },
                                                 "totalPage": {
                                                     "type": "integer",
-                                                    "description": "total page"
+                                                    "description": "total pages"
                                                 },
                                                 "items": {
                                                     "type": "array",
@@ -929,7 +941,7 @@
                                                             },
                                                             "createAt": {
                                                                 "type": "integer",
-                                                                "description": "Creation time of the database record"
+                                                                "description": "Database record creation time"
                                                             },
                                                             "amount": {
                                                                 "type": "string",
@@ -1004,8 +1016,8 @@
                 "x-sdk-service": "Account",
                 "x-sdk-sub-service": "Withdrawal",
                 "x-sdk-method-name": "getWithdrawalHistoryOld",
-                "x-sdk-method-description": "Request via this endpoint to get deposit list Items are paginated and sorted to show the latest first. See the Pagination section for retrieving additional entries after the first page.",
-                "x-api-rate-limit": 20,
+                "x-sdk-method-description": "Request a deposit list via this endpoint. Items are paginated and sorted to show the latest first. See the Pagination section for retrieving additional entries after the first page.",
+                "x-api-rate-limit-weight": 20,
                 "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"currentPage\\\": 1,\\n        \\\"pageSize\\\": 50,\\n        \\\"totalNum\\\": 1,\\n        \\\"totalPage\\\": 1,\\n        \\\"items\\\": [\\n            {\\n                \\\"currency\\\": \\\"BTC\\\",\\n                \\\"createAt\\\": 1526723468,\\n                \\\"amount\\\": \\\"0.534\\\",\\n                \\\"address\\\": \\\"33xW37ZSW4tQvg443Pc7NLCAs167Yc2XUV\\\",\\n                \\\"walletTxId\\\": \\\"aeacea864c020acf58e51606169240e96774838dcd4f7ce48acf38e3651323f4\\\",\\n                \\\"isInner\\\": false,\\n                \\\"status\\\": \\\"SUCCESS\\\"\\n            }\\n        ]\\n    }\\n}",
                 "x-request-example": "{\\\"currency\\\": \\\"BTC\\\", \\\"status\\\": \\\"SUCCESS\\\", \\\"startAt\\\": 1728663338000, \\\"endAt\\\": 1728692138000, \\\"currentPage\\\": 1, \\\"pageSize\\\": 50}",
                 "operationId": "005"

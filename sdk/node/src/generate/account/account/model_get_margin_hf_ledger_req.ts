@@ -5,7 +5,7 @@ import { Serializable } from '@internal/interfaces/serializable';
 
 export class GetMarginHFLedgerReq implements Serializable {
     /**
-     * currency, optional，can select more than one，separate with commas，select no more than 10 currencys，the default will be to query for all currencys if left empty
+     * Currency optional; more than one can be selected; separate using commas; select no more than 10 currencies; the default will be to query for all currencies if left empty
      */
     currency?: string;
 
@@ -15,27 +15,27 @@ export class GetMarginHFLedgerReq implements Serializable {
     direction?: GetMarginHFLedgerReq.DirectionEnum;
 
     /**
-     * Transaction type: TRANSFER- transfer funds, MARGIN_EXCHANGE - cross margin trade, ISOLATED_EXCHANGE - isolated margin trade, LIQUIDATION - liquidation, ASSERT_RETURN - forced liquidation asset return
+     * Transaction type: TRANSFER- transfer funds, MARGIN_EXCHANGE-cross margin trade, ISOLATED_EXCHANGE-isolated margin trade, LIQUIDATION-liquidation, ASSERT_RETURN-forced liquidation asset return
      */
     bizType?: string;
 
     /**
-     * The id of the last set of data from the previous batch of data. By default, the latest information is given.
+     * The ID of the last set of data from the previous data batch. By default, the latest information is given.
      */
     lastId?: number;
 
     /**
-     * Default100，Max200
+     * Default100, Max200
      */
     limit?: number = 100;
 
     /**
-     * Start time (milisecond)
+     * Start time (milliseconds)
      */
     startAt?: number;
 
     /**
-     * End time (milisecond)
+     * End time (milliseconds)
      */
     endAt?: number;
 
@@ -56,7 +56,7 @@ export class GetMarginHFLedgerReq implements Serializable {
      */
     static create(data: {
         /**
-         * currency, optional，can select more than one，separate with commas，select no more than 10 currencys，the default will be to query for all currencys if left empty
+         * Currency optional; more than one can be selected; separate using commas; select no more than 10 currencies; the default will be to query for all currencies if left empty
          */
         currency?: string;
         /**
@@ -64,23 +64,23 @@ export class GetMarginHFLedgerReq implements Serializable {
          */
         direction?: GetMarginHFLedgerReq.DirectionEnum;
         /**
-         * Transaction type: TRANSFER- transfer funds, MARGIN_EXCHANGE - cross margin trade, ISOLATED_EXCHANGE - isolated margin trade, LIQUIDATION - liquidation, ASSERT_RETURN - forced liquidation asset return
+         * Transaction type: TRANSFER- transfer funds, MARGIN_EXCHANGE-cross margin trade, ISOLATED_EXCHANGE-isolated margin trade, LIQUIDATION-liquidation, ASSERT_RETURN-forced liquidation asset return
          */
         bizType?: string;
         /**
-         * The id of the last set of data from the previous batch of data. By default, the latest information is given.
+         * The ID of the last set of data from the previous data batch. By default, the latest information is given.
          */
         lastId?: number;
         /**
-         * Default100，Max200
+         * Default100, Max200
          */
         limit?: number;
         /**
-         * Start time (milisecond)
+         * Start time (milliseconds)
          */
         startAt?: number;
         /**
-         * End time (milisecond)
+         * End time (milliseconds)
          */
         endAt?: number;
     }): GetMarginHFLedgerReq {
@@ -137,7 +137,7 @@ export class GetMarginHFLedgerReqBuilder {
         this.obj = obj;
     }
     /**
-     * currency, optional，can select more than one，separate with commas，select no more than 10 currencys，the default will be to query for all currencys if left empty
+     * Currency optional; more than one can be selected; separate using commas; select no more than 10 currencies; the default will be to query for all currencies if left empty
      */
     setCurrency(value: string): GetMarginHFLedgerReqBuilder {
         this.obj.currency = value;
@@ -153,7 +153,7 @@ export class GetMarginHFLedgerReqBuilder {
     }
 
     /**
-     * Transaction type: TRANSFER- transfer funds, MARGIN_EXCHANGE - cross margin trade, ISOLATED_EXCHANGE - isolated margin trade, LIQUIDATION - liquidation, ASSERT_RETURN - forced liquidation asset return
+     * Transaction type: TRANSFER- transfer funds, MARGIN_EXCHANGE-cross margin trade, ISOLATED_EXCHANGE-isolated margin trade, LIQUIDATION-liquidation, ASSERT_RETURN-forced liquidation asset return
      */
     setBizType(value: string): GetMarginHFLedgerReqBuilder {
         this.obj.bizType = value;
@@ -161,7 +161,7 @@ export class GetMarginHFLedgerReqBuilder {
     }
 
     /**
-     * The id of the last set of data from the previous batch of data. By default, the latest information is given.
+     * The ID of the last set of data from the previous data batch. By default, the latest information is given.
      */
     setLastId(value: number): GetMarginHFLedgerReqBuilder {
         this.obj.lastId = value;
@@ -169,7 +169,7 @@ export class GetMarginHFLedgerReqBuilder {
     }
 
     /**
-     * Default100，Max200
+     * Default100, Max200
      */
     setLimit(value: number): GetMarginHFLedgerReqBuilder {
         this.obj.limit = value;
@@ -177,7 +177,7 @@ export class GetMarginHFLedgerReqBuilder {
     }
 
     /**
-     * Start time (milisecond)
+     * Start time (milliseconds)
      */
     setStartAt(value: number): GetMarginHFLedgerReqBuilder {
         this.obj.startAt = value;
@@ -185,7 +185,7 @@ export class GetMarginHFLedgerReqBuilder {
     }
 
     /**
-     * End time (milisecond)
+     * End time (milliseconds)
      */
     setEndAt(value: number): GetMarginHFLedgerReqBuilder {
         this.obj.endAt = value;

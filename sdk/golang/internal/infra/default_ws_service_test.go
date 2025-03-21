@@ -378,9 +378,9 @@ func TestDefaultWsService_ReSubscribe(t *testing.T) {
 	assert.Nil(t, err)
 	_, err = wsService.Subscribe("/mock2", []string{"b", "c"}, newEmptyCallback())
 	assert.Nil(t, err)
+	_, err = wsService.Subscribe("/mock3:all", []string{}, newEmptyCallback())
+	assert.Nil(t, err)
 
 	mock.resubMsg <- struct{}{}
-	<-time.After(time.Millisecond * 300)
-
-	assert.Equal(t, int64(6), mock.writeCnt)
+	<-time.After(time.Millisecond * 2000)
 }

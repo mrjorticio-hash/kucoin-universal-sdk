@@ -10,7 +10,7 @@ export class BatchCancelStopOrderReq implements Serializable {
     symbol?: string;
 
     /**
-     * The type of trading : TRADE（Spot）, MARGIN_TRADE (Cross Margin), MARGIN_ISOLATED_TRADE (Isolated Margin). Default is TRADE
+     * The type of trading : TRADE（Spot）, MARGIN_TRADE (Cross Margin), MARGIN_ISOLATED_TRADE (Isolated Margin).
      */
     tradeType?: string;
 
@@ -40,7 +40,7 @@ export class BatchCancelStopOrderReq implements Serializable {
          */
         symbol?: string;
         /**
-         * The type of trading : TRADE（Spot）, MARGIN_TRADE (Cross Margin), MARGIN_ISOLATED_TRADE (Isolated Margin). Default is TRADE
+         * The type of trading : TRADE（Spot）, MARGIN_TRADE (Cross Margin), MARGIN_ISOLATED_TRADE (Isolated Margin).
          */
         tradeType?: string;
         /**
@@ -88,7 +88,7 @@ export class BatchCancelStopOrderReqBuilder {
     }
 
     /**
-     * The type of trading : TRADE（Spot）, MARGIN_TRADE (Cross Margin), MARGIN_ISOLATED_TRADE (Isolated Margin). Default is TRADE
+     * The type of trading : TRADE（Spot）, MARGIN_TRADE (Cross Margin), MARGIN_ISOLATED_TRADE (Isolated Margin).
      */
     setTradeType(value: string): BatchCancelStopOrderReqBuilder {
         this.obj.tradeType = value;

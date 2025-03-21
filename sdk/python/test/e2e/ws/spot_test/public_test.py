@@ -99,3 +99,11 @@ class SpotPublicWsTest(unittest.TestCase):
     def test_public_orderbook_increment(self):
         symbols = ["BTC-USDT", "ETH-USDT"]
         self._test_subscription(self.api.orderbook_increment, symbols)
+
+    def test_public_call_auction_info(self):
+        symbols = "PAWS-USDT"
+        self._test_subscription(self.api.call_auction_info, symbols)
+
+    def test_public_call_auction_orderbook_level50(self):
+        symbols = "PAWS-USDT"
+        self._test_subscription(self.api.call_auction_orderbook_level50, symbols)

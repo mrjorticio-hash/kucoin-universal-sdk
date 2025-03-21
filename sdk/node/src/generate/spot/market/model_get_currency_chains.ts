@@ -5,7 +5,7 @@ import { Serializable } from '@internal/interfaces/serializable';
 
 export class GetCurrencyChains implements Serializable {
     /**
-     * chain name of currency
+     * Chain name of currency
      */
     chainName: string;
 
@@ -20,7 +20,7 @@ export class GetCurrencyChains implements Serializable {
     depositMinSize: string;
 
     /**
-     * withdraw fee rate
+     * Withdraw fee rate
      */
     withdrawFeeRate: string;
 
@@ -30,12 +30,12 @@ export class GetCurrencyChains implements Serializable {
     withdrawalMinFee: string;
 
     /**
-     * Support withdrawal or not
+     * Withdrawal support or not
      */
     isWithdrawEnabled: boolean;
 
     /**
-     * Support deposit or not
+     * Deposit support or not
      */
     isDepositEnabled: boolean;
 
@@ -70,12 +70,12 @@ export class GetCurrencyChains implements Serializable {
     maxDeposit: string;
 
     /**
-     * whether memo/tag is needed
+     * Need for memo/tag or not
      */
     needTag: boolean;
 
     /**
-     * chain id of currency
+     * Chain id of currency
      */
     chainId: string;
 

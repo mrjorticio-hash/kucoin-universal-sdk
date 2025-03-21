@@ -16,24 +16,24 @@ class GetPublicTokenInstanceServers(BaseModel):
     GetPublicTokenInstanceServers
 
     Attributes:
-        endpoint (str): Websocket domain URL, It is recommended to use a dynamic URL as the URL may change
+        endpoint (str): Websocket domain URL. It is recommended to use a dynamic URL, as the URL may change.
         encrypt (bool): Whether to encrypt. Currently only supports wss, not ws
         protocol (ProtocolEnum): Network Protocol
-        ping_interval (int): Recommended ping interval(millisecond)
-        ping_timeout (int): Heartbeat timeout(millisecond)
+        ping_interval (int): Recommended ping interval (milliseconds)
+        ping_timeout (int): Heartbeat timeout (milliseconds)
     """
 
     class ProtocolEnum(Enum):
         """
         Attributes:
-            WEBSOCKET: websocket
+            WEBSOCKET: Websocket
         """
         WEBSOCKET = 'websocket'
 
     endpoint: Optional[str] = Field(
         default=None,
         description=
-        "Websocket domain URL, It is recommended to use a dynamic URL as the URL may change"
+        "Websocket domain URL. It is recommended to use a dynamic URL, as the URL may change."
     )
     encrypt: Optional[bool] = Field(
         default=None,
@@ -42,11 +42,11 @@ class GetPublicTokenInstanceServers(BaseModel):
                                              description="Network Protocol")
     ping_interval: Optional[int] = Field(
         default=None,
-        description="Recommended ping interval(millisecond)",
+        description="Recommended ping interval (milliseconds)",
         alias="pingInterval")
     ping_timeout: Optional[int] = Field(
         default=None,
-        description="Heartbeat timeout(millisecond)",
+        description="Heartbeat timeout (milliseconds)",
         alias="pingTimeout")
 
     __properties: ClassVar[List[str]] = [

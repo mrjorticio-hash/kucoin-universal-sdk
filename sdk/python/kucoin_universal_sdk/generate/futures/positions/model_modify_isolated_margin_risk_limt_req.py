@@ -15,16 +15,16 @@ class ModifyIsolatedMarginRiskLimtReq(BaseModel):
     ModifyIsolatedMarginRiskLimtReq
 
     Attributes:
-        symbol (str): Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) 
-        level (int): level
+        symbol (str): Symbol of the contract. Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) 
+        level (int): Level
     """
 
     symbol: Optional[str] = Field(
         default=None,
         description=
-        "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) "
+        "Symbol of the contract. Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) "
     )
-    level: Optional[int] = Field(default=None, description="level")
+    level: Optional[int] = Field(default=None, description="Level")
 
     __properties: ClassVar[List[str]] = ["symbol", "level"]
 
@@ -76,14 +76,14 @@ class ModifyIsolatedMarginRiskLimtReqBuilder:
 
     def set_symbol(self, value: str) -> ModifyIsolatedMarginRiskLimtReqBuilder:
         """
-        Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) 
+        Symbol of the contract. Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) 
         """
         self.obj['symbol'] = value
         return self
 
     def set_level(self, value: int) -> ModifyIsolatedMarginRiskLimtReqBuilder:
         """
-        level
+        Level
         """
         self.obj['level'] = value
         return self

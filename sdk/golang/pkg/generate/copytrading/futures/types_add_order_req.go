@@ -14,11 +14,9 @@ type AddOrderReq struct {
 	Leverage *int32 `json:"leverage,omitempty"`
 	// specify if the order is an 'limit' order or 'market' order
 	Type string `json:"type,omitempty"`
-	// remark for the order, length cannot exceed 100 utf8 characters
-	Remark *string `json:"remark,omitempty"`
 	// Either 'down' or 'up'.  If stop is used,parameter stopPrice and stopPriceType also need to be provieded.
 	Stop *string `json:"stop,omitempty"`
-	// Either 'TP', 'IP' or 'MP', Need to be defined if stop is specified.
+	// Either 'TP' or 'MP', Need to be defined if stop is specified.
 	StopPriceType *string `json:"stopPriceType,omitempty"`
 	// Need to be defined if stop is specified.
 	StopPrice *string `json:"stopPrice,omitempty"`
@@ -26,9 +24,7 @@ type AddOrderReq struct {
 	ReduceOnly *bool `json:"reduceOnly,omitempty"`
 	// A mark to close the position. Set to false by default. If closeOrder is set to true, the system will close the position and the position size will become 0. Side, Size and Leverage fields can be left empty and the system will determine the side and size automatically.
 	CloseOrder *bool `json:"closeOrder,omitempty"`
-	// A mark to forcely hold the funds for an order, even though it's an order to reduce the position size. This helps the order stay on the order book and not get canceled when the position size changes. Set to false by default. The system will forcely freeze certain amount of funds for this order, including orders whose direction is opposite to the current positions. This feature is to ensure that the order won’t be canceled by the matching engine in such a circumstance that not enough funds are frozen for the order.
-	ForceHold *bool `json:"forceHold,omitempty"`
-	// Margin mode: ISOLATED, CROSS, default: ISOLATED
+	// Margin mode: ISOLATED, default: ISOLATED
 	MarginMode *string `json:"marginMode,omitempty"`
 	// Required for type is 'limit' order, indicating the operating price
 	Price *string `json:"price,omitempty"`
@@ -42,7 +38,7 @@ type AddOrderReq struct {
 	Hidden *bool `json:"hidden,omitempty"`
 	// Optional for type is 'limit' order, Only visible portion of the order is displayed in the order book. When iceberg chose, not allowed choose postOnly.
 	Iceberg *bool `json:"iceberg,omitempty"`
-	// Optional for type is 'limit' order, The maximum visible size of an iceberg order. please place order in size (lots), The units of qty (base currency) and valueQty (value) are not supported.
+	// Optional for type is 'limit' order, The maximum visible size of an iceberg order. please place order in size (lots), The units of qty (base currency) and valueQty (value) are not supported. Need to be defined if iceberg is specified.
 	VisibleSize *string `json:"visibleSize,omitempty"`
 }
 
@@ -58,8 +54,6 @@ func NewAddOrderReq(clientOid string, side string, symbol string, Type_ string, 
 	this.ReduceOnly = &reduceOnly
 	var closeOrder bool = false
 	this.CloseOrder = &closeOrder
-	var forceHold bool = false
-	this.ForceHold = &forceHold
 	var marginMode string = "ISOLATED"
 	this.MarginMode = &marginMode
 	this.Size = size
@@ -84,8 +78,6 @@ func NewAddOrderReqWithDefaults() *AddOrderReq {
 	this.ReduceOnly = &reduceOnly
 	var closeOrder bool = false
 	this.CloseOrder = &closeOrder
-	var forceHold bool = false
-	this.ForceHold = &forceHold
 	var marginMode string = "ISOLATED"
 	this.MarginMode = &marginMode
 	var timeInForce string = "GTC"
@@ -106,13 +98,11 @@ func (o *AddOrderReq) ToMap() map[string]interface{} {
 	toSerialize["symbol"] = o.Symbol
 	toSerialize["leverage"] = o.Leverage
 	toSerialize["type"] = o.Type
-	toSerialize["remark"] = o.Remark
 	toSerialize["stop"] = o.Stop
 	toSerialize["stopPriceType"] = o.StopPriceType
 	toSerialize["stopPrice"] = o.StopPrice
 	toSerialize["reduceOnly"] = o.ReduceOnly
 	toSerialize["closeOrder"] = o.CloseOrder
-	toSerialize["forceHold"] = o.ForceHold
 	toSerialize["marginMode"] = o.MarginMode
 	toSerialize["price"] = o.Price
 	toSerialize["size"] = o.Size
@@ -162,19 +152,13 @@ func (builder *AddOrderReqBuilder) SetType(value string) *AddOrderReqBuilder {
 	return builder
 }
 
-// remark for the order, length cannot exceed 100 utf8 characters
-func (builder *AddOrderReqBuilder) SetRemark(value string) *AddOrderReqBuilder {
-	builder.obj.Remark = &value
-	return builder
-}
-
 // Either 'down' or 'up'.  If stop is used,parameter stopPrice and stopPriceType also need to be provieded.
 func (builder *AddOrderReqBuilder) SetStop(value string) *AddOrderReqBuilder {
 	builder.obj.Stop = &value
 	return builder
 }
 
-// Either 'TP', 'IP' or 'MP', Need to be defined if stop is specified.
+// Either 'TP' or 'MP', Need to be defined if stop is specified.
 func (builder *AddOrderReqBuilder) SetStopPriceType(value string) *AddOrderReqBuilder {
 	builder.obj.StopPriceType = &value
 	return builder
@@ -198,13 +182,7 @@ func (builder *AddOrderReqBuilder) SetCloseOrder(value bool) *AddOrderReqBuilder
 	return builder
 }
 
-// A mark to forcely hold the funds for an order, even though it's an order to reduce the position size. This helps the order stay on the order book and not get canceled when the position size changes. Set to false by default. The system will forcely freeze certain amount of funds for this order, including orders whose direction is opposite to the current positions. This feature is to ensure that the order won’t be canceled by the matching engine in such a circumstance that not enough funds are frozen for the order.
-func (builder *AddOrderReqBuilder) SetForceHold(value bool) *AddOrderReqBuilder {
-	builder.obj.ForceHold = &value
-	return builder
-}
-
-// Margin mode: ISOLATED, CROSS, default: ISOLATED
+// Margin mode: ISOLATED, default: ISOLATED
 func (builder *AddOrderReqBuilder) SetMarginMode(value string) *AddOrderReqBuilder {
 	builder.obj.MarginMode = &value
 	return builder
@@ -246,7 +224,7 @@ func (builder *AddOrderReqBuilder) SetIceberg(value bool) *AddOrderReqBuilder {
 	return builder
 }
 
-// Optional for type is 'limit' order, The maximum visible size of an iceberg order. please place order in size (lots), The units of qty (base currency) and valueQty (value) are not supported.
+// Optional for type is 'limit' order, The maximum visible size of an iceberg order. please place order in size (lots), The units of qty (base currency) and valueQty (value) are not supported. Need to be defined if iceberg is specified.
 func (builder *AddOrderReqBuilder) SetVisibleSize(value string) *AddOrderReqBuilder {
 	builder.obj.VisibleSize = &value
 	return builder

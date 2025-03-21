@@ -18,11 +18,11 @@ class GetMarginHfLedgerData(BaseModel):
         id (int): 
         currency (str): currency
         amount (str): Change in funds balance
-        fee (str): Deposit or withdrawal fee
+        fee (str): Transaction, Deposit or withdrawal fee
         balance (str): Total balance of funds after change
         account_type (str): Master account type TRADE_HF
-        biz_type (str): Trnasaction type，such as TRANSFER, TRADE_EXCHANGE, etc.
-        direction (str): Direction of transfer( out or in)
+        biz_type (str): Trnasaction type, such as TRANSFER, TRADE_EXCHANGE, etc.
+        direction (str): Direction of transfer (out or in)
         created_at (int): Ledger creation time
         context (str): Core transaction parameter
         tax (str): 
@@ -32,8 +32,8 @@ class GetMarginHfLedgerData(BaseModel):
     currency: Optional[str] = Field(default=None, description="currency")
     amount: Optional[str] = Field(default=None,
                                   description="Change in funds balance")
-    fee: Optional[str] = Field(default=None,
-                               description="Deposit or withdrawal fee")
+    fee: Optional[str] = Field(
+        default=None, description="Transaction, Deposit or withdrawal fee")
     balance: Optional[str] = Field(
         default=None, description="Total balance of funds after change")
     account_type: Optional[str] = Field(
@@ -42,10 +42,10 @@ class GetMarginHfLedgerData(BaseModel):
         alias="accountType")
     biz_type: Optional[str] = Field(
         default=None,
-        description="Trnasaction type，such as TRANSFER, TRADE_EXCHANGE, etc.",
+        description="Trnasaction type, such as TRANSFER, TRADE_EXCHANGE, etc.",
         alias="bizType")
     direction: Optional[str] = Field(
-        default=None, description="Direction of transfer( out or in)")
+        default=None, description="Direction of transfer (out or in)")
     created_at: Optional[int] = Field(default=None,
                                       description="Ledger creation time",
                                       alias="createdAt")

@@ -85,7 +85,7 @@ def test_get_purchase_orders_req(self):
     """
 
     builder = GetPurchaseOrdersReqBuilder()
-    builder.set_currency(?).set_status(?).set_purchase_order_no(?).set_current_page(?).set_page_size(?)
+    builder.set_status(?).set_currency(?).set_purchase_order_no(?).set_current_page(?).set_page_size(?)
     req = builder.build()
     try:
         resp = self.api.get_purchase_orders(req)
@@ -123,7 +123,7 @@ def test_get_redeem_orders_req(self):
     """
 
     builder = GetRedeemOrdersReqBuilder()
-    builder.set_currency(?).set_status(?).set_redeem_order_no(?).set_current_page(?).set_page_size(?)
+    builder.set_status(?).set_currency(?).set_redeem_order_no(?).set_current_page(?).set_page_size(?)
     req = builder.build()
     try:
         resp = self.api.get_redeem_orders(req)

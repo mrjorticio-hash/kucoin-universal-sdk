@@ -16,7 +16,7 @@ type FuturesPublicWS interface {
 
 	// Execution Match execution data.
 	// For each order executed, the system will send you the match messages in the format as following.
-	// push frequency: realtime
+	// push frequency: real-time
 	Execution(symbol string, callback ExecutionEventCallback) (id string, err error)
 
 	// Instrument instrument
@@ -30,8 +30,8 @@ type FuturesPublicWS interface {
 	Klines(symbol string, type_ string, callback KlinesEventCallback) (id string, err error)
 
 	// OrderbookIncrement Orderbook - Increment
-	// The system will return the increment change orderbook data(All depth), If there is no change in the market, data will not be pushed
-	// push frequency: realtime
+	// The system will return the increment change orderbook data (all depth). If there is no change in the market, data will not be pushed.
+	// push frequency: real-time
 	OrderbookIncrement(symbol string, callback OrderbookIncrementEventCallback) (id string, err error)
 
 	// OrderbookLevel50 Orderbook - Level50
@@ -40,23 +40,23 @@ type FuturesPublicWS interface {
 	OrderbookLevel50(symbol string, callback OrderbookLevel50EventCallback) (id string, err error)
 
 	// OrderbookLevel5 Orderbook - Level5
-	// The system will return the 5 best ask/bid orders data, If there is no change in the market, data will not be pushed
+	// The system will return the 5 best ask/bid orders data. If there is no change in the market, data will not be pushed
 	// push frequency: 100ms
 	OrderbookLevel5(symbol string, callback OrderbookLevel5EventCallback) (id string, err error)
 
 	// SymbolSnapshot Symbol Snapshot
-	// Get symbol&#39;s snapshot.
+	// Get symbol snapshot.
 	// push frequency: 5000ms
 	SymbolSnapshot(symbol string, callback SymbolSnapshotEventCallback) (id string, err error)
 
 	// TickerV1 Get Ticker(not recommended)
-	// Subscribe this topic to get the realtime push of BBO changes.It is not recommended to use this topic any more. For real-time ticker information, please subscribe /contractMarket/tickerV2:{symbol}.
-	// push frequency: realtime
+	// Subscribe to this topic to get real-time pushes on BBO changes. It is not recommended to use this topic any more. For real-time ticker information, please subscribe /contractMarket/tickerV2:{symbol}.
+	// push frequency: real-time
 	TickerV1(symbol string, callback TickerV1EventCallback) (id string, err error)
 
 	// TickerV2 Get Ticker V2
-	// Subscribe this topic to get the realtime push of BBO changes. After subscription, when there are changes in the order book（Not necessarily ask1/bid1 changes）, the system will push the real-time ticker symbol information to you.
-	// push frequency: realtime
+	// Subscribe to this topic to get real-time pushes of BBO changes. After subscription, when there are changes in the order book (not necessarily ask1/bid1 changes), the system will push the real-time ticker symbol information to you.
+	// push frequency: real-time
 	TickerV2(symbol string, callback TickerV2EventCallback) (id string, err error)
 
 	// Unsubscribe from topics

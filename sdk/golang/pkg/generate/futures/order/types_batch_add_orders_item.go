@@ -13,7 +13,7 @@ type BatchAddOrdersItem struct {
 	// Used to calculate the margin to be frozen for the order. If you are to close the position, this parameter is not required.
 	Leverage int32 `json:"leverage,omitempty"`
 	// specify if the order is an 'limit' order or 'market' order
-	Type string `json:"type,omitempty"`
+	Type *string `json:"type,omitempty"`
 	// remark for the order, length cannot exceed 100 utf8 characters
 	Remark *string `json:"remark,omitempty"`
 	// Either 'down' or 'up'.  If stop is used,parameter stopPrice and stopPriceType also need to be provieded.
@@ -54,13 +54,14 @@ type BatchAddOrdersItem struct {
 
 // NewBatchAddOrdersItem instantiates a new BatchAddOrdersItem object
 // This constructor will assign default values to properties that have it defined
-func NewBatchAddOrdersItem(clientOid string, side string, symbol string, leverage int32, Type_ string) *BatchAddOrdersItem {
+func NewBatchAddOrdersItem(clientOid string, side string, symbol string, leverage int32) *BatchAddOrdersItem {
 	this := BatchAddOrdersItem{}
 	this.ClientOid = clientOid
 	this.Side = side
 	this.Symbol = symbol
 	this.Leverage = leverage
-	this.Type = Type_
+	var Type_ string = "limit"
+	this.Type = &Type_
 	var reduceOnly bool = false
 	this.ReduceOnly = &reduceOnly
 	var closeOrder bool = false
@@ -85,7 +86,7 @@ func NewBatchAddOrdersItem(clientOid string, side string, symbol string, leverag
 func NewBatchAddOrdersItemWithDefaults() *BatchAddOrdersItem {
 	this := BatchAddOrdersItem{}
 	var Type_ string = "limit"
-	this.Type = Type_
+	this.Type = &Type_
 	var reduceOnly bool = false
 	this.ReduceOnly = &reduceOnly
 	var closeOrder bool = false
@@ -167,7 +168,7 @@ func (builder *BatchAddOrdersItemBuilder) SetLeverage(value int32) *BatchAddOrde
 
 // specify if the order is an 'limit' order or 'market' order
 func (builder *BatchAddOrdersItemBuilder) SetType(value string) *BatchAddOrdersItemBuilder {
-	builder.obj.Type = value
+	builder.obj.Type = &value
 	return builder
 }
 

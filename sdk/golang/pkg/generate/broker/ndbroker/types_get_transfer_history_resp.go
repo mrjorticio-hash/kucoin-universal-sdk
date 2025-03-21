@@ -18,15 +18,15 @@ type GetTransferHistoryResp struct {
 	Amount string `json:"amount,omitempty"`
 	// UID of the user transferring out
 	FromUid int32 `json:"fromUid,omitempty"`
-	// From Account Type:Account Type: MAIN, TRADE, CONTRACT, MARGIN, ISOLATED
+	// From Account Type: Account Type: MAIN, TRADE, CONTRACT, MARGIN, ISOLATED
 	FromAccountType string `json:"fromAccountType,omitempty"`
-	// Trading pair, required if the account type is ISOLATED, e.g., BTC-USDT
+	// Trading pair (required if the account type is ISOLATED), e.g., BTC-USDT
 	FromAccountTag string `json:"fromAccountTag,omitempty"`
 	// UID of the user transferring in
 	ToUid int32 `json:"toUid,omitempty"`
-	// Account Type:Account Type: MAIN, TRADE, CONTRACT, MARGIN, ISOLATED
+	// Account Type: Account Type: MAIN, TRADE, CONTRACT, MARGIN, ISOLATED
 	ToAccountType string `json:"toAccountType,omitempty"`
-	// To Trading pair, required if the account type is ISOLATED, e.g., BTC-USDT
+	// To Trading pair (required if the account type is ISOLATED), e.g., BTC-USDT
 	ToAccountTag string `json:"toAccountTag,omitempty"`
 	// Status: PROCESSING (processing), SUCCESS (successful), FAILURE (failed)
 	Status string `json:"status,omitempty"`

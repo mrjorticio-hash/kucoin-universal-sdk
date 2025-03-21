@@ -18,8 +18,8 @@ class GetDepositHistoryOldReq(BaseModel):
     Attributes:
         currency (str): currency
         status (StatusEnum): Status. Available value: PROCESSING, SUCCESS, and FAILURE
-        start_at (int): Start time (milisecond)
-        end_at (int): End time (milisecond)
+        start_at (int): Start time (milliseconds)
+        end_at (int): End time (milliseconds)
     """
 
     class StatusEnum(Enum):
@@ -39,10 +39,10 @@ class GetDepositHistoryOldReq(BaseModel):
         description="Status. Available value: PROCESSING, SUCCESS, and FAILURE"
     )
     start_at: Optional[int] = Field(default=None,
-                                    description="Start time (milisecond)",
+                                    description="Start time (milliseconds)",
                                     alias="startAt")
     end_at: Optional[int] = Field(default=None,
-                                  description="End time (milisecond)",
+                                  description="End time (milliseconds)",
                                   alias="endAt")
 
     __properties: ClassVar[List[str]] = [
@@ -115,14 +115,14 @@ class GetDepositHistoryOldReqBuilder:
 
     def set_start_at(self, value: int) -> GetDepositHistoryOldReqBuilder:
         """
-        Start time (milisecond)
+        Start time (milliseconds)
         """
         self.obj['startAt'] = value
         return self
 
     def set_end_at(self, value: int) -> GetDepositHistoryOldReqBuilder:
         """
-        End time (milisecond)
+        End time (milliseconds)
         """
         self.obj['endAt'] = value
         return self

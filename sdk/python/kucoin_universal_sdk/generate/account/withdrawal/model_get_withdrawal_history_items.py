@@ -16,39 +16,45 @@ class GetWithdrawalHistoryItems(BaseModel):
     GetWithdrawalHistoryItems
 
     Attributes:
-        id (str): Unique id
+        id (str): Unique ID
         currency (str): Currency
         chain (str): The id of currency
-        status (StatusEnum): Status
+        status (StatusEnum): Status. Available value: REVIEW, PROCESSING, WALLET_PROCESSING, SUCCESS and FAILURE
         address (str): Deposit address
         memo (str): Address remark. If there’s no remark, it is empty. 
         is_inner (bool): Internal deposit or not
         amount (str): Deposit amount
         fee (str): Fees charged for deposit
         wallet_tx_id (str): Wallet Txid
-        created_at (int): Creation time of the database record
+        created_at (int): Database record creation time
         updated_at (int): Update time of the database record
-        remark (str): remark
+        remark (str): Remark
     """
 
     class StatusEnum(Enum):
         """
         Attributes:
+            REVIEW: 
             PROCESSING: 
             WALLET_PROCESSING: 
-            SUCCESS: 
             FAILURE: 
+            SUCCESS: 
         """
+        REVIEW = 'REVIEW'
         PROCESSING = 'PROCESSING'
         WALLET_PROCESSING = 'WALLET_PROCESSING'
-        SUCCESS = 'SUCCESS'
         FAILURE = 'FAILURE'
+        SUCCESS = 'SUCCESS'
 
-    id: Optional[str] = Field(default=None, description="Unique id")
+    id: Optional[str] = Field(default=None, description="Unique ID")
     currency: Optional[str] = Field(default=None, description="Currency")
     chain: Optional[str] = Field(default=None,
                                  description="The id of currency")
-    status: Optional[StatusEnum] = Field(default=None, description="Status")
+    status: Optional[StatusEnum] = Field(
+        default=None,
+        description=
+        "Status. Available value: REVIEW, PROCESSING, WALLET_PROCESSING, SUCCESS and FAILURE"
+    )
     address: Optional[str] = Field(default=None, description="Deposit address")
     memo: Optional[str] = Field(
         default=None,
@@ -64,13 +70,13 @@ class GetWithdrawalHistoryItems(BaseModel):
                                         alias="walletTxId")
     created_at: Optional[int] = Field(
         default=None,
-        description="Creation time of the database record",
+        description="Database record creation time",
         alias="createdAt")
     updated_at: Optional[int] = Field(
         default=None,
         description="Update time of the database record",
         alias="updatedAt")
-    remark: Optional[str] = Field(default=None, description="remark")
+    remark: Optional[str] = Field(default=None, description="Remark")
 
     __properties: ClassVar[List[str]] = [
         "id", "currency", "chain", "status", "address", "memo", "isInner",

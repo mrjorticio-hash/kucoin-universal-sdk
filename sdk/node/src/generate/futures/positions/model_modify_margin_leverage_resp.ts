@@ -8,21 +8,14 @@ export class ModifyMarginLeverageResp implements Response<RestResponse> {
     /**
      *
      */
-    symbol: string;
-
-    /**
-     *
-     */
-    leverage: string;
+    data: boolean;
 
     /**
      * Private constructor, please use the corresponding static methods to construct the object.
      */
     private constructor() {
         // @ts-ignore
-        this.symbol = null;
-        // @ts-ignore
-        this.leverage = null;
+        this.data = null;
     }
     /**
      * common response
@@ -38,7 +31,7 @@ export class ModifyMarginLeverageResp implements Response<RestResponse> {
      * Convert the object to a JSON string.
      */
     toJson(): string {
-        return JSON.stringify(instanceToPlain(this));
+        return JSON.stringify(instanceToPlain(this.data));
     }
     /**
      * Create an object from a JSON string.
@@ -50,6 +43,6 @@ export class ModifyMarginLeverageResp implements Response<RestResponse> {
      * Create an object from Js Object.
      */
     static fromObject(jsonObject: Object): ModifyMarginLeverageResp {
-        return plainToClassFromExist(new ModifyMarginLeverageResp(), jsonObject);
+        return plainToClassFromExist(new ModifyMarginLeverageResp(), { data: jsonObject });
     }
 }

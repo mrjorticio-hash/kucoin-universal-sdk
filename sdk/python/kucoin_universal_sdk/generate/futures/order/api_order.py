@@ -48,17 +48,17 @@ class OrderAPI(ABC):
     def add_order(self, req: AddOrderReq, **kwargs: Any) -> AddOrderResp:
         """
         summary: Add Order
-        description: Place order to the futures trading system, you can place two major types of orders: limit and market. Orders can only be placed if your account has sufficient funds. Once an order is placed, your funds will be put on hold for the duration of the order. The amount of funds on hold depends on the order type and parameters specified.
+        description: Place order in the futures trading system. You can place two major types of order: Limit and market. Orders can only be placed if your account has sufficient funds. Once an order is placed, your funds will be put on hold for the duration of the order. The amount of funds on hold depends on the order type and parameters specified.
         documentation: https://www.kucoin.com/docs-new/api-3470235
-        +---------------------+---------+
-        | Extra API Info      | Value   |
-        +---------------------+---------+
-        | API-DOMAIN          | FUTURES |
-        | API-CHANNEL         | PRIVATE |
-        | API-PERMISSION      | FUTURES |
-        | API-RATE-LIMIT-POOL | FUTURES |
-        | API-RATE-LIMIT      | 2       |
-        +---------------------+---------+
+        +-----------------------+---------+
+        | Extra API Info        | Value   |
+        +-----------------------+---------+
+        | API-DOMAIN            | FUTURES |
+        | API-CHANNEL           | PRIVATE |
+        | API-PERMISSION        | FUTURES |
+        | API-RATE-LIMIT-POOL   | FUTURES |
+        | API-RATE-LIMIT-WEIGHT | 2       |
+        +-----------------------+---------+
         """
         pass
 
@@ -69,15 +69,15 @@ class OrderAPI(ABC):
         summary: Add Order Test
         description: Place order to the futures trading system just for validation
         documentation: https://www.kucoin.com/docs-new/api-3470238
-        +---------------------+---------+
-        | Extra API Info      | Value   |
-        +---------------------+---------+
-        | API-DOMAIN          | FUTURES |
-        | API-CHANNEL         | PRIVATE |
-        | API-PERMISSION      | FUTURES |
-        | API-RATE-LIMIT-POOL | FUTURES |
-        | API-RATE-LIMIT      | 2       |
-        +---------------------+---------+
+        +-----------------------+---------+
+        | Extra API Info        | Value   |
+        +-----------------------+---------+
+        | API-DOMAIN            | FUTURES |
+        | API-CHANNEL           | PRIVATE |
+        | API-PERMISSION        | FUTURES |
+        | API-RATE-LIMIT-POOL   | FUTURES |
+        | API-RATE-LIMIT-WEIGHT | 2       |
+        +-----------------------+---------+
         """
         pass
 
@@ -88,15 +88,15 @@ class OrderAPI(ABC):
         summary: Batch Add Orders
         description: Place multiple order to the futures trading system, you can place two major types of orders: limit and market. Orders can only be placed if your account has sufficient funds. Once an order is placed, your funds will be put on hold for the duration of the order. The amount of funds on hold depends on the order type and parameters specified. You can place up to 20 orders at one time, including limit orders, market orders, and stop orders  Please be noted that the system would hold the fees from the orders entered the orderbook in advance.
         documentation: https://www.kucoin.com/docs-new/api-3470236
-        +---------------------+---------+
-        | Extra API Info      | Value   |
-        +---------------------+---------+
-        | API-DOMAIN          | FUTURES |
-        | API-CHANNEL         | PRIVATE |
-        | API-PERMISSION      | FUTURES |
-        | API-RATE-LIMIT-POOL | FUTURES |
-        | API-RATE-LIMIT      | 20      |
-        +---------------------+---------+
+        +-----------------------+---------+
+        | Extra API Info        | Value   |
+        +-----------------------+---------+
+        | API-DOMAIN            | FUTURES |
+        | API-CHANNEL           | PRIVATE |
+        | API-PERMISSION        | FUTURES |
+        | API-RATE-LIMIT-POOL   | FUTURES |
+        | API-RATE-LIMIT-WEIGHT | 20      |
+        +-----------------------+---------+
         """
         pass
 
@@ -107,15 +107,15 @@ class OrderAPI(ABC):
         summary: Add Take Profit And Stop Loss Order
         description: Place take profit and stop loss order supports both take-profit and stop-loss functions, and other functions are exactly the same as the place order interface.
         documentation: https://www.kucoin.com/docs-new/api-3470237
-        +---------------------+---------+
-        | Extra API Info      | Value   |
-        +---------------------+---------+
-        | API-DOMAIN          | FUTURES |
-        | API-CHANNEL         | PRIVATE |
-        | API-PERMISSION      | FUTURES |
-        | API-RATE-LIMIT-POOL | FUTURES |
-        | API-RATE-LIMIT      | 2       |
-        +---------------------+---------+
+        +-----------------------+---------+
+        | Extra API Info        | Value   |
+        +-----------------------+---------+
+        | API-DOMAIN            | FUTURES |
+        | API-CHANNEL           | PRIVATE |
+        | API-PERMISSION        | FUTURES |
+        | API-RATE-LIMIT-POOL   | FUTURES |
+        | API-RATE-LIMIT-WEIGHT | 2       |
+        +-----------------------+---------+
         """
         pass
 
@@ -126,15 +126,15 @@ class OrderAPI(ABC):
         summary: Cancel Order By OrderId
         description: Cancel order by system generated orderId.
         documentation: https://www.kucoin.com/docs-new/api-3470239
-        +---------------------+---------+
-        | Extra API Info      | Value   |
-        +---------------------+---------+
-        | API-DOMAIN          | FUTURES |
-        | API-CHANNEL         | PRIVATE |
-        | API-PERMISSION      | FUTURES |
-        | API-RATE-LIMIT-POOL | FUTURES |
-        | API-RATE-LIMIT      | 1       |
-        +---------------------+---------+
+        +-----------------------+---------+
+        | Extra API Info        | Value   |
+        +-----------------------+---------+
+        | API-DOMAIN            | FUTURES |
+        | API-CHANNEL           | PRIVATE |
+        | API-PERMISSION        | FUTURES |
+        | API-RATE-LIMIT-POOL   | FUTURES |
+        | API-RATE-LIMIT-WEIGHT | 1       |
+        +-----------------------+---------+
         """
         pass
 
@@ -146,15 +146,15 @@ class OrderAPI(ABC):
         summary: Cancel Order By ClientOid
         description: Cancel order by client defined orderId.
         documentation: https://www.kucoin.com/docs-new/api-3470240
-        +---------------------+---------+
-        | Extra API Info      | Value   |
-        +---------------------+---------+
-        | API-DOMAIN          | FUTURES |
-        | API-CHANNEL         | PRIVATE |
-        | API-PERMISSION      | FUTURES |
-        | API-RATE-LIMIT-POOL | FUTURES |
-        | API-RATE-LIMIT      | 1       |
-        +---------------------+---------+
+        +-----------------------+---------+
+        | Extra API Info        | Value   |
+        +-----------------------+---------+
+        | API-DOMAIN            | FUTURES |
+        | API-CHANNEL           | PRIVATE |
+        | API-PERMISSION        | FUTURES |
+        | API-RATE-LIMIT-POOL   | FUTURES |
+        | API-RATE-LIMIT-WEIGHT | 1       |
+        +-----------------------+---------+
         """
         pass
 
@@ -165,15 +165,15 @@ class OrderAPI(ABC):
         summary: Batch Cancel Orders
         description: Cancel a bach of orders by client defined orderId or system generated orderId
         documentation: https://www.kucoin.com/docs-new/api-3470241
-        +---------------------+---------+
-        | Extra API Info      | Value   |
-        +---------------------+---------+
-        | API-DOMAIN          | FUTURES |
-        | API-CHANNEL         | PRIVATE |
-        | API-PERMISSION      | FUTURES |
-        | API-RATE-LIMIT-POOL | FUTURES |
-        | API-RATE-LIMIT      | 20      |
-        +---------------------+---------+
+        +-----------------------+---------+
+        | Extra API Info        | Value   |
+        +-----------------------+---------+
+        | API-DOMAIN            | FUTURES |
+        | API-CHANNEL           | PRIVATE |
+        | API-PERMISSION        | FUTURES |
+        | API-RATE-LIMIT-POOL   | FUTURES |
+        | API-RATE-LIMIT-WEIGHT | 20      |
+        +-----------------------+---------+
         """
         pass
 
@@ -184,15 +184,15 @@ class OrderAPI(ABC):
         summary: Cancel All Orders
         description: Cancel all open orders (excluding stop orders). The response is a list of orderIDs of the canceled orders.
         documentation: https://www.kucoin.com/docs-new/api-3470242
-        +---------------------+---------+
-        | Extra API Info      | Value   |
-        +---------------------+---------+
-        | API-DOMAIN          | FUTURES |
-        | API-CHANNEL         | PRIVATE |
-        | API-PERMISSION      | FUTURES |
-        | API-RATE-LIMIT-POOL | FUTURES |
-        | API-RATE-LIMIT      | 10      |
-        +---------------------+---------+
+        +-----------------------+---------+
+        | Extra API Info        | Value   |
+        +-----------------------+---------+
+        | API-DOMAIN            | FUTURES |
+        | API-CHANNEL           | PRIVATE |
+        | API-PERMISSION        | FUTURES |
+        | API-RATE-LIMIT-POOL   | FUTURES |
+        | API-RATE-LIMIT-WEIGHT | 10      |
+        +-----------------------+---------+
         """
         pass
 
@@ -203,15 +203,15 @@ class OrderAPI(ABC):
         summary: Cancel All Stop orders
         description: Cancel all untriggered stop orders. The response is a list of orderIDs of the canceled stop orders. To cancel triggered stop orders, please use &#39;Cancel Multiple Futures Limit orders&#39;.
         documentation: https://www.kucoin.com/docs-new/api-3470243
-        +---------------------+---------+
-        | Extra API Info      | Value   |
-        +---------------------+---------+
-        | API-DOMAIN          | FUTURES |
-        | API-CHANNEL         | PRIVATE |
-        | API-PERMISSION      | FUTURES |
-        | API-RATE-LIMIT-POOL | FUTURES |
-        | API-RATE-LIMIT      | 15      |
-        +---------------------+---------+
+        +-----------------------+---------+
+        | Extra API Info        | Value   |
+        +-----------------------+---------+
+        | API-DOMAIN            | FUTURES |
+        | API-CHANNEL           | PRIVATE |
+        | API-PERMISSION        | FUTURES |
+        | API-RATE-LIMIT-POOL   | FUTURES |
+        | API-RATE-LIMIT-WEIGHT | 15      |
+        +-----------------------+---------+
         """
         pass
 
@@ -222,15 +222,15 @@ class OrderAPI(ABC):
         summary: Get Order By OrderId
         description: Get a single order by order id (including a stop order).
         documentation: https://www.kucoin.com/docs-new/api-3470245
-        +---------------------+---------+
-        | Extra API Info      | Value   |
-        +---------------------+---------+
-        | API-DOMAIN          | FUTURES |
-        | API-CHANNEL         | PRIVATE |
-        | API-PERMISSION      | GENERAL |
-        | API-RATE-LIMIT-POOL | FUTURES |
-        | API-RATE-LIMIT      | 5       |
-        +---------------------+---------+
+        +-----------------------+---------+
+        | Extra API Info        | Value   |
+        +-----------------------+---------+
+        | API-DOMAIN            | FUTURES |
+        | API-CHANNEL           | PRIVATE |
+        | API-PERMISSION        | GENERAL |
+        | API-RATE-LIMIT-POOL   | FUTURES |
+        | API-RATE-LIMIT-WEIGHT | 5       |
+        +-----------------------+---------+
         """
         pass
 
@@ -239,17 +239,17 @@ class OrderAPI(ABC):
                                 **kwargs: Any) -> GetOrderByClientOidResp:
         """
         summary: Get Order By ClientOid
-        description: Get a single order by client order id (including a stop order).
+        description: Get a single order by client order ID (including a stop order).
         documentation: https://www.kucoin.com/docs-new/api-3470352
-        +---------------------+---------+
-        | Extra API Info      | Value   |
-        +---------------------+---------+
-        | API-DOMAIN          | FUTURES |
-        | API-CHANNEL         | PRIVATE |
-        | API-PERMISSION      | GENERAL |
-        | API-RATE-LIMIT-POOL | FUTURES |
-        | API-RATE-LIMIT      | 5       |
-        +---------------------+---------+
+        +-----------------------+---------+
+        | Extra API Info        | Value   |
+        +-----------------------+---------+
+        | API-DOMAIN            | FUTURES |
+        | API-CHANNEL           | PRIVATE |
+        | API-PERMISSION        | GENERAL |
+        | API-RATE-LIMIT-POOL   | FUTURES |
+        | API-RATE-LIMIT-WEIGHT | 5       |
+        +-----------------------+---------+
         """
         pass
 
@@ -260,15 +260,15 @@ class OrderAPI(ABC):
         summary: Get Order List
         description: List your current orders.
         documentation: https://www.kucoin.com/docs-new/api-3470244
-        +---------------------+---------+
-        | Extra API Info      | Value   |
-        +---------------------+---------+
-        | API-DOMAIN          | FUTURES |
-        | API-CHANNEL         | PRIVATE |
-        | API-PERMISSION      | FUTURES |
-        | API-RATE-LIMIT-POOL | FUTURES |
-        | API-RATE-LIMIT      | 2       |
-        +---------------------+---------+
+        +-----------------------+---------+
+        | Extra API Info        | Value   |
+        +-----------------------+---------+
+        | API-DOMAIN            | FUTURES |
+        | API-CHANNEL           | PRIVATE |
+        | API-PERMISSION        | GENERAL |
+        | API-RATE-LIMIT-POOL   | FUTURES |
+        | API-RATE-LIMIT-WEIGHT | 2       |
+        +-----------------------+---------+
         """
         pass
 
@@ -279,15 +279,15 @@ class OrderAPI(ABC):
         summary: Get Recent Closed Orders
         description: Get a list of recent 1000 closed orders in the last 24 hours.  If you need to get your recent traded order history with low latency, you may query this endpoint.
         documentation: https://www.kucoin.com/docs-new/api-3470246
-        +---------------------+---------+
-        | Extra API Info      | Value   |
-        +---------------------+---------+
-        | API-DOMAIN          | FUTURES |
-        | API-CHANNEL         | PRIVATE |
-        | API-PERMISSION      | FUTURES |
-        | API-RATE-LIMIT-POOL | FUTURES |
-        | API-RATE-LIMIT      | 5       |
-        +---------------------+---------+
+        +-----------------------+---------+
+        | Extra API Info        | Value   |
+        +-----------------------+---------+
+        | API-DOMAIN            | FUTURES |
+        | API-CHANNEL           | PRIVATE |
+        | API-PERMISSION        | GENERAL |
+        | API-RATE-LIMIT-POOL   | FUTURES |
+        | API-RATE-LIMIT-WEIGHT | 5       |
+        +-----------------------+---------+
         """
         pass
 
@@ -298,15 +298,15 @@ class OrderAPI(ABC):
         summary: Get Stop Order List
         description: Get the un-triggered stop orders list. Stop orders that have been triggered can be queried through the general order interface
         documentation: https://www.kucoin.com/docs-new/api-3470247
-        +---------------------+---------+
-        | Extra API Info      | Value   |
-        +---------------------+---------+
-        | API-DOMAIN          | FUTURES |
-        | API-CHANNEL         | PRIVATE |
-        | API-PERMISSION      | FUTURES |
-        | API-RATE-LIMIT-POOL | FUTURES |
-        | API-RATE-LIMIT      | 6       |
-        +---------------------+---------+
+        +-----------------------+---------+
+        | Extra API Info        | Value   |
+        +-----------------------+---------+
+        | API-DOMAIN            | FUTURES |
+        | API-CHANNEL           | PRIVATE |
+        | API-PERMISSION        | GENERAL |
+        | API-RATE-LIMIT-POOL   | FUTURES |
+        | API-RATE-LIMIT-WEIGHT | 6       |
+        +-----------------------+---------+
         """
         pass
 
@@ -315,17 +315,17 @@ class OrderAPI(ABC):
                              **kwargs: Any) -> GetOpenOrderValueResp:
         """
         summary: Get Open Order Value
-        description: You can query this endpoint to get the the total number and value of the all your active orders.
+        description: You can query this endpoint to get the total number and value of all your active orders.
         documentation: https://www.kucoin.com/docs-new/api-3470250
-        +---------------------+---------+
-        | Extra API Info      | Value   |
-        +---------------------+---------+
-        | API-DOMAIN          | FUTURES |
-        | API-CHANNEL         | PRIVATE |
-        | API-PERMISSION      | FUTURES |
-        | API-RATE-LIMIT-POOL | FUTURES |
-        | API-RATE-LIMIT      | 10      |
-        +---------------------+---------+
+        +-----------------------+---------+
+        | Extra API Info        | Value   |
+        +-----------------------+---------+
+        | API-DOMAIN            | FUTURES |
+        | API-CHANNEL           | PRIVATE |
+        | API-PERMISSION        | GENERAL |
+        | API-RATE-LIMIT-POOL   | FUTURES |
+        | API-RATE-LIMIT-WEIGHT | 10      |
+        +-----------------------+---------+
         """
         pass
 
@@ -334,17 +334,17 @@ class OrderAPI(ABC):
                                  **kwargs: Any) -> GetRecentTradeHistoryResp:
         """
         summary: Get Recent Trade History
-        description: Get a list of recent 1000 fills in the last 24 hours. If you need to get your recent traded order history with low latency, you may query this endpoint.
+        description: Get a list of recent 1000 fills in the last 24 hours. If you need to get your recently traded order history with low latency, you may query this endpoint.
         documentation: https://www.kucoin.com/docs-new/api-3470249
-        +---------------------+---------+
-        | Extra API Info      | Value   |
-        +---------------------+---------+
-        | API-DOMAIN          | FUTURES |
-        | API-CHANNEL         | PRIVATE |
-        | API-PERMISSION      | FUTURES |
-        | API-RATE-LIMIT-POOL | FUTURES |
-        | API-RATE-LIMIT      | 3       |
-        +---------------------+---------+
+        +-----------------------+---------+
+        | Extra API Info        | Value   |
+        +-----------------------+---------+
+        | API-DOMAIN            | FUTURES |
+        | API-CHANNEL           | PRIVATE |
+        | API-PERMISSION        | FUTURES |
+        | API-RATE-LIMIT-POOL   | FUTURES |
+        | API-RATE-LIMIT-WEIGHT | NULL    |
+        +-----------------------+---------+
         """
         pass
 
@@ -355,15 +355,15 @@ class OrderAPI(ABC):
         summary: Get Trade History
         description: Get a list of recent fills. If you need to get your recent trade history with low latency, please query endpoint Get List of Orders Completed in 24h. The requested data is not real-time.
         documentation: https://www.kucoin.com/docs-new/api-3470248
-        +---------------------+---------+
-        | Extra API Info      | Value   |
-        +---------------------+---------+
-        | API-DOMAIN          | FUTURES |
-        | API-CHANNEL         | PRIVATE |
-        | API-PERMISSION      | FUTURES |
-        | API-RATE-LIMIT-POOL | FUTURES |
-        | API-RATE-LIMIT      | 5       |
-        +---------------------+---------+
+        +-----------------------+---------+
+        | Extra API Info        | Value   |
+        +-----------------------+---------+
+        | API-DOMAIN            | FUTURES |
+        | API-CHANNEL           | PRIVATE |
+        | API-PERMISSION        | GENERAL |
+        | API-RATE-LIMIT-POOL   | FUTURES |
+        | API-RATE-LIMIT-WEIGHT | 5       |
+        +-----------------------+---------+
         """
         pass
 
@@ -375,15 +375,15 @@ class OrderAPI(ABC):
         summary: Cancel All Orders - V1
         description: Cancel all open orders (excluding stop orders). The response is a list of orderIDs of the canceled orders.
         documentation: https://www.kucoin.com/docs-new/api-3470362
-        +---------------------+---------+
-        | Extra API Info      | Value   |
-        +---------------------+---------+
-        | API-DOMAIN          | FUTURES |
-        | API-CHANNEL         | PRIVATE |
-        | API-PERMISSION      | FUTURES |
-        | API-RATE-LIMIT-POOL | FUTURES |
-        | API-RATE-LIMIT      | 200     |
-        +---------------------+---------+
+        +-----------------------+---------+
+        | Extra API Info        | Value   |
+        +-----------------------+---------+
+        | API-DOMAIN            | FUTURES |
+        | API-CHANNEL           | PRIVATE |
+        | API-PERMISSION        | FUTURES |
+        | API-RATE-LIMIT-POOL   | FUTURES |
+        | API-RATE-LIMIT-WEIGHT | 200     |
+        +-----------------------+---------+
         """
         pass
 

@@ -30,7 +30,7 @@ type AddStopOrderReq struct {
 	Iceberg *bool `json:"iceberg,omitempty"`
 	// When **type** is limit, this is Maximum visible quantity in iceberg orders.
 	VisibleSize *string `json:"visibleSize,omitempty"`
-	// Cancel after n seconds，the order timing strategy is GTT when **type** is limit.
+	// Cancel after n seconds, the order timing strategy is GTT, -1 means it will not be cancelled automatically, the default value is -1
 	CancelAfter *int64 `json:"cancelAfter,omitempty"`
 	// When **type** is market, select one out of two: size or funds
 	Funds *string `json:"funds,omitempty"`
@@ -55,6 +55,8 @@ func NewAddStopOrderReq(side string, symbol string, Type_ string, stopPrice stri
 	this.Hidden = &hidden
 	var iceberg bool = false
 	this.Iceberg = &iceberg
+	var cancelAfter int64 = -1
+	this.CancelAfter = &cancelAfter
 	this.StopPrice = stopPrice
 	return &this
 }
@@ -71,6 +73,8 @@ func NewAddStopOrderReqWithDefaults() *AddStopOrderReq {
 	this.Hidden = &hidden
 	var iceberg bool = false
 	this.Iceberg = &iceberg
+	var cancelAfter int64 = -1
+	this.CancelAfter = &cancelAfter
 	return &this
 }
 
@@ -182,7 +186,7 @@ func (builder *AddStopOrderReqBuilder) SetVisibleSize(value string) *AddStopOrde
 	return builder
 }
 
-// Cancel after n seconds，the order timing strategy is GTT when **type** is limit.
+// Cancel after n seconds, the order timing strategy is GTT, -1 means it will not be cancelled automatically, the default value is -1
 func (builder *AddStopOrderReqBuilder) SetCancelAfter(value int64) *AddStopOrderReqBuilder {
 	builder.obj.CancelAfter = &value
 	return builder

@@ -4,7 +4,7 @@ package order
 
 // SetDCPReq struct for SetDCPReq
 type SetDCPReq struct {
-	// Auto cancel order trigger setting time, the unit is second. range: timeout=-1 (meaning unset) or 5 <= timeout <= 86400. For example, timeout=5 means that the order will be automatically canceled if no user request is received for more than 5 seconds. When this parameter is changed, the previous setting will be overwritten.
+	// Auto cancel order trigger setting time, the unit is second. Range: timeout=-1 (meaning unset) or 5 <= timeout <= 86400. For example, timeout=5 means that the order will be automatically canceled if no user request is received for more than 5 seconds. When this parameter is changed, the previous setting will be overwritten.
 	Timeout int32 `json:"timeout,omitempty"`
 	// List of trading pairs. When this parameter is not empty, separate it with commas and support up to 50 trading pairs. Empty means all trading pairs. When this parameter is changed, the previous setting will be overwritten.
 	Symbols *string `json:"symbols,omitempty"`
@@ -40,7 +40,7 @@ func NewSetDCPReqBuilder() *SetDCPReqBuilder {
 	return &SetDCPReqBuilder{obj: NewSetDCPReqWithDefaults()}
 }
 
-// Auto cancel order trigger setting time, the unit is second. range: timeout=-1 (meaning unset) or 5 <= timeout <= 86400. For example, timeout=5 means that the order will be automatically canceled if no user request is received for more than 5 seconds. When this parameter is changed, the previous setting will be overwritten.
+// Auto cancel order trigger setting time, the unit is second. Range: timeout=-1 (meaning unset) or 5 <= timeout <= 86400. For example, timeout=5 means that the order will be automatically canceled if no user request is received for more than 5 seconds. When this parameter is changed, the previous setting will be overwritten.
 func (builder *SetDCPReqBuilder) SetTimeout(value int32) *SetDCPReqBuilder {
 	builder.obj.Timeout = value
 	return builder

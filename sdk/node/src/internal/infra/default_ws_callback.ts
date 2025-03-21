@@ -43,7 +43,7 @@ export class CallbackManager {
                 // split topic
                 const parts = topic.split(':');
                 // if split into 2 parts, then it's a valid topic
-                if (parts.length === 2) {
+                if (parts.length === 2 && parts[1] !== 'all') {
                     // add the second part to info.args
                     info.args.push(parts[1]);
                 }

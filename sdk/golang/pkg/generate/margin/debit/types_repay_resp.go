@@ -11,7 +11,7 @@ type RepayResp struct {
 	// common response
 	CommonResponse *types.RestResponse
 	Timestamp      int64 `json:"timestamp,omitempty"`
-	// Repay Order Id
+	// Repay order ID
 	OrderNo string `json:"orderNo,omitempty"`
 	// Actual repay amount
 	ActualSize string `json:"actualSize,omitempty"`

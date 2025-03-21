@@ -6,19 +6,19 @@ package market
 type GetCrossMarginSymbolsItems struct {
 	// symbol
 	Symbol string `json:"symbol,omitempty"`
-	// symbol name
+	// Symbol name
 	Name string `json:"name,omitempty"`
-	// Whether trading is enabled: true for enabled, false for disabled
+	// Whether trading is enabled: True for enabled; false for disabled
 	EnableTrading bool `json:"enableTrading,omitempty"`
 	// Trading market
 	Market string `json:"market,omitempty"`
-	// Base currency,e.g. BTC.
+	// Base currency, e.g. BTC.
 	BaseCurrency string `json:"baseCurrency,omitempty"`
-	// Quote currency,e.g. USDT.
+	// Quote currency, e.g. USDT.
 	QuoteCurrency string `json:"quoteCurrency,omitempty"`
 	// Quantity increment: The quantity for an order must be a positive integer multiple of this increment. Here, the size refers to the quantity of the base currency for the order. For example, for the ETH-USDT trading pair, if the baseIncrement is 0.0000001, the order quantity can be 1.0000001 but not 1.00000001.
 	BaseIncrement string `json:"baseIncrement,omitempty"`
-	// The minimum order quantity requried to place an order.
+	// The minimum order quantity required to place an order.
 	BaseMinSize string `json:"baseMinSize,omitempty"`
 	// Quote increment: The funds for a market order must be a positive integer multiple of this increment. The funds refer to the quote currency amount. For example, for the ETH-USDT trading pair, if the quoteIncrement is 0.000001, the amount of USDT for the order can be 3000.000001 but not 3000.0000001.
 	QuoteIncrement string `json:"quoteIncrement,omitempty"`
@@ -28,13 +28,13 @@ type GetCrossMarginSymbolsItems struct {
 	BaseMaxSize string `json:"baseMaxSize,omitempty"`
 	// The maximum order funds required to place a market order.
 	QuoteMaxSize string `json:"quoteMaxSize,omitempty"`
-	// Price increment: The price of an order must be a positive integer multiple of this increment. For example, for the ETH-USDT trading pair, if the priceIncrement is 0.01, the order price can be 3000.01 but not 3000.001.  specifies the min order price as well as the price increment.This also applies to quote currency.
+	// Price increment: The price of an order must be a positive integer multiple of this increment. For example, for the ETH-USDT trading pair, if the priceIncrement is 0.01, the order price can be 3000.01 but not 3000.001.  Specifies the min. order price as well as the price increment.This also applies to quote currency.
 	PriceIncrement string `json:"priceIncrement,omitempty"`
 	// The currency of charged fees.
 	FeeCurrency string `json:"feeCurrency,omitempty"`
-	// Threshold for price portection
+	// Threshold for price protection
 	PriceLimitRate string `json:"priceLimitRate,omitempty"`
-	// the minimum trading amounts
+	// The minimum trading amounts
 	MinFunds string `json:"minFunds,omitempty"`
 }
 

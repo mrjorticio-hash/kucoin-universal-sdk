@@ -18,8 +18,8 @@ class GetCurrentFundingRateResp(BaseModel, Response):
 
     Attributes:
         symbol (str): Funding Rate Symbol 
-        granularity (int): Granularity (milisecond) 
-        time_point (int): The funding rate settlement time point of the previous cycle (milisecond) 
+        granularity (int): Granularity (milliseconds) 
+        time_point (int): The funding rate settlement time point of the previous cycle (milliseconds) 
         value (float): Current cycle funding rate 
         predicted_value (float): Predicted funding rate 
         funding_rate_cap (float): Maximum Funding Rate
@@ -30,12 +30,12 @@ class GetCurrentFundingRateResp(BaseModel, Response):
         default=None, description="Common response")
     symbol: Optional[str] = Field(default=None,
                                   description="Funding Rate Symbol ")
-    granularity: Optional[int] = Field(default=None,
-                                       description="Granularity (milisecond) ")
+    granularity: Optional[int] = Field(
+        default=None, description="Granularity (milliseconds) ")
     time_point: Optional[int] = Field(
         default=None,
         description=
-        "The funding rate settlement time point of the previous cycle (milisecond) ",
+        "The funding rate settlement time point of the previous cycle (milliseconds) ",
         alias="timePoint")
     value: Optional[float] = Field(default=None,
                                    description="Current cycle funding rate ")

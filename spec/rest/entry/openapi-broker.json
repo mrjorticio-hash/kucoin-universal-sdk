@@ -11,7 +11,7 @@
             "get": {
                 "summary": "Get Broker Rebate",
                 "deprecated": false,
-                "description": "This interface supports downloading Broker rebate orders",
+                "description": "This interface supports the downloading of Broker rebate orders.",
                 "tags": [],
                 "parameters": [
                     {
@@ -35,7 +35,7 @@
                     {
                         "name": "tradeType",
                         "in": "query",
-                        "description": "Transaction type, 1: spot 2: futures",
+                        "description": "Transaction type: 1, spot; 2, futures",
                         "required": true,
                         "schema": {
                             "type": "string",
@@ -100,8 +100,8 @@
                 "x-sdk-service": "Broker",
                 "x-sdk-sub-service": "APIBroker",
                 "x-sdk-method-name": "getRebase",
-                "x-sdk-method-description": "This interface supports downloading Broker rebate orders",
-                "x-api-rate-limit": 3,
+                "x-sdk-method-description": "This interface supports the downloading of Broker rebate orders.",
+                "x-api-rate-limit-weight": 3,
                 "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"url\\\": \\\"https://kc-v2-promotion.s3.ap-northeast-1.amazonaws.com/broker/671aec522593f600019766d0_file.csv?X-Amz-Security-Token=IQo*********2cd90f14efb\\\"\\n    }\\n}",
                 "x-request-example": "{\\\"begin\\\": \\\"20240610\\\", \\\"end\\\": \\\"20241010\\\", \\\"tradeType\\\": \\\"1\\\"}",
                 "operationId": "001"
@@ -111,7 +111,7 @@
             "get": {
                 "summary": "Get Broker Info",
                 "deprecated": false,
-                "description": "This endpoint supports querying the basic information of the current Broker",
+                "description": "This endpoint supports querying the basic information of the current Broker.",
                 "tags": [],
                 "parameters": [
                     {
@@ -135,7 +135,7 @@
                     {
                         "name": "tradeType",
                         "in": "query",
-                        "description": "Transaction type, 1: spot 2: futures",
+                        "description": "Transaction type: 1, spot; 2: futures",
                         "required": true,
                         "schema": {
                             "type": "string",
@@ -178,7 +178,7 @@
                                                 },
                                                 "maxAccountSize": {
                                                     "type": "integer",
-                                                    "description": "The maximum number of sub-accounts allowed to be created, null means no limit"
+                                                    "description": "The maximum number of sub-accounts allowed to be created; null means no limit"
                                                 },
                                                 "level": {
                                                     "type": "integer",
@@ -210,8 +210,8 @@
                 "x-sdk-service": "Broker",
                 "x-sdk-sub-service": "NDBroker",
                 "x-sdk-method-name": "getBrokerInfo",
-                "x-sdk-method-description": "This endpoint supports querying the basic information of the current Broker",
-                "x-api-rate-limit": 2,
+                "x-sdk-method-description": "This endpoint supports querying the basic information of the current Broker.",
+                "x-api-rate-limit-weight": 2,
                 "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"accountSize\\\": 0,\\n        \\\"maxAccountSize\\\": null,\\n        \\\"level\\\": 0\\n    }\\n}",
                 "x-request-example": "{\\\"begin\\\": \\\"20240510\\\", \\\"end\\\": \\\"20241010\\\", \\\"tradeType\\\": \\\"1\\\"}",
                 "operationId": "002"
@@ -219,9 +219,9 @@
         },
         "/api/v1/broker/nd/account": {
             "post": {
-                "summary": "Add SubAccount",
+                "summary": "Add sub-account",
                 "deprecated": false,
-                "description": "This endpoint supports Broker users to create sub-accounts",
+                "description": "This endpoint supports Broker users creating sub-accounts.",
                 "tags": [],
                 "parameters": [],
                 "responses": {
@@ -240,20 +240,20 @@
                                             "properties": {
                                                 "accountName": {
                                                     "type": "string",
-                                                    "description": "Sub-Account name\n"
+                                                    "description": "Sub-account name\n"
                                                 },
                                                 "uid": {
                                                     "type": "string",
-                                                    "description": "Sub-Account UID"
+                                                    "description": "Sub-account UID"
                                                 },
                                                 "createdAt": {
                                                     "type": "integer",
-                                                    "description": "Creation time, unix timestamp (milliseconds)",
+                                                    "description": "Creation time, Unix timestamp (milliseconds)",
                                                     "format": "int64"
                                                 },
                                                 "level": {
                                                     "type": "integer",
-                                                    "description": "Subaccount VIP level"
+                                                    "description": "Sub-account VIP level"
                                                 }
                                             },
                                             "required": [
@@ -282,8 +282,8 @@
                 "x-sdk-service": "Broker",
                 "x-sdk-sub-service": "NDBroker",
                 "x-sdk-method-name": "addSubAccount",
-                "x-sdk-method-description": "This endpoint supports Broker users to create sub-accounts",
-                "x-api-rate-limit": 3,
+                "x-sdk-method-description": "This endpoint supports Broker users creating sub-accounts.",
+                "x-api-rate-limit-weight": 3,
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -292,7 +292,7 @@
                                 "properties": {
                                     "accountName": {
                                         "type": "string",
-                                        "description": "Sub Account Name, Note that this name is unique across the exchange. It is recommended to add a special identifier to prevent name duplication."
+                                        "description": "Sub-account Name. Note that this name is unique across the exchange. It is recommended to add a special identifier to prevent name duplication."
                                     }
                                 },
                                 "required": [
@@ -308,9 +308,9 @@
                 "operationId": "003"
             },
             "get": {
-                "summary": "Get SubAccount",
+                "summary": "Get sub-account",
                 "deprecated": false,
-                "description": "This interface supports querying sub-accounts created by Broker",
+                "description": "This interface supports querying sub-accounts created by Broker.",
                 "tags": [],
                 "parameters": [
                     {
@@ -373,7 +373,7 @@
                                                 },
                                                 "totalPage": {
                                                     "type": "integer",
-                                                    "description": "Total Page"
+                                                    "description": "Total Pages"
                                                 },
                                                 "items": {
                                                     "type": "array",
@@ -390,7 +390,7 @@
                                                             },
                                                             "createdAt": {
                                                                 "type": "integer",
-                                                                "description": "Creation time, unix timestamp (milliseconds)",
+                                                                "description": "Creation time, Unix timestamp (milliseconds)",
                                                                 "format": "int64"
                                                             },
                                                             "level": {
@@ -434,8 +434,8 @@
                 "x-sdk-service": "Broker",
                 "x-sdk-sub-service": "NDBroker",
                 "x-sdk-method-name": "getSubAccount",
-                "x-sdk-method-description": "This interface supports querying sub-accounts created by Broker",
-                "x-api-rate-limit": 2,
+                "x-sdk-method-description": "This interface supports querying sub-accounts created by Broker.",
+                "x-api-rate-limit-weight": 2,
                 "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"currentPage\\\": 1,\\n        \\\"pageSize\\\": 20,\\n        \\\"totalNum\\\": 1,\\n        \\\"totalPage\\\": 1,\\n        \\\"items\\\": [\\n            {\\n                \\\"accountName\\\": \\\"Account15\\\",\\n                \\\"uid\\\": \\\"226383154\\\",\\n                \\\"createdAt\\\": 1729819382000,\\n                \\\"level\\\": 0\\n            }\\n        ]\\n    }\\n}",
                 "x-request-example": "{\\\"uid\\\": \\\"226383154\\\", \\\"currentPage\\\": 1, \\\"pageSize\\\": 20}",
                 "operationId": "004"
@@ -443,9 +443,9 @@
         },
         "/api/v1/broker/nd/account/apikey": {
             "post": {
-                "summary": "Add SubAccount API",
+                "summary": "Add sub-account API",
                 "deprecated": false,
-                "description": "This interface supports the creation of Broker sub-account APIKEY",
+                "description": "This interface supports the creation of Broker sub-account APIKEY.",
                 "tags": [],
                 "parameters": [],
                 "responses": {
@@ -464,7 +464,7 @@
                                             "properties": {
                                                 "uid": {
                                                     "type": "string",
-                                                    "description": "Sub-Account UID"
+                                                    "description": "Sub-account UID"
                                                 },
                                                 "label": {
                                                     "type": "string",
@@ -498,7 +498,7 @@
                                                 },
                                                 "createdAt": {
                                                     "type": "integer",
-                                                    "description": "Creation time, unix timestamp (milliseconds)",
+                                                    "description": "Creation time, Unix timestamp (milliseconds)",
                                                     "format": "int64"
                                                 }
                                             },
@@ -532,8 +532,8 @@
                 "x-sdk-service": "Broker",
                 "x-sdk-sub-service": "NDBroker",
                 "x-sdk-method-name": "addSubAccountApi",
-                "x-sdk-method-description": "This interface supports the creation of Broker sub-account APIKEY",
-                "x-api-rate-limit": 3,
+                "x-sdk-method-description": "This interface supports the creation of Broker sub-account APIKEY.",
+                "x-api-rate-limit-weight": 3,
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -542,7 +542,7 @@
                                 "properties": {
                                     "uid": {
                                         "type": "string",
-                                        "description": "Subaccount UID"
+                                        "description": "Sub-account UID"
                                     },
                                     "passphrase": {
                                         "type": "string",
@@ -582,7 +582,7 @@
                                                 }
                                             ]
                                         },
-                                        "description": "Permission group list(Only General、Spot、Futures permissions can be set, such as \"General, Trade\". )\n"
+                                        "description": "Permission group list (only General, Spot and Futures permissions can be set, such as \"General, Trade\").\n"
                                     },
                                     "label": {
                                         "type": "string",
@@ -608,9 +608,9 @@
                 "operationId": "005"
             },
             "get": {
-                "summary": "Get SubAccount API",
+                "summary": "Get sub-account API",
                 "deprecated": false,
-                "description": "This interface supports querying the Broker’s sub-account APIKEY",
+                "description": "This interface supports querying the Broker’s sub-account APIKEY.",
                 "tags": [],
                 "parameters": [
                     {
@@ -650,7 +650,7 @@
                                                 "properties": {
                                                     "uid": {
                                                         "type": "string",
-                                                        "description": "Sub-Account UID"
+                                                        "description": "Sub-account UID"
                                                     },
                                                     "label": {
                                                         "type": "string",
@@ -702,7 +702,7 @@
                                                     },
                                                     "createdAt": {
                                                         "type": "integer",
-                                                        "description": "Creation time, unix timestamp (milliseconds)",
+                                                        "description": "Creation time, Unix timestamp (milliseconds)",
                                                         "format": "int64"
                                                     }
                                                 },
@@ -736,16 +736,16 @@
                 "x-sdk-service": "Broker",
                 "x-sdk-sub-service": "NDBroker",
                 "x-sdk-method-name": "getSubAccountAPI",
-                "x-sdk-method-description": "This interface supports querying the Broker’s sub-account APIKEY",
-                "x-api-rate-limit": 2,
+                "x-sdk-method-description": "This interface supports querying the Broker’s sub-account APIKEY.",
+                "x-api-rate-limit-weight": 2,
                 "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": [\\n        {\\n            \\\"uid\\\": \\\"226383154\\\",\\n            \\\"label\\\": \\\"This is remarks\\\",\\n            \\\"apiKey\\\": \\\"671afb36cee20f00015cfaf1\\\",\\n            \\\"apiVersion\\\": 3,\\n            \\\"permissions\\\": [\\n                \\\"General\\\",\\n                \\\"Spot\\\"\\n            ],\\n            \\\"ipWhitelist\\\": [\\n                \\\"127.**.1\\\",\\n                \\\"203.**.154\\\"\\n            ],\\n            \\\"createdAt\\\": 1729821494000\\n        }\\n    ]\\n}",
                 "x-request-example": "{\\\"uid\\\": \\\"226383154\\\", \\\"apiKey\\\": \\\"671afb36cee20f00015cfaf1\\\"}",
                 "operationId": "006"
             },
             "delete": {
-                "summary": "Delete SubAccount API",
+                "summary": "Delete sub-account API",
                 "deprecated": false,
-                "description": "This interface supports deleting Broker’s sub-account APIKEY",
+                "description": "This interface supports deleting Broker’s sub-account APIKEY.",
                 "tags": [],
                 "parameters": [
                     {
@@ -800,8 +800,8 @@
                 "x-sdk-service": "Broker",
                 "x-sdk-sub-service": "NDBroker",
                 "x-sdk-method-name": "deleteSubAccountAPI",
-                "x-sdk-method-description": "This interface supports deleting Broker’s sub-account APIKEY",
-                "x-api-rate-limit": 3,
+                "x-sdk-method-description": "This interface supports deleting Broker’s sub-account APIKEY.",
+                "x-api-rate-limit-weight": 3,
                 "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": true\\n}",
                 "x-request-example": "{\\\"uid\\\": \\\"226383154\\\", \\\"apiKey\\\": \\\"671afb36cee20f00015cfaf1\\\"}",
                 "operationId": "008"
@@ -809,9 +809,9 @@
         },
         "/api/v1/broker/nd/account/update-apikey": {
             "post": {
-                "summary": "Modify SubAccount API",
+                "summary": "Modify sub-account API",
                 "deprecated": false,
-                "description": "This interface supports modify the Broker’s sub-account APIKEY",
+                "description": "This interface supports modifying the Broker’s sub-account APIKEY.",
                 "tags": [],
                 "parameters": [],
                 "responses": {
@@ -830,7 +830,7 @@
                                             "properties": {
                                                 "uid": {
                                                     "type": "string",
-                                                    "description": "Sub-Account UID"
+                                                    "description": "Sub-account UID"
                                                 },
                                                 "label": {
                                                     "type": "string",
@@ -860,7 +860,7 @@
                                                 },
                                                 "createdAt": {
                                                     "type": "integer",
-                                                    "description": "Creation time, unix timestamp (milliseconds)",
+                                                    "description": "Creation time, Unix timestamp (milliseconds)",
                                                     "format": "int64"
                                                 }
                                             },
@@ -893,8 +893,8 @@
                 "x-sdk-service": "Broker",
                 "x-sdk-sub-service": "NDBroker",
                 "x-sdk-method-name": "modifySubAccountApi",
-                "x-sdk-method-description": "This interface supports modify the Broker’s sub-account APIKEY",
-                "x-api-rate-limit": 3,
+                "x-sdk-method-description": "This interface supports modifying the Broker’s sub-account APIKEY.",
+                "x-api-rate-limit-weight": 3,
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -903,7 +903,7 @@
                                 "properties": {
                                     "uid": {
                                         "type": "string",
-                                        "description": "Subaccount UID"
+                                        "description": "Sub-account UID"
                                     },
                                     "ipWhitelist": {
                                         "type": "array",
@@ -939,7 +939,7 @@
                                                 }
                                             ]
                                         },
-                                        "description": "[Permissions](https://www.kucoin.com/docs-new/doc-338144) group list(Only General、Spot、Futures permissions can be set, such as \"General, Trade\". )\n"
+                                        "description": "[Permissions](https://www.kucoin.com/docs-new/doc-338144) group list (only General, Spot and Futures permissions can be set, such as \"General, Trade\").\n"
                                     },
                                     "label": {
                                         "type": "string",
@@ -949,7 +949,7 @@
                                     },
                                     "apiKey": {
                                         "type": "string",
-                                        "description": "Subaccount apiKey"
+                                        "description": "Sub-account apiKey"
                                     }
                                 },
                                 "required": [
@@ -973,7 +973,7 @@
             "post": {
                 "summary": "Transfer",
                 "deprecated": false,
-                "description": "This endpoint supports fund transfer between Broker account and Broker sub-accounts.  Please be aware that withdrawal from sub-account is not directly supported. Broker has to transfer funds from broker sub-account to broker account to initiate the withdrawals.",
+                "description": "This endpoint supports fund transfer between Broker accounts and Broker sub-accounts.  Please be aware that withdrawal from sub-accounts is not directly supported. Broker has to transfer funds from broker sub-account to broker account to initiate the withdrawals.",
                 "tags": [],
                 "parameters": [],
                 "responses": {
@@ -1017,8 +1017,8 @@
                 "x-sdk-service": "Broker",
                 "x-sdk-sub-service": "NDBroker",
                 "x-sdk-method-name": "transfer",
-                "x-sdk-method-description": "This endpoint supports fund transfer between Broker account and Broker sub-accounts.  Please be aware that withdrawal from sub-account is not directly supported. Broker has to transfer funds from broker sub-account to broker account to initiate the withdrawals.",
-                "x-api-rate-limit": 1,
+                "x-sdk-method-description": "This endpoint supports fund transfer between Broker accounts and Broker sub-accounts.  Please be aware that withdrawal from sub-accounts is not directly supported. Broker has to transfer funds from broker sub-account to broker account to initiate the withdrawals.",
+                "x-api-rate-limit-weight": 1,
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -1075,7 +1075,7 @@
                                     },
                                     "specialUid": {
                                         "type": "string",
-                                        "description": "Broker subaccount uid, must be the Broker subaccount created by the current Broker user."
+                                        "description": "Broker sub-account UID, must be the Broker sub-account created by the current Broker user."
                                     },
                                     "specialAccountType": {
                                         "type": "string",
@@ -1099,7 +1099,7 @@
                                     },
                                     "clientOid": {
                                         "type": "string",
-                                        "description": "Client Order Id, The unique identifier created by the client. It is recommended to use UUID. The maximum length is 128 bits.",
+                                        "description": "Client Order ID, the unique identifier created by the client. It is recommended to use UUID. The maximum length is 128 bits.",
                                         "maxLength": 128
                                     }
                                 },
@@ -1126,7 +1126,7 @@
             "get": {
                 "summary": "Get Transfer History",
                 "deprecated": false,
-                "description": "This endpoint supports querying transfer records of the broker itself and its created sub-accounts.",
+                "description": "This endpoint supports querying the transfer records of the broker itself and its created sub-accounts.",
                 "tags": [],
                 "parameters": [
                     {
@@ -1171,7 +1171,7 @@
                                                 },
                                                 "fromAccountType": {
                                                     "type": "string",
-                                                    "description": "From Account Type:Account Type: MAIN, TRADE, CONTRACT, MARGIN, ISOLATED",
+                                                    "description": "From Account Type: Account Type: MAIN, TRADE, CONTRACT, MARGIN, ISOLATED",
                                                     "enum": [
                                                         "MAIN",
                                                         "TRADE",
@@ -1209,7 +1209,7 @@
                                                 },
                                                 "fromAccountTag": {
                                                     "type": "string",
-                                                    "description": "Trading pair, required if the account type is ISOLATED, e.g., BTC-USDT",
+                                                    "description": "Trading pair (required if the account type is ISOLATED), e.g., BTC-USDT",
                                                     "example": [
                                                         "BTC-USDT",
                                                         "ETH-USDT",
@@ -1222,7 +1222,7 @@
                                                 },
                                                 "toAccountType": {
                                                     "type": "string",
-                                                    "description": "Account Type:Account Type: MAIN, TRADE, CONTRACT, MARGIN, ISOLATED",
+                                                    "description": "Account Type: Account Type: MAIN, TRADE, CONTRACT, MARGIN, ISOLATED",
                                                     "enum": [
                                                         "MAIN",
                                                         "TRADE",
@@ -1260,7 +1260,7 @@
                                                 },
                                                 "toAccountTag": {
                                                     "type": "string",
-                                                    "description": "To Trading pair, required if the account type is ISOLATED, e.g., BTC-USDT",
+                                                    "description": "To Trading pair (required if the account type is ISOLATED), e.g., BTC-USDT",
                                                     "example": [
                                                         "BTC-USDT",
                                                         "ETH-USDT",
@@ -1337,8 +1337,8 @@
                 "x-sdk-service": "Broker",
                 "x-sdk-sub-service": "NDBroker",
                 "x-sdk-method-name": "getTransferHistory",
-                "x-sdk-method-description": "This endpoint supports querying transfer records of the broker itself and its created sub-accounts.",
-                "x-api-rate-limit": 1,
+                "x-sdk-method-description": "This endpoint supports querying the transfer records of the broker itself and its created sub-accounts.",
+                "x-api-rate-limit-weight": 1,
                 "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"orderId\\\": \\\"671b4600c1e3dd000726866d\\\",\\n        \\\"currency\\\": \\\"USDT\\\",\\n        \\\"amount\\\": \\\"1\\\",\\n        \\\"fromUid\\\": 165111215,\\n        \\\"fromAccountType\\\": \\\"MAIN\\\",\\n        \\\"fromAccountTag\\\": \\\"DEFAULT\\\",\\n        \\\"toUid\\\": 226383154,\\n        \\\"toAccountType\\\": \\\"MAIN\\\",\\n        \\\"toAccountTag\\\": \\\"DEFAULT\\\",\\n        \\\"status\\\": \\\"SUCCESS\\\",\\n        \\\"reason\\\": null,\\n        \\\"createdAt\\\": 1729840640000\\n    }\\n}",
                 "x-request-example": "{\\\"orderId\\\": \\\"671b4600c1e3dd000726866d\\\"}",
                 "operationId": "010"
@@ -1348,7 +1348,7 @@
             "get": {
                 "summary": "Get Deposit List",
                 "deprecated": false,
-                "description": "This endpoint can obtain the deposit records of each sub-account under the ND Broker.",
+                "description": "The deposit records of each sub-account under the ND broker can be obtained at this endpoint.",
                 "tags": [],
                 "parameters": [
                     {
@@ -1381,7 +1381,7 @@
                     {
                         "name": "startTimestamp",
                         "in": "query",
-                        "description": "Start time (milisecond)",
+                        "description": "Start time (milliseconds)",
                         "required": false,
                         "schema": {
                             "type": "integer",
@@ -1391,7 +1391,7 @@
                     {
                         "name": "endTimestamp",
                         "in": "query",
-                        "description": "End time (milisecond)，Default sorting in descending order",
+                        "description": "End time (milliseconds); default sorting in descending order",
                         "required": false,
                         "schema": {
                             "type": "integer",
@@ -1449,7 +1449,7 @@
                                                     },
                                                     "memo": {
                                                         "type": "string",
-                                                        "description": "Address remark. If there’s no remark, it is empty. When you withdraw from other platforms to the KuCoin, you need to fill in memo(tag). If you do not fill memo (tag), your deposit may not be available, please be cautious."
+                                                        "description": "Address remark. If there’s no remark, it is empty. When you withdraw from other platforms to KuCoin, you need to fill in memo(tag). Be careful: If you do not fill in memo(tag), your deposit may not be available."
                                                     },
                                                     "amount": {
                                                         "type": "string",
@@ -1499,16 +1499,16 @@
                                                     },
                                                     "remark": {
                                                         "type": "string",
-                                                        "description": "remark"
+                                                        "description": "Remark"
                                                     },
                                                     "chain": {
                                                         "type": "string",
-                                                        "description": "chain name of currency"
+                                                        "description": "Chain name of currency"
                                                     },
                                                     "createdAt": {
                                                         "type": "integer",
                                                         "format": "int64",
-                                                        "description": "Creation time of the database record"
+                                                        "description": "Database record creation time"
                                                     },
                                                     "updatedAt": {
                                                         "type": "integer",
@@ -1556,8 +1556,8 @@
                 "x-sdk-service": "Broker",
                 "x-sdk-sub-service": "NDBroker",
                 "x-sdk-method-name": "getDepositList",
-                "x-sdk-method-description": "This endpoint can obtain the deposit records of each sub-account under the ND Broker.",
-                "x-api-rate-limit": 10,
+                "x-sdk-method-description": "The deposit records of each sub-account under the ND broker can be obtained at this endpoint.",
+                "x-api-rate-limit-weight": 10,
                 "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": [\\n        {\\n            \\\"uid\\\": 165111215,\\n            \\\"hash\\\": \\\"6724e363a492800007ec602b\\\",\\n            \\\"address\\\": \\\"xxxxxxx@gmail.com\\\",\\n            \\\"memo\\\": \\\"\\\",\\n            \\\"amount\\\": \\\"3.0\\\",\\n            \\\"fee\\\": \\\"0.0\\\",\\n            \\\"currency\\\": \\\"USDT\\\",\\n            \\\"isInner\\\": true,\\n            \\\"walletTxId\\\": \\\"bbbbbbbbb\\\",\\n            \\\"status\\\": \\\"SUCCESS\\\",\\n            \\\"chain\\\": \\\"\\\",\\n            \\\"remark\\\": \\\"\\\",\\n            \\\"createdAt\\\": 1730470760000,\\n            \\\"updatedAt\\\": 1730470760000\\n        }\\n    ]\\n}",
                 "x-request-example": "{\\\"currency\\\": \\\"USDT\\\", \\\"status\\\": \\\"SUCCESS\\\", \\\"hash\\\": \\\"example_string_default_value\\\", \\\"startTimestamp\\\": 123456, \\\"endTimestamp\\\": 123456, \\\"limit\\\": 100}",
                 "operationId": "011"
@@ -1567,7 +1567,7 @@
             "get": {
                 "summary": "Get Deposit Detail",
                 "deprecated": false,
-                "description": "This endpoint supports querying the deposit record of sub-accounts created by a Broker (excluding main account of nd broker)",
+                "description": "This endpoint supports querying the deposit record of sub-accounts created by a Broker (excluding main account of ND broker).",
                 "tags": [],
                 "parameters": [
                     {
@@ -1602,7 +1602,7 @@
                                             "properties": {
                                                 "chain": {
                                                     "type": "string",
-                                                    "description": "chain id of currency"
+                                                    "description": "Chain ID of currency"
                                                 },
                                                 "hash": {
                                                     "type": "string",
@@ -1720,8 +1720,8 @@
                 "x-sdk-service": "Broker",
                 "x-sdk-sub-service": "NDBroker",
                 "x-sdk-method-name": "getDepositDetail",
-                "x-sdk-method-description": "This endpoint supports querying the deposit record of sub-accounts created by a Broker (excluding main account of nd broker)",
-                "x-api-rate-limit": 1,
+                "x-sdk-method-description": "This endpoint supports querying the deposit record of sub-accounts created by a Broker (excluding main account of ND broker).",
+                "x-api-rate-limit-weight": 1,
                 "x-response-example": "{\\n  \\\"data\\\" : {\\n    \\\"chain\\\" : \\\"trx\\\",\\n    \\\"hash\\\" : \\\"30bb0e0b***4156c5188\\\",\\n    \\\"walletTxId\\\" : \\\"30bb0***610d1030f\\\",\\n    \\\"uid\\\" : 201496341,\\n    \\\"updatedAt\\\" : 1713429174000,\\n    \\\"amount\\\" : \\\"8.5\\\",\\n    \\\"memo\\\" : \\\"\\\",\\n    \\\"fee\\\" : \\\"0.0\\\",\\n    \\\"address\\\" : \\\"THLPzUrbd1o***vP7d\\\",\\n    \\\"remark\\\" : \\\"Deposit\\\",\\n    \\\"isInner\\\" : false,\\n    \\\"currency\\\" : \\\"USDT\\\",\\n    \\\"status\\\" : \\\"SUCCESS\\\",\\n    \\\"createdAt\\\" : 1713429173000\\n  },\\n  \\\"code\\\" : \\\"200000\\\"\\n}",
                 "x-request-example": "{\\\"currency\\\": \\\"USDT\\\", \\\"hash\\\": \\\"30bb0e0b***4156c5188\\\"}",
                 "operationId": "012"
@@ -1731,7 +1731,7 @@
             "get": {
                 "summary": "Get Withdraw Detail",
                 "deprecated": false,
-                "description": "This endpoint supports querying the withdrawal records of sub-accounts created by a Broker (excluding main account of nd broker).",
+                "description": "This endpoint supports querying the withdrawal records of sub-accounts created by a Broker (excluding main account of ND broker).",
                 "tags": [],
                 "parameters": [
                     {
@@ -1761,7 +1761,7 @@
                                                 },
                                                 "chain": {
                                                     "type": "string",
-                                                    "description": "chain id of currency"
+                                                    "description": "Chain ID of currency"
                                                 },
                                                 "walletTxId": {
                                                     "type": "string",
@@ -1887,8 +1887,8 @@
                 "x-sdk-service": "Broker",
                 "x-sdk-sub-service": "NDBroker",
                 "x-sdk-method-name": "getWithdrawDetail",
-                "x-sdk-method-description": "This endpoint supports querying the withdrawal records of sub-accounts created by a Broker (excluding main account of nd broker).",
-                "x-api-rate-limit": 1,
+                "x-sdk-method-description": "This endpoint supports querying the withdrawal records of sub-accounts created by a Broker (excluding main account of ND broker).",
+                "x-api-rate-limit-weight": 1,
                 "x-response-example": "{\\n    \\\"data\\\": {\\n        \\\"id\\\": \\\"66617a2***3c9a\\\",\\n        \\\"chain\\\": \\\"ton\\\",\\n        \\\"walletTxId\\\": \\\"AJ***eRI=\\\",\\n        \\\"uid\\\": 157267400,\\n        \\\"amount\\\": \\\"1.00000000\\\",\\n        \\\"memo\\\": \\\"7025734\\\",\\n        \\\"fee\\\": \\\"0.00000000\\\",\\n        \\\"address\\\": \\\"EQDn***dKbGzr\\\",\\n        \\\"remark\\\": \\\"\\\",\\n        \\\"isInner\\\": false,\\n        \\\"currency\\\": \\\"USDT\\\",\\n        \\\"status\\\": \\\"SUCCESS\\\",\\n        \\\"createdAt\\\": 1717664288000,\\n        \\\"updatedAt\\\": 1717664375000\\n    },\\n    \\\"code\\\": \\\"200000\\\"\\n}",
                 "x-request-example": "{\\\"withdrawalId\\\": \\\"66617a2***3c9a\\\"}",
                 "operationId": "013"
@@ -1898,7 +1898,7 @@
             "get": {
                 "summary": "Get Broker Rebate",
                 "deprecated": false,
-                "description": "This interface supports downloading Broker rebate orders",
+                "description": "This interface supports the downloading of Broker rebate orders.",
                 "tags": [],
                 "parameters": [
                     {
@@ -1922,7 +1922,7 @@
                     {
                         "name": "tradeType",
                         "in": "query",
-                        "description": "Transaction type, 1: spot 2: futures",
+                        "description": "Transaction type: 1, spot; 2, futures",
                         "required": true,
                         "schema": {
                             "type": "string",
@@ -1987,8 +1987,8 @@
                 "x-sdk-service": "Broker",
                 "x-sdk-sub-service": "NDBroker",
                 "x-sdk-method-name": "getRebase",
-                "x-sdk-method-description": "This interface supports downloading Broker rebate orders",
-                "x-api-rate-limit": 3,
+                "x-sdk-method-description": "This interface supports the downloading of Broker rebate orders.",
+                "x-api-rate-limit-weight": 3,
                 "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"url\\\": \\\"https://kc-v2-promotion.s3.ap-northeast-1.amazonaws.com/broker/671aec522593f600019766d0_file.csv?X-Amz-Security-Token=IQo*********2cd90f14efb\\\"\\n    }\\n}",
                 "x-request-example": "{\\\"begin\\\": \\\"20240610\\\", \\\"end\\\": \\\"20241010\\\", \\\"tradeType\\\": \\\"1\\\"}",
                 "operationId": "014"

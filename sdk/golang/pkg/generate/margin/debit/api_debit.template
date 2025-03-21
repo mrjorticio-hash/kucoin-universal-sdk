@@ -95,7 +95,7 @@ func TestDebitGetRepayHistoryReq(t *testing.T) {
 
 func TestDebitGetInterestHistoryReq(t *testing.T) {
     // GetInterestHistory
-    // Get Interest History
+    // Get Interest History.
     // /api/v3/margin/interest
 
     builder := debit.NewGetInterestHistoryReqBuilder()

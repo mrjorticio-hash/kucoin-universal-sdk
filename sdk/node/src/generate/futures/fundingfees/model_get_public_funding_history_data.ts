@@ -5,7 +5,7 @@ import { Serializable } from '@internal/interfaces/serializable';
 
 export class GetPublicFundingHistoryData implements Serializable {
     /**
-     * Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)
+     * Symbol of the contract. Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)
      */
     symbol: string;
 
@@ -15,7 +15,7 @@ export class GetPublicFundingHistoryData implements Serializable {
     fundingRate: number;
 
     /**
-     * Time point (milisecond)
+     * Time point (milliseconds)
      */
     timepoint: number;
 

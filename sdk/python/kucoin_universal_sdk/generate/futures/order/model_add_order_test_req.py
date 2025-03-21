@@ -36,7 +36,7 @@ class AddOrderTestReq(BaseModel):
         post_only (bool): Optional for type is 'limit' order,  post only flag, invalid when timeInForce is IOC. When postOnly is true, not allowed choose hidden or iceberg. The post-only flag ensures that the trader always pays the maker fee and provides liquidity to the order book. If any part of the order is going to pay taker fee, the order will be fully rejected.
         hidden (bool): Optional for type is 'limit' order, orders not displaying in order book. When hidden chose, not allowed choose postOnly.
         iceberg (bool): Optional for type is 'limit' order, Only visible portion of the order is displayed in the order book. When iceberg chose, not allowed choose postOnly.
-        visible_size (str): Optional for type is 'limit' order, The maximum visible size of an iceberg order. please place order in size (lots), The units of qty (base currency) and valueQty (value) are not supported.
+        visible_size (str): Optional for type is 'limit' order, The maximum visible size of an iceberg order. please place order in size (lots), The units of qty (base currency) and valueQty (value) are not supported. Need to be defined if iceberg is specified.
         qty (str): **Choose one of size, qty, valueQty**, Order size (Base currency) must be an integer multiple of the multiplier. The unit of the quantity of coin-swap is size(lot), which is not supported
         value_qty (str): **Choose one of size, qty, valueQty**, Order size (Value), USDS-Swap correspond to USDT or USDC. The unit of the quantity of coin-swap is size(lot), which is not supported
     """
@@ -203,7 +203,7 @@ class AddOrderTestReq(BaseModel):
     visible_size: Optional[str] = Field(
         default=None,
         description=
-        "Optional for type is 'limit' order, The maximum visible size of an iceberg order. please place order in size (lots), The units of qty (base currency) and valueQty (value) are not supported.",
+        "Optional for type is 'limit' order, The maximum visible size of an iceberg order. please place order in size (lots), The units of qty (base currency) and valueQty (value) are not supported. Need to be defined if iceberg is specified.",
         alias="visibleSize")
     qty: Optional[str] = Field(
         default=None,
@@ -469,7 +469,7 @@ class AddOrderTestReqBuilder:
 
     def set_visible_size(self, value: str) -> AddOrderTestReqBuilder:
         """
-        Optional for type is 'limit' order, The maximum visible size of an iceberg order. please place order in size (lots), The units of qty (base currency) and valueQty (value) are not supported.
+        Optional for type is 'limit' order, The maximum visible size of an iceberg order. please place order in size (lots), The units of qty (base currency) and valueQty (value) are not supported. Need to be defined if iceberg is specified.
         """
         self.obj['visibleSize'] = value
         return self

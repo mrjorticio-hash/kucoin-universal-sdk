@@ -23,10 +23,10 @@ class GetEthStakingProductsData(BaseModel):
         currency (str): currency
         income_currency (str): Income currency
         return_rate (str): Annualized Rate of Return, for example, 0.035 is equal to 3.5% annualized rate of return
-        user_lower_limit (str): Min user subscribe amount
-        user_upper_limit (str): Max user subscribe amount
-        product_upper_limit (str): Products total subscribe amount
-        product_remain_amount (str): Products remain subscribe amount
+        user_lower_limit (str): Min. user subscribe amount
+        user_upper_limit (str): Max. user subscription amount
+        product_upper_limit (str): Products total subscription amount
+        product_remain_amount (str): Remaining product subscription amount
         redeem_period (int): Redemption waiting period (days)
         redeem_type (RedeemTypeEnum): Redemption channel: MANUAL (manual redemption), TRANS_DEMAND (transfer to corresponding demand product upon maturity), AUTO (redeem to funding account upon maturity)
         income_release_type (IncomeReleaseTypeEnum): Income release type: DAILY (daily release), AFTER (release after product ends)
@@ -34,11 +34,11 @@ class GetEthStakingProductsData(BaseModel):
         apply_end_time (int): Subscription end time, in milliseconds
         lock_start_time (int): Product earliest interest start time, in milliseconds
         lock_end_time (int): Product maturity time, in milliseconds
-        interest_date (int): Most recent interest date(millisecond)
-        new_user_only (NewUserOnlyEnum): Whether the product is exclusive for new users: 0 (no), 1 (yes)
+        interest_date (int): Most recent interest date (milliseconds)
+        new_user_only (NewUserOnlyEnum): Whether the product is exclusive to new users: 0 (no), 1 (yes)
         early_redeem_supported (EarlyRedeemSupportedEnum): Whether the fixed product supports early redemption: 0 (no), 1 (yes)
         duration (int): Product duration (days)
-        status (StatusEnum): Product status: ONGOING(Subscription in progress), PENDING(Preheating Subscription), FULL(Subscribed), INTERESTING (Interest in progress)
+        status (StatusEnum): Product status: ONGOING (Subscription in progress), PENDING (Preheating Subscription), FULL (Subscribed), INTERESTING (Interest in progress)
     """
 
     class CategoryEnum(Enum):
@@ -124,19 +124,19 @@ class GetEthStakingProductsData(BaseModel):
         alias="returnRate")
     user_lower_limit: Optional[str] = Field(
         default=None,
-        description="Min user subscribe amount",
+        description="Min. user subscribe amount",
         alias="userLowerLimit")
     user_upper_limit: Optional[str] = Field(
         default=None,
-        description="Max user subscribe amount",
+        description="Max. user subscription amount",
         alias="userUpperLimit")
     product_upper_limit: Optional[str] = Field(
         default=None,
-        description="Products total subscribe amount",
+        description="Products total subscription amount",
         alias="productUpperLimit")
     product_remain_amount: Optional[str] = Field(
         default=None,
-        description="Products remain subscribe amount",
+        description="Remaining product subscription amount",
         alias="productRemainAmount")
     redeem_period: Optional[int] = Field(
         default=None,
@@ -170,12 +170,12 @@ class GetEthStakingProductsData(BaseModel):
         alias="lockEndTime")
     interest_date: Optional[int] = Field(
         default=None,
-        description="Most recent interest date(millisecond)",
+        description="Most recent interest date (milliseconds)",
         alias="interestDate")
     new_user_only: Optional[NewUserOnlyEnum] = Field(
         default=None,
         description=
-        "Whether the product is exclusive for new users: 0 (no), 1 (yes)",
+        "Whether the product is exclusive to new users: 0 (no), 1 (yes)",
         alias="newUserOnly")
     early_redeem_supported: Optional[EarlyRedeemSupportedEnum] = Field(
         default=None,
@@ -187,7 +187,7 @@ class GetEthStakingProductsData(BaseModel):
     status: Optional[StatusEnum] = Field(
         default=None,
         description=
-        "Product status: ONGOING(Subscription in progress), PENDING(Preheating Subscription), FULL(Subscribed), INTERESTING (Interest in progress)"
+        "Product status: ONGOING (Subscription in progress), PENDING (Preheating Subscription), FULL (Subscribed), INTERESTING (Interest in progress)"
     )
 
     __properties: ClassVar[List[str]] = [

@@ -146,7 +146,7 @@ describe('Auto Test', () => {
          * /api/v3/purchase/orders
          */
         let data =
-            '{"currency": "BTC", "status": "DONE", "purchaseOrderNo": "example_string_default_value", "currentPage": 1, "pageSize": 50}';
+            '{"status": "DONE", "currency": "BTC", "purchaseOrderNo": "example_string_default_value", "currentPage": 1, "pageSize": 50}';
         let req = GetPurchaseOrdersReq.fromJson(data);
         expect(Object.values(req).every((value) => value === null || value === undefined)).toBe(
             false,
@@ -210,7 +210,7 @@ describe('Auto Test', () => {
          * /api/v3/redeem/orders
          */
         let data =
-            '{"currency": "BTC", "status": "DONE", "redeemOrderNo": "example_string_default_value", "currentPage": 1, "pageSize": 50}';
+            '{"status": "DONE", "currency": "BTC", "redeemOrderNo": "example_string_default_value", "currentPage": 1, "pageSize": 50}';
         let req = GetRedeemOrdersReq.fromJson(data);
         expect(Object.values(req).every((value) => value === null || value === undefined)).toBe(
             false,

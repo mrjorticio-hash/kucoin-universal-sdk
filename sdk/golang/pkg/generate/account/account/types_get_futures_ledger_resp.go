@@ -11,7 +11,7 @@ type GetFuturesLedgerResp struct {
 	// common response
 	CommonResponse *types.RestResponse
 	DataList       []GetFuturesLedgerDataList `json:"dataList,omitempty"`
-	// Is it the last page. If it is false, it means it is the last page, and if it is true, it means need to turn the page.
+	// Is it the last page? If it is false, it means it is the last page, and if it is true, it means you need to move to the next page.
 	HasMore bool `json:"hasMore,omitempty"`
 }
 

@@ -116,7 +116,7 @@ func TestMarketGetPartOrderBookReq(t *testing.T) {
     // /api/v1/level2/depth{size}
 
     builder := market.NewGetPartOrderBookReqBuilder()
-    builder.SetSymbol(?).SetSize(?)
+    builder.SetSize(?).SetSymbol(?)
     req := builder.Build()
 
     resp, err := marketApi.GetPartOrderBook(req, context.TODO())
@@ -273,7 +273,7 @@ func TestMarketGetPremiumIndexReq(t *testing.T) {
 
 func TestMarketGet24hrStatsReq(t *testing.T) {
     // Get24hrStats
-    // Get 24hr Stats
+    // Get 24hr stats
     // /api/v1/trade-statistics
 
 

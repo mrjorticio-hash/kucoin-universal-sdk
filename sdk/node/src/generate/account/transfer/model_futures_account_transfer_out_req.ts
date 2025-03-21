@@ -5,17 +5,17 @@ import { Serializable } from '@internal/interfaces/serializable';
 
 export class FuturesAccountTransferOutReq implements Serializable {
     /**
-     * Currency, including XBT,USDT...
+     * Currency, including XBT, USDT...
      */
     currency: string;
 
     /**
-     * Amount to be transfered out, the maximum cannot exceed 1000000000
+     * Amount to be transferred out; cannot exceed 1000000000
      */
     amount: number;
 
     /**
-     * Receive account type, including MAIN,TRADE
+     * Receive account type, including MAIN, TRADE
      */
     recAccountType: FuturesAccountTransferOutReq.RecAccountTypeEnum;
 
@@ -43,15 +43,15 @@ export class FuturesAccountTransferOutReq implements Serializable {
      */
     static create(data: {
         /**
-         * Currency, including XBT,USDT...
+         * Currency, including XBT, USDT...
          */
         currency: string;
         /**
-         * Amount to be transfered out, the maximum cannot exceed 1000000000
+         * Amount to be transferred out; cannot exceed 1000000000
          */
         amount: number;
         /**
-         * Receive account type, including MAIN,TRADE
+         * Receive account type, including MAIN, TRADE
          */
         recAccountType: FuturesAccountTransferOutReq.RecAccountTypeEnum;
     }): FuturesAccountTransferOutReq {
@@ -100,7 +100,7 @@ export class FuturesAccountTransferOutReqBuilder {
         this.obj = obj;
     }
     /**
-     * Currency, including XBT,USDT...
+     * Currency, including XBT, USDT...
      */
     setCurrency(value: string): FuturesAccountTransferOutReqBuilder {
         this.obj.currency = value;
@@ -108,7 +108,7 @@ export class FuturesAccountTransferOutReqBuilder {
     }
 
     /**
-     * Amount to be transfered out, the maximum cannot exceed 1000000000
+     * Amount to be transferred out; cannot exceed 1000000000
      */
     setAmount(value: number): FuturesAccountTransferOutReqBuilder {
         this.obj.amount = value;
@@ -116,7 +116,7 @@ export class FuturesAccountTransferOutReqBuilder {
     }
 
     /**
-     * Receive account type, including MAIN,TRADE
+     * Receive account type, including MAIN, TRADE
      */
     setRecAccountType(
         value: FuturesAccountTransferOutReq.RecAccountTypeEnum,

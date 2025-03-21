@@ -6,7 +6,7 @@ import { Serializable } from '@internal/interfaces/serializable';
 
 export class CancelOrderByClientOidReq implements Serializable {
     /**
-     * Client Order Id，unique identifier created by the user
+     * Client Order Id, unique identifier created by the user
      */
     @Reflect.metadata('path', 'clientOid')
     clientOid?: string;
@@ -33,7 +33,7 @@ export class CancelOrderByClientOidReq implements Serializable {
      */
     static create(data: {
         /**
-         * Client Order Id，unique identifier created by the user
+         * Client Order Id, unique identifier created by the user
          */
         clientOid?: string;
         /**
@@ -72,7 +72,7 @@ export class CancelOrderByClientOidReqBuilder {
         this.obj = obj;
     }
     /**
-     * Client Order Id，unique identifier created by the user
+     * Client Order Id, unique identifier created by the user
      */
     setClientOid(value: string): CancelOrderByClientOidReqBuilder {
         this.obj.clientOid = value;

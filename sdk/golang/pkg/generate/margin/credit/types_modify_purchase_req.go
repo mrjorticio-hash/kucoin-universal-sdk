@@ -8,7 +8,7 @@ type ModifyPurchaseReq struct {
 	Currency string `json:"currency,omitempty"`
 	// Modified purchase interest rate
 	InterestRate string `json:"interestRate,omitempty"`
-	// Purchase order id
+	// Purchase order ID
 	PurchaseOrderNo string `json:"purchaseOrderNo,omitempty"`
 }
 
@@ -57,7 +57,7 @@ func (builder *ModifyPurchaseReqBuilder) SetInterestRate(value string) *ModifyPu
 	return builder
 }
 
-// Purchase order id
+// Purchase order ID
 func (builder *ModifyPurchaseReqBuilder) SetPurchaseOrderNo(value string) *ModifyPurchaseReqBuilder {
 	builder.obj.PurchaseOrderNo = value
 	return builder

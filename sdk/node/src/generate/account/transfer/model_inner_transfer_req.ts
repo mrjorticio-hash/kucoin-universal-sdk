@@ -5,7 +5,7 @@ import { Serializable } from '@internal/interfaces/serializable';
 
 export class InnerTransferReq implements Serializable {
     /**
-     * Unique order id created by users to identify their orders, e.g. UUID, with a maximum length of 128 bits
+     * Unique order ID created by users to identify their orders, e.g. UUID, with a maximum length of 128 bits
      */
     clientOid: string;
 
@@ -15,7 +15,7 @@ export class InnerTransferReq implements Serializable {
     currency: string;
 
     /**
-     * Transfer amount, the amount is a positive integer multiple of the currency precision.
+     * Transfer amount: The amount is a positive integer multiple of the currency precision.
      */
     amount: string;
 
@@ -67,7 +67,7 @@ export class InnerTransferReq implements Serializable {
      */
     static create(data: {
         /**
-         * Unique order id created by users to identify their orders, e.g. UUID, with a maximum length of 128 bits
+         * Unique order ID created by users to identify their orders, e.g. UUID, with a maximum length of 128 bits
          */
         clientOid: string;
         /**
@@ -75,7 +75,7 @@ export class InnerTransferReq implements Serializable {
          */
         currency: string;
         /**
-         * Transfer amount, the amount is a positive integer multiple of the currency precision.
+         * Transfer amount: The amount is a positive integer multiple of the currency precision.
          */
         amount: string;
         /**
@@ -194,7 +194,7 @@ export class InnerTransferReqBuilder {
         this.obj = obj;
     }
     /**
-     * Unique order id created by users to identify their orders, e.g. UUID, with a maximum length of 128 bits
+     * Unique order ID created by users to identify their orders, e.g. UUID, with a maximum length of 128 bits
      */
     setClientOid(value: string): InnerTransferReqBuilder {
         this.obj.clientOid = value;
@@ -210,7 +210,7 @@ export class InnerTransferReqBuilder {
     }
 
     /**
-     * Transfer amount, the amount is a positive integer multiple of the currency precision.
+     * Transfer amount: The amount is a positive integer multiple of the currency precision.
      */
     setAmount(value: string): InnerTransferReqBuilder {
         this.obj.amount = value;

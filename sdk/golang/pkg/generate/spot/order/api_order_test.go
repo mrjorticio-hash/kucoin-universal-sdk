@@ -180,7 +180,7 @@ func TestOrderCancelOrderByOrderIdSyncReqModel(t *testing.T) {
 	// Cancel Order By OrderId Sync
 	// /api/v1/hf/orders/sync/{orderId}
 
-	data := "{\"orderId\": \"671128ee365ccb0007534d45\", \"symbol\": \"BTC-USDT\"}"
+	data := "{\"symbol\": \"BTC-USDT\", \"orderId\": \"671128ee365ccb0007534d45\"}"
 	req := &CancelOrderByOrderIdSyncReq{}
 	err := json.Unmarshal([]byte(data), req)
 	req.ToMap()
@@ -236,7 +236,7 @@ func TestOrderCancelOrderByClientOidSyncReqModel(t *testing.T) {
 	// Cancel Order By ClientOid Sync
 	// /api/v1/hf/orders/sync/client-order/{clientOid}
 
-	data := "{\"clientOid\": \"5c52e11203aa677f33e493fb\", \"symbol\": \"BTC-USDT\"}"
+	data := "{\"symbol\": \"BTC-USDT\", \"clientOid\": \"5c52e11203aa677f33e493fb\"}"
 	req := &CancelOrderByClientOidSyncReq{}
 	err := json.Unmarshal([]byte(data), req)
 	req.ToMap()
@@ -473,6 +473,34 @@ func TestOrderGetOpenOrdersRespModel(t *testing.T) {
 	assert.Nil(t, err)
 }
 
+func TestOrderGetOpenOrdersByPageReqModel(t *testing.T) {
+	// GetOpenOrdersByPage
+	// Get Open Orders By Page
+	// /api/v1/hf/orders/active/page
+
+	data := "{\"symbol\": \"BTC-USDT\", \"pageNum\": 1, \"pageSize\": 20}"
+	req := &GetOpenOrdersByPageReq{}
+	err := json.Unmarshal([]byte(data), req)
+	req.ToMap()
+	assert.Nil(t, err)
+}
+
+func TestOrderGetOpenOrdersByPageRespModel(t *testing.T) {
+	// GetOpenOrdersByPage
+	// Get Open Orders By Page
+	// /api/v1/hf/orders/active/page
+
+	data := "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"currentPage\": 1,\n        \"pageSize\": 20,\n        \"totalNum\": 1,\n        \"totalPage\": 1,\n        \"items\": [\n            {\n                \"id\": \"67c1437ea5226600071cc080\",\n                \"symbol\": \"BTC-USDT\",\n                \"opType\": \"DEAL\",\n                \"type\": \"limit\",\n                \"side\": \"buy\",\n                \"price\": \"50000\",\n                \"size\": \"0.00001\",\n                \"funds\": \"0.5\",\n                \"dealSize\": \"0\",\n                \"dealFunds\": \"0\",\n                \"fee\": \"0\",\n                \"feeCurrency\": \"USDT\",\n                \"stp\": null,\n                \"timeInForce\": \"GTC\",\n                \"postOnly\": false,\n                \"hidden\": false,\n                \"iceberg\": false,\n                \"visibleSize\": \"0\",\n                \"cancelAfter\": 0,\n                \"channel\": \"API\",\n                \"clientOid\": \"5c52e11203aa677f33e493fb\",\n                \"remark\": \"order remarks\",\n                \"tags\": null,\n                \"cancelExist\": false,\n                \"createdAt\": 1740718974367,\n                \"lastUpdatedAt\": 1741867658590,\n                \"tradeType\": \"TRADE\",\n                \"inOrderBook\": true,\n                \"cancelledSize\": \"0\",\n                \"cancelledFunds\": \"0\",\n                \"remainSize\": \"0.00001\",\n                \"remainFunds\": \"0.5\",\n                \"tax\": \"0\",\n                \"active\": true\n            }\n        ]\n    }\n}"
+	commonResp := &types.RestResponse{}
+	err := json.Unmarshal([]byte(data), commonResp)
+	assert.Nil(t, err)
+	assert.NotNil(t, commonResp.Data)
+	resp := &GetOpenOrdersByPageResp{}
+	err = json.Unmarshal([]byte(commonResp.Data), resp)
+	resp.ToMap()
+	assert.Nil(t, err)
+}
+
 func TestOrderGetClosedOrdersReqModel(t *testing.T) {
 	// GetClosedOrders
 	// Get Closed Orders
@@ -585,7 +613,7 @@ func TestOrderAddStopOrderReqModel(t *testing.T) {
 	// Add Stop Order
 	// /api/v1/stop-order
 
-	data := "{\"type\": \"limit\", \"symbol\": \"BTC-USDT\", \"side\": \"buy\", \"price\": \"50000\", \"size\": \"0.00001\", \"clientOid\": \"5c52e11203aa677f33e493fb\", \"remark\": \"order remarks\"}"
+	data := "{\"type\": \"limit\", \"symbol\": \"BTC-USDT\", \"side\": \"buy\", \"price\": \"50000\", \"stopPrice\": \"50000\", \"size\": \"0.00001\", \"clientOid\": \"5c52e11203aa677f33e493fb\", \"remark\": \"order remarks\"}"
 	req := &AddStopOrderReq{}
 	err := json.Unmarshal([]byte(data), req)
 	req.ToMap()
@@ -597,7 +625,7 @@ func TestOrderAddStopOrderRespModel(t *testing.T) {
 	// Add Stop Order
 	// /api/v1/stop-order
 
-	data := "{\"code\":\"200000\",\"data\":{\"orderId\":\"670fd33bf9406e0007ab3945\",\"clientOid\":\"5c52e11203aa677f33e493fb\"}}"
+	data := "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"orderId\": \"670fd33bf9406e0007ab3945\"\n    }\n}"
 	commonResp := &types.RestResponse{}
 	err := json.Unmarshal([]byte(data), commonResp)
 	assert.Nil(t, err)
@@ -697,7 +725,7 @@ func TestOrderGetStopOrdersListReqModel(t *testing.T) {
 	// Get Stop Orders List
 	// /api/v1/stop-order
 
-	data := "{\"symbol\": \"BTC-USDT\", \"orderId\": \"670fd33bf9406e0007ab3945\", \"newPrice\": \"30000\", \"newSize\": \"0.0001\"}"
+	data := "{\"symbol\": \"example_string_default_value\", \"side\": \"example_string_default_value\", \"type\": \"limit\", \"tradeType\": \"example_string_default_value\", \"startAt\": 123456, \"endAt\": 123456, \"currentPage\": 1, \"orderIds\": \"example_string_default_value\", \"pageSize\": 50, \"stop\": \"example_string_default_value\"}"
 	req := &GetStopOrdersListReq{}
 	err := json.Unmarshal([]byte(data), req)
 	req.ToMap()
@@ -709,7 +737,7 @@ func TestOrderGetStopOrdersListRespModel(t *testing.T) {
 	// Get Stop Orders List
 	// /api/v1/stop-order
 
-	data := "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"currentPage\": 1,\n        \"pageSize\": 50,\n        \"totalNum\": 1,\n        \"totalPage\": 1,\n        \"items\": [\n            {\n                \"id\": \"vs8hoo8kqjnklv4m0038lrfq\",\n                \"symbol\": \"KCS-USDT\",\n                \"userId\": \"60fe4956c43cbc0006562c2c\",\n                \"status\": \"NEW\",\n                \"type\": \"limit\",\n                \"side\": \"buy\",\n                \"price\": \"0.01000000000000000000\",\n                \"size\": \"0.01000000000000000000\",\n                \"funds\": null,\n                \"stp\": null,\n                \"timeInForce\": \"GTC\",\n                \"cancelAfter\": -1,\n                \"postOnly\": false,\n                \"hidden\": false,\n                \"iceberg\": false,\n                \"visibleSize\": null,\n                \"channel\": \"API\",\n                \"clientOid\": \"404814a0fb4311eb9098acde48001122\",\n                \"remark\": null,\n                \"tags\": null,\n                \"orderTime\": 1628755183702150100,\n                \"domainId\": \"kucoin\",\n                \"tradeSource\": \"USER\",\n                \"tradeType\": \"TRADE\",\n                \"feeCurrency\": \"USDT\",\n                \"takerFeeRate\": \"0.00200000000000000000\",\n                \"makerFeeRate\": \"0.00200000000000000000\",\n                \"createdAt\": 1628755183704,\n                \"stop\": \"loss\",\n                \"stopTriggerTime\": null,\n                \"stopPrice\": \"10.00000000000000000000\"\n            }\n        ]\n    }\n}"
+	data := "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"currentPage\": 1,\n        \"pageSize\": 50,\n        \"totalNum\": 2,\n        \"totalPage\": 1,\n        \"items\": [\n            {\n                \"id\": \"vs93gptvr9t2fsql003l8k5p\",\n                \"symbol\": \"BTC-USDT\",\n                \"userId\": \"633559791e1cbc0001f319bc\",\n                \"status\": \"NEW\",\n                \"type\": \"limit\",\n                \"side\": \"buy\",\n                \"price\": \"50000.00000000000000000000\",\n                \"size\": \"0.00001000000000000000\",\n                \"funds\": null,\n                \"stp\": null,\n                \"timeInForce\": \"GTC\",\n                \"cancelAfter\": -1,\n                \"postOnly\": false,\n                \"hidden\": false,\n                \"iceberg\": false,\n                \"visibleSize\": null,\n                \"channel\": \"API\",\n                \"clientOid\": \"5c52e11203aa677f222233e493fb\",\n                \"remark\": \"order remarks\",\n                \"tags\": null,\n                \"relatedNo\": null,\n                \"orderTime\": 1740626554883000024,\n                \"domainId\": \"kucoin\",\n                \"tradeSource\": \"USER\",\n                \"tradeType\": \"TRADE\",\n                \"feeCurrency\": \"USDT\",\n                \"takerFeeRate\": \"0.00100000000000000000\",\n                \"makerFeeRate\": \"0.00100000000000000000\",\n                \"createdAt\": 1740626554884,\n                \"stop\": \"loss\",\n                \"stopTriggerTime\": null,\n                \"stopPrice\": \"60000.00000000000000000000\",\n                \"limitPrice\": null,\n                \"pop\": null,\n                \"activateCondition\": null\n            }\n        ]\n    }\n}"
 	commonResp := &types.RestResponse{}
 	err := json.Unmarshal([]byte(data), commonResp)
 	assert.Nil(t, err)
@@ -1089,7 +1117,7 @@ func TestOrderCancelOrderByOrderIdOldReqModel(t *testing.T) {
 	// Cancel Order By OrderId - Old
 	// /api/v1/orders/{orderId}
 
-	data := "{\"symbol\": \"BTC-USDT\", \"orderId\": \"674a97dfef434f0007efc431\"}"
+	data := "{\"orderId\": \"674a97dfef434f0007efc431\"}"
 	req := &CancelOrderByOrderIdOldReq{}
 	err := json.Unmarshal([]byte(data), req)
 	req.ToMap()
@@ -1117,7 +1145,7 @@ func TestOrderCancelOrderByClientOidOldReqModel(t *testing.T) {
 	// Cancel Order By ClientOid - Old
 	// /api/v1/order/client-order/{clientOid}
 
-	data := "{\"symbol\": \"BTC-USDT\", \"clientOid\": \"5c52e11203aa677f33e4923fb\"}"
+	data := "{\"clientOid\": \"5c52e11203aa677f331e493fb\"}"
 	req := &CancelOrderByClientOidOldReq{}
 	err := json.Unmarshal([]byte(data), req)
 	req.ToMap()
@@ -1129,7 +1157,7 @@ func TestOrderCancelOrderByClientOidOldRespModel(t *testing.T) {
 	// Cancel Order By ClientOid - Old
 	// /api/v1/order/client-order/{clientOid}
 
-	data := "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"cancelledOrderId\": \"674a9a872033a50007e2790d\",\n        \"clientOid\": \"5c52e11203aa677f33e4923fb\",\n        \"cancelledOcoOrderIds\": null\n    }\n}"
+	data := "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"cancelledOrderId\": \"67c3252a63d25e0007f91de9\",\n        \"clientOid\": \"5c52e11203aa677f331e493fb\",\n        \"cancelledOcoOrderIds\": null\n    }\n}"
 	commonResp := &types.RestResponse{}
 	err := json.Unmarshal([]byte(data), commonResp)
 	assert.Nil(t, err)
@@ -1201,11 +1229,6 @@ func TestOrderGetRecentOrdersListOldReqModel(t *testing.T) {
 	// Get Recent Orders List - Old
 	// /api/v1/limit/orders
 
-	data := "{\"currentPage\": 1, \"pageSize\": 50}"
-	req := &GetRecentOrdersListOldReq{}
-	err := json.Unmarshal([]byte(data), req)
-	req.ToMap()
-	assert.Nil(t, err)
 }
 
 func TestOrderGetRecentOrdersListOldRespModel(t *testing.T) {
@@ -1313,11 +1336,6 @@ func TestOrderGetRecentTradeHistoryOldReqModel(t *testing.T) {
 	// Get Recent Trade History - Old
 	// /api/v1/limit/fills
 
-	data := "{\"currentPage\": 1, \"pageSize\": 50}"
-	req := &GetRecentTradeHistoryOldReq{}
-	err := json.Unmarshal([]byte(data), req)
-	req.ToMap()
-	assert.Nil(t, err)
 }
 
 func TestOrderGetRecentTradeHistoryOldRespModel(t *testing.T) {

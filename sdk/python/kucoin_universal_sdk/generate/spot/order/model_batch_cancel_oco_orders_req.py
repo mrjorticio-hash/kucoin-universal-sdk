@@ -15,19 +15,19 @@ class BatchCancelOcoOrdersReq(BaseModel):
     BatchCancelOcoOrdersReq
 
     Attributes:
-        order_ids (str): Specify the order id, there can be multiple orders, separated by commas. If not passed, all oco orders will be canceled by default.
-        symbol (str): trading pair. If not passed, the oco orders of all symbols will be canceled by default.
+        order_ids (str): Specify the order ID; there can be multiple orders, separated by commas. If not passed, all OCO orders will be canceled by default.
+        symbol (str): Trading pair. If not passed, the OCO orders of all symbols will be canceled by default.
     """
 
     order_ids: Optional[str] = Field(
         default=None,
         description=
-        "Specify the order id, there can be multiple orders, separated by commas. If not passed, all oco orders will be canceled by default.",
+        "Specify the order ID; there can be multiple orders, separated by commas. If not passed, all OCO orders will be canceled by default.",
         alias="orderIds")
     symbol: Optional[str] = Field(
         default=None,
         description=
-        "trading pair. If not passed, the oco orders of all symbols will be canceled by default."
+        "Trading pair. If not passed, the OCO orders of all symbols will be canceled by default."
     )
 
     __properties: ClassVar[List[str]] = ["orderIds", "symbol"]
@@ -80,14 +80,14 @@ class BatchCancelOcoOrdersReqBuilder:
 
     def set_order_ids(self, value: str) -> BatchCancelOcoOrdersReqBuilder:
         """
-        Specify the order id, there can be multiple orders, separated by commas. If not passed, all oco orders will be canceled by default.
+        Specify the order ID; there can be multiple orders, separated by commas. If not passed, all OCO orders will be canceled by default.
         """
         self.obj['orderIds'] = value
         return self
 
     def set_symbol(self, value: str) -> BatchCancelOcoOrdersReqBuilder:
         """
-        trading pair. If not passed, the oco orders of all symbols will be canceled by default.
+        Trading pair. If not passed, the OCO orders of all symbols will be canceled by default.
         """
         self.obj['symbol'] = value
         return self

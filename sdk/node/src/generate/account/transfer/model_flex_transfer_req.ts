@@ -5,7 +5,7 @@ import { Serializable } from '@internal/interfaces/serializable';
 
 export class FlexTransferReq implements Serializable {
     /**
-     * Unique order id created by users to identify their orders, e.g. UUID, with a maximum length of 128 bits
+     * Unique order ID created by users to identify their orders, e.g. UUID, with a maximum length of 128 bits
      */
     clientOid: string;
 
@@ -15,42 +15,42 @@ export class FlexTransferReq implements Serializable {
     currency: string;
 
     /**
-     * Transfer amount, the amount is a positive integer multiple of the currency precision.
+     * Transfer amount: The amount is a positive integer multiple of the currency precision.
      */
     amount: string;
 
     /**
-     * Transfer out UserId， This is required when transferring sub-account to master-account. It is optional for internal transfers.
+     * Transfer out UserId: This is required when transferring from sub-account to master-account. It is optional for internal transfers.
      */
     fromUserId?: string;
 
     /**
-     * Account type：MAIN、TRADE、CONTRACT、MARGIN、ISOLATED、MARGIN_V2、ISOLATED_V2
+     * Account type: MAIN, TRADE, CONTRACT, MARGIN, ISOLATED, MARGIN_V2, ISOLATED_V2
      */
     fromAccountType: FlexTransferReq.FromAccountTypeEnum;
 
     /**
-     * Symbol, required when the account type is ISOLATED or ISOLATED_V2, for example: BTC-USDT
+     * Symbol: Required when the account type is ISOLATED or ISOLATED_V2, for example: BTC-USDT
      */
     fromAccountTag?: string;
 
     /**
-     * Transfer type：INTERNAL(Transfer within account)、PARENT_TO_SUB(Transfer from master-account to sub-account)，SUB_TO_PARENT(Transfer from sub-account to master-account)
+     * Transfer type: INTERNAL (Transfer within account), PARENT_TO_SUB (Transfer from master-account to sub-account), SUB_TO_PARENT (Transfer from sub-account to master-account)
      */
     type: FlexTransferReq.TypeEnum;
 
     /**
-     * Transfer in UserId， This is required when transferring master-account to sub-account. It is optional for internal transfers.
+     * Transfer in UserId: This is required when transferring master-account to sub-account. It is optional for internal transfers.
      */
     toUserId?: string;
 
     /**
-     * Account type：MAIN、TRADE、CONTRACT、MARGIN、ISOLATED、MARGIN_V2、ISOLATED_V2
+     * Account type: MAIN, TRADE, CONTRACT, MARGIN, ISOLATED, MARGIN_V2, ISOLATED_V2
      */
     toAccountType: FlexTransferReq.ToAccountTypeEnum;
 
     /**
-     * Symbol, required when the account type is ISOLATED or ISOLATED_V2, for example: BTC-USDT
+     * Symbol: Required when the account type is ISOLATED or ISOLATED_V2, for example: BTC-USDT
      */
     toAccountTag?: string;
 
@@ -84,7 +84,7 @@ export class FlexTransferReq implements Serializable {
      */
     static create(data: {
         /**
-         * Unique order id created by users to identify their orders, e.g. UUID, with a maximum length of 128 bits
+         * Unique order ID created by users to identify their orders, e.g. UUID, with a maximum length of 128 bits
          */
         clientOid: string;
         /**
@@ -92,35 +92,35 @@ export class FlexTransferReq implements Serializable {
          */
         currency: string;
         /**
-         * Transfer amount, the amount is a positive integer multiple of the currency precision.
+         * Transfer amount: The amount is a positive integer multiple of the currency precision.
          */
         amount: string;
         /**
-         * Transfer out UserId， This is required when transferring sub-account to master-account. It is optional for internal transfers.
+         * Transfer out UserId: This is required when transferring from sub-account to master-account. It is optional for internal transfers.
          */
         fromUserId?: string;
         /**
-         * Account type：MAIN、TRADE、CONTRACT、MARGIN、ISOLATED、MARGIN_V2、ISOLATED_V2
+         * Account type: MAIN, TRADE, CONTRACT, MARGIN, ISOLATED, MARGIN_V2, ISOLATED_V2
          */
         fromAccountType: FlexTransferReq.FromAccountTypeEnum;
         /**
-         * Symbol, required when the account type is ISOLATED or ISOLATED_V2, for example: BTC-USDT
+         * Symbol: Required when the account type is ISOLATED or ISOLATED_V2, for example: BTC-USDT
          */
         fromAccountTag?: string;
         /**
-         * Transfer type：INTERNAL(Transfer within account)、PARENT_TO_SUB(Transfer from master-account to sub-account)，SUB_TO_PARENT(Transfer from sub-account to master-account)
+         * Transfer type: INTERNAL (Transfer within account), PARENT_TO_SUB (Transfer from master-account to sub-account), SUB_TO_PARENT (Transfer from sub-account to master-account)
          */
         type: FlexTransferReq.TypeEnum;
         /**
-         * Transfer in UserId， This is required when transferring master-account to sub-account. It is optional for internal transfers.
+         * Transfer in UserId: This is required when transferring master-account to sub-account. It is optional for internal transfers.
          */
         toUserId?: string;
         /**
-         * Account type：MAIN、TRADE、CONTRACT、MARGIN、ISOLATED、MARGIN_V2、ISOLATED_V2
+         * Account type: MAIN, TRADE, CONTRACT, MARGIN, ISOLATED, MARGIN_V2, ISOLATED_V2
          */
         toAccountType: FlexTransferReq.ToAccountTypeEnum;
         /**
-         * Symbol, required when the account type is ISOLATED or ISOLATED_V2, for example: BTC-USDT
+         * Symbol: Required when the account type is ISOLATED or ISOLATED_V2, for example: BTC-USDT
          */
         toAccountTag?: string;
     }): FlexTransferReq {
@@ -248,7 +248,7 @@ export class FlexTransferReqBuilder {
         this.obj = obj;
     }
     /**
-     * Unique order id created by users to identify their orders, e.g. UUID, with a maximum length of 128 bits
+     * Unique order ID created by users to identify their orders, e.g. UUID, with a maximum length of 128 bits
      */
     setClientOid(value: string): FlexTransferReqBuilder {
         this.obj.clientOid = value;
@@ -264,7 +264,7 @@ export class FlexTransferReqBuilder {
     }
 
     /**
-     * Transfer amount, the amount is a positive integer multiple of the currency precision.
+     * Transfer amount: The amount is a positive integer multiple of the currency precision.
      */
     setAmount(value: string): FlexTransferReqBuilder {
         this.obj.amount = value;
@@ -272,7 +272,7 @@ export class FlexTransferReqBuilder {
     }
 
     /**
-     * Transfer out UserId， This is required when transferring sub-account to master-account. It is optional for internal transfers.
+     * Transfer out UserId: This is required when transferring from sub-account to master-account. It is optional for internal transfers.
      */
     setFromUserId(value: string): FlexTransferReqBuilder {
         this.obj.fromUserId = value;
@@ -280,7 +280,7 @@ export class FlexTransferReqBuilder {
     }
 
     /**
-     * Account type：MAIN、TRADE、CONTRACT、MARGIN、ISOLATED、MARGIN_V2、ISOLATED_V2
+     * Account type: MAIN, TRADE, CONTRACT, MARGIN, ISOLATED, MARGIN_V2, ISOLATED_V2
      */
     setFromAccountType(value: FlexTransferReq.FromAccountTypeEnum): FlexTransferReqBuilder {
         this.obj.fromAccountType = value;
@@ -288,7 +288,7 @@ export class FlexTransferReqBuilder {
     }
 
     /**
-     * Symbol, required when the account type is ISOLATED or ISOLATED_V2, for example: BTC-USDT
+     * Symbol: Required when the account type is ISOLATED or ISOLATED_V2, for example: BTC-USDT
      */
     setFromAccountTag(value: string): FlexTransferReqBuilder {
         this.obj.fromAccountTag = value;
@@ -296,7 +296,7 @@ export class FlexTransferReqBuilder {
     }
 
     /**
-     * Transfer type：INTERNAL(Transfer within account)、PARENT_TO_SUB(Transfer from master-account to sub-account)，SUB_TO_PARENT(Transfer from sub-account to master-account)
+     * Transfer type: INTERNAL (Transfer within account), PARENT_TO_SUB (Transfer from master-account to sub-account), SUB_TO_PARENT (Transfer from sub-account to master-account)
      */
     setType(value: FlexTransferReq.TypeEnum): FlexTransferReqBuilder {
         this.obj.type = value;
@@ -304,7 +304,7 @@ export class FlexTransferReqBuilder {
     }
 
     /**
-     * Transfer in UserId， This is required when transferring master-account to sub-account. It is optional for internal transfers.
+     * Transfer in UserId: This is required when transferring master-account to sub-account. It is optional for internal transfers.
      */
     setToUserId(value: string): FlexTransferReqBuilder {
         this.obj.toUserId = value;
@@ -312,7 +312,7 @@ export class FlexTransferReqBuilder {
     }
 
     /**
-     * Account type：MAIN、TRADE、CONTRACT、MARGIN、ISOLATED、MARGIN_V2、ISOLATED_V2
+     * Account type: MAIN, TRADE, CONTRACT, MARGIN, ISOLATED, MARGIN_V2, ISOLATED_V2
      */
     setToAccountType(value: FlexTransferReq.ToAccountTypeEnum): FlexTransferReqBuilder {
         this.obj.toAccountType = value;
@@ -320,7 +320,7 @@ export class FlexTransferReqBuilder {
     }
 
     /**
-     * Symbol, required when the account type is ISOLATED or ISOLATED_V2, for example: BTC-USDT
+     * Symbol: Required when the account type is ISOLATED or ISOLATED_V2, for example: BTC-USDT
      */
     setToAccountTag(value: string): FlexTransferReqBuilder {
         this.obj.toAccountTag = value;

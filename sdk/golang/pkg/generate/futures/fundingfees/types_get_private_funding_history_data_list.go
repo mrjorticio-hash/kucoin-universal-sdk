@@ -4,11 +4,11 @@ package fundingfees
 
 // GetPrivateFundingHistoryDataList struct for GetPrivateFundingHistoryDataList
 type GetPrivateFundingHistoryDataList struct {
-	// id
+	// ID
 	Id int64 `json:"id,omitempty"`
-	// Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)
+	// Symbol of the contract. Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)
 	Symbol string `json:"symbol,omitempty"`
-	// Time point (milisecond)
+	// Time point (milliseconds)
 	TimePoint int64 `json:"timePoint,omitempty"`
 	// Funding rate
 	FundingRate float32 `json:"fundingRate,omitempty"`
@@ -18,11 +18,11 @@ type GetPrivateFundingHistoryDataList struct {
 	PositionQty int32 `json:"positionQty,omitempty"`
 	// Position value at settlement period
 	PositionCost float32 `json:"positionCost,omitempty"`
-	// Settled funding fees. A positive number means that the user received the funding fee, and vice versa.
+	// Settled funding fees A positive number means that the user received the funding fee, and vice versa.
 	Funding float32 `json:"funding,omitempty"`
-	// settlement currency
+	// Settlement currency
 	SettleCurrency string `json:"settleCurrency,omitempty"`
-	// context
+	// Context
 	Context string `json:"context,omitempty"`
 	// Margin mode: ISOLATED (isolated), CROSS (cross margin).
 	MarginMode string `json:"marginMode,omitempty"`

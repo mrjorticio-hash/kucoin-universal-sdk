@@ -16,7 +16,7 @@ class PurchaseReq(BaseModel):
     PurchaseReq
 
     Attributes:
-        product_id (str): Product Id
+        product_id (str): Product ID
         amount (str): Subscription amount
         account_type (AccountTypeEnum): MAIN (funding account), TRADE (spot trading account)
     """
@@ -31,7 +31,7 @@ class PurchaseReq(BaseModel):
         TRADE = 'TRADE'
 
     product_id: Optional[str] = Field(default=None,
-                                      description="Product Id",
+                                      description="Product ID",
                                       alias="productId")
     amount: Optional[str] = Field(default=None,
                                   description="Subscription amount")
@@ -88,7 +88,7 @@ class PurchaseReqBuilder:
 
     def set_product_id(self, value: str) -> PurchaseReqBuilder:
         """
-        Product Id
+        Product ID
         """
         self.obj['productId'] = value
         return self

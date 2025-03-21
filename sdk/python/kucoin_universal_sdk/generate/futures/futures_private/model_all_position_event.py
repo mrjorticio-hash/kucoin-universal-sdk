@@ -18,40 +18,40 @@ class AllPositionEvent(BaseModel):
     AllPositionEvent
 
     Attributes:
-        symbol (str): Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-221752070) 
+        symbol (str): Symbol of the contract. Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-221752070) 
         cross_mode (bool): Whether it is cross margin.
         delev_percentage (float): ADL ranking percentile 
         opening_timestamp (int): Open time 
         current_timestamp (int): Current timestamp 
-        current_qty (int): Current postion quantity 
-        current_cost (float): Current postion value 
+        current_qty (int): Current position quantity 
+        current_cost (float): Current position value 
         current_comm (float): Current commission 
-        unrealised_cost (float): Unrealised value 
-        realised_gross_cost (float): Accumulated realised gross profit value 
-        realised_cost (float): Current realised position value 
+        unrealised_cost (float): Unrealized value 
+        realised_gross_cost (float): Accumulated realized gross profit value 
+        realised_cost (float): Current realized position value 
         is_open (bool): Opened position or not 
         mark_price (float): Mark price 
         mark_value (float): Mark Value 
         pos_cost (float): Position value 
         pos_init (float): Inital margin Cross = opening value/cross leverage; isolated = accumulation of initial margin for each transaction 
         pos_margin (float): Bankruptcy cost Cross = mark value * imr; Isolated = position margin (accumulation of initial margin, additional margin, generated funding fees, etc.) 
-        realised_gross_pnl (float): Accumulated realised gross profit value 
-        realised_pnl (float): Realised profit and loss 
-        unrealised_pnl (float): Unrealised profit and loss 
+        realised_gross_pnl (float): Accumulated realized gross profit value 
+        realised_pnl (float): Realized profit and loss 
+        unrealised_pnl (float): Unrealized profit and loss 
         unrealised_pnl_pcnt (float): Profit-loss ratio of the position 
         unrealised_roe_pcnt (float): Rate of return on investment 
         avg_entry_price (float): Average entry price 
-        liquidation_price (float): Liquidation price For Cross Margin, you can refer to the liquidationPrice, and the liquidation is based on the risk rate. 
-        bankrupt_price (float): Bankruptcy price For Cross Margin, you can refer to the bankruptPrice, and the liquidation is based on the risk rate. 
+        liquidation_price (float): Liquidation price: For Cross Margin, you can refer to the liquidationPrice, and the liquidation is based on the risk rate. 
+        bankrupt_price (float): Bankruptcy price: For Cross Margin, you can refer to the bankruptPrice, and the liquidation is based on the risk rate. 
         settle_currency (str): Currency used to clear and settle the trades 
-        margin_mode (MarginModeEnum): Margin Mode: CROSS，ISOLATED 
+        margin_mode (MarginModeEnum): Margin Mode: CROSS, ISOLATED 
         position_side (PositionSideEnum): Position Side 
         leverage (float): Leverage
         auto_deposit (bool): Auto deposit margin or not **Only applicable to Isolated Margin** 
         maint_margin_req (float): Maintenance margin requirement **Only applicable to Isolated Margin** 
         risk_limit (int): Risk limit **Only applicable to Isolated Margin** 
         real_leverage (float): Leverage of the order **Only applicable to Isolated Margin** 
-        pos_cross (float): added margin **Only applicable to Isolated Margin** 
+        pos_cross (float): Added margin **Only applicable to Isolated Margin** 
         pos_comm (float): Bankruptcy cost **Only applicable to Isolated Margin** 
         pos_loss (float): Funding fees paid out **Only applicable to Isolated Margin** 
         pos_funding (float): The current remaining unsettled funding fee for the position **Only applicable to Isolated Margin** 
@@ -61,7 +61,7 @@ class AllPositionEvent(BaseModel):
         qty (int): Position size
         funding_rate (float): Funding rate
         funding_fee (float): Funding fees
-        ts (int): Funding Fee Settlement Time (nanosecond)
+        ts (int): Funding Fee Settlement Time (nanoseconds)
         success (bool): Adjustment isolated margin risk limit level successful or not
         msg (str): Adjustment isolated margin risk limit level failure reason
     """
@@ -87,7 +87,7 @@ class AllPositionEvent(BaseModel):
     symbol: Optional[str] = Field(
         default=None,
         description=
-        "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-221752070) "
+        "Symbol of the contract. Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-221752070) "
     )
     cross_mode: Optional[bool] = Field(
         default=None,
@@ -103,25 +103,27 @@ class AllPositionEvent(BaseModel):
     current_timestamp: Optional[int] = Field(default=None,
                                              description="Current timestamp ",
                                              alias="currentTimestamp")
-    current_qty: Optional[int] = Field(default=None,
-                                       description="Current postion quantity ",
-                                       alias="currentQty")
-    current_cost: Optional[float] = Field(default=None,
-                                          description="Current postion value ",
-                                          alias="currentCost")
+    current_qty: Optional[int] = Field(
+        default=None,
+        description="Current position quantity ",
+        alias="currentQty")
+    current_cost: Optional[float] = Field(
+        default=None,
+        description="Current position value ",
+        alias="currentCost")
     current_comm: Optional[float] = Field(default=None,
                                           description="Current commission ",
                                           alias="currentComm")
     unrealised_cost: Optional[float] = Field(default=None,
-                                             description="Unrealised value ",
+                                             description="Unrealized value ",
                                              alias="unrealisedCost")
     realised_gross_cost: Optional[float] = Field(
         default=None,
-        description="Accumulated realised gross profit value ",
+        description="Accumulated realized gross profit value ",
         alias="realisedGrossCost")
     realised_cost: Optional[float] = Field(
         default=None,
-        description="Current realised position value ",
+        description="Current realized position value ",
         alias="realisedCost")
     is_open: Optional[bool] = Field(default=None,
                                     description="Opened position or not ",
@@ -147,15 +149,15 @@ class AllPositionEvent(BaseModel):
         alias="posMargin")
     realised_gross_pnl: Optional[float] = Field(
         default=None,
-        description="Accumulated realised gross profit value ",
+        description="Accumulated realized gross profit value ",
         alias="realisedGrossPnl")
     realised_pnl: Optional[float] = Field(
         default=None,
-        description="Realised profit and loss ",
+        description="Realized profit and loss ",
         alias="realisedPnl")
     unrealised_pnl: Optional[float] = Field(
         default=None,
-        description="Unrealised profit and loss ",
+        description="Unrealized profit and loss ",
         alias="unrealisedPnl")
     unrealised_pnl_pcnt: Optional[float] = Field(
         default=None,
@@ -172,12 +174,12 @@ class AllPositionEvent(BaseModel):
     liquidation_price: Optional[float] = Field(
         default=None,
         description=
-        "Liquidation price For Cross Margin, you can refer to the liquidationPrice, and the liquidation is based on the risk rate. ",
+        "Liquidation price: For Cross Margin, you can refer to the liquidationPrice, and the liquidation is based on the risk rate. ",
         alias="liquidationPrice")
     bankrupt_price: Optional[float] = Field(
         default=None,
         description=
-        "Bankruptcy price For Cross Margin, you can refer to the bankruptPrice, and the liquidation is based on the risk rate. ",
+        "Bankruptcy price: For Cross Margin, you can refer to the bankruptPrice, and the liquidation is based on the risk rate. ",
         alias="bankruptPrice")
     settle_currency: Optional[str] = Field(
         default=None,
@@ -185,7 +187,7 @@ class AllPositionEvent(BaseModel):
         alias="settleCurrency")
     margin_mode: Optional[MarginModeEnum] = Field(
         default=None,
-        description="Margin Mode: CROSS，ISOLATED ",
+        description="Margin Mode: CROSS, ISOLATED ",
         alias="marginMode")
     position_side: Optional[PositionSideEnum] = Field(
         default=None, description="Position Side ", alias="positionSide")
@@ -211,7 +213,7 @@ class AllPositionEvent(BaseModel):
         alias="realLeverage")
     pos_cross: Optional[float] = Field(
         default=None,
-        description="added margin **Only applicable to Isolated Margin** ",
+        description="Added margin **Only applicable to Isolated Margin** ",
         alias="posCross")
     pos_comm: Optional[float] = Field(
         default=None,
@@ -247,7 +249,7 @@ class AllPositionEvent(BaseModel):
                                          description="Funding fees",
                                          alias="fundingFee")
     ts: Optional[int] = Field(
-        default=None, description="Funding Fee Settlement Time (nanosecond)")
+        default=None, description="Funding Fee Settlement Time (nanoseconds)")
     success: Optional[bool] = Field(
         default=None,
         description=

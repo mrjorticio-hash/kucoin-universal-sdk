@@ -17,14 +17,14 @@ class CancelAllOrdersV1Resp(BaseModel, Response):
     CancelAllOrdersV1Resp
 
     Attributes:
-        cancelled_order_ids (list[str]): Unique ID of the cancelled order
+        cancelled_order_ids (list[str]): Unique ID of the canceled order
     """
 
     common_response: Optional[RestResponse] = Field(
         default=None, description="Common response")
     cancelled_order_ids: Optional[List[str]] = Field(
         default=None,
-        description="Unique ID of the cancelled order",
+        description="Unique ID of the canceled order",
         alias="cancelledOrderIds")
 
     __properties: ClassVar[List[str]] = ["cancelledOrderIds"]

@@ -9,7 +9,7 @@ import (
 
 func TestFundingFeesGetCurrentFundingRateReqModel(t *testing.T) {
 	// GetCurrentFundingRate
-	// Get Current Funding Rate
+	// Get Current Funding Rate.
 	// /api/v1/funding-rate/{symbol}/current
 
 	data := "{\"symbol\": \"XBTUSDTM\"}"
@@ -21,7 +21,7 @@ func TestFundingFeesGetCurrentFundingRateReqModel(t *testing.T) {
 
 func TestFundingFeesGetCurrentFundingRateRespModel(t *testing.T) {
 	// GetCurrentFundingRate
-	// Get Current Funding Rate
+	// Get Current Funding Rate.
 	// /api/v1/funding-rate/{symbol}/current
 
 	data := "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"symbol\": \".XBTUSDTMFPI8H\",\n        \"granularity\": 28800000,\n        \"timePoint\": 1731441600000,\n        \"value\": 6.41E-4,\n        \"predictedValue\": 5.2E-5,\n        \"fundingRateCap\": 0.003,\n        \"fundingRateFloor\": -0.003\n    }\n}"
@@ -68,7 +68,7 @@ func TestFundingFeesGetPrivateFundingHistoryReqModel(t *testing.T) {
 	// Get Private Funding History
 	// /api/v1/funding-history
 
-	data := "{\"symbol\": \"XBTUSDTM\", \"from\": 1700310700000, \"to\": 1702310700000, \"reverse\": true, \"offset\": 123456, \"forward\": true, \"maxCount\": 123456}"
+	data := "{\"symbol\": \"XBTUSDTM\", \"startAt\": 1700310700000, \"endAt\": 1702310700000, \"reverse\": true, \"offset\": 123456, \"forward\": true, \"maxCount\": 123456}"
 	req := &GetPrivateFundingHistoryReq{}
 	err := json.Unmarshal([]byte(data), req)
 	req.ToMap()

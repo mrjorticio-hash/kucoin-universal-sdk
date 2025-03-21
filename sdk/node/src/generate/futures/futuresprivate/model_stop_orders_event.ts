@@ -19,7 +19,7 @@ export class StopOrdersEvent implements Response<WsMessage> {
      */
     orderId: string;
     /**
-     * Order price
+     * Order Price
      */
     orderPrice: string;
     /**
@@ -47,7 +47,7 @@ export class StopOrdersEvent implements Response<WsMessage> {
      */
     stopPriceType: string;
     /**
-     * Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-221752070)
+     * Symbol of the contract. Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-221752070)
      */
     symbol: string;
     /**
@@ -150,13 +150,13 @@ export namespace StopOrdersEvent {
          */
         DOWN = <any>'down',
         /**
-         * Triggers when the price reaches or goes above the stopPrice
+         * Triggers when the price reaches or goes above the stopPrice.
          */
         UP = <any>'up',
     }
     export enum TypeEnum {
         /**
-         * the order is in the order book（maker order）
+         * the order is in the order book (maker order)
          */
         OPEN = <any>'open',
         /**

@@ -35,7 +35,7 @@ export class GetFuturesAccountTransferOutLedgerItems implements Serializable {
     amount?: string;
 
     /**
-     * Reason caused the failure
+     * Reason for the failure
      */
     reason?: string;
 

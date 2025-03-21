@@ -16,13 +16,15 @@ class SubAccountTransferReq(BaseModel):
     SubAccountTransferReq
 
     Attributes:
-        client_oid (str): Unique order id created by users to identify their orders, e.g. UUID, with a maximum length of 128 bits
+        client_oid (str): Unique order ID created by users to identify their orders, e.g. UUID, with a maximum length of 128 bits
         currency (str): currency
-        amount (str): Transfer amount, the amount is a positive integer multiple of the currency precision.
-        direction (DirectionEnum): OUT — the master user to sub user IN — the sub user to the master user.
-        account_type (AccountTypeEnum): Account type：MAIN、TRADE、CONTRACT、MARGIN
-        sub_account_type (SubAccountTypeEnum): Sub Account type：MAIN、TRADE、CONTRACT、MARGIN
+        amount (str): Transfer amount: The amount is a positive integer multiple of the currency precision.
+        direction (DirectionEnum): OUT — the master user to sub user IN — the sub user to the master user
+        account_type (AccountTypeEnum): Account type: MAIN, TRADE, CONTRACT, MARGIN, ISOLATED
+        sub_account_type (SubAccountTypeEnum): Sub-account type: MAIN, TRADE, CONTRACT, MARGIN, ISOLATED
         sub_user_id (str): the user ID of a sub-account.
+        tag (str):  Need to be defined if accountType=ISOLATED.
+        sub_tag (str):  Need to be defined if subAccountType=ISOLATED.
     """
 
     class DirectionEnum(Enum):
@@ -65,35 +67,42 @@ class SubAccountTransferReq(BaseModel):
     client_oid: Optional[str] = Field(
         default=None,
         description=
-        "Unique order id created by users to identify their orders, e.g. UUID, with a maximum length of 128 bits",
+        "Unique order ID created by users to identify their orders, e.g. UUID, with a maximum length of 128 bits",
         alias="clientOid")
     currency: Optional[str] = Field(default=None, description="currency")
     amount: Optional[str] = Field(
         default=None,
         description=
-        "Transfer amount, the amount is a positive integer multiple of the currency precision."
+        "Transfer amount: The amount is a positive integer multiple of the currency precision."
     )
     direction: Optional[DirectionEnum] = Field(
         default=None,
         description=
-        "OUT — the master user to sub user IN — the sub user to the master user."
+        "OUT — the master user to sub user IN — the sub user to the master user"
     )
     account_type: Optional[AccountTypeEnum] = Field(
         default=AccountTypeEnum.MAIN,
-        description="Account type：MAIN、TRADE、CONTRACT、MARGIN",
+        description="Account type: MAIN, TRADE, CONTRACT, MARGIN, ISOLATED",
         alias="accountType")
     sub_account_type: Optional[SubAccountTypeEnum] = Field(
         default=SubAccountTypeEnum.MAIN,
-        description="Sub Account type：MAIN、TRADE、CONTRACT、MARGIN",
+        description="Sub-account type: MAIN, TRADE, CONTRACT, MARGIN, ISOLATED",
         alias="subAccountType")
     sub_user_id: Optional[str] = Field(
         default=None,
         description="the user ID of a sub-account.",
         alias="subUserId")
+    tag: Optional[str] = Field(
+        default=None,
+        description=" Need to be defined if accountType=ISOLATED.")
+    sub_tag: Optional[str] = Field(
+        default=None,
+        description=" Need to be defined if subAccountType=ISOLATED.",
+        alias="subTag")
 
     __properties: ClassVar[List[str]] = [
         "clientOid", "currency", "amount", "direction", "accountType",
-        "subAccountType", "subUserId"
+        "subAccountType", "subUserId", "tag", "subTag"
     ]
 
     model_config = ConfigDict(
@@ -145,7 +154,11 @@ class SubAccountTransferReq(BaseModel):
             obj.get("subAccountType") if obj.get("subAccountType") is not None
             else SubAccountTransferReq.SubAccountTypeEnum.MAIN,
             "subUserId":
-            obj.get("subUserId")
+            obj.get("subUserId"),
+            "tag":
+            obj.get("tag"),
+            "subTag":
+            obj.get("subTag")
         })
         return _obj
 
@@ -157,7 +170,7 @@ class SubAccountTransferReqBuilder:
 
     def set_client_oid(self, value: str) -> SubAccountTransferReqBuilder:
         """
-        Unique order id created by users to identify their orders, e.g. UUID, with a maximum length of 128 bits
+        Unique order ID created by users to identify their orders, e.g. UUID, with a maximum length of 128 bits
         """
         self.obj['clientOid'] = value
         return self
@@ -171,7 +184,7 @@ class SubAccountTransferReqBuilder:
 
     def set_amount(self, value: str) -> SubAccountTransferReqBuilder:
         """
-        Transfer amount, the amount is a positive integer multiple of the currency precision.
+        Transfer amount: The amount is a positive integer multiple of the currency precision.
         """
         self.obj['amount'] = value
         return self
@@ -180,7 +193,7 @@ class SubAccountTransferReqBuilder:
         self, value: SubAccountTransferReq.DirectionEnum
     ) -> SubAccountTransferReqBuilder:
         """
-        OUT — the master user to sub user IN — the sub user to the master user.
+        OUT — the master user to sub user IN — the sub user to the master user
         """
         self.obj['direction'] = value
         return self
@@ -189,7 +202,7 @@ class SubAccountTransferReqBuilder:
         self, value: SubAccountTransferReq.AccountTypeEnum
     ) -> SubAccountTransferReqBuilder:
         """
-        Account type：MAIN、TRADE、CONTRACT、MARGIN
+        Account type: MAIN, TRADE, CONTRACT, MARGIN, ISOLATED
         """
         self.obj['accountType'] = value
         return self
@@ -198,7 +211,7 @@ class SubAccountTransferReqBuilder:
         self, value: SubAccountTransferReq.SubAccountTypeEnum
     ) -> SubAccountTransferReqBuilder:
         """
-        Sub Account type：MAIN、TRADE、CONTRACT、MARGIN
+        Sub-account type: MAIN, TRADE, CONTRACT, MARGIN, ISOLATED
         """
         self.obj['subAccountType'] = value
         return self
@@ -208,6 +221,20 @@ class SubAccountTransferReqBuilder:
         the user ID of a sub-account.
         """
         self.obj['subUserId'] = value
+        return self
+
+    def set_tag(self, value: str) -> SubAccountTransferReqBuilder:
+        """
+         Need to be defined if accountType=ISOLATED.
+        """
+        self.obj['tag'] = value
+        return self
+
+    def set_sub_tag(self, value: str) -> SubAccountTransferReqBuilder:
+        """
+         Need to be defined if subAccountType=ISOLATED.
+        """
+        self.obj['subTag'] = value
         return self
 
     def build(self) -> SubAccountTransferReq:

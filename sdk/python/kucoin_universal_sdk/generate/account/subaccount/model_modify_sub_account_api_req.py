@@ -16,12 +16,12 @@ class ModifySubAccountApiReq(BaseModel):
     ModifySubAccountApiReq
 
     Attributes:
-        passphrase (str): Password(Must contain 7-32 characters. Cannot contain any spaces.)
-        permission (str): [Permissions](https://www.kucoin.com/docs-new/doc-338144)(Only General、Spot、Futures、Margin、InnerTransfer(Flex Transfer) permissions can be set, such as \"General, Trade\". The default is \"General\")
-        ip_whitelist (str): IP whitelist(You may add up to 20 IPs. Use a halfwidth comma to each IP)
-        expire (ExpireEnum): API expiration time; Never expire(default)-1，30Day30，90Day90，180Day180，360Day360
+        passphrase (str): Password (Must contain 7–32 characters. Cannot contain any spaces.)
+        permission (str): [Permissions](https://www.kucoin.com/docs-new/doc-338144)(Only General, Spot, Futures, Margin, InnerTransfer (Flex Transfer) permissions can be set, such as \"General, Trade\". The default is \"General\")
+        ip_whitelist (str): IP whitelist (You may add up to 20 IPs. Use a halfwidth comma to each IP)
+        expire (ExpireEnum): API expiration time: Never expire(default)-1, 30Day30, 90Day90, 180Day180, 360Day360
         sub_name (str): Sub-account name, create sub account name of API Key.
-        api_key (str): API-Key(Sub-account APIKey)
+        api_key (str): API-Key (Sub-account APIKey)
     """
 
     class ExpireEnum(Enum):
@@ -42,28 +42,28 @@ class ModifySubAccountApiReq(BaseModel):
     passphrase: Optional[str] = Field(
         default=None,
         description=
-        "Password(Must contain 7-32 characters. Cannot contain any spaces.)")
+        "Password (Must contain 7–32 characters. Cannot contain any spaces.)")
     permission: Optional[str] = Field(
         default='General',
         description=
-        "[Permissions](https://www.kucoin.com/docs-new/doc-338144)(Only General、Spot、Futures、Margin、InnerTransfer(Flex Transfer) permissions can be set, such as \"General, Trade\". The default is \"General\")"
+        "[Permissions](https://www.kucoin.com/docs-new/doc-338144)(Only General, Spot, Futures, Margin, InnerTransfer (Flex Transfer) permissions can be set, such as \"General, Trade\". The default is \"General\")"
     )
     ip_whitelist: Optional[str] = Field(
         default=None,
         description=
-        "IP whitelist(You may add up to 20 IPs. Use a halfwidth comma to each IP)",
+        "IP whitelist (You may add up to 20 IPs. Use a halfwidth comma to each IP)",
         alias="ipWhitelist")
     expire: Optional[ExpireEnum] = Field(
         default=ExpireEnum.T_1,
         description=
-        "API expiration time; Never expire(default)-1，30Day30，90Day90，180Day180，360Day360"
+        "API expiration time: Never expire(default)-1, 30Day30, 90Day90, 180Day180, 360Day360"
     )
     sub_name: Optional[str] = Field(
         default=None,
         description="Sub-account name, create sub account name of API Key.",
         alias="subName")
     api_key: Optional[str] = Field(default=None,
-                                   description="API-Key(Sub-account APIKey)",
+                                   description="API-Key (Sub-account APIKey)",
                                    alias="apiKey")
 
     __properties: ClassVar[List[str]] = [
@@ -130,21 +130,21 @@ class ModifySubAccountApiReqBuilder:
 
     def set_passphrase(self, value: str) -> ModifySubAccountApiReqBuilder:
         """
-        Password(Must contain 7-32 characters. Cannot contain any spaces.)
+        Password (Must contain 7–32 characters. Cannot contain any spaces.)
         """
         self.obj['passphrase'] = value
         return self
 
     def set_permission(self, value: str) -> ModifySubAccountApiReqBuilder:
         """
-        [Permissions](https://www.kucoin.com/docs-new/doc-338144)(Only General、Spot、Futures、Margin、InnerTransfer(Flex Transfer) permissions can be set, such as \"General, Trade\". The default is \"General\")
+        [Permissions](https://www.kucoin.com/docs-new/doc-338144)(Only General, Spot, Futures, Margin, InnerTransfer (Flex Transfer) permissions can be set, such as \"General, Trade\". The default is \"General\")
         """
         self.obj['permission'] = value
         return self
 
     def set_ip_whitelist(self, value: str) -> ModifySubAccountApiReqBuilder:
         """
-        IP whitelist(You may add up to 20 IPs. Use a halfwidth comma to each IP)
+        IP whitelist (You may add up to 20 IPs. Use a halfwidth comma to each IP)
         """
         self.obj['ipWhitelist'] = value
         return self
@@ -153,7 +153,7 @@ class ModifySubAccountApiReqBuilder:
         self, value: ModifySubAccountApiReq.ExpireEnum
     ) -> ModifySubAccountApiReqBuilder:
         """
-        API expiration time; Never expire(default)-1，30Day30，90Day90，180Day180，360Day360
+        API expiration time: Never expire(default)-1, 30Day30, 90Day90, 180Day180, 360Day360
         """
         self.obj['expire'] = value
         return self
@@ -167,7 +167,7 @@ class ModifySubAccountApiReqBuilder:
 
     def set_api_key(self, value: str) -> ModifySubAccountApiReqBuilder:
         """
-        API-Key(Sub-account APIKey)
+        API-Key (Sub-account APIKey)
         """
         self.obj['apiKey'] = value
         return self

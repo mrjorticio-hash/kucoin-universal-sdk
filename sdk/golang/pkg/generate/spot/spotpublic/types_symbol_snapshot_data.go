@@ -8,7 +8,7 @@ type SymbolSnapshotData struct {
 	AveragePrice float32 `json:"averagePrice,omitempty"`
 	BaseCurrency string  `json:"baseCurrency,omitempty"`
 	BidSize      float32 `json:"bidSize,omitempty"`
-	// Trading pair partition： 0.primary partition 1.KuCoin Plus\", example = \"1\"
+	// Trading pair partition: 0. Primary partition 1.KuCoin Plus\", example = \"1\"
 	Board            int32   `json:"board,omitempty"`
 	Buy              float32 `json:"buy,omitempty"`
 	ChangePrice      float32 `json:"changePrice,omitempty"`
@@ -21,7 +21,7 @@ type SymbolSnapshotData struct {
 	MakerCoefficient float32 `json:"makerCoefficient,omitempty"`
 	MakerFeeRate     float32 `json:"makerFeeRate,omitempty"`
 	MarginTrade      bool    `json:"marginTrade,omitempty"`
-	// Trading Pair Mark： 0.default 1.ST. 2.NEW\", example = \"1\"
+	// Trading Pair Mark: 0. Default 1.ST. 2.NEW\", example = \"1\"
 	Mark            int32                             `json:"mark,omitempty"`
 	Market          string                            `json:"market,omitempty"`
 	MarketChange1h  SymbolSnapshotDataMarketChange1h  `json:"marketChange1h,omitempty"`

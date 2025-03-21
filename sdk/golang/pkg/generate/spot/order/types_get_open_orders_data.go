@@ -40,7 +40,7 @@ type GetOpenOrdersData struct {
 	// Visible size of iceberg order in order book.
 	VisibleSize string `json:"visibleSize,omitempty"`
 	// A GTT timeInForce that expires in n seconds
-	CancelAfter int32  `json:"cancelAfter,omitempty"`
+	CancelAfter int64  `json:"cancelAfter,omitempty"`
 	Channel     string `json:"channel,omitempty"`
 	// Client Order Id，unique identifier created by the user
 	ClientOid string `json:"clientOid,omitempty"`
@@ -72,7 +72,7 @@ type GetOpenOrdersData struct {
 
 // NewGetOpenOrdersData instantiates a new GetOpenOrdersData object
 // This constructor will assign default values to properties that have it defined
-func NewGetOpenOrdersData(id string, symbol string, opType string, Type_ string, side string, price string, size string, funds string, dealSize string, dealFunds string, fee string, feeCurrency string, timeInForce string, postOnly bool, hidden bool, iceberg bool, visibleSize string, cancelAfter int32, channel string, clientOid string, cancelExist bool, createdAt int64, lastUpdatedAt int64, tradeType string, inOrderBook bool, cancelledSize string, cancelledFunds string, remainSize string, remainFunds string, tax string, active bool) *GetOpenOrdersData {
+func NewGetOpenOrdersData(id string, symbol string, opType string, Type_ string, side string, price string, size string, funds string, dealSize string, dealFunds string, fee string, feeCurrency string, timeInForce string, postOnly bool, hidden bool, iceberg bool, visibleSize string, cancelAfter int64, channel string, clientOid string, cancelExist bool, createdAt int64, lastUpdatedAt int64, tradeType string, inOrderBook bool, cancelledSize string, cancelledFunds string, remainSize string, remainFunds string, tax string, active bool) *GetOpenOrdersData {
 	this := GetOpenOrdersData{}
 	this.Id = id
 	this.Symbol = symbol

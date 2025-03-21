@@ -5,7 +5,7 @@ import { Serializable } from '@internal/interfaces/serializable';
 
 export class GetRecentTradeHistoryData implements Serializable {
     /**
-     * Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)
+     * Symbol of the contract. Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)
      */
     symbol: string;
 
@@ -25,7 +25,7 @@ export class GetRecentTradeHistoryData implements Serializable {
     side: GetRecentTradeHistoryData.SideEnum;
 
     /**
-     * Liquidity- taker or maker
+     * Liquidity-taker or -maker
      */
     liquidity: GetRecentTradeHistoryData.LiquidityEnum;
 
@@ -70,7 +70,7 @@ export class GetRecentTradeHistoryData implements Serializable {
     feeRate: string;
 
     /**
-     * Fixed fees(Deprecated field, no actual use of the value field)
+     * Fixed fees (Deprecated field, no actual use of the value field)
      */
     fixFee: string;
 
@@ -80,7 +80,7 @@ export class GetRecentTradeHistoryData implements Serializable {
     feeCurrency: string;
 
     /**
-     * trade time in nanosecond
+     * Trade time in nanoseconds
      */
     tradeTime: number;
 
@@ -120,7 +120,7 @@ export class GetRecentTradeHistoryData implements Serializable {
     tradeType: GetRecentTradeHistoryData.TradeTypeEnum;
 
     /**
-     * Time the order created
+     * Order creation time
      */
     createdAt: number;
 
@@ -262,7 +262,7 @@ export namespace GetRecentTradeHistoryData {
          */
         TRADE = <any>'trade',
         /**
-         * Partially filled and cancelled orders
+         * Partially filled and canceled orders
          */
         CANCEL = <any>'cancel',
         /**

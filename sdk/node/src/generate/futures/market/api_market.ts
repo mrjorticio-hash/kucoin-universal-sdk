@@ -32,209 +32,209 @@ import { GetKlinesResp } from './model_get_klines_resp';
 export interface MarketAPI {
     /**
      * getSymbol Get Symbol
-     * Description: Get information of specified contracts that can be traded. This API will return a list of tradable contracts, including some key parameters of the contract such as the symbol name, tick size, mark price,etc.
+     * Description: Get information of specified contracts that can be traded. This API will return a list of tradable contracts, including some key parameters of the contract such as the symbol name, tick size, mark price, etc.
      * Documentation: https://www.kucoin.com/docs-new/api-3470221
-     * +---------------------+---------+
-     * | Extra API Info      | Value   |
-     * +---------------------+---------+
-     * | API-DOMAIN          | FUTURES |
-     * | API-CHANNEL         | PUBLIC  |
-     * | API-PERMISSION      | NULL    |
-     * | API-RATE-LIMIT-POOL | PUBLIC  |
-     * | API-RATE-LIMIT      | 3       |
-     * +---------------------+---------+
+     * +-----------------------+---------+
+     * | Extra API Info        | Value   |
+     * +-----------------------+---------+
+     * | API-DOMAIN            | FUTURES |
+     * | API-CHANNEL           | PUBLIC  |
+     * | API-PERMISSION        | NULL    |
+     * | API-RATE-LIMIT-POOL   | PUBLIC  |
+     * | API-RATE-LIMIT-WEIGHT | 3       |
+     * +-----------------------+---------+
      */
     getSymbol(req: GetSymbolReq): Promise<GetSymbolResp>;
 
     /**
      * getAllSymbols Get All Symbols
-     * Description: Get detailed information of all contracts that can be traded. This API will return a list of tradable contracts, including some key parameters of the contract such as the symbol name, tick size, mark price,etc.
+     * Description: Get detailed information of all contracts that can be traded. This API will return a list of tradable contracts, including some key parameters of the contract such as the symbol name, tick size, mark price, etc.
      * Documentation: https://www.kucoin.com/docs-new/api-3470220
-     * +---------------------+---------+
-     * | Extra API Info      | Value   |
-     * +---------------------+---------+
-     * | API-DOMAIN          | FUTURES |
-     * | API-CHANNEL         | PUBLIC  |
-     * | API-PERMISSION      | NULL    |
-     * | API-RATE-LIMIT-POOL | PUBLIC  |
-     * | API-RATE-LIMIT      | 3       |
-     * +---------------------+---------+
+     * +-----------------------+---------+
+     * | Extra API Info        | Value   |
+     * +-----------------------+---------+
+     * | API-DOMAIN            | FUTURES |
+     * | API-CHANNEL           | PUBLIC  |
+     * | API-PERMISSION        | NULL    |
+     * | API-RATE-LIMIT-POOL   | PUBLIC  |
+     * | API-RATE-LIMIT-WEIGHT | 3       |
+     * +-----------------------+---------+
      */
     getAllSymbols(): Promise<GetAllSymbolsResp>;
 
     /**
      * getTicker Get Ticker
-     * Description: This endpoint returns \&quot;last traded price/size\&quot;、\&quot;best bid/ask price/size\&quot; etc. of a single symbol. These messages can also be obtained through Websocket.
+     * Description: This endpoint returns \&quot;last traded price/size\&quot;, \&quot;best bid/ask price/size\&quot; etc. of a single symbol. These messages can also be obtained through Websocket.
      * Documentation: https://www.kucoin.com/docs-new/api-3470222
-     * +---------------------+---------+
-     * | Extra API Info      | Value   |
-     * +---------------------+---------+
-     * | API-DOMAIN          | FUTURES |
-     * | API-CHANNEL         | PUBLIC  |
-     * | API-PERMISSION      | NULL    |
-     * | API-RATE-LIMIT-POOL | PUBLIC  |
-     * | API-RATE-LIMIT      | 2       |
-     * +---------------------+---------+
+     * +-----------------------+---------+
+     * | Extra API Info        | Value   |
+     * +-----------------------+---------+
+     * | API-DOMAIN            | FUTURES |
+     * | API-CHANNEL           | PUBLIC  |
+     * | API-PERMISSION        | NULL    |
+     * | API-RATE-LIMIT-POOL   | PUBLIC  |
+     * | API-RATE-LIMIT-WEIGHT | 2       |
+     * +-----------------------+---------+
      */
     getTicker(req: GetTickerReq): Promise<GetTickerResp>;
 
     /**
      * getAllTickers Get All Tickers
-     * Description: This endpoint returns \&quot;last traded price/size\&quot;、\&quot;best bid/ask price/size\&quot; etc. of a single symbol. These messages can also be obtained through Websocket.
+     * Description: This endpoint returns \&quot;last traded price/size\&quot;, \&quot;best bid/ask price/size\&quot; etc. of a single symbol. These messages can also be obtained through Websocket.
      * Documentation: https://www.kucoin.com/docs-new/api-3470223
-     * +---------------------+---------+
-     * | Extra API Info      | Value   |
-     * +---------------------+---------+
-     * | API-DOMAIN          | FUTURES |
-     * | API-CHANNEL         | PUBLIC  |
-     * | API-PERMISSION      | NULL    |
-     * | API-RATE-LIMIT-POOL | PUBLIC  |
-     * | API-RATE-LIMIT      | 5       |
-     * +---------------------+---------+
+     * +-----------------------+---------+
+     * | Extra API Info        | Value   |
+     * +-----------------------+---------+
+     * | API-DOMAIN            | FUTURES |
+     * | API-CHANNEL           | PUBLIC  |
+     * | API-PERMISSION        | NULL    |
+     * | API-RATE-LIMIT-POOL   | PUBLIC  |
+     * | API-RATE-LIMIT-WEIGHT | 5       |
+     * +-----------------------+---------+
      */
     getAllTickers(): Promise<GetAllTickersResp>;
 
     /**
      * getFullOrderBook Get Full OrderBook
-     * Description: Query for Full orderbook depth data. (aggregated by price)  It is generally used by professional traders because it uses more server resources and traffic, and we have strict access rate limit control.  To maintain up-to-date Order Book, please use Websocket incremental feed after retrieving the OrderBook.
+     * Description: Query for Full orderbook depth data (aggregated by price). It is generally used by professional traders because it uses more server resources and traffic, and we have strict access rate limit control.  To maintain an up-to-date Order Book, please use Websocket incremental feed after retrieving the OrderBook.
      * Documentation: https://www.kucoin.com/docs-new/api-3470224
-     * +---------------------+---------+
-     * | Extra API Info      | Value   |
-     * +---------------------+---------+
-     * | API-DOMAIN          | FUTURES |
-     * | API-CHANNEL         | PUBLIC  |
-     * | API-PERMISSION      | NULL    |
-     * | API-RATE-LIMIT-POOL | PUBLIC  |
-     * | API-RATE-LIMIT      | 3       |
-     * +---------------------+---------+
+     * +-----------------------+---------+
+     * | Extra API Info        | Value   |
+     * +-----------------------+---------+
+     * | API-DOMAIN            | FUTURES |
+     * | API-CHANNEL           | PUBLIC  |
+     * | API-PERMISSION        | NULL    |
+     * | API-RATE-LIMIT-POOL   | PUBLIC  |
+     * | API-RATE-LIMIT-WEIGHT | 3       |
+     * +-----------------------+---------+
      */
     getFullOrderBook(req: GetFullOrderBookReq): Promise<GetFullOrderBookResp>;
 
     /**
      * getPartOrderBook Get Part OrderBook
-     * Description: Query for part orderbook depth data. (aggregated by price)  You are recommended to request via this endpoint as the system reponse would be faster and cosume less traffic.
+     * Description: Query for part orderbook depth data. (aggregated by price). It is recommended that you request via this endpoint, as the system response will be faster and consume less traffic.
      * Documentation: https://www.kucoin.com/docs-new/api-3470225
-     * +---------------------+---------+
-     * | Extra API Info      | Value   |
-     * +---------------------+---------+
-     * | API-DOMAIN          | FUTURES |
-     * | API-CHANNEL         | PUBLIC  |
-     * | API-PERMISSION      | NULL    |
-     * | API-RATE-LIMIT-POOL | PUBLIC  |
-     * | API-RATE-LIMIT      | 5       |
-     * +---------------------+---------+
+     * +-----------------------+---------+
+     * | Extra API Info        | Value   |
+     * +-----------------------+---------+
+     * | API-DOMAIN            | FUTURES |
+     * | API-CHANNEL           | PUBLIC  |
+     * | API-PERMISSION        | NULL    |
+     * | API-RATE-LIMIT-POOL   | PUBLIC  |
+     * | API-RATE-LIMIT-WEIGHT | 5       |
+     * +-----------------------+---------+
      */
     getPartOrderBook(req: GetPartOrderBookReq): Promise<GetPartOrderBookResp>;
 
     /**
      * getTradeHistory Get Trade History
-     * Description: Request via this endpoint to get the trade history of the specified symbol, the returned quantity is the last 100 transaction records.
+     * Description: Request the trade history of the specified symbol via this endpoint. The returned quantity is the last 100 transaction records.
      * Documentation: https://www.kucoin.com/docs-new/api-3470232
-     * +---------------------+---------+
-     * | Extra API Info      | Value   |
-     * +---------------------+---------+
-     * | API-DOMAIN          | FUTURES |
-     * | API-CHANNEL         | PUBLIC  |
-     * | API-PERMISSION      | NULL    |
-     * | API-RATE-LIMIT-POOL | PUBLIC  |
-     * | API-RATE-LIMIT      | 5       |
-     * +---------------------+---------+
+     * +-----------------------+---------+
+     * | Extra API Info        | Value   |
+     * +-----------------------+---------+
+     * | API-DOMAIN            | FUTURES |
+     * | API-CHANNEL           | PUBLIC  |
+     * | API-PERMISSION        | NULL    |
+     * | API-RATE-LIMIT-POOL   | PUBLIC  |
+     * | API-RATE-LIMIT-WEIGHT | 5       |
+     * +-----------------------+---------+
      */
     getTradeHistory(req: GetTradeHistoryReq): Promise<GetTradeHistoryResp>;
 
     /**
      * getKlines Get Klines
-     * Description: Get the Kline of the symbol. Data are returned in grouped buckets based on requested type. For each query, the system would return at most 500 pieces of data. To obtain more data, please page the data by time.
+     * Description: Get the symbol’s candlestick chart. Data are returned in grouped buckets based on requested type. For each query, the system will return at most 500 pieces of data. To obtain more data, please page the data by time.
      * Documentation: https://www.kucoin.com/docs-new/api-3470234
-     * +---------------------+---------+
-     * | Extra API Info      | Value   |
-     * +---------------------+---------+
-     * | API-DOMAIN          | FUTURES |
-     * | API-CHANNEL         | PUBLIC  |
-     * | API-PERMISSION      | NULL    |
-     * | API-RATE-LIMIT-POOL | PUBLIC  |
-     * | API-RATE-LIMIT      | 3       |
-     * +---------------------+---------+
+     * +-----------------------+---------+
+     * | Extra API Info        | Value   |
+     * +-----------------------+---------+
+     * | API-DOMAIN            | FUTURES |
+     * | API-CHANNEL           | PUBLIC  |
+     * | API-PERMISSION        | NULL    |
+     * | API-RATE-LIMIT-POOL   | PUBLIC  |
+     * | API-RATE-LIMIT-WEIGHT | 3       |
+     * +-----------------------+---------+
      */
     getKlines(req: GetKlinesReq): Promise<GetKlinesResp>;
 
     /**
      * getMarkPrice Get Mark Price
-     * Description: Get current mark price
+     * Description: Get the current mark price (Update snapshots once per second, real-time query).
      * Documentation: https://www.kucoin.com/docs-new/api-3470233
-     * +---------------------+---------+
-     * | Extra API Info      | Value   |
-     * +---------------------+---------+
-     * | API-DOMAIN          | FUTURES |
-     * | API-CHANNEL         | PUBLIC  |
-     * | API-PERMISSION      | NULL    |
-     * | API-RATE-LIMIT-POOL | PUBLIC  |
-     * | API-RATE-LIMIT      | 3       |
-     * +---------------------+---------+
+     * +-----------------------+---------+
+     * | Extra API Info        | Value   |
+     * +-----------------------+---------+
+     * | API-DOMAIN            | FUTURES |
+     * | API-CHANNEL           | PUBLIC  |
+     * | API-PERMISSION        | NULL    |
+     * | API-RATE-LIMIT-POOL   | PUBLIC  |
+     * | API-RATE-LIMIT-WEIGHT | 3       |
+     * +-----------------------+---------+
      */
     getMarkPrice(req: GetMarkPriceReq): Promise<GetMarkPriceResp>;
 
     /**
      * getSpotIndexPrice Get Spot Index Price
-     * Description: Get Spot Index Price
+     * Description: Get Spot Index Price (Update snapshots once per second,  and there is a 5s cache when querying).
      * Documentation: https://www.kucoin.com/docs-new/api-3470231
-     * +---------------------+---------+
-     * | Extra API Info      | Value   |
-     * +---------------------+---------+
-     * | API-DOMAIN          | FUTURES |
-     * | API-CHANNEL         | PUBLIC  |
-     * | API-PERMISSION      | NULL    |
-     * | API-RATE-LIMIT-POOL | PUBLIC  |
-     * | API-RATE-LIMIT      | 2       |
-     * +---------------------+---------+
+     * +-----------------------+---------+
+     * | Extra API Info        | Value   |
+     * +-----------------------+---------+
+     * | API-DOMAIN            | FUTURES |
+     * | API-CHANNEL           | PUBLIC  |
+     * | API-PERMISSION        | NULL    |
+     * | API-RATE-LIMIT-POOL   | PUBLIC  |
+     * | API-RATE-LIMIT-WEIGHT | 2       |
+     * +-----------------------+---------+
      */
     getSpotIndexPrice(req: GetSpotIndexPriceReq): Promise<GetSpotIndexPriceResp>;
 
     /**
      * getInterestRateIndex Get Interest Rate Index
-     * Description: Get interest rate Index.
+     * Description: Get interest rate Index (real-time query).
      * Documentation: https://www.kucoin.com/docs-new/api-3470226
-     * +---------------------+---------+
-     * | Extra API Info      | Value   |
-     * +---------------------+---------+
-     * | API-DOMAIN          | FUTURES |
-     * | API-CHANNEL         | PUBLIC  |
-     * | API-PERMISSION      | NULL    |
-     * | API-RATE-LIMIT-POOL | PUBLIC  |
-     * | API-RATE-LIMIT      | 5       |
-     * +---------------------+---------+
+     * +-----------------------+---------+
+     * | Extra API Info        | Value   |
+     * +-----------------------+---------+
+     * | API-DOMAIN            | FUTURES |
+     * | API-CHANNEL           | PUBLIC  |
+     * | API-PERMISSION        | NULL    |
+     * | API-RATE-LIMIT-POOL   | PUBLIC  |
+     * | API-RATE-LIMIT-WEIGHT | 5       |
+     * +-----------------------+---------+
      */
     getInterestRateIndex(req: GetInterestRateIndexReq): Promise<GetInterestRateIndexResp>;
 
     /**
      * getPremiumIndex Get Premium Index
-     * Description: Submit request to get premium index.
+     * Description: Submit request to get premium index (Update snapshots once per second, real-time query).
      * Documentation: https://www.kucoin.com/docs-new/api-3470227
-     * +---------------------+---------+
-     * | Extra API Info      | Value   |
-     * +---------------------+---------+
-     * | API-DOMAIN          | FUTURES |
-     * | API-CHANNEL         | PUBLIC  |
-     * | API-PERMISSION      | NULL    |
-     * | API-RATE-LIMIT-POOL | PUBLIC  |
-     * | API-RATE-LIMIT      | 3       |
-     * +---------------------+---------+
+     * +-----------------------+---------+
+     * | Extra API Info        | Value   |
+     * +-----------------------+---------+
+     * | API-DOMAIN            | FUTURES |
+     * | API-CHANNEL           | PUBLIC  |
+     * | API-PERMISSION        | NULL    |
+     * | API-RATE-LIMIT-POOL   | PUBLIC  |
+     * | API-RATE-LIMIT-WEIGHT | 3       |
+     * +-----------------------+---------+
      */
     getPremiumIndex(req: GetPremiumIndexReq): Promise<GetPremiumIndexResp>;
 
     /**
-     * get24hrStats Get 24hr Stats
+     * get24hrStats Get 24hr stats
      * Description: Get the statistics of the platform futures trading volume in the last 24 hours.
      * Documentation: https://www.kucoin.com/docs-new/api-3470228
-     * +---------------------+---------+
-     * | Extra API Info      | Value   |
-     * +---------------------+---------+
-     * | API-DOMAIN          | FUTURES |
-     * | API-CHANNEL         | PUBLIC  |
-     * | API-PERMISSION      | NULL    |
-     * | API-RATE-LIMIT-POOL | FUTURES |
-     * | API-RATE-LIMIT      | 3       |
-     * +---------------------+---------+
+     * +-----------------------+---------+
+     * | Extra API Info        | Value   |
+     * +-----------------------+---------+
+     * | API-DOMAIN            | FUTURES |
+     * | API-CHANNEL           | PUBLIC  |
+     * | API-PERMISSION        | NULL    |
+     * | API-RATE-LIMIT-POOL   | FUTURES |
+     * | API-RATE-LIMIT-WEIGHT | 3       |
+     * +-----------------------+---------+
      */
     get24hrStats(): Promise<Get24hrStatsResp>;
 
@@ -242,15 +242,15 @@ export interface MarketAPI {
      * getServerTime Get Server Time
      * Description: Get the API server time. This is the Unix timestamp.
      * Documentation: https://www.kucoin.com/docs-new/api-3470229
-     * +---------------------+---------+
-     * | Extra API Info      | Value   |
-     * +---------------------+---------+
-     * | API-DOMAIN          | FUTURES |
-     * | API-CHANNEL         | PUBLIC  |
-     * | API-PERMISSION      | NULL    |
-     * | API-RATE-LIMIT-POOL | PUBLIC  |
-     * | API-RATE-LIMIT      | 2       |
-     * +---------------------+---------+
+     * +-----------------------+---------+
+     * | Extra API Info        | Value   |
+     * +-----------------------+---------+
+     * | API-DOMAIN            | FUTURES |
+     * | API-CHANNEL           | PUBLIC  |
+     * | API-PERMISSION        | NULL    |
+     * | API-RATE-LIMIT-POOL   | PUBLIC  |
+     * | API-RATE-LIMIT-WEIGHT | 2       |
+     * +-----------------------+---------+
      */
     getServerTime(): Promise<GetServerTimeResp>;
 
@@ -258,47 +258,47 @@ export interface MarketAPI {
      * getServiceStatus Get Service Status
      * Description: Get the service status.
      * Documentation: https://www.kucoin.com/docs-new/api-3470230
-     * +---------------------+---------+
-     * | Extra API Info      | Value   |
-     * +---------------------+---------+
-     * | API-DOMAIN          | FUTURES |
-     * | API-CHANNEL         | PUBLIC  |
-     * | API-PERMISSION      | NULL    |
-     * | API-RATE-LIMIT-POOL | PUBLIC  |
-     * | API-RATE-LIMIT      | 4       |
-     * +---------------------+---------+
+     * +-----------------------+---------+
+     * | Extra API Info        | Value   |
+     * +-----------------------+---------+
+     * | API-DOMAIN            | FUTURES |
+     * | API-CHANNEL           | PUBLIC  |
+     * | API-PERMISSION        | NULL    |
+     * | API-RATE-LIMIT-POOL   | PUBLIC  |
+     * | API-RATE-LIMIT-WEIGHT | 4       |
+     * +-----------------------+---------+
      */
     getServiceStatus(): Promise<GetServiceStatusResp>;
 
     /**
      * getPublicToken Get Public Token - Futures
-     * Description: This interface can obtain the token required for websocket to establish a Futures connection. If you need use public channels (e.g. all public market data), please make request as follows to obtain the server list and public token
+     * Description: This interface can obtain the token required for Websocket to establish a Futures connection. If you need use public channels (e.g. all public market data), please make request as follows to obtain the server list and public token
      * Documentation: https://www.kucoin.com/docs-new/api-3470297
-     * +---------------------+---------+
-     * | Extra API Info      | Value   |
-     * +---------------------+---------+
-     * | API-DOMAIN          | FUTURES |
-     * | API-CHANNEL         | PUBLIC  |
-     * | API-PERMISSION      | NULL    |
-     * | API-RATE-LIMIT-POOL | PUBLIC  |
-     * | API-RATE-LIMIT      | 10      |
-     * +---------------------+---------+
+     * +-----------------------+---------+
+     * | Extra API Info        | Value   |
+     * +-----------------------+---------+
+     * | API-DOMAIN            | FUTURES |
+     * | API-CHANNEL           | PUBLIC  |
+     * | API-PERMISSION        | NULL    |
+     * | API-RATE-LIMIT-POOL   | PUBLIC  |
+     * | API-RATE-LIMIT-WEIGHT | 10      |
+     * +-----------------------+---------+
      */
     getPublicToken(): Promise<GetPublicTokenResp>;
 
     /**
      * getPrivateToken Get Private Token - Futures
-     * Description: This interface can obtain the token required for websocket to establish a Futures private connection. If you need use private channels(e.g. account balance notice), please make request as follows to obtain the server list and private token
+     * Description: This interface can obtain the token required for Websocket to establish a Futures private connection. If you need use private channels (e.g. account balance notice), please make request as follows to obtain the server list and private token
      * Documentation: https://www.kucoin.com/docs-new/api-3470296
-     * +---------------------+---------+
-     * | Extra API Info      | Value   |
-     * +---------------------+---------+
-     * | API-DOMAIN          | FUTURES |
-     * | API-CHANNEL         | PRIVATE |
-     * | API-PERMISSION      | GENERAL |
-     * | API-RATE-LIMIT-POOL | FUTURES |
-     * | API-RATE-LIMIT      | 10      |
-     * +---------------------+---------+
+     * +-----------------------+---------+
+     * | Extra API Info        | Value   |
+     * +-----------------------+---------+
+     * | API-DOMAIN            | FUTURES |
+     * | API-CHANNEL           | PRIVATE |
+     * | API-PERMISSION        | GENERAL |
+     * | API-RATE-LIMIT-POOL   | FUTURES |
+     * | API-RATE-LIMIT-WEIGHT | 10      |
+     * +-----------------------+---------+
      */
     getPrivateToken(): Promise<GetPrivateTokenResp>;
 }

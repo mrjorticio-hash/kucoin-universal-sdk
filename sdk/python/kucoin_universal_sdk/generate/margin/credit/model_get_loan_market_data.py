@@ -25,7 +25,7 @@ class GetLoanMarketData(BaseModel):
         interest_increment (str): Increment precision for interest; default is 0.0001
         max_purchase_size (str): Maximum purchase amount
         market_interest_rate (str): Latest market lending rate
-        auto_purchase_enable (bool): Whether to allow automatic purchase: true: on, false: off
+        auto_purchase_enable (bool): Whether to allow automatic purchase: True: on; false: off
     """
 
     currency: Optional[str] = Field(default=None, description="Currency")
@@ -66,7 +66,7 @@ class GetLoanMarketData(BaseModel):
         alias="marketInterestRate")
     auto_purchase_enable: Optional[bool] = Field(
         default=None,
-        description="Whether to allow automatic purchase: true: on, false: off",
+        description="Whether to allow automatic purchase: True: on; false: off",
         alias="autoPurchaseEnable")
 
     __properties: ClassVar[List[str]] = [

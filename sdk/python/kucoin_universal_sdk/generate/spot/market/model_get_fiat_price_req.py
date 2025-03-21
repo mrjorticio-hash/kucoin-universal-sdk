@@ -15,14 +15,14 @@ class GetFiatPriceReq(BaseModel):
     GetFiatPriceReq
 
     Attributes:
-        base (str): Ticker symbol of a base currency,eg.USD,EUR. Default is USD
+        base (str): Ticker symbol of a base currency, e.g. USD, EUR. Default is USD
         currencies (str): Comma-separated cryptocurrencies to be converted into fiat, e.g.: BTC,ETH, etc. Default to return the fiat price of all currencies.
     """
 
     base: Optional[str] = Field(
         default='USD',
         description=
-        "Ticker symbol of a base currency,eg.USD,EUR. Default is USD")
+        "Ticker symbol of a base currency, e.g. USD, EUR. Default is USD")
     currencies: Optional[str] = Field(
         default=None,
         description=
@@ -79,7 +79,7 @@ class GetFiatPriceReqBuilder:
 
     def set_base(self, value: str) -> GetFiatPriceReqBuilder:
         """
-        Ticker symbol of a base currency,eg.USD,EUR. Default is USD
+        Ticker symbol of a base currency, e.g. USD, EUR. Default is USD
         """
         self.obj['base'] = value
         return self

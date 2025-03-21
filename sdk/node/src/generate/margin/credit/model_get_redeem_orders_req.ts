@@ -5,17 +5,17 @@ import { Serializable } from '@internal/interfaces/serializable';
 
 export class GetRedeemOrdersReq implements Serializable {
     /**
-     * currency
-     */
-    currency?: string;
-
-    /**
      * DONE-completed; PENDING-settling
      */
     status?: GetRedeemOrdersReq.StatusEnum;
 
     /**
-     * Redeem order id
+     * currency
+     */
+    currency?: string;
+
+    /**
+     * Redeem order ID
      */
     redeemOrderNo?: string;
 
@@ -25,7 +25,7 @@ export class GetRedeemOrdersReq implements Serializable {
     currentPage?: number = 1;
 
     /**
-     * Page size; 1<=pageSize<=100; default is 50
+     * Page size; 1<=pageSize<=50; default is 50
      */
     pageSize?: number = 50;
 
@@ -46,15 +46,15 @@ export class GetRedeemOrdersReq implements Serializable {
      */
     static create(data: {
         /**
-         * currency
-         */
-        currency?: string;
-        /**
          * DONE-completed; PENDING-settling
          */
         status?: GetRedeemOrdersReq.StatusEnum;
         /**
-         * Redeem order id
+         * currency
+         */
+        currency?: string;
+        /**
+         * Redeem order ID
          */
         redeemOrderNo?: string;
         /**
@@ -62,13 +62,13 @@ export class GetRedeemOrdersReq implements Serializable {
          */
         currentPage?: number;
         /**
-         * Page size; 1<=pageSize<=100; default is 50
+         * Page size; 1<=pageSize<=50; default is 50
          */
         pageSize?: number;
     }): GetRedeemOrdersReq {
         let obj = new GetRedeemOrdersReq();
-        obj.currency = data.currency;
         obj.status = data.status;
+        obj.currency = data.currency;
         obj.redeemOrderNo = data.redeemOrderNo;
         if (data.currentPage) {
             obj.currentPage = data.currentPage;
@@ -106,11 +106,11 @@ export class GetRedeemOrdersReq implements Serializable {
 export namespace GetRedeemOrdersReq {
     export enum StatusEnum {
         /**
-         *
+         * completed
          */
         DONE = <any>'DONE',
         /**
-         *
+         * settling
          */
         PENDING = <any>'PENDING',
     }
@@ -121,14 +121,6 @@ export class GetRedeemOrdersReqBuilder {
         this.obj = obj;
     }
     /**
-     * currency
-     */
-    setCurrency(value: string): GetRedeemOrdersReqBuilder {
-        this.obj.currency = value;
-        return this;
-    }
-
-    /**
      * DONE-completed; PENDING-settling
      */
     setStatus(value: GetRedeemOrdersReq.StatusEnum): GetRedeemOrdersReqBuilder {
@@ -137,7 +129,15 @@ export class GetRedeemOrdersReqBuilder {
     }
 
     /**
-     * Redeem order id
+     * currency
+     */
+    setCurrency(value: string): GetRedeemOrdersReqBuilder {
+        this.obj.currency = value;
+        return this;
+    }
+
+    /**
+     * Redeem order ID
      */
     setRedeemOrderNo(value: string): GetRedeemOrdersReqBuilder {
         this.obj.redeemOrderNo = value;
@@ -153,7 +153,7 @@ export class GetRedeemOrdersReqBuilder {
     }
 
     /**
-     * Page size; 1<=pageSize<=100; default is 50
+     * Page size; 1<=pageSize<=50; default is 50
      */
     setPageSize(value: number): GetRedeemOrdersReqBuilder {
         this.obj.pageSize = value;

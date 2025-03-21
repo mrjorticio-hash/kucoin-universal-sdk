@@ -10,7 +10,7 @@ type GetDepositListData struct {
 	Hash string `json:"hash,omitempty"`
 	// Deposit address
 	Address string `json:"address,omitempty"`
-	// Address remark. If there’s no remark, it is empty. When you withdraw from other platforms to the KuCoin, you need to fill in memo(tag). If you do not fill memo (tag), your deposit may not be available, please be cautious.
+	// Address remark. If there’s no remark, it is empty. When you withdraw from other platforms to KuCoin, you need to fill in memo(tag). Be careful: If you do not fill in memo(tag), your deposit may not be available.
 	Memo string `json:"memo,omitempty"`
 	// Deposit amount
 	Amount string `json:"amount,omitempty"`
@@ -24,11 +24,11 @@ type GetDepositListData struct {
 	WalletTxId string `json:"walletTxId,omitempty"`
 	// Status. Available value: PROCESSING, SUCCESS, FAILURE
 	Status string `json:"status,omitempty"`
-	// remark
+	// Remark
 	Remark string `json:"remark,omitempty"`
-	// chain name of currency
+	// Chain name of currency
 	Chain string `json:"chain,omitempty"`
-	// Creation time of the database record
+	// Database record creation time
 	CreatedAt int64 `json:"createdAt,omitempty"`
 	// Update time of the database record
 	UpdatedAt int64 `json:"updatedAt,omitempty"`

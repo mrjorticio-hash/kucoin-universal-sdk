@@ -26,12 +26,12 @@ export class GetTransferHistoryResp implements Response<RestResponse> {
     fromUid: number;
 
     /**
-     * From Account Type:Account Type: MAIN, TRADE, CONTRACT, MARGIN, ISOLATED
+     * From Account Type: Account Type: MAIN, TRADE, CONTRACT, MARGIN, ISOLATED
      */
     fromAccountType: GetTransferHistoryResp.FromAccountTypeEnum;
 
     /**
-     * Trading pair, required if the account type is ISOLATED, e.g., BTC-USDT
+     * Trading pair (required if the account type is ISOLATED), e.g., BTC-USDT
      */
     fromAccountTag: string;
 
@@ -41,12 +41,12 @@ export class GetTransferHistoryResp implements Response<RestResponse> {
     toUid: number;
 
     /**
-     * Account Type:Account Type: MAIN, TRADE, CONTRACT, MARGIN, ISOLATED
+     * Account Type: Account Type: MAIN, TRADE, CONTRACT, MARGIN, ISOLATED
      */
     toAccountType: GetTransferHistoryResp.ToAccountTypeEnum;
 
     /**
-     * To Trading pair, required if the account type is ISOLATED, e.g., BTC-USDT
+     * To Trading pair (required if the account type is ISOLATED), e.g., BTC-USDT
      */
     toAccountTag: string;
 

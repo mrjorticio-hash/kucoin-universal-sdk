@@ -22,11 +22,11 @@ class GetTransferHistoryResp(BaseModel, Response):
         currency (str): Currency
         amount (str): Transfer Amount
         from_uid (int): UID of the user transferring out
-        from_account_type (FromAccountTypeEnum): From Account Type:Account Type: MAIN, TRADE, CONTRACT, MARGIN, ISOLATED
-        from_account_tag (str): Trading pair, required if the account type is ISOLATED, e.g., BTC-USDT
+        from_account_type (FromAccountTypeEnum): From Account Type: Account Type: MAIN, TRADE, CONTRACT, MARGIN, ISOLATED
+        from_account_tag (str): Trading pair (required if the account type is ISOLATED), e.g., BTC-USDT
         to_uid (int): UID of the user transferring in
-        to_account_type (ToAccountTypeEnum): Account Type:Account Type: MAIN, TRADE, CONTRACT, MARGIN, ISOLATED
-        to_account_tag (str): To Trading pair, required if the account type is ISOLATED, e.g., BTC-USDT
+        to_account_type (ToAccountTypeEnum): Account Type: Account Type: MAIN, TRADE, CONTRACT, MARGIN, ISOLATED
+        to_account_tag (str): To Trading pair (required if the account type is ISOLATED), e.g., BTC-USDT
         status (StatusEnum): Status: PROCESSING (processing), SUCCESS (successful), FAILURE (failed)
         reason (str): Failure Reason
         created_at (int): Creation Time (Unix timestamp in milliseconds)
@@ -87,12 +87,12 @@ class GetTransferHistoryResp(BaseModel, Response):
     from_account_type: Optional[FromAccountTypeEnum] = Field(
         default=None,
         description=
-        "From Account Type:Account Type: MAIN, TRADE, CONTRACT, MARGIN, ISOLATED",
+        "From Account Type: Account Type: MAIN, TRADE, CONTRACT, MARGIN, ISOLATED",
         alias="fromAccountType")
     from_account_tag: Optional[str] = Field(
         default=None,
         description=
-        "Trading pair, required if the account type is ISOLATED, e.g., BTC-USDT",
+        "Trading pair (required if the account type is ISOLATED), e.g., BTC-USDT",
         alias="fromAccountTag")
     to_uid: Optional[int] = Field(
         default=None,
@@ -101,12 +101,12 @@ class GetTransferHistoryResp(BaseModel, Response):
     to_account_type: Optional[ToAccountTypeEnum] = Field(
         default=None,
         description=
-        "Account Type:Account Type: MAIN, TRADE, CONTRACT, MARGIN, ISOLATED",
+        "Account Type: Account Type: MAIN, TRADE, CONTRACT, MARGIN, ISOLATED",
         alias="toAccountType")
     to_account_tag: Optional[str] = Field(
         default=None,
         description=
-        "To Trading pair, required if the account type is ISOLATED, e.g., BTC-USDT",
+        "To Trading pair (required if the account type is ISOLATED), e.g., BTC-USDT",
         alias="toAccountTag")
     status: Optional[StatusEnum] = Field(
         default=None,

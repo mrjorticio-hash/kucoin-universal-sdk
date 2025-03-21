@@ -27,7 +27,7 @@ export class BatchAddOrdersItem implements Serializable {
     /**
      * specify if the order is an \'limit\' order or \'market\' order
      */
-    type: BatchAddOrdersItem.TypeEnum = BatchAddOrdersItem.TypeEnum.LIMIT;
+    type?: BatchAddOrdersItem.TypeEnum = BatchAddOrdersItem.TypeEnum.LIMIT;
 
     /**
      * remark for the order, length cannot exceed 100 utf8 characters
@@ -132,8 +132,6 @@ export class BatchAddOrdersItem implements Serializable {
         this.symbol = null;
         // @ts-ignore
         this.leverage = null;
-        // @ts-ignore
-        this.type = null;
     }
     /**
      * Creates a new instance of the `BatchAddOrdersItem` class.
@@ -166,7 +164,7 @@ export class BatchAddOrdersItem implements Serializable {
         /**
          * specify if the order is an \'limit\' order or \'market\' order
          */
-        type: BatchAddOrdersItem.TypeEnum;
+        type?: BatchAddOrdersItem.TypeEnum;
         /**
          * remark for the order, length cannot exceed 100 utf8 characters
          */

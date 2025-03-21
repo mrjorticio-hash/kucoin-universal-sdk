@@ -4,19 +4,19 @@ package market
 
 // GetInterestRateIndexReq struct for GetInterestRateIndexReq
 type GetInterestRateIndexReq struct {
-	// Symbol of the contract, Please refer to [Get Symbol endpoint: fundingBaseSymbol, fundingQuoteSymbol, fundingBaseSymbol1M, fundingQuoteSymbol1M](https://www.kucoin.com/docs-new/api-3470220)
+	// Symbol of the contract. Please refer to [Get Symbol endpoint: fundingBaseSymbol, fundingQuoteSymbol, fundingBaseSymbol1M, fundingQuoteSymbol1M](https://www.kucoin.com/docs-new/api-3470220)
 	Symbol *string `json:"symbol,omitempty" url:"symbol,omitempty"`
-	// Start time (milisecond)
+	// Start time (milliseconds)
 	StartAt *int64 `json:"startAt,omitempty" url:"startAt,omitempty"`
-	// End time (milisecond)
+	// End time (milliseconds)
 	EndAt *int64 `json:"endAt,omitempty" url:"endAt,omitempty"`
-	// This parameter functions to judge whether the lookup is reverse. True means “yes”. False means no. This parameter is set as True by default.
+	// This parameter functions to judge whether the lookup is reversed. True means “yes”. False means “no”. This parameter is set as True by default.
 	Reverse *bool `json:"reverse,omitempty" url:"reverse,omitempty"`
 	// Start offset. The unique attribute of the last returned result of the last request. The data of the first page will be returned by default.
 	Offset *int64 `json:"offset,omitempty" url:"offset,omitempty"`
-	// This parameter functions to judge whether the lookup is forward or not. True means “yes” and False means “no”. This parameter is set as true by default
+	// This parameter functions to judge whether the lookup is forward or not. True means “yes” and False means “no”. This parameter is set as true by default.
 	Forward *bool `json:"forward,omitempty" url:"forward,omitempty"`
-	// Max record count. The default record count is 10, The maximum length cannot exceed 100
+	// Max. record count. The default record count is 10; the maximum length cannot exceed 100
 	MaxCount *int64 `json:"maxCount,omitempty" url:"maxCount,omitempty"`
 }
 
@@ -66,25 +66,25 @@ func NewGetInterestRateIndexReqBuilder() *GetInterestRateIndexReqBuilder {
 	return &GetInterestRateIndexReqBuilder{obj: NewGetInterestRateIndexReqWithDefaults()}
 }
 
-// Symbol of the contract, Please refer to [Get Symbol endpoint: fundingBaseSymbol, fundingQuoteSymbol, fundingBaseSymbol1M, fundingQuoteSymbol1M](https://www.kucoin.com/docs-new/api-3470220)
+// Symbol of the contract. Please refer to [Get Symbol endpoint: fundingBaseSymbol, fundingQuoteSymbol, fundingBaseSymbol1M, fundingQuoteSymbol1M](https://www.kucoin.com/docs-new/api-3470220)
 func (builder *GetInterestRateIndexReqBuilder) SetSymbol(value string) *GetInterestRateIndexReqBuilder {
 	builder.obj.Symbol = &value
 	return builder
 }
 
-// Start time (milisecond)
+// Start time (milliseconds)
 func (builder *GetInterestRateIndexReqBuilder) SetStartAt(value int64) *GetInterestRateIndexReqBuilder {
 	builder.obj.StartAt = &value
 	return builder
 }
 
-// End time (milisecond)
+// End time (milliseconds)
 func (builder *GetInterestRateIndexReqBuilder) SetEndAt(value int64) *GetInterestRateIndexReqBuilder {
 	builder.obj.EndAt = &value
 	return builder
 }
 
-// This parameter functions to judge whether the lookup is reverse. True means “yes”. False means no. This parameter is set as True by default.
+// This parameter functions to judge whether the lookup is reversed. True means “yes”. False means “no”. This parameter is set as True by default.
 func (builder *GetInterestRateIndexReqBuilder) SetReverse(value bool) *GetInterestRateIndexReqBuilder {
 	builder.obj.Reverse = &value
 	return builder
@@ -96,13 +96,13 @@ func (builder *GetInterestRateIndexReqBuilder) SetOffset(value int64) *GetIntere
 	return builder
 }
 
-// This parameter functions to judge whether the lookup is forward or not. True means “yes” and False means “no”. This parameter is set as true by default
+// This parameter functions to judge whether the lookup is forward or not. True means “yes” and False means “no”. This parameter is set as true by default.
 func (builder *GetInterestRateIndexReqBuilder) SetForward(value bool) *GetInterestRateIndexReqBuilder {
 	builder.obj.Forward = &value
 	return builder
 }
 
-// Max record count. The default record count is 10, The maximum length cannot exceed 100
+// Max. record count. The default record count is 10; the maximum length cannot exceed 100
 func (builder *GetInterestRateIndexReqBuilder) SetMaxCount(value int64) *GetInterestRateIndexReqBuilder {
 	builder.obj.MaxCount = &value
 	return builder

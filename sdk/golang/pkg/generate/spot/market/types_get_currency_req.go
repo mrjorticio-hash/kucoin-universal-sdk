@@ -6,7 +6,7 @@ package market
 type GetCurrencyReq struct {
 	// Path parameter, Currency
 	Currency *string `json:"currency,omitempty" path:"currency" url:"-"`
-	// Support for querying the chain of currency, e.g. The available value for USDT are OMNI, ERC20, TRC20. This only apply for multi-chain currency, and there is no need for single chain currency.
+	// Support for querying the chain of currency, e.g. the available values for USDT are OMNI, ERC20, TRC20. This only applies to multi-chain currencies; no need for single-chain currencies.
 	Chain *string `json:"chain,omitempty" url:"chain,omitempty"`
 }
 
@@ -45,7 +45,7 @@ func (builder *GetCurrencyReqBuilder) SetCurrency(value string) *GetCurrencyReqB
 	return builder
 }
 
-// Support for querying the chain of currency, e.g. The available value for USDT are OMNI, ERC20, TRC20. This only apply for multi-chain currency, and there is no need for single chain currency.
+// Support for querying the chain of currency, e.g. the available values for USDT are OMNI, ERC20, TRC20. This only applies to multi-chain currencies; no need for single-chain currencies.
 func (builder *GetCurrencyReqBuilder) SetChain(value string) *GetCurrencyReqBuilder {
 	builder.obj.Chain = &value
 	return builder

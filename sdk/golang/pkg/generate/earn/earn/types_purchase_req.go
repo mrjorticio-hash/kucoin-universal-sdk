@@ -4,7 +4,7 @@ package earn
 
 // PurchaseReq struct for PurchaseReq
 type PurchaseReq struct {
-	// Product Id
+	// Product ID
 	ProductId string `json:"productId,omitempty"`
 	// Subscription amount
 	Amount string `json:"amount,omitempty"`
@@ -45,7 +45,7 @@ func NewPurchaseReqBuilder() *PurchaseReqBuilder {
 	return &PurchaseReqBuilder{obj: NewPurchaseReqWithDefaults()}
 }
 
-// Product Id
+// Product ID
 func (builder *PurchaseReqBuilder) SetProductId(value string) *PurchaseReqBuilder {
 	builder.obj.ProductId = value
 	return builder

@@ -11,7 +11,7 @@
             "trace": {
                 "summary": "Get Ticker",
                 "deprecated": "false",
-                "description": "Subscribe to this topic to get the specified symbol push of BBO changes.",
+                "description": "Subscribe to this topic to get specified symbol pushes on BBO changes.",
                 "tags": [],
                 "parameters": [],
                 "x-sdk-service": "Spot",
@@ -39,7 +39,7 @@
             "trace": {
                 "summary": "Get All Tickers",
                 "deprecated": "false",
-                "description": "Subscribe to this topic to get the push of all market symbols BBO change.",
+                "description": "Subscribe to this topic to get pushes on all market symbol BBO changes.",
                 "tags": [],
                 "parameters": [],
                 "x-sdk-service": "Spot",
@@ -67,7 +67,7 @@
             "trace": {
                 "summary": "Orderbook - Level1",
                 "deprecated": "false",
-                "description": "The system will return the 1 best ask/bid orders data, A topic supports up to 100 symbols. If there is no change in the market, data will not be pushed",
+                "description": "The system will return the 1 best ask/bid orders data; a topic supports up to 100 symbols. If there is no change in the market, data will not be pushed",
                 "tags": [],
                 "parameters": [],
                 "x-sdk-service": "Spot",
@@ -95,7 +95,7 @@
             "trace": {
                 "summary": "Orderbook - Level5",
                 "deprecated": "false",
-                "description": "The system will return the 5 best ask/bid orders data,A topic supports up to 100 symbols. If there is no change in the market, data will not be pushed",
+                "description": "The system will return the 5 best ask/bid orders data; a topic supports up to 100 symbols. If there is no change in the market, data will not be pushed",
                 "tags": [],
                 "parameters": [],
                 "x-sdk-service": "Spot",
@@ -119,18 +119,18 @@
                 }
             }
         },
-        "/orderbookLevel50/market/level2:_symbol_,_symbol_": {
+        "/orderbookLevel50/spotMarket/level2Depth50:_symbol_,_symbol_": {
             "trace": {
                 "summary": "Orderbook - Level50",
                 "deprecated": "false",
-                "description": "The system will return the 50 best ask/bid orders data, A topic supports up to 100 symbols. If there is no change in the market, data will not be pushed",
+                "description": "The system will return data for the 50 best ask/bid orders; a topic supports up to 100 symbols. If there is no change in the market, data will not be pushed",
                 "tags": [],
                 "parameters": [],
                 "x-sdk-service": "Spot",
                 "x-sdk-sub-service": "spot_public",
                 "x-sdk-private": false,
                 "x-sdk-method-name": "orderbookLevel50",
-                "x-topic": "/market/level2:{symbol},{symbol}",
+                "x-topic": "/spotMarket/level2Depth50:{symbol},{symbol}",
                 "x-push_frequency": "once every 100ms",
                 "x-response-example": "{\\\"topic\\\":\\\"/spotMarket/level2Depth50:BTC-USDT\\\",\\\"type\\\":\\\"message\\\",\\\"subject\\\":\\\"level2\\\",\\\"data\\\":{\\\"asks\\\":[[\\\"95964.3\\\",\\\"0.08168874\\\"],[\\\"95967.9\\\",\\\"0.00985094\\\"],[\\\"95969.9\\\",\\\"0.00078081\\\"],[\\\"95971.2\\\",\\\"0.10016039\\\"],[\\\"95971.3\\\",\\\"0.12531139\\\"],[\\\"95971.7\\\",\\\"0.00291\\\"],[\\\"95971.9\\\",\\\"0.10271829\\\"],[\\\"95973.3\\\",\\\"0.00021\\\"],[\\\"95974.7\\\",\\\"0.10271829\\\"],[\\\"95976.9\\\",\\\"0.03095177\\\"],[\\\"95977\\\",\\\"0.10271829\\\"],[\\\"95978.7\\\",\\\"0.00022411\\\"],[\\\"95979.1\\\",\\\"0.00023017\\\"],[\\\"95981\\\",\\\"0.00022008\\\"],[\\\"95981.2\\\",\\\"0.14330324\\\"],[\\\"95982.3\\\",\\\"0.27922082\\\"],[\\\"95982.5\\\",\\\"0.02302674\\\"],[\\\"95983.8\\\",\\\"0.00011035\\\"],[\\\"95985\\\",\\\"0.00104222\\\"],[\\\"95985.1\\\",\\\"0.00021808\\\"],[\\\"95985.5\\\",\\\"0.211127\\\"],[\\\"95986.2\\\",\\\"0.09690904\\\"],[\\\"95986.3\\\",\\\"0.31261\\\"],[\\\"95986.9\\\",\\\"0.09225037\\\"],[\\\"95987\\\",\\\"0.01042013\\\"],[\\\"95990.5\\\",\\\"0.12712438\\\"],[\\\"95990.6\\\",\\\"0.0916115\\\"],[\\\"95992.2\\\",\\\"0.279\\\"],[\\\"95992.7\\\",\\\"0.00521084\\\"],[\\\"95995.2\\\",\\\"0.00033\\\"],[\\\"95999.1\\\",\\\"0.02973561\\\"],[\\\"96001.1\\\",\\\"0.083825\\\"],[\\\"96002.6\\\",\\\"0.01900906\\\"],[\\\"96002.7\\\",\\\"0.00041665\\\"],[\\\"96002.8\\\",\\\"0.12531139\\\"],[\\\"96002.9\\\",\\\"0.279\\\"],[\\\"96004.8\\\",\\\"0.02081884\\\"],[\\\"96006.3\\\",\\\"0.00065542\\\"],[\\\"96008.5\\\",\\\"0.00033166\\\"],[\\\"96011\\\",\\\"0.08776246\\\"],[\\\"96012.5\\\",\\\"0.279\\\"],[\\\"96013.3\\\",\\\"0.00066666\\\"],[\\\"96013.9\\\",\\\"0.26097183\\\"],[\\\"96014\\\",\\\"0.01087009\\\"],[\\\"96017\\\",\\\"0.06248892\\\"],[\\\"96017.1\\\",\\\"0.20829641\\\"],[\\\"96022\\\",\\\"0.00107066\\\"],[\\\"96022.1\\\",\\\"0.279\\\"],[\\\"96022.9\\\",\\\"0.0006499\\\"],[\\\"96024.6\\\",\\\"0.00104131\\\"]],\\\"bids\\\":[[\\\"95964.2\\\",\\\"1.35483359\\\"],[\\\"95964.1\\\",\\\"0.01117492\\\"],[\\\"95962.1\\\",\\\"0.0062\\\"],[\\\"95961.8\\\",\\\"0.03081549\\\"],[\\\"95961.7\\\",\\\"0.10271829\\\"],[\\\"95958.5\\\",\\\"0.04681571\\\"],[\\\"95958.4\\\",\\\"0.05177498\\\"],[\\\"95958.2\\\",\\\"0.00155911\\\"],[\\\"95957.8\\\",\\\"0.10271829\\\"],[\\\"95954.7\\\",\\\"0.16312181\\\"],[\\\"95954.6\\\",\\\"0.44102109\\\"],[\\\"95952.6\\\",\\\"0.10271829\\\"],[\\\"95951.3\\\",\\\"0.0062\\\"],[\\\"95951\\\",\\\"0.17075141\\\"],[\\\"95950.9\\\",\\\"0.279\\\"],[\\\"95949.5\\\",\\\"0.13567811\\\"],[\\\"95949.2\\\",\\\"0.05177498\\\"],[\\\"95948.3\\\",\\\"0.10271829\\\"],[\\\"95947.2\\\",\\\"0.04634798\\\"],[\\\"95944.7\\\",\\\"0.10271829\\\"],[\\\"95944.2\\\",\\\"0.05177498\\\"],[\\\"95942.3\\\",\\\"0.26028569\\\"],[\\\"95942.2\\\",\\\"0.10271829\\\"],[\\\"95940.6\\\",\\\"0.12531139\\\"],[\\\"95940.2\\\",\\\"0.43349327\\\"],[\\\"95938.3\\\",\\\"0.01041604\\\"],[\\\"95937.4\\\",\\\"0.04957577\\\"],[\\\"95937.2\\\",\\\"0.00305\\\"],[\\\"95936.3\\\",\\\"0.10271829\\\"],[\\\"95934\\\",\\\"0.05177498\\\"],[\\\"95931.9\\\",\\\"0.03394093\\\"],[\\\"95931.8\\\",\\\"0.10271829\\\"],[\\\"95930\\\",\\\"0.01041814\\\"],[\\\"95927.9\\\",\\\"0.10271829\\\"],[\\\"95927\\\",\\\"0.13312774\\\"],[\\\"95926.9\\\",\\\"0.33077498\\\"],[\\\"95924.9\\\",\\\"0.10271829\\\"],[\\\"95924\\\",\\\"0.00180915\\\"],[\\\"95923.8\\\",\\\"0.00022434\\\"],[\\\"95919.6\\\",\\\"0.00021854\\\"],[\\\"95919.1\\\",\\\"0.01471872\\\"],[\\\"95919\\\",\\\"0.05177498\\\"],[\\\"95918.1\\\",\\\"0.00001889\\\"],[\\\"95917.8\\\",\\\"0.1521089\\\"],[\\\"95917.5\\\",\\\"0.00010962\\\"],[\\\"95916.2\\\",\\\"0.00021958\\\"],[\\\"95915.5\\\",\\\"0.12531139\\\"],[\\\"95915.3\\\",\\\"0.279\\\"],[\\\"95913.6\\\",\\\"0.01739249\\\"],[\\\"95913.5\\\",\\\"0.05177498\\\"]],\\\"timestamp\\\":1733124805073}}",
                 "responses": {
@@ -147,11 +147,67 @@
                 }
             }
         },
+        "/callAuctionOrderbookLevel50/callauction/level2Depth50:_symbol_": {
+            "trace": {
+                "summary": "CallAuctionOrderbook - Level50",
+                "deprecated": "false",
+                "description": "The system will return the call auction 50 best ask/bid orders data; if there is no change in the market, data will not be pushed",
+                "tags": [],
+                "parameters": [],
+                "x-sdk-service": "Spot",
+                "x-sdk-sub-service": "spot_public",
+                "x-sdk-private": false,
+                "x-sdk-method-name": "callAuctionOrderbookLevel50",
+                "x-topic": "/callauction/level2Depth50:{symbol}",
+                "x-push_frequency": "once every 100ms",
+                "x-response-example": "{\\\"topic\\\":\\\"/spotMarket/level2Depth50:BTC-USDT\\\",\\\"type\\\":\\\"message\\\",\\\"subject\\\":\\\"level2\\\",\\\"data\\\":{\\\"asks\\\":[[\\\"95964.3\\\",\\\"0.08168874\\\"],[\\\"95967.9\\\",\\\"0.00985094\\\"],[\\\"95969.9\\\",\\\"0.00078081\\\"],[\\\"95971.2\\\",\\\"0.10016039\\\"],[\\\"95971.3\\\",\\\"0.12531139\\\"],[\\\"95971.7\\\",\\\"0.00291\\\"],[\\\"95971.9\\\",\\\"0.10271829\\\"],[\\\"95973.3\\\",\\\"0.00021\\\"],[\\\"95974.7\\\",\\\"0.10271829\\\"],[\\\"95976.9\\\",\\\"0.03095177\\\"],[\\\"95977\\\",\\\"0.10271829\\\"],[\\\"95978.7\\\",\\\"0.00022411\\\"],[\\\"95979.1\\\",\\\"0.00023017\\\"],[\\\"95981\\\",\\\"0.00022008\\\"],[\\\"95981.2\\\",\\\"0.14330324\\\"],[\\\"95982.3\\\",\\\"0.27922082\\\"],[\\\"95982.5\\\",\\\"0.02302674\\\"],[\\\"95983.8\\\",\\\"0.00011035\\\"],[\\\"95985\\\",\\\"0.00104222\\\"],[\\\"95985.1\\\",\\\"0.00021808\\\"],[\\\"95985.5\\\",\\\"0.211127\\\"],[\\\"95986.2\\\",\\\"0.09690904\\\"],[\\\"95986.3\\\",\\\"0.31261\\\"],[\\\"95986.9\\\",\\\"0.09225037\\\"],[\\\"95987\\\",\\\"0.01042013\\\"],[\\\"95990.5\\\",\\\"0.12712438\\\"],[\\\"95990.6\\\",\\\"0.0916115\\\"],[\\\"95992.2\\\",\\\"0.279\\\"],[\\\"95992.7\\\",\\\"0.00521084\\\"],[\\\"95995.2\\\",\\\"0.00033\\\"],[\\\"95999.1\\\",\\\"0.02973561\\\"],[\\\"96001.1\\\",\\\"0.083825\\\"],[\\\"96002.6\\\",\\\"0.01900906\\\"],[\\\"96002.7\\\",\\\"0.00041665\\\"],[\\\"96002.8\\\",\\\"0.12531139\\\"],[\\\"96002.9\\\",\\\"0.279\\\"],[\\\"96004.8\\\",\\\"0.02081884\\\"],[\\\"96006.3\\\",\\\"0.00065542\\\"],[\\\"96008.5\\\",\\\"0.00033166\\\"],[\\\"96011\\\",\\\"0.08776246\\\"],[\\\"96012.5\\\",\\\"0.279\\\"],[\\\"96013.3\\\",\\\"0.00066666\\\"],[\\\"96013.9\\\",\\\"0.26097183\\\"],[\\\"96014\\\",\\\"0.01087009\\\"],[\\\"96017\\\",\\\"0.06248892\\\"],[\\\"96017.1\\\",\\\"0.20829641\\\"],[\\\"96022\\\",\\\"0.00107066\\\"],[\\\"96022.1\\\",\\\"0.279\\\"],[\\\"96022.9\\\",\\\"0.0006499\\\"],[\\\"96024.6\\\",\\\"0.00104131\\\"]],\\\"bids\\\":[[\\\"95964.2\\\",\\\"1.35483359\\\"],[\\\"95964.1\\\",\\\"0.01117492\\\"],[\\\"95962.1\\\",\\\"0.0062\\\"],[\\\"95961.8\\\",\\\"0.03081549\\\"],[\\\"95961.7\\\",\\\"0.10271829\\\"],[\\\"95958.5\\\",\\\"0.04681571\\\"],[\\\"95958.4\\\",\\\"0.05177498\\\"],[\\\"95958.2\\\",\\\"0.00155911\\\"],[\\\"95957.8\\\",\\\"0.10271829\\\"],[\\\"95954.7\\\",\\\"0.16312181\\\"],[\\\"95954.6\\\",\\\"0.44102109\\\"],[\\\"95952.6\\\",\\\"0.10271829\\\"],[\\\"95951.3\\\",\\\"0.0062\\\"],[\\\"95951\\\",\\\"0.17075141\\\"],[\\\"95950.9\\\",\\\"0.279\\\"],[\\\"95949.5\\\",\\\"0.13567811\\\"],[\\\"95949.2\\\",\\\"0.05177498\\\"],[\\\"95948.3\\\",\\\"0.10271829\\\"],[\\\"95947.2\\\",\\\"0.04634798\\\"],[\\\"95944.7\\\",\\\"0.10271829\\\"],[\\\"95944.2\\\",\\\"0.05177498\\\"],[\\\"95942.3\\\",\\\"0.26028569\\\"],[\\\"95942.2\\\",\\\"0.10271829\\\"],[\\\"95940.6\\\",\\\"0.12531139\\\"],[\\\"95940.2\\\",\\\"0.43349327\\\"],[\\\"95938.3\\\",\\\"0.01041604\\\"],[\\\"95937.4\\\",\\\"0.04957577\\\"],[\\\"95937.2\\\",\\\"0.00305\\\"],[\\\"95936.3\\\",\\\"0.10271829\\\"],[\\\"95934\\\",\\\"0.05177498\\\"],[\\\"95931.9\\\",\\\"0.03394093\\\"],[\\\"95931.8\\\",\\\"0.10271829\\\"],[\\\"95930\\\",\\\"0.01041814\\\"],[\\\"95927.9\\\",\\\"0.10271829\\\"],[\\\"95927\\\",\\\"0.13312774\\\"],[\\\"95926.9\\\",\\\"0.33077498\\\"],[\\\"95924.9\\\",\\\"0.10271829\\\"],[\\\"95924\\\",\\\"0.00180915\\\"],[\\\"95923.8\\\",\\\"0.00022434\\\"],[\\\"95919.6\\\",\\\"0.00021854\\\"],[\\\"95919.1\\\",\\\"0.01471872\\\"],[\\\"95919\\\",\\\"0.05177498\\\"],[\\\"95918.1\\\",\\\"0.00001889\\\"],[\\\"95917.8\\\",\\\"0.1521089\\\"],[\\\"95917.5\\\",\\\"0.00010962\\\"],[\\\"95916.2\\\",\\\"0.00021958\\\"],[\\\"95915.5\\\",\\\"0.12531139\\\"],[\\\"95915.3\\\",\\\"0.279\\\"],[\\\"95913.6\\\",\\\"0.01739249\\\"],[\\\"95913.5\\\",\\\"0.05177498\\\"]],\\\"timestamp\\\":1733124805073}}",
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Spot_spot_public_callAuctionOrderbookLevel50"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/callAuctionInfo/callauction/callauctionData:_symbol_": {
+            "trace": {
+                "summary": "Get Call Auction Info",
+                "deprecated": "false",
+                "description": "Subscribe to this topic to get the specified symbol call auction info.",
+                "tags": [],
+                "parameters": [],
+                "x-sdk-service": "Spot",
+                "x-sdk-sub-service": "spot_public",
+                "x-sdk-private": false,
+                "x-sdk-method-name": "callAuctionInfo",
+                "x-topic": "/callauction/callauctionData:{symbol}",
+                "x-push_frequency": "once every 100ms",
+                "x-response-example": "{\\\"type\\\":\\\"message\\\",\\\"topic\\\":\\\"/callauction/callauctionData:BTC-USDT\\\",\\\"subject\\\":\\\"callauction.callauctionData\\\",\\\"data\\\":{\\\"symbol\\\":\\\"BTC-USDT\\\",\\\"estimatedPrice\\\":\\\"0.17\\\",\\\"estimatedSize\\\":\\\"0.03715004\\\",\\\"sellOrderRangeLowPrice\\\":\\\"1.788\\\",\\\"sellOrderRangeHighPrice\\\":\\\"2.788\\\",\\\"buyOrderRangeLowPrice\\\":\\\"1.788\\\",\\\"buyOrderRangeHighPrice\\\":\\\"2.788\\\",\\\"time\\\":1550653727731}}",
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Spot_spot_public_callAuctionInfo"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/orderbookIncrement/market/level2:_symbol_,_symbol_": {
             "trace": {
                 "summary": "Orderbook - Increment",
                 "deprecated": "false",
-                "description": "The system will return the increment change orderbook data(All depth), A topic supports up to 100 symbols. If there is no change in the market, data will not be pushed",
+                "description": "The system will return the increment change orderbook data (all depths); a topic supports up to 100 symbols. If there is no change in the market, data will not be pushed",
                 "tags": [],
                 "parameters": [],
                 "x-sdk-service": "Spot",
@@ -207,7 +263,7 @@
             "trace": {
                 "summary": "Trade",
                 "deprecated": "false",
-                "description": "Subscribe to this topic to get the matching event data flow of Level 3. A topic supports up to 100 symbols.",
+                "description": "Subscribe to this topic to get Level 3 matching event data flows. A topic supports up to 100 symbols.",
                 "tags": [],
                 "parameters": [],
                 "x-sdk-service": "Spot",
@@ -263,7 +319,7 @@
             "trace": {
                 "summary": "Market Snapshot",
                 "deprecated": "false",
-                "description": "Subscribe this topic to get the snapshot data of for the entire market.",
+                "description": "Subscribe to this topic to get snapshot data for the entire market.",
                 "tags": [],
                 "parameters": [],
                 "x-sdk-service": "Spot",
@@ -333,7 +389,7 @@
                                 "description": "Best bid size",
                                 "type": "string"
                             },
-                            "Time": {
+                            "time": {
                                 "type": "integer",
                                 "description": "The matching time of the latest transaction",
                                 "format": "int64"
@@ -347,7 +403,7 @@
                             "bestAskSize",
                             "bestBid",
                             "bestBidSize",
-                            "Time"
+                            "time"
                         ]
                     }
                 },
@@ -535,54 +591,154 @@
                     "data": {
                         "type": "object",
                         "properties": {
-                            "changes": {
-                                "type": "object",
-                                "properties": {
-                                    "asks": {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "array",
-                                            "items": {
-                                                "type": "string"
-                                            }
-                                        }
-                                    },
-                                    "bids": {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "array",
-                                            "items": {
-                                                "type": "string"
-                                            }
-                                        }
+                            "asks": {
+                                "type": "array",
+                                "items": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string"
                                     }
                                 },
-                                "required": [
-                                    "asks",
-                                    "bids"
-                                ]
+                                "description": "price, size"
                             },
-                            "sequenceEnd": {
-                                "type": "integer",
-                                "format": "int64"
+                            "bids": {
+                                "type": "array",
+                                "items": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string"
+                                    }
+                                }
                             },
-                            "sequenceStart": {
-                                "type": "integer",
-                                "format": "int64"
-                            },
-                            "symbol": {
-                                "type": "string"
-                            },
-                            "time": {
+                            "timestamp": {
                                 "type": "integer",
                                 "format": "int64"
                             }
                         },
                         "required": [
-                            "changes",
-                            "sequenceEnd",
-                            "sequenceStart",
+                            "asks",
+                            "bids",
+                            "timestamp"
+                        ]
+                    }
+                },
+                "required": [
+                    "type",
+                    "topic",
+                    "subject",
+                    "data"
+                ]
+            },
+            "Spot_spot_public_callAuctionOrderbookLevel50": {
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string"
+                    },
+                    "topic": {
+                        "type": "string"
+                    },
+                    "subject": {
+                        "type": "string"
+                    },
+                    "data": {
+                        "type": "object",
+                        "properties": {
+                            "asks": {
+                                "type": "array",
+                                "items": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string"
+                                    }
+                                },
+                                "description": "price, size"
+                            },
+                            "bids": {
+                                "type": "array",
+                                "items": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            "timestamp": {
+                                "type": "integer",
+                                "format": "int64"
+                            }
+                        },
+                        "required": [
+                            "asks",
+                            "bids",
+                            "timestamp"
+                        ]
+                    }
+                },
+                "required": [
+                    "type",
+                    "topic",
+                    "subject",
+                    "data"
+                ]
+            },
+            "Spot_spot_public_callAuctionInfo": {
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string"
+                    },
+                    "topic": {
+                        "type": "string"
+                    },
+                    "subject": {
+                        "type": "string"
+                    },
+                    "data": {
+                        "type": "object",
+                        "properties": {
+                            "symbol": {
+                                "type": "string",
+                                "description": "Symbol"
+                            },
+                            "estimatedPrice": {
+                                "type": "string",
+                                "description": "Estimated price"
+                            },
+                            "estimatedSize": {
+                                "type": "string",
+                                "description": "Estimated size"
+                            },
+                            "sellOrderRangeLowPrice": {
+                                "type": "string",
+                                "description": "Sell ​​order minimum price"
+                            },
+                            "sellOrderRangeHighPrice": {
+                                "type": "string",
+                                "description": "Sell ​​order maximum price"
+                            },
+                            "buyOrderRangeLowPrice": {
+                                "type": "string",
+                                "description": "Buy ​​order minimum price"
+                            },
+                            "buyOrderRangeHighPrice": {
+                                "type": "string",
+                                "description": "Buy ​​order maximum price"
+                            },
+                            "time": {
+                                "type": "integer",
+                                "description": "Timestamp (ms)",
+                                "format": "int64"
+                            }
+                        },
+                        "required": [
                             "symbol",
+                            "estimatedPrice",
+                            "estimatedSize",
+                            "sellOrderRangeLowPrice",
+                            "sellOrderRangeHighPrice",
+                            "buyOrderRangeLowPrice",
+                            "buyOrderRangeHighPrice",
                             "time"
                         ]
                     }
@@ -818,7 +974,7 @@
                                     },
                                     "board": {
                                         "type": "integer",
-                                        "description": "Trading pair partition： 0.primary partition 1.KuCoin Plus\", example = \"1\"",
+                                        "description": "Trading pair partition: 0. Primary partition 1.KuCoin Plus\", example = \"1\"",
                                         "enum": [
                                             0,
                                             1
@@ -872,7 +1028,7 @@
                                     },
                                     "mark": {
                                         "type": "integer",
-                                        "description": "Trading Pair Mark： 0.default 1.ST. 2.NEW\", example = \"1\"",
+                                        "description": "Trading Pair Mark: 0. Default 1.ST. 2.NEW\", example = \"1\"",
                                         "enum": [
                                             0,
                                             1,
@@ -1138,7 +1294,7 @@
                                     },
                                     "board": {
                                         "type": "integer",
-                                        "description": "Trading pair partition： 0.primary partition 1.KuCoin Plus\", example = \"1\"",
+                                        "description": "Trading pair partition: 0. Primary partition 1.KuCoin Plus\", example = \"1\"",
                                         "enum": [
                                             0,
                                             1
@@ -1195,7 +1351,7 @@
                                     },
                                     "mark": {
                                         "type": "integer",
-                                        "description": "Trading Pair Mark： 0.default 1.ST. 2.NEW\", example = \"1\"",
+                                        "description": "Trading Pair Mark: 0. Default 1.ST. 2.NEW\", example = \"1\"",
                                         "enum": [
                                             0,
                                             1,

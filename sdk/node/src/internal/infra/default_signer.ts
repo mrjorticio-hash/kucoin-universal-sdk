@@ -62,7 +62,7 @@ export class KcSigner {
             'KC-API-PASSPHRASE': this.apiPassphrase,
             'KC-API-TIMESTAMP': timestamp,
             'KC-API-SIGN': signature,
-            'KC-API-KEY-VERSION': '2',
+            'KC-API-KEY-VERSION': '3',
         };
 
         return headers;
@@ -89,7 +89,7 @@ export class KcSigner {
             'KC-API-PASSPHRASE': this.apiPassphrase,
             'KC-API-TIMESTAMP': timestamp,
             'KC-API-SIGN': signature,
-            'KC-API-KEY-VERSION': '2',
+            'KC-API-KEY-VERSION': '3',
             'KC-API-PARTNER': this.brokerPartner,
             'KC-BROKER-NAME': this.brokerName,
             'KC-API-PARTNER-VERIFY': 'true',

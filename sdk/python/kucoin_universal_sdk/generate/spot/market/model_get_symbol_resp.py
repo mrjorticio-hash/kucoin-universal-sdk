@@ -32,13 +32,20 @@ class GetSymbolResp(BaseModel, Response):
         quote_increment (str): Quote increment: The funds for a market order must be a positive integer multiple of this increment. The funds refer to the quote currency amount. For example, for the ETH-USDT trading pair, if the quoteIncrement is 0.000001, the amount of USDT for the order can be 3000.000001 but not 3000.0000001.
         price_increment (str): Price increment: The price of an order must be a positive integer multiple of this increment. For example, for the ETH-USDT trading pair, if the priceIncrement is 0.01, the order price can be 3000.01 but not 3000.001.
         price_limit_rate (str): Threshold for price portection
-        min_funds (str): the minimum trading amounts
+        min_funds (str): The minimum trading amounts
         is_margin_enabled (bool): Available for margin or not.
         enable_trading (bool): Available for transaction or not.
         fee_category (FeeCategoryEnum): [Fee Type](https://www.kucoin.com/vip/privilege)
         maker_fee_coefficient (str): The maker fee coefficient. The actual fee needs to be multiplied by this coefficient to get the final fee. Most currencies have a coefficient of 1. If set to 0, it means no fee
         taker_fee_coefficient (str): The taker fee coefficient. The actual fee needs to be multiplied by this coefficient to get the final fee. Most currencies have a coefficient of 1. If set to 0, it means no fee
-        st (bool): 
+        st (bool): Whether it is a [Special Treatment](https://www.kucoin.com/legal/special-treatment) symbol
+        callauction_is_enabled (bool): The  [call auction](https://www.kucoin.com/support/40999744334105) status returns true/false
+        callauction_price_floor (str): The lowest price declared in the call auction
+        callauction_price_ceiling (str): The highest bid price in the call auction 
+        callauction_first_stage_start_time (int): The first phase of the call auction starts at (Allow add orders, allow cancel orders)
+        callauction_second_stage_start_time (int): The second phase of the call auction starts at (Allow add orders, don't allow cancel orders)
+        callauction_third_stage_start_time (int): The third phase of the call auction starts at (Don't allow add orders, don't allow cancel orders)
+        trading_start_time (int): Official opening time (end time of the third phase of call auction)
     """
 
     class FeeCategoryEnum(Enum):
@@ -110,7 +117,7 @@ class GetSymbolResp(BaseModel, Response):
         description="Threshold for price portection",
         alias="priceLimitRate")
     min_funds: Optional[str] = Field(default=None,
-                                     description="the minimum trading amounts",
+                                     description="The minimum trading amounts",
                                      alias="minFunds")
     is_margin_enabled: Optional[bool] = Field(
         default=None,
@@ -134,14 +141,55 @@ class GetSymbolResp(BaseModel, Response):
         description=
         "The taker fee coefficient. The actual fee needs to be multiplied by this coefficient to get the final fee. Most currencies have a coefficient of 1. If set to 0, it means no fee",
         alias="takerFeeCoefficient")
-    st: Optional[bool] = None
+    st: Optional[bool] = Field(
+        default=None,
+        description=
+        "Whether it is a [Special Treatment](https://www.kucoin.com/legal/special-treatment) symbol"
+    )
+    callauction_is_enabled: Optional[bool] = Field(
+        default=None,
+        description=
+        "The  [call auction](https://www.kucoin.com/support/40999744334105) status returns true/false",
+        alias="callauctionIsEnabled")
+    callauction_price_floor: Optional[str] = Field(
+        default=None,
+        description="The lowest price declared in the call auction",
+        alias="callauctionPriceFloor")
+    callauction_price_ceiling: Optional[str] = Field(
+        default=None,
+        description="The highest bid price in the call auction ",
+        alias="callauctionPriceCeiling")
+    callauction_first_stage_start_time: Optional[int] = Field(
+        default=None,
+        description=
+        "The first phase of the call auction starts at (Allow add orders, allow cancel orders)",
+        alias="callauctionFirstStageStartTime")
+    callauction_second_stage_start_time: Optional[int] = Field(
+        default=None,
+        description=
+        "The second phase of the call auction starts at (Allow add orders, don't allow cancel orders)",
+        alias="callauctionSecondStageStartTime")
+    callauction_third_stage_start_time: Optional[int] = Field(
+        default=None,
+        description=
+        "The third phase of the call auction starts at (Don't allow add orders, don't allow cancel orders)",
+        alias="callauctionThirdStageStartTime")
+    trading_start_time: Optional[int] = Field(
+        default=None,
+        description=
+        "Official opening time (end time of the third phase of call auction)",
+        alias="tradingStartTime")
 
     __properties: ClassVar[List[str]] = [
         "symbol", "name", "baseCurrency", "quoteCurrency", "feeCurrency",
         "market", "baseMinSize", "quoteMinSize", "baseMaxSize", "quoteMaxSize",
         "baseIncrement", "quoteIncrement", "priceIncrement", "priceLimitRate",
         "minFunds", "isMarginEnabled", "enableTrading", "feeCategory",
-        "makerFeeCoefficient", "takerFeeCoefficient", "st"
+        "makerFeeCoefficient", "takerFeeCoefficient", "st",
+        "callauctionIsEnabled", "callauctionPriceFloor",
+        "callauctionPriceCeiling", "callauctionFirstStageStartTime",
+        "callauctionSecondStageStartTime", "callauctionThirdStageStartTime",
+        "tradingStartTime"
     ]
 
     model_config = ConfigDict(
@@ -218,7 +266,21 @@ class GetSymbolResp(BaseModel, Response):
             "takerFeeCoefficient":
             obj.get("takerFeeCoefficient"),
             "st":
-            obj.get("st")
+            obj.get("st"),
+            "callauctionIsEnabled":
+            obj.get("callauctionIsEnabled"),
+            "callauctionPriceFloor":
+            obj.get("callauctionPriceFloor"),
+            "callauctionPriceCeiling":
+            obj.get("callauctionPriceCeiling"),
+            "callauctionFirstStageStartTime":
+            obj.get("callauctionFirstStageStartTime"),
+            "callauctionSecondStageStartTime":
+            obj.get("callauctionSecondStageStartTime"),
+            "callauctionThirdStageStartTime":
+            obj.get("callauctionThirdStageStartTime"),
+            "tradingStartTime":
+            obj.get("tradingStartTime")
         })
         return _obj
 

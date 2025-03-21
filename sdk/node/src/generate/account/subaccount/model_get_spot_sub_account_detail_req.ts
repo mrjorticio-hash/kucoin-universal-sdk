@@ -12,9 +12,19 @@ export class GetSpotSubAccountDetailReq implements Serializable {
     subUserId?: string;
 
     /**
-     * false: do not display the currency which asset is 0, true: display all currency
+     * False: Do not display currencies with 0 assets; True: display all currencies
      */
-    includeBaseAmount?: boolean;
+    includeBaseAmount?: boolean = false;
+
+    /**
+     * Specify the currency used to convert assets
+     */
+    baseCurrency?: string;
+
+    /**
+     * The currency balance specified must be greater than or equal to the amount
+     */
+    baseAmount?: string;
 
     /**
      * Private constructor, please use the corresponding static methods to construct the object.
@@ -37,13 +47,27 @@ export class GetSpotSubAccountDetailReq implements Serializable {
          */
         subUserId?: string;
         /**
-         * false: do not display the currency which asset is 0, true: display all currency
+         * False: Do not display currencies with 0 assets; True: display all currencies
          */
         includeBaseAmount?: boolean;
+        /**
+         * Specify the currency used to convert assets
+         */
+        baseCurrency?: string;
+        /**
+         * The currency balance specified must be greater than or equal to the amount
+         */
+        baseAmount?: string;
     }): GetSpotSubAccountDetailReq {
         let obj = new GetSpotSubAccountDetailReq();
         obj.subUserId = data.subUserId;
-        obj.includeBaseAmount = data.includeBaseAmount;
+        if (data.includeBaseAmount) {
+            obj.includeBaseAmount = data.includeBaseAmount;
+        } else {
+            obj.includeBaseAmount = false;
+        }
+        obj.baseCurrency = data.baseCurrency;
+        obj.baseAmount = data.baseAmount;
         return obj;
     }
 
@@ -80,10 +104,26 @@ export class GetSpotSubAccountDetailReqBuilder {
     }
 
     /**
-     * false: do not display the currency which asset is 0, true: display all currency
+     * False: Do not display currencies with 0 assets; True: display all currencies
      */
     setIncludeBaseAmount(value: boolean): GetSpotSubAccountDetailReqBuilder {
         this.obj.includeBaseAmount = value;
+        return this;
+    }
+
+    /**
+     * Specify the currency used to convert assets
+     */
+    setBaseCurrency(value: string): GetSpotSubAccountDetailReqBuilder {
+        this.obj.baseCurrency = value;
+        return this;
+    }
+
+    /**
+     * The currency balance specified must be greater than or equal to the amount
+     */
+    setBaseAmount(value: string): GetSpotSubAccountDetailReqBuilder {
+        this.obj.baseAmount = value;
         return this;
     }
 

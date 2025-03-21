@@ -10,11 +10,11 @@ import (
 type GetTickerResp struct {
 	// common response
 	CommonResponse *types.RestResponse
-	// Sequence number, used to judge whether the messages pushed by Websocket is continuous.
+	// Sequence number, used to judge whether the messages pushed by Websocket are continuous.
 	Sequence int64 `json:"sequence,omitempty"`
-	// Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)
+	// Symbol of the contract. Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)
 	Symbol string `json:"symbol,omitempty"`
-	// Filled side, The trade side indicates the taker order side. A taker order is the order that was matched with orders opened on the order book.
+	// Filled side; the trade side indicates the taker order side. A taker order is the order that was matched with orders opened on the order book.
 	Side string `json:"side,omitempty"`
 	// Filled quantity
 	Size int32 `json:"size,omitempty"`
@@ -30,7 +30,7 @@ type GetTickerResp struct {
 	BestAskPrice string `json:"bestAskPrice,omitempty"`
 	// Best ask size
 	BestAskSize int32 `json:"bestAskSize,omitempty"`
-	// Filled time(nanosecond)
+	// Filled time (nanoseconds)
 	Ts int64 `json:"ts,omitempty"`
 }
 

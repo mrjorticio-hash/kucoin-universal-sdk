@@ -12,213 +12,213 @@ type AccountAPI interface {
 	// GetAccountInfo Get Account Summary Info
 	// Description: This endpoint can be used to obtain account summary information.
 	// Documentation: https://www.kucoin.com/docs-new/api-3470119
-	// +---------------------+------------+
-	// | Extra API Info      | Value      |
-	// +---------------------+------------+
-	// | API-DOMAIN          | SPOT       |
-	// | API-CHANNEL         | PRIVATE    |
-	// | API-PERMISSION      | GENERAL    |
-	// | API-RATE-LIMIT-POOL | MANAGEMENT |
-	// | API-RATE-LIMIT      | 20         |
-	// +---------------------+------------+
+	// +-----------------------+------------+
+	// | Extra API Info        | Value      |
+	// +-----------------------+------------+
+	// | API-DOMAIN            | SPOT       |
+	// | API-CHANNEL           | PRIVATE    |
+	// | API-PERMISSION        | GENERAL    |
+	// | API-RATE-LIMIT-POOL   | MANAGEMENT |
+	// | API-RATE-LIMIT-WEIGHT | 20         |
+	// +-----------------------+------------+
 	GetAccountInfo(ctx context.Context) (*GetAccountInfoResp, error)
 
 	// GetApikeyInfo Get Apikey Info
-	// Description: Get the information of the api key. Use the api key pending to be checked to call the endpoint. Both master and sub user&#39;s api key are applicable.
+	// Description: Get the api key information. Use the api key awaiting checking to call the endpoint. Both master and sub user&#39;s api key are applicable.
 	// Documentation: https://www.kucoin.com/docs-new/api-3470130
-	// +---------------------+------------+
-	// | Extra API Info      | Value      |
-	// +---------------------+------------+
-	// | API-DOMAIN          | SPOT       |
-	// | API-CHANNEL         | PRIVATE    |
-	// | API-PERMISSION      | GENERAL    |
-	// | API-RATE-LIMIT-POOL | MANAGEMENT |
-	// | API-RATE-LIMIT      | 20         |
-	// +---------------------+------------+
+	// +-----------------------+------------+
+	// | Extra API Info        | Value      |
+	// +-----------------------+------------+
+	// | API-DOMAIN            | SPOT       |
+	// | API-CHANNEL           | PRIVATE    |
+	// | API-PERMISSION        | GENERAL    |
+	// | API-RATE-LIMIT-POOL   | MANAGEMENT |
+	// | API-RATE-LIMIT-WEIGHT | 20         |
+	// +-----------------------+------------+
 	GetApikeyInfo(ctx context.Context) (*GetApikeyInfoResp, error)
 
 	// GetSpotAccountType Get Account Type - Spot
 	// Description: This interface determines whether the current user is a spot high-frequency user or a spot low-frequency user.
 	// Documentation: https://www.kucoin.com/docs-new/api-3470120
-	// +---------------------+---------+
-	// | Extra API Info      | Value   |
-	// +---------------------+---------+
-	// | API-DOMAIN          | SPOT    |
-	// | API-CHANNEL         | PRIVATE |
-	// | API-PERMISSION      | GENERAL |
-	// | API-RATE-LIMIT-POOL | SPOT    |
-	// | API-RATE-LIMIT      | 30      |
-	// +---------------------+---------+
+	// +-----------------------+---------+
+	// | Extra API Info        | Value   |
+	// +-----------------------+---------+
+	// | API-DOMAIN            | SPOT    |
+	// | API-CHANNEL           | PRIVATE |
+	// | API-PERMISSION        | GENERAL |
+	// | API-RATE-LIMIT-POOL   | SPOT    |
+	// | API-RATE-LIMIT-WEIGHT | 30      |
+	// +-----------------------+---------+
 	GetSpotAccountType(ctx context.Context) (*GetSpotAccountTypeResp, error)
 
 	// GetSpotAccountList Get Account List - Spot
-	// Description: Get a list of accounts. Please Deposit to the main account firstly, then transfer the funds to the trade account via Inner Transfer before transaction.
+	// Description: Get a list of accounts. Please deposit funds into the main account first, then use the Transfer function to move them to the trade account before trading.
 	// Documentation: https://www.kucoin.com/docs-new/api-3470125
-	// +---------------------+------------+
-	// | Extra API Info      | Value      |
-	// +---------------------+------------+
-	// | API-DOMAIN          | SPOT       |
-	// | API-CHANNEL         | PRIVATE    |
-	// | API-PERMISSION      | GENERAL    |
-	// | API-RATE-LIMIT-POOL | MANAGEMENT |
-	// | API-RATE-LIMIT      | 5          |
-	// +---------------------+------------+
+	// +-----------------------+------------+
+	// | Extra API Info        | Value      |
+	// +-----------------------+------------+
+	// | API-DOMAIN            | SPOT       |
+	// | API-CHANNEL           | PRIVATE    |
+	// | API-PERMISSION        | GENERAL    |
+	// | API-RATE-LIMIT-POOL   | MANAGEMENT |
+	// | API-RATE-LIMIT-WEIGHT | 5          |
+	// +-----------------------+------------+
 	GetSpotAccountList(req *GetSpotAccountListReq, ctx context.Context) (*GetSpotAccountListResp, error)
 
 	// GetSpotAccountDetail Get Account Detail - Spot
-	// Description: get Information for a single spot account. Use this endpoint when you know the accountId.
+	// Description: Get information for a single spot account. Use this endpoint when you know the accountId.
 	// Documentation: https://www.kucoin.com/docs-new/api-3470126
-	// +---------------------+------------+
-	// | Extra API Info      | Value      |
-	// +---------------------+------------+
-	// | API-DOMAIN          | SPOT       |
-	// | API-CHANNEL         | PRIVATE    |
-	// | API-PERMISSION      | GENERAL    |
-	// | API-RATE-LIMIT-POOL | MANAGEMENT |
-	// | API-RATE-LIMIT      | 5          |
-	// +---------------------+------------+
+	// +-----------------------+------------+
+	// | Extra API Info        | Value      |
+	// +-----------------------+------------+
+	// | API-DOMAIN            | SPOT       |
+	// | API-CHANNEL           | PRIVATE    |
+	// | API-PERMISSION        | GENERAL    |
+	// | API-RATE-LIMIT-POOL   | MANAGEMENT |
+	// | API-RATE-LIMIT-WEIGHT | 5          |
+	// +-----------------------+------------+
 	GetSpotAccountDetail(req *GetSpotAccountDetailReq, ctx context.Context) (*GetSpotAccountDetailResp, error)
 
 	// GetCrossMarginAccount Get Account - Cross Margin
-	// Description: Request via this endpoint to get the info of the cross margin account.
+	// Description: Request cross margin account info via this endpoint.
 	// Documentation: https://www.kucoin.com/docs-new/api-3470127
-	// +---------------------+---------+
-	// | Extra API Info      | Value   |
-	// +---------------------+---------+
-	// | API-DOMAIN          | SPOT    |
-	// | API-CHANNEL         | PRIVATE |
-	// | API-PERMISSION      | GENERAL |
-	// | API-RATE-LIMIT-POOL | SPOT    |
-	// | API-RATE-LIMIT      | 15      |
-	// +---------------------+---------+
+	// +-----------------------+---------+
+	// | Extra API Info        | Value   |
+	// +-----------------------+---------+
+	// | API-DOMAIN            | SPOT    |
+	// | API-CHANNEL           | PRIVATE |
+	// | API-PERMISSION        | GENERAL |
+	// | API-RATE-LIMIT-POOL   | SPOT    |
+	// | API-RATE-LIMIT-WEIGHT | 15      |
+	// +-----------------------+---------+
 	GetCrossMarginAccount(req *GetCrossMarginAccountReq, ctx context.Context) (*GetCrossMarginAccountResp, error)
 
 	// GetIsolatedMarginAccount Get Account - Isolated Margin
-	// Description: Request via this endpoint to get the info of the isolated margin account.
+	// Description: Request isolated margin account info via this endpoint.
 	// Documentation: https://www.kucoin.com/docs-new/api-3470128
-	// +---------------------+---------+
-	// | Extra API Info      | Value   |
-	// +---------------------+---------+
-	// | API-DOMAIN          | SPOT    |
-	// | API-CHANNEL         | PRIVATE |
-	// | API-PERMISSION      | GENERAL |
-	// | API-RATE-LIMIT-POOL | SPOT    |
-	// | API-RATE-LIMIT      | 15      |
-	// +---------------------+---------+
+	// +-----------------------+---------+
+	// | Extra API Info        | Value   |
+	// +-----------------------+---------+
+	// | API-DOMAIN            | SPOT    |
+	// | API-CHANNEL           | PRIVATE |
+	// | API-PERMISSION        | GENERAL |
+	// | API-RATE-LIMIT-POOL   | SPOT    |
+	// | API-RATE-LIMIT-WEIGHT | 15      |
+	// +-----------------------+---------+
 	GetIsolatedMarginAccount(req *GetIsolatedMarginAccountReq, ctx context.Context) (*GetIsolatedMarginAccountResp, error)
 
 	// GetFuturesAccount Get Account - Futures
-	// Description: Request via this endpoint to get the info of the futures account.
+	// Description: Request futures account info via this endpoint.
 	// Documentation: https://www.kucoin.com/docs-new/api-3470129
-	// +---------------------+---------+
-	// | Extra API Info      | Value   |
-	// +---------------------+---------+
-	// | API-DOMAIN          | FUTURES |
-	// | API-CHANNEL         | PRIVATE |
-	// | API-PERMISSION      | FUTURES |
-	// | API-RATE-LIMIT-POOL | FUTURES |
-	// | API-RATE-LIMIT      | 5       |
-	// +---------------------+---------+
+	// +-----------------------+---------+
+	// | Extra API Info        | Value   |
+	// +-----------------------+---------+
+	// | API-DOMAIN            | FUTURES |
+	// | API-CHANNEL           | PRIVATE |
+	// | API-PERMISSION        | FUTURES |
+	// | API-RATE-LIMIT-POOL   | FUTURES |
+	// | API-RATE-LIMIT-WEIGHT | 5       |
+	// +-----------------------+---------+
 	GetFuturesAccount(req *GetFuturesAccountReq, ctx context.Context) (*GetFuturesAccountResp, error)
 
 	// GetSpotLedger Get Account Ledgers - Spot/Margin
-	// Description: This interface is for transaction records from all types of your accounts, supporting inquiry of various currencies. Items are paginated and sorted to show the latest first. See the Pagination section for retrieving additional entries after the first page.
+	// Description: This interface is for transaction records from all your account types, supporting various currency inquiries. Items are paginated and sorted to show the latest first. See the Pagination section for retrieving additional entries after the first page.
 	// Documentation: https://www.kucoin.com/docs-new/api-3470121
-	// +---------------------+------------+
-	// | Extra API Info      | Value      |
-	// +---------------------+------------+
-	// | API-DOMAIN          | SPOT       |
-	// | API-CHANNEL         | PRIVATE    |
-	// | API-PERMISSION      | GENERAL    |
-	// | API-RATE-LIMIT-POOL | MANAGEMENT |
-	// | API-RATE-LIMIT      | 2          |
-	// +---------------------+------------+
+	// +-----------------------+------------+
+	// | Extra API Info        | Value      |
+	// +-----------------------+------------+
+	// | API-DOMAIN            | SPOT       |
+	// | API-CHANNEL           | PRIVATE    |
+	// | API-PERMISSION        | GENERAL    |
+	// | API-RATE-LIMIT-POOL   | MANAGEMENT |
+	// | API-RATE-LIMIT-WEIGHT | 2          |
+	// +-----------------------+------------+
 	GetSpotLedger(req *GetSpotLedgerReq, ctx context.Context) (*GetSpotLedgerResp, error)
 
 	// GetSpotHFLedger Get Account Ledgers - Trade_hf
-	// Description: This API endpoint returns all transfer (in and out) records in high-frequency trading account and supports multi-coin queries. The query results are sorted in descending order by createdAt and id.
+	// Description: This API endpoint returns all transfer (in and out) records in high-frequency trading accounts and supports multi-coin queries. The query results are sorted in descending order by createdAt and ID.
 	// Documentation: https://www.kucoin.com/docs-new/api-3470122
-	// +---------------------+---------+
-	// | Extra API Info      | Value   |
-	// +---------------------+---------+
-	// | API-DOMAIN          | SPOT    |
-	// | API-CHANNEL         | PRIVATE |
-	// | API-PERMISSION      | GENERAL |
-	// | API-RATE-LIMIT-POOL | SPOT    |
-	// | API-RATE-LIMIT      | 2       |
-	// +---------------------+---------+
+	// +-----------------------+---------+
+	// | Extra API Info        | Value   |
+	// +-----------------------+---------+
+	// | API-DOMAIN            | SPOT    |
+	// | API-CHANNEL           | PRIVATE |
+	// | API-PERMISSION        | GENERAL |
+	// | API-RATE-LIMIT-POOL   | SPOT    |
+	// | API-RATE-LIMIT-WEIGHT | 2       |
+	// +-----------------------+---------+
 	GetSpotHFLedger(req *GetSpotHFLedgerReq, ctx context.Context) (*GetSpotHFLedgerResp, error)
 
 	// GetMarginHFLedger Get Account Ledgers - Margin_hf
-	// Description: This API endpoint returns all transfer (in and out) records in high-frequency margin trading account and supports multi-coin queries. The query results are sorted in descending order by createdAt and id.
+	// Description: This API endpoint returns all transfer (in and out) records in high-frequency margin trading accounts and supports multi-coin queries. The query results are sorted in descending order by createdAt and ID.
 	// Documentation: https://www.kucoin.com/docs-new/api-3470123
-	// +---------------------+---------+
-	// | Extra API Info      | Value   |
-	// +---------------------+---------+
-	// | API-DOMAIN          | SPOT    |
-	// | API-CHANNEL         | PRIVATE |
-	// | API-PERMISSION      | GENERAL |
-	// | API-RATE-LIMIT-POOL | SPOT    |
-	// | API-RATE-LIMIT      | 2       |
-	// +---------------------+---------+
+	// +-----------------------+---------+
+	// | Extra API Info        | Value   |
+	// +-----------------------+---------+
+	// | API-DOMAIN            | SPOT    |
+	// | API-CHANNEL           | PRIVATE |
+	// | API-PERMISSION        | GENERAL |
+	// | API-RATE-LIMIT-POOL   | SPOT    |
+	// | API-RATE-LIMIT-WEIGHT | 2       |
+	// +-----------------------+---------+
 	GetMarginHFLedger(req *GetMarginHFLedgerReq, ctx context.Context) (*GetMarginHFLedgerResp, error)
 
 	// GetFuturesLedger Get Account Ledgers - Futures
-	// Description: This interface can query the ledger records of the futures business line
+	// Description: This interface can query the ledger records of the futures business line.
 	// Documentation: https://www.kucoin.com/docs-new/api-3470124
-	// +---------------------+---------+
-	// | Extra API Info      | Value   |
-	// +---------------------+---------+
-	// | API-DOMAIN          | FUTURES |
-	// | API-CHANNEL         | PRIVATE |
-	// | API-PERMISSION      | GENERAL |
-	// | API-RATE-LIMIT-POOL | FUTURES |
-	// | API-RATE-LIMIT      | 2       |
-	// +---------------------+---------+
+	// +-----------------------+---------+
+	// | Extra API Info        | Value   |
+	// +-----------------------+---------+
+	// | API-DOMAIN            | FUTURES |
+	// | API-CHANNEL           | PRIVATE |
+	// | API-PERMISSION        | GENERAL |
+	// | API-RATE-LIMIT-POOL   | FUTURES |
+	// | API-RATE-LIMIT-WEIGHT | 2       |
+	// +-----------------------+---------+
 	GetFuturesLedger(req *GetFuturesLedgerReq, ctx context.Context) (*GetFuturesLedgerResp, error)
 
 	// GetMarginAccountDetail Get Account Detail - Margin
-	// Description: Request via this endpoint to get the info of the margin account.
+	// Description: Request margin account info via this endpoint.
 	// Documentation: https://www.kucoin.com/docs-new/api-3470311
-	// +---------------------+---------+
-	// | Extra API Info      | Value   |
-	// +---------------------+---------+
-	// | API-DOMAIN          | SPOT    |
-	// | API-CHANNEL         | PRIVATE |
-	// | API-PERMISSION      | GENERAL |
-	// | API-RATE-LIMIT-POOL | SPOT    |
-	// | API-RATE-LIMIT      | 40      |
-	// +---------------------+---------+
+	// +-----------------------+---------+
+	// | Extra API Info        | Value   |
+	// +-----------------------+---------+
+	// | API-DOMAIN            | SPOT    |
+	// | API-CHANNEL           | PRIVATE |
+	// | API-PERMISSION        | GENERAL |
+	// | API-RATE-LIMIT-POOL   | SPOT    |
+	// | API-RATE-LIMIT-WEIGHT | 40      |
+	// +-----------------------+---------+
 	// Deprecated
 	GetMarginAccountDetail(ctx context.Context) (*GetMarginAccountDetailResp, error)
 
 	// GetIsolatedMarginAccountListV1 Get Account List - Isolated Margin - V1
-	// Description: Request via this endpoint to get the info list of the isolated margin account.
+	// Description: Request the isolated margin account info list via this endpoint.
 	// Documentation: https://www.kucoin.com/docs-new/api-3470314
-	// +---------------------+---------+
-	// | Extra API Info      | Value   |
-	// +---------------------+---------+
-	// | API-DOMAIN          | SPOT    |
-	// | API-CHANNEL         | PRIVATE |
-	// | API-PERMISSION      | GENERAL |
-	// | API-RATE-LIMIT-POOL | SPOT    |
-	// | API-RATE-LIMIT      | 50      |
-	// +---------------------+---------+
+	// +-----------------------+---------+
+	// | Extra API Info        | Value   |
+	// +-----------------------+---------+
+	// | API-DOMAIN            | SPOT    |
+	// | API-CHANNEL           | PRIVATE |
+	// | API-PERMISSION        | GENERAL |
+	// | API-RATE-LIMIT-POOL   | SPOT    |
+	// | API-RATE-LIMIT-WEIGHT | 50      |
+	// +-----------------------+---------+
 	// Deprecated
 	GetIsolatedMarginAccountListV1(req *GetIsolatedMarginAccountListV1Req, ctx context.Context) (*GetIsolatedMarginAccountListV1Resp, error)
 
 	// GetIsolatedMarginAccountDetailV1 Get Account Detail - Isolated Margin - V1
-	// Description: Request via this endpoint to get the info of the isolated margin account.
+	// Description: Request isolated margin account info via this endpoint.
 	// Documentation: https://www.kucoin.com/docs-new/api-3470315
-	// +---------------------+---------+
-	// | Extra API Info      | Value   |
-	// +---------------------+---------+
-	// | API-DOMAIN          | SPOT    |
-	// | API-CHANNEL         | PRIVATE |
-	// | API-PERMISSION      | GENERAL |
-	// | API-RATE-LIMIT-POOL | SPOT    |
-	// | API-RATE-LIMIT      | 50      |
-	// +---------------------+---------+
+	// +-----------------------+---------+
+	// | Extra API Info        | Value   |
+	// +-----------------------+---------+
+	// | API-DOMAIN            | SPOT    |
+	// | API-CHANNEL           | PRIVATE |
+	// | API-PERMISSION        | GENERAL |
+	// | API-RATE-LIMIT-POOL   | SPOT    |
+	// | API-RATE-LIMIT-WEIGHT | 50      |
+	// +-----------------------+---------+
 	// Deprecated
 	GetIsolatedMarginAccountDetailV1(req *GetIsolatedMarginAccountDetailV1Req, ctx context.Context) (*GetIsolatedMarginAccountDetailV1Resp, error)
 }

@@ -24,7 +24,7 @@ type GetLoanMarketData struct {
 	MaxPurchaseSize *string `json:"maxPurchaseSize,omitempty"`
 	// Latest market lending rate
 	MarketInterestRate *string `json:"marketInterestRate,omitempty"`
-	// Whether to allow automatic purchase: true: on, false: off
+	// Whether to allow automatic purchase: True: on; false: off
 	AutoPurchaseEnable *bool `json:"autoPurchaseEnable,omitempty"`
 }
 

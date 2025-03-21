@@ -17,13 +17,13 @@ class CancelOrderByOrderIdResp(BaseModel, Response):
     CancelOrderByOrderIdResp
 
     Attributes:
-        order_id (str): order id
+        order_id (str): Order id
     """
 
     common_response: Optional[RestResponse] = Field(
         default=None, description="Common response")
     order_id: Optional[str] = Field(default=None,
-                                    description="order id",
+                                    description="Order id",
                                     alias="orderId")
 
     __properties: ClassVar[List[str]] = ["orderId"]

@@ -12,7 +12,7 @@ describe('Auto Test', ()=> {
     * /api/v1/copy-trade/futures/orders
     */
     let builder = AddOrderReq.builder();
-    builder.setClientOid(?).setSide(?).setSymbol(?).setLeverage(?).setType(?).setRemark(?).setStop(?).setStopPriceType(?).setStopPrice(?).setReduceOnly(?).setCloseOrder(?).setForceHold(?).setMarginMode(?).setPrice(?).setSize(?).setTimeInForce(?).setPostOnly(?).setHidden(?).setIceberg(?).setVisibleSize(?);
+    builder.setClientOid(?).setSide(?).setSymbol(?).setLeverage(?).setType(?).setStop(?).setStopPriceType(?).setStopPrice(?).setReduceOnly(?).setCloseOrder(?).setMarginMode(?).setPrice(?).setSize(?).setTimeInForce(?).setPostOnly(?).setHidden(?).setIceberg(?).setVisibleSize(?);
     let req = builder.build();
     let resp = api.addOrder(req);
     return resp.then(result => {
@@ -29,7 +29,7 @@ describe('Auto Test', ()=> {
     * /api/v1/copy-trade/futures/orders/test
     */
     let builder = AddOrderTestReq.builder();
-    builder.setClientOid(?).setSide(?).setSymbol(?).setLeverage(?).setType(?).setRemark(?).setStop(?).setStopPriceType(?).setStopPrice(?).setReduceOnly(?).setCloseOrder(?).setForceHold(?).setMarginMode(?).setPrice(?).setSize(?).setTimeInForce(?).setPostOnly(?).setHidden(?).setIceberg(?).setVisibleSize(?);
+    builder.setClientOid(?).setSide(?).setSymbol(?).setLeverage(?).setType(?).setStop(?).setStopPriceType(?).setStopPrice(?).setReduceOnly(?).setCloseOrder(?).setMarginMode(?).setPrice(?).setSize(?).setTimeInForce(?).setPostOnly(?).setHidden(?).setIceberg(?).setVisibleSize(?);
     let req = builder.build();
     let resp = api.addOrderTest(req);
     return resp.then(result => {
@@ -46,7 +46,7 @@ describe('Auto Test', ()=> {
     * /api/v1/copy-trade/futures/st-orders
     */
     let builder = AddTPSLOrderReq.builder();
-    builder.setClientOid(?).setSide(?).setSymbol(?).setLeverage(?).setType(?).setRemark(?).setStopPriceType(?).setReduceOnly(?).setCloseOrder(?).setForceHold(?).setMarginMode(?).setPrice(?).setSize(?).setTimeInForce(?).setPostOnly(?).setHidden(?).setIceberg(?).setVisibleSize(?).setTriggerStopUpPrice(?).setTriggerStopDownPrice(?);
+    builder.setClientOid(?).setSide(?).setSymbol(?).setLeverage(?).setType(?).setStopPriceType(?).setReduceOnly(?).setCloseOrder(?).setMarginMode(?).setPrice(?).setSize(?).setTimeInForce(?).setPostOnly(?).setHidden(?).setIceberg(?).setVisibleSize(?).setTriggerStopUpPrice(?).setTriggerStopDownPrice(?);
     let req = builder.build();
     let resp = api.addTPSLOrder(req);
     return resp.then(result => {

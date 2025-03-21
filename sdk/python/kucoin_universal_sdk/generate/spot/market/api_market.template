@@ -204,6 +204,44 @@ def test_get_full_order_book_req(self):
         print("error: ", e)
         raise e
 
+def test_get_call_auction_part_order_book_req(self):
+    """
+        get_call_auction_part_order_book
+        Get Call Auction Part OrderBook
+        /api/v1/market/orderbook/callauction/level2_{size}
+    """
+
+    builder = GetCallAuctionPartOrderBookReqBuilder()
+    builder.set_symbol(?).set_size(?)
+    req = builder.build()
+    try:
+        resp = self.api.get_call_auction_part_order_book(req)
+        print("code: ", resp.common_response.code)
+        print("msg: ", resp.common_response.message)
+        print("data: ", resp.to_json())
+    except Exception as e:
+        print("error: ", e)
+        raise e
+
+def test_get_call_auction_info_req(self):
+    """
+        get_call_auction_info
+        Get Call Auction Info
+        /api/v1/market/callauctionData
+    """
+
+    builder = GetCallAuctionInfoReqBuilder()
+    builder.set_symbol(?)
+    req = builder.build()
+    try:
+        resp = self.api.get_call_auction_info(req)
+        print("code: ", resp.common_response.code)
+        print("msg: ", resp.common_response.message)
+        print("data: ", resp.to_json())
+    except Exception as e:
+        print("error: ", e)
+        raise e
+
 def test_get_fiat_price_req(self):
     """
         get_fiat_price
@@ -251,6 +289,22 @@ def test_get_market_list_req(self):
 
     try:
         resp = self.api.get_market_list()
+        print("code: ", resp.common_response.code)
+        print("msg: ", resp.common_response.message)
+        print("data: ", resp.to_json())
+    except Exception as e:
+        print("error: ", e)
+        raise e
+
+def test_get_client_ip_address_req(self):
+    """
+        get_client_ip_address
+        Get Client IP Address
+        /api/v1/my-ip
+    """
+
+    try:
+        resp = self.api.get_client_ip_address()
         print("code: ", resp.common_response.code)
         print("msg: ", resp.common_response.message)
         print("data: ", resp.to_json())

@@ -8,7 +8,7 @@ describe('Auto Test', ()=> {
     test('addSubAccount request test', ()=> {
     /**
     * addSubAccount
-    * Add SubAccount
+    * Add sub-account
     * /api/v2/sub/user/created
     */
     let builder = AddSubAccountReq.builder();
@@ -27,7 +27,7 @@ describe('Auto Test', ()=> {
     test('addSubAccountMarginPermission request test', ()=> {
     /**
     * addSubAccountMarginPermission
-    * Add SubAccount Margin Permission
+    * Add sub-account Margin Permission
     * /api/v3/sub/user/margin/enable
     */
     let builder = AddSubAccountMarginPermissionReq.builder();
@@ -43,7 +43,7 @@ describe('Auto Test', ()=> {
     test('addSubAccountFuturesPermission request test', ()=> {
     /**
     * addSubAccountFuturesPermission
-    * Add SubAccount Futures Permission
+    * Add sub-account Futures Permission
     * /api/v3/sub/user/futures/enable
     */
     let builder = AddSubAccountFuturesPermissionReq.builder();
@@ -59,7 +59,7 @@ describe('Auto Test', ()=> {
     test('getSpotSubAccountsSummaryV2 request test', ()=> {
     /**
     * getSpotSubAccountsSummaryV2
-    * Get SubAccount List - Summary Info
+    * Get sub-account List - Summary Info
     * /api/v2/sub/user
     */
     let builder = GetSpotSubAccountsSummaryV2Req.builder();
@@ -79,11 +79,11 @@ describe('Auto Test', ()=> {
     test('getSpotSubAccountDetail request test', ()=> {
     /**
     * getSpotSubAccountDetail
-    * Get SubAccount Detail - Balance
+    * Get sub-account Detail - Balance
     * /api/v1/sub-accounts/{subUserId}
     */
     let builder = GetSpotSubAccountDetailReq.builder();
-    builder.setSubUserId(?).setIncludeBaseAmount(?);
+    builder.setSubUserId(?).setIncludeBaseAmount(?).setBaseCurrency(?).setBaseAmount(?);
     let req = builder.build();
     let resp = api.getSpotSubAccountDetail(req);
     return resp.then(result => {
@@ -100,7 +100,7 @@ describe('Auto Test', ()=> {
     test('getSpotSubAccountListV2 request test', ()=> {
     /**
     * getSpotSubAccountListV2
-    * Get SubAccount List - Spot Balance(V2)
+    * Get sub-account List - Spot Balance (V2)
     * /api/v2/sub-accounts
     */
     let builder = GetSpotSubAccountListV2Req.builder();
@@ -120,7 +120,7 @@ describe('Auto Test', ()=> {
     test('getFuturesSubAccountListV2 request test', ()=> {
     /**
     * getFuturesSubAccountListV2
-    * Get SubAccount List - Futures Balance(V2)
+    * Get sub-account List - Futures Balance (V2)
     * /api/v1/account-overview-all
     */
     let builder = GetFuturesSubAccountListV2Req.builder();
@@ -137,7 +137,7 @@ describe('Auto Test', ()=> {
     test('addSubAccountApi request test', ()=> {
     /**
     * addSubAccountApi
-    * Add SubAccount API
+    * Add sub-account API
     * /api/v1/sub/api-key
     */
     let builder = AddSubAccountApiReq.builder();
@@ -161,7 +161,7 @@ describe('Auto Test', ()=> {
     test('modifySubAccountApi request test', ()=> {
     /**
     * modifySubAccountApi
-    * Modify SubAccount API
+    * Modify sub-account API
     * /api/v1/sub/api-key/update
     */
     let builder = ModifySubAccountApiReq.builder();
@@ -180,7 +180,7 @@ describe('Auto Test', ()=> {
     test('getSubAccountApiList request test', ()=> {
     /**
     * getSubAccountApiList
-    * Get SubAccount API List
+    * Get sub-account API List
     * /api/v1/sub/api-key
     */
     let builder = GetSubAccountApiListReq.builder();
@@ -196,7 +196,7 @@ describe('Auto Test', ()=> {
     test('deleteSubAccountApi request test', ()=> {
     /**
     * deleteSubAccountApi
-    * Delete SubAccount API
+    * Delete sub-account API
     * /api/v1/sub/api-key
     */
     let builder = DeleteSubAccountApiReq.builder();
@@ -213,7 +213,7 @@ describe('Auto Test', ()=> {
     test('getSpotSubAccountsSummaryV1 request test', ()=> {
     /**
     * getSpotSubAccountsSummaryV1
-    * Get SubAccount List - Summary Info(V1)
+    * Get sub-account List - Summary Info (V1)
     * /api/v1/sub/user
     */
     let resp = api.getSpotSubAccountsSummaryV1();
@@ -226,7 +226,7 @@ describe('Auto Test', ()=> {
     test('getSpotSubAccountListV1 request test', ()=> {
     /**
     * getSpotSubAccountListV1
-    * Get SubAccount List - Spot Balance(V1)
+    * Get sub-account List - Spot Balance (V1)
     * /api/v1/sub-accounts
     */
     let resp = api.getSpotSubAccountListV1();

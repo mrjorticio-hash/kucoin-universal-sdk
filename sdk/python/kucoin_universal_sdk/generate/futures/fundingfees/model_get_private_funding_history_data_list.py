@@ -16,16 +16,16 @@ class GetPrivateFundingHistoryDataList(BaseModel):
     GetPrivateFundingHistoryDataList
 
     Attributes:
-        id (int): id
-        symbol (str): Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) 
-        time_point (int): Time point (milisecond) 
+        id (int): ID
+        symbol (str): Symbol of the contract. Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) 
+        time_point (int): Time point (milliseconds) 
         funding_rate (float): Funding rate 
         mark_price (float): Mark price 
         position_qty (int): Position size
         position_cost (float): Position value at settlement period 
-        funding (float): Settled funding fees. A positive number means that the user received the funding fee, and vice versa. 
-        settle_currency (str): settlement currency 
-        context (str): context
+        funding (float): Settled funding fees A positive number means that the user received the funding fee, and vice versa. 
+        settle_currency (str): Settlement currency 
+        context (str): Context
         margin_mode (MarginModeEnum): Margin mode: ISOLATED (isolated), CROSS (cross margin).
     """
 
@@ -38,14 +38,14 @@ class GetPrivateFundingHistoryDataList(BaseModel):
         ISOLATED = 'ISOLATED'
         CROSS = 'CROSS'
 
-    id: Optional[int] = Field(default=None, description="id")
+    id: Optional[int] = Field(default=None, description="ID")
     symbol: Optional[str] = Field(
         default=None,
         description=
-        "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) "
+        "Symbol of the contract. Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) "
     )
     time_point: Optional[int] = Field(default=None,
-                                      description="Time point (milisecond) ",
+                                      description="Time point (milliseconds) ",
                                       alias="timePoint")
     funding_rate: Optional[float] = Field(default=None,
                                           description="Funding rate ",
@@ -63,12 +63,12 @@ class GetPrivateFundingHistoryDataList(BaseModel):
     funding: Optional[float] = Field(
         default=None,
         description=
-        "Settled funding fees. A positive number means that the user received the funding fee, and vice versa. "
+        "Settled funding fees A positive number means that the user received the funding fee, and vice versa. "
     )
     settle_currency: Optional[str] = Field(default=None,
-                                           description="settlement currency ",
+                                           description="Settlement currency ",
                                            alias="settleCurrency")
-    context: Optional[str] = Field(default=None, description="context")
+    context: Optional[str] = Field(default=None, description="Context")
     margin_mode: Optional[MarginModeEnum] = Field(
         default=None,
         description="Margin mode: ISOLATED (isolated), CROSS (cross margin).",

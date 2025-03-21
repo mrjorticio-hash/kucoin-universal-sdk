@@ -3,6 +3,7 @@
 package positions
 
 import (
+	"encoding/json"
 	"github.com/Kucoin/kucoin-universal-sdk/sdk/golang/pkg/types"
 )
 
@@ -10,16 +11,14 @@ import (
 type ModifyMarginLeverageResp struct {
 	// common response
 	CommonResponse *types.RestResponse
-	Symbol         string `json:"symbol,omitempty"`
-	Leverage       string `json:"leverage,omitempty"`
+	Data           bool `json:"data,omitempty"`
 }
 
 // NewModifyMarginLeverageResp instantiates a new ModifyMarginLeverageResp object
 // This constructor will assign default values to properties that have it defined
-func NewModifyMarginLeverageResp(symbol string, leverage string) *ModifyMarginLeverageResp {
+func NewModifyMarginLeverageResp(data bool) *ModifyMarginLeverageResp {
 	this := ModifyMarginLeverageResp{}
-	this.Symbol = symbol
-	this.Leverage = leverage
+	this.Data = data
 	return &this
 }
 
@@ -32,9 +31,13 @@ func NewModifyMarginLeverageRespWithDefaults() *ModifyMarginLeverageResp {
 
 func (o *ModifyMarginLeverageResp) ToMap() map[string]interface{} {
 	toSerialize := map[string]interface{}{}
-	toSerialize["symbol"] = o.Symbol
-	toSerialize["leverage"] = o.Leverage
+	toSerialize["data"] = o.Data
 	return toSerialize
+}
+
+func (o *ModifyMarginLeverageResp) UnmarshalJSON(b []byte) error {
+	err := json.Unmarshal(b, &o.Data)
+	return err
 }
 
 func (o *ModifyMarginLeverageResp) SetCommonResponse(response *types.RestResponse) {

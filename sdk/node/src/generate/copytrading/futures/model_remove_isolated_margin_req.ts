@@ -12,7 +12,7 @@ export class RemoveIsolatedMarginReq implements Serializable {
     /**
      * The size of the position that can be deposited. If it is USDT-margin, it represents the amount of USDT. If it is coin-margin, this value represents the number of coins
      */
-    withdrawAmount: string;
+    withdrawAmount: number;
 
     /**
      * Private constructor, please use the corresponding static methods to construct the object.
@@ -42,7 +42,7 @@ export class RemoveIsolatedMarginReq implements Serializable {
         /**
          * The size of the position that can be deposited. If it is USDT-margin, it represents the amount of USDT. If it is coin-margin, this value represents the number of coins
          */
-        withdrawAmount: string;
+        withdrawAmount: number;
     }): RemoveIsolatedMarginReq {
         let obj = new RemoveIsolatedMarginReq();
         obj.symbol = data.symbol;
@@ -85,7 +85,7 @@ export class RemoveIsolatedMarginReqBuilder {
     /**
      * The size of the position that can be deposited. If it is USDT-margin, it represents the amount of USDT. If it is coin-margin, this value represents the number of coins
      */
-    setWithdrawAmount(value: string): RemoveIsolatedMarginReqBuilder {
+    setWithdrawAmount(value: number): RemoveIsolatedMarginReqBuilder {
         this.obj.withdrawAmount = value;
         return this;
     }

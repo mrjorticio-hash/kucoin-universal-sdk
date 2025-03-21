@@ -38,15 +38,13 @@ import {
     GetOcoOrderByClientOidReq,
     GetOcoOrderByOrderIdReq,
     GetOcoOrderDetailByOrderIdReq,
-    GetOcoOrderListReq,
+    GetOcoOrderListReq, GetOpenOrdersByPageReq,
     GetOpenOrdersReq,
     GetOrderByClientOidOldReq,
     GetOrderByClientOidReq,
     GetOrderByOrderIdOldReq,
     GetOrderByOrderIdReq,
     GetOrdersListOldReq,
-    GetRecentOrdersListOldReq,
-    GetRecentTradeHistoryOldReq,
     GetStopOrderByClientOidReq,
     GetStopOrderByOrderIdReq,
     GetStopOrdersListReq,
@@ -252,7 +250,7 @@ describe('Auto Test', () => {
          * /api/v1/hf/orders/{orderId}
          */
         let builder = CancelOrderByOrderIdReq.builder();
-        builder.setOrderId('67ac0e57ae86dc0008981482').setSymbol('BTC-USDT');
+        builder.setOrderId('67d8da811ecaf60007e9f590').setSymbol('BTC-USDT');
         let req = builder.build();
         let resp = api.cancelOrderByOrderId(req);
         return resp.then((result) => {
@@ -397,7 +395,7 @@ describe('Auto Test', () => {
          * /api/v1/hf/orders/{orderId}
          */
         let builder = GetOrderByOrderIdReq.builder();
-        builder.setSymbol('BTC-USDT').setOrderId('67ac106d07813c000779486e');
+        builder.setSymbol('BTC-USDT').setOrderId('67d8da811ecaf60007e9f590');
         let req = builder.build();
         let resp = api.getOrderByOrderId(req);
         return resp.then((result) => {
@@ -509,6 +507,33 @@ describe('Auto Test', () => {
             console.log(resp);
         });
     });
+
+
+    test('getOpenOrdersByPage request test', ()=> {
+        /**
+         * getOpenOrdersByPage
+         * Get Open Orders By Page
+         * /api/v1/hf/orders/active/page
+         */
+        let builder = GetOpenOrdersByPageReq.builder();
+        builder.setSymbol('BTC-USDT').setPageNum(1).setPageSize(50);
+        let req = builder.build();
+        let resp = api.getOpenOrdersByPage(req);
+        return resp.then(result => {
+            expect(result.currentPage).toEqual(expect.anything());
+            expect(result.pageSize).toEqual(expect.anything());
+            expect(result.totalNum).toEqual(expect.anything());
+            expect(result.totalPage).toEqual(expect.anything());
+            result.items.forEach(item => {
+                expect(item.fee).toEqual(expect.anything());
+                expect(item.id).toEqual(expect.anything());
+                expect(item.symbol).toEqual(expect.anything());
+                expect(item.opType).toEqual(expect.anything());
+            })
+            console.log(resp);
+        });
+    })
+
 
     test('getClosedOrders request test', () => {
         /**
@@ -709,9 +734,7 @@ describe('Auto Test', () => {
         let builder = GetStopOrdersListReq.builder();
         builder
             .setSymbol('BTC-USDT')
-            .setSide(GetStopOrdersListReq.SideEnum.BUY)
             .setType(GetStopOrdersListReq.TypeEnum.LIMIT)
-            .setTradeType(GetStopOrdersListReq.TradeTypeEnum.TRADE);
         let req = builder.build();
         let resp = api.getStopOrdersList(req);
         return resp.then((result) => {
@@ -1080,7 +1103,7 @@ describe('Auto Test', () => {
          * /api/v1/orders/{orderId}
          */
         let builder = CancelOrderByOrderIdOldReq.builder();
-        builder.setSymbol('BTC-USDT').setOrderId('67ac173127f3550007502cfc');
+        builder.setOrderId('67ac173127f3550007502cfc');
         let req = builder.build();
         let resp = api.cancelOrderByOrderIdOld(req);
         return resp.then((result) => {
@@ -1096,7 +1119,7 @@ describe('Auto Test', () => {
          * /api/v1/order/client-order/{clientOid}
          */
         let builder = CancelOrderByClientOidOldReq.builder();
-        builder.setSymbol('BTC-USDT').setClientOid('0a3a8abd-09e1-498f-a6cc-94eeacfe2203');
+        builder.setClientOid('0a3a8abd-09e1-498f-a6cc-94eeacfe2203');
         let req = builder.build();
         let resp = api.cancelOrderByClientOidOld(req);
         return resp.then((result) => {
@@ -1172,9 +1195,7 @@ describe('Auto Test', () => {
          * Get Recent Orders List - Old
          * /api/v1/limit/orders
          */
-        let builder = GetRecentOrdersListOldReq.builder();
-        let req = builder.build();
-        let resp = api.getRecentOrdersListOld(req);
+        let resp = api.getRecentOrdersListOld();
         return resp.then((result) => {
             result.data.forEach((item) => {
                 expect(item.id).toEqual(expect.any(String));
@@ -1325,9 +1346,7 @@ describe('Auto Test', () => {
          * Get Recent Trade History - Old
          * /api/v1/limit/fills
          */
-        let builder = GetRecentTradeHistoryOldReq.builder();
-        let req = builder.build();
-        let resp = api.getRecentTradeHistoryOld(req);
+        let resp = api.getRecentTradeHistoryOld();
         return resp.then((result) => {
             result.data.forEach((item) => {
                 expect(item.symbol).toEqual(expect.any(String));

@@ -26,7 +26,7 @@ type AddSubAccountApiResp struct {
 	Permission string `json:"permission,omitempty"`
 	// IP whitelist
 	IpWhitelist *string `json:"ipWhitelist,omitempty"`
-	// Time of the event
+	// Time of event
 	CreatedAt int64 `json:"createdAt,omitempty"`
 }
 

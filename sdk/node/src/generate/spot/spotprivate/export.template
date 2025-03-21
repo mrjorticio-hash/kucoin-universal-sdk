@@ -3,4 +3,5 @@ export type AccountEvent = SPOTPRIVATE.AccountEvent;
 export type AccountRelationContext = SPOTPRIVATE.AccountRelationContext;
 export type OrderV1Event = SPOTPRIVATE.OrderV1Event;
 export type OrderV2Event = SPOTPRIVATE.OrderV2Event;
+export type StopOrderEvent = SPOTPRIVATE.StopOrderEvent;
 }

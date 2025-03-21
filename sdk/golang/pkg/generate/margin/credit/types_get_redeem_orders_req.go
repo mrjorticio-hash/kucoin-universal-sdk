@@ -4,15 +4,15 @@ package credit
 
 // GetRedeemOrdersReq struct for GetRedeemOrdersReq
 type GetRedeemOrdersReq struct {
-	// currency
-	Currency *string `json:"currency,omitempty" url:"currency,omitempty"`
 	// DONE-completed; PENDING-settling
 	Status *string `json:"status,omitempty" url:"status,omitempty"`
-	// Redeem order id
+	// currency
+	Currency *string `json:"currency,omitempty" url:"currency,omitempty"`
+	// Redeem order ID
 	RedeemOrderNo *string `json:"redeemOrderNo,omitempty" url:"redeemOrderNo,omitempty"`
 	// Current page; default is 1
 	CurrentPage *int32 `json:"currentPage,omitempty" url:"currentPage,omitempty"`
-	// Page size; 1<=pageSize<=100; default is 50
+	// Page size; 1<=pageSize<=50; default is 50
 	PageSize *int32 `json:"pageSize,omitempty" url:"pageSize,omitempty"`
 }
 
@@ -40,8 +40,8 @@ func NewGetRedeemOrdersReqWithDefaults() *GetRedeemOrdersReq {
 
 func (o *GetRedeemOrdersReq) ToMap() map[string]interface{} {
 	toSerialize := map[string]interface{}{}
-	toSerialize["currency"] = o.Currency
 	toSerialize["status"] = o.Status
+	toSerialize["currency"] = o.Currency
 	toSerialize["redeemOrderNo"] = o.RedeemOrderNo
 	toSerialize["currentPage"] = o.CurrentPage
 	toSerialize["pageSize"] = o.PageSize
@@ -56,19 +56,19 @@ func NewGetRedeemOrdersReqBuilder() *GetRedeemOrdersReqBuilder {
 	return &GetRedeemOrdersReqBuilder{obj: NewGetRedeemOrdersReqWithDefaults()}
 }
 
-// currency
-func (builder *GetRedeemOrdersReqBuilder) SetCurrency(value string) *GetRedeemOrdersReqBuilder {
-	builder.obj.Currency = &value
-	return builder
-}
-
 // DONE-completed; PENDING-settling
 func (builder *GetRedeemOrdersReqBuilder) SetStatus(value string) *GetRedeemOrdersReqBuilder {
 	builder.obj.Status = &value
 	return builder
 }
 
-// Redeem order id
+// currency
+func (builder *GetRedeemOrdersReqBuilder) SetCurrency(value string) *GetRedeemOrdersReqBuilder {
+	builder.obj.Currency = &value
+	return builder
+}
+
+// Redeem order ID
 func (builder *GetRedeemOrdersReqBuilder) SetRedeemOrderNo(value string) *GetRedeemOrdersReqBuilder {
 	builder.obj.RedeemOrderNo = &value
 	return builder
@@ -80,7 +80,7 @@ func (builder *GetRedeemOrdersReqBuilder) SetCurrentPage(value int32) *GetRedeem
 	return builder
 }
 
-// Page size; 1<=pageSize<=100; default is 50
+// Page size; 1<=pageSize<=50; default is 50
 func (builder *GetRedeemOrdersReqBuilder) SetPageSize(value int32) *GetRedeemOrdersReqBuilder {
 	builder.obj.PageSize = &value
 	return builder

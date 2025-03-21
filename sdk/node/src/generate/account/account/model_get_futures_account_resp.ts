@@ -6,17 +6,17 @@ import { Response } from '@internal/interfaces/serializable';
 
 export class GetFuturesAccountResp implements Response<RestResponse> {
     /**
-     * Account equity = marginBalance + Unrealised PNL
+     * Account equity = marginBalance + unrealizedPNL
      */
     accountEquity: number;
 
     /**
-     * Unrealised profit and loss
+     * Unrealized profit and loss
      */
     unrealisedPNL: number;
 
     /**
-     * Margin balance = positionMargin + orderMargin + frozenFunds + availableBalance - unrealisedPNL
+     * Margin balance = positionMargin + orderMargin + frozenFunds + availableBalance - unrealizedPNL
      */
     marginBalance: number;
 
@@ -51,6 +51,11 @@ export class GetFuturesAccountResp implements Response<RestResponse> {
     riskRatio: number;
 
     /**
+     * Maximum amount that can be withdrawn/transferred.
+     */
+    maxWithdrawAmount: number;
+
+    /**
      * Private constructor, please use the corresponding static methods to construct the object.
      */
     private constructor() {
@@ -72,6 +77,8 @@ export class GetFuturesAccountResp implements Response<RestResponse> {
         this.currency = null;
         // @ts-ignore
         this.riskRatio = null;
+        // @ts-ignore
+        this.maxWithdrawAmount = null;
     }
     /**
      * common response

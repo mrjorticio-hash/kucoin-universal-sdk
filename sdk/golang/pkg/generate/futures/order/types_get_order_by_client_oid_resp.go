@@ -12,13 +12,13 @@ type GetOrderByClientOidResp struct {
 	CommonResponse *types.RestResponse
 	// Order ID
 	Id string `json:"id,omitempty"`
-	// Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)
+	// Symbol of the contract. Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)
 	Symbol string `json:"symbol,omitempty"`
 	// Order type, market order or limit order
 	Type string `json:"type,omitempty"`
 	// Transaction side
 	Side string `json:"side,omitempty"`
-	// Order price
+	// Order Price
 	Price string `json:"price,omitempty"`
 	// Order quantity
 	Size int32 `json:"size,omitempty"`
@@ -28,7 +28,7 @@ type GetOrderByClientOidResp struct {
 	DealValue string `json:"dealValue,omitempty"`
 	// Executed quantity
 	DealSize int32 `json:"dealSize,omitempty"`
-	// [Self Trade Prevention](https://www.kucoin.com/docs-new/doc-338146) is divided into these strategies: CN, CO, CB. Not supported DC at the moment.
+	// [Self Trade Prevention](https://www.kucoin.com/docs-new/doc-338146) is divided into these strategies: CN, CO, CB. DC not currently supported.
 	Stp string `json:"stp,omitempty"`
 	// Stop order type (stop limit or stop market)
 	Stop string `json:"stop,omitempty"`
@@ -48,35 +48,35 @@ type GetOrderByClientOidResp struct {
 	Iceberg bool `json:"iceberg,omitempty"`
 	// Leverage of the order
 	Leverage string `json:"leverage,omitempty"`
-	// A mark to forcely hold the funds for an order
+	// A mark to force-hold the funds for an order
 	ForceHold bool `json:"forceHold,omitempty"`
 	// A mark to close the position
 	CloseOrder bool `json:"closeOrder,omitempty"`
 	// Visible size of the iceberg order
 	VisibleSize int32 `json:"visibleSize,omitempty"`
-	// Unique order id created by users to identify their orders
+	// Unique order ID created by users to identify their orders
 	ClientOid string `json:"clientOid,omitempty"`
 	// Remark
 	Remark string `json:"remark,omitempty"`
-	// tag order source
+	// Tag order source
 	Tags string `json:"tags,omitempty"`
 	// Mark of the active orders
 	IsActive bool `json:"isActive,omitempty"`
 	// Mark of the canceled orders
 	CancelExist bool `json:"cancelExist,omitempty"`
-	// Time the order created
+	// Order creation time
 	CreatedAt int64 `json:"createdAt,omitempty"`
-	// last update time
+	// Last update time
 	UpdatedAt int64 `json:"updatedAt,omitempty"`
 	// Order Endtime
 	EndAt int64 `json:"endAt,omitempty"`
-	// Order create time in nanosecond
+	// Order creation time in nanoseconds
 	OrderTime int64 `json:"orderTime,omitempty"`
-	// settlement currency
+	// Settlement currency
 	SettleCurrency string `json:"settleCurrency,omitempty"`
 	// Margin mode: ISOLATED (isolated), CROSS (cross margin).
 	MarginMode string `json:"marginMode,omitempty"`
-	// Average transaction price, forward contract average transaction price = sum (transaction value) / sum (transaction quantity), reverse contract average transaction price = sum (transaction quantity) / sum (transaction value). Transaction quantity = lots * multiplier
+	// Average transaction price, forward contract average transaction price = sum (transaction value) / sum (transaction quantity); reverse contract average transaction price = sum (transaction quantity) / sum (transaction value). Transaction quantity = lots * multiplier
 	AvgDealPrice string `json:"avgDealPrice,omitempty"`
 	// Value of the executed orders
 	FilledSize int32 `json:"filledSize,omitempty"`

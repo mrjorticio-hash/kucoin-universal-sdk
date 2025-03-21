@@ -65,7 +65,7 @@ func TestTransferFlexTransferRespModel(t *testing.T) {
 
 func TestTransferSubAccountTransferReqModel(t *testing.T) {
 	// SubAccountTransfer
-	// SubAccount Transfer
+	// Sub-account Transfer
 	// /api/v2/accounts/sub-transfer
 
 	data := "{\"clientOid\": \"64ccc0f164781800010d8c09\", \"currency\": \"USDT\", \"amount\": \"0.01\", \"direction\": \"OUT\", \"accountType\": \"MAIN\", \"subAccountType\": \"MAIN\", \"subUserId\": \"63743f07e0c5230001761d08\"}"
@@ -77,7 +77,7 @@ func TestTransferSubAccountTransferReqModel(t *testing.T) {
 
 func TestTransferSubAccountTransferRespModel(t *testing.T) {
 	// SubAccountTransfer
-	// SubAccount Transfer
+	// Sub-account Transfer
 	// /api/v2/accounts/sub-transfer
 
 	data := "{\"code\":\"200000\",\"data\":{\"orderId\":\"670be6b0b1b9080007040a9b\"}}"
@@ -93,7 +93,7 @@ func TestTransferSubAccountTransferRespModel(t *testing.T) {
 
 func TestTransferInnerTransferReqModel(t *testing.T) {
 	// InnerTransfer
-	// Inner Transfer
+	// Internal Transfer
 	// /api/v2/accounts/inner-transfer
 
 	data := "{\"clientOid\": \"64ccc0f164781800010d8c09\", \"currency\": \"USDT\", \"amount\": \"0.01\", \"from\": \"main\", \"to\": \"trade\"}"
@@ -105,7 +105,7 @@ func TestTransferInnerTransferReqModel(t *testing.T) {
 
 func TestTransferInnerTransferRespModel(t *testing.T) {
 	// InnerTransfer
-	// Inner Transfer
+	// Internal Transfer
 	// /api/v2/accounts/inner-transfer
 
 	data := "{\"code\":\"200000\",\"data\":{\"orderId\":\"670beb3482a1bb0007dec644\"}}"
@@ -114,6 +114,34 @@ func TestTransferInnerTransferRespModel(t *testing.T) {
 	assert.Nil(t, err)
 	assert.NotNil(t, commonResp.Data)
 	resp := &InnerTransferResp{}
+	err = json.Unmarshal([]byte(commonResp.Data), resp)
+	resp.ToMap()
+	assert.Nil(t, err)
+}
+
+func TestTransferGetFuturesAccountTransferOutLedgerReqModel(t *testing.T) {
+	// GetFuturesAccountTransferOutLedger
+	// Get Futures Account Transfer Out Ledger
+	// /api/v1/transfer-list
+
+	data := "{\"currency\": \"XBT\", \"type\": \"MAIN\", \"tag\": [\"mock_a\", \"mock_b\"], \"startAt\": 1728663338000, \"endAt\": 1728692138000, \"currentPage\": 1, \"pageSize\": 50}"
+	req := &GetFuturesAccountTransferOutLedgerReq{}
+	err := json.Unmarshal([]byte(data), req)
+	req.ToMap()
+	assert.Nil(t, err)
+}
+
+func TestTransferGetFuturesAccountTransferOutLedgerRespModel(t *testing.T) {
+	// GetFuturesAccountTransferOutLedger
+	// Get Futures Account Transfer Out Ledger
+	// /api/v1/transfer-list
+
+	data := "{\"code\":\"200000\",\"data\":{\"currentPage\":1,\"pageSize\":50,\"totalNum\":1,\"totalPage\":1,\"items\":[{\"applyId\":\"670bf84c577f6c00017a1c48\",\"currency\":\"USDT\",\"recRemark\":\"\",\"recSystem\":\"KUCOIN\",\"status\":\"SUCCESS\",\"amount\":\"0.01\",\"reason\":\"\",\"offset\":1519769124134806,\"createdAt\":1728837708000,\"remark\":\"\"}]}}"
+	commonResp := &types.RestResponse{}
+	err := json.Unmarshal([]byte(data), commonResp)
+	assert.Nil(t, err)
+	assert.NotNil(t, commonResp.Data)
+	resp := &GetFuturesAccountTransferOutLedgerResp{}
 	err = json.Unmarshal([]byte(commonResp.Data), resp)
 	resp.ToMap()
 	assert.Nil(t, err)
@@ -170,34 +198,6 @@ func TestTransferFuturesAccountTransferInRespModel(t *testing.T) {
 	assert.Nil(t, err)
 	assert.NotNil(t, commonResp.Data)
 	resp := &FuturesAccountTransferInResp{}
-	err = json.Unmarshal([]byte(commonResp.Data), resp)
-	resp.ToMap()
-	assert.Nil(t, err)
-}
-
-func TestTransferGetFuturesAccountTransferOutLedgerReqModel(t *testing.T) {
-	// GetFuturesAccountTransferOutLedger
-	// Get Futures Account Transfer Out Ledger
-	// /api/v1/transfer-list
-
-	data := "{\"currency\": \"XBT\", \"type\": \"MAIN\", \"tag\": [\"mock_a\", \"mock_b\"], \"startAt\": 1728663338000, \"endAt\": 1728692138000, \"currentPage\": 1, \"pageSize\": 50}"
-	req := &GetFuturesAccountTransferOutLedgerReq{}
-	err := json.Unmarshal([]byte(data), req)
-	req.ToMap()
-	assert.Nil(t, err)
-}
-
-func TestTransferGetFuturesAccountTransferOutLedgerRespModel(t *testing.T) {
-	// GetFuturesAccountTransferOutLedger
-	// Get Futures Account Transfer Out Ledger
-	// /api/v1/transfer-list
-
-	data := "{\"code\":\"200000\",\"data\":{\"currentPage\":1,\"pageSize\":50,\"totalNum\":1,\"totalPage\":1,\"items\":[{\"applyId\":\"670bf84c577f6c00017a1c48\",\"currency\":\"USDT\",\"recRemark\":\"\",\"recSystem\":\"KUCOIN\",\"status\":\"SUCCESS\",\"amount\":\"0.01\",\"reason\":\"\",\"offset\":1519769124134806,\"createdAt\":1728837708000,\"remark\":\"\"}]}}"
-	commonResp := &types.RestResponse{}
-	err := json.Unmarshal([]byte(data), commonResp)
-	assert.Nil(t, err)
-	assert.NotNil(t, commonResp.Data)
-	resp := &GetFuturesAccountTransferOutLedgerResp{}
 	err = json.Unmarshal([]byte(commonResp.Data), resp)
 	resp.ToMap()
 	assert.Nil(t, err)

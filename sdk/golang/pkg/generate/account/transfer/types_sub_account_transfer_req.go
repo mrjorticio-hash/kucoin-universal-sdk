@@ -4,25 +4,29 @@ package transfer
 
 // SubAccountTransferReq struct for SubAccountTransferReq
 type SubAccountTransferReq struct {
-	// Unique order id created by users to identify their orders, e.g. UUID, with a maximum length of 128 bits
+	// Unique order ID created by users to identify their orders, e.g. UUID, with a maximum length of 128 bits
 	ClientOid string `json:"clientOid,omitempty"`
 	// currency
 	Currency string `json:"currency,omitempty"`
-	// Transfer amount, the amount is a positive integer multiple of the currency precision.
+	// Transfer amount: The amount is a positive integer multiple of the currency precision.
 	Amount string `json:"amount,omitempty"`
-	// OUT — the master user to sub user IN — the sub user to the master user.
+	// OUT — the master user to sub user IN — the sub user to the master user
 	Direction string `json:"direction,omitempty"`
-	// Account type：MAIN、TRADE、CONTRACT、MARGIN
+	// Account type: MAIN, TRADE, CONTRACT, MARGIN, ISOLATED
 	AccountType *string `json:"accountType,omitempty"`
-	// Sub Account type：MAIN、TRADE、CONTRACT、MARGIN
+	// Sub-account type: MAIN, TRADE, CONTRACT, MARGIN, ISOLATED
 	SubAccountType *string `json:"subAccountType,omitempty"`
 	// the user ID of a sub-account.
 	SubUserId *string `json:"subUserId,omitempty"`
+	//  Need to be defined if accountType=ISOLATED.
+	Tag *string `json:"tag,omitempty"`
+	//  Need to be defined if subAccountType=ISOLATED.
+	SubTag string `json:"subTag,omitempty"`
 }
 
 // NewSubAccountTransferReq instantiates a new SubAccountTransferReq object
 // This constructor will assign default values to properties that have it defined
-func NewSubAccountTransferReq(clientOid string, currency string, amount string, direction string) *SubAccountTransferReq {
+func NewSubAccountTransferReq(clientOid string, currency string, amount string, direction string, subTag string) *SubAccountTransferReq {
 	this := SubAccountTransferReq{}
 	this.ClientOid = clientOid
 	this.Currency = currency
@@ -32,6 +36,7 @@ func NewSubAccountTransferReq(clientOid string, currency string, amount string, 
 	this.AccountType = &accountType
 	var subAccountType string = "MAIN"
 	this.SubAccountType = &subAccountType
+	this.SubTag = subTag
 	return &this
 }
 
@@ -55,6 +60,8 @@ func (o *SubAccountTransferReq) ToMap() map[string]interface{} {
 	toSerialize["accountType"] = o.AccountType
 	toSerialize["subAccountType"] = o.SubAccountType
 	toSerialize["subUserId"] = o.SubUserId
+	toSerialize["tag"] = o.Tag
+	toSerialize["subTag"] = o.SubTag
 	return toSerialize
 }
 
@@ -66,7 +73,7 @@ func NewSubAccountTransferReqBuilder() *SubAccountTransferReqBuilder {
 	return &SubAccountTransferReqBuilder{obj: NewSubAccountTransferReqWithDefaults()}
 }
 
-// Unique order id created by users to identify their orders, e.g. UUID, with a maximum length of 128 bits
+// Unique order ID created by users to identify their orders, e.g. UUID, with a maximum length of 128 bits
 func (builder *SubAccountTransferReqBuilder) SetClientOid(value string) *SubAccountTransferReqBuilder {
 	builder.obj.ClientOid = value
 	return builder
@@ -78,25 +85,25 @@ func (builder *SubAccountTransferReqBuilder) SetCurrency(value string) *SubAccou
 	return builder
 }
 
-// Transfer amount, the amount is a positive integer multiple of the currency precision.
+// Transfer amount: The amount is a positive integer multiple of the currency precision.
 func (builder *SubAccountTransferReqBuilder) SetAmount(value string) *SubAccountTransferReqBuilder {
 	builder.obj.Amount = value
 	return builder
 }
 
-// OUT — the master user to sub user IN — the sub user to the master user.
+// OUT — the master user to sub user IN — the sub user to the master user
 func (builder *SubAccountTransferReqBuilder) SetDirection(value string) *SubAccountTransferReqBuilder {
 	builder.obj.Direction = value
 	return builder
 }
 
-// Account type：MAIN、TRADE、CONTRACT、MARGIN
+// Account type: MAIN, TRADE, CONTRACT, MARGIN, ISOLATED
 func (builder *SubAccountTransferReqBuilder) SetAccountType(value string) *SubAccountTransferReqBuilder {
 	builder.obj.AccountType = &value
 	return builder
 }
 
-// Sub Account type：MAIN、TRADE、CONTRACT、MARGIN
+// Sub-account type: MAIN, TRADE, CONTRACT, MARGIN, ISOLATED
 func (builder *SubAccountTransferReqBuilder) SetSubAccountType(value string) *SubAccountTransferReqBuilder {
 	builder.obj.SubAccountType = &value
 	return builder
@@ -105,6 +112,18 @@ func (builder *SubAccountTransferReqBuilder) SetSubAccountType(value string) *Su
 // the user ID of a sub-account.
 func (builder *SubAccountTransferReqBuilder) SetSubUserId(value string) *SubAccountTransferReqBuilder {
 	builder.obj.SubUserId = &value
+	return builder
+}
+
+// Need to be defined if accountType=ISOLATED.
+func (builder *SubAccountTransferReqBuilder) SetTag(value string) *SubAccountTransferReqBuilder {
+	builder.obj.Tag = &value
+	return builder
+}
+
+// Need to be defined if subAccountType=ISOLATED.
+func (builder *SubAccountTransferReqBuilder) SetSubTag(value string) *SubAccountTransferReqBuilder {
+	builder.obj.SubTag = value
 	return builder
 }
 

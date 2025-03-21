@@ -70,7 +70,7 @@ func TestDepositAddDepositAddressV1Req(t *testing.T) {
 	// /api/v1/deposit-addresses
 
 	builder := deposit.NewAddDepositAddressV1ReqBuilder()
-	builder.SetCurrency("ETH").SetChain("eth")
+	builder.SetCurrency("ETH").SetChain("eth").SetTo("trade")
 	req := builder.Build()
 
 	resp, err := depositApi.AddDepositAddressV1(req, context.TODO())
@@ -137,7 +137,7 @@ func TestDepositGetDepositAddressV2Req(t *testing.T) {
 	// /api/v2/deposit-addresses
 
 	builder := deposit.NewGetDepositAddressV2ReqBuilder()
-	builder.SetCurrency("USDT")
+	builder.SetCurrency("USDT").SetChain("SOL")
 	req := builder.Build()
 
 	resp, err := depositApi.GetDepositAddressV2(req, context.TODO())
@@ -181,7 +181,7 @@ func TestDepositAddDepositAddressV3Req(t *testing.T) {
 	// /v3/deposit-address/create
 
 	builder := deposit.NewAddDepositAddressV3ReqBuilder()
-	builder.SetCurrency("MNT").SetChain("mnt").SetTo("trade")
+	builder.SetCurrency("MNT").SetChain("eth").SetTo("trade")
 	req := builder.Build()
 
 	resp, err := depositApi.AddDepositAddressV3(req, context.TODO())

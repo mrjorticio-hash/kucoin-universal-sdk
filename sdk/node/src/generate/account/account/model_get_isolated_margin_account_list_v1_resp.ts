@@ -7,12 +7,12 @@ import { Response } from '@internal/interfaces/serializable';
 
 export class GetIsolatedMarginAccountListV1Resp implements Response<RestResponse> {
     /**
-     * The total balance of the isolated margin account(in the request coin)
+     * The total balance of the isolated margin account (in the request coin)
      */
     totalConversionBalance: string;
 
     /**
-     * Total liabilities of the isolated margin account(in the request coin)
+     * Total liabilities of the isolated margin account (in the request coin)
      */
     liabilityConversionBalance: string;
 

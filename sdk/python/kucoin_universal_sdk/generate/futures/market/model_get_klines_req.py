@@ -16,10 +16,10 @@ class GetKlinesReq(BaseModel):
     GetKlinesReq
 
     Attributes:
-        symbol (str): Symbol of the contract, Please refer to [Get Symbol endpoint: symbol, indexSymbol, premiumsSymbol1M, premiumsSymbol8H](https://www.kucoin.com/docs-new/api-3470220) 
-        granularity (GranularityEnum): Type of candlestick patterns(minute)
-        from_ (int): Start time (milisecond)
-        to (int): End time (milisecond)
+        symbol (str): Symbol of the contract. Please refer to [Get Symbol endpoint: symbol, indexSymbol, premiumsSymbol1M, premiumsSymbol8H](https://www.kucoin.com/docs-new/api-3470220) 
+        granularity (GranularityEnum): Type of candlestick patterns (minutes)
+        from_ (int): Start time (milliseconds)
+        to (int): End time (milliseconds)
     """
 
     class GranularityEnum(Enum):
@@ -52,15 +52,15 @@ class GetKlinesReq(BaseModel):
     symbol: Optional[str] = Field(
         default=None,
         description=
-        "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol, indexSymbol, premiumsSymbol1M, premiumsSymbol8H](https://www.kucoin.com/docs-new/api-3470220) "
+        "Symbol of the contract. Please refer to [Get Symbol endpoint: symbol, indexSymbol, premiumsSymbol1M, premiumsSymbol8H](https://www.kucoin.com/docs-new/api-3470220) "
     )
     granularity: Optional[GranularityEnum] = Field(
-        default=None, description="Type of candlestick patterns(minute)")
+        default=None, description="Type of candlestick patterns (minutes)")
     from_: Optional[int] = Field(default=None,
-                                 description="Start time (milisecond)",
+                                 description="Start time (milliseconds)",
                                  alias="from")
     to: Optional[int] = Field(default=None,
-                              description="End time (milisecond)")
+                              description="End time (milliseconds)")
 
     __properties: ClassVar[List[str]] = ["symbol", "granularity", "from", "to"]
 
@@ -112,7 +112,7 @@ class GetKlinesReqBuilder:
 
     def set_symbol(self, value: str) -> GetKlinesReqBuilder:
         """
-        Symbol of the contract, Please refer to [Get Symbol endpoint: symbol, indexSymbol, premiumsSymbol1M, premiumsSymbol8H](https://www.kucoin.com/docs-new/api-3470220) 
+        Symbol of the contract. Please refer to [Get Symbol endpoint: symbol, indexSymbol, premiumsSymbol1M, premiumsSymbol8H](https://www.kucoin.com/docs-new/api-3470220) 
         """
         self.obj['symbol'] = value
         return self
@@ -120,21 +120,21 @@ class GetKlinesReqBuilder:
     def set_granularity(
             self, value: GetKlinesReq.GranularityEnum) -> GetKlinesReqBuilder:
         """
-        Type of candlestick patterns(minute)
+        Type of candlestick patterns (minutes)
         """
         self.obj['granularity'] = value
         return self
 
     def set_from_(self, value: int) -> GetKlinesReqBuilder:
         """
-        Start time (milisecond)
+        Start time (milliseconds)
         """
         self.obj['from'] = value
         return self
 
     def set_to(self, value: int) -> GetKlinesReqBuilder:
         """
-        End time (milisecond)
+        End time (milliseconds)
         """
         self.obj['to'] = value
         return self

@@ -5,7 +5,7 @@ import { Serializable } from '@internal/interfaces/serializable';
 
 export class GetSpotHFLedgerData implements Serializable {
     /**
-     * Unique id
+     * Unique ID
      */
     id: string;
 
@@ -20,7 +20,7 @@ export class GetSpotHFLedgerData implements Serializable {
     amount: string;
 
     /**
-     * Deposit or withdrawal fee
+     * Transaction, Deposit or withdrawal fee
      */
     fee: string;
 
@@ -40,12 +40,12 @@ export class GetSpotHFLedgerData implements Serializable {
     accountType: string;
 
     /**
-     * Trnasaction type，such as TRANSFER, TRADE_EXCHANGE, etc.
+     * Trnasaction type, such as TRANSFER, TRADE_EXCHANGE, etc.
      */
     bizType: string;
 
     /**
-     * Direction of transfer( out or in)
+     * Direction of transfer (out or in)
      */
     direction: GetSpotHFLedgerData.DirectionEnum;
 

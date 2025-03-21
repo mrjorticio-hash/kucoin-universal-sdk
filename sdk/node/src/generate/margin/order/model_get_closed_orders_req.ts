@@ -15,32 +15,32 @@ export class GetClosedOrdersReq implements Serializable {
     tradeType?: GetClosedOrdersReq.TradeTypeEnum;
 
     /**
-     * specify if the order is to \'buy\' or \'sell\'
+     * Specify if the order is to \'buy\' or \'sell\'.
      */
     side?: GetClosedOrdersReq.SideEnum;
 
     /**
-     * specify if the order is an \'limit\' order or \'market\' order.
+     * Specify if the order is a \'limit\' order or \'market\' order.
      */
     type?: GetClosedOrdersReq.TypeEnum;
 
     /**
-     * The id of the last set of data from the previous batch of data. By default, the latest information is given. lastId is used to filter data and paginate. If lastId is not entered, the default is a maximum of 100 returned data items. The return results include lastId，which can be used as a query parameter to look up new data from the next page.
+     * The ID of the last set of data from the previous data batch. By default, the latest information is given. lastId is used to filter data and paginate. If lastId is not entered, the default is a maximum of 100 returned data items. The return results include lastId, which can be used as a query parameter to look up new data from the next page.
      */
     lastId?: number;
 
     /**
-     * Default20，Max100
+     * Default20, Max100
      */
     limit?: number = 20;
 
     /**
-     * Start time (milisecond)
+     * Start time (milliseconds)
      */
     startAt?: number;
 
     /**
-     * End time (milisecond)
+     * End time (milliseconds)
      */
     endAt?: number;
 
@@ -69,27 +69,27 @@ export class GetClosedOrdersReq implements Serializable {
          */
         tradeType?: GetClosedOrdersReq.TradeTypeEnum;
         /**
-         * specify if the order is to \'buy\' or \'sell\'
+         * Specify if the order is to \'buy\' or \'sell\'.
          */
         side?: GetClosedOrdersReq.SideEnum;
         /**
-         * specify if the order is an \'limit\' order or \'market\' order.
+         * Specify if the order is a \'limit\' order or \'market\' order.
          */
         type?: GetClosedOrdersReq.TypeEnum;
         /**
-         * The id of the last set of data from the previous batch of data. By default, the latest information is given. lastId is used to filter data and paginate. If lastId is not entered, the default is a maximum of 100 returned data items. The return results include lastId，which can be used as a query parameter to look up new data from the next page.
+         * The ID of the last set of data from the previous data batch. By default, the latest information is given. lastId is used to filter data and paginate. If lastId is not entered, the default is a maximum of 100 returned data items. The return results include lastId, which can be used as a query parameter to look up new data from the next page.
          */
         lastId?: number;
         /**
-         * Default20，Max100
+         * Default20, Max100
          */
         limit?: number;
         /**
-         * Start time (milisecond)
+         * Start time (milliseconds)
          */
         startAt?: number;
         /**
-         * End time (milisecond)
+         * End time (milliseconds)
          */
         endAt?: number;
     }): GetClosedOrdersReq {
@@ -183,7 +183,7 @@ export class GetClosedOrdersReqBuilder {
     }
 
     /**
-     * specify if the order is to \'buy\' or \'sell\'
+     * Specify if the order is to \'buy\' or \'sell\'.
      */
     setSide(value: GetClosedOrdersReq.SideEnum): GetClosedOrdersReqBuilder {
         this.obj.side = value;
@@ -191,7 +191,7 @@ export class GetClosedOrdersReqBuilder {
     }
 
     /**
-     * specify if the order is an \'limit\' order or \'market\' order.
+     * Specify if the order is a \'limit\' order or \'market\' order.
      */
     setType(value: GetClosedOrdersReq.TypeEnum): GetClosedOrdersReqBuilder {
         this.obj.type = value;
@@ -199,7 +199,7 @@ export class GetClosedOrdersReqBuilder {
     }
 
     /**
-     * The id of the last set of data from the previous batch of data. By default, the latest information is given. lastId is used to filter data and paginate. If lastId is not entered, the default is a maximum of 100 returned data items. The return results include lastId，which can be used as a query parameter to look up new data from the next page.
+     * The ID of the last set of data from the previous data batch. By default, the latest information is given. lastId is used to filter data and paginate. If lastId is not entered, the default is a maximum of 100 returned data items. The return results include lastId, which can be used as a query parameter to look up new data from the next page.
      */
     setLastId(value: number): GetClosedOrdersReqBuilder {
         this.obj.lastId = value;
@@ -207,7 +207,7 @@ export class GetClosedOrdersReqBuilder {
     }
 
     /**
-     * Default20，Max100
+     * Default20, Max100
      */
     setLimit(value: number): GetClosedOrdersReqBuilder {
         this.obj.limit = value;
@@ -215,7 +215,7 @@ export class GetClosedOrdersReqBuilder {
     }
 
     /**
-     * Start time (milisecond)
+     * Start time (milliseconds)
      */
     setStartAt(value: number): GetClosedOrdersReqBuilder {
         this.obj.startAt = value;
@@ -223,7 +223,7 @@ export class GetClosedOrdersReqBuilder {
     }
 
     /**
-     * End time (milisecond)
+     * End time (milliseconds)
      */
     setEndAt(value: number): GetClosedOrdersReqBuilder {
         this.obj.endAt = value;

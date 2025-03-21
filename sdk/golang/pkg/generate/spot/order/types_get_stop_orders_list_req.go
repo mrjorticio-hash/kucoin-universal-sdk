@@ -5,31 +5,35 @@ package order
 // GetStopOrdersListReq struct for GetStopOrdersListReq
 type GetStopOrdersListReq struct {
 	// Only list orders for a specific symbol
-	Symbol *string `json:"symbol,omitempty"`
+	Symbol *string `json:"symbol,omitempty" url:"symbol,omitempty"`
 	// buy or sell
-	Side *string `json:"side,omitempty"`
-	// limit, market, limit_stop or market_stop
-	Type *string `json:"type,omitempty"`
+	Side *string `json:"side,omitempty" url:"side,omitempty"`
+	// limit, market
+	Type *string `json:"type,omitempty" url:"type,omitempty"`
 	// The type of trading : TRADE（Spot）, MARGIN_TRADE (Cross Margin), MARGIN_ISOLATED_TRADE (Isolated Margin). Default is TRADE
-	TradeType *string `json:"tradeType,omitempty"`
+	TradeType *string `json:"tradeType,omitempty" url:"tradeType,omitempty"`
 	// Start time (milisecond)
-	StartAt *float32 `json:"startAt,omitempty"`
+	StartAt *int64 `json:"startAt,omitempty" url:"startAt,omitempty"`
 	// End time (milisecond)
-	EndAt *float32 `json:"endAt,omitempty"`
-	// current page
-	CurrentPage *int32 `json:"currentPage,omitempty"`
-	// comma seperated order ID list
-	OrderIds *string `json:"orderIds,omitempty"`
-	// page size
-	PageSize *int32 `json:"pageSize,omitempty"`
+	EndAt *int64 `json:"endAt,omitempty" url:"endAt,omitempty"`
+	// Current page
+	CurrentPage *int32 `json:"currentPage,omitempty" url:"currentPage,omitempty"`
+	// Comma seperated order ID list
+	OrderIds *string `json:"orderIds,omitempty" url:"orderIds,omitempty"`
+	// Page size
+	PageSize *int32 `json:"pageSize,omitempty" url:"pageSize,omitempty"`
 	// Order type: stop: stop loss order, oco: oco order
-	Stop *string `json:"stop,omitempty"`
+	Stop *string `json:"stop,omitempty" url:"stop,omitempty"`
 }
 
 // NewGetStopOrdersListReq instantiates a new GetStopOrdersListReq object
 // This constructor will assign default values to properties that have it defined
 func NewGetStopOrdersListReq() *GetStopOrdersListReq {
 	this := GetStopOrdersListReq{}
+	var currentPage int32 = 1
+	this.CurrentPage = &currentPage
+	var pageSize int32 = 50
+	this.PageSize = &pageSize
 	return &this
 }
 
@@ -37,6 +41,10 @@ func NewGetStopOrdersListReq() *GetStopOrdersListReq {
 // This constructor will only assign default values to properties that have it defined,
 func NewGetStopOrdersListReqWithDefaults() *GetStopOrdersListReq {
 	this := GetStopOrdersListReq{}
+	var currentPage int32 = 1
+	this.CurrentPage = &currentPage
+	var pageSize int32 = 50
+	this.PageSize = &pageSize
 	return &this
 }
 
@@ -75,7 +83,7 @@ func (builder *GetStopOrdersListReqBuilder) SetSide(value string) *GetStopOrders
 	return builder
 }
 
-// limit, market, limit_stop or market_stop
+// limit, market
 func (builder *GetStopOrdersListReqBuilder) SetType(value string) *GetStopOrdersListReqBuilder {
 	builder.obj.Type = &value
 	return builder
@@ -88,30 +96,30 @@ func (builder *GetStopOrdersListReqBuilder) SetTradeType(value string) *GetStopO
 }
 
 // Start time (milisecond)
-func (builder *GetStopOrdersListReqBuilder) SetStartAt(value float32) *GetStopOrdersListReqBuilder {
+func (builder *GetStopOrdersListReqBuilder) SetStartAt(value int64) *GetStopOrdersListReqBuilder {
 	builder.obj.StartAt = &value
 	return builder
 }
 
 // End time (milisecond)
-func (builder *GetStopOrdersListReqBuilder) SetEndAt(value float32) *GetStopOrdersListReqBuilder {
+func (builder *GetStopOrdersListReqBuilder) SetEndAt(value int64) *GetStopOrdersListReqBuilder {
 	builder.obj.EndAt = &value
 	return builder
 }
 
-// current page
+// Current page
 func (builder *GetStopOrdersListReqBuilder) SetCurrentPage(value int32) *GetStopOrdersListReqBuilder {
 	builder.obj.CurrentPage = &value
 	return builder
 }
 
-// comma seperated order ID list
+// Comma seperated order ID list
 func (builder *GetStopOrdersListReqBuilder) SetOrderIds(value string) *GetStopOrdersListReqBuilder {
 	builder.obj.OrderIds = &value
 	return builder
 }
 
-// page size
+// Page size
 func (builder *GetStopOrdersListReqBuilder) SetPageSize(value int32) *GetStopOrdersListReqBuilder {
 	builder.obj.PageSize = &value
 	return builder

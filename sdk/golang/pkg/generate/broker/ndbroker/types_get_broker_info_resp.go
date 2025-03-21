@@ -12,7 +12,7 @@ type GetBrokerInfoResp struct {
 	CommonResponse *types.RestResponse
 	// Number of sub-accounts created
 	AccountSize int32 `json:"accountSize,omitempty"`
-	// The maximum number of sub-accounts allowed to be created, null means no limit
+	// The maximum number of sub-accounts allowed to be created; null means no limit
 	MaxAccountSize int32 `json:"maxAccountSize,omitempty"`
 	// Broker level
 	Level int32 `json:"level,omitempty"`

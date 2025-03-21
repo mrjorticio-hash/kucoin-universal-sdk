@@ -28,7 +28,7 @@ class FuturesAccountTransferOutResp(BaseModel, Response):
         rec_system (str): Receive system
         status (str): Status:APPLY, PROCESSING, PENDING_APPROVAL, APPROVED, REJECTED, PENDING_CANCEL, CANCEL, SUCCESS
         currency (str): Currency
-        amount (str): Transfer amout
+        amount (str): Transfer amount
         fee (str): Transfer fee
         sn (int): Serial number
         reason (str): Fail Reason
@@ -69,7 +69,7 @@ class FuturesAccountTransferOutResp(BaseModel, Response):
         "Status:APPLY, PROCESSING, PENDING_APPROVAL, APPROVED, REJECTED, PENDING_CANCEL, CANCEL, SUCCESS"
     )
     currency: Optional[str] = Field(default=None, description="Currency")
-    amount: Optional[str] = Field(default=None, description="Transfer amout")
+    amount: Optional[str] = Field(default=None, description="Transfer amount")
     fee: Optional[str] = Field(default=None, description="Transfer fee")
     sn: Optional[int] = Field(default=None, description="Serial number")
     reason: Optional[str] = Field(default=None, description="Fail Reason")

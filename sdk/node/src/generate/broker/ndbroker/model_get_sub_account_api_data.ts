@@ -5,7 +5,7 @@ import { Serializable } from '@internal/interfaces/serializable';
 
 export class GetSubAccountAPIData implements Serializable {
     /**
-     * Sub-Account UID
+     * Sub-account UID
      */
     uid: string;
 
@@ -35,7 +35,7 @@ export class GetSubAccountAPIData implements Serializable {
     ipWhitelist: Array<string>;
 
     /**
-     * Creation time, unix timestamp (milliseconds)
+     * Creation time, Unix timestamp (milliseconds)
      */
     createdAt: number;
 

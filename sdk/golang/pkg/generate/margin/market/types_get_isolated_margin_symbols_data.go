@@ -6,13 +6,13 @@ package market
 type GetIsolatedMarginSymbolsData struct {
 	// symbol
 	Symbol string `json:"symbol,omitempty"`
-	// symbol name
+	// Symbol name
 	SymbolName string `json:"symbolName,omitempty"`
-	// Base currency,e.g. BTC.
+	// Base currency, e.g. BTC.
 	BaseCurrency string `json:"baseCurrency,omitempty"`
-	// Quote currency,e.g. USDT.
+	// Quote currency, e.g. USDT.
 	QuoteCurrency string `json:"quoteCurrency,omitempty"`
-	// Max leverage of this symbol
+	// Max. leverage of this symbol
 	MaxLeverage            int32  `json:"maxLeverage,omitempty"`
 	FlDebtRatio            string `json:"flDebtRatio,omitempty"`
 	TradeEnable            bool   `json:"tradeEnable,omitempty"`

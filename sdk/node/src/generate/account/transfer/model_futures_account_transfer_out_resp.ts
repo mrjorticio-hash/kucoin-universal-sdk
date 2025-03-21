@@ -61,7 +61,7 @@ export class FuturesAccountTransferOutResp implements Response<RestResponse> {
     currency: string;
 
     /**
-     * Transfer amout
+     * Transfer amount
      */
     amount: string;
 

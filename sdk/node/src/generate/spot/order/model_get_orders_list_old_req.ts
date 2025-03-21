@@ -5,37 +5,37 @@ import { Serializable } from '@internal/interfaces/serializable';
 
 export class GetOrdersListOldReq implements Serializable {
     /**
-     * symbol
+     * Symbol
      */
     symbol?: string;
 
     /**
-     * active or done(done as default), Only list orders with a specific status .
+     * Active or done (done as default); only list orders with a specific status.
      */
     status?: GetOrdersListOldReq.StatusEnum = GetOrdersListOldReq.StatusEnum.DONE;
 
     /**
-     * buy or sell
+     * Buy or Sell
      */
     side?: GetOrdersListOldReq.SideEnum;
 
     /**
-     * limit, market, limit_stop or market_stop
+     * Order type
      */
     type?: GetOrdersListOldReq.TypeEnum;
 
     /**
-     * The type of trading:TRADE - Spot Trading(TRADE as default), MARGIN_TRADE - Cross Margin Trading, MARGIN_ISOLATED_TRADE - Isolated Margin Trading.
+     * The type of trading: TRADE - Spot Trading (TRADE as default), MARGIN_TRADE - Cross Margin Trading, MARGIN_ISOLATED_TRADE - Isolated Margin Trading.
      */
     tradeType?: GetOrdersListOldReq.TradeTypeEnum = GetOrdersListOldReq.TradeTypeEnum.TRADE;
 
     /**
-     * Start time (milisecond)
+     * Start time (milliseconds)
      */
     startAt?: number;
 
     /**
-     * End time (milisecond)
+     * End time (milliseconds)
      */
     endAt?: number;
 
@@ -66,31 +66,31 @@ export class GetOrdersListOldReq implements Serializable {
      */
     static create(data: {
         /**
-         * symbol
+         * Symbol
          */
         symbol?: string;
         /**
-         * active or done(done as default), Only list orders with a specific status .
+         * Active or done (done as default); only list orders with a specific status.
          */
         status?: GetOrdersListOldReq.StatusEnum;
         /**
-         * buy or sell
+         * Buy or Sell
          */
         side?: GetOrdersListOldReq.SideEnum;
         /**
-         * limit, market, limit_stop or market_stop
+         * Order type
          */
         type?: GetOrdersListOldReq.TypeEnum;
         /**
-         * The type of trading:TRADE - Spot Trading(TRADE as default), MARGIN_TRADE - Cross Margin Trading, MARGIN_ISOLATED_TRADE - Isolated Margin Trading.
+         * The type of trading: TRADE - Spot Trading (TRADE as default), MARGIN_TRADE - Cross Margin Trading, MARGIN_ISOLATED_TRADE - Isolated Margin Trading.
          */
         tradeType?: GetOrdersListOldReq.TradeTypeEnum;
         /**
-         * Start time (milisecond)
+         * Start time (milliseconds)
          */
         startAt?: number;
         /**
-         * End time (milisecond)
+         * End time (milliseconds)
          */
         endAt?: number;
         /**
@@ -189,6 +189,14 @@ export namespace GetOrdersListOldReq {
          * market_stop
          */
         MARKET_STOP = <any>'market_stop',
+        /**
+         * oco_limit
+         */
+        OCO_LIMIT = <any>'oco_limit',
+        /**
+         * oco_stop
+         */
+        OCO_STOP = <any>'oco_stop',
     }
     export enum TradeTypeEnum {
         /**
@@ -211,7 +219,7 @@ export class GetOrdersListOldReqBuilder {
         this.obj = obj;
     }
     /**
-     * symbol
+     * Symbol
      */
     setSymbol(value: string): GetOrdersListOldReqBuilder {
         this.obj.symbol = value;
@@ -219,7 +227,7 @@ export class GetOrdersListOldReqBuilder {
     }
 
     /**
-     * active or done(done as default), Only list orders with a specific status .
+     * Active or done (done as default); only list orders with a specific status.
      */
     setStatus(value: GetOrdersListOldReq.StatusEnum): GetOrdersListOldReqBuilder {
         this.obj.status = value;
@@ -227,7 +235,7 @@ export class GetOrdersListOldReqBuilder {
     }
 
     /**
-     * buy or sell
+     * Buy or Sell
      */
     setSide(value: GetOrdersListOldReq.SideEnum): GetOrdersListOldReqBuilder {
         this.obj.side = value;
@@ -235,7 +243,7 @@ export class GetOrdersListOldReqBuilder {
     }
 
     /**
-     * limit, market, limit_stop or market_stop
+     * Order type
      */
     setType(value: GetOrdersListOldReq.TypeEnum): GetOrdersListOldReqBuilder {
         this.obj.type = value;
@@ -243,7 +251,7 @@ export class GetOrdersListOldReqBuilder {
     }
 
     /**
-     * The type of trading:TRADE - Spot Trading(TRADE as default), MARGIN_TRADE - Cross Margin Trading, MARGIN_ISOLATED_TRADE - Isolated Margin Trading.
+     * The type of trading: TRADE - Spot Trading (TRADE as default), MARGIN_TRADE - Cross Margin Trading, MARGIN_ISOLATED_TRADE - Isolated Margin Trading.
      */
     setTradeType(value: GetOrdersListOldReq.TradeTypeEnum): GetOrdersListOldReqBuilder {
         this.obj.tradeType = value;
@@ -251,7 +259,7 @@ export class GetOrdersListOldReqBuilder {
     }
 
     /**
-     * Start time (milisecond)
+     * Start time (milliseconds)
      */
     setStartAt(value: number): GetOrdersListOldReqBuilder {
         this.obj.startAt = value;
@@ -259,7 +267,7 @@ export class GetOrdersListOldReqBuilder {
     }
 
     /**
-     * End time (milisecond)
+     * End time (milliseconds)
      */
     setEndAt(value: number): GetOrdersListOldReqBuilder {
         this.obj.endAt = value;

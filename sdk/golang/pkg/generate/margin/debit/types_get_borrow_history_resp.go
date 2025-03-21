@@ -17,7 +17,7 @@ type GetBorrowHistoryResp struct {
 	PageSize int32 `json:"pageSize,omitempty"`
 	// total number
 	TotalNum int32 `json:"totalNum,omitempty"`
-	// total page
+	// total pages
 	TotalPage int32                   `json:"totalPage,omitempty"`
 	Items     []GetBorrowHistoryItems `json:"items,omitempty"`
 }

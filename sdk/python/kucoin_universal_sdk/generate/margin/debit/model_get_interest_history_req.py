@@ -8,7 +8,6 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
-from typing_extensions import Annotated
 
 
 class GetInterestHistoryReq(BaseModel):
@@ -46,9 +45,7 @@ class GetInterestHistoryReq(BaseModel):
         description=
         "Current query page, with a starting value of 1. Default:1 ",
         alias="currentPage")
-    page_size: Optional[Annotated[int, Field(
-        le=500, strict=True, ge=10
-    )]] = Field(
+    page_size: Optional[int] = Field(
         default=50,
         description=
         "Number of results per page. Default is 50, minimum is 10, maximum is 500",

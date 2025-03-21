@@ -28,18 +28,18 @@ class EarnAPI(ABC):
     @abstractmethod
     def purchase(self, req: PurchaseReq, **kwargs: Any) -> PurchaseResp:
         """
-        summary: purchase
-        description: This endpoint allows subscribing earn product
+        summary: Purchase
+        description: This endpoint allows you to subscribe Earn products.
         documentation: https://www.kucoin.com/docs-new/api-3470268
-        +---------------------+---------+
-        | Extra API Info      | Value   |
-        +---------------------+---------+
-        | API-DOMAIN          | SPOT    |
-        | API-CHANNEL         | PRIVATE |
-        | API-PERMISSION      | EARN    |
-        | API-RATE-LIMIT-POOL | EARN    |
-        | API-RATE-LIMIT      | 5       |
-        +---------------------+---------+
+        +-----------------------+---------+
+        | Extra API Info        | Value   |
+        +-----------------------+---------+
+        | API-DOMAIN            | SPOT    |
+        | API-CHANNEL           | PRIVATE |
+        | API-PERMISSION        | EARN    |
+        | API-RATE-LIMIT-POOL   | EARN    |
+        | API-RATE-LIMIT-WEIGHT | 5       |
+        +-----------------------+---------+
         """
         pass
 
@@ -48,17 +48,17 @@ class EarnAPI(ABC):
                            **kwargs: Any) -> GetRedeemPreviewResp:
         """
         summary: Get Redeem Preview
-        description: This endpoint allows subscribing earn products
+        description: This endpoint allows you to subscribe Earn products.
         documentation: https://www.kucoin.com/docs-new/api-3470269
-        +---------------------+---------+
-        | Extra API Info      | Value   |
-        +---------------------+---------+
-        | API-DOMAIN          | SPOT    |
-        | API-CHANNEL         | PRIVATE |
-        | API-PERMISSION      | EARN    |
-        | API-RATE-LIMIT-POOL | EARN    |
-        | API-RATE-LIMIT      | 5       |
-        +---------------------+---------+
+        +-----------------------+---------+
+        | Extra API Info        | Value   |
+        +-----------------------+---------+
+        | API-DOMAIN            | SPOT    |
+        | API-CHANNEL           | PRIVATE |
+        | API-PERMISSION        | EARN    |
+        | API-RATE-LIMIT-POOL   | EARN    |
+        | API-RATE-LIMIT-WEIGHT | 5       |
+        +-----------------------+---------+
         """
         pass
 
@@ -66,17 +66,17 @@ class EarnAPI(ABC):
     def redeem(self, req: RedeemReq, **kwargs: Any) -> RedeemResp:
         """
         summary: Redeem
-        description: This endpoint allows initiating redemption by holding ID. If the current holding is fully redeemed or in the process of being redeemed, it indicates that the holding does not exist.
+        description: This endpoint allows you to redeem Earn products by using holding ID. If the current holding is fully redeemed or in the process of being redeemed, it means that the holding does not exist.
         documentation: https://www.kucoin.com/docs-new/api-3470270
-        +---------------------+---------+
-        | Extra API Info      | Value   |
-        +---------------------+---------+
-        | API-DOMAIN          | SPOT    |
-        | API-CHANNEL         | PRIVATE |
-        | API-PERMISSION      | EARN    |
-        | API-RATE-LIMIT-POOL | EARN    |
-        | API-RATE-LIMIT      | 5       |
-        +---------------------+---------+
+        +-----------------------+---------+
+        | Extra API Info        | Value   |
+        +-----------------------+---------+
+        | API-DOMAIN            | SPOT    |
+        | API-CHANNEL           | PRIVATE |
+        | API-PERMISSION        | EARN    |
+        | API-RATE-LIMIT-POOL   | EARN    |
+        | API-RATE-LIMIT-WEIGHT | 5       |
+        +-----------------------+---------+
         """
         pass
 
@@ -85,17 +85,17 @@ class EarnAPI(ABC):
                              **kwargs: Any) -> GetSavingsProductsResp:
         """
         summary: Get Savings Products
-        description: This endpoint can get available savings products. If no products are available, an empty list is returned.
+        description: Available savings products can be obtained at this endpoint. If no products are available, an empty list is returned.
         documentation: https://www.kucoin.com/docs-new/api-3470271
-        +---------------------+---------+
-        | Extra API Info      | Value   |
-        +---------------------+---------+
-        | API-DOMAIN          | SPOT    |
-        | API-CHANNEL         | PRIVATE |
-        | API-PERMISSION      | GENERAL |
-        | API-RATE-LIMIT-POOL | EARN    |
-        | API-RATE-LIMIT      | 5       |
-        +---------------------+---------+
+        +-----------------------+---------+
+        | Extra API Info        | Value   |
+        +-----------------------+---------+
+        | API-DOMAIN            | SPOT    |
+        | API-CHANNEL           | PRIVATE |
+        | API-PERMISSION        | GENERAL |
+        | API-RATE-LIMIT-POOL   | EARN    |
+        | API-RATE-LIMIT-WEIGHT | 5       |
+        +-----------------------+---------+
         """
         pass
 
@@ -104,36 +104,17 @@ class EarnAPI(ABC):
                                **kwargs: Any) -> GetPromotionProductsResp:
         """
         summary: Get Promotion Products
-        description: This endpoint can get available limited-time promotion products. If no products are available, an empty list is returned.
+        description: Available limited-duration products can be obtained at this endpoint. If no products are available, an empty list is returned.
         documentation: https://www.kucoin.com/docs-new/api-3470272
-        +---------------------+---------+
-        | Extra API Info      | Value   |
-        +---------------------+---------+
-        | API-DOMAIN          | SPOT    |
-        | API-CHANNEL         | PRIVATE |
-        | API-PERMISSION      | GENERAL |
-        | API-RATE-LIMIT-POOL | EARN    |
-        | API-RATE-LIMIT      | 5       |
-        +---------------------+---------+
-        """
-        pass
-
-    @abstractmethod
-    def get_account_holding(self, req: GetAccountHoldingReq,
-                            **kwargs: Any) -> GetAccountHoldingResp:
-        """
-        summary: Get Account Holding
-        description: This endpoint can get current holding assets information. If no current holding assets are available, an empty list is returned.
-        documentation: https://www.kucoin.com/docs-new/api-3470273
-        +---------------------+---------+
-        | Extra API Info      | Value   |
-        +---------------------+---------+
-        | API-DOMAIN          | SPOT    |
-        | API-CHANNEL         | PRIVATE |
-        | API-PERMISSION      | GENERAL |
-        | API-RATE-LIMIT-POOL | EARN    |
-        | API-RATE-LIMIT      | 5       |
-        +---------------------+---------+
+        +-----------------------+---------+
+        | Extra API Info        | Value   |
+        +-----------------------+---------+
+        | API-DOMAIN            | SPOT    |
+        | API-CHANNEL           | PRIVATE |
+        | API-PERMISSION        | GENERAL |
+        | API-RATE-LIMIT-POOL   | EARN    |
+        | API-RATE-LIMIT-WEIGHT | NULL    |
+        +-----------------------+---------+
         """
         pass
 
@@ -142,17 +123,17 @@ class EarnAPI(ABC):
                              **kwargs: Any) -> GetStakingProductsResp:
         """
         summary: Get Staking Products
-        description: This endpoint can get available staking products. If no products are available, an empty list is returned.
+        description: Available staking products can be obtained at this endpoint. If no products are available, an empty list is returned.
         documentation: https://www.kucoin.com/docs-new/api-3470274
-        +---------------------+---------+
-        | Extra API Info      | Value   |
-        +---------------------+---------+
-        | API-DOMAIN          | SPOT    |
-        | API-CHANNEL         | PRIVATE |
-        | API-PERMISSION      | GENERAL |
-        | API-RATE-LIMIT-POOL | EARN    |
-        | API-RATE-LIMIT      | 5       |
-        +---------------------+---------+
+        +-----------------------+---------+
+        | Extra API Info        | Value   |
+        +-----------------------+---------+
+        | API-DOMAIN            | SPOT    |
+        | API-CHANNEL           | PRIVATE |
+        | API-PERMISSION        | GENERAL |
+        | API-RATE-LIMIT-POOL   | EARN    |
+        | API-RATE-LIMIT-WEIGHT | 5       |
+        +-----------------------+---------+
         """
         pass
 
@@ -161,17 +142,17 @@ class EarnAPI(ABC):
                                  **kwargs: Any) -> GetKcsStakingProductsResp:
         """
         summary: Get KCS Staking Products
-        description: This endpoint can get available KCS staking products. If no products are available, an empty list is returned.
+        description: Available KCS staking products can be obtained at this endpoint. If no products are available, an empty list is returned.
         documentation: https://www.kucoin.com/docs-new/api-3470275
-        +---------------------+---------+
-        | Extra API Info      | Value   |
-        +---------------------+---------+
-        | API-DOMAIN          | SPOT    |
-        | API-CHANNEL         | PRIVATE |
-        | API-PERMISSION      | GENERAL |
-        | API-RATE-LIMIT-POOL | EARN    |
-        | API-RATE-LIMIT      | 5       |
-        +---------------------+---------+
+        +-----------------------+---------+
+        | Extra API Info        | Value   |
+        +-----------------------+---------+
+        | API-DOMAIN            | SPOT    |
+        | API-CHANNEL           | PRIVATE |
+        | API-PERMISSION        | GENERAL |
+        | API-RATE-LIMIT-POOL   | EARN    |
+        | API-RATE-LIMIT-WEIGHT | 5       |
+        +-----------------------+---------+
         """
         pass
 
@@ -180,17 +161,36 @@ class EarnAPI(ABC):
                                  **kwargs: Any) -> GetEthStakingProductsResp:
         """
         summary: Get ETH Staking Products
-        description: This endpoint can get available ETH staking products. If no products are available, an empty list is returned.
+        description: Available ETH staking products can be obtained at this endpoint. If no products are available, an empty list is returned.
         documentation: https://www.kucoin.com/docs-new/api-3470276
-        +---------------------+---------+
-        | Extra API Info      | Value   |
-        +---------------------+---------+
-        | API-DOMAIN          | SPOT    |
-        | API-CHANNEL         | PRIVATE |
-        | API-PERMISSION      | GENERAL |
-        | API-RATE-LIMIT-POOL | EARN    |
-        | API-RATE-LIMIT      | 5       |
-        +---------------------+---------+
+        +-----------------------+---------+
+        | Extra API Info        | Value   |
+        +-----------------------+---------+
+        | API-DOMAIN            | SPOT    |
+        | API-CHANNEL           | PRIVATE |
+        | API-PERMISSION        | GENERAL |
+        | API-RATE-LIMIT-POOL   | EARN    |
+        | API-RATE-LIMIT-WEIGHT | 5       |
+        +-----------------------+---------+
+        """
+        pass
+
+    @abstractmethod
+    def get_account_holding(self, req: GetAccountHoldingReq,
+                            **kwargs: Any) -> GetAccountHoldingResp:
+        """
+        summary: Get Account Holding
+        description: Information on currently held assets can be obtained at this endpoint. If no assets are currently held, an empty list is returned.
+        documentation: https://www.kucoin.com/docs-new/api-3470273
+        +-----------------------+---------+
+        | Extra API Info        | Value   |
+        +-----------------------+---------+
+        | API-DOMAIN            | SPOT    |
+        | API-CHANNEL           | PRIVATE |
+        | API-PERMISSION        | GENERAL |
+        | API-RATE-LIMIT-POOL   | EARN    |
+        | API-RATE-LIMIT-WEIGHT | 5       |
+        +-----------------------+---------+
         """
         pass
 
@@ -228,12 +228,6 @@ class EarnAPIImpl(EarnAPI):
                                    "/api/v1/earn/promotion/products", req,
                                    GetPromotionProductsResp(), False, **kwargs)
 
-    def get_account_holding(self, req: GetAccountHoldingReq,
-                            **kwargs: Any) -> GetAccountHoldingResp:
-        return self.transport.call("spot", False, "GET",
-                                   "/api/v1/earn/hold-assets", req,
-                                   GetAccountHoldingResp(), False, **kwargs)
-
     def get_staking_products(self, req: GetStakingProductsReq,
                              **kwargs: Any) -> GetStakingProductsResp:
         return self.transport.call("spot", False, "GET",
@@ -253,3 +247,9 @@ class EarnAPIImpl(EarnAPI):
                                    "/api/v1/earn/eth-staking/products", req,
                                    GetEthStakingProductsResp(), False,
                                    **kwargs)
+
+    def get_account_holding(self, req: GetAccountHoldingReq,
+                            **kwargs: Any) -> GetAccountHoldingResp:
+        return self.transport.call("spot", False, "GET",
+                                   "/api/v1/earn/hold-assets", req,
+                                   GetAccountHoldingResp(), False, **kwargs)

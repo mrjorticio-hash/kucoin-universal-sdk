@@ -7,7 +7,7 @@ import { Response } from '@internal/interfaces/serializable';
 
 export class GetAllSymbolsResp implements Response<RestResponse> {
     /**
-     * the list of all contracts
+     * List of all contracts
      */
     @Type(() => GetAllSymbolsData)
     data: Array<GetAllSymbolsData>;

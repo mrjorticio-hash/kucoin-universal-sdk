@@ -29,15 +29,15 @@ class TransferAPI(ABC):
         summary: Get Transfer Quotas
         description: This endpoint returns the transferable balance of a specified account.
         documentation: https://www.kucoin.com/docs-new/api-3470148
-        +---------------------+------------+
-        | Extra API Info      | Value      |
-        +---------------------+------------+
-        | API-DOMAIN          | SPOT       |
-        | API-CHANNEL         | PRIVATE    |
-        | API-PERMISSION      | GENERAL    |
-        | API-RATE-LIMIT-POOL | MANAGEMENT |
-        | API-RATE-LIMIT      | 20         |
-        +---------------------+------------+
+        +-----------------------+------------+
+        | Extra API Info        | Value      |
+        +-----------------------+------------+
+        | API-DOMAIN            | SPOT       |
+        | API-CHANNEL           | PRIVATE    |
+        | API-PERMISSION        | GENERAL    |
+        | API-RATE-LIMIT-POOL   | MANAGEMENT |
+        | API-RATE-LIMIT-WEIGHT | 20         |
+        +-----------------------+------------+
         """
         pass
 
@@ -46,17 +46,17 @@ class TransferAPI(ABC):
                       **kwargs: Any) -> FlexTransferResp:
         """
         summary: Flex Transfer
-        description: This interface can be used for transfers between master and sub accounts and inner transfers
+        description: This interface can be used for transfers between master- and sub-accounts and transfers
         documentation: https://www.kucoin.com/docs-new/api-3470147
-        +---------------------+---------------+
-        | Extra API Info      | Value         |
-        +---------------------+---------------+
-        | API-DOMAIN          | SPOT          |
-        | API-CHANNEL         | PRIVATE       |
-        | API-PERMISSION      | FLEXTRANSFERS |
-        | API-RATE-LIMIT-POOL | MANAGEMENT    |
-        | API-RATE-LIMIT      | 4             |
-        +---------------------+---------------+
+        +-----------------------+---------------+
+        | Extra API Info        | Value         |
+        +-----------------------+---------------+
+        | API-DOMAIN            | SPOT          |
+        | API-CHANNEL           | PRIVATE       |
+        | API-PERMISSION        | FLEXTRANSFERS |
+        | API-RATE-LIMIT-POOL   | MANAGEMENT    |
+        | API-RATE-LIMIT-WEIGHT | 4             |
+        +-----------------------+---------------+
         """
         pass
 
@@ -65,18 +65,18 @@ class TransferAPI(ABC):
     def sub_account_transfer(self, req: SubAccountTransferReq,
                              **kwargs: Any) -> SubAccountTransferResp:
         """
-        summary: SubAccount Transfer
+        summary: Sub-account Transfer
         description: Funds in the main account, trading account and margin account of a Master Account can be transferred to the main account, trading account, futures account and margin account of its Sub-Account. The futures account of both the Master Account and Sub-Account can only accept funds transferred in from the main account, trading account and margin account and cannot transfer out to these accounts.
         documentation: https://www.kucoin.com/docs-new/api-3470301
-        +---------------------+------------+
-        | Extra API Info      | Value      |
-        +---------------------+------------+
-        | API-DOMAIN          | SPOT       |
-        | API-CHANNEL         | PRIVATE    |
-        | API-PERMISSION      | SPOT       |
-        | API-RATE-LIMIT-POOL | MANAGEMENT |
-        | API-RATE-LIMIT      | 30         |
-        +---------------------+------------+
+        +-----------------------+------------+
+        | Extra API Info        | Value      |
+        +-----------------------+------------+
+        | API-DOMAIN            | SPOT       |
+        | API-CHANNEL           | PRIVATE    |
+        | API-PERMISSION        | SPOT       |
+        | API-RATE-LIMIT-POOL   | MANAGEMENT |
+        | API-RATE-LIMIT-WEIGHT | 30         |
+        +-----------------------+------------+
         """
         pass
 
@@ -85,18 +85,39 @@ class TransferAPI(ABC):
     def inner_transfer(self, req: InnerTransferReq,
                        **kwargs: Any) -> InnerTransferResp:
         """
-        summary: Inner Transfer
-        description: This API endpoint can be used to transfer funds between accounts internally. Users can transfer funds between their account free of charge. 
+        summary: Internal Transfer
+        description: This API endpoint can be used to transfer funds between accounts internally. Users can transfer funds between their accounts free of charge. 
         documentation: https://www.kucoin.com/docs-new/api-3470302
-        +---------------------+------------+
-        | Extra API Info      | Value      |
-        +---------------------+------------+
-        | API-DOMAIN          | SPOT       |
-        | API-CHANNEL         | PRIVATE    |
-        | API-PERMISSION      | SPOT       |
-        | API-RATE-LIMIT-POOL | MANAGEMENT |
-        | API-RATE-LIMIT      | 10         |
-        +---------------------+------------+
+        +-----------------------+------------+
+        | Extra API Info        | Value      |
+        +-----------------------+------------+
+        | API-DOMAIN            | SPOT       |
+        | API-CHANNEL           | PRIVATE    |
+        | API-PERMISSION        | SPOT       |
+        | API-RATE-LIMIT-POOL   | MANAGEMENT |
+        | API-RATE-LIMIT-WEIGHT | 10         |
+        +-----------------------+------------+
+        """
+        pass
+
+    @abstractmethod
+    @deprecated('')
+    def get_futures_account_transfer_out_ledger(
+            self, req: GetFuturesAccountTransferOutLedgerReq,
+            **kwargs: Any) -> GetFuturesAccountTransferOutLedgerResp:
+        """
+        summary: Get Futures Account Transfer Out Ledger
+        description: Futures account transfer out ledgers can be obtained at this endpoint.
+        documentation: https://www.kucoin.com/docs-new/api-3470307
+        +-----------------------+------------+
+        | Extra API Info        | Value      |
+        +-----------------------+------------+
+        | API-DOMAIN            | FUTURES    |
+        | API-CHANNEL           | PRIVATE    |
+        | API-PERMISSION        | GENERAL    |
+        | API-RATE-LIMIT-POOL   | MANAGEMENT |
+        | API-RATE-LIMIT-WEIGHT | 20         |
+        +-----------------------+------------+
         """
         pass
 
@@ -109,15 +130,15 @@ class TransferAPI(ABC):
         summary: Futures Account Transfer Out
         description: The amount to be transferred will be deducted from the KuCoin Futures Account. Please ensure that you have sufficient funds in your KuCoin Futures Account, or the transfer will fail.
         documentation: https://www.kucoin.com/docs-new/api-3470303
-        +---------------------+------------+
-        | Extra API Info      | Value      |
-        +---------------------+------------+
-        | API-DOMAIN          | FUTURES    |
-        | API-CHANNEL         | PRIVATE    |
-        | API-PERMISSION      | FUTURES    |
-        | API-RATE-LIMIT-POOL | MANAGEMENT |
-        | API-RATE-LIMIT      | 20         |
-        +---------------------+------------+
+        +-----------------------+------------+
+        | Extra API Info        | Value      |
+        +-----------------------+------------+
+        | API-DOMAIN            | FUTURES    |
+        | API-CHANNEL           | PRIVATE    |
+        | API-PERMISSION        | FUTURES    |
+        | API-RATE-LIMIT-POOL   | MANAGEMENT |
+        | API-RATE-LIMIT-WEIGHT | 20         |
+        +-----------------------+------------+
         """
         pass
 
@@ -128,38 +149,17 @@ class TransferAPI(ABC):
             **kwargs: Any) -> FuturesAccountTransferInResp:
         """
         summary: Futures Account Transfer In
-        description: The amount to be transferred will be deducted from the payAccount. Please ensure that you have sufficient funds in your payAccount Account, or the transfer will fail.
+        description: The amount to be transferred will be deducted from the payAccount. Please ensure that you have sufficient funds in your payAccount account, or the transfer will fail.
         documentation: https://www.kucoin.com/docs-new/api-3470304
-        +---------------------+------------+
-        | Extra API Info      | Value      |
-        +---------------------+------------+
-        | API-DOMAIN          | FUTURES    |
-        | API-CHANNEL         | PRIVATE    |
-        | API-PERMISSION      | FUTURES    |
-        | API-RATE-LIMIT-POOL | MANAGEMENT |
-        | API-RATE-LIMIT      | 20         |
-        +---------------------+------------+
-        """
-        pass
-
-    @abstractmethod
-    @deprecated('')
-    def get_futures_account_transfer_out_ledger(
-            self, req: GetFuturesAccountTransferOutLedgerReq,
-            **kwargs: Any) -> GetFuturesAccountTransferOutLedgerResp:
-        """
-        summary: Get Futures Account Transfer Out Ledger
-        description: This endpoint can get futures account transfer out ledger
-        documentation: https://www.kucoin.com/docs-new/api-3470307
-        +---------------------+------------+
-        | Extra API Info      | Value      |
-        +---------------------+------------+
-        | API-DOMAIN          | FUTURES    |
-        | API-CHANNEL         | PRIVATE    |
-        | API-PERMISSION      | GENERAL    |
-        | API-RATE-LIMIT-POOL | MANAGEMENT |
-        | API-RATE-LIMIT      | 20         |
-        +---------------------+------------+
+        +-----------------------+------------+
+        | Extra API Info        | Value      |
+        +-----------------------+------------+
+        | API-DOMAIN            | FUTURES    |
+        | API-CHANNEL           | PRIVATE    |
+        | API-PERMISSION        | FUTURES    |
+        | API-RATE-LIMIT-POOL   | MANAGEMENT |
+        | API-RATE-LIMIT-WEIGHT | 20         |
+        +-----------------------+------------+
         """
         pass
 
@@ -193,6 +193,14 @@ class TransferAPIImpl(TransferAPI):
                                    "/api/v2/accounts/inner-transfer", req,
                                    InnerTransferResp(), False, **kwargs)
 
+    def get_futures_account_transfer_out_ledger(
+            self, req: GetFuturesAccountTransferOutLedgerReq,
+            **kwargs: Any) -> GetFuturesAccountTransferOutLedgerResp:
+        return self.transport.call("futures", False, "GET",
+                                   "/api/v1/transfer-list", req,
+                                   GetFuturesAccountTransferOutLedgerResp(),
+                                   False, **kwargs)
+
     def futures_account_transfer_out(
             self, req: FuturesAccountTransferOutReq,
             **kwargs: Any) -> FuturesAccountTransferOutResp:
@@ -208,11 +216,3 @@ class TransferAPIImpl(TransferAPI):
                                    "/api/v1/transfer-in", req,
                                    FuturesAccountTransferInResp(), False,
                                    **kwargs)
-
-    def get_futures_account_transfer_out_ledger(
-            self, req: GetFuturesAccountTransferOutLedgerReq,
-            **kwargs: Any) -> GetFuturesAccountTransferOutLedgerResp:
-        return self.transport.call("futures", False, "GET",
-                                   "/api/v1/transfer-list", req,
-                                   GetFuturesAccountTransferOutLedgerResp(),
-                                   False, **kwargs)

@@ -17,13 +17,13 @@ class GetServerTimeResp(BaseModel, Response):
     GetServerTimeResp
 
     Attributes:
-        data (int): ServerTime(millisecond)
+        data (int): ServerTime (milliseconds)
     """
 
     common_response: Optional[RestResponse] = Field(
         default=None, description="Common response")
     data: Optional[int] = Field(default=None,
-                                description="ServerTime(millisecond)")
+                                description="ServerTime (milliseconds)")
 
     __properties: ClassVar[List[str]] = ["data"]
 

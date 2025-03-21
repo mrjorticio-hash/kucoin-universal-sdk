@@ -16,9 +16,9 @@ class FuturesAccountTransferInReq(BaseModel):
     FuturesAccountTransferInReq
 
     Attributes:
-        currency (str): Currency, including XBT,USDT...
-        amount (float): Amount to be transfered in
-        pay_account_type (PayAccountTypeEnum): Payment account type, including MAIN,TRADE
+        currency (str): Currency, including XBT, USDT...
+        amount (float): Amount to be transferred in
+        pay_account_type (PayAccountTypeEnum): Payment account type, including MAIN, TRADE
     """
 
     class PayAccountTypeEnum(Enum):
@@ -31,12 +31,12 @@ class FuturesAccountTransferInReq(BaseModel):
         TRADE = 'TRADE'
 
     currency: Optional[str] = Field(
-        default=None, description="Currency, including XBT,USDT...")
+        default=None, description="Currency, including XBT, USDT...")
     amount: Optional[float] = Field(default=None,
-                                    description="Amount to be transfered in")
+                                    description="Amount to be transferred in")
     pay_account_type: Optional[PayAccountTypeEnum] = Field(
         default=None,
-        description="Payment account type, including MAIN,TRADE",
+        description="Payment account type, including MAIN, TRADE",
         alias="payAccountType")
 
     __properties: ClassVar[List[str]] = [
@@ -92,14 +92,14 @@ class FuturesAccountTransferInReqBuilder:
 
     def set_currency(self, value: str) -> FuturesAccountTransferInReqBuilder:
         """
-        Currency, including XBT,USDT...
+        Currency, including XBT, USDT...
         """
         self.obj['currency'] = value
         return self
 
     def set_amount(self, value: float) -> FuturesAccountTransferInReqBuilder:
         """
-        Amount to be transfered in
+        Amount to be transferred in
         """
         self.obj['amount'] = value
         return self
@@ -108,7 +108,7 @@ class FuturesAccountTransferInReqBuilder:
         self, value: FuturesAccountTransferInReq.PayAccountTypeEnum
     ) -> FuturesAccountTransferInReqBuilder:
         """
-        Payment account type, including MAIN,TRADE
+        Payment account type, including MAIN, TRADE
         """
         self.obj['payAccountType'] = value
         return self

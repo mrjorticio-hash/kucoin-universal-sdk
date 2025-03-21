@@ -9,7 +9,6 @@ import json
 from enum import Enum
 from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
-from typing_extensions import Annotated
 
 
 class GetStopOrderListReq(BaseModel):
@@ -61,7 +60,7 @@ class GetStopOrderListReq(BaseModel):
         default=None,
         description="Current request page, The default currentPage is 1",
         alias="currentPage")
-    page_size: Optional[Annotated[int, Field(le=1000, strict=True)]] = Field(
+    page_size: Optional[int] = Field(
         default=50,
         description=
         "pageSize, The default pageSize is 50, The maximum cannot exceed 1000",

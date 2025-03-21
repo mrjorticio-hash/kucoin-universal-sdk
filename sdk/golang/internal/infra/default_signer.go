@@ -38,7 +38,7 @@ func (ks *KcSigner) Headers(plain string) map[string]string {
 		"KC-API-PASSPHRASE":  ks.apiPassPhrase,
 		"KC-API-TIMESTAMP":   t,
 		"KC-API-SIGN":        s,
-		"KC-API-KEY-VERSION": "2",
+		"KC-API-KEY-VERSION": "3",
 	}
 	return ksHeaders
 }
@@ -55,7 +55,7 @@ func (ks *KcSigner) BrokerHeaders(plain string) map[string]string {
 		"KC-API-PASSPHRASE":     ks.apiPassPhrase,
 		"KC-API-TIMESTAMP":      t,
 		"KC-API-SIGN":           s,
-		"KC-API-KEY-VERSION":    "2",
+		"KC-API-KEY-VERSION":    "3",
 		"KC-API-PARTNER":        ks.brokerPartner,
 		"KC-BROKER-NAME":        ks.brokerName,
 		"KC-API-PARTNER-VERIFY": "true",

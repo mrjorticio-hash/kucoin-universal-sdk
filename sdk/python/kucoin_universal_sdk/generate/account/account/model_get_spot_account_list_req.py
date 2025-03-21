@@ -17,7 +17,7 @@ class GetSpotAccountListReq(BaseModel):
 
     Attributes:
         currency (str): currency
-        type (TypeEnum): Account type main、trade
+        type (TypeEnum): Account type
     """
 
     class TypeEnum(Enum):
@@ -25,13 +25,14 @@ class GetSpotAccountListReq(BaseModel):
         Attributes:
             MAIN: Funding account
             TRADE: Spot account
+            OPTION: Option account
         """
         MAIN = 'main'
         TRADE = 'trade'
+        OPTION = 'option'
 
     currency: Optional[str] = Field(default=None, description="currency")
-    type: Optional[TypeEnum] = Field(default=None,
-                                     description="Account type main、trade")
+    type: Optional[TypeEnum] = Field(default=None, description="Account type")
 
     __properties: ClassVar[List[str]] = ["currency", "type"]
 
@@ -91,7 +92,7 @@ class GetSpotAccountListReqBuilder:
             self, value: GetSpotAccountListReq.TypeEnum
     ) -> GetSpotAccountListReqBuilder:
         """
-        Account type main、trade
+        Account type
         """
         self.obj['type'] = value
         return self

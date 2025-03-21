@@ -78,6 +78,8 @@ describe('Auto Test', ()=> {
         expect(result.mmrLimit).toEqual(expect.anything());
         expect(result.mmrLevConstant).toEqual(expect.anything());
         expect(result.supportCross).toEqual(expect.anything());
+        expect(result.buyLimit).toEqual(expect.anything());
+        expect(result.sellLimit).toEqual(expect.anything());
         console.log(resp);
     });
     })
@@ -161,7 +163,7 @@ describe('Auto Test', ()=> {
     * /api/v1/level2/depth{size}
     */
     let builder = GetPartOrderBookReq.builder();
-    builder.setSymbol(?).setSize(?);
+    builder.setSize(?).setSymbol(?);
     let req = builder.build();
     let resp = api.getPartOrderBook(req);
     return resp.then(result => {
@@ -280,7 +282,7 @@ describe('Auto Test', ()=> {
     test('get24hrStats request test', ()=> {
     /**
     * get24hrStats
-    * Get 24hr Stats
+    * Get 24hr stats
     * /api/v1/trade-statistics
     */
     let resp = api.get24hrStats();

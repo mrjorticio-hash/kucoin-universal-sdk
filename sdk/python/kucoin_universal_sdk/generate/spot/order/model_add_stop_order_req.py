@@ -29,7 +29,7 @@ class AddStopOrderReq(BaseModel):
         hidden (bool): [Hidden order](https://www.kucoin.com/docs-new/doc-338146) or not (not shown in order book)
         iceberg (bool): Whether or not only visible portions of orders are shown in [Iceberg orders](https://www.kucoin.com/docs-new/doc-338146)
         visible_size (str): When **type** is limit, this is Maximum visible quantity in iceberg orders.
-        cancel_after (int): Cancel after n seconds，the order timing strategy is GTT when **type** is limit.
+        cancel_after (int): Cancel after n seconds, the order timing strategy is GTT, -1 means it will not be cancelled automatically, the default value is -1 
         funds (str): When **type** is market, select one out of two: size or funds
         stop_price (str): The trigger price.
         trade_type (str): The type of trading : TRADE（Spot）, MARGIN_TRADE (Cross Margin), MARGIN_ISOLATED_TRADE (Isolated Margin). Default is TRADE
@@ -137,9 +137,9 @@ class AddStopOrderReq(BaseModel):
         "When **type** is limit, this is Maximum visible quantity in iceberg orders.",
         alias="visibleSize")
     cancel_after: Optional[int] = Field(
-        default=None,
+        default=-1,
         description=
-        "Cancel after n seconds，the order timing strategy is GTT when **type** is limit.",
+        "Cancel after n seconds, the order timing strategy is GTT, -1 means it will not be cancelled automatically, the default value is -1 ",
         alias="cancelAfter")
     funds: Optional[str] = Field(
         default=None,
@@ -221,7 +221,8 @@ class AddStopOrderReq(BaseModel):
             "visibleSize":
             obj.get("visibleSize"),
             "cancelAfter":
-            obj.get("cancelAfter"),
+            obj.get("cancelAfter")
+            if obj.get("cancelAfter") is not None else -1,
             "funds":
             obj.get("funds"),
             "stopPrice":
@@ -335,7 +336,7 @@ class AddStopOrderReqBuilder:
 
     def set_cancel_after(self, value: int) -> AddStopOrderReqBuilder:
         """
-        Cancel after n seconds，the order timing strategy is GTT when **type** is limit.
+        Cancel after n seconds, the order timing strategy is GTT, -1 means it will not be cancelled automatically, the default value is -1 
         """
         self.obj['cancelAfter'] = value
         return self

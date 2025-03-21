@@ -4,11 +4,11 @@ package fundingfees
 
 // GetPublicFundingHistoryData struct for GetPublicFundingHistoryData
 type GetPublicFundingHistoryData struct {
-	// Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)
+	// Symbol of the contract. Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)
 	Symbol string `json:"symbol,omitempty"`
 	// Funding rate
 	FundingRate float32 `json:"fundingRate,omitempty"`
-	// Time point (milisecond)
+	// Time point (milliseconds)
 	Timepoint int64 `json:"timepoint,omitempty"`
 }
 

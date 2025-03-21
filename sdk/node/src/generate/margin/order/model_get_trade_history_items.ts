@@ -5,7 +5,7 @@ import { Serializable } from '@internal/interfaces/serializable';
 
 export class GetTradeHistoryItems implements Serializable {
     /**
-     * Id of transaction detail
+     * ID of transaction detail
      */
     id: number;
 
@@ -15,7 +15,7 @@ export class GetTradeHistoryItems implements Serializable {
     symbol: string;
 
     /**
-     * Trade Id, symbol latitude increment
+     * Trade ID, symbol latitude increment
      */
     tradeId: number;
 
@@ -25,7 +25,7 @@ export class GetTradeHistoryItems implements Serializable {
     orderId: string;
 
     /**
-     * Counterparty order Id
+     * Counterparty order ID
      */
     counterOrderId: string;
 
@@ -45,12 +45,12 @@ export class GetTradeHistoryItems implements Serializable {
     forceTaker: boolean;
 
     /**
-     * Order price
+     * Order Price
      */
     price: string;
 
     /**
-     * Order size
+     * Order Size
      */
     size: string;
 
@@ -70,7 +70,7 @@ export class GetTradeHistoryItems implements Serializable {
     feeRate: string;
 
     /**
-     * currency used to calculate trading fee
+     * Currency used to calculate trading fee
      */
     feeCurrency: string;
 
@@ -85,17 +85,17 @@ export class GetTradeHistoryItems implements Serializable {
     tradeType: string;
 
     /**
-     * Users in some regions need query this field
+     * Users in some regions have this field
      */
     tax: string;
 
     /**
-     * Tax Rate, Users in some regions need query this field
+     * Tax Rate: Users in some regions must query this field
      */
     taxRate: string;
 
     /**
-     * Specify if the order is an \'limit\' order or \'market\' order.
+     * Specify if the order is a \'limit\' order or \'market\' order.
      */
     type: GetTradeHistoryItems.TypeEnum;
 

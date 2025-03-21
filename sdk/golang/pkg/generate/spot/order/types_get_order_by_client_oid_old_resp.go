@@ -10,36 +10,39 @@ import (
 type GetOrderByClientOidOldResp struct {
 	// common response
 	CommonResponse *types.RestResponse
-	Id             string `json:"id,omitempty"`
-	Symbol         string `json:"symbol,omitempty"`
-	OpType         string `json:"opType,omitempty"`
-	Type           string `json:"type,omitempty"`
-	Side           string `json:"side,omitempty"`
-	Price          string `json:"price,omitempty"`
-	Size           string `json:"size,omitempty"`
-	Funds          string `json:"funds,omitempty"`
-	DealFunds      string `json:"dealFunds,omitempty"`
-	DealSize       string `json:"dealSize,omitempty"`
-	Fee            string `json:"fee,omitempty"`
-	FeeCurrency    string `json:"feeCurrency,omitempty"`
-	Stp            string `json:"stp,omitempty"`
-	Stop           string `json:"stop,omitempty"`
-	StopTriggered  bool   `json:"stopTriggered,omitempty"`
-	StopPrice      string `json:"stopPrice,omitempty"`
-	TimeInForce    string `json:"timeInForce,omitempty"`
-	PostOnly       bool   `json:"postOnly,omitempty"`
-	Hidden         bool   `json:"hidden,omitempty"`
-	Iceberg        bool   `json:"iceberg,omitempty"`
-	VisibleSize    string `json:"visibleSize,omitempty"`
-	CancelAfter    int32  `json:"cancelAfter,omitempty"`
-	Channel        string `json:"channel,omitempty"`
-	ClientOid      string `json:"clientOid,omitempty"`
-	Remark         string `json:"remark,omitempty"`
-	Tags           string `json:"tags,omitempty"`
-	IsActive       bool   `json:"isActive,omitempty"`
-	CancelExist    bool   `json:"cancelExist,omitempty"`
-	CreatedAt      int64  `json:"createdAt,omitempty"`
-	TradeType      string `json:"tradeType,omitempty"`
+	Id             string  `json:"id,omitempty"`
+	Symbol         string  `json:"symbol,omitempty"`
+	OpType         string  `json:"opType,omitempty"`
+	Type           string  `json:"type,omitempty"`
+	Side           string  `json:"side,omitempty"`
+	Price          string  `json:"price,omitempty"`
+	Size           string  `json:"size,omitempty"`
+	Funds          string  `json:"funds,omitempty"`
+	DealFunds      string  `json:"dealFunds,omitempty"`
+	DealSize       string  `json:"dealSize,omitempty"`
+	Fee            string  `json:"fee,omitempty"`
+	FeeCurrency    string  `json:"feeCurrency,omitempty"`
+	Stp            string  `json:"stp,omitempty"`
+	Stop           string  `json:"stop,omitempty"`
+	StopTriggered  bool    `json:"stopTriggered,omitempty"`
+	StopPrice      string  `json:"stopPrice,omitempty"`
+	TimeInForce    string  `json:"timeInForce,omitempty"`
+	PostOnly       bool    `json:"postOnly,omitempty"`
+	Hidden         bool    `json:"hidden,omitempty"`
+	Iceberg        bool    `json:"iceberg,omitempty"`
+	VisibleSize    string  `json:"visibleSize,omitempty"`
+	CancelAfter    int32   `json:"cancelAfter,omitempty"`
+	Channel        string  `json:"channel,omitempty"`
+	ClientOid      string  `json:"clientOid,omitempty"`
+	Remark         string  `json:"remark,omitempty"`
+	Tags           string  `json:"tags,omitempty"`
+	IsActive       bool    `json:"isActive,omitempty"`
+	CancelExist    bool    `json:"cancelExist,omitempty"`
+	CreatedAt      int64   `json:"createdAt,omitempty"`
+	TradeType      string  `json:"tradeType,omitempty"`
+	Tax            *string `json:"tax,omitempty"`
+	TaxRate        *string `json:"taxRate,omitempty"`
+	TaxCurrency    *string `json:"taxCurrency,omitempty"`
 }
 
 // NewGetOrderByClientOidOldResp instantiates a new GetOrderByClientOidOldResp object
@@ -118,6 +121,9 @@ func (o *GetOrderByClientOidOldResp) ToMap() map[string]interface{} {
 	toSerialize["cancelExist"] = o.CancelExist
 	toSerialize["createdAt"] = o.CreatedAt
 	toSerialize["tradeType"] = o.TradeType
+	toSerialize["tax"] = o.Tax
+	toSerialize["taxRate"] = o.TaxRate
+	toSerialize["taxCurrency"] = o.TaxCurrency
 	return toSerialize
 }
 

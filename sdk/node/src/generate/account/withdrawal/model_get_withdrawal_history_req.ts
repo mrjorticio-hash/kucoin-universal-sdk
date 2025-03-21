@@ -10,17 +10,17 @@ export class GetWithdrawalHistoryReq implements Serializable {
     currency?: string;
 
     /**
-     * Status. Available value: PROCESSING, WALLET_PROCESSING, SUCCESS, and FAILURE
+     * Status. Available value: REVIEW, PROCESSING, WALLET_PROCESSING, SUCCESS and FAILURE
      */
     status?: GetWithdrawalHistoryReq.StatusEnum;
 
     /**
-     * Start time (milisecond)
+     * Start time (milliseconds)
      */
     startAt?: number;
 
     /**
-     * End time (milisecond)
+     * End time (milliseconds)
      */
     endAt?: number;
 
@@ -55,15 +55,15 @@ export class GetWithdrawalHistoryReq implements Serializable {
          */
         currency?: string;
         /**
-         * Status. Available value: PROCESSING, WALLET_PROCESSING, SUCCESS, and FAILURE
+         * Status. Available value: REVIEW, PROCESSING, WALLET_PROCESSING, SUCCESS and FAILURE
          */
         status?: GetWithdrawalHistoryReq.StatusEnum;
         /**
-         * Start time (milisecond)
+         * Start time (milliseconds)
          */
         startAt?: number;
         /**
-         * End time (milisecond)
+         * End time (milliseconds)
          */
         endAt?: number;
         /**
@@ -122,6 +122,10 @@ export namespace GetWithdrawalHistoryReq {
         /**
          *
          */
+        REVIEW = <any>'REVIEW',
+        /**
+         *
+         */
         WALLET_PROCESSING = <any>'WALLET_PROCESSING',
         /**
          *
@@ -147,7 +151,7 @@ export class GetWithdrawalHistoryReqBuilder {
     }
 
     /**
-     * Status. Available value: PROCESSING, WALLET_PROCESSING, SUCCESS, and FAILURE
+     * Status. Available value: REVIEW, PROCESSING, WALLET_PROCESSING, SUCCESS and FAILURE
      */
     setStatus(value: GetWithdrawalHistoryReq.StatusEnum): GetWithdrawalHistoryReqBuilder {
         this.obj.status = value;
@@ -155,7 +159,7 @@ export class GetWithdrawalHistoryReqBuilder {
     }
 
     /**
-     * Start time (milisecond)
+     * Start time (milliseconds)
      */
     setStartAt(value: number): GetWithdrawalHistoryReqBuilder {
         this.obj.startAt = value;
@@ -163,7 +167,7 @@ export class GetWithdrawalHistoryReqBuilder {
     }
 
     /**
-     * End time (milisecond)
+     * End time (milliseconds)
      */
     setEndAt(value: number): GetWithdrawalHistoryReqBuilder {
         this.obj.endAt = value;

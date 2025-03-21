@@ -7,7 +7,7 @@ import { Response } from '@internal/interfaces/serializable';
 
 export class GetClosedOrdersResp implements Response<RestResponse> {
     /**
-     * The id of the last set of data from the previous batch of data. By default, the latest information is given. lastId is used to filter data and paginate. If lastId is not entered, the default is a maximum of 100 returned data items. The return results include lastId，which can be used as a query parameter to look up new data from the next page.
+     * The ID of the last set of data from the previous data batch. By default, the latest information is given. lastId is used to filter data and paginate. If lastId is not entered, the default is a maximum of 100 returned data items. The return results include lastId, which can be used as a query parameter to look up new data from the next page.
      */
     lastId: number;
 

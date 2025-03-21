@@ -99,7 +99,7 @@ func TestCreditGetPurchaseOrdersReq(t *testing.T) {
     // /api/v3/purchase/orders
 
     builder := credit.NewGetPurchaseOrdersReqBuilder()
-    builder.SetCurrency(?).SetStatus(?).SetPurchaseOrderNo(?).SetCurrentPage(?).SetPageSize(?)
+    builder.SetStatus(?).SetCurrency(?).SetPurchaseOrderNo(?).SetCurrentPage(?).SetPageSize(?)
     req := builder.Build()
 
     resp, err := creditApi.GetPurchaseOrders(req, context.TODO())
@@ -145,7 +145,7 @@ func TestCreditGetRedeemOrdersReq(t *testing.T) {
     // /api/v3/redeem/orders
 
     builder := credit.NewGetRedeemOrdersReqBuilder()
-    builder.SetCurrency(?).SetStatus(?).SetRedeemOrderNo(?).SetCurrentPage(?).SetPageSize(?)
+    builder.SetStatus(?).SetCurrency(?).SetRedeemOrderNo(?).SetCurrentPage(?).SetPageSize(?)
     req := builder.Build()
 
     resp, err := creditApi.GetRedeemOrders(req, context.TODO())

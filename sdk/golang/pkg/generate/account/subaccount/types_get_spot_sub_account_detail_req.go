@@ -6,14 +6,20 @@ package subaccount
 type GetSpotSubAccountDetailReq struct {
 	// the userID of a sub-account.
 	SubUserId *string `json:"subUserId,omitempty" path:"subUserId" url:"-"`
-	// false: do not display the currency which asset is 0, true: display all currency
+	// False: Do not display currencies with 0 assets; True: display all currencies
 	IncludeBaseAmount *bool `json:"includeBaseAmount,omitempty" url:"includeBaseAmount,omitempty"`
+	// Specify the currency used to convert assets
+	BaseCurrency *string `json:"baseCurrency,omitempty" url:"baseCurrency,omitempty"`
+	// The currency balance specified must be greater than or equal to the amount
+	BaseAmount *string `json:"baseAmount,omitempty" url:"baseAmount,omitempty"`
 }
 
 // NewGetSpotSubAccountDetailReq instantiates a new GetSpotSubAccountDetailReq object
 // This constructor will assign default values to properties that have it defined
 func NewGetSpotSubAccountDetailReq() *GetSpotSubAccountDetailReq {
 	this := GetSpotSubAccountDetailReq{}
+	var includeBaseAmount bool = false
+	this.IncludeBaseAmount = &includeBaseAmount
 	return &this
 }
 
@@ -21,6 +27,8 @@ func NewGetSpotSubAccountDetailReq() *GetSpotSubAccountDetailReq {
 // This constructor will only assign default values to properties that have it defined,
 func NewGetSpotSubAccountDetailReqWithDefaults() *GetSpotSubAccountDetailReq {
 	this := GetSpotSubAccountDetailReq{}
+	var includeBaseAmount bool = false
+	this.IncludeBaseAmount = &includeBaseAmount
 	return &this
 }
 
@@ -28,6 +36,8 @@ func (o *GetSpotSubAccountDetailReq) ToMap() map[string]interface{} {
 	toSerialize := map[string]interface{}{}
 	toSerialize["subUserId"] = o.SubUserId
 	toSerialize["includeBaseAmount"] = o.IncludeBaseAmount
+	toSerialize["baseCurrency"] = o.BaseCurrency
+	toSerialize["baseAmount"] = o.BaseAmount
 	return toSerialize
 }
 
@@ -45,9 +55,21 @@ func (builder *GetSpotSubAccountDetailReqBuilder) SetSubUserId(value string) *Ge
 	return builder
 }
 
-// false: do not display the currency which asset is 0, true: display all currency
+// False: Do not display currencies with 0 assets; True: display all currencies
 func (builder *GetSpotSubAccountDetailReqBuilder) SetIncludeBaseAmount(value bool) *GetSpotSubAccountDetailReqBuilder {
 	builder.obj.IncludeBaseAmount = &value
+	return builder
+}
+
+// Specify the currency used to convert assets
+func (builder *GetSpotSubAccountDetailReqBuilder) SetBaseCurrency(value string) *GetSpotSubAccountDetailReqBuilder {
+	builder.obj.BaseCurrency = &value
+	return builder
+}
+
+// The currency balance specified must be greater than or equal to the amount
+func (builder *GetSpotSubAccountDetailReqBuilder) SetBaseAmount(value string) *GetSpotSubAccountDetailReqBuilder {
+	builder.obj.BaseAmount = &value
 	return builder
 }
 

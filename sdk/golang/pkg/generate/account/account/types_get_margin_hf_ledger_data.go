@@ -9,15 +9,15 @@ type GetMarginHFLedgerData struct {
 	Currency *string `json:"currency,omitempty"`
 	// Change in funds balance
 	Amount *string `json:"amount,omitempty"`
-	// Deposit or withdrawal fee
+	// Transaction, Deposit or withdrawal fee
 	Fee *string `json:"fee,omitempty"`
 	// Total balance of funds after change
 	Balance *string `json:"balance,omitempty"`
 	// Master account type TRADE_HF
 	AccountType *string `json:"accountType,omitempty"`
-	// Trnasaction type，such as TRANSFER, TRADE_EXCHANGE, etc.
+	// Trnasaction type, such as TRANSFER, TRADE_EXCHANGE, etc.
 	BizType *string `json:"bizType,omitempty"`
-	// Direction of transfer( out or in)
+	// Direction of transfer (out or in)
 	Direction *string `json:"direction,omitempty"`
 	// Ledger creation time
 	CreatedAt *int64 `json:"createdAt,omitempty"`

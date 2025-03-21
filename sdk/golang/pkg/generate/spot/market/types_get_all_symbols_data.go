@@ -4,19 +4,19 @@ package market
 
 // GetAllSymbolsData struct for GetAllSymbolsData
 type GetAllSymbolsData struct {
-	// unique code of a symbol, it would not change after renaming
+	// Unique code of a symbol; it will not change after renaming
 	Symbol string `json:"symbol,omitempty"`
-	// Name of trading pairs, it would change after renaming
+	// Name of trading pairs, it will change after renaming
 	Name string `json:"name,omitempty"`
-	// Base currency,e.g. BTC.
+	// Base currency, e.g. BTC.
 	BaseCurrency string `json:"baseCurrency,omitempty"`
-	// Quote currency,e.g. USDT.
+	// Quote currency, e.g. USDT.
 	QuoteCurrency string `json:"quoteCurrency,omitempty"`
 	// The currency of charged fees.
 	FeeCurrency string `json:"feeCurrency,omitempty"`
 	// The trading market.
 	Market string `json:"market,omitempty"`
-	// The minimum order quantity requried to place an order.
+	// The minimum order quantity required to place an order.
 	BaseMinSize string `json:"baseMinSize,omitempty"`
 	// The minimum order funds required to place a market order.
 	QuoteMinSize string `json:"quoteMinSize,omitempty"`
@@ -28,11 +28,11 @@ type GetAllSymbolsData struct {
 	BaseIncrement string `json:"baseIncrement,omitempty"`
 	// Quote increment: The funds for a market order must be a positive integer multiple of this increment. The funds refer to the quote currency amount. For example, for the ETH-USDT trading pair, if the quoteIncrement is 0.000001, the amount of USDT for the order can be 3000.000001 but not 3000.0000001.
 	QuoteIncrement string `json:"quoteIncrement,omitempty"`
-	// Price increment: The price of an order must be a positive integer multiple of this increment. For example, for the ETH-USDT trading pair, if the priceIncrement is 0.01, the order price can be 3000.01 but not 3000.001.  specifies the min order price as well as the price increment.This also applies to quote currency.
+	// Price increment: The price of an order must be a positive integer multiple of this increment. For example, for the ETH-USDT trading pair, if the priceIncrement is 0.01, the order price can be 3000.01 but not 3000.001.  Specifies the min. order price as well as the price increment.This also applies to quote currency.
 	PriceIncrement string `json:"priceIncrement,omitempty"`
-	// Threshold for price portection
+	// Threshold for price protection
 	PriceLimitRate string `json:"priceLimitRate,omitempty"`
-	// the minimum trading amounts
+	// The minimum trading amounts
 	MinFunds string `json:"minFunds,omitempty"`
 	// Available for margin or not.
 	IsMarginEnabled bool `json:"isMarginEnabled,omitempty"`
@@ -44,13 +44,27 @@ type GetAllSymbolsData struct {
 	MakerFeeCoefficient string `json:"makerFeeCoefficient,omitempty"`
 	// The taker fee coefficient. The actual fee needs to be multiplied by this coefficient to get the final fee. Most currencies have a coefficient of 1. If set to 0, it means no fee
 	TakerFeeCoefficient string `json:"takerFeeCoefficient,omitempty"`
-	// Whether it is an [Special Treatment](https://www.kucoin.com/legal/special-treatment) symbol
+	// Whether it is a [Special Treatment](https://www.kucoin.com/legal/special-treatment) symbol
 	St bool `json:"st,omitempty"`
+	// The [call auction](https://www.kucoin.com/support/40999744334105) status returns true/false
+	CallauctionIsEnabled bool `json:"callauctionIsEnabled,omitempty"`
+	// The lowest price declared in the call auction
+	CallauctionPriceFloor string `json:"callauctionPriceFloor,omitempty"`
+	// The highest bid price in the call auction
+	CallauctionPriceCeiling string `json:"callauctionPriceCeiling,omitempty"`
+	// The first phase of the call auction starts at (Allow add orders, allow cancel orders)
+	CallauctionFirstStageStartTime int64 `json:"callauctionFirstStageStartTime,omitempty"`
+	// The second phase of the call auction starts at (Allow add orders, don't allow cancel orders)
+	CallauctionSecondStageStartTime int64 `json:"callauctionSecondStageStartTime,omitempty"`
+	// The third phase of the call auction starts at (Don't allow add orders, don't allow cancel orders)
+	CallauctionThirdStageStartTime int64 `json:"callauctionThirdStageStartTime,omitempty"`
+	// Official opening time (end time of the third phase of call auction)
+	TradingStartTime int64 `json:"tradingStartTime,omitempty"`
 }
 
 // NewGetAllSymbolsData instantiates a new GetAllSymbolsData object
 // This constructor will assign default values to properties that have it defined
-func NewGetAllSymbolsData(symbol string, name string, baseCurrency string, quoteCurrency string, feeCurrency string, market string, baseMinSize string, quoteMinSize string, baseMaxSize string, quoteMaxSize string, baseIncrement string, quoteIncrement string, priceIncrement string, priceLimitRate string, minFunds string, isMarginEnabled bool, enableTrading bool, feeCategory int32, makerFeeCoefficient string, takerFeeCoefficient string, st bool) *GetAllSymbolsData {
+func NewGetAllSymbolsData(symbol string, name string, baseCurrency string, quoteCurrency string, feeCurrency string, market string, baseMinSize string, quoteMinSize string, baseMaxSize string, quoteMaxSize string, baseIncrement string, quoteIncrement string, priceIncrement string, priceLimitRate string, minFunds string, isMarginEnabled bool, enableTrading bool, feeCategory int32, makerFeeCoefficient string, takerFeeCoefficient string, st bool, callauctionIsEnabled bool, callauctionPriceFloor string, callauctionPriceCeiling string, callauctionFirstStageStartTime int64, callauctionSecondStageStartTime int64, callauctionThirdStageStartTime int64, tradingStartTime int64) *GetAllSymbolsData {
 	this := GetAllSymbolsData{}
 	this.Symbol = symbol
 	this.Name = name
@@ -73,6 +87,13 @@ func NewGetAllSymbolsData(symbol string, name string, baseCurrency string, quote
 	this.MakerFeeCoefficient = makerFeeCoefficient
 	this.TakerFeeCoefficient = takerFeeCoefficient
 	this.St = st
+	this.CallauctionIsEnabled = callauctionIsEnabled
+	this.CallauctionPriceFloor = callauctionPriceFloor
+	this.CallauctionPriceCeiling = callauctionPriceCeiling
+	this.CallauctionFirstStageStartTime = callauctionFirstStageStartTime
+	this.CallauctionSecondStageStartTime = callauctionSecondStageStartTime
+	this.CallauctionThirdStageStartTime = callauctionThirdStageStartTime
+	this.TradingStartTime = tradingStartTime
 	return &this
 }
 
@@ -106,5 +127,12 @@ func (o *GetAllSymbolsData) ToMap() map[string]interface{} {
 	toSerialize["makerFeeCoefficient"] = o.MakerFeeCoefficient
 	toSerialize["takerFeeCoefficient"] = o.TakerFeeCoefficient
 	toSerialize["st"] = o.St
+	toSerialize["callauctionIsEnabled"] = o.CallauctionIsEnabled
+	toSerialize["callauctionPriceFloor"] = o.CallauctionPriceFloor
+	toSerialize["callauctionPriceCeiling"] = o.CallauctionPriceCeiling
+	toSerialize["callauctionFirstStageStartTime"] = o.CallauctionFirstStageStartTime
+	toSerialize["callauctionSecondStageStartTime"] = o.CallauctionSecondStageStartTime
+	toSerialize["callauctionThirdStageStartTime"] = o.CallauctionThirdStageStartTime
+	toSerialize["tradingStartTime"] = o.TradingStartTime
 	return toSerialize
 }

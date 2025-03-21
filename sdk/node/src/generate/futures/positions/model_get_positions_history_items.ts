@@ -85,6 +85,36 @@ export class GetPositionsHistoryItems implements Serializable {
     marginMode: GetPositionsHistoryItems.MarginModeEnum;
 
     /**
+     *
+     */
+    realisedGrossCostNew: string;
+
+    /**
+     * Tax
+     */
+    tax: string;
+
+    /**
+     *
+     */
+    roe?: string;
+
+    /**
+     *
+     */
+    liquidAmount: string;
+
+    /**
+     *
+     */
+    liquidPrice: string;
+
+    /**
+     * Position side
+     */
+    side: string;
+
+    /**
      * Private constructor, please use the corresponding static methods to construct the object.
      */
     private constructor() {
@@ -120,6 +150,16 @@ export class GetPositionsHistoryItems implements Serializable {
         this.closePrice = null;
         // @ts-ignore
         this.marginMode = null;
+        // @ts-ignore
+        this.realisedGrossCostNew = null;
+        // @ts-ignore
+        this.tax = null;
+        // @ts-ignore
+        this.liquidAmount = null;
+        // @ts-ignore
+        this.liquidPrice = null;
+        // @ts-ignore
+        this.side = null;
     }
     /**
      * Convert the object to a JSON string.

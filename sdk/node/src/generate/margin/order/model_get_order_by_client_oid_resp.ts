@@ -21,7 +21,7 @@ export class GetOrderByClientOidResp implements Response<RestResponse> {
     opType: string;
 
     /**
-     * Specify if the order is an \'limit\' order or \'market\' order.
+     * Specify if the order is a \'limit\' order or \'market\' order.
      */
     type: GetOrderByClientOidResp.TypeEnum;
 
@@ -31,12 +31,12 @@ export class GetOrderByClientOidResp implements Response<RestResponse> {
     side: GetOrderByClientOidResp.SideEnum;
 
     /**
-     * Order price
+     * Order Price
      */
     price: string;
 
     /**
-     * Order size
+     * Order Size
      */
     size: string;
 
@@ -61,7 +61,7 @@ export class GetOrderByClientOidResp implements Response<RestResponse> {
     fee: string;
 
     /**
-     * currency used to calculate trading fee
+     * Currency used to calculate trading fee
      */
     feeCurrency: string;
 
@@ -91,17 +91,17 @@ export class GetOrderByClientOidResp implements Response<RestResponse> {
     timeInForce: GetOrderByClientOidResp.TimeInForceEnum;
 
     /**
-     * Whether its a postOnly order.
+     * Whether it’s a postOnly order.
      */
     postOnly: boolean;
 
     /**
-     * Whether its a hidden order.
+     * Whether it’s a hidden order.
      */
     hidden: boolean;
 
     /**
-     * Whether its a iceberg order.
+     * Whether it’s a iceberg order.
      */
     iceberg: boolean;
 
@@ -121,7 +121,7 @@ export class GetOrderByClientOidResp implements Response<RestResponse> {
     channel: string;
 
     /**
-     * Client Order Id，unique identifier created by the user
+     * Client Order Id, unique identifier created by the user
      */
     clientOid: string;
 
@@ -156,7 +156,7 @@ export class GetOrderByClientOidResp implements Response<RestResponse> {
     tradeType: string;
 
     /**
-     * Whether to enter the orderbook: true: enter the orderbook; false: not enter the orderbook
+     * Whether to enter the orderbook: True: enter the orderbook; False: do not enter the orderbook
      */
     inOrderBook: boolean;
 
@@ -181,12 +181,12 @@ export class GetOrderByClientOidResp implements Response<RestResponse> {
     remainFunds: string;
 
     /**
-     * Users in some regions need query this field
+     * Users in some regions have this field
      */
     tax: string;
 
     /**
-     * Order status: true-The status of the order isactive; false-The status of the order is done
+     * Order status: true-The status of the order is active; false-The status of the order is done
      */
     active: boolean;
 

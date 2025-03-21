@@ -9,7 +9,7 @@ def test_add_order_req(self):
     """
 
     builder = AddOrderReqBuilder()
-    builder.set_client_oid(?).set_side(?).set_symbol(?).set_leverage(?).set_type(?).set_remark(?).set_stop(?).set_stop_price_type(?).set_stop_price(?).set_reduce_only(?).set_close_order(?).set_force_hold(?).set_margin_mode(?).set_price(?).set_size(?).set_time_in_force(?).set_post_only(?).set_hidden(?).set_iceberg(?).set_visible_size(?)
+    builder.set_client_oid(?).set_side(?).set_symbol(?).set_leverage(?).set_type(?).set_stop(?).set_stop_price_type(?).set_stop_price(?).set_reduce_only(?).set_close_order(?).set_margin_mode(?).set_price(?).set_size(?).set_time_in_force(?).set_post_only(?).set_hidden(?).set_iceberg(?).set_visible_size(?)
     req = builder.build()
     try:
         resp = self.api.add_order(req)
@@ -28,7 +28,7 @@ def test_add_order_test_req(self):
     """
 
     builder = AddOrderTestReqBuilder()
-    builder.set_client_oid(?).set_side(?).set_symbol(?).set_leverage(?).set_type(?).set_remark(?).set_stop(?).set_stop_price_type(?).set_stop_price(?).set_reduce_only(?).set_close_order(?).set_force_hold(?).set_margin_mode(?).set_price(?).set_size(?).set_time_in_force(?).set_post_only(?).set_hidden(?).set_iceberg(?).set_visible_size(?)
+    builder.set_client_oid(?).set_side(?).set_symbol(?).set_leverage(?).set_type(?).set_stop(?).set_stop_price_type(?).set_stop_price(?).set_reduce_only(?).set_close_order(?).set_margin_mode(?).set_price(?).set_size(?).set_time_in_force(?).set_post_only(?).set_hidden(?).set_iceberg(?).set_visible_size(?)
     req = builder.build()
     try:
         resp = self.api.add_order_test(req)
@@ -47,7 +47,7 @@ def test_add_tpsl_order_req(self):
     """
 
     builder = AddTpslOrderReqBuilder()
-    builder.set_client_oid(?).set_side(?).set_symbol(?).set_leverage(?).set_type(?).set_remark(?).set_stop_price_type(?).set_reduce_only(?).set_close_order(?).set_force_hold(?).set_margin_mode(?).set_price(?).set_size(?).set_time_in_force(?).set_post_only(?).set_hidden(?).set_iceberg(?).set_visible_size(?).set_trigger_stop_up_price(?).set_trigger_stop_down_price(?)
+    builder.set_client_oid(?).set_side(?).set_symbol(?).set_leverage(?).set_type(?).set_stop_price_type(?).set_reduce_only(?).set_close_order(?).set_margin_mode(?).set_price(?).set_size(?).set_time_in_force(?).set_post_only(?).set_hidden(?).set_iceberg(?).set_visible_size(?).set_trigger_stop_up_price(?).set_trigger_stop_down_price(?)
     req = builder.build()
     try:
         resp = self.api.add_tpsl_order(req)

@@ -4,19 +4,19 @@ package order
 
 // GetOrdersListOldReq struct for GetOrdersListOldReq
 type GetOrdersListOldReq struct {
-	// symbol
+	// Symbol
 	Symbol *string `json:"symbol,omitempty" url:"symbol,omitempty"`
-	// active or done(done as default), Only list orders with a specific status .
+	// Active or done (done as default); only list orders with a specific status.
 	Status *string `json:"status,omitempty" url:"status,omitempty"`
-	// buy or sell
+	// Buy or Sell
 	Side *string `json:"side,omitempty" url:"side,omitempty"`
-	// limit, market, limit_stop or market_stop
+	// Order type
 	Type *string `json:"type,omitempty" url:"type,omitempty"`
-	// The type of trading:TRADE - Spot Trading(TRADE as default), MARGIN_TRADE - Cross Margin Trading, MARGIN_ISOLATED_TRADE - Isolated Margin Trading.
+	// The type of trading: TRADE - Spot Trading (TRADE as default), MARGIN_TRADE - Cross Margin Trading, MARGIN_ISOLATED_TRADE - Isolated Margin Trading.
 	TradeType *string `json:"tradeType,omitempty" url:"tradeType,omitempty"`
-	// Start time (milisecond)
+	// Start time (milliseconds)
 	StartAt *int64 `json:"startAt,omitempty" url:"startAt,omitempty"`
-	// End time (milisecond)
+	// End time (milliseconds)
 	EndAt *int64 `json:"endAt,omitempty" url:"endAt,omitempty"`
 	// Current request page.
 	CurrentPage *int32 `json:"currentPage,omitempty" url:"currentPage,omitempty"`
@@ -76,43 +76,43 @@ func NewGetOrdersListOldReqBuilder() *GetOrdersListOldReqBuilder {
 	return &GetOrdersListOldReqBuilder{obj: NewGetOrdersListOldReqWithDefaults()}
 }
 
-// symbol
+// Symbol
 func (builder *GetOrdersListOldReqBuilder) SetSymbol(value string) *GetOrdersListOldReqBuilder {
 	builder.obj.Symbol = &value
 	return builder
 }
 
-// active or done(done as default), Only list orders with a specific status .
+// Active or done (done as default); only list orders with a specific status.
 func (builder *GetOrdersListOldReqBuilder) SetStatus(value string) *GetOrdersListOldReqBuilder {
 	builder.obj.Status = &value
 	return builder
 }
 
-// buy or sell
+// Buy or Sell
 func (builder *GetOrdersListOldReqBuilder) SetSide(value string) *GetOrdersListOldReqBuilder {
 	builder.obj.Side = &value
 	return builder
 }
 
-// limit, market, limit_stop or market_stop
+// Order type
 func (builder *GetOrdersListOldReqBuilder) SetType(value string) *GetOrdersListOldReqBuilder {
 	builder.obj.Type = &value
 	return builder
 }
 
-// The type of trading:TRADE - Spot Trading(TRADE as default), MARGIN_TRADE - Cross Margin Trading, MARGIN_ISOLATED_TRADE - Isolated Margin Trading.
+// The type of trading: TRADE - Spot Trading (TRADE as default), MARGIN_TRADE - Cross Margin Trading, MARGIN_ISOLATED_TRADE - Isolated Margin Trading.
 func (builder *GetOrdersListOldReqBuilder) SetTradeType(value string) *GetOrdersListOldReqBuilder {
 	builder.obj.TradeType = &value
 	return builder
 }
 
-// Start time (milisecond)
+// Start time (milliseconds)
 func (builder *GetOrdersListOldReqBuilder) SetStartAt(value int64) *GetOrdersListOldReqBuilder {
 	builder.obj.StartAt = &value
 	return builder
 }
 
-// End time (milisecond)
+// End time (milliseconds)
 func (builder *GetOrdersListOldReqBuilder) SetEndAt(value int64) *GetOrdersListOldReqBuilder {
 	builder.obj.EndAt = &value
 	return builder

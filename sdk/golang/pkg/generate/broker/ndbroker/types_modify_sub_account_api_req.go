@@ -4,15 +4,15 @@ package ndbroker
 
 // ModifySubAccountApiReq struct for ModifySubAccountApiReq
 type ModifySubAccountApiReq struct {
-	// Subaccount UID
+	// Sub-account UID
 	Uid string `json:"uid,omitempty"`
 	// IP whitelist list, supports up to 20 IPs
 	IpWhitelist []string `json:"ipWhitelist,omitempty"`
-	// [Permissions](https://www.kucoin.com/docs-new/doc-338144) group list(Only General、Spot、Futures permissions can be set, such as \"General, Trade\". )
+	// [Permissions](https://www.kucoin.com/docs-new/doc-338144) group list (only General, Spot and Futures permissions can be set, such as \"General, Trade\").
 	Permissions []string `json:"permissions,omitempty"`
 	// apikey remarks (length 4~32)
 	Label string `json:"label,omitempty"`
-	// Subaccount apiKey
+	// Sub-account apiKey
 	ApiKey string `json:"apiKey,omitempty"`
 }
 
@@ -53,7 +53,7 @@ func NewModifySubAccountApiReqBuilder() *ModifySubAccountApiReqBuilder {
 	return &ModifySubAccountApiReqBuilder{obj: NewModifySubAccountApiReqWithDefaults()}
 }
 
-// Subaccount UID
+// Sub-account UID
 func (builder *ModifySubAccountApiReqBuilder) SetUid(value string) *ModifySubAccountApiReqBuilder {
 	builder.obj.Uid = value
 	return builder
@@ -65,7 +65,7 @@ func (builder *ModifySubAccountApiReqBuilder) SetIpWhitelist(value []string) *Mo
 	return builder
 }
 
-// [Permissions](https://www.kucoin.com/docs-new/doc-338144) group list(Only General、Spot、Futures permissions can be set, such as \"General, Trade\". )
+// [Permissions](https://www.kucoin.com/docs-new/doc-338144) group list (only General, Spot and Futures permissions can be set, such as \"General, Trade\").
 func (builder *ModifySubAccountApiReqBuilder) SetPermissions(value []string) *ModifySubAccountApiReqBuilder {
 	builder.obj.Permissions = value
 	return builder
@@ -77,7 +77,7 @@ func (builder *ModifySubAccountApiReqBuilder) SetLabel(value string) *ModifySubA
 	return builder
 }
 
-// Subaccount apiKey
+// Sub-account apiKey
 func (builder *ModifySubAccountApiReqBuilder) SetApiKey(value string) *ModifySubAccountApiReqBuilder {
 	builder.obj.ApiKey = value
 	return builder

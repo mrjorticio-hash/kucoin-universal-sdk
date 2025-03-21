@@ -5,12 +5,12 @@ import { Serializable } from '@internal/interfaces/serializable';
 
 export class CancelOrderByClientOidReq implements Serializable {
     /**
-     * Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)
+     * Symbol of the contract. Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)
      */
     symbol?: string;
 
     /**
-     * The user self-defined order id.
+     * The user self-defined order ID.
      */
     clientOid?: string;
 
@@ -31,11 +31,11 @@ export class CancelOrderByClientOidReq implements Serializable {
      */
     static create(data: {
         /**
-         * Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)
+         * Symbol of the contract. Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)
          */
         symbol?: string;
         /**
-         * The user self-defined order id.
+         * The user self-defined order ID.
          */
         clientOid?: string;
     }): CancelOrderByClientOidReq {
@@ -70,7 +70,7 @@ export class CancelOrderByClientOidReqBuilder {
         this.obj = obj;
     }
     /**
-     * Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)
+     * Symbol of the contract. Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)
      */
     setSymbol(value: string): CancelOrderByClientOidReqBuilder {
         this.obj.symbol = value;
@@ -78,7 +78,7 @@ export class CancelOrderByClientOidReqBuilder {
     }
 
     /**
-     * The user self-defined order id.
+     * The user self-defined order ID.
      */
     setClientOid(value: string): CancelOrderByClientOidReqBuilder {
         this.obj.clientOid = value;

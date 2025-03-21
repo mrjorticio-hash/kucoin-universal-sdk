@@ -10,7 +10,7 @@ type GetRepayHistoryReq struct {
 	IsIsolated *bool `json:"isIsolated,omitempty" url:"isIsolated,omitempty"`
 	// symbol, mandatory for isolated margin account
 	Symbol *string `json:"symbol,omitempty" url:"symbol,omitempty"`
-	// Repay Order Id
+	// Repay order ID
 	OrderNo *string `json:"orderNo,omitempty" url:"orderNo,omitempty"`
 	// The start and end times are not restricted. If the start time is empty or less than 1680278400000, the default value is set to 1680278400000 (April 1, 2023, 00:00:00)
 	StartTime *int64 `json:"startTime,omitempty" url:"startTime,omitempty"`
@@ -87,7 +87,7 @@ func (builder *GetRepayHistoryReqBuilder) SetSymbol(value string) *GetRepayHisto
 	return builder
 }
 
-// Repay Order Id
+// Repay order ID
 func (builder *GetRepayHistoryReqBuilder) SetOrderNo(value string) *GetRepayHistoryReqBuilder {
 	builder.obj.OrderNo = &value
 	return builder

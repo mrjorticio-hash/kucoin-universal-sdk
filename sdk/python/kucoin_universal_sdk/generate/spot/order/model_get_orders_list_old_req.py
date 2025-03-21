@@ -9,7 +9,6 @@ import json
 from enum import Enum
 from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
-from typing_extensions import Annotated
 
 
 class GetOrdersListOldReq(BaseModel):
@@ -17,13 +16,13 @@ class GetOrdersListOldReq(BaseModel):
     GetOrdersListOldReq
 
     Attributes:
-        symbol (str): symbol
-        status (StatusEnum): active or done(done as default), Only list orders with a specific status .
-        side (SideEnum): buy or sell
-        type (TypeEnum): limit, market, limit_stop or market_stop
-        trade_type (TradeTypeEnum): The type of trading:TRADE - Spot Trading(TRADE as default), MARGIN_TRADE - Cross Margin Trading, MARGIN_ISOLATED_TRADE - Isolated Margin Trading.
-        start_at (int): Start time (milisecond)
-        end_at (int): End time (milisecond)
+        symbol (str): Symbol
+        status (StatusEnum): Active or done (done as default); only list orders with a specific status.
+        side (SideEnum): Buy or Sell
+        type (TypeEnum): Order type
+        trade_type (TradeTypeEnum): The type of trading: TRADE - Spot Trading (TRADE as default), MARGIN_TRADE - Cross Margin Trading, MARGIN_ISOLATED_TRADE - Isolated Margin Trading.
+        start_at (int): Start time (milliseconds)
+        end_at (int): End time (milliseconds)
         current_page (int): Current request page.
         page_size (int): Number of results per request. Minimum is 10, maximum is 500.
     """
@@ -53,11 +52,15 @@ class GetOrdersListOldReq(BaseModel):
             MARKET: market
             LIMIT_STOP: limit_stop
             MARKET_STOP: market_stop
+            OCO_LIMIT: oco_limit
+            OCO_STOP: oco_stop
         """
         LIMIT = 'limit'
         MARKET = 'market'
         LIMIT_STOP = 'limit_stop'
         MARKET_STOP = 'market_stop'
+        OCO_LIMIT = 'oco_limit'
+        OCO_STOP = 'oco_stop'
 
     class TradeTypeEnum(Enum):
         """
@@ -70,35 +73,33 @@ class GetOrdersListOldReq(BaseModel):
         MARGIN_TRADE = 'MARGIN_TRADE'
         MARGIN_ISOLATED_TRADE = 'MARGIN_ISOLATED_TRADE'
 
-    symbol: Optional[str] = Field(default=None, description="symbol")
+    symbol: Optional[str] = Field(default=None, description="Symbol")
     status: Optional[StatusEnum] = Field(
         default=StatusEnum.DONE,
         description=
-        "active or done(done as default), Only list orders with a specific status ."
+        "Active or done (done as default); only list orders with a specific status."
     )
-    side: Optional[SideEnum] = Field(default=None, description="buy or sell")
-    type: Optional[TypeEnum] = Field(
-        default=None, description="limit, market, limit_stop or market_stop")
+    side: Optional[SideEnum] = Field(default=None, description="Buy or Sell")
+    type: Optional[TypeEnum] = Field(default=None, description="Order type")
     trade_type: Optional[TradeTypeEnum] = Field(
         default=TradeTypeEnum.TRADE,
         description=
-        "The type of trading:TRADE - Spot Trading(TRADE as default), MARGIN_TRADE - Cross Margin Trading, MARGIN_ISOLATED_TRADE - Isolated Margin Trading.",
+        "The type of trading: TRADE - Spot Trading (TRADE as default), MARGIN_TRADE - Cross Margin Trading, MARGIN_ISOLATED_TRADE - Isolated Margin Trading.",
         alias="tradeType")
     start_at: Optional[int] = Field(default=None,
-                                    description="Start time (milisecond)",
+                                    description="Start time (milliseconds)",
                                     alias="startAt")
     end_at: Optional[int] = Field(default=None,
-                                  description="End time (milisecond)",
+                                  description="End time (milliseconds)",
                                   alias="endAt")
     current_page: Optional[int] = Field(default=1,
                                         description="Current request page.",
                                         alias="currentPage")
-    page_size: Optional[Annotated[
-        int, Field(le=500, strict=True, ge=10)]] = Field(
-            default=50,
-            description=
-            "Number of results per request. Minimum is 10, maximum is 500.",
-            alias="pageSize")
+    page_size: Optional[int] = Field(
+        default=50,
+        description=
+        "Number of results per request. Minimum is 10, maximum is 500.",
+        alias="pageSize")
 
     __properties: ClassVar[List[str]] = [
         "symbol", "status", "side", "type", "tradeType", "startAt", "endAt",
@@ -171,7 +172,7 @@ class GetOrdersListOldReqBuilder:
 
     def set_symbol(self, value: str) -> GetOrdersListOldReqBuilder:
         """
-        symbol
+        Symbol
         """
         self.obj['symbol'] = value
         return self
@@ -180,7 +181,7 @@ class GetOrdersListOldReqBuilder:
             self, value: GetOrdersListOldReq.StatusEnum
     ) -> GetOrdersListOldReqBuilder:
         """
-        active or done(done as default), Only list orders with a specific status .
+        Active or done (done as default); only list orders with a specific status.
         """
         self.obj['status'] = value
         return self
@@ -189,7 +190,7 @@ class GetOrdersListOldReqBuilder:
             self,
             value: GetOrdersListOldReq.SideEnum) -> GetOrdersListOldReqBuilder:
         """
-        buy or sell
+        Buy or Sell
         """
         self.obj['side'] = value
         return self
@@ -198,7 +199,7 @@ class GetOrdersListOldReqBuilder:
             self,
             value: GetOrdersListOldReq.TypeEnum) -> GetOrdersListOldReqBuilder:
         """
-        limit, market, limit_stop or market_stop
+        Order type
         """
         self.obj['type'] = value
         return self
@@ -207,21 +208,21 @@ class GetOrdersListOldReqBuilder:
         self, value: GetOrdersListOldReq.TradeTypeEnum
     ) -> GetOrdersListOldReqBuilder:
         """
-        The type of trading:TRADE - Spot Trading(TRADE as default), MARGIN_TRADE - Cross Margin Trading, MARGIN_ISOLATED_TRADE - Isolated Margin Trading.
+        The type of trading: TRADE - Spot Trading (TRADE as default), MARGIN_TRADE - Cross Margin Trading, MARGIN_ISOLATED_TRADE - Isolated Margin Trading.
         """
         self.obj['tradeType'] = value
         return self
 
     def set_start_at(self, value: int) -> GetOrdersListOldReqBuilder:
         """
-        Start time (milisecond)
+        Start time (milliseconds)
         """
         self.obj['startAt'] = value
         return self
 
     def set_end_at(self, value: int) -> GetOrdersListOldReqBuilder:
         """
-        End time (milisecond)
+        End time (milliseconds)
         """
         self.obj['endAt'] = value
         return self

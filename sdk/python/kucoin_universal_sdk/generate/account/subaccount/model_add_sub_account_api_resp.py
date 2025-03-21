@@ -25,7 +25,7 @@ class AddSubAccountApiResp(BaseModel, Response):
         passphrase (str): Password
         permission (str): [Permissions](https://www.kucoin.com/docs-new/doc-338144)
         ip_whitelist (str): IP whitelist
-        created_at (int): Time of the event
+        created_at (int): Time of event
     """
 
     common_response: Optional[RestResponse] = Field(
@@ -52,7 +52,7 @@ class AddSubAccountApiResp(BaseModel, Response):
                                         description="IP whitelist",
                                         alias="ipWhitelist")
     created_at: Optional[int] = Field(default=None,
-                                      description="Time of the event",
+                                      description="Time of event",
                                       alias="createdAt")
 
     __properties: ClassVar[List[str]] = [

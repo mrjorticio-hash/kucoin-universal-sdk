@@ -24,7 +24,7 @@ export class SymbolSnapshotData implements Serializable {
      */
     bidSize: number;
     /**
-     * Trading pair partition： 0.primary partition 1.KuCoin Plus\", example = \"1\"
+     * Trading pair partition: 0. Primary partition 1.KuCoin Plus\", example = \"1\"
      */
     board: SymbolSnapshotData.BoardEnum;
     /**
@@ -72,7 +72,7 @@ export class SymbolSnapshotData implements Serializable {
      */
     marginTrade: boolean;
     /**
-     * Trading Pair Mark： 0.default 1.ST. 2.NEW\", example = \"1\"
+     * Trading Pair Mark: 0. Default 1.ST. 2.NEW\", example = \"1\"
      */
     mark: SymbolSnapshotData.MarkEnum;
     /**

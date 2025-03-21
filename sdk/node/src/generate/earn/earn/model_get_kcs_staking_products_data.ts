@@ -30,17 +30,17 @@ export class GetKcsStakingProductsData implements Serializable {
     precision: number;
 
     /**
-     * Products total subscribe amount
+     * Products total subscription amount
      */
     productUpperLimit: string;
 
     /**
-     * Max user subscribe amount
+     * Max. user subscription amount
      */
     userUpperLimit: string;
 
     /**
-     * Min user subscribe amount
+     * Min. user subscribe amount
      */
     userLowerLimit: string;
 
@@ -85,12 +85,12 @@ export class GetKcsStakingProductsData implements Serializable {
     earlyRedeemSupported: GetKcsStakingProductsData.EarlyRedeemSupportedEnum;
 
     /**
-     * Products remain subscribe amount
+     * Remaining product subscription amount
      */
     productRemainAmount: string;
 
     /**
-     * Product status: ONGOING(Subscription in progress), PENDING(Preheating Subscription), FULL(Subscribed), INTERESTING (Interest in progress)
+     * Product status: ONGOING (Subscription in progress), PENDING (Preheating Subscription), FULL (Subscribed), INTERESTING (Interest in progress)
      */
     status: GetKcsStakingProductsData.StatusEnum;
 
@@ -105,7 +105,7 @@ export class GetKcsStakingProductsData implements Serializable {
     incomeReleaseType: GetKcsStakingProductsData.IncomeReleaseTypeEnum;
 
     /**
-     * Most recent interest date(millisecond)
+     * Most recent interest date (milliseconds)
      */
     interestDate: number;
 
@@ -115,7 +115,7 @@ export class GetKcsStakingProductsData implements Serializable {
     duration: number;
 
     /**
-     * Whether the product is exclusive for new users: 0 (no), 1 (yes)
+     * Whether the product is exclusive to new users: 0 (no), 1 (yes)
      */
     newUserOnly: GetKcsStakingProductsData.NewUserOnlyEnum;
 

@@ -16,7 +16,7 @@ class GetRepayHistoryItems(BaseModel):
     GetRepayHistoryItems
 
     Attributes:
-        order_no (str): Repay Order Id
+        order_no (str): Repay order ID
         symbol (str): Isolated Margin symbol; empty for cross margin
         currency (str): currency
         size (str): Amount of initiated repay
@@ -38,7 +38,7 @@ class GetRepayHistoryItems(BaseModel):
         FAILED = 'FAILED'
 
     order_no: Optional[str] = Field(default=None,
-                                    description="Repay Order Id",
+                                    description="Repay order ID",
                                     alias="orderNo")
     symbol: Optional[str] = Field(
         default=None,

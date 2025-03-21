@@ -6,9 +6,9 @@ package deposit
 type AddDepositAddressV3Req struct {
 	// currency
 	Currency string `json:"currency,omitempty"`
-	// The chainId of currency, e.g. The available value for USDT are OMNI, ERC20, TRC20, default is ERC20. The available value for BTC are Native, Segwit, TRC20, the parameters are bech32, btc, trx, default is Native. This only apply for multi-chain currency, and there is no need for single chain currency.
-	Chain *string `json:"chain,omitempty"`
-	// Deposit account type: main (funding account), trade (spot trading account), the default is main
+	// The currency chainId, e.g. the available values for USDT are OMNI, ERC20, and TRC20; default is ERC20. The available values for BTC are Native, Segwit, TRC20; the parameters are bech32, btc, trx; default is Native.
+	Chain string `json:"chain,omitempty"`
+	// Deposit account type: MAIN (funding account), TRADE (spot trading account); the default is MAIN
 	To *string `json:"to,omitempty"`
 	// Deposit amount. This parameter is only used when applying for invoices on the Lightning Network. This parameter is invalid if it is not passed through the Lightning Network.
 	Amount *string `json:"amount,omitempty"`
@@ -16,11 +16,10 @@ type AddDepositAddressV3Req struct {
 
 // NewAddDepositAddressV3Req instantiates a new AddDepositAddressV3Req object
 // This constructor will assign default values to properties that have it defined
-func NewAddDepositAddressV3Req(currency string) *AddDepositAddressV3Req {
+func NewAddDepositAddressV3Req(currency string, chain string) *AddDepositAddressV3Req {
 	this := AddDepositAddressV3Req{}
 	this.Currency = currency
-	var chain string = "eth"
-	this.Chain = &chain
+	this.Chain = chain
 	var to string = "main"
 	this.To = &to
 	return &this
@@ -31,7 +30,7 @@ func NewAddDepositAddressV3Req(currency string) *AddDepositAddressV3Req {
 func NewAddDepositAddressV3ReqWithDefaults() *AddDepositAddressV3Req {
 	this := AddDepositAddressV3Req{}
 	var chain string = "eth"
-	this.Chain = &chain
+	this.Chain = chain
 	var to string = "main"
 	this.To = &to
 	return &this
@@ -60,13 +59,13 @@ func (builder *AddDepositAddressV3ReqBuilder) SetCurrency(value string) *AddDepo
 	return builder
 }
 
-// The chainId of currency, e.g. The available value for USDT are OMNI, ERC20, TRC20, default is ERC20. The available value for BTC are Native, Segwit, TRC20, the parameters are bech32, btc, trx, default is Native. This only apply for multi-chain currency, and there is no need for single chain currency.
+// The currency chainId, e.g. the available values for USDT are OMNI, ERC20, and TRC20; default is ERC20. The available values for BTC are Native, Segwit, TRC20; the parameters are bech32, btc, trx; default is Native.
 func (builder *AddDepositAddressV3ReqBuilder) SetChain(value string) *AddDepositAddressV3ReqBuilder {
-	builder.obj.Chain = &value
+	builder.obj.Chain = value
 	return builder
 }
 
-// Deposit account type: main (funding account), trade (spot trading account), the default is main
+// Deposit account type: MAIN (funding account), TRADE (spot trading account); the default is MAIN
 func (builder *AddDepositAddressV3ReqBuilder) SetTo(value string) *AddDepositAddressV3ReqBuilder {
 	builder.obj.To = &value
 	return builder

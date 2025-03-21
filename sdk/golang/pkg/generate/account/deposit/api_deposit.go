@@ -9,105 +9,105 @@ import (
 
 type DepositAPI interface {
 
-	// AddDepositAddressV3 Add Deposit Address(V3)
-	// Description: Request via this endpoint to create a deposit address for a currency you intend to deposit.
+	// AddDepositAddressV3 Add Deposit Address (V3)
+	// Description: Request via this endpoint the creation of a deposit address for a currency you intend to deposit.
 	// Documentation: https://www.kucoin.com/docs-new/api-3470142
-	// +---------------------+------------+
-	// | Extra API Info      | Value      |
-	// +---------------------+------------+
-	// | API-DOMAIN          | SPOT       |
-	// | API-CHANNEL         | PRIVATE    |
-	// | API-PERMISSION      | GENERAL    |
-	// | API-RATE-LIMIT-POOL | MANAGEMENT |
-	// | API-RATE-LIMIT      | 20         |
-	// +---------------------+------------+
+	// +-----------------------+------------+
+	// | Extra API Info        | Value      |
+	// +-----------------------+------------+
+	// | API-DOMAIN            | SPOT       |
+	// | API-CHANNEL           | PRIVATE    |
+	// | API-PERMISSION        | GENERAL    |
+	// | API-RATE-LIMIT-POOL   | MANAGEMENT |
+	// | API-RATE-LIMIT-WEIGHT | 20         |
+	// +-----------------------+------------+
 	AddDepositAddressV3(req *AddDepositAddressV3Req, ctx context.Context) (*AddDepositAddressV3Resp, error)
 
-	// GetDepositAddressV3 Get Deposit Address(V3)
-	// Description: Get all deposit addresses for the currency you intend to deposit. If the returned data is empty, you may need to Add Deposit Address first.
+	// GetDepositAddressV3 Get Deposit Address (V3)
+	// Description: Get all deposit addresses for the currency you intend to deposit. If the returned data is empty, you may need to add the deposit address first.
 	// Documentation: https://www.kucoin.com/docs-new/api-3470140
-	// +---------------------+------------+
-	// | Extra API Info      | Value      |
-	// +---------------------+------------+
-	// | API-DOMAIN          | SPOT       |
-	// | API-CHANNEL         | PRIVATE    |
-	// | API-PERMISSION      | GENERAL    |
-	// | API-RATE-LIMIT-POOL | MANAGEMENT |
-	// | API-RATE-LIMIT      | 5          |
-	// +---------------------+------------+
+	// +-----------------------+------------+
+	// | Extra API Info        | Value      |
+	// +-----------------------+------------+
+	// | API-DOMAIN            | SPOT       |
+	// | API-CHANNEL           | PRIVATE    |
+	// | API-PERMISSION        | GENERAL    |
+	// | API-RATE-LIMIT-POOL   | MANAGEMENT |
+	// | API-RATE-LIMIT-WEIGHT | 5          |
+	// +-----------------------+------------+
 	GetDepositAddressV3(req *GetDepositAddressV3Req, ctx context.Context) (*GetDepositAddressV3Resp, error)
 
 	// GetDepositHistory Get Deposit History
-	// Description: Request via this endpoint to get deposit list Items are paginated and sorted to show the latest first. See the Pagination section for retrieving additional entries after the first page.
+	// Description: Request a deposit list via this endpoint. Items are paginated and sorted to show the latest first. See the Pagination section for retrieving additional entries after the first page.
 	// Documentation: https://www.kucoin.com/docs-new/api-3470141
-	// +---------------------+------------+
-	// | Extra API Info      | Value      |
-	// +---------------------+------------+
-	// | API-DOMAIN          | SPOT       |
-	// | API-CHANNEL         | PRIVATE    |
-	// | API-PERMISSION      | GENERAL    |
-	// | API-RATE-LIMIT-POOL | MANAGEMENT |
-	// | API-RATE-LIMIT      | 5          |
-	// +---------------------+------------+
+	// +-----------------------+------------+
+	// | Extra API Info        | Value      |
+	// +-----------------------+------------+
+	// | API-DOMAIN            | SPOT       |
+	// | API-CHANNEL           | PRIVATE    |
+	// | API-PERMISSION        | GENERAL    |
+	// | API-RATE-LIMIT-POOL   | MANAGEMENT |
+	// | API-RATE-LIMIT-WEIGHT | 5          |
+	// +-----------------------+------------+
 	GetDepositHistory(req *GetDepositHistoryReq, ctx context.Context) (*GetDepositHistoryResp, error)
 
-	// GetDepositAddressV2 Get Deposit Addresses(V2)
-	// Description: Get all deposit addresses for the currency you intend to deposit. If the returned data is empty, you may need to Add Deposit Address first.
+	// GetDepositAddressV2 Get Deposit Addresses (V2)
+	// Description: Get all deposit addresses for the currency you intend to deposit. If the returned data is empty, you may need to add the deposit address first.
 	// Documentation: https://www.kucoin.com/docs-new/api-3470300
-	// +---------------------+------------+
-	// | Extra API Info      | Value      |
-	// +---------------------+------------+
-	// | API-DOMAIN          | SPOT       |
-	// | API-CHANNEL         | PRIVATE    |
-	// | API-PERMISSION      | GENERAL    |
-	// | API-RATE-LIMIT-POOL | MANAGEMENT |
-	// | API-RATE-LIMIT      | 5          |
-	// +---------------------+------------+
+	// +-----------------------+------------+
+	// | Extra API Info        | Value      |
+	// +-----------------------+------------+
+	// | API-DOMAIN            | SPOT       |
+	// | API-CHANNEL           | PRIVATE    |
+	// | API-PERMISSION        | GENERAL    |
+	// | API-RATE-LIMIT-POOL   | MANAGEMENT |
+	// | API-RATE-LIMIT-WEIGHT | 5          |
+	// +-----------------------+------------+
 	// Deprecated
 	GetDepositAddressV2(req *GetDepositAddressV2Req, ctx context.Context) (*GetDepositAddressV2Resp, error)
 
 	// GetDepositAddressV1 Get Deposit Addresses - V1
-	// Description: Get all deposit addresses for the currency you intend to deposit. If the returned data is empty, you may need to Add Deposit Address first.
+	// Description: Get all deposit addresses for the currency you intend to deposit. If the returned data is empty, you may need to add the deposit address first.
 	// Documentation: https://www.kucoin.com/docs-new/api-3470305
-	// +---------------------+------------+
-	// | Extra API Info      | Value      |
-	// +---------------------+------------+
-	// | API-DOMAIN          | SPOT       |
-	// | API-CHANNEL         | PRIVATE    |
-	// | API-PERMISSION      | GENERAL    |
-	// | API-RATE-LIMIT-POOL | MANAGEMENT |
-	// | API-RATE-LIMIT      | 5          |
-	// +---------------------+------------+
+	// +-----------------------+------------+
+	// | Extra API Info        | Value      |
+	// +-----------------------+------------+
+	// | API-DOMAIN            | SPOT       |
+	// | API-CHANNEL           | PRIVATE    |
+	// | API-PERMISSION        | GENERAL    |
+	// | API-RATE-LIMIT-POOL   | MANAGEMENT |
+	// | API-RATE-LIMIT-WEIGHT | 5          |
+	// +-----------------------+------------+
 	// Deprecated
 	GetDepositAddressV1(req *GetDepositAddressV1Req, ctx context.Context) (*GetDepositAddressV1Resp, error)
 
 	// GetDepositHistoryOld Get Deposit History - Old
-	// Description: Request via this endpoint to get the V1 historical deposits list on KuCoin. The return value is the data after Pagination, sorted in descending order according to time.
+	// Description: Request the V1 historical deposits list on KuCoin via this endpoint. The return value is the data after Pagination, sorted in descending order according to time.
 	// Documentation: https://www.kucoin.com/docs-new/api-3470306
-	// +---------------------+------------+
-	// | Extra API Info      | Value      |
-	// +---------------------+------------+
-	// | API-DOMAIN          | SPOT       |
-	// | API-CHANNEL         | PRIVATE    |
-	// | API-PERMISSION      | GENERAL    |
-	// | API-RATE-LIMIT-POOL | MANAGEMENT |
-	// | API-RATE-LIMIT      | 5          |
-	// +---------------------+------------+
+	// +-----------------------+------------+
+	// | Extra API Info        | Value      |
+	// +-----------------------+------------+
+	// | API-DOMAIN            | SPOT       |
+	// | API-CHANNEL           | PRIVATE    |
+	// | API-PERMISSION        | GENERAL    |
+	// | API-RATE-LIMIT-POOL   | MANAGEMENT |
+	// | API-RATE-LIMIT-WEIGHT | 5          |
+	// +-----------------------+------------+
 	// Deprecated
 	GetDepositHistoryOld(req *GetDepositHistoryOldReq, ctx context.Context) (*GetDepositHistoryOldResp, error)
 
 	// AddDepositAddressV1 Add Deposit Address - V1
-	// Description: Request via this endpoint to create a deposit address for a currency you intend to deposit.
+	// Description: Request via this endpoint the creation of a deposit address for a currency you intend to deposit.
 	// Documentation: https://www.kucoin.com/docs-new/api-3470309
-	// +---------------------+------------+
-	// | Extra API Info      | Value      |
-	// +---------------------+------------+
-	// | API-DOMAIN          | SPOT       |
-	// | API-CHANNEL         | PRIVATE    |
-	// | API-PERMISSION      | GENERAL    |
-	// | API-RATE-LIMIT-POOL | MANAGEMENT |
-	// | API-RATE-LIMIT      | 20         |
-	// +---------------------+------------+
+	// +-----------------------+------------+
+	// | Extra API Info        | Value      |
+	// +-----------------------+------------+
+	// | API-DOMAIN            | SPOT       |
+	// | API-CHANNEL           | PRIVATE    |
+	// | API-PERMISSION        | GENERAL    |
+	// | API-RATE-LIMIT-POOL   | MANAGEMENT |
+	// | API-RATE-LIMIT-WEIGHT | 20         |
+	// +-----------------------+------------+
 	// Deprecated
 	AddDepositAddressV1(req *AddDepositAddressV1Req, ctx context.Context) (*AddDepositAddressV1Resp, error)
 }

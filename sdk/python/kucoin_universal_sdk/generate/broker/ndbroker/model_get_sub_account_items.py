@@ -17,7 +17,7 @@ class GetSubAccountItems(BaseModel):
     Attributes:
         account_name (str): Sub-account name
         uid (str): Sub-account UID
-        created_at (int): Creation time, unix timestamp (milliseconds)
+        created_at (int): Creation time, Unix timestamp (milliseconds)
         level (int): Sub-account VIP level 
     """
 
@@ -27,7 +27,7 @@ class GetSubAccountItems(BaseModel):
     uid: Optional[str] = Field(default=None, description="Sub-account UID")
     created_at: Optional[int] = Field(
         default=None,
-        description="Creation time, unix timestamp (milliseconds)",
+        description="Creation time, Unix timestamp (milliseconds)",
         alias="createdAt")
     level: Optional[int] = Field(default=None,
                                  description="Sub-account VIP level ")

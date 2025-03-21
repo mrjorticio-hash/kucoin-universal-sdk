@@ -11,7 +11,7 @@
             "get": {
                 "summary": "Get Account",
                 "deprecated": false,
-                "description": "This endpoint allows getting affiliate user rebate information.",
+                "description": "Affiliate user rebate information can be obtained at this endpoint.",
                 "tags": [],
                 "parameters": [],
                 "responses": {
@@ -119,7 +119,7 @@
                                                             },
                                                             "marginFactor": {
                                                                 "type": "string",
-                                                                "description": "Margin Coefficient return real time margin discount rate to USDT"
+                                                                "description": "Margin Coefficient return real-time margin discount rate to USDT"
                                                             }
                                                         },
                                                         "required": [
@@ -159,8 +159,8 @@
                 "x-sdk-service": "Affiliate",
                 "x-sdk-sub-service": "Affiliate",
                 "x-sdk-method-name": "getAccount",
-                "x-sdk-method-description": "This endpoint allows getting affiliate user rebate information.",
-                "x-api-rate-limit": 30,
+                "x-sdk-method-description": "Affiliate user rebate information can be obtained at this endpoint.",
+                "x-api-rate-limit-weight": 30,
                 "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"parentUid\\\": \\\"1000000\\\",\\n        \\\"orders\\\": [\\n            {\\n                \\\"orderId\\\": \\\"1668458892612980737\\\",\\n                \\\"currency\\\": \\\"USDT\\\",\\n                \\\"principal\\\": \\\"100\\\",\\n                \\\"interest\\\": \\\"0\\\"\\n            }\\n        ],\\n        \\\"ltv\\\": {\\n            \\\"transferLtv\\\": \\\"0.6000\\\",\\n            \\\"onlyClosePosLtv\\\": \\\"0.7500\\\",\\n            \\\"delayedLiquidationLtv\\\": \\\"0.9000\\\",\\n            \\\"instantLiquidationLtv\\\": \\\"0.9500\\\",\\n            \\\"currentLtv\\\": \\\"0.0854\\\"\\n        },\\n        \\\"totalMarginAmount\\\": \\\"1170.36181573\\\",\\n        \\\"transferMarginAmount\\\": \\\"166.66666666\\\",\\n        \\\"margins\\\": [\\n            {\\n                \\\"marginCcy\\\": \\\"USDT\\\",\\n                \\\"marginQty\\\": \\\"1170.36181573\\\",\\n                \\\"marginFactor\\\": \\\"1.000000000000000000\\\"\\n            }\\n        ]\\n    }\\n}",
                 "operationId": "001"
             }

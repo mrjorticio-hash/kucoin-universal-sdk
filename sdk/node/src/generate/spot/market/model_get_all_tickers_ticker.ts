@@ -10,7 +10,7 @@ export class GetAllTickersTicker implements Serializable {
     symbol: string;
 
     /**
-     * Name of trading pairs, it would change after renaming
+     * Name of trading pairs, it will change after renaming
      */
     symbolName: string;
 
@@ -158,21 +158,21 @@ export class GetAllTickersTicker implements Serializable {
 export namespace GetAllTickersTicker {
     export enum TakerCoefficientEnum {
         /**
-         * the taker fee coefficient is 1
+         * The taker fee coefficient is 1
          */
         _1 = <any>'1',
         /**
-         * no fee
+         * No fee
          */
         _0 = <any>'0',
     }
     export enum MakerCoefficientEnum {
         /**
-         * the maker fee coefficient is 1
+         * The maker fee coefficient is 1
          */
         _1 = <any>'1',
         /**
-         * no fee
+         * No fee
          */
         _0 = <any>'0',
     }

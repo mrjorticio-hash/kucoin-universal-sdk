@@ -13,7 +13,7 @@ class MarginPrivateWS(ABC):
             self, callback: CrossMarginPositionEventCallback) -> str:
         """
         summary: Get Cross Margin Position change
-        description: The system will push the change event when the position status changes, Or push the current debt message periodically when there is a liability.
+        description: The system will push the change event when the position status changes, or push the current debt message periodically when there is a liability.
         push frequency: once every 4s
         """
         pass
@@ -24,7 +24,7 @@ class MarginPrivateWS(ABC):
             callback: IsolatedMarginPositionEventCallback) -> str:
         """
         summary: Get Isolated Margin Position change
-        description: The system will push the change event when the position status changes, Or push the current debt message periodically when there is a liability.
+        description: The system will push the change event when the position status changes, or push the current debt message periodically when there is a liability.
         push frequency: real time
         """
         pass
