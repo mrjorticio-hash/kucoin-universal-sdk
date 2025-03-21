@@ -876,21 +876,9 @@
                                 "type": "string",
                                 "description": "User-specified order type",
                                 "enum": [
-                                    "limit",
-                                    "market",
                                     "stop"
                                 ],
                                 "x-api-enum": [
-                                    {
-                                        "value": "limit",
-                                        "name": "limit",
-                                        "description": "limit"
-                                    },
-                                    {
-                                        "value": "market",
-                                        "name": "market",
-                                        "description": "market"
-                                    },
                                     {
                                         "value": "stop",
                                         "name": "stop",
@@ -924,15 +912,15 @@
                             },
                             "stop": {
                                 "type": "string",
-                                "description": "Order type: stop: stop loss order, oco: oco order",
+                                "description": "Order type: loss: stop loss order, oco: oco order",
                                 "enum": [
-                                    "stop",
+                                    "loss",
                                     "oco"
                                 ],
                                 "x-api-enum": [
                                     {
-                                        "value": "stop",
-                                        "name": "stop",
+                                        "value": "loss",
+                                        "name": "loss",
                                         "description": "stop loss order"
                                     },
                                     {
@@ -952,7 +940,7 @@
                             },
                             "tradeType": {
                                 "type": "string",
-                                "description": "The type of trading : TRADE（Spot）, MARGIN_TRADE (Cross Margin), MARGIN_ISOLATED_TRADE (Isolated Margin).",
+                                "description": "The type of trading: TRADE (Spot), MARGIN_TRADE (Cross Margin), MARGIN_ISOLATED_TRADE (Isolated Margin).",
                                 "enum": [
                                     "TRADE",
                                     "MARGIN_TRADE",
@@ -983,6 +971,7 @@
                             },
                             "type": {
                                 "type": "string",
+                                "description": "Order Type",
                                 "enum": [
                                     "open",
                                     "match",
@@ -991,17 +980,16 @@
                                     "canceled",
                                     "received"
                                 ],
-                                "description": "Order Type",
                                 "x-api-enum": [
                                     {
                                         "value": "open",
                                         "name": "open",
-                                        "description": "the order is in the order book (maker order)"
+                                        "description": "The order is in the order book (maker order)"
                                     },
                                     {
                                         "value": "match",
                                         "name": "match",
-                                        "description": "The message sent when the order is match, 1. When the status is open and the type is match, it is a maker match.  2. When the status is match and the type is match, it is a taker match."
+                                        "description": "The message sent when the order is matched, 1. When the status is open and the type is match, it is a maker match.  2. When the status is match and the type is match, it is a taker match."
                                     },
                                     {
                                         "value": "update",
