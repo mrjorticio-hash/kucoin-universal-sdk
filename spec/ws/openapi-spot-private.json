@@ -977,7 +977,7 @@
                                     "match",
                                     "update",
                                     "filled",
-                                    "canceled",
+                                    "cancel",
                                     "received"
                                 ],
                                 "x-api-enum": [
@@ -1002,8 +1002,8 @@
                                         "description": "The message sent when the status of the order changes to DONE after the transaction"
                                     },
                                     {
-                                        "value": "canceled",
-                                        "name": "canceled",
+                                        "value": "cancel",
+                                        "name": "cancel",
                                         "description": "The message sent when the status of the order changes to DONE due to being canceled"
                                     },
                                     {

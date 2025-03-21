@@ -75,14 +75,14 @@ class StopOrderEvent(BaseModel):
             MATCH: The message sent when the order is matched, 1. When the status is open and the type is match, it is a maker match.  2. When the status is match and the type is match, it is a taker match.
             UPDATE: The message sent due to the order being modified: STP triggering, partial cancellation of the order. Includes these three scenarios:  1. When the status is open and the type is update: partial amounts of the order have been canceled, or STP triggers  2. When the status is match and the type is update: STP triggers  3. When the status is done and the type is update: partial amounts of the order have been filled and the unfilled part got canceled, or STP is triggered.
             FILLED: The message sent when the status of the order changes to DONE after the transaction
-            CANCELED: The message sent when the status of the order changes to DONE due to being canceled
+            CANCEL: The message sent when the status of the order changes to DONE due to being canceled
             RECEIVED: The message sent when the order enters the matching system. When the order has just entered the matching system and has not yet done matching logic with the counterparty, a private message with the message type &quot;received&quot; and the order status &quot;new&quot; will be pushed.
         """
         OPEN = 'open'
         MATCH = 'match'
         UPDATE = 'update'
         FILLED = 'filled'
-        CANCELED = 'canceled'
+        CANCEL = 'cancel'
         RECEIVED = 'received'
 
     common_response: Optional[WsMessage] = Field(default=None,

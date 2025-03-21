@@ -38,7 +38,7 @@ class AddDepositAddressV3Req(BaseModel):
         "The currency chainId, e.g. the available values for USDT are OMNI, ERC20, and TRC20; default is ERC20. The available values for BTC are Native, Segwit, TRC20; the parameters are bech32, btc, trx; default is Native. "
     )
     to: Optional[ToEnum] = Field(
-        default=MAIN,
+        default=ToEnum.MAIN,
         description=
         "Deposit account type: MAIN (funding account), TRADE (spot trading account); the default is MAIN"
     )
@@ -89,8 +89,8 @@ class AddDepositAddressV3Req(BaseModel):
             "chain":
             obj.get("chain") if obj.get("chain") is not None else 'eth',
             "to":
-            obj.get("to")
-            if obj.get("to") is not None else AddDepositAddressV3Req.MAIN,
+            obj.get("to") if obj.get("to") is not None else
+            AddDepositAddressV3Req.ToEnum.MAIN,
             "amount":
             obj.get("amount")
         })

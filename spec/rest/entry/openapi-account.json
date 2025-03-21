@@ -3720,7 +3720,7 @@
                                             "main",
                                             "trade"
                                         ],
-                                        "default": "MAIN",
+                                        "default": "main",
                                         "x-api-enum": [
                                             {
                                                 "value": "main",

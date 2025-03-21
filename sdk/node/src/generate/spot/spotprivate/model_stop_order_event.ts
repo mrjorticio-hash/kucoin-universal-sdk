@@ -172,7 +172,7 @@ export namespace StopOrderEvent {
         /**
          * The message sent when the status of the order changes to DONE due to being canceled
          */
-        CANCELED = <any>'canceled',
+        CANCEL = <any>'cancel',
         /**
          * The message sent when the order enters the matching system. When the order has just entered the matching system and has not yet done matching logic with the counterparty, a private message with the message type &quot;received&quot; and the order status &quot;new&quot; will be pushed.
          */
