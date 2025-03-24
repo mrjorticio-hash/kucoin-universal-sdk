@@ -11,7 +11,7 @@ import (
 type ModifyIsolatedMarginRiskLimtResp struct {
 	// common response
 	CommonResponse *types.RestResponse
-	// To adjust the level will cancel the open order, the response can only indicate whether the submit of the adjustment request is successful or not.
+	// Adjusting the level will result in the cancellation of any open orders. The response will indicate only whether the adjustment request was successfully submitted.
 	Data bool `json:"data,omitempty"`
 }
 

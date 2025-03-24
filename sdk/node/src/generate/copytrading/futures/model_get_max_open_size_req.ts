@@ -5,14 +5,14 @@ import { Serializable } from '@internal/interfaces/serializable';
 
 export class GetMaxOpenSizeReq implements Serializable {
     /**
-     * Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)
+     * Symbol of the contract. Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)
      */
     symbol?: string;
 
     /**
-     * Order price
+     * Order Price
      */
-    price?: string;
+    price?: number;
 
     /**
      * Leverage
@@ -36,13 +36,13 @@ export class GetMaxOpenSizeReq implements Serializable {
      */
     static create(data: {
         /**
-         * Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)
+         * Symbol of the contract. Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)
          */
         symbol?: string;
         /**
-         * Order price
+         * Order Price
          */
-        price?: string;
+        price?: number;
         /**
          * Leverage
          */
@@ -80,7 +80,7 @@ export class GetMaxOpenSizeReqBuilder {
         this.obj = obj;
     }
     /**
-     * Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)
+     * Symbol of the contract. Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)
      */
     setSymbol(value: string): GetMaxOpenSizeReqBuilder {
         this.obj.symbol = value;
@@ -88,9 +88,9 @@ export class GetMaxOpenSizeReqBuilder {
     }
 
     /**
-     * Order price
+     * Order Price
      */
-    setPrice(value: string): GetMaxOpenSizeReqBuilder {
+    setPrice(value: number): GetMaxOpenSizeReqBuilder {
         this.obj.price = value;
         return this;
     }

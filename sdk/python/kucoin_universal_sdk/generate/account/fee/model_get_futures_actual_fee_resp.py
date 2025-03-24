@@ -17,7 +17,7 @@ class GetFuturesActualFeeResp(BaseModel, Response):
     GetFuturesActualFeeResp
 
     Attributes:
-        symbol (str): The unique identity of the trading pair and will not change even if the trading pair is renamed
+        symbol (str): The unique identity of the trading pair; will not change even if the trading pair is renamed
         taker_fee_rate (str): Actual taker fee rate of the trading pair
         maker_fee_rate (str): Actual maker fee rate of the trading pair
     """
@@ -27,7 +27,7 @@ class GetFuturesActualFeeResp(BaseModel, Response):
     symbol: Optional[str] = Field(
         default=None,
         description=
-        "The unique identity of the trading pair and will not change even if the trading pair is renamed"
+        "The unique identity of the trading pair; will not change even if the trading pair is renamed"
     )
     taker_fee_rate: Optional[str] = Field(
         default=None,

@@ -6,7 +6,7 @@ package subaccount
 type GetFuturesSubAccountListV2Summary struct {
 	// Total Account Equity
 	AccountEquityTotal float32 `json:"accountEquityTotal,omitempty"`
-	// Total unrealisedPNL
+	// Total unrealizedPNL
 	UnrealisedPNLTotal float32 `json:"unrealisedPNLTotal,omitempty"`
 	// Total Margin Balance
 	MarginBalanceTotal float32 `json:"marginBalanceTotal,omitempty"`
@@ -15,7 +15,7 @@ type GetFuturesSubAccountListV2Summary struct {
 	OrderMarginTotal    float32 `json:"orderMarginTotal,omitempty"`
 	// Total frozen funds for withdrawal and out-transfer
 	FrozenFundsTotal float32 `json:"frozenFundsTotal,omitempty"`
-	// total available balance
+	// Total available balance
 	AvailableBalanceTotal float32 `json:"availableBalanceTotal,omitempty"`
 	Currency              string  `json:"currency,omitempty"`
 }

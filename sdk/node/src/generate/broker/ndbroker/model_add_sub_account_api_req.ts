@@ -5,7 +5,7 @@ import { Serializable } from '@internal/interfaces/serializable';
 
 export class AddSubAccountApiReq implements Serializable {
     /**
-     * Subaccount UID
+     * Sub-account UID
      */
     uid: string;
 
@@ -20,7 +20,7 @@ export class AddSubAccountApiReq implements Serializable {
     ipWhitelist: Array<string>;
 
     /**
-     * Permission group list(Only General、Spot、Futures permissions can be set, such as \"General, Trade\". )
+     * Permission group list (only General, Spot and Futures permissions can be set, such as \"General, Trade\").
      */
     permissions: Array<AddSubAccountApiReq.PermissionsEnum>;
 
@@ -57,7 +57,7 @@ export class AddSubAccountApiReq implements Serializable {
      */
     static create(data: {
         /**
-         * Subaccount UID
+         * Sub-account UID
          */
         uid: string;
         /**
@@ -69,7 +69,7 @@ export class AddSubAccountApiReq implements Serializable {
          */
         ipWhitelist: Array<string>;
         /**
-         * Permission group list(Only General、Spot、Futures permissions can be set, such as \"General, Trade\". )
+         * Permission group list (only General, Spot and Futures permissions can be set, such as \"General, Trade\").
          */
         permissions: Array<AddSubAccountApiReq.PermissionsEnum>;
         /**
@@ -128,7 +128,7 @@ export class AddSubAccountApiReqBuilder {
         this.obj = obj;
     }
     /**
-     * Subaccount UID
+     * Sub-account UID
      */
     setUid(value: string): AddSubAccountApiReqBuilder {
         this.obj.uid = value;
@@ -152,7 +152,7 @@ export class AddSubAccountApiReqBuilder {
     }
 
     /**
-     * Permission group list(Only General、Spot、Futures permissions can be set, such as \"General, Trade\". )
+     * Permission group list (only General, Spot and Futures permissions can be set, such as \"General, Trade\").
      */
     setPermissions(value: Array<AddSubAccountApiReq.PermissionsEnum>): AddSubAccountApiReqBuilder {
         this.obj.permissions = value;

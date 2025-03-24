@@ -21,7 +21,7 @@ class GetSubAccountResp(BaseModel, Response):
         current_page (int): Current page
         page_size (int): Page Size
         total_num (int): Total Number
-        total_page (int): Total Page
+        total_page (int): Total Pages
         items (list[GetSubAccountItems]): 
     """
 
@@ -37,7 +37,7 @@ class GetSubAccountResp(BaseModel, Response):
                                      description="Total Number",
                                      alias="totalNum")
     total_page: Optional[int] = Field(default=None,
-                                      description="Total Page",
+                                      description="Total Pages",
                                       alias="totalPage")
     items: Optional[List[GetSubAccountItems]] = None
 

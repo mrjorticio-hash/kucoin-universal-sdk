@@ -6,23 +6,23 @@ package account
 type GetSpotLedgerItems struct {
 	// unique id
 	Id *string `json:"id,omitempty"`
-	// The currency of an account
+	// Currency
 	Currency *string `json:"currency,omitempty"`
-	// The total amount of assets (fees included) involved in assets changes such as transaction, withdrawal and bonus distribution.
+	// The total amount of assets (fees included) involved in assets changes such as transactions, withdrawals and bonus distributions.
 	Amount *string `json:"amount,omitempty"`
 	// Fees generated in transaction, withdrawal, etc.
 	Fee *string `json:"fee,omitempty"`
-	// Remaining funds after the transaction.
+	// Remaining funds after the transaction. (Deprecated field, no actual use of the value field)
 	Balance *string `json:"balance,omitempty"`
-	// The account type of the master user: MAIN, TRADE, MARGIN or CONTRACT.
+	// Master user account types: MAIN, TRADE, MARGIN or CONTRACT.
 	AccountType *string `json:"accountType,omitempty"`
-	// Business type leading to the changes in funds, such as exchange, withdrawal, deposit, KUCOIN_BONUS, REFERRAL_BONUS, Lendings etc.
+	// Business type leading to changes in funds, such as exchange, withdrawal, deposit, KUCOIN_BONUS, REFERRAL_BONUS, Lendings, etc.
 	BizType *string `json:"bizType,omitempty"`
 	// Side, out or in
 	Direction *string `json:"direction,omitempty"`
-	// Time of the event
+	// Time of event
 	CreatedAt *int64 `json:"createdAt,omitempty"`
-	// Business related information such as order ID, serial No., etc.
+	// Business related information such as order ID, serial no., etc.
 	Context *string `json:"context,omitempty"`
 }
 

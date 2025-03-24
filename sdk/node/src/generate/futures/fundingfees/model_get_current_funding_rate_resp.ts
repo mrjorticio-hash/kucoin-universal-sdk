@@ -11,12 +11,12 @@ export class GetCurrentFundingRateResp implements Response<RestResponse> {
     symbol: string;
 
     /**
-     * Granularity (milisecond)
+     * Granularity (milliseconds)
      */
     granularity: number;
 
     /**
-     * The funding rate settlement time point of the previous cycle (milisecond)
+     * The funding rate settlement time point of the previous cycle (milliseconds)
      */
     timePoint: number;
 

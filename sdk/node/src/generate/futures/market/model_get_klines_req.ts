@@ -5,22 +5,22 @@ import { Serializable } from '@internal/interfaces/serializable';
 
 export class GetKlinesReq implements Serializable {
     /**
-     * Symbol of the contract, Please refer to [Get Symbol endpoint: symbol, indexSymbol, premiumsSymbol1M, premiumsSymbol8H](https://www.kucoin.com/docs-new/api-3470220)
+     * Symbol of the contract. Please refer to [Get Symbol endpoint: symbol, indexSymbol, premiumsSymbol1M, premiumsSymbol8H](https://www.kucoin.com/docs-new/api-3470220)
      */
     symbol?: string;
 
     /**
-     * Type of candlestick patterns(minute)
+     * Type of candlestick patterns (minutes)
      */
     granularity?: GetKlinesReq.GranularityEnum;
 
     /**
-     * Start time (milisecond)
+     * Start time (milliseconds)
      */
     from?: number;
 
     /**
-     * End time (milisecond)
+     * End time (milliseconds)
      */
     to?: number;
 
@@ -41,19 +41,19 @@ export class GetKlinesReq implements Serializable {
      */
     static create(data: {
         /**
-         * Symbol of the contract, Please refer to [Get Symbol endpoint: symbol, indexSymbol, premiumsSymbol1M, premiumsSymbol8H](https://www.kucoin.com/docs-new/api-3470220)
+         * Symbol of the contract. Please refer to [Get Symbol endpoint: symbol, indexSymbol, premiumsSymbol1M, premiumsSymbol8H](https://www.kucoin.com/docs-new/api-3470220)
          */
         symbol?: string;
         /**
-         * Type of candlestick patterns(minute)
+         * Type of candlestick patterns (minutes)
          */
         granularity?: GetKlinesReq.GranularityEnum;
         /**
-         * Start time (milisecond)
+         * Start time (milliseconds)
          */
         from?: number;
         /**
-         * End time (milisecond)
+         * End time (milliseconds)
          */
         to?: number;
     }): GetKlinesReq {
@@ -139,7 +139,7 @@ export class GetKlinesReqBuilder {
         this.obj = obj;
     }
     /**
-     * Symbol of the contract, Please refer to [Get Symbol endpoint: symbol, indexSymbol, premiumsSymbol1M, premiumsSymbol8H](https://www.kucoin.com/docs-new/api-3470220)
+     * Symbol of the contract. Please refer to [Get Symbol endpoint: symbol, indexSymbol, premiumsSymbol1M, premiumsSymbol8H](https://www.kucoin.com/docs-new/api-3470220)
      */
     setSymbol(value: string): GetKlinesReqBuilder {
         this.obj.symbol = value;
@@ -147,7 +147,7 @@ export class GetKlinesReqBuilder {
     }
 
     /**
-     * Type of candlestick patterns(minute)
+     * Type of candlestick patterns (minutes)
      */
     setGranularity(value: GetKlinesReq.GranularityEnum): GetKlinesReqBuilder {
         this.obj.granularity = value;
@@ -155,7 +155,7 @@ export class GetKlinesReqBuilder {
     }
 
     /**
-     * Start time (milisecond)
+     * Start time (milliseconds)
      */
     setFrom(value: number): GetKlinesReqBuilder {
         this.obj.from = value;
@@ -163,7 +163,7 @@ export class GetKlinesReqBuilder {
     }
 
     /**
-     * End time (milisecond)
+     * End time (milliseconds)
      */
     setTo(value: number): GetKlinesReqBuilder {
         this.obj.to = value;

@@ -1,4 +1,6 @@
 from .model_all_tickers_event import AllTickersEvent
+from .model_call_auction_info_event import CallAuctionInfoEvent
+from .model_call_auction_orderbook_level50_event import CallAuctionOrderbookLevel50Event
 from .model_klines_event import KlinesEvent
 from .model_market_snapshot_data import MarketSnapshotData
 from .model_market_snapshot_data_market_change1h import MarketSnapshotDataMarketChange1h
@@ -8,7 +10,6 @@ from .model_market_snapshot_event import MarketSnapshotEvent
 from .model_orderbook_increment_changes import OrderbookIncrementChanges
 from .model_orderbook_increment_event import OrderbookIncrementEvent
 from .model_orderbook_level1_event import OrderbookLevel1Event
-from .model_orderbook_level50_changes import OrderbookLevel50Changes
 from .model_orderbook_level50_event import OrderbookLevel50Event
 from .model_orderbook_level5_event import OrderbookLevel5Event
 from .model_symbol_snapshot_data import SymbolSnapshotData

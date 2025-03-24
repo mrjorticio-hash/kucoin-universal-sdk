@@ -6,22 +6,22 @@ import { Response } from '@internal/interfaces/serializable';
 
 export class AddSubAccountResp implements Response<RestResponse> {
     /**
-     * Sub-Account name
+     * Sub-account name
      */
     accountName: string;
 
     /**
-     * Sub-Account UID
+     * Sub-account UID
      */
     uid: string;
 
     /**
-     * Creation time, unix timestamp (milliseconds)
+     * Creation time, Unix timestamp (milliseconds)
      */
     createdAt: number;
 
     /**
-     * Subaccount VIP level
+     * Sub-account VIP level
      */
     level: number;
 

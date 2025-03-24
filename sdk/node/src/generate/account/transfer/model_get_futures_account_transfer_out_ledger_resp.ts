@@ -22,7 +22,7 @@ export class GetFuturesAccountTransferOutLedgerResp implements Response<RestResp
     totalNum: number;
 
     /**
-     * total page
+     * total pages
      */
     totalPage: number;
 

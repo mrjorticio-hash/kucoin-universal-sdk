@@ -12,7 +12,7 @@ type GetMarginConfigResp struct {
 	CommonResponse *types.RestResponse
 	// Available currencies for margin trade
 	CurrencyList []string `json:"currencyList,omitempty"`
-	// Max leverage available
+	// Max. leverage available
 	MaxLeverage int32 `json:"maxLeverage,omitempty"`
 	// The warning debt ratio of the forced liquidation
 	WarningDebtRatio string `json:"warningDebtRatio,omitempty"`

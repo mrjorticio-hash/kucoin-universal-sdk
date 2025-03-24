@@ -8,7 +8,6 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
-from typing_extensions import Annotated
 
 
 class GetInterestRateIndexReq(BaseModel):
@@ -16,30 +15,30 @@ class GetInterestRateIndexReq(BaseModel):
     GetInterestRateIndexReq
 
     Attributes:
-        symbol (str): Symbol of the contract, Please refer to [Get Symbol endpoint: fundingBaseSymbol, fundingQuoteSymbol, fundingBaseSymbol1M, fundingQuoteSymbol1M](https://www.kucoin.com/docs-new/api-3470220) 
-        start_at (int): Start time (milisecond)
-        end_at (int): End time (milisecond)
-        reverse (bool): This parameter functions to judge whether the lookup is reverse. True means “yes”. False means no. This parameter is set as True by default.
+        symbol (str): Symbol of the contract. Please refer to [Get Symbol endpoint: fundingBaseSymbol, fundingQuoteSymbol, fundingBaseSymbol1M, fundingQuoteSymbol1M](https://www.kucoin.com/docs-new/api-3470220) 
+        start_at (int): Start time (milliseconds)
+        end_at (int): End time (milliseconds)
+        reverse (bool): This parameter functions to judge whether the lookup is reversed. True means “yes”. False means “no”. This parameter is set as True by default.
         offset (int): Start offset. The unique attribute of the last returned result of the last request. The data of the first page will be returned by default.
-        forward (bool): This parameter functions to judge whether the lookup is forward or not. True means “yes” and False means “no”. This parameter is set as true by default
-        max_count (int): Max record count. The default record count is 10, The maximum length cannot exceed 100
+        forward (bool): This parameter functions to judge whether the lookup is forward or not. True means “yes” and False means “no”. This parameter is set as true by default.
+        max_count (int): Max. record count. The default record count is 10; the maximum length cannot exceed 100
     """
 
     symbol: Optional[str] = Field(
         default=None,
         description=
-        "Symbol of the contract, Please refer to [Get Symbol endpoint: fundingBaseSymbol, fundingQuoteSymbol, fundingBaseSymbol1M, fundingQuoteSymbol1M](https://www.kucoin.com/docs-new/api-3470220) "
+        "Symbol of the contract. Please refer to [Get Symbol endpoint: fundingBaseSymbol, fundingQuoteSymbol, fundingBaseSymbol1M, fundingQuoteSymbol1M](https://www.kucoin.com/docs-new/api-3470220) "
     )
     start_at: Optional[int] = Field(default=None,
-                                    description="Start time (milisecond)",
+                                    description="Start time (milliseconds)",
                                     alias="startAt")
     end_at: Optional[int] = Field(default=None,
-                                  description="End time (milisecond)",
+                                  description="End time (milliseconds)",
                                   alias="endAt")
     reverse: Optional[bool] = Field(
         default=True,
         description=
-        "This parameter functions to judge whether the lookup is reverse. True means “yes”. False means no. This parameter is set as True by default."
+        "This parameter functions to judge whether the lookup is reversed. True means “yes”. False means “no”. This parameter is set as True by default."
     )
     offset: Optional[int] = Field(
         default=None,
@@ -49,12 +48,12 @@ class GetInterestRateIndexReq(BaseModel):
     forward: Optional[bool] = Field(
         default=True,
         description=
-        "This parameter functions to judge whether the lookup is forward or not. True means “yes” and False means “no”. This parameter is set as true by default"
+        "This parameter functions to judge whether the lookup is forward or not. True means “yes” and False means “no”. This parameter is set as true by default."
     )
-    max_count: Optional[Annotated[int, Field(le=100, strict=True)]] = Field(
+    max_count: Optional[int] = Field(
         default=10,
         description=
-        "Max record count. The default record count is 10, The maximum length cannot exceed 100",
+        "Max. record count. The default record count is 10; the maximum length cannot exceed 100",
         alias="maxCount")
 
     __properties: ClassVar[List[str]] = [
@@ -122,28 +121,28 @@ class GetInterestRateIndexReqBuilder:
 
     def set_symbol(self, value: str) -> GetInterestRateIndexReqBuilder:
         """
-        Symbol of the contract, Please refer to [Get Symbol endpoint: fundingBaseSymbol, fundingQuoteSymbol, fundingBaseSymbol1M, fundingQuoteSymbol1M](https://www.kucoin.com/docs-new/api-3470220) 
+        Symbol of the contract. Please refer to [Get Symbol endpoint: fundingBaseSymbol, fundingQuoteSymbol, fundingBaseSymbol1M, fundingQuoteSymbol1M](https://www.kucoin.com/docs-new/api-3470220) 
         """
         self.obj['symbol'] = value
         return self
 
     def set_start_at(self, value: int) -> GetInterestRateIndexReqBuilder:
         """
-        Start time (milisecond)
+        Start time (milliseconds)
         """
         self.obj['startAt'] = value
         return self
 
     def set_end_at(self, value: int) -> GetInterestRateIndexReqBuilder:
         """
-        End time (milisecond)
+        End time (milliseconds)
         """
         self.obj['endAt'] = value
         return self
 
     def set_reverse(self, value: bool) -> GetInterestRateIndexReqBuilder:
         """
-        This parameter functions to judge whether the lookup is reverse. True means “yes”. False means no. This parameter is set as True by default.
+        This parameter functions to judge whether the lookup is reversed. True means “yes”. False means “no”. This parameter is set as True by default.
         """
         self.obj['reverse'] = value
         return self
@@ -157,14 +156,14 @@ class GetInterestRateIndexReqBuilder:
 
     def set_forward(self, value: bool) -> GetInterestRateIndexReqBuilder:
         """
-        This parameter functions to judge whether the lookup is forward or not. True means “yes” and False means “no”. This parameter is set as true by default
+        This parameter functions to judge whether the lookup is forward or not. True means “yes” and False means “no”. This parameter is set as true by default.
         """
         self.obj['forward'] = value
         return self
 
     def set_max_count(self, value: int) -> GetInterestRateIndexReqBuilder:
         """
-        Max record count. The default record count is 10, The maximum length cannot exceed 100
+        Max. record count. The default record count is 10; the maximum length cannot exceed 100
         """
         self.obj['maxCount'] = value
         return self

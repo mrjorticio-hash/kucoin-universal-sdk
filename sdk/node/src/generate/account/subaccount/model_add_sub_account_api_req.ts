@@ -5,27 +5,27 @@ import { Serializable } from '@internal/interfaces/serializable';
 
 export class AddSubAccountApiReq implements Serializable {
     /**
-     * Password(Must contain 7-32 characters. Cannot contain any spaces.)
+     * Password (Must contain 7–32 characters. Cannot contain any spaces.)
      */
     passphrase: string;
 
     /**
-     * Remarks(1~24 characters)
+     * Remarks (1–24 characters)
      */
     remark: string;
 
     /**
-     * [Permissions](https://www.kucoin.com/docs-new/doc-338144)(Only General、Spot、Futures、Margin、InnerTransfer(Flex Transfer) permissions can be set, such as \"General, Trade\". The default is \"General\")
+     * [Permissions](https://www.kucoin.com/docs-new/doc-338144)(Only General, Spot, Futures, Margin, InnerTransfer (Flex Transfer) permissions can be set, such as \"General, Trade\". The default is \"General\")
      */
     permission?: string = 'General';
 
     /**
-     * IP whitelist(You may add up to 20 IPs. Use a halfwidth comma to each IP)
+     * IP whitelist (You may add up to 20 IPs. Use a halfwidth comma to each IP)
      */
     ipWhitelist?: string;
 
     /**
-     * API expiration time; Never expire(default)-1，30Day30，90Day90，180Day180，360Day360
+     * API expiration time: Never expire(default)-1, 30Day30, 90Day90, 180Day180, 360Day360
      */
     expire?: AddSubAccountApiReq.ExpireEnum = AddSubAccountApiReq.ExpireEnum._1;
 
@@ -58,23 +58,23 @@ export class AddSubAccountApiReq implements Serializable {
      */
     static create(data: {
         /**
-         * Password(Must contain 7-32 characters. Cannot contain any spaces.)
+         * Password (Must contain 7–32 characters. Cannot contain any spaces.)
          */
         passphrase: string;
         /**
-         * Remarks(1~24 characters)
+         * Remarks (1–24 characters)
          */
         remark: string;
         /**
-         * [Permissions](https://www.kucoin.com/docs-new/doc-338144)(Only General、Spot、Futures、Margin、InnerTransfer(Flex Transfer) permissions can be set, such as \"General, Trade\". The default is \"General\")
+         * [Permissions](https://www.kucoin.com/docs-new/doc-338144)(Only General, Spot, Futures, Margin, InnerTransfer (Flex Transfer) permissions can be set, such as \"General, Trade\". The default is \"General\")
          */
         permission?: string;
         /**
-         * IP whitelist(You may add up to 20 IPs. Use a halfwidth comma to each IP)
+         * IP whitelist (You may add up to 20 IPs. Use a halfwidth comma to each IP)
          */
         ipWhitelist?: string;
         /**
-         * API expiration time; Never expire(default)-1，30Day30，90Day90，180Day180，360Day360
+         * API expiration time: Never expire(default)-1, 30Day30, 90Day90, 180Day180, 360Day360
          */
         expire?: AddSubAccountApiReq.ExpireEnum;
         /**
@@ -150,7 +150,7 @@ export class AddSubAccountApiReqBuilder {
         this.obj = obj;
     }
     /**
-     * Password(Must contain 7-32 characters. Cannot contain any spaces.)
+     * Password (Must contain 7–32 characters. Cannot contain any spaces.)
      */
     setPassphrase(value: string): AddSubAccountApiReqBuilder {
         this.obj.passphrase = value;
@@ -158,7 +158,7 @@ export class AddSubAccountApiReqBuilder {
     }
 
     /**
-     * Remarks(1~24 characters)
+     * Remarks (1–24 characters)
      */
     setRemark(value: string): AddSubAccountApiReqBuilder {
         this.obj.remark = value;
@@ -166,7 +166,7 @@ export class AddSubAccountApiReqBuilder {
     }
 
     /**
-     * [Permissions](https://www.kucoin.com/docs-new/doc-338144)(Only General、Spot、Futures、Margin、InnerTransfer(Flex Transfer) permissions can be set, such as \"General, Trade\". The default is \"General\")
+     * [Permissions](https://www.kucoin.com/docs-new/doc-338144)(Only General, Spot, Futures, Margin, InnerTransfer (Flex Transfer) permissions can be set, such as \"General, Trade\". The default is \"General\")
      */
     setPermission(value: string): AddSubAccountApiReqBuilder {
         this.obj.permission = value;
@@ -174,7 +174,7 @@ export class AddSubAccountApiReqBuilder {
     }
 
     /**
-     * IP whitelist(You may add up to 20 IPs. Use a halfwidth comma to each IP)
+     * IP whitelist (You may add up to 20 IPs. Use a halfwidth comma to each IP)
      */
     setIpWhitelist(value: string): AddSubAccountApiReqBuilder {
         this.obj.ipWhitelist = value;
@@ -182,7 +182,7 @@ export class AddSubAccountApiReqBuilder {
     }
 
     /**
-     * API expiration time; Never expire(default)-1，30Day30，90Day90，180Day180，360Day360
+     * API expiration time: Never expire(default)-1, 30Day30, 90Day90, 180Day180, 360Day360
      */
     setExpire(value: AddSubAccountApiReq.ExpireEnum): AddSubAccountApiReqBuilder {
         this.obj.expire = value;

@@ -4,7 +4,7 @@ package market
 
 // GetFiatPriceReq struct for GetFiatPriceReq
 type GetFiatPriceReq struct {
-	// Ticker symbol of a base currency,eg.USD,EUR. Default is USD
+	// Ticker symbol of a base currency, e.g. USD, EUR. Default is USD
 	Base *string `json:"base,omitempty" url:"base,omitempty"`
 	// Comma-separated cryptocurrencies to be converted into fiat, e.g.: BTC,ETH, etc. Default to return the fiat price of all currencies.
 	Currencies *string `json:"currencies,omitempty" url:"currencies,omitempty"`
@@ -43,7 +43,7 @@ func NewGetFiatPriceReqBuilder() *GetFiatPriceReqBuilder {
 	return &GetFiatPriceReqBuilder{obj: NewGetFiatPriceReqWithDefaults()}
 }
 
-// Ticker symbol of a base currency,eg.USD,EUR. Default is USD
+// Ticker symbol of a base currency, e.g. USD, EUR. Default is USD
 func (builder *GetFiatPriceReqBuilder) SetBase(value string) *GetFiatPriceReqBuilder {
 	builder.obj.Base = &value
 	return builder

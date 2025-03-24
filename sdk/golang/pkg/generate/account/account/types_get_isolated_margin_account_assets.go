@@ -6,7 +6,7 @@ package account
 type GetIsolatedMarginAccountAssets struct {
 	// Symbol
 	Symbol string `json:"symbol,omitempty"`
-	// Position status; EFFECTIVE-effective, BANKRUPTCY-bankruptcy liquidation, LIQUIDATION-closing, REPAY-repayment, BORROW borrowing
+	// Position status; EFFECTIVE-effective, BANKRUPTCY-bankruptcy liquidation, LIQUIDATION-closing, REPAY-repayment, BORROW-borrowing
 	Status string `json:"status,omitempty"`
 	// debt ratio
 	DebtRatio  string                                   `json:"debtRatio,omitempty"`

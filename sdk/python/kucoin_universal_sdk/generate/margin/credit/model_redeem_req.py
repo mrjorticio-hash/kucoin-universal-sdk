@@ -17,13 +17,13 @@ class RedeemReq(BaseModel):
     Attributes:
         currency (str): Currency
         size (str): Redemption amount
-        purchase_order_no (str): Purchase order id
+        purchase_order_no (str): Purchase order ID
     """
 
     currency: Optional[str] = Field(default=None, description="Currency")
     size: Optional[str] = Field(default=None, description="Redemption amount")
     purchase_order_no: Optional[str] = Field(default=None,
-                                             description="Purchase order id",
+                                             description="Purchase order ID",
                                              alias="purchaseOrderNo")
 
     __properties: ClassVar[List[str]] = ["currency", "size", "purchaseOrderNo"]
@@ -88,7 +88,7 @@ class RedeemReqBuilder:
 
     def set_purchase_order_no(self, value: str) -> RedeemReqBuilder:
         """
-        Purchase order id
+        Purchase order ID
         """
         self.obj['purchaseOrderNo'] = value
         return self

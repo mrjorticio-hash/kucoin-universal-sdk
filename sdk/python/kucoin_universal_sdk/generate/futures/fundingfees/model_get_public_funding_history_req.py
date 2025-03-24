@@ -15,21 +15,21 @@ class GetPublicFundingHistoryReq(BaseModel):
     GetPublicFundingHistoryReq
 
     Attributes:
-        symbol (str): Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) 
-        from_ (int): Begin time (milisecond) 
-        to (int): End time (milisecond) 
+        symbol (str): Symbol of the contract. Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) 
+        from_ (int): Begin time (milliseconds) 
+        to (int): End time (milliseconds) 
     """
 
     symbol: Optional[str] = Field(
         default=None,
         description=
-        "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) "
+        "Symbol of the contract. Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) "
     )
     from_: Optional[int] = Field(default=None,
-                                 description="Begin time (milisecond) ",
+                                 description="Begin time (milliseconds) ",
                                  alias="from")
     to: Optional[int] = Field(default=None,
-                              description="End time (milisecond) ")
+                              description="End time (milliseconds) ")
 
     __properties: ClassVar[List[str]] = ["symbol", "from", "to"]
 
@@ -82,21 +82,21 @@ class GetPublicFundingHistoryReqBuilder:
 
     def set_symbol(self, value: str) -> GetPublicFundingHistoryReqBuilder:
         """
-        Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) 
+        Symbol of the contract. Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) 
         """
         self.obj['symbol'] = value
         return self
 
     def set_from_(self, value: int) -> GetPublicFundingHistoryReqBuilder:
         """
-        Begin time (milisecond) 
+        Begin time (milliseconds) 
         """
         self.obj['from'] = value
         return self
 
     def set_to(self, value: int) -> GetPublicFundingHistoryReqBuilder:
         """
-        End time (milisecond) 
+        End time (milliseconds) 
         """
         self.obj['to'] = value
         return self

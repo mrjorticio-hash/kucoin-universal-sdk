@@ -19,10 +19,10 @@ class GetFuturesAccountTransferOutLedgerReq(BaseModel):
         currency (str): currency
         type (TypeEnum): Status PROCESSING, SUCCESS, FAILURE
         tag (list[str]): Status List PROCESSING, SUCCESS, FAILURE
-        start_at (int): Start time (milisecond)
-        end_at (int): End time (milisecond)
-        current_page (int): Current request page, The default currentPage is 1
-        page_size (int): pageSize, The default pageSize is 50
+        start_at (int): Start time (milliseconds)
+        end_at (int): End time (milliseconds)
+        current_page (int): Current request page. The default currentPage is 1
+        page_size (int): pageSize; the default pageSize is 50
     """
 
     class TypeEnum(Enum):
@@ -44,18 +44,18 @@ class GetFuturesAccountTransferOutLedgerReq(BaseModel):
     tag: Optional[List[str]] = Field(
         default=None, description="Status List PROCESSING, SUCCESS, FAILURE")
     start_at: Optional[int] = Field(default=None,
-                                    description="Start time (milisecond)",
+                                    description="Start time (milliseconds)",
                                     alias="startAt")
     end_at: Optional[int] = Field(default=None,
-                                  description="End time (milisecond)",
+                                  description="End time (milliseconds)",
                                   alias="endAt")
     current_page: Optional[int] = Field(
         default=1,
-        description="Current request page, The default currentPage is 1",
+        description="Current request page. The default currentPage is 1",
         alias="currentPage")
     page_size: Optional[int] = Field(
         default=50,
-        description="pageSize, The default pageSize is 50",
+        description="pageSize; the default pageSize is 50",
         alias="pageSize")
 
     __properties: ClassVar[List[str]] = [
@@ -152,7 +152,7 @@ class GetFuturesAccountTransferOutLedgerReqBuilder:
     def set_start_at(
             self, value: int) -> GetFuturesAccountTransferOutLedgerReqBuilder:
         """
-        Start time (milisecond)
+        Start time (milliseconds)
         """
         self.obj['startAt'] = value
         return self
@@ -160,7 +160,7 @@ class GetFuturesAccountTransferOutLedgerReqBuilder:
     def set_end_at(self,
                    value: int) -> GetFuturesAccountTransferOutLedgerReqBuilder:
         """
-        End time (milisecond)
+        End time (milliseconds)
         """
         self.obj['endAt'] = value
         return self
@@ -168,7 +168,7 @@ class GetFuturesAccountTransferOutLedgerReqBuilder:
     def set_current_page(
             self, value: int) -> GetFuturesAccountTransferOutLedgerReqBuilder:
         """
-        Current request page, The default currentPage is 1
+        Current request page. The default currentPage is 1
         """
         self.obj['currentPage'] = value
         return self
@@ -176,7 +176,7 @@ class GetFuturesAccountTransferOutLedgerReqBuilder:
     def set_page_size(
             self, value: int) -> GetFuturesAccountTransferOutLedgerReqBuilder:
         """
-        pageSize, The default pageSize is 50
+        pageSize; the default pageSize is 50
         """
         self.obj['pageSize'] = value
         return self

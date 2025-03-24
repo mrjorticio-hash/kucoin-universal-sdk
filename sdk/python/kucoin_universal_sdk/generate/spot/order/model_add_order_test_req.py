@@ -30,8 +30,10 @@ class AddOrderTestReq(BaseModel):
         iceberg (bool): Whether or not only visible portions of orders are shown in [Iceberg orders](https://www.kucoin.com/docs-new/doc-338146)
         visible_size (str): Maximum visible quantity in iceberg orders
         tags (str): Order tag, length cannot exceed 20 characters (ASCII)
-        cancel_after (int): Cancel after n seconds，the order timing strategy is GTT
+        cancel_after (int): Cancel after n seconds, the order timing strategy is GTT, -1 means it will not be cancelled automatically, the default value is -1 
         funds (str): When **type** is market, select one out of two: size or funds
+        allow_max_time_window (int): Order failed after timeout of specified milliseconds, If clientTimestamp + allowMaxTimeWindow < the server reaches time, this order will fail.
+        client_timestamp (int): Equal to KC-API-TIMESTAMP, Need to be defined if iceberg is specified.
     """
 
     class SideEnum(Enum):
@@ -138,18 +140,29 @@ class AddOrderTestReq(BaseModel):
         default=None,
         description="Order tag, length cannot exceed 20 characters (ASCII)")
     cancel_after: Optional[int] = Field(
-        default=None,
-        description="Cancel after n seconds，the order timing strategy is GTT",
+        default=-1,
+        description=
+        "Cancel after n seconds, the order timing strategy is GTT, -1 means it will not be cancelled automatically, the default value is -1 ",
         alias="cancelAfter")
     funds: Optional[str] = Field(
         default=None,
         description=
         "When **type** is market, select one out of two: size or funds")
+    allow_max_time_window: Optional[int] = Field(
+        default=None,
+        description=
+        "Order failed after timeout of specified milliseconds, If clientTimestamp + allowMaxTimeWindow < the server reaches time, this order will fail.",
+        alias="allowMaxTimeWindow")
+    client_timestamp: Optional[int] = Field(
+        default=None,
+        description=
+        "Equal to KC-API-TIMESTAMP, Need to be defined if iceberg is specified.",
+        alias="clientTimestamp")
 
     __properties: ClassVar[List[str]] = [
         "clientOid", "side", "symbol", "type", "remark", "stp", "price",
         "size", "timeInForce", "postOnly", "hidden", "iceberg", "visibleSize",
-        "tags", "cancelAfter", "funds"
+        "tags", "cancelAfter", "funds", "allowMaxTimeWindow", "clientTimestamp"
     ]
 
     model_config = ConfigDict(
@@ -215,9 +228,14 @@ class AddOrderTestReq(BaseModel):
             "tags":
             obj.get("tags"),
             "cancelAfter":
-            obj.get("cancelAfter"),
+            obj.get("cancelAfter")
+            if obj.get("cancelAfter") is not None else -1,
             "funds":
-            obj.get("funds")
+            obj.get("funds"),
+            "allowMaxTimeWindow":
+            obj.get("allowMaxTimeWindow"),
+            "clientTimestamp":
+            obj.get("clientTimestamp")
         })
         return _obj
 
@@ -332,7 +350,7 @@ class AddOrderTestReqBuilder:
 
     def set_cancel_after(self, value: int) -> AddOrderTestReqBuilder:
         """
-        Cancel after n seconds，the order timing strategy is GTT
+        Cancel after n seconds, the order timing strategy is GTT, -1 means it will not be cancelled automatically, the default value is -1 
         """
         self.obj['cancelAfter'] = value
         return self
@@ -342,6 +360,20 @@ class AddOrderTestReqBuilder:
         When **type** is market, select one out of two: size or funds
         """
         self.obj['funds'] = value
+        return self
+
+    def set_allow_max_time_window(self, value: int) -> AddOrderTestReqBuilder:
+        """
+        Order failed after timeout of specified milliseconds, If clientTimestamp + allowMaxTimeWindow < the server reaches time, this order will fail.
+        """
+        self.obj['allowMaxTimeWindow'] = value
+        return self
+
+    def set_client_timestamp(self, value: int) -> AddOrderTestReqBuilder:
+        """
+        Equal to KC-API-TIMESTAMP, Need to be defined if iceberg is specified.
+        """
+        self.obj['clientTimestamp'] = value
         return self
 
     def build(self) -> AddOrderTestReq:

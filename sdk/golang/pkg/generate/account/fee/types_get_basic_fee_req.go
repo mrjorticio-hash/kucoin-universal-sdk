@@ -4,7 +4,7 @@ package fee
 
 // GetBasicFeeReq struct for GetBasicFeeReq
 type GetBasicFeeReq struct {
-	// Currency type: 0-crypto currency, 1-fiat currency. default is 0-crypto currency
+	// Currency type: 0-crypto currency, 1-fiat currency. Default is 0-crypto currency
 	CurrencyType *int32 `json:"currencyType,omitempty" url:"currencyType,omitempty"`
 }
 
@@ -40,7 +40,7 @@ func NewGetBasicFeeReqBuilder() *GetBasicFeeReqBuilder {
 	return &GetBasicFeeReqBuilder{obj: NewGetBasicFeeReqWithDefaults()}
 }
 
-// Currency type: 0-crypto currency, 1-fiat currency. default is 0-crypto currency
+// Currency type: 0-crypto currency, 1-fiat currency. Default is 0-crypto currency
 func (builder *GetBasicFeeReqBuilder) SetCurrencyType(value int32) *GetBasicFeeReqBuilder {
 	builder.obj.CurrencyType = &value
 	return builder

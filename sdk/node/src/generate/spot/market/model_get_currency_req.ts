@@ -12,7 +12,7 @@ export class GetCurrencyReq implements Serializable {
     currency?: string;
 
     /**
-     * Support for querying the chain of currency, e.g. The available value for USDT are OMNI, ERC20, TRC20. This only apply for multi-chain currency, and there is no need for single chain currency.
+     * Support for querying the chain of currency, e.g. the available values for USDT are OMNI, ERC20, TRC20. This only applies to multi-chain currencies; no need for single-chain currencies.
      */
     chain?: string;
 
@@ -37,7 +37,7 @@ export class GetCurrencyReq implements Serializable {
          */
         currency?: string;
         /**
-         * Support for querying the chain of currency, e.g. The available value for USDT are OMNI, ERC20, TRC20. This only apply for multi-chain currency, and there is no need for single chain currency.
+         * Support for querying the chain of currency, e.g. the available values for USDT are OMNI, ERC20, TRC20. This only applies to multi-chain currencies; no need for single-chain currencies.
          */
         chain?: string;
     }): GetCurrencyReq {
@@ -80,7 +80,7 @@ export class GetCurrencyReqBuilder {
     }
 
     /**
-     * Support for querying the chain of currency, e.g. The available value for USDT are OMNI, ERC20, TRC20. This only apply for multi-chain currency, and there is no need for single chain currency.
+     * Support for querying the chain of currency, e.g. the available values for USDT are OMNI, ERC20, TRC20. This only applies to multi-chain currencies; no need for single-chain currencies.
      */
     setChain(value: string): GetCurrencyReqBuilder {
         this.obj.chain = value;

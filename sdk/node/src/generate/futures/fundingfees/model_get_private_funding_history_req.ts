@@ -5,22 +5,22 @@ import { Serializable } from '@internal/interfaces/serializable';
 
 export class GetPrivateFundingHistoryReq implements Serializable {
     /**
-     * Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)
+     * Symbol of the contract. Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)
      */
     symbol?: string;
 
     /**
-     * Begin time (milisecond)
+     * Begin time (milliseconds)
      */
-    from?: number;
+    startAt?: number;
 
     /**
-     * End time (milisecond)
+     * End time (milliseconds)
      */
-    to?: number;
+    endAt?: number;
 
     /**
-     * This parameter functions to judge whether the lookup is forward or not. True means “yes” and False means “no”. This parameter is set as true by default
+     * This parameter functions to judge whether the lookup is forward or not. True means “yes” and False means “no”. This parameter is set as true by default.
      */
     reverse?: boolean;
 
@@ -30,12 +30,12 @@ export class GetPrivateFundingHistoryReq implements Serializable {
     offset?: number;
 
     /**
-     * This parameter functions to judge whether the lookup is forward or not. True means “yes” and False means “no”. This parameter is set as true by default
+     * This parameter functions to judge whether the lookup is forward or not. True means “yes” and False means “no”. This parameter is set as true by default.
      */
     forward?: boolean;
 
     /**
-     * Max record count. The default record count is 10
+     * Max. record count. The default record count is 10
      */
     maxCount?: number;
 
@@ -56,19 +56,19 @@ export class GetPrivateFundingHistoryReq implements Serializable {
      */
     static create(data: {
         /**
-         * Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)
+         * Symbol of the contract. Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)
          */
         symbol?: string;
         /**
-         * Begin time (milisecond)
+         * Begin time (milliseconds)
          */
-        from?: number;
+        startAt?: number;
         /**
-         * End time (milisecond)
+         * End time (milliseconds)
          */
-        to?: number;
+        endAt?: number;
         /**
-         * This parameter functions to judge whether the lookup is forward or not. True means “yes” and False means “no”. This parameter is set as true by default
+         * This parameter functions to judge whether the lookup is forward or not. True means “yes” and False means “no”. This parameter is set as true by default.
          */
         reverse?: boolean;
         /**
@@ -76,18 +76,18 @@ export class GetPrivateFundingHistoryReq implements Serializable {
          */
         offset?: number;
         /**
-         * This parameter functions to judge whether the lookup is forward or not. True means “yes” and False means “no”. This parameter is set as true by default
+         * This parameter functions to judge whether the lookup is forward or not. True means “yes” and False means “no”. This parameter is set as true by default.
          */
         forward?: boolean;
         /**
-         * Max record count. The default record count is 10
+         * Max. record count. The default record count is 10
          */
         maxCount?: number;
     }): GetPrivateFundingHistoryReq {
         let obj = new GetPrivateFundingHistoryReq();
         obj.symbol = data.symbol;
-        obj.from = data.from;
-        obj.to = data.to;
+        obj.startAt = data.startAt;
+        obj.endAt = data.endAt;
         obj.reverse = data.reverse;
         obj.offset = data.offset;
         obj.forward = data.forward;
@@ -120,7 +120,7 @@ export class GetPrivateFundingHistoryReqBuilder {
         this.obj = obj;
     }
     /**
-     * Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)
+     * Symbol of the contract. Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)
      */
     setSymbol(value: string): GetPrivateFundingHistoryReqBuilder {
         this.obj.symbol = value;
@@ -128,23 +128,23 @@ export class GetPrivateFundingHistoryReqBuilder {
     }
 
     /**
-     * Begin time (milisecond)
+     * Begin time (milliseconds)
      */
-    setFrom(value: number): GetPrivateFundingHistoryReqBuilder {
-        this.obj.from = value;
+    setStartAt(value: number): GetPrivateFundingHistoryReqBuilder {
+        this.obj.startAt = value;
         return this;
     }
 
     /**
-     * End time (milisecond)
+     * End time (milliseconds)
      */
-    setTo(value: number): GetPrivateFundingHistoryReqBuilder {
-        this.obj.to = value;
+    setEndAt(value: number): GetPrivateFundingHistoryReqBuilder {
+        this.obj.endAt = value;
         return this;
     }
 
     /**
-     * This parameter functions to judge whether the lookup is forward or not. True means “yes” and False means “no”. This parameter is set as true by default
+     * This parameter functions to judge whether the lookup is forward or not. True means “yes” and False means “no”. This parameter is set as true by default.
      */
     setReverse(value: boolean): GetPrivateFundingHistoryReqBuilder {
         this.obj.reverse = value;
@@ -160,7 +160,7 @@ export class GetPrivateFundingHistoryReqBuilder {
     }
 
     /**
-     * This parameter functions to judge whether the lookup is forward or not. True means “yes” and False means “no”. This parameter is set as true by default
+     * This parameter functions to judge whether the lookup is forward or not. True means “yes” and False means “no”. This parameter is set as true by default.
      */
     setForward(value: boolean): GetPrivateFundingHistoryReqBuilder {
         this.obj.forward = value;
@@ -168,7 +168,7 @@ export class GetPrivateFundingHistoryReqBuilder {
     }
 
     /**
-     * Max record count. The default record count is 10
+     * Max. record count. The default record count is 10
      */
     setMaxCount(value: number): GetPrivateFundingHistoryReqBuilder {
         this.obj.maxCount = value;

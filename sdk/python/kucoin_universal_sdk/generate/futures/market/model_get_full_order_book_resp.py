@@ -18,10 +18,10 @@ class GetFullOrderBookResp(BaseModel, Response):
 
     Attributes:
         sequence (int): Sequence number
-        symbol (str): Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) 
+        symbol (str): Symbol of the contract. Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) 
         bids (list[list[float]]): bids, from high to low
         asks (list[list[float]]): asks, from low to high
-        ts (int): Timestamp(nanosecond)
+        ts (int): Timestamp (nanoseconds)
     """
 
     common_response: Optional[RestResponse] = Field(
@@ -31,14 +31,14 @@ class GetFullOrderBookResp(BaseModel, Response):
     symbol: Optional[str] = Field(
         default=None,
         description=
-        "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) "
+        "Symbol of the contract. Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) "
     )
     bids: Optional[List[List[float]]] = Field(
         default=None, description="bids, from high to low")
     asks: Optional[List[List[float]]] = Field(
         default=None, description="asks, from low to high")
     ts: Optional[int] = Field(default=None,
-                              description="Timestamp(nanosecond)")
+                              description="Timestamp (nanoseconds)")
 
     __properties: ClassVar[List[str]] = [
         "sequence", "symbol", "bids", "asks", "ts"

@@ -4,7 +4,7 @@ package debit
 
 // GetRepayHistoryItems struct for GetRepayHistoryItems
 type GetRepayHistoryItems struct {
-	// Repay Order Id
+	// Repay order ID
 	OrderNo string `json:"orderNo,omitempty"`
 	// Isolated Margin symbol; empty for cross margin
 	Symbol string `json:"symbol,omitempty"`

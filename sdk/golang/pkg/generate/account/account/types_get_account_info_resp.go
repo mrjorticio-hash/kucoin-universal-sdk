@@ -22,17 +22,17 @@ type GetAccountInfoResp struct {
 	FuturesSubQuantity int32 `json:"futuresSubQuantity,omitempty"`
 	// Number of sub-accounts with option trading permissions enabled
 	OptionSubQuantity int32 `json:"optionSubQuantity,omitempty"`
-	// Max number of sub-accounts = maxDefaultSubQuantity + maxSpotSubQuantity
+	// Max. number of sub-accounts = maxDefaultSubQuantity + maxSpotSubQuantity
 	MaxSubQuantity int32 `json:"maxSubQuantity,omitempty"`
-	// Max number of default open sub-accounts (according to VIP level)
+	// Max. number of default open sub-accounts (according to VIP level)
 	MaxDefaultSubQuantity int32 `json:"maxDefaultSubQuantity,omitempty"`
-	// Max number of sub-accounts with additional Spot trading permissions
+	// Max. number of sub-accounts with additional spot trading permissions
 	MaxSpotSubQuantity int32 `json:"maxSpotSubQuantity,omitempty"`
-	// Max number of sub-accounts with additional margin trading permissions
+	// Max. number of sub-accounts with additional margin trading permissions
 	MaxMarginSubQuantity int32 `json:"maxMarginSubQuantity,omitempty"`
-	// Max number of sub-accounts with additional futures trading permissions
+	// Max. number of sub-accounts with additional futures trading permissions
 	MaxFuturesSubQuantity int32 `json:"maxFuturesSubQuantity,omitempty"`
-	// Max number of sub-accounts with additional Option trading permissions
+	// Max. number of sub-accounts with additional option trading permissions
 	MaxOptionSubQuantity int32 `json:"maxOptionSubQuantity,omitempty"`
 }
 

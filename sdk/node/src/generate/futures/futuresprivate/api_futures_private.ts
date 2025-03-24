@@ -20,56 +20,56 @@ export interface FuturesPrivateWS {
     /**
      * allOrder All Order change pushes.
      * Push order changes for all symbol
-     * push frequency: realtime
+     * push frequency: real-time
      */
     allOrder(callback: AllOrderEventCallback): Promise<string>;
 
     /**
      * allPosition All symbol position change events push
-     * Subscribe this topic to get the realtime push of position change event of all symbol
-     * push frequency: realtime
+     * Subscribe to this topic to get real-time pushes on all symbols’ position change events
+     * push frequency: real-time
      */
     allPosition(callback: AllPositionEventCallback): Promise<string>;
 
     /**
      * balance the balance change push
-     * Subscribe this topic to get the realtime push of balance change
-     * push frequency: realtime
+     * Subscribe to this topic to get real-time balance change pushes
+     * push frequency: real-time
      */
     balance(callback: BalanceEventCallback): Promise<string>;
 
     /**
      * crossLeverage the leverage change push
-     * Subscribe this topic to get the realtime push of leverage change of contracts that are in cross margin mode
-     * push frequency: realtime
+     * Subscribe to this topic to get real-time pushes on leverage changes of contracts that are in cross margin mode
+     * push frequency: real-time
      */
     crossLeverage(callback: CrossLeverageEventCallback): Promise<string>;
 
     /**
      * marginMode the margin mode change
-     * Subscribe this topic to get the realtime push of margin mode change event of a symbol
-     * push frequency: realtime
+     * Subscribe to this topic to get real-time pushes on symbols’ margin mode change events
+     * push frequency: real-time
      */
     marginMode(callback: MarginModeEventCallback): Promise<string>;
 
     /**
      * order Order change pushes.
      * Push order changes for the specified symbol
-     * push frequency: realtime
+     * push frequency: real-time
      */
     order(symbol: string, callback: OrderEventCallback): Promise<string>;
 
     /**
      * position the position change events push
-     * Subscribe this topic to get the realtime push of position change event of a symbol
-     * push frequency: realtime
+     * Subscribe this topic to get real-time pushes on symbols’ position change events
+     * push frequency: real-time
      */
     position(symbol: string, callback: PositionEventCallback): Promise<string>;
 
     /**
      * stopOrders stop order change pushes.
-     * Subscribe this topic to get the realtime push of stop order changes.
-     * push frequency: realtime
+     * Subscribe to this topic to get real-time pushes on stop order changes.
+     * push frequency: real-time
      */
     stopOrders(callback: StopOrdersEventCallback): Promise<string>;
 

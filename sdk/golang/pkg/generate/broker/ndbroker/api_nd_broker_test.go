@@ -37,7 +37,7 @@ func TestNDBrokerGetBrokerInfoRespModel(t *testing.T) {
 
 func TestNDBrokerAddSubAccountReqModel(t *testing.T) {
 	// AddSubAccount
-	// Add SubAccount
+	// Add sub-account
 	// /api/v1/broker/nd/account
 
 	data := "{\"accountName\": \"Account1\"}"
@@ -49,7 +49,7 @@ func TestNDBrokerAddSubAccountReqModel(t *testing.T) {
 
 func TestNDBrokerAddSubAccountRespModel(t *testing.T) {
 	// AddSubAccount
-	// Add SubAccount
+	// Add sub-account
 	// /api/v1/broker/nd/account
 
 	data := "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"accountName\": \"Account15\",\n        \"uid\": \"226383154\",\n        \"createdAt\": 1729819381908,\n        \"level\": 0\n    }\n}"
@@ -65,7 +65,7 @@ func TestNDBrokerAddSubAccountRespModel(t *testing.T) {
 
 func TestNDBrokerGetSubAccountReqModel(t *testing.T) {
 	// GetSubAccount
-	// Get SubAccount
+	// Get sub-account
 	// /api/v1/broker/nd/account
 
 	data := "{\"uid\": \"226383154\", \"currentPage\": 1, \"pageSize\": 20}"
@@ -77,7 +77,7 @@ func TestNDBrokerGetSubAccountReqModel(t *testing.T) {
 
 func TestNDBrokerGetSubAccountRespModel(t *testing.T) {
 	// GetSubAccount
-	// Get SubAccount
+	// Get sub-account
 	// /api/v1/broker/nd/account
 
 	data := "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"currentPage\": 1,\n        \"pageSize\": 20,\n        \"totalNum\": 1,\n        \"totalPage\": 1,\n        \"items\": [\n            {\n                \"accountName\": \"Account15\",\n                \"uid\": \"226383154\",\n                \"createdAt\": 1729819382000,\n                \"level\": 0\n            }\n        ]\n    }\n}"
@@ -93,7 +93,7 @@ func TestNDBrokerGetSubAccountRespModel(t *testing.T) {
 
 func TestNDBrokerAddSubAccountApiReqModel(t *testing.T) {
 	// AddSubAccountApi
-	// Add SubAccount API
+	// Add sub-account API
 	// /api/v1/broker/nd/account/apikey
 
 	data := "{\"uid\": \"226383154\", \"passphrase\": \"11223344\", \"ipWhitelist\": [\"127.0.0.1\", \"123.123.123.123\"], \"permissions\": [\"general\", \"spot\"], \"label\": \"This is remarks\"}"
@@ -105,7 +105,7 @@ func TestNDBrokerAddSubAccountApiReqModel(t *testing.T) {
 
 func TestNDBrokerAddSubAccountApiRespModel(t *testing.T) {
 	// AddSubAccountApi
-	// Add SubAccount API
+	// Add sub-account API
 	// /api/v1/broker/nd/account/apikey
 
 	data := "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"uid\": \"226383154\",\n        \"label\": \"This is remarks\",\n        \"apiKey\": \"671afb36cee20f00015cfaf1\",\n        \"secretKey\": \"d694df2******5bae05b96\",\n        \"apiVersion\": 3,\n        \"permissions\": [\n            \"General\",\n            \"Spot\"\n        ],\n        \"ipWhitelist\": [\n            \"127.0.0.1\",\n            \"123.123.123.123\"\n        ],\n        \"createdAt\": 1729821494000\n    }\n}"
@@ -121,7 +121,7 @@ func TestNDBrokerAddSubAccountApiRespModel(t *testing.T) {
 
 func TestNDBrokerGetSubAccountAPIReqModel(t *testing.T) {
 	// GetSubAccountAPI
-	// Get SubAccount API
+	// Get sub-account API
 	// /api/v1/broker/nd/account/apikey
 
 	data := "{\"uid\": \"226383154\", \"apiKey\": \"671afb36cee20f00015cfaf1\"}"
@@ -133,7 +133,7 @@ func TestNDBrokerGetSubAccountAPIReqModel(t *testing.T) {
 
 func TestNDBrokerGetSubAccountAPIRespModel(t *testing.T) {
 	// GetSubAccountAPI
-	// Get SubAccount API
+	// Get sub-account API
 	// /api/v1/broker/nd/account/apikey
 
 	data := "{\n    \"code\": \"200000\",\n    \"data\": [\n        {\n            \"uid\": \"226383154\",\n            \"label\": \"This is remarks\",\n            \"apiKey\": \"671afb36cee20f00015cfaf1\",\n            \"apiVersion\": 3,\n            \"permissions\": [\n                \"General\",\n                \"Spot\"\n            ],\n            \"ipWhitelist\": [\n                \"127.**.1\",\n                \"203.**.154\"\n            ],\n            \"createdAt\": 1729821494000\n        }\n    ]\n}"
@@ -149,7 +149,7 @@ func TestNDBrokerGetSubAccountAPIRespModel(t *testing.T) {
 
 func TestNDBrokerModifySubAccountApiReqModel(t *testing.T) {
 	// ModifySubAccountApi
-	// Modify SubAccount API
+	// Modify sub-account API
 	// /api/v1/broker/nd/account/update-apikey
 
 	data := "{\"uid\": \"226383154\", \"apiKey\": \"671afb36cee20f00015cfaf1\", \"ipWhitelist\": [\"127.0.0.1\", \"123.123.123.123\"], \"permissions\": [\"general\", \"spot\"], \"label\": \"This is remarks\"}"
@@ -161,7 +161,7 @@ func TestNDBrokerModifySubAccountApiReqModel(t *testing.T) {
 
 func TestNDBrokerModifySubAccountApiRespModel(t *testing.T) {
 	// ModifySubAccountApi
-	// Modify SubAccount API
+	// Modify sub-account API
 	// /api/v1/broker/nd/account/update-apikey
 
 	data := "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"uid\": \"226383154\",\n        \"label\": \"This is remarks\",\n        \"apiKey\": \"671afb36cee20f00015cfaf1\",\n        \"apiVersion\": 3,\n        \"permissions\": [\n            \"General\",\n            \"Spot\"\n        ],\n        \"ipWhitelist\": [\n            \"127.**.1\",\n            \"123.**.123\"\n        ],\n        \"createdAt\": 1729821494000\n    }\n}"
@@ -177,7 +177,7 @@ func TestNDBrokerModifySubAccountApiRespModel(t *testing.T) {
 
 func TestNDBrokerDeleteSubAccountAPIReqModel(t *testing.T) {
 	// DeleteSubAccountAPI
-	// Delete SubAccount API
+	// Delete sub-account API
 	// /api/v1/broker/nd/account/apikey
 
 	data := "{\"uid\": \"226383154\", \"apiKey\": \"671afb36cee20f00015cfaf1\"}"
@@ -189,7 +189,7 @@ func TestNDBrokerDeleteSubAccountAPIReqModel(t *testing.T) {
 
 func TestNDBrokerDeleteSubAccountAPIRespModel(t *testing.T) {
 	// DeleteSubAccountAPI
-	// Delete SubAccount API
+	// Delete sub-account API
 	// /api/v1/broker/nd/account/apikey
 
 	data := "{\n    \"code\": \"200000\",\n    \"data\": true\n}"

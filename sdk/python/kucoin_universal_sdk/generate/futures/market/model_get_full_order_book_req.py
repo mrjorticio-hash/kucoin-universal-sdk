@@ -15,13 +15,13 @@ class GetFullOrderBookReq(BaseModel):
     GetFullOrderBookReq
 
     Attributes:
-        symbol (str): Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)  
+        symbol (str): Symbol of the contract. Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)  
     """
 
     symbol: Optional[str] = Field(
         default=None,
         description=
-        "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)  "
+        "Symbol of the contract. Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)  "
     )
 
     __properties: ClassVar[List[str]] = ["symbol"]
@@ -70,7 +70,7 @@ class GetFullOrderBookReqBuilder:
 
     def set_symbol(self, value: str) -> GetFullOrderBookReqBuilder:
         """
-        Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)  
+        Symbol of the contract. Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)  
         """
         self.obj['symbol'] = value
         return self

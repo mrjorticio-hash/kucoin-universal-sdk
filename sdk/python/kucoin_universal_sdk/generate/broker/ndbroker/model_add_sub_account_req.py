@@ -15,13 +15,13 @@ class AddSubAccountReq(BaseModel):
     AddSubAccountReq
 
     Attributes:
-        account_name (str): Sub Account Name, Note that this name is unique across the exchange. It is recommended to add a special identifier to prevent name duplication.
+        account_name (str): Sub-account Name. Note that this name is unique across the exchange. It is recommended to add a special identifier to prevent name duplication.
     """
 
     account_name: Optional[str] = Field(
         default=None,
         description=
-        "Sub Account Name, Note that this name is unique across the exchange. It is recommended to add a special identifier to prevent name duplication.",
+        "Sub-account Name. Note that this name is unique across the exchange. It is recommended to add a special identifier to prevent name duplication.",
         alias="accountName")
 
     __properties: ClassVar[List[str]] = ["accountName"]
@@ -69,7 +69,7 @@ class AddSubAccountReqBuilder:
 
     def set_account_name(self, value: str) -> AddSubAccountReqBuilder:
         """
-        Sub Account Name, Note that this name is unique across the exchange. It is recommended to add a special identifier to prevent name duplication.
+        Sub-account Name. Note that this name is unique across the exchange. It is recommended to add a special identifier to prevent name duplication.
         """
         self.obj['accountName'] = value
         return self

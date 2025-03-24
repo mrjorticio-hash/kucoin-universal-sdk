@@ -173,7 +173,7 @@ class AccountAPITest(unittest.TestCase):
         Get Account - Futures
         /api/v1/account-overview
         """
-        data = "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"currency\": \"USDT\",\n        \"accountEquity\": 48.921913718,\n        \"unrealisedPNL\": 1.59475,\n        \"marginBalance\": 47.548728628,\n        \"positionMargin\": 34.1577964733,\n        \"orderMargin\": 0,\n        \"frozenFunds\": 0,\n        \"availableBalance\": 14.7876172447,\n        \"riskRatio\": 0.0090285199\n    }\n}"
+        data = "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"accountEquity\": 394.439280806,\n        \"unrealisedPNL\": 20.15278,\n        \"marginBalance\": 371.394298816,\n        \"positionMargin\": 102.20664159,\n        \"orderMargin\": 10.06002012,\n        \"frozenFunds\": 0.0,\n        \"availableBalance\": 290.326799096,\n        \"currency\": \"USDT\",\n        \"riskRatio\": 0.0065289525,\n        \"maxWithdrawAmount\": 290.326419096\n    }\n}"
         common_response = RestResponse.from_json(data)
         resp = GetFuturesAccountResp.from_dict(common_response.data)
 

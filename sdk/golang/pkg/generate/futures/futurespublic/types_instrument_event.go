@@ -11,7 +11,7 @@ import (
 type InstrumentEvent struct {
 	// common response
 	CommonResponse *types.WsMessage
-	// Granularity (predicted funding rate: 1-min granularity: 60000; Funding rate: 8-hours granularity: 28800000. )
+	// Granularity (predicted funding rate: 1-min granularity: 60000; Funding rate: 8-hours granularity: 28800000.)
 	Granularity int32    `json:"granularity,omitempty"`
 	FundingRate *float32 `json:"fundingRate,omitempty"`
 	Timestamp   int64    `json:"timestamp,omitempty"`

@@ -6,6 +6,8 @@ package deposit
 type GetDepositAddressV2Req struct {
 	// currency
 	Currency *string `json:"currency,omitempty" url:"currency,omitempty"`
+	// Chain ID of currency
+	Chain *string `json:"chain,omitempty" url:"chain,omitempty"`
 }
 
 // NewGetDepositAddressV2Req instantiates a new GetDepositAddressV2Req object
@@ -25,6 +27,7 @@ func NewGetDepositAddressV2ReqWithDefaults() *GetDepositAddressV2Req {
 func (o *GetDepositAddressV2Req) ToMap() map[string]interface{} {
 	toSerialize := map[string]interface{}{}
 	toSerialize["currency"] = o.Currency
+	toSerialize["chain"] = o.Chain
 	return toSerialize
 }
 
@@ -39,6 +42,12 @@ func NewGetDepositAddressV2ReqBuilder() *GetDepositAddressV2ReqBuilder {
 // currency
 func (builder *GetDepositAddressV2ReqBuilder) SetCurrency(value string) *GetDepositAddressV2ReqBuilder {
 	builder.obj.Currency = &value
+	return builder
+}
+
+// Chain ID of currency
+func (builder *GetDepositAddressV2ReqBuilder) SetChain(value string) *GetDepositAddressV2ReqBuilder {
+	builder.obj.Chain = &value
 	return builder
 }
 

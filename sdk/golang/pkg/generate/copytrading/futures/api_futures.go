@@ -12,155 +12,155 @@ type FuturesAPI interface {
 	// AddOrder Add Order
 	// Description: Place order to the futures trading system, you can place two major types of orders: limit and market. Orders can only be placed if your account has sufficient funds. Once an order is placed, your funds will be put on hold for the duration of the order. The amount of funds on hold depends on the order type and parameters specified.
 	// Documentation: https://www.kucoin.com/docs-new/api-3470363
-	// +---------------------+------------------+
-	// | Extra API Info      | Value            |
-	// +---------------------+------------------+
-	// | API-DOMAIN          | FUTURES          |
-	// | API-CHANNEL         | PRIVATE          |
-	// | API-PERMISSION      | LEADTRADEFUTURES |
-	// | API-RATE-LIMIT-POOL | COPYTRADING      |
-	// | API-RATE-LIMIT      | 2                |
-	// +---------------------+------------------+
+	// +-----------------------+------------------+
+	// | Extra API Info        | Value            |
+	// +-----------------------+------------------+
+	// | API-DOMAIN            | FUTURES          |
+	// | API-CHANNEL           | PRIVATE          |
+	// | API-PERMISSION        | LEADTRADEFUTURES |
+	// | API-RATE-LIMIT-POOL   | COPYTRADING      |
+	// | API-RATE-LIMIT-WEIGHT | 2                |
+	// +-----------------------+------------------+
 	AddOrder(req *AddOrderReq, ctx context.Context) (*AddOrderResp, error)
 
 	// AddOrderTest Add Order Test
-	// Description: Place order to the futures trading system just for validation
+	// Description: Place order  the futures trading system just for validation
 	// Documentation: https://www.kucoin.com/docs-new/api-3470618
-	// +---------------------+-------------+
-	// | Extra API Info      | Value       |
-	// +---------------------+-------------+
-	// | API-DOMAIN          | FUTURES     |
-	// | API-CHANNEL         | PRIVATE     |
-	// | API-PERMISSION      | FUTURES     |
-	// | API-RATE-LIMIT-POOL | COPYTRADING |
-	// | API-RATE-LIMIT      | 2           |
-	// +---------------------+-------------+
+	// +-----------------------+------------------+
+	// | Extra API Info        | Value            |
+	// +-----------------------+------------------+
+	// | API-DOMAIN            | FUTURES          |
+	// | API-CHANNEL           | PRIVATE          |
+	// | API-PERMISSION        | LEADTRADEFUTURES |
+	// | API-RATE-LIMIT-POOL   | COPYTRADING      |
+	// | API-RATE-LIMIT-WEIGHT | 2                |
+	// +-----------------------+------------------+
 	AddOrderTest(req *AddOrderTestReq, ctx context.Context) (*AddOrderTestResp, error)
 
 	// AddTPSLOrder Add Take Profit And Stop Loss Order
 	// Description: Place take profit and stop loss order supports both take-profit and stop-loss functions, and other functions are exactly the same as the place order interface.
 	// Documentation: https://www.kucoin.com/docs-new/api-3470619
-	// +---------------------+-------------+
-	// | Extra API Info      | Value       |
-	// +---------------------+-------------+
-	// | API-DOMAIN          | FUTURES     |
-	// | API-CHANNEL         | PRIVATE     |
-	// | API-PERMISSION      | FUTURES     |
-	// | API-RATE-LIMIT-POOL | COPYTRADING |
-	// | API-RATE-LIMIT      | 2           |
-	// +---------------------+-------------+
+	// +-----------------------+------------------+
+	// | Extra API Info        | Value            |
+	// +-----------------------+------------------+
+	// | API-DOMAIN            | FUTURES          |
+	// | API-CHANNEL           | PRIVATE          |
+	// | API-PERMISSION        | LEADTRADEFUTURES |
+	// | API-RATE-LIMIT-POOL   | COPYTRADING      |
+	// | API-RATE-LIMIT-WEIGHT | 2                |
+	// +-----------------------+------------------+
 	AddTPSLOrder(req *AddTPSLOrderReq, ctx context.Context) (*AddTPSLOrderResp, error)
 
 	// CancelOrderById Cancel Order By OrderId
-	// Description: Cancel order by system generated orderId.
+	// Description: Cancel order by system-generated orderId.
 	// Documentation: https://www.kucoin.com/docs-new/api-3470620
-	// +---------------------+-------------+
-	// | Extra API Info      | Value       |
-	// +---------------------+-------------+
-	// | API-DOMAIN          | FUTURES     |
-	// | API-CHANNEL         | PRIVATE     |
-	// | API-PERMISSION      | FUTURES     |
-	// | API-RATE-LIMIT-POOL | COPYTRADING |
-	// | API-RATE-LIMIT      | 1           |
-	// +---------------------+-------------+
+	// +-----------------------+------------------+
+	// | Extra API Info        | Value            |
+	// +-----------------------+------------------+
+	// | API-DOMAIN            | FUTURES          |
+	// | API-CHANNEL           | PRIVATE          |
+	// | API-PERMISSION        | LEADTRADEFUTURES |
+	// | API-RATE-LIMIT-POOL   | COPYTRADING      |
+	// | API-RATE-LIMIT-WEIGHT | 1                |
+	// +-----------------------+------------------+
 	CancelOrderById(req *CancelOrderByIdReq, ctx context.Context) (*CancelOrderByIdResp, error)
 
 	// CancelOrderByClientOid Cancel Order By ClientOid
-	// Description: Cancel order by client defined orderId.
+	// Description: Cancel order by client-defined orderId.
 	// Documentation: https://www.kucoin.com/docs-new/api-3470621
-	// +---------------------+-------------+
-	// | Extra API Info      | Value       |
-	// +---------------------+-------------+
-	// | API-DOMAIN          | FUTURES     |
-	// | API-CHANNEL         | PRIVATE     |
-	// | API-PERMISSION      | FUTURES     |
-	// | API-RATE-LIMIT-POOL | COPYTRADING |
-	// | API-RATE-LIMIT      | 1           |
-	// +---------------------+-------------+
+	// +-----------------------+------------------+
+	// | Extra API Info        | Value            |
+	// +-----------------------+------------------+
+	// | API-DOMAIN            | FUTURES          |
+	// | API-CHANNEL           | PRIVATE          |
+	// | API-PERMISSION        | LEADTRADEFUTURES |
+	// | API-RATE-LIMIT-POOL   | COPYTRADING      |
+	// | API-RATE-LIMIT-WEIGHT | 1                |
+	// +-----------------------+------------------+
 	CancelOrderByClientOid(req *CancelOrderByClientOidReq, ctx context.Context) (*CancelOrderByClientOidResp, error)
 
 	// GetMaxOpenSize Get Max Open Size
 	// Description: Get Maximum Open Position Size.
 	// Documentation: https://www.kucoin.com/docs-new/api-3470612
-	// +---------------------+-------------+
-	// | Extra API Info      | Value       |
-	// +---------------------+-------------+
-	// | API-DOMAIN          | FUTURES     |
-	// | API-CHANNEL         | PRIVATE     |
-	// | API-PERMISSION      | FUTURES     |
-	// | API-RATE-LIMIT-POOL | COPYTRADING |
-	// | API-RATE-LIMIT      | 2           |
-	// +---------------------+-------------+
+	// +-----------------------+------------------+
+	// | Extra API Info        | Value            |
+	// +-----------------------+------------------+
+	// | API-DOMAIN            | FUTURES          |
+	// | API-CHANNEL           | PRIVATE          |
+	// | API-PERMISSION        | LEADTRADEFUTURES |
+	// | API-RATE-LIMIT-POOL   | COPYTRADING      |
+	// | API-RATE-LIMIT-WEIGHT | 4                |
+	// +-----------------------+------------------+
 	GetMaxOpenSize(req *GetMaxOpenSizeReq, ctx context.Context) (*GetMaxOpenSizeResp, error)
 
 	// GetMaxWithdrawMargin Get Max Withdraw Margin
 	// Description: This interface can query the maximum amount of margin that the current position supports withdrawal.
 	// Documentation: https://www.kucoin.com/docs-new/api-3470616
-	// +---------------------+-------------+
-	// | Extra API Info      | Value       |
-	// +---------------------+-------------+
-	// | API-DOMAIN          | FUTURES     |
-	// | API-CHANNEL         | PRIVATE     |
-	// | API-PERMISSION      | FUTURES     |
-	// | API-RATE-LIMIT-POOL | COPYTRADING |
-	// | API-RATE-LIMIT      | 10          |
-	// +---------------------+-------------+
+	// +-----------------------+------------------+
+	// | Extra API Info        | Value            |
+	// +-----------------------+------------------+
+	// | API-DOMAIN            | FUTURES          |
+	// | API-CHANNEL           | PRIVATE          |
+	// | API-PERMISSION        | LEADTRADEFUTURES |
+	// | API-RATE-LIMIT-POOL   | COPYTRADING      |
+	// | API-RATE-LIMIT-WEIGHT | 10               |
+	// +-----------------------+------------------+
 	GetMaxWithdrawMargin(req *GetMaxWithdrawMarginReq, ctx context.Context) (*GetMaxWithdrawMarginResp, error)
 
 	// AddIsolatedMargin Add Isolated Margin
 	// Description: Add Isolated Margin Manually.
 	// Documentation: https://www.kucoin.com/docs-new/api-3470614
-	// +---------------------+-------------+
-	// | Extra API Info      | Value       |
-	// +---------------------+-------------+
-	// | API-DOMAIN          | FUTURES     |
-	// | API-CHANNEL         | PRIVATE     |
-	// | API-PERMISSION      | FUTURES     |
-	// | API-RATE-LIMIT-POOL | COPYTRADING |
-	// | API-RATE-LIMIT      | 4           |
-	// +---------------------+-------------+
+	// +-----------------------+------------------+
+	// | Extra API Info        | Value            |
+	// +-----------------------+------------------+
+	// | API-DOMAIN            | FUTURES          |
+	// | API-CHANNEL           | PRIVATE          |
+	// | API-PERMISSION        | LEADTRADEFUTURES |
+	// | API-RATE-LIMIT-POOL   | COPYTRADING      |
+	// | API-RATE-LIMIT-WEIGHT | 4                |
+	// +-----------------------+------------------+
 	AddIsolatedMargin(req *AddIsolatedMarginReq, ctx context.Context) (*AddIsolatedMarginResp, error)
 
 	// RemoveIsolatedMargin Remove Isolated Margin
 	// Description: Remove Isolated Margin Manually.
 	// Documentation: https://www.kucoin.com/docs-new/api-3470615
-	// +---------------------+-------------+
-	// | Extra API Info      | Value       |
-	// +---------------------+-------------+
-	// | API-DOMAIN          | FUTURES     |
-	// | API-CHANNEL         | PRIVATE     |
-	// | API-PERMISSION      | FUTURES     |
-	// | API-RATE-LIMIT-POOL | COPYTRADING |
-	// | API-RATE-LIMIT      | 10          |
-	// +---------------------+-------------+
+	// +-----------------------+------------------+
+	// | Extra API Info        | Value            |
+	// +-----------------------+------------------+
+	// | API-DOMAIN            | FUTURES          |
+	// | API-CHANNEL           | PRIVATE          |
+	// | API-PERMISSION        | LEADTRADEFUTURES |
+	// | API-RATE-LIMIT-POOL   | COPYTRADING      |
+	// | API-RATE-LIMIT-WEIGHT | 10               |
+	// +-----------------------+------------------+
 	RemoveIsolatedMargin(req *RemoveIsolatedMarginReq, ctx context.Context) (*RemoveIsolatedMarginResp, error)
 
 	// ModifyIsolatedMarginRiskLimt Modify Isolated Margin Risk Limit
-	// Description: This interface can be used to obtain information about risk limit level of a specific contract(Only valid for isolated Margin).
+	// Description: This interface can be used to obtain information about risk limit level of a specific contract (only valid for Isolated Margin).
 	// Documentation: https://www.kucoin.com/docs-new/api-3470613
-	// +---------------------+-------------+
-	// | Extra API Info      | Value       |
-	// +---------------------+-------------+
-	// | API-DOMAIN          | FUTURES     |
-	// | API-CHANNEL         | PRIVATE     |
-	// | API-PERMISSION      | FUTURES     |
-	// | API-RATE-LIMIT-POOL | COPYTRADING |
-	// | API-RATE-LIMIT      | 4           |
-	// +---------------------+-------------+
+	// +-----------------------+------------------+
+	// | Extra API Info        | Value            |
+	// +-----------------------+------------------+
+	// | API-DOMAIN            | FUTURES          |
+	// | API-CHANNEL           | PRIVATE          |
+	// | API-PERMISSION        | LEADTRADEFUTURES |
+	// | API-RATE-LIMIT-POOL   | COPYTRADING      |
+	// | API-RATE-LIMIT-WEIGHT | 2                |
+	// +-----------------------+------------------+
 	ModifyIsolatedMarginRiskLimt(req *ModifyIsolatedMarginRiskLimtReq, ctx context.Context) (*ModifyIsolatedMarginRiskLimtResp, error)
 
 	// ModifyAutoDepositStatus Modify Isolated Margin Auto-Deposit Status
 	// Description: This endpoint is only applicable to isolated margin and is no longer recommended. It is recommended to use cross margin instead.
 	// Documentation: https://www.kucoin.com/docs-new/api-3470617
-	// +---------------------+-------------+
-	// | Extra API Info      | Value       |
-	// +---------------------+-------------+
-	// | API-DOMAIN          | FUTURES     |
-	// | API-CHANNEL         | PRIVATE     |
-	// | API-PERMISSION      | FUTURES     |
-	// | API-RATE-LIMIT-POOL | COPYTRADING |
-	// | API-RATE-LIMIT      | 4           |
-	// +---------------------+-------------+
+	// +-----------------------+------------------+
+	// | Extra API Info        | Value            |
+	// +-----------------------+------------------+
+	// | API-DOMAIN            | FUTURES          |
+	// | API-CHANNEL           | PRIVATE          |
+	// | API-PERMISSION        | LEADTRADEFUTURES |
+	// | API-RATE-LIMIT-POOL   | COPYTRADING      |
+	// | API-RATE-LIMIT-WEIGHT | 4                |
+	// +-----------------------+------------------+
 	ModifyAutoDepositStatus(req *ModifyAutoDepositStatusReq, ctx context.Context) (*ModifyAutoDepositStatusResp, error)
 }
 

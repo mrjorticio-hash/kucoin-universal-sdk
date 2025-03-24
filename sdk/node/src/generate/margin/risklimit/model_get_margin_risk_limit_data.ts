@@ -40,7 +40,7 @@ export class GetMarginRiskLimitData implements Serializable {
     marginCoefficient?: string;
 
     /**
-     * CROSS MARGIN RESPONSES, Currency precision. the minimum repayment amount of a single transaction should be >= currency precision, for example, the precision of ETH is 8, and the minimum repayment amount is 0.00000001
+     * CROSS MARGIN RESPONSES, Currency precision. The minimum repayment amount of a single transaction should be >= currency precision. For example, the precision of ETH is 8, and the minimum repayment amount is 0.00000001
      */
     precision?: number;
 
@@ -50,7 +50,7 @@ export class GetMarginRiskLimitData implements Serializable {
     borrowMinAmount?: string;
 
     /**
-     * CROSS MARGIN RESPONSES, Minimum unit for borrowing, the borrowed amount must be an integer multiple of this value
+     * CROSS MARGIN RESPONSES, Minimum unit for borrowing; the borrowed amount must be an integer multiple of this value
      */
     borrowMinUnit?: string;
 
@@ -95,12 +95,12 @@ export class GetMarginRiskLimitData implements Serializable {
     quoteMaxHoldAmount?: string;
 
     /**
-     * ISOLATED MARGIN RESPONSES, Base currency precision. the minimum repayment amount of a single transaction should be >= currency precision, for example, the precision of ETH is 8, and the minimum repayment amount is 0.00000001
+     * ISOLATED MARGIN RESPONSES, Base currency precision. The minimum repayment amount of a single transaction should be >= currency precision. For example, the precision of ETH is 8, and the minimum repayment amount is 0.00000001
      */
     basePrecision?: number;
 
     /**
-     * ISOLATED MARGIN RESPONSES, Quote currency precision. the minimum repayment amount of a single transaction should be >= currency precision, for example, the precision of ETH is 8, and the minimum repayment amount is 0.00000001
+     * ISOLATED MARGIN RESPONSES, Quote currency precision. The minimum repayment amount of a single transaction should be >= currency precision. For example, the precision of ETH is 8, and the minimum repayment amount is 0.00000001
      */
     quotePrecision?: number;
 

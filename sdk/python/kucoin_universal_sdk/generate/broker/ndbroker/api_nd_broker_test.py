@@ -52,7 +52,7 @@ class NDBrokerAPITest(unittest.TestCase):
     def test_add_sub_account_req_model(self):
         """
        add_sub_account
-       Add SubAccount
+       Add sub-account
        /api/v1/broker/nd/account
        """
         data = "{\"accountName\": \"Account1\"}"
@@ -61,7 +61,7 @@ class NDBrokerAPITest(unittest.TestCase):
     def test_add_sub_account_resp_model(self):
         """
         add_sub_account
-        Add SubAccount
+        Add sub-account
         /api/v1/broker/nd/account
         """
         data = "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"accountName\": \"Account15\",\n        \"uid\": \"226383154\",\n        \"createdAt\": 1729819381908,\n        \"level\": 0\n    }\n}"
@@ -71,7 +71,7 @@ class NDBrokerAPITest(unittest.TestCase):
     def test_get_sub_account_req_model(self):
         """
        get_sub_account
-       Get SubAccount
+       Get sub-account
        /api/v1/broker/nd/account
        """
         data = "{\"uid\": \"226383154\", \"currentPage\": 1, \"pageSize\": 20}"
@@ -80,7 +80,7 @@ class NDBrokerAPITest(unittest.TestCase):
     def test_get_sub_account_resp_model(self):
         """
         get_sub_account
-        Get SubAccount
+        Get sub-account
         /api/v1/broker/nd/account
         """
         data = "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"currentPage\": 1,\n        \"pageSize\": 20,\n        \"totalNum\": 1,\n        \"totalPage\": 1,\n        \"items\": [\n            {\n                \"accountName\": \"Account15\",\n                \"uid\": \"226383154\",\n                \"createdAt\": 1729819382000,\n                \"level\": 0\n            }\n        ]\n    }\n}"
@@ -90,7 +90,7 @@ class NDBrokerAPITest(unittest.TestCase):
     def test_add_sub_account_api_req_model(self):
         """
        add_sub_account_api
-       Add SubAccount API
+       Add sub-account API
        /api/v1/broker/nd/account/apikey
        """
         data = "{\"uid\": \"226383154\", \"passphrase\": \"11223344\", \"ipWhitelist\": [\"127.0.0.1\", \"123.123.123.123\"], \"permissions\": [\"general\", \"spot\"], \"label\": \"This is remarks\"}"
@@ -99,7 +99,7 @@ class NDBrokerAPITest(unittest.TestCase):
     def test_add_sub_account_api_resp_model(self):
         """
         add_sub_account_api
-        Add SubAccount API
+        Add sub-account API
         /api/v1/broker/nd/account/apikey
         """
         data = "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"uid\": \"226383154\",\n        \"label\": \"This is remarks\",\n        \"apiKey\": \"671afb36cee20f00015cfaf1\",\n        \"secretKey\": \"d694df2******5bae05b96\",\n        \"apiVersion\": 3,\n        \"permissions\": [\n            \"General\",\n            \"Spot\"\n        ],\n        \"ipWhitelist\": [\n            \"127.0.0.1\",\n            \"123.123.123.123\"\n        ],\n        \"createdAt\": 1729821494000\n    }\n}"
@@ -109,7 +109,7 @@ class NDBrokerAPITest(unittest.TestCase):
     def test_get_sub_account_api_req_model(self):
         """
        get_sub_account_api
-       Get SubAccount API
+       Get sub-account API
        /api/v1/broker/nd/account/apikey
        """
         data = "{\"uid\": \"226383154\", \"apiKey\": \"671afb36cee20f00015cfaf1\"}"
@@ -118,7 +118,7 @@ class NDBrokerAPITest(unittest.TestCase):
     def test_get_sub_account_api_resp_model(self):
         """
         get_sub_account_api
-        Get SubAccount API
+        Get sub-account API
         /api/v1/broker/nd/account/apikey
         """
         data = "{\n    \"code\": \"200000\",\n    \"data\": [\n        {\n            \"uid\": \"226383154\",\n            \"label\": \"This is remarks\",\n            \"apiKey\": \"671afb36cee20f00015cfaf1\",\n            \"apiVersion\": 3,\n            \"permissions\": [\n                \"General\",\n                \"Spot\"\n            ],\n            \"ipWhitelist\": [\n                \"127.**.1\",\n                \"203.**.154\"\n            ],\n            \"createdAt\": 1729821494000\n        }\n    ]\n}"
@@ -128,7 +128,7 @@ class NDBrokerAPITest(unittest.TestCase):
     def test_modify_sub_account_api_req_model(self):
         """
        modify_sub_account_api
-       Modify SubAccount API
+       Modify sub-account API
        /api/v1/broker/nd/account/update-apikey
        """
         data = "{\"uid\": \"226383154\", \"apiKey\": \"671afb36cee20f00015cfaf1\", \"ipWhitelist\": [\"127.0.0.1\", \"123.123.123.123\"], \"permissions\": [\"general\", \"spot\"], \"label\": \"This is remarks\"}"
@@ -137,7 +137,7 @@ class NDBrokerAPITest(unittest.TestCase):
     def test_modify_sub_account_api_resp_model(self):
         """
         modify_sub_account_api
-        Modify SubAccount API
+        Modify sub-account API
         /api/v1/broker/nd/account/update-apikey
         """
         data = "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"uid\": \"226383154\",\n        \"label\": \"This is remarks\",\n        \"apiKey\": \"671afb36cee20f00015cfaf1\",\n        \"apiVersion\": 3,\n        \"permissions\": [\n            \"General\",\n            \"Spot\"\n        ],\n        \"ipWhitelist\": [\n            \"127.**.1\",\n            \"123.**.123\"\n        ],\n        \"createdAt\": 1729821494000\n    }\n}"
@@ -147,7 +147,7 @@ class NDBrokerAPITest(unittest.TestCase):
     def test_delete_sub_account_api_req_model(self):
         """
        delete_sub_account_api
-       Delete SubAccount API
+       Delete sub-account API
        /api/v1/broker/nd/account/apikey
        """
         data = "{\"uid\": \"226383154\", \"apiKey\": \"671afb36cee20f00015cfaf1\"}"
@@ -156,7 +156,7 @@ class NDBrokerAPITest(unittest.TestCase):
     def test_delete_sub_account_api_resp_model(self):
         """
         delete_sub_account_api
-        Delete SubAccount API
+        Delete sub-account API
         /api/v1/broker/nd/account/apikey
         """
         data = "{\n    \"code\": \"200000\",\n    \"data\": true\n}"

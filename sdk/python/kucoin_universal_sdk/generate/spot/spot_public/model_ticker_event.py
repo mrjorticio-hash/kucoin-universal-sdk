@@ -47,12 +47,11 @@ class TickerEvent(BaseModel):
                                          alias="bestBidSize")
     time: Optional[int] = Field(
         default=None,
-        description="The matching time of the latest transaction",
-        alias="Time")
+        description="The matching time of the latest transaction")
 
     __properties: ClassVar[List[str]] = [
         "sequence", "price", "size", "bestAsk", "bestAskSize", "bestBid",
-        "bestBidSize", "Time"
+        "bestBidSize", "time"
     ]
 
     model_config = ConfigDict(
@@ -94,7 +93,7 @@ class TickerEvent(BaseModel):
             "bestAskSize": obj.get("bestAskSize"),
             "bestBid": obj.get("bestBid"),
             "bestBidSize": obj.get("bestBidSize"),
-            "Time": obj.get("Time")
+            "time": obj.get("time")
         })
         return _obj
 

@@ -6,17 +6,17 @@ import { GetAccountResp } from './model_get_account_resp';
 export interface AffiliateAPI {
     /**
      * getAccount Get Account
-     * Description: This endpoint allows getting affiliate user rebate information.
+     * Description: Affiliate user rebate information can be obtained at this endpoint.
      * Documentation: https://www.kucoin.com/docs-new/api-3470279
-     * +---------------------+------------+
-     * | Extra API Info      | Value      |
-     * +---------------------+------------+
-     * | API-DOMAIN          | SPOT       |
-     * | API-CHANNEL         | PRIVATE    |
-     * | API-PERMISSION      | GENERAL    |
-     * | API-RATE-LIMIT-POOL | MANAGEMENT |
-     * | API-RATE-LIMIT      | 30         |
-     * +---------------------+------------+
+     * +-----------------------+------------+
+     * | Extra API Info        | Value      |
+     * +-----------------------+------------+
+     * | API-DOMAIN            | SPOT       |
+     * | API-CHANNEL           | PRIVATE    |
+     * | API-PERMISSION        | GENERAL    |
+     * | API-RATE-LIMIT-POOL   | MANAGEMENT |
+     * | API-RATE-LIMIT-WEIGHT | 30         |
+     * +-----------------------+------------+
      */
     getAccount(): Promise<GetAccountResp>;
 }

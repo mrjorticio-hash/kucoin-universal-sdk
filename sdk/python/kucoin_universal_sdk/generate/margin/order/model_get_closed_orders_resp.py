@@ -18,7 +18,7 @@ class GetClosedOrdersResp(BaseModel, Response):
     GetClosedOrdersResp
 
     Attributes:
-        last_id (int): The id of the last set of data from the previous batch of data. By default, the latest information is given. lastId is used to filter data and paginate. If lastId is not entered, the default is a maximum of 100 returned data items. The return results include lastId，which can be used as a query parameter to look up new data from the next page.
+        last_id (int): The ID of the last set of data from the previous data batch. By default, the latest information is given. lastId is used to filter data and paginate. If lastId is not entered, the default is a maximum of 100 returned data items. The return results include lastId, which can be used as a query parameter to look up new data from the next page.
         items (list[GetClosedOrdersItems]): 
     """
 
@@ -27,7 +27,7 @@ class GetClosedOrdersResp(BaseModel, Response):
     last_id: Optional[int] = Field(
         default=None,
         description=
-        "The id of the last set of data from the previous batch of data. By default, the latest information is given. lastId is used to filter data and paginate. If lastId is not entered, the default is a maximum of 100 returned data items. The return results include lastId，which can be used as a query parameter to look up new data from the next page.",
+        "The ID of the last set of data from the previous data batch. By default, the latest information is given. lastId is used to filter data and paginate. If lastId is not entered, the default is a maximum of 100 returned data items. The return results include lastId, which can be used as a query parameter to look up new data from the next page.",
         alias="lastId")
     items: Optional[List[GetClosedOrdersItems]] = None
 

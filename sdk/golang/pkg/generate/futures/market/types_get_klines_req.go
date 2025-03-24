@@ -4,13 +4,13 @@ package market
 
 // GetKlinesReq struct for GetKlinesReq
 type GetKlinesReq struct {
-	// Symbol of the contract, Please refer to [Get Symbol endpoint: symbol, indexSymbol, premiumsSymbol1M, premiumsSymbol8H](https://www.kucoin.com/docs-new/api-3470220)
+	// Symbol of the contract. Please refer to [Get Symbol endpoint: symbol, indexSymbol, premiumsSymbol1M, premiumsSymbol8H](https://www.kucoin.com/docs-new/api-3470220)
 	Symbol *string `json:"symbol,omitempty" url:"symbol,omitempty"`
-	// Type of candlestick patterns(minute)
+	// Type of candlestick patterns (minutes)
 	Granularity *int64 `json:"granularity,omitempty" url:"granularity,omitempty"`
-	// Start time (milisecond)
+	// Start time (milliseconds)
 	From *int64 `json:"from,omitempty" url:"from,omitempty"`
-	// End time (milisecond)
+	// End time (milliseconds)
 	To *int64 `json:"to,omitempty" url:"to,omitempty"`
 }
 
@@ -45,25 +45,25 @@ func NewGetKlinesReqBuilder() *GetKlinesReqBuilder {
 	return &GetKlinesReqBuilder{obj: NewGetKlinesReqWithDefaults()}
 }
 
-// Symbol of the contract, Please refer to [Get Symbol endpoint: symbol, indexSymbol, premiumsSymbol1M, premiumsSymbol8H](https://www.kucoin.com/docs-new/api-3470220)
+// Symbol of the contract. Please refer to [Get Symbol endpoint: symbol, indexSymbol, premiumsSymbol1M, premiumsSymbol8H](https://www.kucoin.com/docs-new/api-3470220)
 func (builder *GetKlinesReqBuilder) SetSymbol(value string) *GetKlinesReqBuilder {
 	builder.obj.Symbol = &value
 	return builder
 }
 
-// Type of candlestick patterns(minute)
+// Type of candlestick patterns (minutes)
 func (builder *GetKlinesReqBuilder) SetGranularity(value int64) *GetKlinesReqBuilder {
 	builder.obj.Granularity = &value
 	return builder
 }
 
-// Start time (milisecond)
+// Start time (milliseconds)
 func (builder *GetKlinesReqBuilder) SetFrom(value int64) *GetKlinesReqBuilder {
 	builder.obj.From = &value
 	return builder
 }
 
-// End time (milisecond)
+// End time (milliseconds)
 func (builder *GetKlinesReqBuilder) SetTo(value int64) *GetKlinesReqBuilder {
 	builder.obj.To = &value
 	return builder

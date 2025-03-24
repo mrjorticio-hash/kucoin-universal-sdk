@@ -8,7 +8,7 @@ describe('Auto Test', ()=> {
     test('getCurrentFundingRate request test', ()=> {
     /**
     * getCurrentFundingRate
-    * Get Current Funding Rate
+    * Get Current Funding Rate.
     * /api/v1/funding-rate/{symbol}/current
     */
     let builder = GetCurrentFundingRateReq.builder();
@@ -50,7 +50,7 @@ describe('Auto Test', ()=> {
     * /api/v1/funding-history
     */
     let builder = GetPrivateFundingHistoryReq.builder();
-    builder.setSymbol(?).setFrom(?).setTo(?).setReverse(?).setOffset(?).setForward(?).setMaxCount(?);
+    builder.setSymbol(?).setStartAt(?).setEndAt(?).setReverse(?).setOffset(?).setForward(?).setMaxCount(?);
     let req = builder.build();
     let resp = api.getPrivateFundingHistory(req);
     return resp.then(result => {

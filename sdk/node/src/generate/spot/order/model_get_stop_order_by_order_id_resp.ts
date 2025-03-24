@@ -26,9 +26,9 @@ export class GetStopOrderByOrderIdResp implements Response<RestResponse> {
     status?: string;
 
     /**
-     * Order type,limit, market, limit_stop or market_stop
+     * Order type
      */
-    type?: string;
+    type?: GetStopOrderByOrderIdResp.TypeEnum;
 
     /**
      * transaction direction,include buy and sell
@@ -191,5 +191,18 @@ export class GetStopOrderByOrderIdResp implements Response<RestResponse> {
      */
     static fromObject(jsonObject: Object): GetStopOrderByOrderIdResp {
         return plainToClassFromExist(new GetStopOrderByOrderIdResp(), jsonObject);
+    }
+}
+
+export namespace GetStopOrderByOrderIdResp {
+    export enum TypeEnum {
+        /**
+         * Limit order
+         */
+        LIMIT = <any>'limit',
+        /**
+         * Market order
+         */
+        MARKET = <any>'market',
     }
 }

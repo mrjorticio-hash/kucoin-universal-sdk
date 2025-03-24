@@ -11,7 +11,7 @@ export class RepayResp implements Response<RestResponse> {
     timestamp: number;
 
     /**
-     * Repay Order Id
+     * Repay order ID
      */
     orderNo: string;
 

@@ -22,7 +22,7 @@ describe('Auto Test', () => {
     test('purchase request test', () => {
         /**
          * purchase
-         * purchase
+         * Purchase
          * /api/v1/earn/orders
          */
         let data = '{"productId": "2611", "amount": "1", "accountType": "TRADE"}';
@@ -36,7 +36,7 @@ describe('Auto Test', () => {
     test('purchase response test', () => {
         /**
          * purchase
-         * purchase
+         * Purchase
          * /api/v1/earn/orders
          */
         let data =
@@ -175,38 +175,6 @@ describe('Auto Test', () => {
             console.log(resp);
         }
     });
-    test('getAccountHolding request test', () => {
-        /**
-         * getAccountHolding
-         * Get Account Holding
-         * /api/v1/earn/hold-assets
-         */
-        let data =
-            '{"currency": "KCS", "productId": "example_string_default_value", "productCategory": "DEMAND", "currentPage": 1, "pageSize": 10}';
-        let req = GetAccountHoldingReq.fromJson(data);
-        expect(Object.values(req).every((value) => value === null || value === undefined)).toBe(
-            false,
-        );
-        console.log(req);
-    });
-
-    test('getAccountHolding response test', () => {
-        /**
-         * getAccountHolding
-         * Get Account Holding
-         * /api/v1/earn/hold-assets
-         */
-        let data =
-            '{\n    "code": "200000",\n    "data": {\n        "totalNum": 1,\n        "totalPage": 1,\n        "currentPage": 1,\n        "pageSize": 15,\n        "items": [\n            {\n                "orderId": "2767291",\n                "productId": "2611",\n                "productCategory": "KCS_STAKING",\n                "productType": "DEMAND",\n                "currency": "KCS",\n                "incomeCurrency": "KCS",\n                "returnRate": "0.03471727",\n                "holdAmount": "1",\n                "redeemedAmount": "0",\n                "redeemingAmount": "1",\n                "lockStartTime": 1701252000000,\n                "lockEndTime": null,\n                "purchaseTime": 1729257513000,\n                "redeemPeriod": 3,\n                "status": "REDEEMING",\n                "earlyRedeemSupported": 0\n            }\n        ]\n    }\n}';
-        let commonResp = RestResponse.fromJson(data);
-        let resp = GetAccountHoldingResp.fromObject(commonResp.data);
-        if (commonResp.data !== null) {
-            expect(
-                Object.values(resp).every((value) => value === null || value === undefined),
-            ).toBe(false);
-            console.log(resp);
-        }
-    });
     test('getStakingProducts request test', () => {
         /**
          * getStakingProducts
@@ -293,6 +261,38 @@ describe('Auto Test', () => {
             '{\n    "code": "200000",\n    "data": [\n        {\n            "id": "ETH2",\n            "category": "ETH2",\n            "type": "DEMAND",\n            "precision": 8,\n            "currency": "ETH",\n            "incomeCurrency": "ETH2",\n            "returnRate": "0.028",\n            "userLowerLimit": "0.01",\n            "userUpperLimit": "8557.3597075",\n            "productUpperLimit": "8557.3597075",\n            "productRemainAmount": "8557.3597075",\n            "redeemPeriod": 5,\n            "redeemType": "MANUAL",\n            "incomeReleaseType": "DAILY",\n            "applyStartTime": 1729255485000,\n            "applyEndTime": null,\n            "lockStartTime": 1729255485000,\n            "lockEndTime": null,\n            "interestDate": 1729267200000,\n            "newUserOnly": 0,\n            "earlyRedeemSupported": 0,\n            "duration": 0,\n            "status": "ONGOING"\n        }\n    ]\n}';
         let commonResp = RestResponse.fromJson(data);
         let resp = GetETHStakingProductsResp.fromObject(commonResp.data);
+        if (commonResp.data !== null) {
+            expect(
+                Object.values(resp).every((value) => value === null || value === undefined),
+            ).toBe(false);
+            console.log(resp);
+        }
+    });
+    test('getAccountHolding request test', () => {
+        /**
+         * getAccountHolding
+         * Get Account Holding
+         * /api/v1/earn/hold-assets
+         */
+        let data =
+            '{"currency": "KCS", "productId": "example_string_default_value", "productCategory": "DEMAND", "currentPage": 1, "pageSize": 10}';
+        let req = GetAccountHoldingReq.fromJson(data);
+        expect(Object.values(req).every((value) => value === null || value === undefined)).toBe(
+            false,
+        );
+        console.log(req);
+    });
+
+    test('getAccountHolding response test', () => {
+        /**
+         * getAccountHolding
+         * Get Account Holding
+         * /api/v1/earn/hold-assets
+         */
+        let data =
+            '{\n    "code": "200000",\n    "data": {\n        "totalNum": 1,\n        "totalPage": 1,\n        "currentPage": 1,\n        "pageSize": 15,\n        "items": [\n            {\n                "orderId": "2767291",\n                "productId": "2611",\n                "productCategory": "KCS_STAKING",\n                "productType": "DEMAND",\n                "currency": "KCS",\n                "incomeCurrency": "KCS",\n                "returnRate": "0.03471727",\n                "holdAmount": "1",\n                "redeemedAmount": "0",\n                "redeemingAmount": "1",\n                "lockStartTime": 1701252000000,\n                "lockEndTime": null,\n                "purchaseTime": 1729257513000,\n                "redeemPeriod": 3,\n                "status": "REDEEMING",\n                "earlyRedeemSupported": 0\n            }\n        ]\n    }\n}';
+        let commonResp = RestResponse.fromJson(data);
+        let resp = GetAccountHoldingResp.fromObject(commonResp.data);
         if (commonResp.data !== null) {
             expect(
                 Object.values(resp).every((value) => value === null || value === undefined),

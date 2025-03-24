@@ -4,7 +4,7 @@ package market
 
 // GetTickerReq struct for GetTickerReq
 type GetTickerReq struct {
-	// Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)
+	// Symbol of the contract. Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)
 	Symbol *string `json:"symbol,omitempty" url:"symbol,omitempty"`
 }
 
@@ -36,7 +36,7 @@ func NewGetTickerReqBuilder() *GetTickerReqBuilder {
 	return &GetTickerReqBuilder{obj: NewGetTickerReqWithDefaults()}
 }
 
-// Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)
+// Symbol of the contract. Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)
 func (builder *GetTickerReqBuilder) SetSymbol(value string) *GetTickerReqBuilder {
 	builder.obj.Symbol = &value
 	return builder

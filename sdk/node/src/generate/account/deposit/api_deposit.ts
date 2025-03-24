@@ -18,118 +18,118 @@ import { GetDepositAddressV2Resp } from './model_get_deposit_address_v2_resp';
 
 export interface DepositAPI {
     /**
-     * addDepositAddressV3 Add Deposit Address(V3)
-     * Description: Request via this endpoint to create a deposit address for a currency you intend to deposit.
+     * addDepositAddressV3 Add Deposit Address (V3)
+     * Description: Request via this endpoint the creation of a deposit address for a currency you intend to deposit.
      * Documentation: https://www.kucoin.com/docs-new/api-3470142
-     * +---------------------+------------+
-     * | Extra API Info      | Value      |
-     * +---------------------+------------+
-     * | API-DOMAIN          | SPOT       |
-     * | API-CHANNEL         | PRIVATE    |
-     * | API-PERMISSION      | GENERAL    |
-     * | API-RATE-LIMIT-POOL | MANAGEMENT |
-     * | API-RATE-LIMIT      | 20         |
-     * +---------------------+------------+
+     * +-----------------------+------------+
+     * | Extra API Info        | Value      |
+     * +-----------------------+------------+
+     * | API-DOMAIN            | SPOT       |
+     * | API-CHANNEL           | PRIVATE    |
+     * | API-PERMISSION        | GENERAL    |
+     * | API-RATE-LIMIT-POOL   | MANAGEMENT |
+     * | API-RATE-LIMIT-WEIGHT | 20         |
+     * +-----------------------+------------+
      */
     addDepositAddressV3(req: AddDepositAddressV3Req): Promise<AddDepositAddressV3Resp>;
 
     /**
-     * getDepositAddressV3 Get Deposit Address(V3)
-     * Description: Get all deposit addresses for the currency you intend to deposit. If the returned data is empty, you may need to Add Deposit Address first.
+     * getDepositAddressV3 Get Deposit Address (V3)
+     * Description: Get all deposit addresses for the currency you intend to deposit. If the returned data is empty, you may need to add the deposit address first.
      * Documentation: https://www.kucoin.com/docs-new/api-3470140
-     * +---------------------+------------+
-     * | Extra API Info      | Value      |
-     * +---------------------+------------+
-     * | API-DOMAIN          | SPOT       |
-     * | API-CHANNEL         | PRIVATE    |
-     * | API-PERMISSION      | GENERAL    |
-     * | API-RATE-LIMIT-POOL | MANAGEMENT |
-     * | API-RATE-LIMIT      | 5          |
-     * +---------------------+------------+
+     * +-----------------------+------------+
+     * | Extra API Info        | Value      |
+     * +-----------------------+------------+
+     * | API-DOMAIN            | SPOT       |
+     * | API-CHANNEL           | PRIVATE    |
+     * | API-PERMISSION        | GENERAL    |
+     * | API-RATE-LIMIT-POOL   | MANAGEMENT |
+     * | API-RATE-LIMIT-WEIGHT | 5          |
+     * +-----------------------+------------+
      */
     getDepositAddressV3(req: GetDepositAddressV3Req): Promise<GetDepositAddressV3Resp>;
 
     /**
      * getDepositHistory Get Deposit History
-     * Description: Request via this endpoint to get deposit list Items are paginated and sorted to show the latest first. See the Pagination section for retrieving additional entries after the first page.
+     * Description: Request a deposit list via this endpoint. Items are paginated and sorted to show the latest first. See the Pagination section for retrieving additional entries after the first page.
      * Documentation: https://www.kucoin.com/docs-new/api-3470141
-     * +---------------------+------------+
-     * | Extra API Info      | Value      |
-     * +---------------------+------------+
-     * | API-DOMAIN          | SPOT       |
-     * | API-CHANNEL         | PRIVATE    |
-     * | API-PERMISSION      | GENERAL    |
-     * | API-RATE-LIMIT-POOL | MANAGEMENT |
-     * | API-RATE-LIMIT      | 5          |
-     * +---------------------+------------+
+     * +-----------------------+------------+
+     * | Extra API Info        | Value      |
+     * +-----------------------+------------+
+     * | API-DOMAIN            | SPOT       |
+     * | API-CHANNEL           | PRIVATE    |
+     * | API-PERMISSION        | GENERAL    |
+     * | API-RATE-LIMIT-POOL   | MANAGEMENT |
+     * | API-RATE-LIMIT-WEIGHT | 5          |
+     * +-----------------------+------------+
      */
     getDepositHistory(req: GetDepositHistoryReq): Promise<GetDepositHistoryResp>;
 
     /**
      * @deprecated
-     * getDepositAddressV2 Get Deposit Addresses(V2)
-     * Description: Get all deposit addresses for the currency you intend to deposit. If the returned data is empty, you may need to Add Deposit Address first.
+     * getDepositAddressV2 Get Deposit Addresses (V2)
+     * Description: Get all deposit addresses for the currency you intend to deposit. If the returned data is empty, you may need to add the deposit address first.
      * Documentation: https://www.kucoin.com/docs-new/api-3470300
-     * +---------------------+------------+
-     * | Extra API Info      | Value      |
-     * +---------------------+------------+
-     * | API-DOMAIN          | SPOT       |
-     * | API-CHANNEL         | PRIVATE    |
-     * | API-PERMISSION      | GENERAL    |
-     * | API-RATE-LIMIT-POOL | MANAGEMENT |
-     * | API-RATE-LIMIT      | 5          |
-     * +---------------------+------------+
+     * +-----------------------+------------+
+     * | Extra API Info        | Value      |
+     * +-----------------------+------------+
+     * | API-DOMAIN            | SPOT       |
+     * | API-CHANNEL           | PRIVATE    |
+     * | API-PERMISSION        | GENERAL    |
+     * | API-RATE-LIMIT-POOL   | MANAGEMENT |
+     * | API-RATE-LIMIT-WEIGHT | 5          |
+     * +-----------------------+------------+
      */
     getDepositAddressV2(req: GetDepositAddressV2Req): Promise<GetDepositAddressV2Resp>;
 
     /**
      * @deprecated
      * getDepositAddressV1 Get Deposit Addresses - V1
-     * Description: Get all deposit addresses for the currency you intend to deposit. If the returned data is empty, you may need to Add Deposit Address first.
+     * Description: Get all deposit addresses for the currency you intend to deposit. If the returned data is empty, you may need to add the deposit address first.
      * Documentation: https://www.kucoin.com/docs-new/api-3470305
-     * +---------------------+------------+
-     * | Extra API Info      | Value      |
-     * +---------------------+------------+
-     * | API-DOMAIN          | SPOT       |
-     * | API-CHANNEL         | PRIVATE    |
-     * | API-PERMISSION      | GENERAL    |
-     * | API-RATE-LIMIT-POOL | MANAGEMENT |
-     * | API-RATE-LIMIT      | 5          |
-     * +---------------------+------------+
+     * +-----------------------+------------+
+     * | Extra API Info        | Value      |
+     * +-----------------------+------------+
+     * | API-DOMAIN            | SPOT       |
+     * | API-CHANNEL           | PRIVATE    |
+     * | API-PERMISSION        | GENERAL    |
+     * | API-RATE-LIMIT-POOL   | MANAGEMENT |
+     * | API-RATE-LIMIT-WEIGHT | 5          |
+     * +-----------------------+------------+
      */
     getDepositAddressV1(req: GetDepositAddressV1Req): Promise<GetDepositAddressV1Resp>;
 
     /**
      * @deprecated
      * getDepositHistoryOld Get Deposit History - Old
-     * Description: Request via this endpoint to get the V1 historical deposits list on KuCoin. The return value is the data after Pagination, sorted in descending order according to time.
+     * Description: Request the V1 historical deposits list on KuCoin via this endpoint. The return value is the data after Pagination, sorted in descending order according to time.
      * Documentation: https://www.kucoin.com/docs-new/api-3470306
-     * +---------------------+------------+
-     * | Extra API Info      | Value      |
-     * +---------------------+------------+
-     * | API-DOMAIN          | SPOT       |
-     * | API-CHANNEL         | PRIVATE    |
-     * | API-PERMISSION      | GENERAL    |
-     * | API-RATE-LIMIT-POOL | MANAGEMENT |
-     * | API-RATE-LIMIT      | 5          |
-     * +---------------------+------------+
+     * +-----------------------+------------+
+     * | Extra API Info        | Value      |
+     * +-----------------------+------------+
+     * | API-DOMAIN            | SPOT       |
+     * | API-CHANNEL           | PRIVATE    |
+     * | API-PERMISSION        | GENERAL    |
+     * | API-RATE-LIMIT-POOL   | MANAGEMENT |
+     * | API-RATE-LIMIT-WEIGHT | 5          |
+     * +-----------------------+------------+
      */
     getDepositHistoryOld(req: GetDepositHistoryOldReq): Promise<GetDepositHistoryOldResp>;
 
     /**
      * @deprecated
      * addDepositAddressV1 Add Deposit Address - V1
-     * Description: Request via this endpoint to create a deposit address for a currency you intend to deposit.
+     * Description: Request via this endpoint the creation of a deposit address for a currency you intend to deposit.
      * Documentation: https://www.kucoin.com/docs-new/api-3470309
-     * +---------------------+------------+
-     * | Extra API Info      | Value      |
-     * +---------------------+------------+
-     * | API-DOMAIN          | SPOT       |
-     * | API-CHANNEL         | PRIVATE    |
-     * | API-PERMISSION      | GENERAL    |
-     * | API-RATE-LIMIT-POOL | MANAGEMENT |
-     * | API-RATE-LIMIT      | 20         |
-     * +---------------------+------------+
+     * +-----------------------+------------+
+     * | Extra API Info        | Value      |
+     * +-----------------------+------------+
+     * | API-DOMAIN            | SPOT       |
+     * | API-CHANNEL           | PRIVATE    |
+     * | API-PERMISSION        | GENERAL    |
+     * | API-RATE-LIMIT-POOL   | MANAGEMENT |
+     * | API-RATE-LIMIT-WEIGHT | 20         |
+     * +-----------------------+------------+
      */
     addDepositAddressV1(req: AddDepositAddressV1Req): Promise<AddDepositAddressV1Resp>;
 }

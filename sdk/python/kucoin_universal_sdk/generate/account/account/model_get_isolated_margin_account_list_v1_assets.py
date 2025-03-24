@@ -19,7 +19,7 @@ class GetIsolatedMarginAccountListV1Assets(BaseModel):
 
     Attributes:
         symbol (str): Symbol
-        status (StatusEnum): The position status: Existing liabilities-DEBT, No liabilities-CLEAR, Bankrupcy (after position enters a negative balance)-BANKRUPTCY, Existing borrowings-IN_BORROW, Existing repayments-IN_REPAY, Under liquidation-IN_LIQUIDATION, Under auto-renewal assets-IN_AUTO_RENEW .
+        status (StatusEnum): Position status: Existing liabilities-DEBT, No liabilities-CLEAR, Bankrupcy (after position enters a negative balance)-BANKRUPTCY, Existing borrowings-IN_BORROW, Existing repayments-IN_REPAY, Under liquidation-IN_LIQUIDATION, Under auto-renewal assets-IN_AUTO_RENEW .
         debt_ratio (str): debt ratio
         base_asset (GetIsolatedMarginAccountListV1AssetsBaseAsset): 
         quote_asset (GetIsolatedMarginAccountListV1AssetsQuoteAsset): 
@@ -48,7 +48,7 @@ class GetIsolatedMarginAccountListV1Assets(BaseModel):
     status: Optional[StatusEnum] = Field(
         default=None,
         description=
-        "The position status: Existing liabilities-DEBT, No liabilities-CLEAR, Bankrupcy (after position enters a negative balance)-BANKRUPTCY, Existing borrowings-IN_BORROW, Existing repayments-IN_REPAY, Under liquidation-IN_LIQUIDATION, Under auto-renewal assets-IN_AUTO_RENEW ."
+        "Position status: Existing liabilities-DEBT, No liabilities-CLEAR, Bankrupcy (after position enters a negative balance)-BANKRUPTCY, Existing borrowings-IN_BORROW, Existing repayments-IN_REPAY, Under liquidation-IN_LIQUIDATION, Under auto-renewal assets-IN_AUTO_RENEW ."
     )
     debt_ratio: Optional[str] = Field(default=None,
                                       description="debt ratio",

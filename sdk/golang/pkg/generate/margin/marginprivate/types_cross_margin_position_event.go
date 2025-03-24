@@ -13,7 +13,7 @@ type CrossMarginPositionEvent struct {
 	CommonResponse *types.WsMessage
 	// Debt ratio
 	DebtRatio float32 `json:"debtRatio,omitempty"`
-	// Total asset in BTC (interest included)
+	// Total assets in BTC (interest included)
 	TotalAsset                  float32 `json:"totalAsset,omitempty"`
 	MarginCoefficientTotalAsset string  `json:"marginCoefficientTotalAsset,omitempty"`
 	// Total debt in BTC (interest included)

@@ -44,7 +44,7 @@ type AddOrderTestReq struct {
 	Hidden *bool `json:"hidden,omitempty"`
 	// Optional for type is 'limit' order, Only visible portion of the order is displayed in the order book. When iceberg chose, not allowed choose postOnly.
 	Iceberg *bool `json:"iceberg,omitempty"`
-	// Optional for type is 'limit' order, The maximum visible size of an iceberg order. please place order in size (lots), The units of qty (base currency) and valueQty (value) are not supported.
+	// Optional for type is 'limit' order, The maximum visible size of an iceberg order. please place order in size (lots), The units of qty (base currency) and valueQty (value) are not supported. Need to be defined if iceberg is specified.
 	VisibleSize *string `json:"visibleSize,omitempty"`
 	// **Choose one of size, qty, valueQty**, Order size (Base currency) must be an integer multiple of the multiplier. The unit of the quantity of coin-swap is size(lot), which is not supported
 	Qty *string `json:"qty,omitempty"`
@@ -261,7 +261,7 @@ func (builder *AddOrderTestReqBuilder) SetIceberg(value bool) *AddOrderTestReqBu
 	return builder
 }
 
-// Optional for type is 'limit' order, The maximum visible size of an iceberg order. please place order in size (lots), The units of qty (base currency) and valueQty (value) are not supported.
+// Optional for type is 'limit' order, The maximum visible size of an iceberg order. please place order in size (lots), The units of qty (base currency) and valueQty (value) are not supported. Need to be defined if iceberg is specified.
 func (builder *AddOrderTestReqBuilder) SetVisibleSize(value string) *AddOrderTestReqBuilder {
 	builder.obj.VisibleSize = &value
 	return builder

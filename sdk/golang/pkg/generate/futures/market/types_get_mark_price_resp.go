@@ -10,11 +10,11 @@ import (
 type GetMarkPriceResp struct {
 	// common response
 	CommonResponse *types.RestResponse
-	// Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)
+	// Symbol of the contract. Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)
 	Symbol string `json:"symbol,omitempty"`
-	// Granularity (milisecond)
+	// Granularity (milliseconds)
 	Granularity int32 `json:"granularity,omitempty"`
-	// Time point (milisecond)
+	// Time point (milliseconds)
 	TimePoint int64 `json:"timePoint,omitempty"`
 	// Mark price
 	Value float32 `json:"value,omitempty"`

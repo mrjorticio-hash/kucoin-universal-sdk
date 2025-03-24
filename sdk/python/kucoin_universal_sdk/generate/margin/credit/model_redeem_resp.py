@@ -17,13 +17,13 @@ class RedeemResp(BaseModel, Response):
     RedeemResp
 
     Attributes:
-        order_no (str): Redeem order id
+        order_no (str): Redeem order ID
     """
 
     common_response: Optional[RestResponse] = Field(
         default=None, description="Common response")
     order_no: Optional[str] = Field(default=None,
-                                    description="Redeem order id",
+                                    description="Redeem order ID",
                                     alias="orderNo")
 
     __properties: ClassVar[List[str]] = ["orderNo"]

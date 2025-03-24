@@ -12,197 +12,197 @@ type PositionsAPI interface {
 	// GetMarginMode Get Margin Mode
 	// Description: This interface can query the margin mode of the current symbol.
 	// Documentation: https://www.kucoin.com/docs-new/api-3470259
-	// +---------------------+---------+
-	// | Extra API Info      | Value   |
-	// +---------------------+---------+
-	// | API-DOMAIN          | FUTURES |
-	// | API-CHANNEL         | PRIVATE |
-	// | API-PERMISSION      | FUTURES |
-	// | API-RATE-LIMIT-POOL | FUTURES |
-	// | API-RATE-LIMIT      | 2       |
-	// +---------------------+---------+
+	// +-----------------------+---------+
+	// | Extra API Info        | Value   |
+	// +-----------------------+---------+
+	// | API-DOMAIN            | FUTURES |
+	// | API-CHANNEL           | PRIVATE |
+	// | API-PERMISSION        | FUTURES |
+	// | API-RATE-LIMIT-POOL   | FUTURES |
+	// | API-RATE-LIMIT-WEIGHT | 2       |
+	// +-----------------------+---------+
 	GetMarginMode(req *GetMarginModeReq, ctx context.Context) (*GetMarginModeResp, error)
 
 	// SwitchMarginMode Switch Margin Mode
 	// Description: This interface can modify the margin mode of the current symbol.
 	// Documentation: https://www.kucoin.com/docs-new/api-3470262
-	// +---------------------+---------+
-	// | Extra API Info      | Value   |
-	// +---------------------+---------+
-	// | API-DOMAIN          | FUTURES |
-	// | API-CHANNEL         | PRIVATE |
-	// | API-PERMISSION      | FUTURES |
-	// | API-RATE-LIMIT-POOL | FUTURES |
-	// | API-RATE-LIMIT      | 2       |
-	// +---------------------+---------+
+	// +-----------------------+---------+
+	// | Extra API Info        | Value   |
+	// +-----------------------+---------+
+	// | API-DOMAIN            | FUTURES |
+	// | API-CHANNEL           | PRIVATE |
+	// | API-PERMISSION        | FUTURES |
+	// | API-RATE-LIMIT-POOL   | FUTURES |
+	// | API-RATE-LIMIT-WEIGHT | 2       |
+	// +-----------------------+---------+
 	SwitchMarginMode(req *SwitchMarginModeReq, ctx context.Context) (*SwitchMarginModeResp, error)
 
 	// GetMaxOpenSize Get Max Open Size
 	// Description: Get Maximum Open Position Size.
 	// Documentation: https://www.kucoin.com/docs-new/api-3470251
-	// +---------------------+---------+
-	// | Extra API Info      | Value   |
-	// +---------------------+---------+
-	// | API-DOMAIN          | FUTURES |
-	// | API-CHANNEL         | PRIVATE |
-	// | API-PERMISSION      | FUTURES |
-	// | API-RATE-LIMIT-POOL | FUTURES |
-	// | API-RATE-LIMIT      | 2       |
-	// +---------------------+---------+
+	// +-----------------------+---------+
+	// | Extra API Info        | Value   |
+	// +-----------------------+---------+
+	// | API-DOMAIN            | FUTURES |
+	// | API-CHANNEL           | PRIVATE |
+	// | API-PERMISSION        | FUTURES |
+	// | API-RATE-LIMIT-POOL   | FUTURES |
+	// | API-RATE-LIMIT-WEIGHT | 2       |
+	// +-----------------------+---------+
 	GetMaxOpenSize(req *GetMaxOpenSizeReq, ctx context.Context) (*GetMaxOpenSizeResp, error)
 
 	// GetPositionDetails Get Position Details
 	// Description: Get the position details of a specified position.
 	// Documentation: https://www.kucoin.com/docs-new/api-3470252
-	// +---------------------+---------+
-	// | Extra API Info      | Value   |
-	// +---------------------+---------+
-	// | API-DOMAIN          | FUTURES |
-	// | API-CHANNEL         | PRIVATE |
-	// | API-PERMISSION      | FUTURES |
-	// | API-RATE-LIMIT-POOL | FUTURES |
-	// | API-RATE-LIMIT      | 2       |
-	// +---------------------+---------+
+	// +-----------------------+---------+
+	// | Extra API Info        | Value   |
+	// +-----------------------+---------+
+	// | API-DOMAIN            | FUTURES |
+	// | API-CHANNEL           | PRIVATE |
+	// | API-PERMISSION        | FUTURES |
+	// | API-RATE-LIMIT-POOL   | FUTURES |
+	// | API-RATE-LIMIT-WEIGHT | 2       |
+	// +-----------------------+---------+
 	GetPositionDetails(req *GetPositionDetailsReq, ctx context.Context) (*GetPositionDetailsResp, error)
 
 	// GetPositionList Get Position List
 	// Description: Get the position details of a specified position.
 	// Documentation: https://www.kucoin.com/docs-new/api-3470253
-	// +---------------------+---------+
-	// | Extra API Info      | Value   |
-	// +---------------------+---------+
-	// | API-DOMAIN          | FUTURES |
-	// | API-CHANNEL         | PRIVATE |
-	// | API-PERMISSION      | FUTURES |
-	// | API-RATE-LIMIT-POOL | FUTURES |
-	// | API-RATE-LIMIT      | 2       |
-	// +---------------------+---------+
+	// +-----------------------+---------+
+	// | Extra API Info        | Value   |
+	// +-----------------------+---------+
+	// | API-DOMAIN            | FUTURES |
+	// | API-CHANNEL           | PRIVATE |
+	// | API-PERMISSION        | FUTURES |
+	// | API-RATE-LIMIT-POOL   | FUTURES |
+	// | API-RATE-LIMIT-WEIGHT | 2       |
+	// +-----------------------+---------+
 	GetPositionList(req *GetPositionListReq, ctx context.Context) (*GetPositionListResp, error)
 
 	// GetPositionsHistory Get Positions History
 	// Description: This interface can query position history information records.
 	// Documentation: https://www.kucoin.com/docs-new/api-3470254
-	// +---------------------+---------+
-	// | Extra API Info      | Value   |
-	// +---------------------+---------+
-	// | API-DOMAIN          | FUTURES |
-	// | API-CHANNEL         | PRIVATE |
-	// | API-PERMISSION      | FUTURES |
-	// | API-RATE-LIMIT-POOL | FUTURES |
-	// | API-RATE-LIMIT      | 2       |
-	// +---------------------+---------+
+	// +-----------------------+---------+
+	// | Extra API Info        | Value   |
+	// +-----------------------+---------+
+	// | API-DOMAIN            | FUTURES |
+	// | API-CHANNEL           | PRIVATE |
+	// | API-PERMISSION        | FUTURES |
+	// | API-RATE-LIMIT-POOL   | FUTURES |
+	// | API-RATE-LIMIT-WEIGHT | 2       |
+	// +-----------------------+---------+
 	GetPositionsHistory(req *GetPositionsHistoryReq, ctx context.Context) (*GetPositionsHistoryResp, error)
 
 	// GetMaxWithdrawMargin Get Max Withdraw Margin
 	// Description: This interface can query the maximum amount of margin that the current position supports withdrawal.
 	// Documentation: https://www.kucoin.com/docs-new/api-3470258
-	// +---------------------+---------+
-	// | Extra API Info      | Value   |
-	// +---------------------+---------+
-	// | API-DOMAIN          | FUTURES |
-	// | API-CHANNEL         | PRIVATE |
-	// | API-PERMISSION      | FUTURES |
-	// | API-RATE-LIMIT-POOL | FUTURES |
-	// | API-RATE-LIMIT      | 10      |
-	// +---------------------+---------+
+	// +-----------------------+---------+
+	// | Extra API Info        | Value   |
+	// +-----------------------+---------+
+	// | API-DOMAIN            | FUTURES |
+	// | API-CHANNEL           | PRIVATE |
+	// | API-PERMISSION        | FUTURES |
+	// | API-RATE-LIMIT-POOL   | FUTURES |
+	// | API-RATE-LIMIT-WEIGHT | 10      |
+	// +-----------------------+---------+
 	GetMaxWithdrawMargin(req *GetMaxWithdrawMarginReq, ctx context.Context) (*GetMaxWithdrawMarginResp, error)
 
 	// GetCrossMarginLeverage Get Cross Margin Leverage
 	// Description: This interface can query the current symbol’s cross-margin leverage multiple.
 	// Documentation: https://www.kucoin.com/docs-new/api-3470260
-	// +---------------------+---------+
-	// | Extra API Info      | Value   |
-	// +---------------------+---------+
-	// | API-DOMAIN          | FUTURES |
-	// | API-CHANNEL         | PRIVATE |
-	// | API-PERMISSION      | FUTURES |
-	// | API-RATE-LIMIT-POOL | FUTURES |
-	// | API-RATE-LIMIT      | 2       |
-	// +---------------------+---------+
+	// +-----------------------+---------+
+	// | Extra API Info        | Value   |
+	// +-----------------------+---------+
+	// | API-DOMAIN            | FUTURES |
+	// | API-CHANNEL           | PRIVATE |
+	// | API-PERMISSION        | FUTURES |
+	// | API-RATE-LIMIT-POOL   | FUTURES |
+	// | API-RATE-LIMIT-WEIGHT | 2       |
+	// +-----------------------+---------+
 	GetCrossMarginLeverage(req *GetCrossMarginLeverageReq, ctx context.Context) (*GetCrossMarginLeverageResp, error)
 
 	// ModifyMarginLeverage Modify Cross Margin Leverage
 	// Description: This interface can modify the current symbol’s cross-margin leverage multiple.
 	// Documentation: https://www.kucoin.com/docs-new/api-3470261
-	// +---------------------+---------+
-	// | Extra API Info      | Value   |
-	// +---------------------+---------+
-	// | API-DOMAIN          | FUTURES |
-	// | API-CHANNEL         | PRIVATE |
-	// | API-PERMISSION      | FUTURES |
-	// | API-RATE-LIMIT-POOL | FUTURES |
-	// | API-RATE-LIMIT      | 2       |
-	// +---------------------+---------+
+	// +-----------------------+---------+
+	// | Extra API Info        | Value   |
+	// +-----------------------+---------+
+	// | API-DOMAIN            | FUTURES |
+	// | API-CHANNEL           | PRIVATE |
+	// | API-PERMISSION        | FUTURES |
+	// | API-RATE-LIMIT-POOL   | FUTURES |
+	// | API-RATE-LIMIT-WEIGHT | 2       |
+	// +-----------------------+---------+
 	ModifyMarginLeverage(req *ModifyMarginLeverageReq, ctx context.Context) (*ModifyMarginLeverageResp, error)
 
 	// AddIsolatedMargin Add Isolated Margin
 	// Description: Add Isolated Margin Manually.
 	// Documentation: https://www.kucoin.com/docs-new/api-3470257
-	// +---------------------+---------+
-	// | Extra API Info      | Value   |
-	// +---------------------+---------+
-	// | API-DOMAIN          | FUTURES |
-	// | API-CHANNEL         | PRIVATE |
-	// | API-PERMISSION      | FUTURES |
-	// | API-RATE-LIMIT-POOL | FUTURES |
-	// | API-RATE-LIMIT      | 4       |
-	// +---------------------+---------+
+	// +-----------------------+---------+
+	// | Extra API Info        | Value   |
+	// +-----------------------+---------+
+	// | API-DOMAIN            | FUTURES |
+	// | API-CHANNEL           | PRIVATE |
+	// | API-PERMISSION        | FUTURES |
+	// | API-RATE-LIMIT-POOL   | FUTURES |
+	// | API-RATE-LIMIT-WEIGHT | 4       |
+	// +-----------------------+---------+
 	AddIsolatedMargin(req *AddIsolatedMarginReq, ctx context.Context) (*AddIsolatedMarginResp, error)
 
 	// RemoveIsolatedMargin Remove Isolated Margin
 	// Description: Remove Isolated Margin Manually.
 	// Documentation: https://www.kucoin.com/docs-new/api-3470256
-	// +---------------------+---------+
-	// | Extra API Info      | Value   |
-	// +---------------------+---------+
-	// | API-DOMAIN          | FUTURES |
-	// | API-CHANNEL         | PRIVATE |
-	// | API-PERMISSION      | FUTURES |
-	// | API-RATE-LIMIT-POOL | FUTURES |
-	// | API-RATE-LIMIT      | 10      |
-	// +---------------------+---------+
+	// +-----------------------+---------+
+	// | Extra API Info        | Value   |
+	// +-----------------------+---------+
+	// | API-DOMAIN            | FUTURES |
+	// | API-CHANNEL           | PRIVATE |
+	// | API-PERMISSION        | FUTURES |
+	// | API-RATE-LIMIT-POOL   | FUTURES |
+	// | API-RATE-LIMIT-WEIGHT | 10      |
+	// +-----------------------+---------+
 	RemoveIsolatedMargin(req *RemoveIsolatedMarginReq, ctx context.Context) (*RemoveIsolatedMarginResp, error)
 
 	// GetIsolatedMarginRiskLimit Get Isolated Margin Risk Limit
-	// Description: This interface can be used to obtain information about risk limit level of a specific contract(Only valid for isolated Margin).
+	// Description: This interface can be used to obtain information about risk limit level of a specific contract (only valid for Isolated Margin).
 	// Documentation: https://www.kucoin.com/docs-new/api-3470263
-	// +---------------------+---------+
-	// | Extra API Info      | Value   |
-	// +---------------------+---------+
-	// | API-DOMAIN          | FUTURES |
-	// | API-CHANNEL         | PRIVATE |
-	// | API-PERMISSION      | FUTURES |
-	// | API-RATE-LIMIT-POOL | PUBLIC  |
-	// | API-RATE-LIMIT      | 5       |
-	// +---------------------+---------+
+	// +-----------------------+---------+
+	// | Extra API Info        | Value   |
+	// +-----------------------+---------+
+	// | API-DOMAIN            | FUTURES |
+	// | API-CHANNEL           | PRIVATE |
+	// | API-PERMISSION        | NULL    |
+	// | API-RATE-LIMIT-POOL   | PUBLIC  |
+	// | API-RATE-LIMIT-WEIGHT | 5       |
+	// +-----------------------+---------+
 	GetIsolatedMarginRiskLimit(req *GetIsolatedMarginRiskLimitReq, ctx context.Context) (*GetIsolatedMarginRiskLimitResp, error)
 
 	// ModifyIsolatedMarginRiskLimt Modify Isolated Margin Risk Limit
-	// Description: This interface can be used to obtain information about risk limit level of a specific contract(Only valid for isolated Margin).
+	// Description: This interface can be used to obtain information about risk limit level of a specific contract (only valid for Isolated Margin).
 	// Documentation: https://www.kucoin.com/docs-new/api-3470264
-	// +---------------------+---------+
-	// | Extra API Info      | Value   |
-	// +---------------------+---------+
-	// | API-DOMAIN          | FUTURES |
-	// | API-CHANNEL         | PRIVATE |
-	// | API-PERMISSION      | FUTURES |
-	// | API-RATE-LIMIT-POOL | FUTURES |
-	// | API-RATE-LIMIT      | 5       |
-	// +---------------------+---------+
+	// +-----------------------+---------+
+	// | Extra API Info        | Value   |
+	// +-----------------------+---------+
+	// | API-DOMAIN            | FUTURES |
+	// | API-CHANNEL           | PRIVATE |
+	// | API-PERMISSION        | FUTURES |
+	// | API-RATE-LIMIT-POOL   | FUTURES |
+	// | API-RATE-LIMIT-WEIGHT | 5       |
+	// +-----------------------+---------+
 	ModifyIsolatedMarginRiskLimt(req *ModifyIsolatedMarginRiskLimtReq, ctx context.Context) (*ModifyIsolatedMarginRiskLimtResp, error)
 
 	// ModifyAutoDepositStatus Modify Isolated Margin Auto-Deposit Status
 	// Description: This endpoint is only applicable to isolated margin and is no longer recommended. It is recommended to use cross margin instead.
 	// Documentation: https://www.kucoin.com/docs-new/api-3470255
-	// +---------------------+---------+
-	// | Extra API Info      | Value   |
-	// +---------------------+---------+
-	// | API-DOMAIN          | FUTURES |
-	// | API-CHANNEL         | PRIVATE |
-	// | API-PERMISSION      | FUTURES |
-	// | API-RATE-LIMIT-POOL | FUTURES |
-	// | API-RATE-LIMIT      | 4       |
-	// +---------------------+---------+
+	// +-----------------------+---------+
+	// | Extra API Info        | Value   |
+	// +-----------------------+---------+
+	// | API-DOMAIN            | FUTURES |
+	// | API-CHANNEL           | PRIVATE |
+	// | API-PERMISSION        | FUTURES |
+	// | API-RATE-LIMIT-POOL   | FUTURES |
+	// | API-RATE-LIMIT-WEIGHT | 4       |
+	// +-----------------------+---------+
 	// Deprecated
 	ModifyAutoDepositStatus(req *ModifyAutoDepositStatusReq, ctx context.Context) (*ModifyAutoDepositStatusResp, error)
 }

@@ -27,7 +27,7 @@ export class GetInterestHistoryResp implements Response<RestResponse> {
     totalNum: number;
 
     /**
-     * total page
+     * total pages
      */
     totalPage: number;
 

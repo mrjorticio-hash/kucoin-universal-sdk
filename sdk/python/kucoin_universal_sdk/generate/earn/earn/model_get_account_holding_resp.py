@@ -22,7 +22,7 @@ class GetAccountHoldingResp(BaseModel, Response):
         items (list[GetAccountHoldingItems]): 
         current_page (int): current page
         page_size (int): page size
-        total_page (int): total page
+        total_page (int): total pages
     """
 
     common_response: Optional[RestResponse] = Field(
@@ -38,7 +38,7 @@ class GetAccountHoldingResp(BaseModel, Response):
                                      description="page size",
                                      alias="pageSize")
     total_page: Optional[int] = Field(default=None,
-                                      description="total page",
+                                      description="total pages",
                                       alias="totalPage")
 
     __properties: ClassVar[List[str]] = [

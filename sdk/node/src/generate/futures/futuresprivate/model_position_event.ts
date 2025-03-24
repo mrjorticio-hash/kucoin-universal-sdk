@@ -7,7 +7,7 @@ import { Response } from '@internal/interfaces/serializable';
 
 export class PositionEvent implements Response<WsMessage> {
     /**
-     * Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-221752070)
+     * Symbol of the contract. Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-221752070)
      */
     symbol: string;
     /**
@@ -27,11 +27,11 @@ export class PositionEvent implements Response<WsMessage> {
      */
     currentTimestamp: number;
     /**
-     * Current postion quantity
+     * Current position quantity
      */
     currentQty: number;
     /**
-     * Current postion value
+     * Current position value
      */
     currentCost: number;
     /**
@@ -39,15 +39,15 @@ export class PositionEvent implements Response<WsMessage> {
      */
     currentComm: number;
     /**
-     * Unrealised value
+     * Unrealized value
      */
     unrealisedCost: number;
     /**
-     * Accumulated realised gross profit value
+     * Accumulated realized gross profit value
      */
     realisedGrossCost: number;
     /**
-     * Current realised position value
+     * Current realized position value
      */
     realisedCost: number;
     /**
@@ -75,15 +75,15 @@ export class PositionEvent implements Response<WsMessage> {
      */
     posMargin: number;
     /**
-     * Accumulated realised gross profit value
+     * Accumulated realized gross profit value
      */
     realisedGrossPnl: number;
     /**
-     * Realised profit and loss
+     * Realized profit and loss
      */
     realisedPnl: number;
     /**
-     * Unrealised profit and loss
+     * Unrealized profit and loss
      */
     unrealisedPnl: number;
     /**
@@ -99,11 +99,11 @@ export class PositionEvent implements Response<WsMessage> {
      */
     avgEntryPrice: number;
     /**
-     * Liquidation price For Cross Margin, you can refer to the liquidationPrice, and the liquidation is based on the risk rate.
+     * Liquidation price: For Cross Margin, you can refer to the liquidationPrice, and the liquidation is based on the risk rate.
      */
     liquidationPrice: number;
     /**
-     * Bankruptcy price For Cross Margin, you can refer to the bankruptPrice, and the liquidation is based on the risk rate.
+     * Bankruptcy price: For Cross Margin, you can refer to the bankruptPrice, and the liquidation is based on the risk rate.
      */
     bankruptPrice: number;
     /**
@@ -111,7 +111,7 @@ export class PositionEvent implements Response<WsMessage> {
      */
     settleCurrency: string;
     /**
-     * Margin Mode: CROSS，ISOLATED
+     * Margin Mode: CROSS, ISOLATED
      */
     marginMode: PositionEvent.MarginModeEnum;
     /**
@@ -139,7 +139,7 @@ export class PositionEvent implements Response<WsMessage> {
      */
     realLeverage?: number;
     /**
-     * added margin **Only applicable to Isolated Margin**
+     * Added margin **Only applicable to Isolated Margin**
      */
     posCross?: number;
     /**
@@ -179,7 +179,7 @@ export class PositionEvent implements Response<WsMessage> {
      */
     fundingFee?: number;
     /**
-     * Funding Fee Settlement Time (nanosecond)
+     * Funding Fee Settlement Time (nanoseconds)
      */
     ts?: number;
     /**

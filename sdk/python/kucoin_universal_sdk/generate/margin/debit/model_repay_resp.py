@@ -18,7 +18,7 @@ class RepayResp(BaseModel, Response):
 
     Attributes:
         timestamp (int): 
-        order_no (str): Repay Order Id
+        order_no (str): Repay order ID
         actual_size (str): Actual repay amount
     """
 
@@ -26,7 +26,7 @@ class RepayResp(BaseModel, Response):
         default=None, description="Common response")
     timestamp: Optional[int] = None
     order_no: Optional[str] = Field(default=None,
-                                    description="Repay Order Id",
+                                    description="Repay order ID",
                                     alias="orderNo")
     actual_size: Optional[str] = Field(default=None,
                                        description="Actual repay amount",

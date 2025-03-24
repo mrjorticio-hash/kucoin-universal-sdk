@@ -1,13 +1,33 @@
 # API FUNCTION TEMPLATE
 
 
-func TestVIPLendingGetAccountDetailReq(t *testing.T) {
-    // GetAccountDetail
-    // Get Account Detail
+func TestVIPLendingGetDiscountRateConfigsReq(t *testing.T) {
+    // GetDiscountRateConfigs
+    // Get Discount Rate Configs
+    // /api/v1/otc-loan/discount-rate-configs
+
+
+    resp, err := viplendingApi.GetDiscountRateConfigs(context.TODO())
+    if err != nil {
+        panic(err)
+    }
+    data, err := json.Marshal(resp.ToMap())
+    if err != nil {
+        panic(err)
+    }
+    fmt.Println("code:", resp.CommonResponse.Code)
+    fmt.Println("message:", resp.CommonResponse.Message)
+    fmt.Println("data:", string(data))
+}
+
+
+func TestVIPLendingGetLoanInfoReq(t *testing.T) {
+    // GetLoanInfo
+    // Get Loan Info
     // /api/v1/otc-loan/loan
 
 
-    resp, err := viplendingApi.GetAccountDetail(context.TODO())
+    resp, err := viplendingApi.GetLoanInfo(context.TODO())
     if err != nil {
         panic(err)
     }

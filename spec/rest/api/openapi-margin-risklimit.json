@@ -11,14 +11,14 @@
             "get": {
                 "summary": "Get Margin Risk Limit",
                 "deprecated": false,
-                "description": "Request via this endpoint to get the Configure and Risk limit info of the margin.",
+                "description": "Request Configure and Risk limit info of the margin via this endpoint.",
                 "tags": [],
                 "parameters": [
                     {
                         "name": "isIsolated",
                         "in": "query",
-                        "description": "true-isolated, false-cross",
-                        "required": true,
+                        "description": "True-isolated, false-cross",
+                        "required": false,
                         "schema": {
                             "type": "boolean"
                         }
@@ -26,7 +26,7 @@
                     {
                         "name": "currency",
                         "in": "query",
-                        "description": "currency, This field is only required for cross margin",
+                        "description": "Currency: This field is only required for cross margin",
                         "required": false,
                         "schema": {
                             "type": "string"
@@ -35,7 +35,7 @@
                     {
                         "name": "symbol",
                         "in": "query",
-                        "description": "symbol, This field is only required for isolated margin",
+                        "description": "Symbol: This field is only required for isolated margin",
                         "required": false,
                         "schema": {
                             "type": "string",
@@ -94,7 +94,7 @@
                                                     },
                                                     "precision": {
                                                         "type": "integer",
-                                                        "description": "CROSS MARGIN RESPONSES, Currency precision. the minimum repayment amount of a single transaction should be >= currency precision, for example, the precision of ETH is 8, and the minimum repayment amount is 0.00000001"
+                                                        "description": "CROSS MARGIN RESPONSES, Currency precision. The minimum repayment amount of a single transaction should be >= currency precision. For example, the precision of ETH is 8, and the minimum repayment amount is 0.00000001"
                                                     },
                                                     "borrowMinAmount": {
                                                         "type": "string",
@@ -102,7 +102,7 @@
                                                     },
                                                     "borrowMinUnit": {
                                                         "type": "string",
-                                                        "description": "CROSS MARGIN RESPONSES, Minimum unit for borrowing, the borrowed amount must be an integer multiple of this value"
+                                                        "description": "CROSS MARGIN RESPONSES, Minimum unit for borrowing; the borrowed amount must be an integer multiple of this value"
                                                     },
                                                     "borrowEnabled": {
                                                         "type": "boolean",
@@ -138,11 +138,11 @@
                                                     },
                                                     "basePrecision": {
                                                         "type": "integer",
-                                                        "description": "ISOLATED MARGIN RESPONSES, Base currency precision. the minimum repayment amount of a single transaction should be >= currency precision, for example, the precision of ETH is 8, and the minimum repayment amount is 0.00000001"
+                                                        "description": "ISOLATED MARGIN RESPONSES, Base currency precision. The minimum repayment amount of a single transaction should be >= currency precision. For example, the precision of ETH is 8, and the minimum repayment amount is 0.00000001"
                                                     },
                                                     "quotePrecision": {
                                                         "type": "integer",
-                                                        "description": "ISOLATED MARGIN RESPONSES, Quote currency precision. the minimum repayment amount of a single transaction should be >= currency precision, for example, the precision of ETH is 8, and the minimum repayment amount is 0.00000001\n"
+                                                        "description": "ISOLATED MARGIN RESPONSES, Quote currency precision. The minimum repayment amount of a single transaction should be >= currency precision. For example, the precision of ETH is 8, and the minimum repayment amount is 0.00000001\n"
                                                     },
                                                     "baseBorrowMinAmount": {
                                                         "type": "string",
@@ -206,8 +206,8 @@
                 "x-sdk-service": "Margin",
                 "x-sdk-sub-service": "RiskLimit",
                 "x-sdk-method-name": "getMarginRiskLimit",
-                "x-sdk-method-description": "Request via this endpoint to get the Configure and Risk limit info of the margin.",
-                "x-api-rate-limit": 20,
+                "x-sdk-method-description": "Request Configure and Risk limit info of the margin via this endpoint.",
+                "x-api-rate-limit-weight": 20,
                 "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": [\\n        {\\n            \\\"timestamp\\\": 1729678659275,\\n            \\\"currency\\\": \\\"BTC\\\",\\n            \\\"borrowMaxAmount\\\": \\\"75.15\\\",\\n            \\\"buyMaxAmount\\\": \\\"217.12\\\",\\n            \\\"holdMaxAmount\\\": \\\"217.12\\\",\\n            \\\"borrowCoefficient\\\": \\\"1\\\",\\n            \\\"marginCoefficient\\\": \\\"1\\\",\\n            \\\"precision\\\": 8,\\n            \\\"borrowMinAmount\\\": \\\"0.001\\\",\\n            \\\"borrowMinUnit\\\": \\\"0.0001\\\",\\n            \\\"borrowEnabled\\\": true\\n        }\\n    ]\\n}\\n",
                 "x-request-example": "{\\\"isIsolated\\\": true, \\\"currency\\\": \\\"BTC\\\", \\\"symbol\\\": \\\"BTC-USDT\\\"}",
                 "operationId": "001"

@@ -8,7 +8,7 @@ type GetAccountMargins struct {
 	MarginCcy string `json:"marginCcy,omitempty"`
 	// Maintenance Quantity (Calculated with Margin Coefficient)
 	MarginQty string `json:"marginQty,omitempty"`
-	// Margin Coefficient return real time margin discount rate to USDT
+	// Margin Coefficient return real-time margin discount rate to USDT
 	MarginFactor string `json:"marginFactor,omitempty"`
 }
 

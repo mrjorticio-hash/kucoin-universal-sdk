@@ -16,7 +16,7 @@ type GetCrossMarginAccountResp struct {
 	TotalLiabilityOfQuoteCurrency string `json:"totalLiabilityOfQuoteCurrency,omitempty"`
 	// debt ratio
 	DebtRatio string `json:"debtRatio,omitempty"`
-	// Position status; EFFECTIVE-effective, BANKRUPTCY-bankruptcy liquidation, LIQUIDATION-closing, REPAY-repayment, BORROW borrowing
+	// Position status; EFFECTIVE-effective, BANKRUPTCY-bankruptcy liquidation, LIQUIDATION-closing, REPAY-repayment, BORROW-borrowing
 	Status string `json:"status,omitempty"`
 	// Margin account list
 	Accounts []GetCrossMarginAccountAccounts `json:"accounts,omitempty"`

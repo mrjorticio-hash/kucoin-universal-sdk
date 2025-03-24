@@ -8,13 +8,13 @@ type GetAllSymbolsData struct {
 	Symbol string `json:"symbol,omitempty"`
 	// Contract group
 	RootSymbol string `json:"rootSymbol,omitempty"`
-	// Type of the contract
+	// Type of contract
 	Type string `json:"type,omitempty"`
-	// First Open Date(millisecond)
+	// First Open Date (milliseconds)
 	FirstOpenDate int64 `json:"firstOpenDate,omitempty"`
-	// Expiration date(millisecond). Null means it will never expire
+	// Expiration date (milliseconds) Null means it will never expire
 	ExpireDate *int64 `json:"expireDate,omitempty"`
-	// Settlement date(millisecond). Null indicates that automatic settlement is not supported
+	// Settlement date (milliseconds) Null indicates that automatic settlement is not supported
 	SettleDate *int64 `json:"settleDate,omitempty"`
 	// Base currency
 	BaseCurrency string `json:"baseCurrency,omitempty"`
@@ -62,9 +62,9 @@ type GetAllSymbolsData struct {
 	IsInverse bool `json:"isInverse,omitempty"`
 	// Marking method
 	MarkMethod string `json:"markMethod,omitempty"`
-	// Fair price marking method, The Futures contract is null
+	// Fair price marking method; the Futures contract is null
 	FairMethod string `json:"fairMethod,omitempty"`
-	// Ticker symbol of the based currency
+	// Ticker symbol of the base currency
 	FundingBaseSymbol string `json:"fundingBaseSymbol,omitempty"`
 	// Ticker symbol of the quote currency
 	FundingQuoteSymbol string `json:"fundingQuoteSymbol,omitempty"`
@@ -72,7 +72,7 @@ type GetAllSymbolsData struct {
 	FundingRateSymbol string `json:"fundingRateSymbol,omitempty"`
 	// Index symbol
 	IndexSymbol string `json:"indexSymbol,omitempty"`
-	// Settlement Symbol
+	// Settlement symbol
 	SettlementSymbol string `json:"settlementSymbol,omitempty"`
 	// Contract status
 	Status string `json:"status,omitempty"`
@@ -80,9 +80,9 @@ type GetAllSymbolsData struct {
 	FundingFeeRate float32 `json:"fundingFeeRate,omitempty"`
 	// Predicted funding fee rate
 	PredictedFundingFeeRate float32 `json:"predictedFundingFeeRate,omitempty"`
-	// Funding interval(millisecond)
+	// Funding interval (milliseconds)
 	FundingRateGranularity int32 `json:"fundingRateGranularity,omitempty"`
-	// Open interest
+	// Open interest (unit: lots)
 	OpenInterest string `json:"openInterest,omitempty"`
 	// 24-hour turnover
 	TurnoverOf24h float32 `json:"turnoverOf24h,omitempty"`
@@ -94,25 +94,25 @@ type GetAllSymbolsData struct {
 	IndexPrice float32 `json:"indexPrice,omitempty"`
 	// Last trade price
 	LastTradePrice float32 `json:"lastTradePrice,omitempty"`
-	// Next funding rate time(millisecond)
+	// Next funding rate time (milliseconds)
 	NextFundingRateTime int32 `json:"nextFundingRateTime,omitempty"`
 	// Maximum leverage
 	MaxLeverage int32 `json:"maxLeverage,omitempty"`
 	// The contract index price source exchange
 	SourceExchanges []string `json:"sourceExchanges,omitempty"`
-	// Premium index symbol(1 minute)
+	// Premium index symbol (1 minute)
 	PremiumsSymbol1M string `json:"premiumsSymbol1M,omitempty"`
-	// Premium index symbol(8 hours)
+	// Premium index symbol (8 hours)
 	PremiumsSymbol8H string `json:"premiumsSymbol8H,omitempty"`
-	// Base currency interest rate symbol(1 minute)
+	// Base currency interest rate symbol (1 minute)
 	FundingBaseSymbol1M string `json:"fundingBaseSymbol1M,omitempty"`
-	// Quote currency interest rate symbol(1 minute)
+	// Quote currency interest rate symbol (1 minute)
 	FundingQuoteSymbol1M string `json:"fundingQuoteSymbol1M,omitempty"`
 	// 24-hour lowest price
 	LowPrice float32 `json:"lowPrice,omitempty"`
 	// 24-hour highest price
 	HighPrice float32 `json:"highPrice,omitempty"`
-	// 24-hour price change%
+	// 24-hour % price change
 	PriceChgPct float32 `json:"priceChgPct,omitempty"`
 	// 24-hour price change
 	PriceChg       float32 `json:"priceChg,omitempty"`
@@ -123,11 +123,15 @@ type GetAllSymbolsData struct {
 	MmrLevConstant float32 `json:"mmrLevConstant,omitempty"`
 	// Whether support Cross Margin
 	SupportCross bool `json:"supportCross,omitempty"`
+	// The current maximum buying price allowed
+	BuyLimit float32 `json:"buyLimit,omitempty"`
+	// The current minimum selling price allowed
+	SellLimit float32 `json:"sellLimit,omitempty"`
 }
 
 // NewGetAllSymbolsData instantiates a new GetAllSymbolsData object
 // This constructor will assign default values to properties that have it defined
-func NewGetAllSymbolsData(symbol string, rootSymbol string, Type_ string, firstOpenDate int64, baseCurrency string, quoteCurrency string, settleCurrency string, maxOrderQty int32, maxPrice float32, lotSize int32, tickSize float32, indexPriceTickSize float32, multiplier float32, initialMargin float32, maintainMargin float32, maxRiskLimit int32, minRiskLimit int32, riskStep int32, makerFeeRate float32, takerFeeRate float32, takerFixFee float32, makerFixFee float32, settlementFee float32, isDeleverage bool, isQuanto bool, isInverse bool, markMethod string, fairMethod string, fundingBaseSymbol string, fundingQuoteSymbol string, fundingRateSymbol string, indexSymbol string, settlementSymbol string, status string, fundingFeeRate float32, predictedFundingFeeRate float32, fundingRateGranularity int32, openInterest string, turnoverOf24h float32, volumeOf24h float32, markPrice float32, indexPrice float32, lastTradePrice float32, nextFundingRateTime int32, maxLeverage int32, sourceExchanges []string, premiumsSymbol1M string, premiumsSymbol8H string, fundingBaseSymbol1M string, fundingQuoteSymbol1M string, lowPrice float32, highPrice float32, priceChgPct float32, priceChg float32, k float32, m float32, f float32, mmrLimit float32, mmrLevConstant float32, supportCross bool) *GetAllSymbolsData {
+func NewGetAllSymbolsData(symbol string, rootSymbol string, Type_ string, firstOpenDate int64, baseCurrency string, quoteCurrency string, settleCurrency string, maxOrderQty int32, maxPrice float32, lotSize int32, tickSize float32, indexPriceTickSize float32, multiplier float32, initialMargin float32, maintainMargin float32, maxRiskLimit int32, minRiskLimit int32, riskStep int32, makerFeeRate float32, takerFeeRate float32, takerFixFee float32, makerFixFee float32, settlementFee float32, isDeleverage bool, isQuanto bool, isInverse bool, markMethod string, fairMethod string, fundingBaseSymbol string, fundingQuoteSymbol string, fundingRateSymbol string, indexSymbol string, settlementSymbol string, status string, fundingFeeRate float32, predictedFundingFeeRate float32, fundingRateGranularity int32, openInterest string, turnoverOf24h float32, volumeOf24h float32, markPrice float32, indexPrice float32, lastTradePrice float32, nextFundingRateTime int32, maxLeverage int32, sourceExchanges []string, premiumsSymbol1M string, premiumsSymbol8H string, fundingBaseSymbol1M string, fundingQuoteSymbol1M string, lowPrice float32, highPrice float32, priceChgPct float32, priceChg float32, k float32, m float32, f float32, mmrLimit float32, mmrLevConstant float32, supportCross bool, buyLimit float32, sellLimit float32) *GetAllSymbolsData {
 	this := GetAllSymbolsData{}
 	this.Symbol = symbol
 	this.RootSymbol = rootSymbol
@@ -189,6 +193,8 @@ func NewGetAllSymbolsData(symbol string, rootSymbol string, Type_ string, firstO
 	this.MmrLimit = mmrLimit
 	this.MmrLevConstant = mmrLevConstant
 	this.SupportCross = supportCross
+	this.BuyLimit = buyLimit
+	this.SellLimit = sellLimit
 	return &this
 }
 
@@ -263,5 +269,7 @@ func (o *GetAllSymbolsData) ToMap() map[string]interface{} {
 	toSerialize["mmrLimit"] = o.MmrLimit
 	toSerialize["mmrLevConstant"] = o.MmrLevConstant
 	toSerialize["supportCross"] = o.SupportCross
+	toSerialize["buyLimit"] = o.BuyLimit
+	toSerialize["sellLimit"] = o.SellLimit
 	return toSerialize
 }

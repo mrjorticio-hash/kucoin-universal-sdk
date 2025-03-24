@@ -8,17 +8,17 @@ type GetClosedOrdersReq struct {
 	Symbol *string `json:"symbol,omitempty" url:"symbol,omitempty"`
 	// Transaction type: MARGIN_TRADE - cross margin trade, MARGIN_ISOLATED_TRADE - isolated margin trade
 	TradeType *string `json:"tradeType,omitempty" url:"tradeType,omitempty"`
-	// specify if the order is to 'buy' or 'sell'
+	// Specify if the order is to 'buy' or 'sell'.
 	Side *string `json:"side,omitempty" url:"side,omitempty"`
-	// specify if the order is an 'limit' order or 'market' order.
+	// Specify if the order is a 'limit' order or 'market' order.
 	Type *string `json:"type,omitempty" url:"type,omitempty"`
-	// The id of the last set of data from the previous batch of data. By default, the latest information is given. lastId is used to filter data and paginate. If lastId is not entered, the default is a maximum of 100 returned data items. The return results include lastId，which can be used as a query parameter to look up new data from the next page.
+	// The ID of the last set of data from the previous data batch. By default, the latest information is given. lastId is used to filter data and paginate. If lastId is not entered, the default is a maximum of 100 returned data items. The return results include lastId, which can be used as a query parameter to look up new data from the next page.
 	LastId *int64 `json:"lastId,omitempty" url:"lastId,omitempty"`
-	// Default20，Max100
+	// Default20, Max100
 	Limit *int32 `json:"limit,omitempty" url:"limit,omitempty"`
-	// Start time (milisecond)
+	// Start time (milliseconds)
 	StartAt *int64 `json:"startAt,omitempty" url:"startAt,omitempty"`
-	// End time (milisecond)
+	// End time (milliseconds)
 	EndAt *int64 `json:"endAt,omitempty" url:"endAt,omitempty"`
 }
 
@@ -73,37 +73,37 @@ func (builder *GetClosedOrdersReqBuilder) SetTradeType(value string) *GetClosedO
 	return builder
 }
 
-// specify if the order is to 'buy' or 'sell'
+// Specify if the order is to 'buy' or 'sell'.
 func (builder *GetClosedOrdersReqBuilder) SetSide(value string) *GetClosedOrdersReqBuilder {
 	builder.obj.Side = &value
 	return builder
 }
 
-// specify if the order is an 'limit' order or 'market' order.
+// Specify if the order is a 'limit' order or 'market' order.
 func (builder *GetClosedOrdersReqBuilder) SetType(value string) *GetClosedOrdersReqBuilder {
 	builder.obj.Type = &value
 	return builder
 }
 
-// The id of the last set of data from the previous batch of data. By default, the latest information is given. lastId is used to filter data and paginate. If lastId is not entered, the default is a maximum of 100 returned data items. The return results include lastId，which can be used as a query parameter to look up new data from the next page.
+// The ID of the last set of data from the previous data batch. By default, the latest information is given. lastId is used to filter data and paginate. If lastId is not entered, the default is a maximum of 100 returned data items. The return results include lastId, which can be used as a query parameter to look up new data from the next page.
 func (builder *GetClosedOrdersReqBuilder) SetLastId(value int64) *GetClosedOrdersReqBuilder {
 	builder.obj.LastId = &value
 	return builder
 }
 
-// Default20，Max100
+// Default20, Max100
 func (builder *GetClosedOrdersReqBuilder) SetLimit(value int32) *GetClosedOrdersReqBuilder {
 	builder.obj.Limit = &value
 	return builder
 }
 
-// Start time (milisecond)
+// Start time (milliseconds)
 func (builder *GetClosedOrdersReqBuilder) SetStartAt(value int64) *GetClosedOrdersReqBuilder {
 	builder.obj.StartAt = &value
 	return builder
 }
 
-// End time (milisecond)
+// End time (milliseconds)
 func (builder *GetClosedOrdersReqBuilder) SetEndAt(value int64) *GetClosedOrdersReqBuilder {
 	builder.obj.EndAt = &value
 	return builder

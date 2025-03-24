@@ -17,7 +17,7 @@ type GetAccountHoldingResp struct {
 	CurrentPage int32 `json:"currentPage,omitempty"`
 	// page size
 	PageSize int32 `json:"pageSize,omitempty"`
-	// total page
+	// total pages
 	TotalPage int32 `json:"totalPage,omitempty"`
 }
 

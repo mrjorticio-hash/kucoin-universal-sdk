@@ -17,7 +17,7 @@ class ModifyIsolatedMarginRiskLimtResp(BaseModel, Response):
     ModifyIsolatedMarginRiskLimtResp
 
     Attributes:
-        data (bool): To adjust the level will cancel the open order, the response can only indicate whether the submit of the adjustment request is successful or not. 
+        data (bool): Adjusting the level will result in the cancellation of any open orders. The response will indicate only whether the adjustment request was successfully submitted. 
     """
 
     common_response: Optional[RestResponse] = Field(
@@ -25,7 +25,7 @@ class ModifyIsolatedMarginRiskLimtResp(BaseModel, Response):
     data: Optional[bool] = Field(
         default=None,
         description=
-        "To adjust the level will cancel the open order, the response can only indicate whether the submit of the adjustment request is successful or not. "
+        "Adjusting the level will result in the cancellation of any open orders. The response will indicate only whether the adjustment request was successfully submitted. "
     )
 
     __properties: ClassVar[List[str]] = ["data"]

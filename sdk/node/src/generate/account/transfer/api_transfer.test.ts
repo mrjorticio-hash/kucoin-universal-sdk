@@ -81,7 +81,7 @@ describe('Auto Test', () => {
     test('subAccountTransfer request test', () => {
         /**
          * subAccountTransfer
-         * SubAccount Transfer
+         * Sub-account Transfer
          * /api/v2/accounts/sub-transfer
          */
         let data =
@@ -96,7 +96,7 @@ describe('Auto Test', () => {
     test('subAccountTransfer response test', () => {
         /**
          * subAccountTransfer
-         * SubAccount Transfer
+         * Sub-account Transfer
          * /api/v2/accounts/sub-transfer
          */
         let data = '{"code":"200000","data":{"orderId":"670be6b0b1b9080007040a9b"}}';
@@ -112,7 +112,7 @@ describe('Auto Test', () => {
     test('innerTransfer request test', () => {
         /**
          * innerTransfer
-         * Inner Transfer
+         * Internal Transfer
          * /api/v2/accounts/inner-transfer
          */
         let data =
@@ -127,12 +127,44 @@ describe('Auto Test', () => {
     test('innerTransfer response test', () => {
         /**
          * innerTransfer
-         * Inner Transfer
+         * Internal Transfer
          * /api/v2/accounts/inner-transfer
          */
         let data = '{"code":"200000","data":{"orderId":"670beb3482a1bb0007dec644"}}';
         let commonResp = RestResponse.fromJson(data);
         let resp = InnerTransferResp.fromObject(commonResp.data);
+        if (commonResp.data !== null) {
+            expect(
+                Object.values(resp).every((value) => value === null || value === undefined),
+            ).toBe(false);
+            console.log(resp);
+        }
+    });
+    test('getFuturesAccountTransferOutLedger request test', () => {
+        /**
+         * getFuturesAccountTransferOutLedger
+         * Get Futures Account Transfer Out Ledger
+         * /api/v1/transfer-list
+         */
+        let data =
+            '{"currency": "XBT", "type": "MAIN", "tag": ["mock_a", "mock_b"], "startAt": 1728663338000, "endAt": 1728692138000, "currentPage": 1, "pageSize": 50}';
+        let req = GetFuturesAccountTransferOutLedgerReq.fromJson(data);
+        expect(Object.values(req).every((value) => value === null || value === undefined)).toBe(
+            false,
+        );
+        console.log(req);
+    });
+
+    test('getFuturesAccountTransferOutLedger response test', () => {
+        /**
+         * getFuturesAccountTransferOutLedger
+         * Get Futures Account Transfer Out Ledger
+         * /api/v1/transfer-list
+         */
+        let data =
+            '{"code":"200000","data":{"currentPage":1,"pageSize":50,"totalNum":1,"totalPage":1,"items":[{"applyId":"670bf84c577f6c00017a1c48","currency":"USDT","recRemark":"","recSystem":"KUCOIN","status":"SUCCESS","amount":"0.01","reason":"","offset":1519769124134806,"createdAt":1728837708000,"remark":""}]}}';
+        let commonResp = RestResponse.fromJson(data);
+        let resp = GetFuturesAccountTransferOutLedgerResp.fromObject(commonResp.data);
         if (commonResp.data !== null) {
             expect(
                 Object.values(resp).every((value) => value === null || value === undefined),
@@ -194,38 +226,6 @@ describe('Auto Test', () => {
         let data = '{"code":"200000","data":null}';
         let commonResp = RestResponse.fromJson(data);
         let resp = FuturesAccountTransferInResp.fromObject(commonResp.data);
-        if (commonResp.data !== null) {
-            expect(
-                Object.values(resp).every((value) => value === null || value === undefined),
-            ).toBe(false);
-            console.log(resp);
-        }
-    });
-    test('getFuturesAccountTransferOutLedger request test', () => {
-        /**
-         * getFuturesAccountTransferOutLedger
-         * Get Futures Account Transfer Out Ledger
-         * /api/v1/transfer-list
-         */
-        let data =
-            '{"currency": "XBT", "type": "MAIN", "tag": ["mock_a", "mock_b"], "startAt": 1728663338000, "endAt": 1728692138000, "currentPage": 1, "pageSize": 50}';
-        let req = GetFuturesAccountTransferOutLedgerReq.fromJson(data);
-        expect(Object.values(req).every((value) => value === null || value === undefined)).toBe(
-            false,
-        );
-        console.log(req);
-    });
-
-    test('getFuturesAccountTransferOutLedger response test', () => {
-        /**
-         * getFuturesAccountTransferOutLedger
-         * Get Futures Account Transfer Out Ledger
-         * /api/v1/transfer-list
-         */
-        let data =
-            '{"code":"200000","data":{"currentPage":1,"pageSize":50,"totalNum":1,"totalPage":1,"items":[{"applyId":"670bf84c577f6c00017a1c48","currency":"USDT","recRemark":"","recSystem":"KUCOIN","status":"SUCCESS","amount":"0.01","reason":"","offset":1519769124134806,"createdAt":1728837708000,"remark":""}]}}';
-        let commonResp = RestResponse.fromJson(data);
-        let resp = GetFuturesAccountTransferOutLedgerResp.fromObject(commonResp.data);
         if (commonResp.data !== null) {
             expect(
                 Object.values(resp).every((value) => value === null || value === undefined),

@@ -9,7 +9,6 @@ import json
 from enum import Enum
 from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
-from typing_extensions import Annotated
 
 
 class GetPurchaseOrdersReq(BaseModel):
@@ -17,39 +16,39 @@ class GetPurchaseOrdersReq(BaseModel):
     GetPurchaseOrdersReq
 
     Attributes:
-        currency (str): currency
         status (StatusEnum): DONE-completed; PENDING-settling
-        purchase_order_no (str): 
+        currency (str): Currency
+        purchase_order_no (str): Purchase order ID
         current_page (int): Current page; default is 1
-        page_size (int): Page size; 1<=pageSize<=100; default is 50
+        page_size (int): Page size; 1<=pageSize<=50; default is 50
     """
 
     class StatusEnum(Enum):
         """
         Attributes:
-            DONE: 
-            PENDING: 
+            DONE: completed
+            PENDING: settling
         """
         DONE = 'DONE'
         PENDING = 'PENDING'
 
-    currency: Optional[str] = Field(default=None, description="currency")
     status: Optional[StatusEnum] = Field(
         default=None, description="DONE-completed; PENDING-settling")
+    currency: Optional[str] = Field(default=None, description="Currency")
     purchase_order_no: Optional[str] = Field(default=None,
+                                             description="Purchase order ID",
                                              alias="purchaseOrderNo")
     current_page: Optional[int] = Field(
         default=1,
         description="Current page; default is 1",
         alias="currentPage")
-    page_size: Optional[Annotated[
-        int, Field(le=100, strict=True, ge=1)]] = Field(
-            default=50,
-            description="Page size; 1<=pageSize<=100; default is 50",
-            alias="pageSize")
+    page_size: Optional[int] = Field(
+        default=50,
+        description="Page size; 1<=pageSize<=50; default is 50",
+        alias="pageSize")
 
     __properties: ClassVar[List[str]] = [
-        "currency", "status", "purchaseOrderNo", "currentPage", "pageSize"
+        "status", "currency", "purchaseOrderNo", "currentPage", "pageSize"
     ]
 
     model_config = ConfigDict(
@@ -86,10 +85,10 @@ class GetPurchaseOrdersReq(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "currency":
-            obj.get("currency"),
             "status":
             obj.get("status"),
+            "currency":
+            obj.get("currency"),
             "purchaseOrderNo":
             obj.get("purchaseOrderNo"),
             "currentPage":
@@ -106,13 +105,6 @@ class GetPurchaseOrdersReqBuilder:
     def __init__(self):
         self.obj = {}
 
-    def set_currency(self, value: str) -> GetPurchaseOrdersReqBuilder:
-        """
-        currency
-        """
-        self.obj['currency'] = value
-        return self
-
     def set_status(
             self, value: GetPurchaseOrdersReq.StatusEnum
     ) -> GetPurchaseOrdersReqBuilder:
@@ -122,9 +114,16 @@ class GetPurchaseOrdersReqBuilder:
         self.obj['status'] = value
         return self
 
+    def set_currency(self, value: str) -> GetPurchaseOrdersReqBuilder:
+        """
+        Currency
+        """
+        self.obj['currency'] = value
+        return self
+
     def set_purchase_order_no(self, value: str) -> GetPurchaseOrdersReqBuilder:
         """
-        
+        Purchase order ID
         """
         self.obj['purchaseOrderNo'] = value
         return self
@@ -138,7 +137,7 @@ class GetPurchaseOrdersReqBuilder:
 
     def set_page_size(self, value: int) -> GetPurchaseOrdersReqBuilder:
         """
-        Page size; 1<=pageSize<=100; default is 50
+        Page size; 1<=pageSize<=50; default is 50
         """
         self.obj['pageSize'] = value
         return self

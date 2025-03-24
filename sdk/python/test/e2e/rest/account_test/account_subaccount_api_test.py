@@ -105,7 +105,7 @@ class AccountApiTest(unittest.TestCase):
         """
 
         builder = GetSpotSubAccountDetailReqBuilder()
-        builder.set_sub_user_id("6744227ce235b300012232d6").set_include_base_amount(False)
+        builder.set_sub_user_id("6745b7bc890ba20001911363").set_include_base_amount(False).set_base_amount("USDT").set_base_amount("0.1")
         req = builder.build()
         try:
             resp = self.api.get_spot_sub_account_detail(req)

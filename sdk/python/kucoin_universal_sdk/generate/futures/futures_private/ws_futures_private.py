@@ -19,7 +19,7 @@ class FuturesPrivateWS(ABC):
         """
         summary: All Order change pushes.
         description: Push order changes for all symbol
-        push frequency: realtime
+        push frequency: real-time
         """
         pass
 
@@ -27,8 +27,8 @@ class FuturesPrivateWS(ABC):
     def all_position(self, callback: AllPositionEventCallback) -> str:
         """
         summary: All symbol position change events push
-        description: Subscribe this topic to get the realtime push of position change event of all symbol
-        push frequency: realtime
+        description: Subscribe to this topic to get real-time pushes on all symbols’ position change events
+        push frequency: real-time
         """
         pass
 
@@ -36,8 +36,8 @@ class FuturesPrivateWS(ABC):
     def balance(self, callback: BalanceEventCallback) -> str:
         """
         summary: the balance change push
-        description: Subscribe this topic to get the realtime push of balance change
-        push frequency: realtime
+        description: Subscribe to this topic to get real-time balance change pushes
+        push frequency: real-time
         """
         pass
 
@@ -45,8 +45,8 @@ class FuturesPrivateWS(ABC):
     def cross_leverage(self, callback: CrossLeverageEventCallback) -> str:
         """
         summary: the leverage change push
-        description: Subscribe this topic to get the realtime push of leverage change of contracts that are in cross margin mode
-        push frequency: realtime
+        description: Subscribe to this topic to get real-time pushes on leverage changes of contracts that are in cross margin mode
+        push frequency: real-time
         """
         pass
 
@@ -54,8 +54,8 @@ class FuturesPrivateWS(ABC):
     def margin_mode(self, callback: MarginModeEventCallback) -> str:
         """
         summary: the margin mode change
-        description: Subscribe this topic to get the realtime push of margin mode change event of a symbol
-        push frequency: realtime
+        description: Subscribe to this topic to get real-time pushes on symbols’ margin mode change events
+        push frequency: real-time
         """
         pass
 
@@ -64,7 +64,7 @@ class FuturesPrivateWS(ABC):
         """
         summary: Order change pushes.
         description: Push order changes for the specified symbol
-        push frequency: realtime
+        push frequency: real-time
         """
         pass
 
@@ -72,8 +72,8 @@ class FuturesPrivateWS(ABC):
     def position(self, symbol: str, callback: PositionEventCallback) -> str:
         """
         summary: the position change events push
-        description: Subscribe this topic to get the realtime push of position change event of a symbol
-        push frequency: realtime
+        description: Subscribe this topic to get real-time pushes on symbols’ position change events
+        push frequency: real-time
         """
         pass
 
@@ -81,8 +81,8 @@ class FuturesPrivateWS(ABC):
     def stop_orders(self, callback: StopOrdersEventCallback) -> str:
         """
         summary: stop order change pushes.
-        description: Subscribe this topic to get the realtime push of stop order changes.
-        push frequency: realtime
+        description: Subscribe to this topic to get real-time pushes on stop order changes.
+        push frequency: real-time
         """
         pass
 

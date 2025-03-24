@@ -85,7 +85,7 @@ describe('Auto Test', ()=> {
     test('getInterestHistory request test', ()=> {
     /**
     * getInterestHistory
-    * Get Interest History
+    * Get Interest History.
     * /api/v3/margin/interest
     */
     let builder = GetInterestHistoryReq.builder();

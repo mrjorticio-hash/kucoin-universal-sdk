@@ -10,7 +10,7 @@ export class GetPurchaseOrdersItems implements Serializable {
     currency: string;
 
     /**
-     * Purchase order id
+     * Purchase order ID
      */
     purchaseOrderNo: string;
 

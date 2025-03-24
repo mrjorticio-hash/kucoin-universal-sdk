@@ -22,7 +22,7 @@ RUN --mount=type=cache,target=/root/.m2,sharing=locked mvn -U clean package -Dsk
 # build tools 
 FROM openapitools/openapi-generator-cli:v7.7.0
 
-RUN apt-get update && apt-get install python3 python3-pip python3.8-venv nodejs npm -y
+RUN apt-get update && apt-get install python3 python3-pip python3.8-venv nodejs jq npm -y
 RUN pip install yapf
 ENV GOLANG_VERSION=1.22.2
 RUN curl -OL https://golang.org/dl/go${GOLANG_VERSION}.linux-amd64.tar.gz && \

@@ -8,7 +8,7 @@ describe('Auto Test', ()=> {
     test('purchase request test', ()=> {
     /**
     * purchase
-    * purchase
+    * Purchase
     * /api/v1/earn/orders
     */
     let builder = PurchaseReq.builder();
@@ -95,26 +95,6 @@ describe('Auto Test', ()=> {
     });
     })
 
-    test('getAccountHolding request test', ()=> {
-    /**
-    * getAccountHolding
-    * Get Account Holding
-    * /api/v1/earn/hold-assets
-    */
-    let builder = GetAccountHoldingReq.builder();
-    builder.setCurrency(?).setProductId(?).setProductCategory(?).setCurrentPage(?).setPageSize(?);
-    let req = builder.build();
-    let resp = api.getAccountHolding(req);
-    return resp.then(result => {
-        expect(result.totalNum).toEqual(expect.anything());
-        expect(result.items).toEqual(expect.anything());
-        expect(result.currentPage).toEqual(expect.anything());
-        expect(result.pageSize).toEqual(expect.anything());
-        expect(result.totalPage).toEqual(expect.anything());
-        console.log(resp);
-    });
-    })
-
     test('getStakingProducts request test', ()=> {
     /**
     * getStakingProducts
@@ -159,6 +139,26 @@ describe('Auto Test', ()=> {
     let resp = api.getETHStakingProducts(req);
     return resp.then(result => {
         expect(result.data).toEqual(expect.anything());
+        console.log(resp);
+    });
+    })
+
+    test('getAccountHolding request test', ()=> {
+    /**
+    * getAccountHolding
+    * Get Account Holding
+    * /api/v1/earn/hold-assets
+    */
+    let builder = GetAccountHoldingReq.builder();
+    builder.setCurrency(?).setProductId(?).setProductCategory(?).setCurrentPage(?).setPageSize(?);
+    let req = builder.build();
+    let resp = api.getAccountHolding(req);
+    return resp.then(result => {
+        expect(result.totalNum).toEqual(expect.anything());
+        expect(result.items).toEqual(expect.anything());
+        expect(result.currentPage).toEqual(expect.anything());
+        expect(result.pageSize).toEqual(expect.anything());
+        expect(result.totalPage).toEqual(expect.anything());
         console.log(resp);
     });
     })

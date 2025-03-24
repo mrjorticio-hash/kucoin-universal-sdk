@@ -8,7 +8,6 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
-from typing_extensions import Annotated
 
 
 class GetBorrowHistoryReq(BaseModel):
@@ -19,7 +18,7 @@ class GetBorrowHistoryReq(BaseModel):
         currency (str): currency
         is_isolated (bool): true-isolated, false-cross; default is false
         symbol (str): symbol, mandatory for isolated margin account
-        order_no (str): Borrow Order Id
+        order_no (str): Borrow Order ID
         start_time (int): The start and end times are not restricted. If the start time is empty or less than 1680278400000, the default value is set to 1680278400000 (April 1, 2023, 00:00:00)
         end_time (int): End time
         current_page (int): Current query page, with a starting value of 1. Default:1 
@@ -35,7 +34,7 @@ class GetBorrowHistoryReq(BaseModel):
         default=None,
         description="symbol, mandatory for isolated margin account")
     order_no: Optional[str] = Field(default=None,
-                                    description="Borrow Order Id",
+                                    description="Borrow Order ID",
                                     alias="orderNo")
     start_time: Optional[int] = Field(
         default=None,
@@ -50,9 +49,7 @@ class GetBorrowHistoryReq(BaseModel):
         description=
         "Current query page, with a starting value of 1. Default:1 ",
         alias="currentPage")
-    page_size: Optional[Annotated[int, Field(
-        le=500, strict=True, ge=10
-    )]] = Field(
+    page_size: Optional[int] = Field(
         default=50,
         description=
         "Number of results per page. Default is 50, minimum is 10, maximum is 500",
@@ -147,7 +144,7 @@ class GetBorrowHistoryReqBuilder:
 
     def set_order_no(self, value: str) -> GetBorrowHistoryReqBuilder:
         """
-        Borrow Order Id
+        Borrow Order ID
         """
         self.obj['orderNo'] = value
         return self

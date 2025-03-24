@@ -12,17 +12,17 @@ class AffiliateAPI(ABC):
     def get_account(self, **kwargs: Any) -> GetAccountResp:
         """
         summary: Get Account
-        description: This endpoint allows getting affiliate user rebate information.
+        description: Affiliate user rebate information can be obtained at this endpoint.
         documentation: https://www.kucoin.com/docs-new/api-3470279
-        +---------------------+------------+
-        | Extra API Info      | Value      |
-        +---------------------+------------+
-        | API-DOMAIN          | SPOT       |
-        | API-CHANNEL         | PRIVATE    |
-        | API-PERMISSION      | GENERAL    |
-        | API-RATE-LIMIT-POOL | MANAGEMENT |
-        | API-RATE-LIMIT      | 30         |
-        +---------------------+------------+
+        +-----------------------+------------+
+        | Extra API Info        | Value      |
+        +-----------------------+------------+
+        | API-DOMAIN            | SPOT       |
+        | API-CHANNEL           | PRIVATE    |
+        | API-PERMISSION        | GENERAL    |
+        | API-RATE-LIMIT-POOL   | MANAGEMENT |
+        | API-RATE-LIMIT-WEIGHT | 30         |
+        +-----------------------+------------+
         """
         pass
 

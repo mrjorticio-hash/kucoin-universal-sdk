@@ -15,7 +15,7 @@ export class GetAccountMargins implements Serializable {
     marginQty: string;
 
     /**
-     * Margin Coefficient return real time margin discount rate to USDT
+     * Margin Coefficient return real-time margin discount rate to USDT
      */
     marginFactor: string;
 

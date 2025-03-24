@@ -6,17 +6,17 @@ import { Serializable } from '@internal/interfaces/serializable';
 
 export class GetSpotIndexPriceDataList implements Serializable {
     /**
-     * Symbol of the contract, Please refer to [Get Symbol endpoint: indexSymbol](https://www.kucoin.com/docs-new/api-3470220)
+     * Symbol of the contract. Please refer to [Get Symbol endpoint: indexSymbol](https://www.kucoin.com/docs-new/api-3470220)
      */
     symbol: string;
 
     /**
-     * Granularity (milisecond)
+     * Granularity (milliseconds)
      */
     granularity: number;
 
     /**
-     * Timestamp (milisecond)
+     * Timestamp (milliseconds)
      */
     timePoint: number;
 

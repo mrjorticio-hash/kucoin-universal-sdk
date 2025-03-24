@@ -127,7 +127,7 @@ class FuturesAPITest(unittest.TestCase):
        Get Max Open Size
        /api/v1/copy-trade/futures/get-max-open-size
        """
-        data = "{\"symbol\": \"XBTUSDTM\", \"price\": \"example_string_default_value\", \"leverage\": 123456}"
+        data = "{\"symbol\": \"XBTUSDTM\", \"price\": 123456.0, \"leverage\": 123456}"
         req = GetMaxOpenSizeReq.from_json(data)
 
     def test_get_max_open_size_resp_model(self):
@@ -136,7 +136,7 @@ class FuturesAPITest(unittest.TestCase):
         Get Max Open Size
         /api/v1/copy-trade/futures/get-max-open-size
         """
-        data = "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"symbol\": \"XBTUSDTM\",\n        \"maxBuyOpenSize\": \"8\",\n        \"maxSellOpenSize\": \"5\"\n    }\n}"
+        data = "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"symbol\": \"XBTUSDTM\",\n        \"maxBuyOpenSize\": \"1000000\",\n        \"maxSellOpenSize\": \"51\"\n    }\n}"
         common_response = RestResponse.from_json(data)
         resp = GetMaxOpenSizeResp.from_dict(common_response.data)
 
@@ -184,7 +184,7 @@ class FuturesAPITest(unittest.TestCase):
        Remove Isolated Margin
        /api/v1/copy-trade/futures/position/margin/withdraw-margin
        """
-        data = "{\"symbol\": \"XBTUSDTM\", \"withdrawAmount\": \"0.0000001\"}"
+        data = "{\"symbol\": \"XBTUSDTM\", \"withdrawAmount\": 1e-07}"
         req = RemoveIsolatedMarginReq.from_json(data)
 
     def test_remove_isolated_margin_resp_model(self):

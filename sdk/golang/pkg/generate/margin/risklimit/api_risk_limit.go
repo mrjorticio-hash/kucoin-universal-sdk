@@ -10,17 +10,17 @@ import (
 type RiskLimitAPI interface {
 
 	// GetMarginRiskLimit Get Margin Risk Limit
-	// Description: Request via this endpoint to get the Configure and Risk limit info of the margin.
+	// Description: Request Configure and Risk limit info of the margin via this endpoint.
 	// Documentation: https://www.kucoin.com/docs-new/api-3470219
-	// +---------------------+---------+
-	// | Extra API Info      | Value   |
-	// +---------------------+---------+
-	// | API-DOMAIN          | SPOT    |
-	// | API-CHANNEL         | PRIVATE |
-	// | API-PERMISSION      | GENERAL |
-	// | API-RATE-LIMIT-POOL | SPOT    |
-	// | API-RATE-LIMIT      | 20      |
-	// +---------------------+---------+
+	// +-----------------------+---------+
+	// | Extra API Info        | Value   |
+	// +-----------------------+---------+
+	// | API-DOMAIN            | SPOT    |
+	// | API-CHANNEL           | PRIVATE |
+	// | API-PERMISSION        | GENERAL |
+	// | API-RATE-LIMIT-POOL   | SPOT    |
+	// | API-RATE-LIMIT-WEIGHT | 20      |
+	// +-----------------------+---------+
 	GetMarginRiskLimit(req *GetMarginRiskLimitReq, ctx context.Context) (*GetMarginRiskLimitResp, error)
 }
 

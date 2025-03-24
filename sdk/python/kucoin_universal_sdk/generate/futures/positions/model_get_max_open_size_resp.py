@@ -17,9 +17,9 @@ class GetMaxOpenSizeResp(BaseModel, Response):
     GetMaxOpenSizeResp
 
     Attributes:
-        symbol (str): Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) 
-        max_buy_open_size (int): Maximum buy size 
-        max_sell_open_size (int): Maximum buy size 
+        symbol (str): Symbol of the contract. Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) 
+        max_buy_open_size (int): Maximum buy size (unit: lot) 
+        max_sell_open_size (int): Maximum buy size (unit: lot) 
     """
 
     common_response: Optional[RestResponse] = Field(
@@ -27,14 +27,16 @@ class GetMaxOpenSizeResp(BaseModel, Response):
     symbol: Optional[str] = Field(
         default=None,
         description=
-        "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) "
+        "Symbol of the contract. Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) "
     )
-    max_buy_open_size: Optional[int] = Field(default=None,
-                                             description="Maximum buy size ",
-                                             alias="maxBuyOpenSize")
-    max_sell_open_size: Optional[int] = Field(default=None,
-                                              description="Maximum buy size ",
-                                              alias="maxSellOpenSize")
+    max_buy_open_size: Optional[int] = Field(
+        default=None,
+        description="Maximum buy size (unit: lot) ",
+        alias="maxBuyOpenSize")
+    max_sell_open_size: Optional[int] = Field(
+        default=None,
+        description="Maximum buy size (unit: lot) ",
+        alias="maxSellOpenSize")
 
     __properties: ClassVar[List[str]] = [
         "symbol", "maxBuyOpenSize", "maxSellOpenSize"

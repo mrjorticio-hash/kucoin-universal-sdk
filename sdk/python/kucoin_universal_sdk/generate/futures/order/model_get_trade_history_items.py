@@ -16,11 +16,11 @@ class GetTradeHistoryItems(BaseModel):
     GetTradeHistoryItems
 
     Attributes:
-        symbol (str): Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) 
+        symbol (str): Symbol of the contract. Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) 
         trade_id (str): Trade ID 
         order_id (str): Order ID 
         side (SideEnum): Transaction side
-        liquidity (LiquidityEnum): Liquidity- taker or maker
+        liquidity (LiquidityEnum): Liquidity-taker or -maker
         force_taker (bool): Whether to force processing as a taker 
         price (str): Filled price
         size (int): Filled amount
@@ -29,17 +29,19 @@ class GetTradeHistoryItems(BaseModel):
         close_fee_pay (str): Closing transaction fee
         stop (str): A mark to the stop order type
         fee_rate (str): Fee Rate
-        fix_fee (str): Fixed fees(Deprecated field, no actual use of the value field)
+        fix_fee (str): Fixed fees (Deprecated field, no actual use of the value field)
         fee_currency (str): Charging currency
-        trade_time (int): trade time in nanosecond
+        trade_time (int): Trade time in nanoseconds
         sub_trade_type (str): Deprecated field, no actual use of the value field
         margin_mode (MarginModeEnum): Margin mode: ISOLATED (isolated), CROSS (cross margin).
-        settle_currency (str): Settle Currency
-        display_type (DisplayTypeEnum): Order Type
-        fee (str): 
+        settle_currency (str): Settle currency
+        display_type (DisplayTypeEnum): Order type
+        fee (str): Trading fee
         order_type (OrderTypeEnum): Order type
         trade_type (TradeTypeEnum): Trade type (trade, liquid, adl or settlement) 
-        created_at (int): Time the order created 
+        created_at (int): Order creation time 
+        open_fee_tax_pay (str): Opening tax fee (Only KYC users in some regions have this parameter)
+        close_fee_tax_pay (str): Close tax fee (Only KYC users in some regions have this parameter)
     """
 
     class SideEnum(Enum):
@@ -63,8 +65,8 @@ class GetTradeHistoryItems(BaseModel):
     class MarginModeEnum(Enum):
         """
         Attributes:
-            ISOLATED: Isolated Margin
-            CROSS: Cross Margin
+            ISOLATED: Isolated margin
+            CROSS: Cross margin
         """
         ISOLATED = 'ISOLATED'
         CROSS = 'CROSS'
@@ -72,10 +74,10 @@ class GetTradeHistoryItems(BaseModel):
     class DisplayTypeEnum(Enum):
         """
         Attributes:
-            LIMIT: Limit order
-            MARKET: Market order
-            LIMIT_STOP: Stop limit order
-            MARKET_STOP: Stop Market order
+            LIMIT: limit order
+            MARKET: market order
+            LIMIT_STOP: stop limit order
+            MARKET_STOP: stop market order
         """
         LIMIT = 'limit'
         MARKET = 'market'
@@ -107,7 +109,7 @@ class GetTradeHistoryItems(BaseModel):
     symbol: Optional[str] = Field(
         default=None,
         description=
-        "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) "
+        "Symbol of the contract. Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) "
     )
     trade_id: Optional[str] = Field(default=None,
                                     description="Trade ID ",
@@ -118,7 +120,7 @@ class GetTradeHistoryItems(BaseModel):
     side: Optional[SideEnum] = Field(default=None,
                                      description="Transaction side")
     liquidity: Optional[LiquidityEnum] = Field(
-        default=None, description="Liquidity- taker or maker")
+        default=None, description="Liquidity-taker or -maker")
     force_taker: Optional[bool] = Field(
         default=None,
         description="Whether to force processing as a taker ",
@@ -140,13 +142,13 @@ class GetTradeHistoryItems(BaseModel):
     fix_fee: Optional[str] = Field(
         default=None,
         description=
-        "Fixed fees(Deprecated field, no actual use of the value field)",
+        "Fixed fees (Deprecated field, no actual use of the value field)",
         alias="fixFee")
     fee_currency: Optional[str] = Field(default=None,
                                         description="Charging currency",
                                         alias="feeCurrency")
     trade_time: Optional[int] = Field(default=None,
-                                      description="trade time in nanosecond",
+                                      description="Trade time in nanoseconds",
                                       alias="tradeTime")
     sub_trade_type: Optional[str] = Field(
         default=None,
@@ -157,12 +159,12 @@ class GetTradeHistoryItems(BaseModel):
         description="Margin mode: ISOLATED (isolated), CROSS (cross margin).",
         alias="marginMode")
     settle_currency: Optional[str] = Field(default=None,
-                                           description="Settle Currency",
+                                           description="Settle currency",
                                            alias="settleCurrency")
     display_type: Optional[DisplayTypeEnum] = Field(default=None,
-                                                    description="Order Type",
+                                                    description="Order type",
                                                     alias="displayType")
-    fee: Optional[str] = None
+    fee: Optional[str] = Field(default=None, description="Trading fee")
     order_type: Optional[OrderTypeEnum] = Field(default=None,
                                                 description="Order type",
                                                 alias="orderType")
@@ -171,15 +173,25 @@ class GetTradeHistoryItems(BaseModel):
         description="Trade type (trade, liquid, adl or settlement) ",
         alias="tradeType")
     created_at: Optional[int] = Field(default=None,
-                                      description="Time the order created ",
+                                      description="Order creation time ",
                                       alias="createdAt")
+    open_fee_tax_pay: Optional[str] = Field(
+        default=None,
+        description=
+        "Opening tax fee (Only KYC users in some regions have this parameter)",
+        alias="openFeeTaxPay")
+    close_fee_tax_pay: Optional[str] = Field(
+        default=None,
+        description=
+        "Close tax fee (Only KYC users in some regions have this parameter)",
+        alias="closeFeeTaxPay")
 
     __properties: ClassVar[List[str]] = [
         "symbol", "tradeId", "orderId", "side", "liquidity", "forceTaker",
         "price", "size", "value", "openFeePay", "closeFeePay", "stop",
         "feeRate", "fixFee", "feeCurrency", "tradeTime", "subTradeType",
         "marginMode", "settleCurrency", "displayType", "fee", "orderType",
-        "tradeType", "createdAt"
+        "tradeType", "createdAt", "openFeeTaxPay", "closeFeeTaxPay"
     ]
 
     model_config = ConfigDict(
@@ -239,6 +251,8 @@ class GetTradeHistoryItems(BaseModel):
             "fee": obj.get("fee"),
             "orderType": obj.get("orderType"),
             "tradeType": obj.get("tradeType"),
-            "createdAt": obj.get("createdAt")
+            "createdAt": obj.get("createdAt"),
+            "openFeeTaxPay": obj.get("openFeeTaxPay"),
+            "closeFeeTaxPay": obj.get("closeFeeTaxPay")
         })
         return _obj

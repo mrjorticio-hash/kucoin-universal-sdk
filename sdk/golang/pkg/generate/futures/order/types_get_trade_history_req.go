@@ -4,23 +4,23 @@ package order
 
 // GetTradeHistoryReq struct for GetTradeHistoryReq
 type GetTradeHistoryReq struct {
-	// List fills for a specific order only (If you specify orderId, other parameters can be ignored)
+	// List fills for a specific order only (if you specify orderId, other parameters can be ignored)
 	OrderId *string `json:"orderId,omitempty" url:"orderId,omitempty"`
-	// Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)
+	// Symbol of the contract. Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)
 	Symbol *string `json:"symbol,omitempty" url:"symbol,omitempty"`
 	// Order side
 	Side *string `json:"side,omitempty" url:"side,omitempty"`
 	// Order Type
 	Type *string `json:"type,omitempty" url:"type,omitempty"`
-	// Transaction type: trade, adl, liquid, settlement. Supports querying multiple types at the same time, separated by commas. Query all type when empty
+	// Transaction type: trade, adl, liquid, settlement. Supports querying multiple types at the same time, separated by commas. Query all types when empty
 	TradeTypes *string `json:"tradeTypes,omitempty" url:"tradeTypes,omitempty"`
-	// Start time (milisecond)
+	// Start time (milliseconds)
 	StartAt *int64 `json:"startAt,omitempty" url:"startAt,omitempty"`
-	// End time (milisecond)
+	// End time (milliseconds)
 	EndAt *int64 `json:"endAt,omitempty" url:"endAt,omitempty"`
-	// Current request page, The default currentPage is 1
+	// Current request page. The default currentPage is 1
 	CurrentPage *int32 `json:"currentPage,omitempty" url:"currentPage,omitempty"`
-	// pageSize, The default pageSize is 50, The maximum cannot exceed 1000
+	// pageSize, The default pageSize is 50; the maximum cannot exceed 1000
 	PageSize *int32 `json:"pageSize,omitempty" url:"pageSize,omitempty"`
 }
 
@@ -68,13 +68,13 @@ func NewGetTradeHistoryReqBuilder() *GetTradeHistoryReqBuilder {
 	return &GetTradeHistoryReqBuilder{obj: NewGetTradeHistoryReqWithDefaults()}
 }
 
-// List fills for a specific order only (If you specify orderId, other parameters can be ignored)
+// List fills for a specific order only (if you specify orderId, other parameters can be ignored)
 func (builder *GetTradeHistoryReqBuilder) SetOrderId(value string) *GetTradeHistoryReqBuilder {
 	builder.obj.OrderId = &value
 	return builder
 }
 
-// Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)
+// Symbol of the contract. Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)
 func (builder *GetTradeHistoryReqBuilder) SetSymbol(value string) *GetTradeHistoryReqBuilder {
 	builder.obj.Symbol = &value
 	return builder
@@ -92,31 +92,31 @@ func (builder *GetTradeHistoryReqBuilder) SetType(value string) *GetTradeHistory
 	return builder
 }
 
-// Transaction type: trade, adl, liquid, settlement. Supports querying multiple types at the same time, separated by commas. Query all type when empty
+// Transaction type: trade, adl, liquid, settlement. Supports querying multiple types at the same time, separated by commas. Query all types when empty
 func (builder *GetTradeHistoryReqBuilder) SetTradeTypes(value string) *GetTradeHistoryReqBuilder {
 	builder.obj.TradeTypes = &value
 	return builder
 }
 
-// Start time (milisecond)
+// Start time (milliseconds)
 func (builder *GetTradeHistoryReqBuilder) SetStartAt(value int64) *GetTradeHistoryReqBuilder {
 	builder.obj.StartAt = &value
 	return builder
 }
 
-// End time (milisecond)
+// End time (milliseconds)
 func (builder *GetTradeHistoryReqBuilder) SetEndAt(value int64) *GetTradeHistoryReqBuilder {
 	builder.obj.EndAt = &value
 	return builder
 }
 
-// Current request page, The default currentPage is 1
+// Current request page. The default currentPage is 1
 func (builder *GetTradeHistoryReqBuilder) SetCurrentPage(value int32) *GetTradeHistoryReqBuilder {
 	builder.obj.CurrentPage = &value
 	return builder
 }
 
-// pageSize, The default pageSize is 50, The maximum cannot exceed 1000
+// pageSize, The default pageSize is 50; the maximum cannot exceed 1000
 func (builder *GetTradeHistoryReqBuilder) SetPageSize(value int32) *GetTradeHistoryReqBuilder {
 	builder.obj.PageSize = &value
 	return builder

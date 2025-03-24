@@ -156,6 +156,21 @@ export class GetOrderByClientOidOldResp implements Response<RestResponse> {
     tradeType: string;
 
     /**
+     *
+     */
+    tax?: string;
+
+    /**
+     *
+     */
+    taxRate?: string;
+
+    /**
+     *
+     */
+    taxCurrency?: string;
+
+    /**
      * Private constructor, please use the corresponding static methods to construct the object.
      */
     private constructor() {

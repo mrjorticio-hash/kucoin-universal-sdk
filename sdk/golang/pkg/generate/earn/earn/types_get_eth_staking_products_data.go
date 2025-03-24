@@ -18,13 +18,13 @@ type GetETHStakingProductsData struct {
 	IncomeCurrency string `json:"incomeCurrency,omitempty"`
 	// Annualized Rate of Return, for example, 0.035 is equal to 3.5% annualized rate of return
 	ReturnRate string `json:"returnRate,omitempty"`
-	// Min user subscribe amount
+	// Min. user subscribe amount
 	UserLowerLimit string `json:"userLowerLimit,omitempty"`
-	// Max user subscribe amount
+	// Max. user subscription amount
 	UserUpperLimit string `json:"userUpperLimit,omitempty"`
-	// Products total subscribe amount
+	// Products total subscription amount
 	ProductUpperLimit string `json:"productUpperLimit,omitempty"`
-	// Products remain subscribe amount
+	// Remaining product subscription amount
 	ProductRemainAmount string `json:"productRemainAmount,omitempty"`
 	// Redemption waiting period (days)
 	RedeemPeriod int32 `json:"redeemPeriod,omitempty"`
@@ -40,15 +40,15 @@ type GetETHStakingProductsData struct {
 	LockStartTime *int64 `json:"lockStartTime,omitempty"`
 	// Product maturity time, in milliseconds
 	LockEndTime *int64 `json:"lockEndTime,omitempty"`
-	// Most recent interest date(millisecond)
+	// Most recent interest date (milliseconds)
 	InterestDate int64 `json:"interestDate,omitempty"`
-	// Whether the product is exclusive for new users: 0 (no), 1 (yes)
+	// Whether the product is exclusive to new users: 0 (no), 1 (yes)
 	NewUserOnly int32 `json:"newUserOnly,omitempty"`
 	// Whether the fixed product supports early redemption: 0 (no), 1 (yes)
 	EarlyRedeemSupported int32 `json:"earlyRedeemSupported,omitempty"`
 	// Product duration (days)
 	Duration int32 `json:"duration,omitempty"`
-	// Product status: ONGOING(Subscription in progress), PENDING(Preheating Subscription), FULL(Subscribed), INTERESTING (Interest in progress)
+	// Product status: ONGOING (Subscription in progress), PENDING (Preheating Subscription), FULL (Subscribed), INTERESTING (Interest in progress)
 	Status string `json:"status,omitempty"`
 }
 

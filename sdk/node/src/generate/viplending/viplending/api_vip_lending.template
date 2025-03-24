@@ -5,13 +5,26 @@ describe('Auto Test', ()=> {
     beforeAll(()=> {
         api = ??
     });
-    test('getAccountDetail request test', ()=> {
+    test('getDiscountRateConfigs request test', ()=> {
     /**
-    * getAccountDetail
-    * Get Account Detail
+    * getDiscountRateConfigs
+    * Get Discount Rate Configs
+    * /api/v1/otc-loan/discount-rate-configs
+    */
+    let resp = api.getDiscountRateConfigs();
+    return resp.then(result => {
+        expect(result.data).toEqual(expect.anything());
+        console.log(resp);
+    });
+    })
+
+    test('getLoanInfo request test', ()=> {
+    /**
+    * getLoanInfo
+    * Get Loan Info
     * /api/v1/otc-loan/loan
     */
-    let resp = api.getAccountDetail();
+    let resp = api.getLoanInfo();
     return resp.then(result => {
         expect(result.parentUid).toEqual(expect.anything());
         expect(result.orders).toEqual(expect.anything());

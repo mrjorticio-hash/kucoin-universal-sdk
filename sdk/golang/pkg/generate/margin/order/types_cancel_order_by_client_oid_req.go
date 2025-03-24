@@ -4,7 +4,7 @@ package order
 
 // CancelOrderByClientOidReq struct for CancelOrderByClientOidReq
 type CancelOrderByClientOidReq struct {
-	// Client Order Id，unique identifier created by the user
+	// Client Order Id, unique identifier created by the user
 	ClientOid *string `json:"clientOid,omitempty" path:"clientOid" url:"-"`
 	// symbol
 	Symbol *string `json:"symbol,omitempty" url:"symbol,omitempty"`
@@ -39,7 +39,7 @@ func NewCancelOrderByClientOidReqBuilder() *CancelOrderByClientOidReqBuilder {
 	return &CancelOrderByClientOidReqBuilder{obj: NewCancelOrderByClientOidReqWithDefaults()}
 }
 
-// Client Order Id，unique identifier created by the user
+// Client Order Id, unique identifier created by the user
 func (builder *CancelOrderByClientOidReqBuilder) SetClientOid(value string) *CancelOrderByClientOidReqBuilder {
 	builder.obj.ClientOid = &value
 	return builder

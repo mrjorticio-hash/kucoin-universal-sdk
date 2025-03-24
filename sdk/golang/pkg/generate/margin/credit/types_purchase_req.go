@@ -6,9 +6,9 @@ package credit
 type PurchaseReq struct {
 	// Currency
 	Currency string `json:"currency,omitempty"`
-	// purchase amount
+	// Purchase amount
 	Size string `json:"size,omitempty"`
-	// purchase interest rate
+	// Purchase interest rate
 	InterestRate string `json:"interestRate,omitempty"`
 }
 
@@ -51,13 +51,13 @@ func (builder *PurchaseReqBuilder) SetCurrency(value string) *PurchaseReqBuilder
 	return builder
 }
 
-// purchase amount
+// Purchase amount
 func (builder *PurchaseReqBuilder) SetSize(value string) *PurchaseReqBuilder {
 	builder.obj.Size = value
 	return builder
 }
 
-// purchase interest rate
+// Purchase interest rate
 func (builder *PurchaseReqBuilder) SetInterestRate(value string) *PurchaseReqBuilder {
 	builder.obj.InterestRate = value
 	return builder

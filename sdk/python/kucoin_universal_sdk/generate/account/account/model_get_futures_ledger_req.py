@@ -16,12 +16,12 @@ class GetFuturesLedgerReq(BaseModel):
 
     Attributes:
         currency (str): Currency of transaction history, XBT or USDT
-        type (str): Type RealisedPNL-Realised profit and loss, Deposit-Deposit, Withdrawal-withdraw, Transferin-Transfer in, TransferOut-Transfer out
-        offset (int): Start offset. Generally, the only attribute of the last returned result of the previous request is used, and the first page is returned by default
-        forward (bool): This parameter functions to judge whether the lookup is forward or not. True means “yes” and False means “no”. This parameter is set as true by default
+        type (str): Type RealizedPNL-Realized profit and loss, Deposit-Deposit, Withdrawal-withdraw, Transferin-Transfer in, TransferOut-Transfer out
+        offset (int): Start offset. Generally, only the attributes of the last returned result of the previous request are used, and the first page is returned by default
+        forward (bool): This parameter functions to judge whether the lookup is forward or not. True means “yes” and False means “no”. This parameter is set as true by default.
         max_count (int): Displayed size per page. The default size is 50
-        start_at (int): Start time (milisecond)
-        end_at (int): End time (milisecond)
+        start_at (int): Start time (milliseconds)
+        end_at (int): End time (milliseconds)
     """
 
     currency: Optional[str] = Field(
@@ -30,27 +30,27 @@ class GetFuturesLedgerReq(BaseModel):
     type: Optional[str] = Field(
         default=None,
         description=
-        "Type RealisedPNL-Realised profit and loss, Deposit-Deposit, Withdrawal-withdraw, Transferin-Transfer in, TransferOut-Transfer out"
+        "Type RealizedPNL-Realized profit and loss, Deposit-Deposit, Withdrawal-withdraw, Transferin-Transfer in, TransferOut-Transfer out"
     )
     offset: Optional[int] = Field(
         default=None,
         description=
-        "Start offset. Generally, the only attribute of the last returned result of the previous request is used, and the first page is returned by default"
+        "Start offset. Generally, only the attributes of the last returned result of the previous request are used, and the first page is returned by default"
     )
     forward: Optional[bool] = Field(
         default=True,
         description=
-        "This parameter functions to judge whether the lookup is forward or not. True means “yes” and False means “no”. This parameter is set as true by default"
+        "This parameter functions to judge whether the lookup is forward or not. True means “yes” and False means “no”. This parameter is set as true by default."
     )
     max_count: Optional[int] = Field(
         default=50,
         description="Displayed size per page. The default size is 50",
         alias="maxCount")
     start_at: Optional[int] = Field(default=None,
-                                    description="Start time (milisecond)",
+                                    description="Start time (milliseconds)",
                                     alias="startAt")
     end_at: Optional[int] = Field(default=None,
-                                  description="End time (milisecond)",
+                                  description="End time (milliseconds)",
                                   alias="endAt")
 
     __properties: ClassVar[List[str]] = [
@@ -123,21 +123,21 @@ class GetFuturesLedgerReqBuilder:
 
     def set_type(self, value: str) -> GetFuturesLedgerReqBuilder:
         """
-        Type RealisedPNL-Realised profit and loss, Deposit-Deposit, Withdrawal-withdraw, Transferin-Transfer in, TransferOut-Transfer out
+        Type RealizedPNL-Realized profit and loss, Deposit-Deposit, Withdrawal-withdraw, Transferin-Transfer in, TransferOut-Transfer out
         """
         self.obj['type'] = value
         return self
 
     def set_offset(self, value: int) -> GetFuturesLedgerReqBuilder:
         """
-        Start offset. Generally, the only attribute of the last returned result of the previous request is used, and the first page is returned by default
+        Start offset. Generally, only the attributes of the last returned result of the previous request are used, and the first page is returned by default
         """
         self.obj['offset'] = value
         return self
 
     def set_forward(self, value: bool) -> GetFuturesLedgerReqBuilder:
         """
-        This parameter functions to judge whether the lookup is forward or not. True means “yes” and False means “no”. This parameter is set as true by default
+        This parameter functions to judge whether the lookup is forward or not. True means “yes” and False means “no”. This parameter is set as true by default.
         """
         self.obj['forward'] = value
         return self
@@ -151,14 +151,14 @@ class GetFuturesLedgerReqBuilder:
 
     def set_start_at(self, value: int) -> GetFuturesLedgerReqBuilder:
         """
-        Start time (milisecond)
+        Start time (milliseconds)
         """
         self.obj['startAt'] = value
         return self
 
     def set_end_at(self, value: int) -> GetFuturesLedgerReqBuilder:
         """
-        End time (milisecond)
+        End time (milliseconds)
         """
         self.obj['endAt'] = value
         return self

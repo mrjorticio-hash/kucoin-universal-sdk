@@ -70,7 +70,7 @@ func TestFundingFeesGetPrivateFundingHistoryReq(t *testing.T) {
 	// /api/v1/funding-history
 
 	builder := fundingfees.NewGetPrivateFundingHistoryReqBuilder()
-	builder.SetSymbol("XBTUSDTM").SetFrom(1700310700000).SetTo(1702310700000).
+	builder.SetSymbol("XBTUSDTM").SetStartAt(1700310700000).SetEndAt(1702310700000).
 		SetReverse(true).SetMaxCount(100)
 	req := builder.Build()
 

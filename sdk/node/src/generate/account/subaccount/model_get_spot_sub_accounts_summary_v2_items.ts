@@ -5,7 +5,7 @@ import { Serializable } from '@internal/interfaces/serializable';
 
 export class GetSpotSubAccountsSummaryV2Items implements Serializable {
     /**
-     * Sub-account User Id
+     * Sub-account User ID
      */
     userId: string;
 
@@ -35,7 +35,7 @@ export class GetSpotSubAccountsSummaryV2Items implements Serializable {
     access: string;
 
     /**
-     * Time of the event
+     * Time of event
      */
     createdAt: number;
 
@@ -45,12 +45,12 @@ export class GetSpotSubAccountsSummaryV2Items implements Serializable {
     remarks: string;
 
     /**
-     * Subaccount Permissions
+     * Sub-account Permissions
      */
     tradeTypes: Array<string>;
 
     /**
-     * Subaccount active permissions,If do not have the corresponding permissions, need to log in to the sub-account and go to the corresponding web page to activate
+     * Sub-account active permissions: If you do not have the corresponding permissions, you must log in to the sub-account and go to the corresponding web page to activate.
      */
     openedTradeTypes: Array<string>;
 
@@ -119,11 +119,11 @@ export namespace GetSpotSubAccountsSummaryV2Items {
     }
     export enum TypeEnum {
         /**
-         * Normal subaccount
+         * Normal sub-account
          */
         NORMAL = <any>0,
         /**
-         * Robot subaccount
+         * Robot sub-account
          */
         ROBOT = <any>1,
         /**
@@ -131,7 +131,7 @@ export namespace GetSpotSubAccountsSummaryV2Items {
          */
         NOVICE = <any>2,
         /**
-         * Asset management subaccount
+         * Asset management sub-account
          */
         HOSTED = <any>5,
     }

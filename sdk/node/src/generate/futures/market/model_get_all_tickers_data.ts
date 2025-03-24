@@ -5,7 +5,7 @@ import { Serializable } from '@internal/interfaces/serializable';
 
 export class GetAllTickersData implements Serializable {
     /**
-     * Sequence number, used to judge whether the messages pushed by Websocket is continuous.
+     * Sequence number, used to judge whether the messages pushed by Websocket are continuous.
      */
     sequence: number;
 
@@ -20,7 +20,7 @@ export class GetAllTickersData implements Serializable {
     side: GetAllTickersData.SideEnum;
 
     /**
-     * Filled side, The trade side indicates the taker order side. A taker order is the order that was matched with orders opened on the order book.
+     * Filled side; the trade side indicates the taker order side. A taker order is the order that was matched with orders opened on the order book.
      */
     size: number;
 
@@ -55,7 +55,7 @@ export class GetAllTickersData implements Serializable {
     bestAskSize: number;
 
     /**
-     * Filled time(nanosecond)
+     * Filled time (nanoseconds)
      */
     ts: number;
 

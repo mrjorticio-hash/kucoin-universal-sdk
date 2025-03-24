@@ -4,10 +4,10 @@ package futures
 
 // GetMaxOpenSizeReq struct for GetMaxOpenSizeReq
 type GetMaxOpenSizeReq struct {
-	// Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)
+	// Symbol of the contract. Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)
 	Symbol *string `json:"symbol,omitempty" url:"symbol,omitempty"`
-	// Order price
-	Price *string `json:"price,omitempty" url:"price,omitempty"`
+	// Order Price
+	Price *float32 `json:"price,omitempty" url:"price,omitempty"`
 	// Leverage
 	Leverage *int32 `json:"leverage,omitempty" url:"leverage,omitempty"`
 }
@@ -42,14 +42,14 @@ func NewGetMaxOpenSizeReqBuilder() *GetMaxOpenSizeReqBuilder {
 	return &GetMaxOpenSizeReqBuilder{obj: NewGetMaxOpenSizeReqWithDefaults()}
 }
 
-// Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)
+// Symbol of the contract. Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)
 func (builder *GetMaxOpenSizeReqBuilder) SetSymbol(value string) *GetMaxOpenSizeReqBuilder {
 	builder.obj.Symbol = &value
 	return builder
 }
 
-// Order price
-func (builder *GetMaxOpenSizeReqBuilder) SetPrice(value string) *GetMaxOpenSizeReqBuilder {
+// Order Price
+func (builder *GetMaxOpenSizeReqBuilder) SetPrice(value float32) *GetMaxOpenSizeReqBuilder {
 	builder.obj.Price = &value
 	return builder
 }

@@ -10,17 +10,17 @@ export class GetFuturesLedgerReq implements Serializable {
     currency?: string;
 
     /**
-     * Type RealisedPNL-Realised profit and loss, Deposit-Deposit, Withdrawal-withdraw, Transferin-Transfer in, TransferOut-Transfer out
+     * Type RealizedPNL-Realized profit and loss, Deposit-Deposit, Withdrawal-withdraw, Transferin-Transfer in, TransferOut-Transfer out
      */
     type?: string;
 
     /**
-     * Start offset. Generally, the only attribute of the last returned result of the previous request is used, and the first page is returned by default
+     * Start offset. Generally, only the attributes of the last returned result of the previous request are used, and the first page is returned by default
      */
     offset?: number;
 
     /**
-     * This parameter functions to judge whether the lookup is forward or not. True means “yes” and False means “no”. This parameter is set as true by default
+     * This parameter functions to judge whether the lookup is forward or not. True means “yes” and False means “no”. This parameter is set as true by default.
      */
     forward?: boolean = true;
 
@@ -30,12 +30,12 @@ export class GetFuturesLedgerReq implements Serializable {
     maxCount?: number = 50;
 
     /**
-     * Start time (milisecond)
+     * Start time (milliseconds)
      */
     startAt?: number;
 
     /**
-     * End time (milisecond)
+     * End time (milliseconds)
      */
     endAt?: number;
 
@@ -60,15 +60,15 @@ export class GetFuturesLedgerReq implements Serializable {
          */
         currency?: string;
         /**
-         * Type RealisedPNL-Realised profit and loss, Deposit-Deposit, Withdrawal-withdraw, Transferin-Transfer in, TransferOut-Transfer out
+         * Type RealizedPNL-Realized profit and loss, Deposit-Deposit, Withdrawal-withdraw, Transferin-Transfer in, TransferOut-Transfer out
          */
         type?: string;
         /**
-         * Start offset. Generally, the only attribute of the last returned result of the previous request is used, and the first page is returned by default
+         * Start offset. Generally, only the attributes of the last returned result of the previous request are used, and the first page is returned by default
          */
         offset?: number;
         /**
-         * This parameter functions to judge whether the lookup is forward or not. True means “yes” and False means “no”. This parameter is set as true by default
+         * This parameter functions to judge whether the lookup is forward or not. True means “yes” and False means “no”. This parameter is set as true by default.
          */
         forward?: boolean;
         /**
@@ -76,11 +76,11 @@ export class GetFuturesLedgerReq implements Serializable {
          */
         maxCount?: number;
         /**
-         * Start time (milisecond)
+         * Start time (milliseconds)
          */
         startAt?: number;
         /**
-         * End time (milisecond)
+         * End time (milliseconds)
          */
         endAt?: number;
     }): GetFuturesLedgerReq {
@@ -136,7 +136,7 @@ export class GetFuturesLedgerReqBuilder {
     }
 
     /**
-     * Type RealisedPNL-Realised profit and loss, Deposit-Deposit, Withdrawal-withdraw, Transferin-Transfer in, TransferOut-Transfer out
+     * Type RealizedPNL-Realized profit and loss, Deposit-Deposit, Withdrawal-withdraw, Transferin-Transfer in, TransferOut-Transfer out
      */
     setType(value: string): GetFuturesLedgerReqBuilder {
         this.obj.type = value;
@@ -144,7 +144,7 @@ export class GetFuturesLedgerReqBuilder {
     }
 
     /**
-     * Start offset. Generally, the only attribute of the last returned result of the previous request is used, and the first page is returned by default
+     * Start offset. Generally, only the attributes of the last returned result of the previous request are used, and the first page is returned by default
      */
     setOffset(value: number): GetFuturesLedgerReqBuilder {
         this.obj.offset = value;
@@ -152,7 +152,7 @@ export class GetFuturesLedgerReqBuilder {
     }
 
     /**
-     * This parameter functions to judge whether the lookup is forward or not. True means “yes” and False means “no”. This parameter is set as true by default
+     * This parameter functions to judge whether the lookup is forward or not. True means “yes” and False means “no”. This parameter is set as true by default.
      */
     setForward(value: boolean): GetFuturesLedgerReqBuilder {
         this.obj.forward = value;
@@ -168,7 +168,7 @@ export class GetFuturesLedgerReqBuilder {
     }
 
     /**
-     * Start time (milisecond)
+     * Start time (milliseconds)
      */
     setStartAt(value: number): GetFuturesLedgerReqBuilder {
         this.obj.startAt = value;
@@ -176,7 +176,7 @@ export class GetFuturesLedgerReqBuilder {
     }
 
     /**
-     * End time (milisecond)
+     * End time (milliseconds)
      */
     setEndAt(value: number): GetFuturesLedgerReqBuilder {
         this.obj.endAt = value;

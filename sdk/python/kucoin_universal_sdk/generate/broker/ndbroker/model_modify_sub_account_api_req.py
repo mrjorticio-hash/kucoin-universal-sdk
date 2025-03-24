@@ -16,11 +16,11 @@ class ModifySubAccountApiReq(BaseModel):
     ModifySubAccountApiReq
 
     Attributes:
-        uid (str): Subaccount UID
+        uid (str): Sub-account UID
         ip_whitelist (list[str]): IP whitelist list, supports up to 20 IPs
-        permissions (list[PermissionsEnum]): [Permissions](https://www.kucoin.com/docs-new/doc-338144) group list(Only General、Spot、Futures permissions can be set, such as \"General, Trade\". ) 
+        permissions (list[PermissionsEnum]): [Permissions](https://www.kucoin.com/docs-new/doc-338144) group list (only General, Spot and Futures permissions can be set, such as \"General, Trade\"). 
         label (str): apikey remarks (length 4~32) 
-        api_key (str): Subaccount apiKey
+        api_key (str): Sub-account apiKey
     """
 
     class PermissionsEnum(Enum):
@@ -34,7 +34,7 @@ class ModifySubAccountApiReq(BaseModel):
         SPOT = 'spot'
         FUTURES = 'futures'
 
-    uid: Optional[str] = Field(default=None, description="Subaccount UID")
+    uid: Optional[str] = Field(default=None, description="Sub-account UID")
     ip_whitelist: Optional[List[str]] = Field(
         default=None,
         description="IP whitelist list, supports up to 20 IPs",
@@ -42,12 +42,12 @@ class ModifySubAccountApiReq(BaseModel):
     permissions: Optional[List[PermissionsEnum]] = Field(
         default=None,
         description=
-        "[Permissions](https://www.kucoin.com/docs-new/doc-338144) group list(Only General、Spot、Futures permissions can be set, such as \"General, Trade\". ) "
+        "[Permissions](https://www.kucoin.com/docs-new/doc-338144) group list (only General, Spot and Futures permissions can be set, such as \"General, Trade\"). "
     )
     label: Optional[str] = Field(default=None,
                                  description="apikey remarks (length 4~32) ")
     api_key: Optional[str] = Field(default=None,
-                                   description="Subaccount apiKey",
+                                   description="Sub-account apiKey",
                                    alias="apiKey")
 
     __properties: ClassVar[List[str]] = [
@@ -104,7 +104,7 @@ class ModifySubAccountApiReqBuilder:
 
     def set_uid(self, value: str) -> ModifySubAccountApiReqBuilder:
         """
-        Subaccount UID
+        Sub-account UID
         """
         self.obj['uid'] = value
         return self
@@ -121,7 +121,7 @@ class ModifySubAccountApiReqBuilder:
         self, value: list[ModifySubAccountApiReq.PermissionsEnum]
     ) -> ModifySubAccountApiReqBuilder:
         """
-        [Permissions](https://www.kucoin.com/docs-new/doc-338144) group list(Only General、Spot、Futures permissions can be set, such as \"General, Trade\". ) 
+        [Permissions](https://www.kucoin.com/docs-new/doc-338144) group list (only General, Spot and Futures permissions can be set, such as \"General, Trade\"). 
         """
         self.obj['permissions'] = value
         return self
@@ -135,7 +135,7 @@ class ModifySubAccountApiReqBuilder:
 
     def set_api_key(self, value: str) -> ModifySubAccountApiReqBuilder:
         """
-        Subaccount apiKey
+        Sub-account apiKey
         """
         self.obj['apiKey'] = value
         return self

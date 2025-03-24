@@ -4,15 +4,15 @@ package market
 
 // GetPrivateTokenInstanceServers struct for GetPrivateTokenInstanceServers
 type GetPrivateTokenInstanceServers struct {
-	// Websocket domain URL, It is recommended to use a dynamic URL as the URL may change
+	// Websocket domain URL. It is recommended to use a dynamic URL, as the URL may change.
 	Endpoint string `json:"endpoint,omitempty"`
 	// Whether to encrypt. Currently only supports wss, not ws
 	Encrypt bool `json:"encrypt,omitempty"`
 	// Network Protocol
 	Protocol string `json:"protocol,omitempty"`
-	// Recommended ping interval(millisecond)
+	// Recommended ping interval (milliseconds)
 	PingInterval int32 `json:"pingInterval,omitempty"`
-	// Heartbeat timeout(millisecond)
+	// Heartbeat timeout (milliseconds)
 	PingTimeout int32 `json:"pingTimeout,omitempty"`
 }
 

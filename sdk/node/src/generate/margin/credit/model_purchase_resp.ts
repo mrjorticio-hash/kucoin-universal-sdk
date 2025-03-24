@@ -6,7 +6,7 @@ import { Response } from '@internal/interfaces/serializable';
 
 export class PurchaseResp implements Response<RestResponse> {
     /**
-     * Purchase order id
+     * Purchase order ID
      */
     orderNo: string;
 

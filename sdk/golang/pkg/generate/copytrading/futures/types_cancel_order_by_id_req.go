@@ -4,7 +4,7 @@ package futures
 
 // CancelOrderByIdReq struct for CancelOrderByIdReq
 type CancelOrderByIdReq struct {
-	// Order id
+	// Order ID
 	OrderId *string `json:"orderId,omitempty" url:"orderId,omitempty"`
 }
 
@@ -36,7 +36,7 @@ func NewCancelOrderByIdReqBuilder() *CancelOrderByIdReqBuilder {
 	return &CancelOrderByIdReqBuilder{obj: NewCancelOrderByIdReqWithDefaults()}
 }
 
-// Order id
+// Order ID
 func (builder *CancelOrderByIdReqBuilder) SetOrderId(value string) *CancelOrderByIdReqBuilder {
 	builder.obj.OrderId = &value
 	return builder

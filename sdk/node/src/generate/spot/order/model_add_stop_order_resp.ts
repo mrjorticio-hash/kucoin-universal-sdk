@@ -11,18 +11,11 @@ export class AddStopOrderResp implements Response<RestResponse> {
     orderId: string;
 
     /**
-     * The user self-defined order id.
-     */
-    clientOid: string;
-
-    /**
      * Private constructor, please use the corresponding static methods to construct the object.
      */
     private constructor() {
         // @ts-ignore
         this.orderId = null;
-        // @ts-ignore
-        this.clientOid = null;
     }
     /**
      * common response

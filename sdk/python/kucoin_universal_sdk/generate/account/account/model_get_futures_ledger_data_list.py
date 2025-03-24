@@ -15,7 +15,7 @@ class GetFuturesLedgerDataList(BaseModel):
     GetFuturesLedgerDataList
 
     Attributes:
-        time (int): ledger time
+        time (int): Ledger time
         type (str): Type: RealisedPNL, Deposit, Withdrawal, TransferIn, TransferOut
         amount (float): Transaction amount
         fee (float): Fee
@@ -26,7 +26,7 @@ class GetFuturesLedgerDataList(BaseModel):
         currency (str): Currency
     """
 
-    time: Optional[int] = Field(default=None, description="ledger time")
+    time: Optional[int] = Field(default=None, description="Ledger time")
     type: Optional[str] = Field(
         default=None,
         description=

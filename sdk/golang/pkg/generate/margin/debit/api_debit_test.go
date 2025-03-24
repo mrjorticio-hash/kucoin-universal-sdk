@@ -121,7 +121,7 @@ func TestDebitGetRepayHistoryRespModel(t *testing.T) {
 
 func TestDebitGetInterestHistoryReqModel(t *testing.T) {
 	// GetInterestHistory
-	// Get Interest History
+	// Get Interest History.
 	// /api/v3/margin/interest
 
 	data := "{\"currency\": \"BTC\", \"isIsolated\": true, \"symbol\": \"BTC-USDT\", \"startTime\": 123456, \"endTime\": 123456, \"currentPage\": 1, \"pageSize\": 50}"
@@ -133,7 +133,7 @@ func TestDebitGetInterestHistoryReqModel(t *testing.T) {
 
 func TestDebitGetInterestHistoryRespModel(t *testing.T) {
 	// GetInterestHistory
-	// Get Interest History
+	// Get Interest History.
 	// /api/v3/margin/interest
 
 	data := "{\"code\":\"200000\",\"data\":{\"timestamp\":1729665170701,\"currentPage\":1,\"pageSize\":50,\"totalNum\":3,\"totalPage\":1,\"items\":[{\"currency\":\"USDT\",\"dayRatio\":\"0.000296\",\"interestAmount\":\"0.00000001\",\"createdTime\":1729663213375},{\"currency\":\"USDT\",\"dayRatio\":\"0.000296\",\"interestAmount\":\"0.00000001\",\"createdTime\":1729659618802},{\"currency\":\"USDT\",\"dayRatio\":\"0.000296\",\"interestAmount\":\"0.00000001\",\"createdTime\":1729656028077}]}}"

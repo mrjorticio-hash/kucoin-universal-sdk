@@ -11,7 +11,7 @@ import (
 type PositionEvent struct {
 	// common response
 	CommonResponse *types.WsMessage
-	// Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-221752070)
+	// Symbol of the contract. Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-221752070)
 	Symbol string `json:"symbol,omitempty"`
 	// Whether it is cross margin.
 	CrossMode bool `json:"crossMode,omitempty"`
@@ -21,17 +21,17 @@ type PositionEvent struct {
 	OpeningTimestamp int64 `json:"openingTimestamp,omitempty"`
 	// Current timestamp
 	CurrentTimestamp int64 `json:"currentTimestamp,omitempty"`
-	// Current postion quantity
+	// Current position quantity
 	CurrentQty int32 `json:"currentQty,omitempty"`
-	// Current postion value
+	// Current position value
 	CurrentCost float32 `json:"currentCost,omitempty"`
 	// Current commission
 	CurrentComm float32 `json:"currentComm,omitempty"`
-	// Unrealised value
+	// Unrealized value
 	UnrealisedCost float32 `json:"unrealisedCost,omitempty"`
-	// Accumulated realised gross profit value
+	// Accumulated realized gross profit value
 	RealisedGrossCost float32 `json:"realisedGrossCost,omitempty"`
-	// Current realised position value
+	// Current realized position value
 	RealisedCost float32 `json:"realisedCost,omitempty"`
 	// Opened position or not
 	IsOpen bool `json:"isOpen,omitempty"`
@@ -45,11 +45,11 @@ type PositionEvent struct {
 	PosInit float32 `json:"posInit,omitempty"`
 	// Bankruptcy cost Cross = mark value * imr; Isolated = position margin (accumulation of initial margin, additional margin, generated funding fees, etc.)
 	PosMargin float32 `json:"posMargin,omitempty"`
-	// Accumulated realised gross profit value
+	// Accumulated realized gross profit value
 	RealisedGrossPnl float32 `json:"realisedGrossPnl,omitempty"`
-	// Realised profit and loss
+	// Realized profit and loss
 	RealisedPnl float32 `json:"realisedPnl,omitempty"`
-	// Unrealised profit and loss
+	// Unrealized profit and loss
 	UnrealisedPnl float32 `json:"unrealisedPnl,omitempty"`
 	// Profit-loss ratio of the position
 	UnrealisedPnlPcnt float32 `json:"unrealisedPnlPcnt,omitempty"`
@@ -57,13 +57,13 @@ type PositionEvent struct {
 	UnrealisedRoePcnt float32 `json:"unrealisedRoePcnt,omitempty"`
 	// Average entry price
 	AvgEntryPrice float32 `json:"avgEntryPrice,omitempty"`
-	// Liquidation price For Cross Margin, you can refer to the liquidationPrice, and the liquidation is based on the risk rate.
+	// Liquidation price: For Cross Margin, you can refer to the liquidationPrice, and the liquidation is based on the risk rate.
 	LiquidationPrice float32 `json:"liquidationPrice,omitempty"`
-	// Bankruptcy price For Cross Margin, you can refer to the bankruptPrice, and the liquidation is based on the risk rate.
+	// Bankruptcy price: For Cross Margin, you can refer to the bankruptPrice, and the liquidation is based on the risk rate.
 	BankruptPrice float32 `json:"bankruptPrice,omitempty"`
 	// Currency used to clear and settle the trades
 	SettleCurrency string `json:"settleCurrency,omitempty"`
-	// Margin Mode: CROSS，ISOLATED
+	// Margin Mode: CROSS, ISOLATED
 	MarginMode string `json:"marginMode,omitempty"`
 	// Position Side
 	PositionSide string `json:"positionSide,omitempty"`
@@ -77,7 +77,7 @@ type PositionEvent struct {
 	RiskLimit *int32 `json:"riskLimit,omitempty"`
 	// Leverage of the order **Only applicable to Isolated Margin**
 	RealLeverage *float32 `json:"realLeverage,omitempty"`
-	// added margin **Only applicable to Isolated Margin**
+	// Added margin **Only applicable to Isolated Margin**
 	PosCross *float32 `json:"posCross,omitempty"`
 	// Bankruptcy cost **Only applicable to Isolated Margin**
 	PosComm *float32 `json:"posComm,omitempty"`
@@ -97,7 +97,7 @@ type PositionEvent struct {
 	FundingRate *float32 `json:"fundingRate,omitempty"`
 	// Funding fees
 	FundingFee *float32 `json:"fundingFee,omitempty"`
-	// Funding Fee Settlement Time (nanosecond)
+	// Funding Fee Settlement Time (nanoseconds)
 	Ts *int64 `json:"ts,omitempty"`
 	// Adjustment isolated margin risk limit level successful or not
 	Success *bool `json:"success,omitempty"`

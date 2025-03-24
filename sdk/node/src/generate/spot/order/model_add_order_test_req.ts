@@ -75,14 +75,24 @@ export class AddOrderTestReq implements Serializable {
     tags?: string;
 
     /**
-     * Cancel after n seconds，the order timing strategy is GTT
+     * Cancel after n seconds, the order timing strategy is GTT, -1 means it will not be cancelled automatically, the default value is -1
      */
-    cancelAfter?: number;
+    cancelAfter?: number = -1;
 
     /**
      * When **type** is market, select one out of two: size or funds
      */
     funds?: string;
+
+    /**
+     * Order failed after timeout of specified milliseconds, If clientTimestamp + allowMaxTimeWindow < the server reaches time, this order will fail.
+     */
+    allowMaxTimeWindow?: number;
+
+    /**
+     * Equal to KC-API-TIMESTAMP, Need to be defined if iceberg is specified.
+     */
+    clientTimestamp?: number;
 
     /**
      * Private constructor, please use the corresponding static methods to construct the object.
@@ -164,13 +174,21 @@ export class AddOrderTestReq implements Serializable {
          */
         tags?: string;
         /**
-         * Cancel after n seconds，the order timing strategy is GTT
+         * Cancel after n seconds, the order timing strategy is GTT, -1 means it will not be cancelled automatically, the default value is -1
          */
         cancelAfter?: number;
         /**
          * When **type** is market, select one out of two: size or funds
          */
         funds?: string;
+        /**
+         * Order failed after timeout of specified milliseconds, If clientTimestamp + allowMaxTimeWindow < the server reaches time, this order will fail.
+         */
+        allowMaxTimeWindow?: number;
+        /**
+         * Equal to KC-API-TIMESTAMP, Need to be defined if iceberg is specified.
+         */
+        clientTimestamp?: number;
     }): AddOrderTestReq {
         let obj = new AddOrderTestReq();
         obj.clientOid = data.clientOid;
@@ -203,8 +221,14 @@ export class AddOrderTestReq implements Serializable {
         }
         obj.visibleSize = data.visibleSize;
         obj.tags = data.tags;
-        obj.cancelAfter = data.cancelAfter;
+        if (data.cancelAfter) {
+            obj.cancelAfter = data.cancelAfter;
+        } else {
+            obj.cancelAfter = -1;
+        }
         obj.funds = data.funds;
+        obj.allowMaxTimeWindow = data.allowMaxTimeWindow;
+        obj.clientTimestamp = data.clientTimestamp;
         return obj;
     }
 
@@ -404,7 +428,7 @@ export class AddOrderTestReqBuilder {
     }
 
     /**
-     * Cancel after n seconds，the order timing strategy is GTT
+     * Cancel after n seconds, the order timing strategy is GTT, -1 means it will not be cancelled automatically, the default value is -1
      */
     setCancelAfter(value: number): AddOrderTestReqBuilder {
         this.obj.cancelAfter = value;
@@ -416,6 +440,22 @@ export class AddOrderTestReqBuilder {
      */
     setFunds(value: string): AddOrderTestReqBuilder {
         this.obj.funds = value;
+        return this;
+    }
+
+    /**
+     * Order failed after timeout of specified milliseconds, If clientTimestamp + allowMaxTimeWindow < the server reaches time, this order will fail.
+     */
+    setAllowMaxTimeWindow(value: number): AddOrderTestReqBuilder {
+        this.obj.allowMaxTimeWindow = value;
+        return this;
+    }
+
+    /**
+     * Equal to KC-API-TIMESTAMP, Need to be defined if iceberg is specified.
+     */
+    setClientTimestamp(value: number): AddOrderTestReqBuilder {
+        this.obj.clientTimestamp = value;
         return this;
     }
 

@@ -6,27 +6,27 @@ import { Response } from '@internal/interfaces/serializable';
 
 export class GetOpenOrderValueResp implements Response<RestResponse> {
     /**
-     * Total number of the unexecuted buy orders
+     * Total number of unexecuted buy orders
      */
     openOrderBuySize: number;
 
     /**
-     * Total number of the unexecuted sell orders
+     * Total number of unexecuted sell orders
      */
     openOrderSellSize: number;
 
     /**
-     * Value of all the unexecuted buy orders
+     * Value of all unexecuted buy orders
      */
     openOrderBuyCost: string;
 
     /**
-     * Value of all the unexecuted sell orders
+     * Value of all unexecuted sell orders
      */
     openOrderSellCost: string;
 
     /**
-     * settlement currency
+     * Settlement currency
      */
     settleCurrency: string;
 

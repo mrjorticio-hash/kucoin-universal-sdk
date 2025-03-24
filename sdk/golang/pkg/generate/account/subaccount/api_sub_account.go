@@ -9,187 +9,187 @@ import (
 
 type SubAccountAPI interface {
 
-	// AddSubAccount Add SubAccount
+	// AddSubAccount Add sub-account
 	// Description: This endpoint can be used to create sub-accounts.
 	// Documentation: https://www.kucoin.com/docs-new/api-3470135
-	// +---------------------+------------+
-	// | Extra API Info      | Value      |
-	// +---------------------+------------+
-	// | API-DOMAIN          | SPOT       |
-	// | API-CHANNEL         | PRIVATE    |
-	// | API-PERMISSION      | GENERAL    |
-	// | API-RATE-LIMIT-POOL | MANAGEMENT |
-	// | API-RATE-LIMIT      | 15         |
-	// +---------------------+------------+
+	// +-----------------------+------------+
+	// | Extra API Info        | Value      |
+	// +-----------------------+------------+
+	// | API-DOMAIN            | SPOT       |
+	// | API-CHANNEL           | PRIVATE    |
+	// | API-PERMISSION        | GENERAL    |
+	// | API-RATE-LIMIT-POOL   | MANAGEMENT |
+	// | API-RATE-LIMIT-WEIGHT | 15         |
+	// +-----------------------+------------+
 	AddSubAccount(req *AddSubAccountReq, ctx context.Context) (*AddSubAccountResp, error)
 
-	// AddSubAccountMarginPermission Add SubAccount Margin Permission
-	// Description: This endpoint can be used to add sub-accounts Margin permission. Before using this endpoints, you need to ensure that the master account apikey has Margin permissions and the Margin function has been activated.
+	// AddSubAccountMarginPermission Add sub-account Margin Permission
+	// Description: This endpoint can be used to add sub-account Margin permissions. Before using this endpoint, you need to ensure that the master account apikey has Margin permissions and the Margin function has been activated.
 	// Documentation: https://www.kucoin.com/docs-new/api-3470331
-	// +---------------------+------------+
-	// | Extra API Info      | Value      |
-	// +---------------------+------------+
-	// | API-DOMAIN          | SPOT       |
-	// | API-CHANNEL         | PRIVATE    |
-	// | API-PERMISSION      | MARGIN     |
-	// | API-RATE-LIMIT-POOL | MANAGEMENT |
-	// | API-RATE-LIMIT      | 15         |
-	// +---------------------+------------+
+	// +-----------------------+------------+
+	// | Extra API Info        | Value      |
+	// +-----------------------+------------+
+	// | API-DOMAIN            | SPOT       |
+	// | API-CHANNEL           | PRIVATE    |
+	// | API-PERMISSION        | MARGIN     |
+	// | API-RATE-LIMIT-POOL   | MANAGEMENT |
+	// | API-RATE-LIMIT-WEIGHT | 15         |
+	// +-----------------------+------------+
 	AddSubAccountMarginPermission(req *AddSubAccountMarginPermissionReq, ctx context.Context) (*AddSubAccountMarginPermissionResp, error)
 
-	// AddSubAccountFuturesPermission Add SubAccount Futures Permission
-	// Description: This endpoint can be used to add sub-accounts Futures permission. Before using this endpoints, you need to ensure that the master account apikey has Futures permissions and the Futures function has been activated.
+	// AddSubAccountFuturesPermission Add sub-account Futures Permission
+	// Description: This endpoint can be used to add sub-account Futures permissions. Before using this endpoint, you need to ensure that the master account apikey has Futures permissions and the Futures function has been activated.
 	// Documentation: https://www.kucoin.com/docs-new/api-3470332
-	// +---------------------+------------+
-	// | Extra API Info      | Value      |
-	// +---------------------+------------+
-	// | API-DOMAIN          | SPOT       |
-	// | API-CHANNEL         | PRIVATE    |
-	// | API-PERMISSION      | FUTURES    |
-	// | API-RATE-LIMIT-POOL | MANAGEMENT |
-	// | API-RATE-LIMIT      | 15         |
-	// +---------------------+------------+
+	// +-----------------------+------------+
+	// | Extra API Info        | Value      |
+	// +-----------------------+------------+
+	// | API-DOMAIN            | SPOT       |
+	// | API-CHANNEL           | PRIVATE    |
+	// | API-PERMISSION        | FUTURES    |
+	// | API-RATE-LIMIT-POOL   | MANAGEMENT |
+	// | API-RATE-LIMIT-WEIGHT | 15         |
+	// +-----------------------+------------+
 	AddSubAccountFuturesPermission(req *AddSubAccountFuturesPermissionReq, ctx context.Context) (*AddSubAccountFuturesPermissionResp, error)
 
-	// GetSpotSubAccountsSummaryV2 Get SubAccount List - Summary Info
+	// GetSpotSubAccountsSummaryV2 Get sub-account List - Summary Info
 	// Description: This endpoint can be used to get a paginated list of sub-accounts. Pagination is required.
 	// Documentation: https://www.kucoin.com/docs-new/api-3470131
-	// +---------------------+------------+
-	// | Extra API Info      | Value      |
-	// +---------------------+------------+
-	// | API-DOMAIN          | SPOT       |
-	// | API-CHANNEL         | PRIVATE    |
-	// | API-PERMISSION      | GENERAL    |
-	// | API-RATE-LIMIT-POOL | MANAGEMENT |
-	// | API-RATE-LIMIT      | 20         |
-	// +---------------------+------------+
+	// +-----------------------+------------+
+	// | Extra API Info        | Value      |
+	// +-----------------------+------------+
+	// | API-DOMAIN            | SPOT       |
+	// | API-CHANNEL           | PRIVATE    |
+	// | API-PERMISSION        | GENERAL    |
+	// | API-RATE-LIMIT-POOL   | MANAGEMENT |
+	// | API-RATE-LIMIT-WEIGHT | 20         |
+	// +-----------------------+------------+
 	GetSpotSubAccountsSummaryV2(req *GetSpotSubAccountsSummaryV2Req, ctx context.Context) (*GetSpotSubAccountsSummaryV2Resp, error)
 
-	// GetSpotSubAccountDetail Get SubAccount Detail - Balance
+	// GetSpotSubAccountDetail Get sub-account Detail - Balance
 	// Description: This endpoint returns the account info of a sub-user specified by the subUserId.
 	// Documentation: https://www.kucoin.com/docs-new/api-3470132
-	// +---------------------+------------+
-	// | Extra API Info      | Value      |
-	// +---------------------+------------+
-	// | API-DOMAIN          | SPOT       |
-	// | API-CHANNEL         | PRIVATE    |
-	// | API-PERMISSION      | GENERAL    |
-	// | API-RATE-LIMIT-POOL | MANAGEMENT |
-	// | API-RATE-LIMIT      | 15         |
-	// +---------------------+------------+
+	// +-----------------------+------------+
+	// | Extra API Info        | Value      |
+	// +-----------------------+------------+
+	// | API-DOMAIN            | SPOT       |
+	// | API-CHANNEL           | PRIVATE    |
+	// | API-PERMISSION        | GENERAL    |
+	// | API-RATE-LIMIT-POOL   | MANAGEMENT |
+	// | API-RATE-LIMIT-WEIGHT | 15         |
+	// +-----------------------+------------+
 	GetSpotSubAccountDetail(req *GetSpotSubAccountDetailReq, ctx context.Context) (*GetSpotSubAccountDetailResp, error)
 
-	// GetSpotSubAccountListV2 Get SubAccount List - Spot Balance(V2)
+	// GetSpotSubAccountListV2 Get sub-account List - Spot Balance (V2)
 	// Description: This endpoint can be used to get paginated Spot sub-account information. Pagination is required.
 	// Documentation: https://www.kucoin.com/docs-new/api-3470133
-	// +---------------------+------------+
-	// | Extra API Info      | Value      |
-	// +---------------------+------------+
-	// | API-DOMAIN          | SPOT       |
-	// | API-CHANNEL         | PRIVATE    |
-	// | API-PERMISSION      | GENERAL    |
-	// | API-RATE-LIMIT-POOL | MANAGEMENT |
-	// | API-RATE-LIMIT      | 20         |
-	// +---------------------+------------+
+	// +-----------------------+------------+
+	// | Extra API Info        | Value      |
+	// +-----------------------+------------+
+	// | API-DOMAIN            | SPOT       |
+	// | API-CHANNEL           | PRIVATE    |
+	// | API-PERMISSION        | GENERAL    |
+	// | API-RATE-LIMIT-POOL   | MANAGEMENT |
+	// | API-RATE-LIMIT-WEIGHT | 20         |
+	// +-----------------------+------------+
 	GetSpotSubAccountListV2(req *GetSpotSubAccountListV2Req, ctx context.Context) (*GetSpotSubAccountListV2Resp, error)
 
-	// GetFuturesSubAccountListV2 Get SubAccount List - Futures Balance(V2)
+	// GetFuturesSubAccountListV2 Get sub-account List - Futures Balance (V2)
 	// Description: This endpoint can be used to get Futures sub-account information.
 	// Documentation: https://www.kucoin.com/docs-new/api-3470134
-	// +---------------------+---------+
-	// | Extra API Info      | Value   |
-	// +---------------------+---------+
-	// | API-DOMAIN          | FUTURES |
-	// | API-CHANNEL         | PRIVATE |
-	// | API-PERMISSION      | GENERAL |
-	// | API-RATE-LIMIT-POOL | FUTURES |
-	// | API-RATE-LIMIT      | 6       |
-	// +---------------------+---------+
+	// +-----------------------+---------+
+	// | Extra API Info        | Value   |
+	// +-----------------------+---------+
+	// | API-DOMAIN            | FUTURES |
+	// | API-CHANNEL           | PRIVATE |
+	// | API-PERMISSION        | GENERAL |
+	// | API-RATE-LIMIT-POOL   | FUTURES |
+	// | API-RATE-LIMIT-WEIGHT | 6       |
+	// +-----------------------+---------+
 	GetFuturesSubAccountListV2(req *GetFuturesSubAccountListV2Req, ctx context.Context) (*GetFuturesSubAccountListV2Resp, error)
 
-	// AddSubAccountApi Add SubAccount API
+	// AddSubAccountApi Add sub-account API
 	// Description: This endpoint can be used to create APIs for sub-accounts.
 	// Documentation: https://www.kucoin.com/docs-new/api-3470138
-	// +---------------------+------------+
-	// | Extra API Info      | Value      |
-	// +---------------------+------------+
-	// | API-DOMAIN          | SPOT       |
-	// | API-CHANNEL         | PRIVATE    |
-	// | API-PERMISSION      | GENERAL    |
-	// | API-RATE-LIMIT-POOL | MANAGEMENT |
-	// | API-RATE-LIMIT      | 20         |
-	// +---------------------+------------+
+	// +-----------------------+------------+
+	// | Extra API Info        | Value      |
+	// +-----------------------+------------+
+	// | API-DOMAIN            | SPOT       |
+	// | API-CHANNEL           | PRIVATE    |
+	// | API-PERMISSION        | GENERAL    |
+	// | API-RATE-LIMIT-POOL   | MANAGEMENT |
+	// | API-RATE-LIMIT-WEIGHT | 20         |
+	// +-----------------------+------------+
 	AddSubAccountApi(req *AddSubAccountApiReq, ctx context.Context) (*AddSubAccountApiResp, error)
 
-	// ModifySubAccountApi Modify SubAccount API
+	// ModifySubAccountApi Modify sub-account API
 	// Description: This endpoint can be used to modify sub-account APIs.
 	// Documentation: https://www.kucoin.com/docs-new/api-3470139
-	// +---------------------+------------+
-	// | Extra API Info      | Value      |
-	// +---------------------+------------+
-	// | API-DOMAIN          | SPOT       |
-	// | API-CHANNEL         | PRIVATE    |
-	// | API-PERMISSION      | GENERAL    |
-	// | API-RATE-LIMIT-POOL | MANAGEMENT |
-	// | API-RATE-LIMIT      | 30         |
-	// +---------------------+------------+
+	// +-----------------------+------------+
+	// | Extra API Info        | Value      |
+	// +-----------------------+------------+
+	// | API-DOMAIN            | SPOT       |
+	// | API-CHANNEL           | PRIVATE    |
+	// | API-PERMISSION        | GENERAL    |
+	// | API-RATE-LIMIT-POOL   | MANAGEMENT |
+	// | API-RATE-LIMIT-WEIGHT | 30         |
+	// +-----------------------+------------+
 	ModifySubAccountApi(req *ModifySubAccountApiReq, ctx context.Context) (*ModifySubAccountApiResp, error)
 
-	// GetSubAccountApiList Get SubAccount API List
-	// Description: This endpoint can be used to obtain a list of APIs pertaining to a sub-account.(Not contain ND Broker Sub Account)
+	// GetSubAccountApiList Get sub-account API List
+	// Description: This endpoint can be used to obtain a list of APIs pertaining to a sub-account (not including ND broker sub-accounts).
 	// Documentation: https://www.kucoin.com/docs-new/api-3470136
-	// +---------------------+------------+
-	// | Extra API Info      | Value      |
-	// +---------------------+------------+
-	// | API-DOMAIN          | SPOT       |
-	// | API-CHANNEL         | PRIVATE    |
-	// | API-PERMISSION      | GENERAL    |
-	// | API-RATE-LIMIT-POOL | MANAGEMENT |
-	// | API-RATE-LIMIT      | 20         |
-	// +---------------------+------------+
+	// +-----------------------+------------+
+	// | Extra API Info        | Value      |
+	// +-----------------------+------------+
+	// | API-DOMAIN            | SPOT       |
+	// | API-CHANNEL           | PRIVATE    |
+	// | API-PERMISSION        | GENERAL    |
+	// | API-RATE-LIMIT-POOL   | MANAGEMENT |
+	// | API-RATE-LIMIT-WEIGHT | 20         |
+	// +-----------------------+------------+
 	GetSubAccountApiList(req *GetSubAccountApiListReq, ctx context.Context) (*GetSubAccountApiListResp, error)
 
-	// DeleteSubAccountApi Delete SubAccount API
+	// DeleteSubAccountApi Delete sub-account API
 	// Description: This endpoint can be used to delete sub-account APIs.
 	// Documentation: https://www.kucoin.com/docs-new/api-3470137
-	// +---------------------+------------+
-	// | Extra API Info      | Value      |
-	// +---------------------+------------+
-	// | API-DOMAIN          | SPOT       |
-	// | API-CHANNEL         | PRIVATE    |
-	// | API-PERMISSION      | GENERAL    |
-	// | API-RATE-LIMIT-POOL | MANAGEMENT |
-	// | API-RATE-LIMIT      | 30         |
-	// +---------------------+------------+
+	// +-----------------------+------------+
+	// | Extra API Info        | Value      |
+	// +-----------------------+------------+
+	// | API-DOMAIN            | SPOT       |
+	// | API-CHANNEL           | PRIVATE    |
+	// | API-PERMISSION        | GENERAL    |
+	// | API-RATE-LIMIT-POOL   | MANAGEMENT |
+	// | API-RATE-LIMIT-WEIGHT | 30         |
+	// +-----------------------+------------+
 	DeleteSubAccountApi(req *DeleteSubAccountApiReq, ctx context.Context) (*DeleteSubAccountApiResp, error)
 
-	// GetSpotSubAccountsSummaryV1 Get SubAccount List - Summary Info(V1)
-	// Description: You can get the user info of all sub-account via this interface It is recommended to use the GET /api/v2/sub/user interface for paging query
+	// GetSpotSubAccountsSummaryV1 Get sub-account List - Summary Info (V1)
+	// Description: You can get the user info of all sub-account via this interface; it is recommended to use the GET /api/v2/sub/user interface for paging query
 	// Documentation: https://www.kucoin.com/docs-new/api-3470298
-	// +---------------------+------------+
-	// | Extra API Info      | Value      |
-	// +---------------------+------------+
-	// | API-DOMAIN          | SPOT       |
-	// | API-CHANNEL         | PRIVATE    |
-	// | API-PERMISSION      | GENERAL    |
-	// | API-RATE-LIMIT-POOL | MANAGEMENT |
-	// | API-RATE-LIMIT      | 20         |
-	// +---------------------+------------+
+	// +-----------------------+------------+
+	// | Extra API Info        | Value      |
+	// +-----------------------+------------+
+	// | API-DOMAIN            | SPOT       |
+	// | API-CHANNEL           | PRIVATE    |
+	// | API-PERMISSION        | GENERAL    |
+	// | API-RATE-LIMIT-POOL   | MANAGEMENT |
+	// | API-RATE-LIMIT-WEIGHT | 20         |
+	// +-----------------------+------------+
 	// Deprecated
 	GetSpotSubAccountsSummaryV1(ctx context.Context) (*GetSpotSubAccountsSummaryV1Resp, error)
 
-	// GetSpotSubAccountListV1 Get SubAccount List - Spot Balance(V1)
+	// GetSpotSubAccountListV1 Get sub-account List - Spot Balance (V1)
 	// Description: This endpoint returns the account info of all sub-users.
 	// Documentation: https://www.kucoin.com/docs-new/api-3470299
-	// +---------------------+------------+
-	// | Extra API Info      | Value      |
-	// +---------------------+------------+
-	// | API-DOMAIN          | SPOT       |
-	// | API-CHANNEL         | PRIVATE    |
-	// | API-PERMISSION      | GENERAL    |
-	// | API-RATE-LIMIT-POOL | MANAGEMENT |
-	// | API-RATE-LIMIT      | 20         |
-	// +---------------------+------------+
+	// +-----------------------+------------+
+	// | Extra API Info        | Value      |
+	// +-----------------------+------------+
+	// | API-DOMAIN            | SPOT       |
+	// | API-CHANNEL           | PRIVATE    |
+	// | API-PERMISSION        | GENERAL    |
+	// | API-RATE-LIMIT-POOL   | MANAGEMENT |
+	// | API-RATE-LIMIT-WEIGHT | 20         |
+	// +-----------------------+------------+
 	// Deprecated
 	GetSpotSubAccountListV1(ctx context.Context) (*GetSpotSubAccountListV1Resp, error)
 }

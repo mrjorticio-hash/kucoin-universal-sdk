@@ -20,7 +20,7 @@ export class GetOrderListReq implements Serializable {
     side?: GetOrderListReq.SideEnum;
 
     /**
-     * limit, market, limit_stop or market_stop
+     * Order Type
      */
     type?: GetOrderListReq.TypeEnum;
 
@@ -37,12 +37,12 @@ export class GetOrderListReq implements Serializable {
     /**
      * Current request page, The default currentPage is 1
      */
-    currentPage?: number;
+    currentPage?: number = 1;
 
     /**
      * pageSize, The default pageSize is 50, The maximum cannot exceed 1000
      */
-    pageSize?: number;
+    pageSize?: number = 50;
 
     /**
      * Private constructor, please use the corresponding static methods to construct the object.
@@ -73,7 +73,7 @@ export class GetOrderListReq implements Serializable {
          */
         side?: GetOrderListReq.SideEnum;
         /**
-         * limit, market, limit_stop or market_stop
+         * Order Type
          */
         type?: GetOrderListReq.TypeEnum;
         /**
@@ -100,8 +100,16 @@ export class GetOrderListReq implements Serializable {
         obj.type = data.type;
         obj.startAt = data.startAt;
         obj.endAt = data.endAt;
-        obj.currentPage = data.currentPage;
-        obj.pageSize = data.pageSize;
+        if (data.currentPage) {
+            obj.currentPage = data.currentPage;
+        } else {
+            obj.currentPage = 1;
+        }
+        if (data.pageSize) {
+            obj.pageSize = data.pageSize;
+        } else {
+            obj.pageSize = 50;
+        }
         return obj;
     }
 
@@ -148,13 +156,29 @@ export namespace GetOrderListReq {
     }
     export enum TypeEnum {
         /**
-         *
+         * Limit order
          */
         LIMIT = <any>'limit',
         /**
-         *
+         * Market order
          */
         MARKET = <any>'market',
+        /**
+         * Stop limit order
+         */
+        LIMIT_STOP = <any>'limit_stop',
+        /**
+         * Stop market order
+         */
+        MARKET_STOP = <any>'market_stop',
+        /**
+         * Oco limit order
+         */
+        OCO_LIMIT = <any>'oco_limit',
+        /**
+         * Oco stop order
+         */
+        OCO_STOP = <any>'oco_stop',
     }
 }
 
@@ -187,7 +211,7 @@ export class GetOrderListReqBuilder {
     }
 
     /**
-     * limit, market, limit_stop or market_stop
+     * Order Type
      */
     setType(value: GetOrderListReq.TypeEnum): GetOrderListReqBuilder {
         this.obj.type = value;

@@ -23,7 +23,7 @@ def test_get_withdrawal_quotas_req(self):
 def test_withdrawal_v3_req(self):
     """
         withdrawal_v3
-        Withdraw(V3)
+        Withdraw (V3)
         /api/v3/withdrawals
     """
 

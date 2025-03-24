@@ -16,24 +16,22 @@ class AddTpslOrderReq(BaseModel):
     AddTpslOrderReq
 
     Attributes:
-        client_oid (str): Unique order id created by users to identify their orders, the maximum length cannot exceed 40, e.g. UUID, Only allows numbers, characters, underline(_), and separator(-)
-        side (SideEnum): specify if the order is to 'buy' or 'sell'
-        symbol (str): Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) 
+        client_oid (str): Unique order ID created by users to identify their orders. The maximum length cannot exceed 40, e.g. UUID only allows numbers, characters, underline(_), and separator (-).
+        side (SideEnum): Specify if the order is to 'buy' or 'sell'.
+        symbol (str): Symbol of the contract. Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) 
         leverage (int): Used to calculate the margin to be frozen for the order. If you are to close the position, this parameter is not required.
-        type (TypeEnum): specify if the order is an 'limit' order or 'market' order
-        remark (str): remark for the order, length cannot exceed 100 utf8 characters
-        stop_price_type (StopPriceTypeEnum): Either 'TP', 'IP' or 'MP'
+        type (TypeEnum): Specify if the order is a 'limit' order or 'market' order
+        stop_price_type (StopPriceTypeEnum): Either 'TP' or 'MP'
         reduce_only (bool): A mark to reduce the position size only. Set to false by default. Need to set the position size when reduceOnly is true. If set to true, only the orders reducing the position size will be executed. If the reduce-only order size exceeds the position size, the extra size will be canceled.
         close_order (bool): A mark to close the position. Set to false by default. If closeOrder is set to true, the system will close the position and the position size will become 0. Side, Size and Leverage fields can be left empty and the system will determine the side and size automatically.
-        force_hold (bool): A mark to forcely hold the funds for an order, even though it's an order to reduce the position size. This helps the order stay on the order book and not get canceled when the position size changes. Set to false by default. The system will forcely freeze certain amount of funds for this order, including orders whose direction is opposite to the current positions. This feature is to ensure that the order won’t be canceled by the matching engine in such a circumstance that not enough funds are frozen for the order.
-        margin_mode (MarginModeEnum): Margin mode: ISOLATED, CROSS, default: ISOLATED
+        margin_mode (MarginModeEnum): Margin mode: ISOLATED, default: ISOLATED
         price (str): Required for type is 'limit' order, indicating the operating price
-        size (int): Order size (Lot), must be a positive integer. The quantity unit of coin-swap contracts is size(lot), and other units are not supported.
+        size (int): Order size (lot), must be a positive integer. The quantity unit of coin-swap contracts is size (lot), and other units are not supported.
         time_in_force (TimeInForceEnum): Optional for type is 'limit' order, [Time in force](https://www.kucoin.com/docs-new/doc-338146) is a special strategy used during trading, default is GTC
-        post_only (bool): Optional for type is 'limit' order,  post only flag, invalid when timeInForce is IOC. When postOnly is true, not allowed choose hidden or iceberg. The post-only flag ensures that the trader always pays the maker fee and provides liquidity to the order book. If any part of the order is going to pay taker fee, the order will be fully rejected.
-        hidden (bool): Optional for type is 'limit' order, orders not displaying in order book. When hidden chose, not allowed choose postOnly.
-        iceberg (bool): Optional for type is 'limit' order, Only visible portion of the order is displayed in the order book. When iceberg chose, not allowed choose postOnly.
-        visible_size (str): Optional for type is 'limit' order, The maximum visible size of an iceberg order. please place order in size (lots), The units of qty (base currency) and valueQty (value) are not supported.
+        post_only (bool): Optional for type is 'limit' order, post only flag, invalid when timeInForce is IOC. When postOnly is true, choosing hidden or iceberg is not allowed. The post-only flag ensures that the trader always pays the maker fee and provides liquidity to the order book. If any part of the order is going to pay taker fees, the order will be fully rejected.
+        hidden (bool): Optional for type is 'limit' order, orders not displaying in order book. When hidden is chosen, choosing postOnly is not allowed.
+        iceberg (bool): Optional for type is 'limit' order, Only visible portion of the order is displayed in the order book. When iceberg is chosen, choosing postOnly is not allowed.
+        visible_size (str): Optional for type is 'limit' order, the maximum visible size of an iceberg order. Please place order in size (lots). The units of qty (base currency) and valueQty (value) are not supported. Need to be defined if iceberg is specified.
         trigger_stop_up_price (str): Take profit price
         trigger_stop_down_price (str): Stop loss price
     """
@@ -60,27 +58,23 @@ class AddTpslOrderReq(BaseModel):
         """
         Attributes:
             TRADE_PRICE: TP for trade price, The last trade price is the last price at which an order was filled. This price can be found in the latest match message.
-            MARK_PRICE: MP for mark price, The mark price can be obtained through relevant OPEN API for index services
-            INDEX_PRICE: IP for index price, The index price can be obtained through relevant OPEN API for index services
+            MARK_PRICE: MP for mark price. The mark price can be obtained through relevant OPEN API for index services.
         """
         TRADE_PRICE = 'TP'
         MARK_PRICE = 'MP'
-        INDEX_PRICE = 'IP'
 
     class MarginModeEnum(Enum):
         """
         Attributes:
             ISOLATED: 
-            CROSS: 
         """
         ISOLATED = 'ISOLATED'
-        CROSS = 'CROSS'
 
     class TimeInForceEnum(Enum):
         """
         Attributes:
-            GOOD_TILL_CANCELED: order remains open on the order book until canceled. This is the default type if the field is left empty.
-            IMMEDIATE_OR_CANCEL: being matched or not, the remaining size of the order will be instantly canceled instead of entering the order book.
+            GOOD_TILL_CANCELED: Order remains open on the order book until canceled. This is the default type if the field is left empty.
+            IMMEDIATE_OR_CANCEL: Being matched or not, the remaining size of the order will be instantly canceled instead of entering the order book.
         """
         GOOD_TILL_CANCELED = 'GTC'
         IMMEDIATE_OR_CANCEL = 'IOC'
@@ -88,14 +82,15 @@ class AddTpslOrderReq(BaseModel):
     client_oid: Optional[str] = Field(
         default=None,
         description=
-        "Unique order id created by users to identify their orders, the maximum length cannot exceed 40, e.g. UUID, Only allows numbers, characters, underline(_), and separator(-)",
+        "Unique order ID created by users to identify their orders. The maximum length cannot exceed 40, e.g. UUID only allows numbers, characters, underline(_), and separator (-).",
         alias="clientOid")
     side: Optional[SideEnum] = Field(
-        default=None, description="specify if the order is to 'buy' or 'sell'")
+        default=None,
+        description="Specify if the order is to 'buy' or 'sell'.")
     symbol: Optional[str] = Field(
         default=None,
         description=
-        "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) "
+        "Symbol of the contract. Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) "
     )
     leverage: Optional[int] = Field(
         default=None,
@@ -104,16 +99,10 @@ class AddTpslOrderReq(BaseModel):
     )
     type: Optional[TypeEnum] = Field(
         default=TypeEnum.LIMIT,
-        description="specify if the order is an 'limit' order or 'market' order"
+        description="Specify if the order is a 'limit' order or 'market' order"
     )
-    remark: Optional[str] = Field(
-        default=None,
-        description=
-        "remark for the order, length cannot exceed 100 utf8 characters")
     stop_price_type: Optional[StopPriceTypeEnum] = Field(
-        default=None,
-        description="Either 'TP', 'IP' or 'MP'",
-        alias="stopPriceType")
+        default=None, description="Either 'TP' or 'MP'", alias="stopPriceType")
     reduce_only: Optional[bool] = Field(
         default=False,
         description=
@@ -124,14 +113,9 @@ class AddTpslOrderReq(BaseModel):
         description=
         "A mark to close the position. Set to false by default. If closeOrder is set to true, the system will close the position and the position size will become 0. Side, Size and Leverage fields can be left empty and the system will determine the side and size automatically.",
         alias="closeOrder")
-    force_hold: Optional[bool] = Field(
-        default=False,
-        description=
-        "A mark to forcely hold the funds for an order, even though it's an order to reduce the position size. This helps the order stay on the order book and not get canceled when the position size changes. Set to false by default. The system will forcely freeze certain amount of funds for this order, including orders whose direction is opposite to the current positions. This feature is to ensure that the order won’t be canceled by the matching engine in such a circumstance that not enough funds are frozen for the order.",
-        alias="forceHold")
     margin_mode: Optional[MarginModeEnum] = Field(
         default=MarginModeEnum.ISOLATED,
-        description="Margin mode: ISOLATED, CROSS, default: ISOLATED",
+        description="Margin mode: ISOLATED, default: ISOLATED",
         alias="marginMode")
     price: Optional[str] = Field(
         default=None,
@@ -140,7 +124,7 @@ class AddTpslOrderReq(BaseModel):
     size: Optional[int] = Field(
         default=None,
         description=
-        "Order size (Lot), must be a positive integer. The quantity unit of coin-swap contracts is size(lot), and other units are not supported."
+        "Order size (lot), must be a positive integer. The quantity unit of coin-swap contracts is size (lot), and other units are not supported."
     )
     time_in_force: Optional[TimeInForceEnum] = Field(
         default=TimeInForceEnum.GOOD_TILL_CANCELED,
@@ -150,22 +134,22 @@ class AddTpslOrderReq(BaseModel):
     post_only: Optional[bool] = Field(
         default=False,
         description=
-        "Optional for type is 'limit' order,  post only flag, invalid when timeInForce is IOC. When postOnly is true, not allowed choose hidden or iceberg. The post-only flag ensures that the trader always pays the maker fee and provides liquidity to the order book. If any part of the order is going to pay taker fee, the order will be fully rejected.",
+        "Optional for type is 'limit' order, post only flag, invalid when timeInForce is IOC. When postOnly is true, choosing hidden or iceberg is not allowed. The post-only flag ensures that the trader always pays the maker fee and provides liquidity to the order book. If any part of the order is going to pay taker fees, the order will be fully rejected.",
         alias="postOnly")
     hidden: Optional[bool] = Field(
         default=False,
         description=
-        "Optional for type is 'limit' order, orders not displaying in order book. When hidden chose, not allowed choose postOnly."
+        "Optional for type is 'limit' order, orders not displaying in order book. When hidden is chosen, choosing postOnly is not allowed."
     )
     iceberg: Optional[bool] = Field(
         default=False,
         description=
-        "Optional for type is 'limit' order, Only visible portion of the order is displayed in the order book. When iceberg chose, not allowed choose postOnly."
+        "Optional for type is 'limit' order, Only visible portion of the order is displayed in the order book. When iceberg is chosen, choosing postOnly is not allowed."
     )
     visible_size: Optional[str] = Field(
         default=None,
         description=
-        "Optional for type is 'limit' order, The maximum visible size of an iceberg order. please place order in size (lots), The units of qty (base currency) and valueQty (value) are not supported.",
+        "Optional for type is 'limit' order, the maximum visible size of an iceberg order. Please place order in size (lots). The units of qty (base currency) and valueQty (value) are not supported. Need to be defined if iceberg is specified.",
         alias="visibleSize")
     trigger_stop_up_price: Optional[str] = Field(
         default=None,
@@ -177,10 +161,10 @@ class AddTpslOrderReq(BaseModel):
         alias="triggerStopDownPrice")
 
     __properties: ClassVar[List[str]] = [
-        "clientOid", "side", "symbol", "leverage", "type", "remark",
-        "stopPriceType", "reduceOnly", "closeOrder", "forceHold", "marginMode",
-        "price", "size", "timeInForce", "postOnly", "hidden", "iceberg",
-        "visibleSize", "triggerStopUpPrice", "triggerStopDownPrice"
+        "clientOid", "side", "symbol", "leverage", "type", "stopPriceType",
+        "reduceOnly", "closeOrder", "marginMode", "price", "size",
+        "timeInForce", "postOnly", "hidden", "iceberg", "visibleSize",
+        "triggerStopUpPrice", "triggerStopDownPrice"
     ]
 
     model_config = ConfigDict(
@@ -227,8 +211,6 @@ class AddTpslOrderReq(BaseModel):
             "type":
             obj.get("type")
             if obj.get("type") is not None else AddTpslOrderReq.TypeEnum.LIMIT,
-            "remark":
-            obj.get("remark"),
             "stopPriceType":
             obj.get("stopPriceType"),
             "reduceOnly":
@@ -237,9 +219,6 @@ class AddTpslOrderReq(BaseModel):
             "closeOrder":
             obj.get("closeOrder")
             if obj.get("closeOrder") is not None else False,
-            "forceHold":
-            obj.get("forceHold")
-            if obj.get("forceHold") is not None else False,
             "marginMode":
             obj.get("marginMode") if obj.get("marginMode") is not None else
             AddTpslOrderReq.MarginModeEnum.ISOLATED,
@@ -273,7 +252,7 @@ class AddTpslOrderReqBuilder:
 
     def set_client_oid(self, value: str) -> AddTpslOrderReqBuilder:
         """
-        Unique order id created by users to identify their orders, the maximum length cannot exceed 40, e.g. UUID, Only allows numbers, characters, underline(_), and separator(-)
+        Unique order ID created by users to identify their orders. The maximum length cannot exceed 40, e.g. UUID only allows numbers, characters, underline(_), and separator (-).
         """
         self.obj['clientOid'] = value
         return self
@@ -281,14 +260,14 @@ class AddTpslOrderReqBuilder:
     def set_side(self,
                  value: AddTpslOrderReq.SideEnum) -> AddTpslOrderReqBuilder:
         """
-        specify if the order is to 'buy' or 'sell'
+        Specify if the order is to 'buy' or 'sell'.
         """
         self.obj['side'] = value
         return self
 
     def set_symbol(self, value: str) -> AddTpslOrderReqBuilder:
         """
-        Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) 
+        Symbol of the contract. Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) 
         """
         self.obj['symbol'] = value
         return self
@@ -303,23 +282,16 @@ class AddTpslOrderReqBuilder:
     def set_type(self,
                  value: AddTpslOrderReq.TypeEnum) -> AddTpslOrderReqBuilder:
         """
-        specify if the order is an 'limit' order or 'market' order
+        Specify if the order is a 'limit' order or 'market' order
         """
         self.obj['type'] = value
-        return self
-
-    def set_remark(self, value: str) -> AddTpslOrderReqBuilder:
-        """
-        remark for the order, length cannot exceed 100 utf8 characters
-        """
-        self.obj['remark'] = value
         return self
 
     def set_stop_price_type(
             self, value: AddTpslOrderReq.StopPriceTypeEnum
     ) -> AddTpslOrderReqBuilder:
         """
-        Either 'TP', 'IP' or 'MP'
+        Either 'TP' or 'MP'
         """
         self.obj['stopPriceType'] = value
         return self
@@ -338,18 +310,11 @@ class AddTpslOrderReqBuilder:
         self.obj['closeOrder'] = value
         return self
 
-    def set_force_hold(self, value: bool) -> AddTpslOrderReqBuilder:
-        """
-        A mark to forcely hold the funds for an order, even though it's an order to reduce the position size. This helps the order stay on the order book and not get canceled when the position size changes. Set to false by default. The system will forcely freeze certain amount of funds for this order, including orders whose direction is opposite to the current positions. This feature is to ensure that the order won’t be canceled by the matching engine in such a circumstance that not enough funds are frozen for the order.
-        """
-        self.obj['forceHold'] = value
-        return self
-
     def set_margin_mode(
             self,
             value: AddTpslOrderReq.MarginModeEnum) -> AddTpslOrderReqBuilder:
         """
-        Margin mode: ISOLATED, CROSS, default: ISOLATED
+        Margin mode: ISOLATED, default: ISOLATED
         """
         self.obj['marginMode'] = value
         return self
@@ -363,7 +328,7 @@ class AddTpslOrderReqBuilder:
 
     def set_size(self, value: int) -> AddTpslOrderReqBuilder:
         """
-        Order size (Lot), must be a positive integer. The quantity unit of coin-swap contracts is size(lot), and other units are not supported.
+        Order size (lot), must be a positive integer. The quantity unit of coin-swap contracts is size (lot), and other units are not supported.
         """
         self.obj['size'] = value
         return self
@@ -379,28 +344,28 @@ class AddTpslOrderReqBuilder:
 
     def set_post_only(self, value: bool) -> AddTpslOrderReqBuilder:
         """
-        Optional for type is 'limit' order,  post only flag, invalid when timeInForce is IOC. When postOnly is true, not allowed choose hidden or iceberg. The post-only flag ensures that the trader always pays the maker fee and provides liquidity to the order book. If any part of the order is going to pay taker fee, the order will be fully rejected.
+        Optional for type is 'limit' order, post only flag, invalid when timeInForce is IOC. When postOnly is true, choosing hidden or iceberg is not allowed. The post-only flag ensures that the trader always pays the maker fee and provides liquidity to the order book. If any part of the order is going to pay taker fees, the order will be fully rejected.
         """
         self.obj['postOnly'] = value
         return self
 
     def set_hidden(self, value: bool) -> AddTpslOrderReqBuilder:
         """
-        Optional for type is 'limit' order, orders not displaying in order book. When hidden chose, not allowed choose postOnly.
+        Optional for type is 'limit' order, orders not displaying in order book. When hidden is chosen, choosing postOnly is not allowed.
         """
         self.obj['hidden'] = value
         return self
 
     def set_iceberg(self, value: bool) -> AddTpslOrderReqBuilder:
         """
-        Optional for type is 'limit' order, Only visible portion of the order is displayed in the order book. When iceberg chose, not allowed choose postOnly.
+        Optional for type is 'limit' order, Only visible portion of the order is displayed in the order book. When iceberg is chosen, choosing postOnly is not allowed.
         """
         self.obj['iceberg'] = value
         return self
 
     def set_visible_size(self, value: str) -> AddTpslOrderReqBuilder:
         """
-        Optional for type is 'limit' order, The maximum visible size of an iceberg order. please place order in size (lots), The units of qty (base currency) and valueQty (value) are not supported.
+        Optional for type is 'limit' order, the maximum visible size of an iceberg order. Please place order in size (lots). The units of qty (base currency) and valueQty (value) are not supported. Need to be defined if iceberg is specified.
         """
         self.obj['visibleSize'] = value
         return self

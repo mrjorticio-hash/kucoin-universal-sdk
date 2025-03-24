@@ -8,7 +8,6 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
-from typing_extensions import Annotated
 
 
 class GetSubAccountReq(BaseModel):
@@ -26,9 +25,7 @@ class GetSubAccountReq(BaseModel):
         default=1,
         description="Current page, default is 1",
         alias="currentPage")
-    page_size: Optional[Annotated[int, Field(
-        le=100, strict=True, ge=1
-    )]] = Field(
+    page_size: Optional[int] = Field(
         default=20,
         description=
         "The number returned per page, the default is 20, the maximum is 100",

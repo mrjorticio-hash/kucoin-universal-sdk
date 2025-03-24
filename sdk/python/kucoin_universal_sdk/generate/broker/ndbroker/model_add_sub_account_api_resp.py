@@ -17,19 +17,19 @@ class AddSubAccountApiResp(BaseModel, Response):
     AddSubAccountApiResp
 
     Attributes:
-        uid (str): Sub-Account UID
+        uid (str): Sub-account UID
         label (str): apikey remarks
         api_key (str): apiKey
         secret_key (str): secretKey
         api_version (int): apiVersion
         permissions (list[str]): [Permissions](https://www.kucoin.com/docs-new/doc-338144) group list
         ip_whitelist (list[str]): IP whitelist list
-        created_at (int): Creation time, unix timestamp (milliseconds)
+        created_at (int): Creation time, Unix timestamp (milliseconds)
     """
 
     common_response: Optional[RestResponse] = Field(
         default=None, description="Common response")
-    uid: Optional[str] = Field(default=None, description="Sub-Account UID")
+    uid: Optional[str] = Field(default=None, description="Sub-account UID")
     label: Optional[str] = Field(default=None, description="apikey remarks")
     api_key: Optional[str] = Field(default=None,
                                    description="apiKey",
@@ -49,7 +49,7 @@ class AddSubAccountApiResp(BaseModel, Response):
                                               alias="ipWhitelist")
     created_at: Optional[int] = Field(
         default=None,
-        description="Creation time, unix timestamp (milliseconds)",
+        description="Creation time, Unix timestamp (milliseconds)",
         alias="createdAt")
 
     __properties: ClassVar[List[str]] = [

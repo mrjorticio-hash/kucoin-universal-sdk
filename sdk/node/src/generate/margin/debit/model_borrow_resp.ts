@@ -6,7 +6,7 @@ import { Response } from '@internal/interfaces/serializable';
 
 export class BorrowResp implements Response<RestResponse> {
     /**
-     * Borrow Order Id
+     * Borrow Order ID
      */
     orderNo: string;
 

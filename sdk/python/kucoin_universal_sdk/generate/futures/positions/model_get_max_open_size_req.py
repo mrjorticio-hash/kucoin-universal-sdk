@@ -15,17 +15,17 @@ class GetMaxOpenSizeReq(BaseModel):
     GetMaxOpenSizeReq
 
     Attributes:
-        symbol (str): Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) 
-        price (str): Order price 
+        symbol (str): Symbol of the contract. Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) 
+        price (str): Order Price 
         leverage (int): Leverage 
     """
 
     symbol: Optional[str] = Field(
         default=None,
         description=
-        "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) "
+        "Symbol of the contract. Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) "
     )
-    price: Optional[str] = Field(default=None, description="Order price ")
+    price: Optional[str] = Field(default=None, description="Order Price ")
     leverage: Optional[int] = Field(default=None, description="Leverage ")
 
     __properties: ClassVar[List[str]] = ["symbol", "price", "leverage"]
@@ -77,14 +77,14 @@ class GetMaxOpenSizeReqBuilder:
 
     def set_symbol(self, value: str) -> GetMaxOpenSizeReqBuilder:
         """
-        Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) 
+        Symbol of the contract. Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) 
         """
         self.obj['symbol'] = value
         return self
 
     def set_price(self, value: str) -> GetMaxOpenSizeReqBuilder:
         """
-        Order price 
+        Order Price 
         """
         self.obj['price'] = value
         return self

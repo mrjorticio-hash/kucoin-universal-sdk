@@ -5,7 +5,13 @@ import {
     GlobalFuturesApiEndpoint,
     WebSocketClientOptionBuilder,
 } from '@model/index';
-import { AccountEvent, OrderV1Event, OrderV2Event, SpotPrivateWS } from '@src/generate/spot/spotprivate';
+import {
+    AccountEvent,
+    OrderV1Event,
+    OrderV2Event,
+    SpotPrivateWS,
+    StopOrderEvent,
+} from '@src/generate/spot/spotprivate';
 import { DefaultClient } from '@api/index';
 
 jest.setTimeout(300000);
@@ -100,6 +106,33 @@ describe('Spot Private WebSocket API Tests', () => {
                     expect(item.orderTime).toEqual(expect.any(Number));
                     expect(item.orderType).toEqual(expect.any(String));
                     expect(item.price).toEqual(expect.any(String));
+                    api.unSubscribe(subid).then(() => {
+                        done();
+                    });
+                },
+            );
+
+            console.log(`subscribe id: ${subid}`);
+        })();
+    });
+
+    test('stopOrder subscription test', (done) => {
+        (async () => {
+            let subid = await api.stopOrder(
+                async (topic: string, subject: string, item: StopOrderEvent) => {
+                    console.log(item);
+                    expect(item.createdAt).toEqual(expect.any(Number));
+                    expect(item.orderId).toEqual(expect.any(String));
+                    expect(item.orderPrice).toEqual(expect.any(Number));
+                    expect(item.orderType).toEqual(expect.any(String));
+                    expect(item.side).toEqual(expect.any(String));
+                    expect(item.size).toEqual(expect.any(String));
+                    expect(item.stop).toEqual(expect.any(String));
+                    expect(item.stopPrice).toEqual(expect.any(String));
+                    expect(item.symbol).toEqual(expect.any(String));
+                    expect(item.tradeType).toEqual(expect.any(String));
+                    expect(item.ts).toEqual(expect.any(Number));
+                    expect(item.type).toEqual(expect.any(String));
                     api.unSubscribe(subid).then(() => {
                         done();
                     });

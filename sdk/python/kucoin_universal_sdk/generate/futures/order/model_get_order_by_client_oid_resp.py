@@ -19,15 +19,15 @@ class GetOrderByClientOidResp(BaseModel, Response):
 
     Attributes:
         id (str): Order ID
-        symbol (str): Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) 
+        symbol (str): Symbol of the contract. Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) 
         type (TypeEnum): Order type, market order or limit order
         side (SideEnum): Transaction side
-        price (str): Order price
+        price (str): Order Price
         size (int): Order quantity
         value (str): Order value 
         deal_value (str): Executed size of funds 
         deal_size (int): Executed quantity 
-        stp (StpEnum): [Self Trade Prevention](https://www.kucoin.com/docs-new/doc-338146) is divided into these strategies: CN, CO, CB. Not supported DC at the moment.
+        stp (StpEnum): [Self Trade Prevention](https://www.kucoin.com/docs-new/doc-338146) is divided into these strategies: CN, CO, CB. DC not currently supported.
         stop (str): Stop order type (stop limit or stop market) 
         stop_price_type (StopPriceTypeEnum): Trigger price type of stop orders
         stop_triggered (bool): Mark to show whether the stop order is triggered
@@ -37,21 +37,21 @@ class GetOrderByClientOidResp(BaseModel, Response):
         hidden (bool): Mark of the hidden order 
         iceberg (bool): Mark of the iceberg order 
         leverage (str): Leverage of the order 
-        force_hold (bool): A mark to forcely hold the funds for an order 
+        force_hold (bool): A mark to force-hold the funds for an order 
         close_order (bool): A mark to close the position 
         visible_size (int): Visible size of the iceberg order 
-        client_oid (str): Unique order id created by users to identify their orders 
+        client_oid (str): Unique order ID created by users to identify their orders 
         remark (str): Remark
-        tags (str): tag order source 
+        tags (str): Tag order source 
         is_active (bool): Mark of the active orders 
         cancel_exist (bool): Mark of the canceled orders 
-        created_at (int): Time the order created 
-        updated_at (int): last update time 
+        created_at (int): Order creation time 
+        updated_at (int): Last update time 
         end_at (int): Order Endtime
-        order_time (int): Order create time in nanosecond 
-        settle_currency (str): settlement currency 
+        order_time (int): Order creation time in nanoseconds 
+        settle_currency (str): Settlement currency 
         margin_mode (MarginModeEnum): Margin mode: ISOLATED (isolated), CROSS (cross margin). 
-        avg_deal_price (str): Average transaction price, forward contract average transaction price = sum (transaction value) / sum (transaction quantity), reverse contract average transaction price = sum (transaction quantity) / sum (transaction value). Transaction quantity = lots * multiplier 
+        avg_deal_price (str): Average transaction price, forward contract average transaction price = sum (transaction value) / sum (transaction quantity); reverse contract average transaction price = sum (transaction quantity) / sum (transaction value). Transaction quantity = lots * multiplier 
         filled_size (int): Value of the executed orders 
         filled_value (str): Executed order quantity 
         status (StatusEnum): order status: “open” or “done” 
@@ -94,8 +94,8 @@ class GetOrderByClientOidResp(BaseModel, Response):
         Attributes:
             NULL: None
             TRADE_PRICE: TP for trade price, The last trade price is the last price at which an order was filled. This price can be found in the latest match message.
-            MARK_PRICE: MP for mark price, The mark price can be obtained through relevant OPEN API for index services
-            INDEX_PRICE: IP for index price, The index price can be obtained through relevant OPEN API for index services
+            MARK_PRICE: MP for mark price. The mark price can be obtained through relevant OPEN API for index services.
+            INDEX_PRICE: IP for index price. The index price can be obtained through relevant OPEN API for index services.
         """
         NULL = ''
         TRADE_PRICE = 'TP'
@@ -126,13 +126,13 @@ class GetOrderByClientOidResp(BaseModel, Response):
     symbol: Optional[str] = Field(
         default=None,
         description=
-        "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) "
+        "Symbol of the contract. Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) "
     )
     type: Optional[TypeEnum] = Field(
         default=None, description="Order type, market order or limit order")
     side: Optional[SideEnum] = Field(default=None,
                                      description="Transaction side")
-    price: Optional[str] = Field(default=None, description="Order price")
+    price: Optional[str] = Field(default=None, description="Order Price")
     size: Optional[int] = Field(default=None, description="Order quantity")
     value: Optional[str] = Field(default=None, description="Order value ")
     deal_value: Optional[str] = Field(default=None,
@@ -144,7 +144,7 @@ class GetOrderByClientOidResp(BaseModel, Response):
     stp: Optional[StpEnum] = Field(
         default=None,
         description=
-        "[Self Trade Prevention](https://www.kucoin.com/docs-new/doc-338146) is divided into these strategies: CN, CO, CB. Not supported DC at the moment."
+        "[Self Trade Prevention](https://www.kucoin.com/docs-new/doc-338146) is divided into these strategies: CN, CO, CB. DC not currently supported."
     )
     stop: Optional[str] = Field(
         default=None,
@@ -176,7 +176,7 @@ class GetOrderByClientOidResp(BaseModel, Response):
                                     description="Leverage of the order ")
     force_hold: Optional[bool] = Field(
         default=None,
-        description="A mark to forcely hold the funds for an order ",
+        description="A mark to force-hold the funds for an order ",
         alias="forceHold")
     close_order: Optional[bool] = Field(
         default=None,
@@ -189,10 +189,10 @@ class GetOrderByClientOidResp(BaseModel, Response):
     client_oid: Optional[str] = Field(
         default=None,
         description=
-        "Unique order id created by users to identify their orders ",
+        "Unique order ID created by users to identify their orders ",
         alias="clientOid")
     remark: Optional[str] = Field(default=None, description="Remark")
-    tags: Optional[str] = Field(default=None, description="tag order source ")
+    tags: Optional[str] = Field(default=None, description="Tag order source ")
     is_active: Optional[bool] = Field(default=None,
                                       description="Mark of the active orders ",
                                       alias="isActive")
@@ -201,20 +201,20 @@ class GetOrderByClientOidResp(BaseModel, Response):
         description="Mark of the canceled orders ",
         alias="cancelExist")
     created_at: Optional[int] = Field(default=None,
-                                      description="Time the order created ",
+                                      description="Order creation time ",
                                       alias="createdAt")
     updated_at: Optional[int] = Field(default=None,
-                                      description="last update time ",
+                                      description="Last update time ",
                                       alias="updatedAt")
     end_at: Optional[int] = Field(default=None,
                                   description="Order Endtime",
                                   alias="endAt")
     order_time: Optional[int] = Field(
         default=None,
-        description="Order create time in nanosecond ",
+        description="Order creation time in nanoseconds ",
         alias="orderTime")
     settle_currency: Optional[str] = Field(default=None,
-                                           description="settlement currency ",
+                                           description="Settlement currency ",
                                            alias="settleCurrency")
     margin_mode: Optional[MarginModeEnum] = Field(
         default=None,
@@ -223,7 +223,7 @@ class GetOrderByClientOidResp(BaseModel, Response):
     avg_deal_price: Optional[str] = Field(
         default=None,
         description=
-        "Average transaction price, forward contract average transaction price = sum (transaction value) / sum (transaction quantity), reverse contract average transaction price = sum (transaction quantity) / sum (transaction value). Transaction quantity = lots * multiplier ",
+        "Average transaction price, forward contract average transaction price = sum (transaction value) / sum (transaction quantity); reverse contract average transaction price = sum (transaction quantity) / sum (transaction value). Transaction quantity = lots * multiplier ",
         alias="avgDealPrice")
     filled_size: Optional[int] = Field(
         default=None,

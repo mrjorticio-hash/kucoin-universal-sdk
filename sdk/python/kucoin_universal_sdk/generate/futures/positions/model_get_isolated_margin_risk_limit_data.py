@@ -15,11 +15,11 @@ class GetIsolatedMarginRiskLimitData(BaseModel):
     GetIsolatedMarginRiskLimitData
 
     Attributes:
-        symbol (str): Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) 
-        level (int): level 
-        max_risk_limit (int): Upper limit USDT(includes) 
+        symbol (str): Symbol of the contract. Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) 
+        level (int): Level 
+        max_risk_limit (int): Upper limit USDT (included) 
         min_risk_limit (int): Lower limit USDT 
-        max_leverage (int): Max leverage 
+        max_leverage (int): Max. leverage 
         initial_margin (float): Initial margin rate 
         maintain_margin (float): Maintenance margin rate 
     """
@@ -27,18 +27,18 @@ class GetIsolatedMarginRiskLimitData(BaseModel):
     symbol: Optional[str] = Field(
         default=None,
         description=
-        "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) "
+        "Symbol of the contract. Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) "
     )
-    level: Optional[int] = Field(default=None, description="level ")
+    level: Optional[int] = Field(default=None, description="Level ")
     max_risk_limit: Optional[int] = Field(
         default=None,
-        description="Upper limit USDT(includes) ",
+        description="Upper limit USDT (included) ",
         alias="maxRiskLimit")
     min_risk_limit: Optional[int] = Field(default=None,
                                           description="Lower limit USDT ",
                                           alias="minRiskLimit")
     max_leverage: Optional[int] = Field(default=None,
-                                        description="Max leverage ",
+                                        description="Max. leverage ",
                                         alias="maxLeverage")
     initial_margin: Optional[float] = Field(default=None,
                                             description="Initial margin rate ",

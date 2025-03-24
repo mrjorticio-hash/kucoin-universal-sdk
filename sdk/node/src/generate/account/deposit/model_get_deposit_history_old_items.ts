@@ -10,7 +10,7 @@ export class GetDepositHistoryOldItems implements Serializable {
     currency?: string;
 
     /**
-     * Creation time of the database record
+     * Database record creation time
      */
     createAt?: number;
 

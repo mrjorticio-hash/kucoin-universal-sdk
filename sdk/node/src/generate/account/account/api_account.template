@@ -157,6 +157,7 @@ describe('Auto Test', ()=> {
         expect(result.availableBalance).toEqual(expect.anything());
         expect(result.currency).toEqual(expect.anything());
         expect(result.riskRatio).toEqual(expect.anything());
+        expect(result.maxWithdrawAmount).toEqual(expect.anything());
         console.log(resp);
     });
     })

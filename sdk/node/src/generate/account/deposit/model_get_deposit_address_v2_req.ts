@@ -10,6 +10,11 @@ export class GetDepositAddressV2Req implements Serializable {
     currency?: string;
 
     /**
+     * Chain ID of currency
+     */
+    chain?: string;
+
+    /**
      * Private constructor, please use the corresponding static methods to construct the object.
      */
     private constructor() {}
@@ -29,9 +34,14 @@ export class GetDepositAddressV2Req implements Serializable {
          * currency
          */
         currency?: string;
+        /**
+         * Chain ID of currency
+         */
+        chain?: string;
     }): GetDepositAddressV2Req {
         let obj = new GetDepositAddressV2Req();
         obj.currency = data.currency;
+        obj.chain = data.chain;
         return obj;
     }
 
@@ -64,6 +74,14 @@ export class GetDepositAddressV2ReqBuilder {
      */
     setCurrency(value: string): GetDepositAddressV2ReqBuilder {
         this.obj.currency = value;
+        return this;
+    }
+
+    /**
+     * Chain ID of currency
+     */
+    setChain(value: string): GetDepositAddressV2ReqBuilder {
+        this.obj.chain = value;
         return this;
     }
 

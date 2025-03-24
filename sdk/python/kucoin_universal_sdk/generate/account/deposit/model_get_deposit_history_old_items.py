@@ -17,7 +17,7 @@ class GetDepositHistoryOldItems(BaseModel):
 
     Attributes:
         currency (str): Currency
-        create_at (int): Creation time of the database record
+        create_at (int): Database record creation time
         amount (str): Deposit amount
         wallet_tx_id (str): Wallet Txid
         is_inner (bool): Internal deposit or not
@@ -38,7 +38,7 @@ class GetDepositHistoryOldItems(BaseModel):
     currency: Optional[str] = Field(default=None, description="Currency")
     create_at: Optional[int] = Field(
         default=None,
-        description="Creation time of the database record",
+        description="Database record creation time",
         alias="createAt")
     amount: Optional[str] = Field(default=None, description="Deposit amount")
     wallet_tx_id: Optional[str] = Field(default=None,

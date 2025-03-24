@@ -57,7 +57,7 @@ func TestFuturesAddOrderReq(t *testing.T) {
 
 	builder := futures.NewAddOrderReqBuilder()
 	builder.SetClientOid(uuid.NewString()).SetSide("buy").SetSymbol("XBTUSDTM").
-		SetLeverage(3).SetType("limit").SetRemark("order remarks").SetReduceOnly(false).
+		SetLeverage(3).SetType("limit").SetReduceOnly(false).
 		SetMarginMode("ISOLATED").SetPrice("0.1").SetSize(1).SetTimeInForce("GTC")
 	req := builder.Build()
 
@@ -81,7 +81,7 @@ func TestFuturesAddOrderTestReq(t *testing.T) {
 
 	builder := futures.NewAddOrderTestReqBuilder()
 	builder.SetClientOid(uuid.NewString()).SetSide("buy").SetSymbol("XBTUSDTM").
-		SetLeverage(3).SetType("limit").SetRemark("order remarks").SetReduceOnly(false).
+		SetLeverage(3).SetType("limit").SetReduceOnly(false).
 		SetMarginMode("ISOLATED").SetPrice("0.1").SetSize(1).SetTimeInForce("GTC")
 	req := builder.Build()
 
@@ -105,7 +105,7 @@ func TestFuturesAddTPSLOrderReq(t *testing.T) {
 
 	builder := futures.NewAddTPSLOrderReqBuilder()
 	builder.SetClientOid(uuid.NewString()).SetSide("buy").SetSymbol("XBTUSDTM").
-		SetLeverage(3).SetType("limit").SetRemark("order remarks").SetReduceOnly(false).
+		SetLeverage(3).SetType("limit").SetReduceOnly(false).
 		SetMarginMode("ISOLATED").SetPrice("0.1").SetSize(1).SetTimeInForce("GTC").
 		SetTriggerStopUpPrice("0.3").SetTriggerStopDownPrice("0.1").SetStopPriceType("TP")
 	req := builder.Build()
@@ -173,7 +173,7 @@ func TestFuturesGetMaxOpenSizeReq(t *testing.T) {
 	// /api/v1/copy-trade/futures/get-max-open-size
 
 	builder := futures.NewGetMaxOpenSizeReqBuilder()
-	builder.SetSymbol("XBTUSDTM").SetPrice("0.1").SetLeverage(10)
+	builder.SetSymbol("XBTUSDTM").SetPrice(0.1).SetLeverage(10)
 	req := builder.Build()
 
 	resp, err := futuresApi.GetMaxOpenSize(req, context.TODO())
@@ -239,7 +239,7 @@ func TestFuturesRemoveIsolatedMarginReq(t *testing.T) {
 	// /api/v1/copy-trade/futures/position/margin/withdraw-margin
 
 	builder := futures.NewRemoveIsolatedMarginReqBuilder()
-	builder.SetSymbol("XBTUSDTM").SetWithdrawAmount("0.0000001")
+	builder.SetSymbol("XBTUSDTM").SetWithdrawAmount(0.0000001)
 	req := builder.Build()
 
 	resp, err := futuresApi.RemoveIsolatedMargin(req, context.TODO())

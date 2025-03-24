@@ -30,7 +30,7 @@ class CallbackManager:
                 info = SubInfo(prefix=self.topic_prefix, args=[], callback=None)
                 for topic in topics:
                     parts = topic.split(":")
-                    if len(parts) == 2:
+                    if len(parts) == 2 and parts[1] != "all":
                         info.args.append(parts[1])
                     if topic in self.topic_callback_mapping:
                         info.callback = self.topic_callback_mapping[topic].callback

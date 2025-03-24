@@ -5,12 +5,12 @@ import { Serializable } from '@internal/interfaces/serializable';
 
 export class BatchCancelOcoOrdersReq implements Serializable {
     /**
-     * Specify the order id, there can be multiple orders, separated by commas. If not passed, all oco orders will be canceled by default.
+     * Specify the order ID; there can be multiple orders, separated by commas. If not passed, all OCO orders will be canceled by default.
      */
     orderIds?: string;
 
     /**
-     * trading pair. If not passed, the oco orders of all symbols will be canceled by default.
+     * Trading pair. If not passed, the OCO orders of all symbols will be canceled by default.
      */
     symbol?: string;
 
@@ -31,11 +31,11 @@ export class BatchCancelOcoOrdersReq implements Serializable {
      */
     static create(data: {
         /**
-         * Specify the order id, there can be multiple orders, separated by commas. If not passed, all oco orders will be canceled by default.
+         * Specify the order ID; there can be multiple orders, separated by commas. If not passed, all OCO orders will be canceled by default.
          */
         orderIds?: string;
         /**
-         * trading pair. If not passed, the oco orders of all symbols will be canceled by default.
+         * Trading pair. If not passed, the OCO orders of all symbols will be canceled by default.
          */
         symbol?: string;
     }): BatchCancelOcoOrdersReq {
@@ -70,7 +70,7 @@ export class BatchCancelOcoOrdersReqBuilder {
         this.obj = obj;
     }
     /**
-     * Specify the order id, there can be multiple orders, separated by commas. If not passed, all oco orders will be canceled by default.
+     * Specify the order ID; there can be multiple orders, separated by commas. If not passed, all OCO orders will be canceled by default.
      */
     setOrderIds(value: string): BatchCancelOcoOrdersReqBuilder {
         this.obj.orderIds = value;
@@ -78,7 +78,7 @@ export class BatchCancelOcoOrdersReqBuilder {
     }
 
     /**
-     * trading pair. If not passed, the oco orders of all symbols will be canceled by default.
+     * Trading pair. If not passed, the OCO orders of all symbols will be canceled by default.
      */
     setSymbol(value: string): BatchCancelOcoOrdersReqBuilder {
         this.obj.symbol = value;

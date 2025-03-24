@@ -6,7 +6,7 @@ package market
 type GetAllTickersTicker struct {
 	// Symbol
 	Symbol string `json:"symbol,omitempty"`
-	// Name of trading pairs, it would change after renaming
+	// Name of trading pairs, it will change after renaming
 	SymbolName string `json:"symbolName,omitempty"`
 	// Best bid price
 	Buy string `json:"buy,omitempty"`

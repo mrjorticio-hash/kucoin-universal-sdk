@@ -6,7 +6,7 @@ import { Response } from '@internal/interfaces/serializable';
 
 export class RedeemResp implements Response<RestResponse> {
     /**
-     * Redeem order id
+     * Redeem order ID
      */
     orderNo: string;
 

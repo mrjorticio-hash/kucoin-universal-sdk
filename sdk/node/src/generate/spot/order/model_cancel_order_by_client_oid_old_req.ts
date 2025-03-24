@@ -6,11 +6,6 @@ import { Serializable } from '@internal/interfaces/serializable';
 
 export class CancelOrderByClientOidOldReq implements Serializable {
     /**
-     * symbol
-     */
-    symbol?: string;
-
-    /**
      * Client Order Id，unique identifier created by the user
      */
     @Reflect.metadata('path', 'clientOid')
@@ -33,16 +28,11 @@ export class CancelOrderByClientOidOldReq implements Serializable {
      */
     static create(data: {
         /**
-         * symbol
-         */
-        symbol?: string;
-        /**
          * Client Order Id，unique identifier created by the user
          */
         clientOid?: string;
     }): CancelOrderByClientOidOldReq {
         let obj = new CancelOrderByClientOidOldReq();
-        obj.symbol = data.symbol;
         obj.clientOid = data.clientOid;
         return obj;
     }
@@ -71,14 +61,6 @@ export class CancelOrderByClientOidOldReqBuilder {
     constructor(readonly obj: CancelOrderByClientOidOldReq) {
         this.obj = obj;
     }
-    /**
-     * symbol
-     */
-    setSymbol(value: string): CancelOrderByClientOidOldReqBuilder {
-        this.obj.symbol = value;
-        return this;
-    }
-
     /**
      * Client Order Id，unique identifier created by the user
      */

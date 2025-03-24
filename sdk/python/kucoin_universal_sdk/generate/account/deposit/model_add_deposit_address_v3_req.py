@@ -17,16 +17,16 @@ class AddDepositAddressV3Req(BaseModel):
 
     Attributes:
         currency (str): currency
-        chain (str): The chainId of currency, e.g. The available value for USDT are OMNI, ERC20, TRC20, default is ERC20. The available value for BTC are Native, Segwit, TRC20, the parameters are bech32, btc, trx, default is Native. This only apply for multi-chain currency, and there is no need for single chain currency.
-        to (ToEnum): Deposit account type: main (funding account), trade (spot trading account), the default is main
+        chain (str): The currency chainId, e.g. the available values for USDT are OMNI, ERC20, and TRC20; default is ERC20. The available values for BTC are Native, Segwit, TRC20; the parameters are bech32, btc, trx; default is Native. 
+        to (ToEnum): Deposit account type: MAIN (funding account), TRADE (spot trading account); the default is MAIN
         amount (str): Deposit amount. This parameter is only used when applying for invoices on the Lightning Network. This parameter is invalid if it is not passed through the Lightning Network.
     """
 
     class ToEnum(Enum):
         """
         Attributes:
-            MAIN: 
-            TRADE: 
+            MAIN: Funding account
+            TRADE: Spot account
         """
         MAIN = 'main'
         TRADE = 'trade'
@@ -35,12 +35,12 @@ class AddDepositAddressV3Req(BaseModel):
     chain: Optional[str] = Field(
         default='eth',
         description=
-        "The chainId of currency, e.g. The available value for USDT are OMNI, ERC20, TRC20, default is ERC20. The available value for BTC are Native, Segwit, TRC20, the parameters are bech32, btc, trx, default is Native. This only apply for multi-chain currency, and there is no need for single chain currency."
+        "The currency chainId, e.g. the available values for USDT are OMNI, ERC20, and TRC20; default is ERC20. The available values for BTC are Native, Segwit, TRC20; the parameters are bech32, btc, trx; default is Native. "
     )
     to: Optional[ToEnum] = Field(
         default=ToEnum.MAIN,
         description=
-        "Deposit account type: main (funding account), trade (spot trading account), the default is main"
+        "Deposit account type: MAIN (funding account), TRADE (spot trading account); the default is MAIN"
     )
     amount: Optional[str] = Field(
         default=None,
@@ -111,7 +111,7 @@ class AddDepositAddressV3ReqBuilder:
 
     def set_chain(self, value: str) -> AddDepositAddressV3ReqBuilder:
         """
-        The chainId of currency, e.g. The available value for USDT are OMNI, ERC20, TRC20, default is ERC20. The available value for BTC are Native, Segwit, TRC20, the parameters are bech32, btc, trx, default is Native. This only apply for multi-chain currency, and there is no need for single chain currency.
+        The currency chainId, e.g. the available values for USDT are OMNI, ERC20, and TRC20; default is ERC20. The available values for BTC are Native, Segwit, TRC20; the parameters are bech32, btc, trx; default is Native. 
         """
         self.obj['chain'] = value
         return self
@@ -120,7 +120,7 @@ class AddDepositAddressV3ReqBuilder:
             self, value: AddDepositAddressV3Req.ToEnum
     ) -> AddDepositAddressV3ReqBuilder:
         """
-        Deposit account type: main (funding account), trade (spot trading account), the default is main
+        Deposit account type: MAIN (funding account), TRADE (spot trading account); the default is MAIN
         """
         self.obj['to'] = value
         return self

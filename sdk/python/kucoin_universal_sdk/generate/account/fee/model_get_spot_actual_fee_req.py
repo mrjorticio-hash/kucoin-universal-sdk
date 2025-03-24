@@ -15,13 +15,13 @@ class GetSpotActualFeeReq(BaseModel):
     GetSpotActualFeeReq
 
     Attributes:
-        symbols (str): Trading pair (optional, you can inquire fee rates of 10 trading pairs each time at most)
+        symbols (str): Trading pair (optional; you can inquire fee rates of 10 trading pairs each time at most)
     """
 
     symbols: Optional[str] = Field(
         default=None,
         description=
-        "Trading pair (optional, you can inquire fee rates of 10 trading pairs each time at most)"
+        "Trading pair (optional; you can inquire fee rates of 10 trading pairs each time at most)"
     )
 
     __properties: ClassVar[List[str]] = ["symbols"]
@@ -70,7 +70,7 @@ class GetSpotActualFeeReqBuilder:
 
     def set_symbols(self, value: str) -> GetSpotActualFeeReqBuilder:
         """
-        Trading pair (optional, you can inquire fee rates of 10 trading pairs each time at most)
+        Trading pair (optional; you can inquire fee rates of 10 trading pairs each time at most)
         """
         self.obj['symbols'] = value
         return self

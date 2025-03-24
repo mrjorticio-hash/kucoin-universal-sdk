@@ -5,12 +5,12 @@ import { Serializable } from '@internal/interfaces/serializable';
 
 export class AddOrderV1Req implements Serializable {
     /**
-     * Client Order Id，The ClientOid field is a unique ID created by the user（we recommend using a UUID）, and can only contain numbers, letters, underscores （_）, and hyphens （-）. This field is returned when order information is obtained. You can use clientOid to tag your orders. ClientOid is different from the order ID created by the service provider. Please do not initiate requests using the same clientOid. The maximum length for the ClientOid is 40 characters.  Please remember the orderId created by the service provider, it used to check for updates in order status.
+     * Client Order ID: The ClientOid field is a unique ID created by the user (we recommend using a UUID), and can only contain numbers, letters, underscores (_), and hyphens (-). This field is returned when order information is obtained. You can use clientOid to tag your orders. ClientOid is different from the order ID created by the service provider. Please do not initiate requests using the same clientOid. The maximum length for the ClientOid is 40 characters.  Please remember the orderId created by the service provider, it used to check for updates in order status.
      */
     clientOid: string;
 
     /**
-     * specify if the order is to \'buy\' or \'sell\'
+     * Specify if the order is to \'buy\' or \'sell\'.
      */
     side: AddOrderV1Req.SideEnum;
 
@@ -20,7 +20,7 @@ export class AddOrderV1Req implements Serializable {
     symbol: string;
 
     /**
-     * specify if the order is an \'limit\' order or \'market\' order.   The type of order you specify when you place your order determines whether or not you need to request other parameters and also affects the execution of the matching engine.  When placing a limit order, you must specify a price and size. The system will try to match the order according to market price or a price better than market price. If the order cannot be immediately matched, it will stay in the order book until it is matched or the user cancels.  Unlike limit orders, the price for market orders fluctuates with market prices. When placing a market order, you do not need to specify a price, you only need to specify a quantity. Market orders are filled immediately and will not enter the order book. All market orders are takers and a taker fee will be charged.
+     * Specify if the order is a \'limit\' order or \'market\' order.   The type of order you specify when you place your order determines whether or not you need to request other parameters and also affects the execution of the matching engine.  When placing a limit order, you must specify a price and size. The system will try to match the order according to market price or a price better than market price. If the order cannot be immediately matched, it will stay in the order book until it is matched or the user cancels.  Unlike limit orders, the price for market orders fluctuates with market prices. When placing a market order, you do not need to specify a price; you only need to specify a quantity. Market orders are filled immediately and will not enter the order book. All market orders are takers and a taker fee will be charged.
      */
     type?: AddOrderV1Req.TypeEnum = AddOrderV1Req.TypeEnum.LIMIT;
 
@@ -35,7 +35,7 @@ export class AddOrderV1Req implements Serializable {
     price?: string;
 
     /**
-     * Specify quantity for order  When **type** is limit, size refers to the amount of trading targets (the asset name written in front) for the trading pair. Teh Size must be based on the baseIncrement of the trading pair. The baseIncrement represents the precision for the trading pair. The size of an order must be a positive-integer multiple of baseIncrement and must be between baseMinSize and baseMaxSize.  When **type** is market, select one out of two: size or funds
+     * Specify quantity for order.  When **type** is limited, size refers to the amount of trading targets (the asset name written in front) for the trading pair. The Size must be based on the baseIncrement of the trading pair. The baseIncrement represents the precision for the trading pair. The size of an order must be a positive-integer multiple of baseIncrement and must be between baseMinSize and baseMaxSize.  When **type** is market, select one out of two: size or funds
      */
     size?: string;
 
@@ -65,7 +65,7 @@ export class AddOrderV1Req implements Serializable {
     visibleSize?: string;
 
     /**
-     * Cancel after n seconds，the order timing strategy is GTT
+     * Cancel after n seconds, the order timing strategy is GTT
      */
     cancelAfter?: number;
 
@@ -80,7 +80,7 @@ export class AddOrderV1Req implements Serializable {
     autoBorrow?: boolean = false;
 
     /**
-     * AutoPay allows returning borrowed assets when you close a position. Our system automatically triggers the repayment and the maximum repayment amount equals to the filled-order amount.
+     * AutoPay allows the return of borrowed assets when you close a position. Our system automatically triggers the repayment and the maximum repayment amount equals to the filled-order amount.
      */
     autoRepay?: boolean = false;
 
@@ -113,11 +113,11 @@ export class AddOrderV1Req implements Serializable {
      */
     static create(data: {
         /**
-         * Client Order Id，The ClientOid field is a unique ID created by the user（we recommend using a UUID）, and can only contain numbers, letters, underscores （_）, and hyphens （-）. This field is returned when order information is obtained. You can use clientOid to tag your orders. ClientOid is different from the order ID created by the service provider. Please do not initiate requests using the same clientOid. The maximum length for the ClientOid is 40 characters.  Please remember the orderId created by the service provider, it used to check for updates in order status.
+         * Client Order ID: The ClientOid field is a unique ID created by the user (we recommend using a UUID), and can only contain numbers, letters, underscores (_), and hyphens (-). This field is returned when order information is obtained. You can use clientOid to tag your orders. ClientOid is different from the order ID created by the service provider. Please do not initiate requests using the same clientOid. The maximum length for the ClientOid is 40 characters.  Please remember the orderId created by the service provider, it used to check for updates in order status.
          */
         clientOid: string;
         /**
-         * specify if the order is to \'buy\' or \'sell\'
+         * Specify if the order is to \'buy\' or \'sell\'.
          */
         side: AddOrderV1Req.SideEnum;
         /**
@@ -125,7 +125,7 @@ export class AddOrderV1Req implements Serializable {
          */
         symbol: string;
         /**
-         * specify if the order is an \'limit\' order or \'market\' order.   The type of order you specify when you place your order determines whether or not you need to request other parameters and also affects the execution of the matching engine.  When placing a limit order, you must specify a price and size. The system will try to match the order according to market price or a price better than market price. If the order cannot be immediately matched, it will stay in the order book until it is matched or the user cancels.  Unlike limit orders, the price for market orders fluctuates with market prices. When placing a market order, you do not need to specify a price, you only need to specify a quantity. Market orders are filled immediately and will not enter the order book. All market orders are takers and a taker fee will be charged.
+         * Specify if the order is a \'limit\' order or \'market\' order.   The type of order you specify when you place your order determines whether or not you need to request other parameters and also affects the execution of the matching engine.  When placing a limit order, you must specify a price and size. The system will try to match the order according to market price or a price better than market price. If the order cannot be immediately matched, it will stay in the order book until it is matched or the user cancels.  Unlike limit orders, the price for market orders fluctuates with market prices. When placing a market order, you do not need to specify a price; you only need to specify a quantity. Market orders are filled immediately and will not enter the order book. All market orders are takers and a taker fee will be charged.
          */
         type?: AddOrderV1Req.TypeEnum;
         /**
@@ -137,7 +137,7 @@ export class AddOrderV1Req implements Serializable {
          */
         price?: string;
         /**
-         * Specify quantity for order  When **type** is limit, size refers to the amount of trading targets (the asset name written in front) for the trading pair. Teh Size must be based on the baseIncrement of the trading pair. The baseIncrement represents the precision for the trading pair. The size of an order must be a positive-integer multiple of baseIncrement and must be between baseMinSize and baseMaxSize.  When **type** is market, select one out of two: size or funds
+         * Specify quantity for order.  When **type** is limited, size refers to the amount of trading targets (the asset name written in front) for the trading pair. The Size must be based on the baseIncrement of the trading pair. The baseIncrement represents the precision for the trading pair. The size of an order must be a positive-integer multiple of baseIncrement and must be between baseMinSize and baseMaxSize.  When **type** is market, select one out of two: size or funds
          */
         size?: string;
         /**
@@ -161,7 +161,7 @@ export class AddOrderV1Req implements Serializable {
          */
         visibleSize?: string;
         /**
-         * Cancel after n seconds，the order timing strategy is GTT
+         * Cancel after n seconds, the order timing strategy is GTT
          */
         cancelAfter?: number;
         /**
@@ -173,7 +173,7 @@ export class AddOrderV1Req implements Serializable {
          */
         autoBorrow?: boolean;
         /**
-         * AutoPay allows returning borrowed assets when you close a position. Our system automatically triggers the repayment and the maximum repayment amount equals to the filled-order amount.
+         * AutoPay allows the return of borrowed assets when you close a position. Our system automatically triggers the repayment and the maximum repayment amount equals to the filled-order amount.
          */
         autoRepay?: boolean;
         /**
@@ -328,7 +328,7 @@ export class AddOrderV1ReqBuilder {
         this.obj = obj;
     }
     /**
-     * Client Order Id，The ClientOid field is a unique ID created by the user（we recommend using a UUID）, and can only contain numbers, letters, underscores （_）, and hyphens （-）. This field is returned when order information is obtained. You can use clientOid to tag your orders. ClientOid is different from the order ID created by the service provider. Please do not initiate requests using the same clientOid. The maximum length for the ClientOid is 40 characters.  Please remember the orderId created by the service provider, it used to check for updates in order status.
+     * Client Order ID: The ClientOid field is a unique ID created by the user (we recommend using a UUID), and can only contain numbers, letters, underscores (_), and hyphens (-). This field is returned when order information is obtained. You can use clientOid to tag your orders. ClientOid is different from the order ID created by the service provider. Please do not initiate requests using the same clientOid. The maximum length for the ClientOid is 40 characters.  Please remember the orderId created by the service provider, it used to check for updates in order status.
      */
     setClientOid(value: string): AddOrderV1ReqBuilder {
         this.obj.clientOid = value;
@@ -336,7 +336,7 @@ export class AddOrderV1ReqBuilder {
     }
 
     /**
-     * specify if the order is to \'buy\' or \'sell\'
+     * Specify if the order is to \'buy\' or \'sell\'.
      */
     setSide(value: AddOrderV1Req.SideEnum): AddOrderV1ReqBuilder {
         this.obj.side = value;
@@ -352,7 +352,7 @@ export class AddOrderV1ReqBuilder {
     }
 
     /**
-     * specify if the order is an \'limit\' order or \'market\' order.   The type of order you specify when you place your order determines whether or not you need to request other parameters and also affects the execution of the matching engine.  When placing a limit order, you must specify a price and size. The system will try to match the order according to market price or a price better than market price. If the order cannot be immediately matched, it will stay in the order book until it is matched or the user cancels.  Unlike limit orders, the price for market orders fluctuates with market prices. When placing a market order, you do not need to specify a price, you only need to specify a quantity. Market orders are filled immediately and will not enter the order book. All market orders are takers and a taker fee will be charged.
+     * Specify if the order is a \'limit\' order or \'market\' order.   The type of order you specify when you place your order determines whether or not you need to request other parameters and also affects the execution of the matching engine.  When placing a limit order, you must specify a price and size. The system will try to match the order according to market price or a price better than market price. If the order cannot be immediately matched, it will stay in the order book until it is matched or the user cancels.  Unlike limit orders, the price for market orders fluctuates with market prices. When placing a market order, you do not need to specify a price; you only need to specify a quantity. Market orders are filled immediately and will not enter the order book. All market orders are takers and a taker fee will be charged.
      */
     setType(value: AddOrderV1Req.TypeEnum): AddOrderV1ReqBuilder {
         this.obj.type = value;
@@ -376,7 +376,7 @@ export class AddOrderV1ReqBuilder {
     }
 
     /**
-     * Specify quantity for order  When **type** is limit, size refers to the amount of trading targets (the asset name written in front) for the trading pair. Teh Size must be based on the baseIncrement of the trading pair. The baseIncrement represents the precision for the trading pair. The size of an order must be a positive-integer multiple of baseIncrement and must be between baseMinSize and baseMaxSize.  When **type** is market, select one out of two: size or funds
+     * Specify quantity for order.  When **type** is limited, size refers to the amount of trading targets (the asset name written in front) for the trading pair. The Size must be based on the baseIncrement of the trading pair. The baseIncrement represents the precision for the trading pair. The size of an order must be a positive-integer multiple of baseIncrement and must be between baseMinSize and baseMaxSize.  When **type** is market, select one out of two: size or funds
      */
     setSize(value: string): AddOrderV1ReqBuilder {
         this.obj.size = value;
@@ -424,7 +424,7 @@ export class AddOrderV1ReqBuilder {
     }
 
     /**
-     * Cancel after n seconds，the order timing strategy is GTT
+     * Cancel after n seconds, the order timing strategy is GTT
      */
     setCancelAfter(value: number): AddOrderV1ReqBuilder {
         this.obj.cancelAfter = value;
@@ -448,7 +448,7 @@ export class AddOrderV1ReqBuilder {
     }
 
     /**
-     * AutoPay allows returning borrowed assets when you close a position. Our system automatically triggers the repayment and the maximum repayment amount equals to the filled-order amount.
+     * AutoPay allows the return of borrowed assets when you close a position. Our system automatically triggers the repayment and the maximum repayment amount equals to the filled-order amount.
      */
     setAutoRepay(value: boolean): AddOrderV1ReqBuilder {
         this.obj.autoRepay = value;

@@ -143,7 +143,7 @@ describe('Auto Test', () => {
     test('getInterestHistory request test', () => {
         /**
          * getInterestHistory
-         * Get Interest History
+         * Get Interest History.
          * /api/v3/margin/interest
          */
         let data =
@@ -158,7 +158,7 @@ describe('Auto Test', () => {
     test('getInterestHistory response test', () => {
         /**
          * getInterestHistory
-         * Get Interest History
+         * Get Interest History.
          * /api/v3/margin/interest
          */
         let data =

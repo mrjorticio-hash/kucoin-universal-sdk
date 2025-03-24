@@ -6,12 +6,12 @@ import { Response } from '@internal/interfaces/serializable';
 
 export class ModifyOrderResp implements Response<RestResponse> {
     /**
-     * The new order id
+     * The new order ID
      */
     newOrderId: string;
 
     /**
-     * The original client order id
+     * The original client order ID
      */
     clientOid: string;
 

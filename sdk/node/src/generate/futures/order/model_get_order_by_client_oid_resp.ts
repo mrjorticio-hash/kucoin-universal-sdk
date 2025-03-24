@@ -11,7 +11,7 @@ export class GetOrderByClientOidResp implements Response<RestResponse> {
     id: string;
 
     /**
-     * Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)
+     * Symbol of the contract. Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)
      */
     symbol: string;
 
@@ -26,7 +26,7 @@ export class GetOrderByClientOidResp implements Response<RestResponse> {
     side: GetOrderByClientOidResp.SideEnum;
 
     /**
-     * Order price
+     * Order Price
      */
     price: string;
 
@@ -51,7 +51,7 @@ export class GetOrderByClientOidResp implements Response<RestResponse> {
     dealSize: number;
 
     /**
-     * [Self Trade Prevention](https://www.kucoin.com/docs-new/doc-338146) is divided into these strategies: CN, CO, CB. Not supported DC at the moment.
+     * [Self Trade Prevention](https://www.kucoin.com/docs-new/doc-338146) is divided into these strategies: CN, CO, CB. DC not currently supported.
      */
     stp: GetOrderByClientOidResp.StpEnum;
 
@@ -101,7 +101,7 @@ export class GetOrderByClientOidResp implements Response<RestResponse> {
     leverage: string;
 
     /**
-     * A mark to forcely hold the funds for an order
+     * A mark to force-hold the funds for an order
      */
     forceHold: boolean;
 
@@ -116,7 +116,7 @@ export class GetOrderByClientOidResp implements Response<RestResponse> {
     visibleSize: number;
 
     /**
-     * Unique order id created by users to identify their orders
+     * Unique order ID created by users to identify their orders
      */
     clientOid: string;
 
@@ -126,7 +126,7 @@ export class GetOrderByClientOidResp implements Response<RestResponse> {
     remark: string;
 
     /**
-     * tag order source
+     * Tag order source
      */
     tags: string;
 
@@ -141,12 +141,12 @@ export class GetOrderByClientOidResp implements Response<RestResponse> {
     cancelExist: boolean;
 
     /**
-     * Time the order created
+     * Order creation time
      */
     createdAt: number;
 
     /**
-     * last update time
+     * Last update time
      */
     updatedAt: number;
 
@@ -156,12 +156,12 @@ export class GetOrderByClientOidResp implements Response<RestResponse> {
     endAt: number;
 
     /**
-     * Order create time in nanosecond
+     * Order creation time in nanoseconds
      */
     orderTime: number;
 
     /**
-     * settlement currency
+     * Settlement currency
      */
     settleCurrency: string;
 
@@ -171,7 +171,7 @@ export class GetOrderByClientOidResp implements Response<RestResponse> {
     marginMode: GetOrderByClientOidResp.MarginModeEnum;
 
     /**
-     * Average transaction price, forward contract average transaction price = sum (transaction value) / sum (transaction quantity), reverse contract average transaction price = sum (transaction quantity) / sum (transaction value). Transaction quantity = lots * multiplier
+     * Average transaction price, forward contract average transaction price = sum (transaction value) / sum (transaction quantity); reverse contract average transaction price = sum (transaction quantity) / sum (transaction value). Transaction quantity = lots * multiplier
      */
     avgDealPrice: string;
 
@@ -355,11 +355,11 @@ export namespace GetOrderByClientOidResp {
          */
         TRADE_PRICE = <any>'TP',
         /**
-         * MP for mark price, The mark price can be obtained through relevant OPEN API for index services
+         * MP for mark price. The mark price can be obtained through relevant OPEN API for index services.
          */
         MARK_PRICE = <any>'MP',
         /**
-         * IP for index price, The index price can be obtained through relevant OPEN API for index services
+         * IP for index price. The index price can be obtained through relevant OPEN API for index services.
          */
         INDEX_PRICE = <any>'IP',
     }

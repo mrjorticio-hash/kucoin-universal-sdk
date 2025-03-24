@@ -15,18 +15,18 @@ class CancelOrderByClientOidReq(BaseModel):
     CancelOrderByClientOidReq
 
     Attributes:
-        symbol (str): Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) 
-        client_oid (str): The user self-defined order id.
+        symbol (str): Symbol of the contract. Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) 
+        client_oid (str): The user self-defined order ID.
     """
 
     symbol: Optional[str] = Field(
         default=None,
         description=
-        "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) "
+        "Symbol of the contract. Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) "
     )
     client_oid: Optional[str] = Field(
         default=None,
-        description="The user self-defined order id.",
+        description="The user self-defined order ID.",
         alias="clientOid")
 
     __properties: ClassVar[List[str]] = ["symbol", "clientOid"]
@@ -79,14 +79,14 @@ class CancelOrderByClientOidReqBuilder:
 
     def set_symbol(self, value: str) -> CancelOrderByClientOidReqBuilder:
         """
-        Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) 
+        Symbol of the contract. Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) 
         """
         self.obj['symbol'] = value
         return self
 
     def set_client_oid(self, value: str) -> CancelOrderByClientOidReqBuilder:
         """
-        The user self-defined order id.
+        The user self-defined order ID.
         """
         self.obj['clientOid'] = value
         return self

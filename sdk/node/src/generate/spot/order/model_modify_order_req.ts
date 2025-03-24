@@ -5,7 +5,7 @@ import { Serializable } from '@internal/interfaces/serializable';
 
 export class ModifyOrderReq implements Serializable {
     /**
-     * The old client order id,orderId and clientOid must choose one
+     * One must be chose out of the old client order ID, orderId and clientOid
      */
     clientOid?: string;
 
@@ -15,17 +15,17 @@ export class ModifyOrderReq implements Serializable {
     symbol: string;
 
     /**
-     * The old order id, orderId and clientOid must choose one
+     * One must be chosen out of the old order id, orderId and clientOid
      */
     orderId?: string;
 
     /**
-     * The modified price of the new order, newPrice and newSize must choose one
+     * One must be chosen out of the modified price of the new order, newPrice and newSize
      */
     newPrice?: string;
 
     /**
-     * The modified size of the new order, newPrice and newSize must choose one
+     * One must be chosen out of the modified size of the new order, newPrice and newSize
      */
     newSize?: string;
 
@@ -49,7 +49,7 @@ export class ModifyOrderReq implements Serializable {
      */
     static create(data: {
         /**
-         * The old client order id,orderId and clientOid must choose one
+         * One must be chose out of the old client order ID, orderId and clientOid
          */
         clientOid?: string;
         /**
@@ -57,15 +57,15 @@ export class ModifyOrderReq implements Serializable {
          */
         symbol: string;
         /**
-         * The old order id, orderId and clientOid must choose one
+         * One must be chosen out of the old order id, orderId and clientOid
          */
         orderId?: string;
         /**
-         * The modified price of the new order, newPrice and newSize must choose one
+         * One must be chosen out of the modified price of the new order, newPrice and newSize
          */
         newPrice?: string;
         /**
-         * The modified size of the new order, newPrice and newSize must choose one
+         * One must be chosen out of the modified size of the new order, newPrice and newSize
          */
         newSize?: string;
     }): ModifyOrderReq {
@@ -103,7 +103,7 @@ export class ModifyOrderReqBuilder {
         this.obj = obj;
     }
     /**
-     * The old client order id,orderId and clientOid must choose one
+     * One must be chose out of the old client order ID, orderId and clientOid
      */
     setClientOid(value: string): ModifyOrderReqBuilder {
         this.obj.clientOid = value;
@@ -119,7 +119,7 @@ export class ModifyOrderReqBuilder {
     }
 
     /**
-     * The old order id, orderId and clientOid must choose one
+     * One must be chosen out of the old order id, orderId and clientOid
      */
     setOrderId(value: string): ModifyOrderReqBuilder {
         this.obj.orderId = value;
@@ -127,7 +127,7 @@ export class ModifyOrderReqBuilder {
     }
 
     /**
-     * The modified price of the new order, newPrice and newSize must choose one
+     * One must be chosen out of the modified price of the new order, newPrice and newSize
      */
     setNewPrice(value: string): ModifyOrderReqBuilder {
         this.obj.newPrice = value;
@@ -135,7 +135,7 @@ export class ModifyOrderReqBuilder {
     }
 
     /**
-     * The modified size of the new order, newPrice and newSize must choose one
+     * One must be chosen out of the modified size of the new order, newPrice and newSize
      */
     setNewSize(value: string): ModifyOrderReqBuilder {
         this.obj.newSize = value;

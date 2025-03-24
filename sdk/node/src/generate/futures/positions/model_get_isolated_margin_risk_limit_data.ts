@@ -5,17 +5,17 @@ import { Serializable } from '@internal/interfaces/serializable';
 
 export class GetIsolatedMarginRiskLimitData implements Serializable {
     /**
-     * Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)
+     * Symbol of the contract. Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)
      */
     symbol: string;
 
     /**
-     * level
+     * Level
      */
     level: number;
 
     /**
-     * Upper limit USDT(includes)
+     * Upper limit USDT (included)
      */
     maxRiskLimit: number;
 
@@ -25,7 +25,7 @@ export class GetIsolatedMarginRiskLimitData implements Serializable {
     minRiskLimit: number;
 
     /**
-     * Max leverage
+     * Max. leverage
      */
     maxLeverage: number;
 

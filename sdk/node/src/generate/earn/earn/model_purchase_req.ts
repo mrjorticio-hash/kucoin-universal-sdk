@@ -5,7 +5,7 @@ import { Serializable } from '@internal/interfaces/serializable';
 
 export class PurchaseReq implements Serializable {
     /**
-     * Product Id
+     * Product ID
      */
     productId: string;
 
@@ -43,7 +43,7 @@ export class PurchaseReq implements Serializable {
      */
     static create(data: {
         /**
-         * Product Id
+         * Product ID
          */
         productId: string;
         /**
@@ -100,7 +100,7 @@ export class PurchaseReqBuilder {
         this.obj = obj;
     }
     /**
-     * Product Id
+     * Product ID
      */
     setProductId(value: string): PurchaseReqBuilder {
         this.obj.productId = value;

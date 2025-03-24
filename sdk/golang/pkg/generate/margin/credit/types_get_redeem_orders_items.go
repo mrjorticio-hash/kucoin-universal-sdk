@@ -6,9 +6,9 @@ package credit
 type GetRedeemOrdersItems struct {
 	// Currency
 	Currency string `json:"currency,omitempty"`
-	// Purchase order id
+	// Purchase order ID
 	PurchaseOrderNo string `json:"purchaseOrderNo,omitempty"`
-	// Redeem order id
+	// Redeem order ID
 	RedeemOrderNo string `json:"redeemOrderNo,omitempty"`
 	// Redemption size
 	RedeemSize string `json:"redeemSize,omitempty"`

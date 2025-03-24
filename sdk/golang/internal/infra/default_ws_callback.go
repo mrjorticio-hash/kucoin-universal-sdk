@@ -48,7 +48,7 @@ func (s *CallbackManager) GetSubInfo() []*util.SubInfo {
 		}
 		for topic, _ := range topics {
 			parts := strings.Split(topic, ":")
-			if len(parts) == 2 {
+			if len(parts) == 2 && parts[1] != "all" {
 				info.Args = append(info.Args, parts[1])
 			}
 			info.Callback = s.topicCallbackMapping[topic].callback

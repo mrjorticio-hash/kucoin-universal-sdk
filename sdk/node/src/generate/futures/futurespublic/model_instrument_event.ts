@@ -7,7 +7,7 @@ import { Response } from '@internal/interfaces/serializable';
 
 export class InstrumentEvent implements Response<WsMessage> {
     /**
-     * Granularity (predicted funding rate: 1-min granularity: 60000; Funding rate: 8-hours granularity: 28800000. )
+     * Granularity (predicted funding rate: 1-min granularity: 60000; Funding rate: 8-hours granularity: 28800000.)
      */
     granularity: number;
     /**

@@ -16,16 +16,16 @@ class GetSpotSubAccountsSummaryV2Items(BaseModel):
     GetSpotSubAccountsSummaryV2Items
 
     Attributes:
-        user_id (str): Sub-account User Id
+        user_id (str): Sub-account User ID
         uid (int): Sub-account UID
         sub_name (str): Sub-account name
         status (StatusEnum): Sub-account; 2:Enable, 3:Frozen
         type (TypeEnum): Sub-account type
         access (str): Sub-account Permission
-        created_at (int): Time of the event
+        created_at (int): Time of event
         remarks (str): Remarks
-        trade_types (list[str]): Subaccount Permissions
-        opened_trade_types (list[str]): Subaccount active permissions,If do not have the corresponding permissions, need to log in to the sub-account and go to the corresponding web page to activate
+        trade_types (list[str]): Sub-account Permissions
+        opened_trade_types (list[str]): Sub-account active permissions: If you do not have the corresponding permissions, you must log in to the sub-account and go to the corresponding web page to activate.
         hosted_status (str): 
     """
 
@@ -41,10 +41,10 @@ class GetSpotSubAccountsSummaryV2Items(BaseModel):
     class TypeEnum(Enum):
         """
         Attributes:
-            NORMAL: Normal subaccount
-            ROBOT: Robot subaccount
+            NORMAL: Normal sub-account
+            ROBOT: Robot sub-account
             NOVICE: New financial sub-account
-            HOSTED: Asset management subaccount
+            HOSTED: Asset management sub-account
         """
         NORMAL = 0
         ROBOT = 1
@@ -52,7 +52,7 @@ class GetSpotSubAccountsSummaryV2Items(BaseModel):
         HOSTED = 5
 
     user_id: Optional[str] = Field(default=None,
-                                   description="Sub-account User Id",
+                                   description="Sub-account User ID",
                                    alias="userId")
     uid: Optional[int] = Field(default=None, description="Sub-account UID")
     sub_name: Optional[str] = Field(default=None,
@@ -65,15 +65,17 @@ class GetSpotSubAccountsSummaryV2Items(BaseModel):
     access: Optional[str] = Field(default=None,
                                   description="Sub-account Permission")
     created_at: Optional[int] = Field(default=None,
-                                      description="Time of the event",
+                                      description="Time of event",
                                       alias="createdAt")
     remarks: Optional[str] = Field(default=None, description="Remarks")
     trade_types: Optional[List[str]] = Field(
-        default=None, description="Subaccount Permissions", alias="tradeTypes")
+        default=None,
+        description="Sub-account Permissions",
+        alias="tradeTypes")
     opened_trade_types: Optional[List[str]] = Field(
         default=None,
         description=
-        "Subaccount active permissions,If do not have the corresponding permissions, need to log in to the sub-account and go to the corresponding web page to activate",
+        "Sub-account active permissions: If you do not have the corresponding permissions, you must log in to the sub-account and go to the corresponding web page to activate.",
         alias="openedTradeTypes")
     hosted_status: Optional[str] = Field(default=None, alias="hostedStatus")
 

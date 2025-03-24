@@ -23,7 +23,7 @@ class MarketSnapshotData(BaseModel):
         average_price (float): 
         base_currency (str): 
         bid_size (float): 
-        board (BoardEnum): Trading pair partition： 0.primary partition 1.KuCoin Plus\", example = \"1\"
+        board (BoardEnum): Trading pair partition: 0. Primary partition 1.KuCoin Plus\", example = \"1\"
         buy (float): 
         change_price (float): 
         change_rate (float): 
@@ -35,7 +35,7 @@ class MarketSnapshotData(BaseModel):
         maker_coefficient (float): 
         maker_fee_rate (float): 
         margin_trade (bool): 
-        mark (MarkEnum): Trading Pair Mark： 0.default 1.ST. 2.NEW\", example = \"1\"
+        mark (MarkEnum): Trading Pair Mark: 0. Default 1.ST. 2.NEW\", example = \"1\"
         market (str): 
         market_change1h (MarketSnapshotDataMarketChange1h): 
         market_change24h (MarketSnapshotDataMarketChange24h): 
@@ -82,7 +82,7 @@ class MarketSnapshotData(BaseModel):
     board: Optional[BoardEnum] = Field(
         default=None,
         description=
-        "Trading pair partition： 0.primary partition 1.KuCoin Plus\", example = \"1\""
+        "Trading pair partition: 0. Primary partition 1.KuCoin Plus\", example = \"1\""
     )
     buy: Optional[float] = None
     change_price: Optional[float] = Field(default=None, alias="changePrice")
@@ -100,7 +100,7 @@ class MarketSnapshotData(BaseModel):
     mark: Optional[MarkEnum] = Field(
         default=None,
         description=
-        "Trading Pair Mark： 0.default 1.ST. 2.NEW\", example = \"1\"")
+        "Trading Pair Mark: 0. Default 1.ST. 2.NEW\", example = \"1\"")
     market: Optional[str] = None
     market_change1h: Optional[MarketSnapshotDataMarketChange1h] = Field(
         default=None, alias="marketChange1h")

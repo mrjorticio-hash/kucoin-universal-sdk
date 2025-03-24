@@ -15,32 +15,33 @@ class ModifyOrderReq(BaseModel):
     ModifyOrderReq
 
     Attributes:
-        client_oid (str): The old client order id,orderId and clientOid must choose one
+        client_oid (str): One must be chose out of the old client order ID, orderId and clientOid
         symbol (str): symbol
-        order_id (str): The old order id, orderId and clientOid must choose one
-        new_price (str): The modified price of the new order, newPrice and newSize must choose one
-        new_size (str): The modified size of the new order, newPrice and newSize must choose one
+        order_id (str): One must be chosen out of the old order id, orderId and clientOid
+        new_price (str): One must be chosen out of the modified price of the new order, newPrice and newSize
+        new_size (str): One must be chosen out of the modified size of the new order, newPrice and newSize
     """
 
     client_oid: Optional[str] = Field(
         default=None,
         description=
-        "The old client order id,orderId and clientOid must choose one",
+        "One must be chose out of the old client order ID, orderId and clientOid",
         alias="clientOid")
     symbol: Optional[str] = Field(default=None, description="symbol")
     order_id: Optional[str] = Field(
         default=None,
-        description="The old order id, orderId and clientOid must choose one",
+        description=
+        "One must be chosen out of the old order id, orderId and clientOid",
         alias="orderId")
     new_price: Optional[str] = Field(
         default=None,
         description=
-        "The modified price of the new order, newPrice and newSize must choose one",
+        "One must be chosen out of the modified price of the new order, newPrice and newSize",
         alias="newPrice")
     new_size: Optional[str] = Field(
         default=None,
         description=
-        "The modified size of the new order, newPrice and newSize must choose one",
+        "One must be chosen out of the modified size of the new order, newPrice and newSize",
         alias="newSize")
 
     __properties: ClassVar[List[str]] = [
@@ -96,7 +97,7 @@ class ModifyOrderReqBuilder:
 
     def set_client_oid(self, value: str) -> ModifyOrderReqBuilder:
         """
-        The old client order id,orderId and clientOid must choose one
+        One must be chose out of the old client order ID, orderId and clientOid
         """
         self.obj['clientOid'] = value
         return self
@@ -110,21 +111,21 @@ class ModifyOrderReqBuilder:
 
     def set_order_id(self, value: str) -> ModifyOrderReqBuilder:
         """
-        The old order id, orderId and clientOid must choose one
+        One must be chosen out of the old order id, orderId and clientOid
         """
         self.obj['orderId'] = value
         return self
 
     def set_new_price(self, value: str) -> ModifyOrderReqBuilder:
         """
-        The modified price of the new order, newPrice and newSize must choose one
+        One must be chosen out of the modified price of the new order, newPrice and newSize
         """
         self.obj['newPrice'] = value
         return self
 
     def set_new_size(self, value: str) -> ModifyOrderReqBuilder:
         """
-        The modified size of the new order, newPrice and newSize must choose one
+        One must be chosen out of the modified size of the new order, newPrice and newSize
         """
         self.obj['newSize'] = value
         return self

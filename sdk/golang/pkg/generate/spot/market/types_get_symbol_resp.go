@@ -38,7 +38,7 @@ type GetSymbolResp struct {
 	PriceIncrement string `json:"priceIncrement,omitempty"`
 	// Threshold for price portection
 	PriceLimitRate string `json:"priceLimitRate,omitempty"`
-	// the minimum trading amounts
+	// The minimum trading amounts
 	MinFunds string `json:"minFunds,omitempty"`
 	// Available for margin or not.
 	IsMarginEnabled bool `json:"isMarginEnabled,omitempty"`
@@ -50,12 +50,27 @@ type GetSymbolResp struct {
 	MakerFeeCoefficient string `json:"makerFeeCoefficient,omitempty"`
 	// The taker fee coefficient. The actual fee needs to be multiplied by this coefficient to get the final fee. Most currencies have a coefficient of 1. If set to 0, it means no fee
 	TakerFeeCoefficient string `json:"takerFeeCoefficient,omitempty"`
-	St                  bool   `json:"st,omitempty"`
+	// Whether it is a [Special Treatment](https://www.kucoin.com/legal/special-treatment) symbol
+	St bool `json:"st,omitempty"`
+	// The  [call auction](https://www.kucoin.com/support/40999744334105) status returns true/false
+	CallauctionIsEnabled bool `json:"callauctionIsEnabled,omitempty"`
+	// The lowest price declared in the call auction
+	CallauctionPriceFloor string `json:"callauctionPriceFloor,omitempty"`
+	// The highest bid price in the call auction
+	CallauctionPriceCeiling string `json:"callauctionPriceCeiling,omitempty"`
+	// The first phase of the call auction starts at (Allow add orders, allow cancel orders)
+	CallauctionFirstStageStartTime int64 `json:"callauctionFirstStageStartTime,omitempty"`
+	// The second phase of the call auction starts at (Allow add orders, don't allow cancel orders)
+	CallauctionSecondStageStartTime int64 `json:"callauctionSecondStageStartTime,omitempty"`
+	// The third phase of the call auction starts at (Don't allow add orders, don't allow cancel orders)
+	CallauctionThirdStageStartTime int64 `json:"callauctionThirdStageStartTime,omitempty"`
+	// Official opening time (end time of the third phase of call auction)
+	TradingStartTime int64 `json:"tradingStartTime,omitempty"`
 }
 
 // NewGetSymbolResp instantiates a new GetSymbolResp object
 // This constructor will assign default values to properties that have it defined
-func NewGetSymbolResp(symbol string, name string, baseCurrency string, quoteCurrency string, feeCurrency string, market string, baseMinSize string, quoteMinSize string, baseMaxSize string, quoteMaxSize string, baseIncrement string, quoteIncrement string, priceIncrement string, priceLimitRate string, minFunds string, isMarginEnabled bool, enableTrading bool, feeCategory int32, makerFeeCoefficient string, takerFeeCoefficient string, st bool) *GetSymbolResp {
+func NewGetSymbolResp(symbol string, name string, baseCurrency string, quoteCurrency string, feeCurrency string, market string, baseMinSize string, quoteMinSize string, baseMaxSize string, quoteMaxSize string, baseIncrement string, quoteIncrement string, priceIncrement string, priceLimitRate string, minFunds string, isMarginEnabled bool, enableTrading bool, feeCategory int32, makerFeeCoefficient string, takerFeeCoefficient string, st bool, callauctionIsEnabled bool, callauctionPriceFloor string, callauctionPriceCeiling string, callauctionFirstStageStartTime int64, callauctionSecondStageStartTime int64, callauctionThirdStageStartTime int64, tradingStartTime int64) *GetSymbolResp {
 	this := GetSymbolResp{}
 	this.Symbol = symbol
 	this.Name = name
@@ -78,6 +93,13 @@ func NewGetSymbolResp(symbol string, name string, baseCurrency string, quoteCurr
 	this.MakerFeeCoefficient = makerFeeCoefficient
 	this.TakerFeeCoefficient = takerFeeCoefficient
 	this.St = st
+	this.CallauctionIsEnabled = callauctionIsEnabled
+	this.CallauctionPriceFloor = callauctionPriceFloor
+	this.CallauctionPriceCeiling = callauctionPriceCeiling
+	this.CallauctionFirstStageStartTime = callauctionFirstStageStartTime
+	this.CallauctionSecondStageStartTime = callauctionSecondStageStartTime
+	this.CallauctionThirdStageStartTime = callauctionThirdStageStartTime
+	this.TradingStartTime = tradingStartTime
 	return &this
 }
 
@@ -111,6 +133,13 @@ func (o *GetSymbolResp) ToMap() map[string]interface{} {
 	toSerialize["makerFeeCoefficient"] = o.MakerFeeCoefficient
 	toSerialize["takerFeeCoefficient"] = o.TakerFeeCoefficient
 	toSerialize["st"] = o.St
+	toSerialize["callauctionIsEnabled"] = o.CallauctionIsEnabled
+	toSerialize["callauctionPriceFloor"] = o.CallauctionPriceFloor
+	toSerialize["callauctionPriceCeiling"] = o.CallauctionPriceCeiling
+	toSerialize["callauctionFirstStageStartTime"] = o.CallauctionFirstStageStartTime
+	toSerialize["callauctionSecondStageStartTime"] = o.CallauctionSecondStageStartTime
+	toSerialize["callauctionThirdStageStartTime"] = o.CallauctionThirdStageStartTime
+	toSerialize["tradingStartTime"] = o.TradingStartTime
 	return toSerialize
 }
 

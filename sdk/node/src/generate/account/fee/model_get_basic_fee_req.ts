@@ -5,7 +5,7 @@ import { Serializable } from '@internal/interfaces/serializable';
 
 export class GetBasicFeeReq implements Serializable {
     /**
-     * Currency type: 0-crypto currency, 1-fiat currency. default is 0-crypto currency
+     * Currency type: 0-crypto currency, 1-fiat currency. Default is 0-crypto currency
      */
     currencyType?: GetBasicFeeReq.CurrencyTypeEnum = GetBasicFeeReq.CurrencyTypeEnum._0;
 
@@ -26,7 +26,7 @@ export class GetBasicFeeReq implements Serializable {
      */
     static create(data: {
         /**
-         * Currency type: 0-crypto currency, 1-fiat currency. default is 0-crypto currency
+         * Currency type: 0-crypto currency, 1-fiat currency. Default is 0-crypto currency
          */
         currencyType?: GetBasicFeeReq.CurrencyTypeEnum;
     }): GetBasicFeeReq {
@@ -62,7 +62,7 @@ export class GetBasicFeeReq implements Serializable {
 export namespace GetBasicFeeReq {
     export enum CurrencyTypeEnum {
         /**
-         * crypto currency
+         * cryptocurrency
          */
         _0 = <any>0,
         /**
@@ -77,7 +77,7 @@ export class GetBasicFeeReqBuilder {
         this.obj = obj;
     }
     /**
-     * Currency type: 0-crypto currency, 1-fiat currency. default is 0-crypto currency
+     * Currency type: 0-crypto currency, 1-fiat currency. Default is 0-crypto currency
      */
     setCurrencyType(value: GetBasicFeeReq.CurrencyTypeEnum): GetBasicFeeReqBuilder {
         this.obj.currencyType = value;

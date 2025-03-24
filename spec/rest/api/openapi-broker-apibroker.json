@@ -11,7 +11,7 @@
             "get": {
                 "summary": "Get Broker Rebate",
                 "deprecated": false,
-                "description": "This interface supports downloading Broker rebate orders",
+                "description": "This interface supports the downloading of Broker rebate orders.",
                 "tags": [],
                 "parameters": [
                     {
@@ -35,7 +35,7 @@
                     {
                         "name": "tradeType",
                         "in": "query",
-                        "description": "Transaction type, 1: spot 2: futures",
+                        "description": "Transaction type: 1, spot; 2, futures",
                         "required": true,
                         "schema": {
                             "type": "string",
@@ -100,8 +100,8 @@
                 "x-sdk-service": "Broker",
                 "x-sdk-sub-service": "APIBroker",
                 "x-sdk-method-name": "getRebase",
-                "x-sdk-method-description": "This interface supports downloading Broker rebate orders",
-                "x-api-rate-limit": 3,
+                "x-sdk-method-description": "This interface supports the downloading of Broker rebate orders.",
+                "x-api-rate-limit-weight": 3,
                 "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"url\\\": \\\"https://kc-v2-promotion.s3.ap-northeast-1.amazonaws.com/broker/671aec522593f600019766d0_file.csv?X-Amz-Security-Token=IQo*********2cd90f14efb\\\"\\n    }\\n}",
                 "x-request-example": "{\\\"begin\\\": \\\"20240610\\\", \\\"end\\\": \\\"20241010\\\", \\\"tradeType\\\": \\\"1\\\"}",
                 "operationId": "001"

@@ -11,13 +11,13 @@
             "get": {
                 "summary": "Get Basic Fee - Spot/Margin",
                 "deprecated": false,
-                "description": "This interface is for the spot/margin basic fee rate of users",
+                "description": "This interface is for the user’s spot/margin basic fee rate.",
                 "tags": [],
                 "parameters": [
                     {
                         "name": "currencyType",
                         "in": "query",
-                        "description": "Currency type: 0-crypto currency, 1-fiat currency. default is 0-crypto currency\n",
+                        "description": "Currency type: 0-crypto currency, 1-fiat currency. Default is 0-crypto currency",
                         "required": false,
                         "schema": {
                             "type": "integer",
@@ -30,7 +30,7 @@
                                 {
                                     "value": 0,
                                     "name": "",
-                                    "description": "crypto currency"
+                                    "description": "cryptocurrency"
                                 },
                                 {
                                     "value": 1,
@@ -91,8 +91,8 @@
                 "x-sdk-service": "Account",
                 "x-sdk-sub-service": "Fee",
                 "x-sdk-method-name": "getBasicFee",
-                "x-sdk-method-description": "This interface is for the spot/margin basic fee rate of users",
-                "x-api-rate-limit": 3,
+                "x-sdk-method-description": "This interface is for the user’s spot/margin basic fee rate.",
+                "x-api-rate-limit-weight": 3,
                 "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"takerFeeRate\\\": \\\"0.001\\\",\\n        \\\"makerFeeRate\\\": \\\"0.001\\\"\\n    }\\n}",
                 "x-request-example": "{\\\"currencyType\\\": 1}",
                 "operationId": "001"
@@ -102,13 +102,13 @@
             "get": {
                 "summary": "Get Actual Fee - Spot/Margin",
                 "deprecated": false,
-                "description": "This interface is for the actual fee rate of the trading pair. You can inquire about fee rates of 10 trading pairs each time at most. The fee rate of your sub-account is the same as that of the master account.",
+                "description": "This interface is for the trading pair’s actual fee rate. You can inquire about fee rates of 10 trading pairs each time at most. The fee rate of your sub-account is the same as that of the master account.",
                 "tags": [],
                 "parameters": [
                     {
                         "name": "symbols",
                         "in": "query",
-                        "description": "Trading pair (optional, you can inquire fee rates of 10 trading pairs each time at most)",
+                        "description": "Trading pair (optional; you can inquire fee rates of 10 trading pairs each time at most)",
                         "required": true,
                         "schema": {
                             "type": "string",
@@ -137,7 +137,7 @@
                                                 "properties": {
                                                     "symbol": {
                                                         "type": "string",
-                                                        "description": "The unique identity of the trading pair and will not change even if the trading pair is renamed"
+                                                        "description": "The unique identity of the trading pair; will not change even if the trading pair is renamed"
                                                     },
                                                     "takerFeeRate": {
                                                         "type": "string",
@@ -146,6 +146,14 @@
                                                     "makerFeeRate": {
                                                         "type": "string",
                                                         "description": "Actual maker fee rate of the symbol"
+                                                    },
+                                                    "sellTaxRate": {
+                                                        "type": "string",
+                                                        "description": "Buy tax rate; this field is visible to users in certain countries"
+                                                    },
+                                                    "buyTaxRate": {
+                                                        "type": "string",
+                                                        "description": "Sell tax rate; this field is visible to users in certain countries"
                                                     }
                                                 },
                                                 "required": [
@@ -174,8 +182,8 @@
                 "x-sdk-service": "Account",
                 "x-sdk-sub-service": "Fee",
                 "x-sdk-method-name": "getSpotActualFee",
-                "x-sdk-method-description": "This interface is for the actual fee rate of the trading pair. You can inquire about fee rates of 10 trading pairs each time at most. The fee rate of your sub-account is the same as that of the master account.",
-                "x-api-rate-limit": 3,
+                "x-sdk-method-description": "This interface is for the trading pair’s actual fee rate. You can inquire about fee rates of 10 trading pairs each time at most. The fee rate of your sub-account is the same as that of the master account.",
+                "x-api-rate-limit-weight": 3,
                 "x-response-example": "{\\\"code\\\":\\\"200000\\\",\\\"data\\\":[{\\\"symbol\\\":\\\"BTC-USDT\\\",\\\"takerFeeRate\\\":\\\"0.001\\\",\\\"makerFeeRate\\\":\\\"0.001\\\"},{\\\"symbol\\\":\\\"ETH-USDT\\\",\\\"takerFeeRate\\\":\\\"0.001\\\",\\\"makerFeeRate\\\":\\\"0.001\\\"}]}",
                 "x-request-example": "{\\\"symbols\\\": \\\"BTC-USDT,ETH-USDT\\\"}",
                 "operationId": "002"
@@ -183,13 +191,13 @@
             "patch": {
                 "summary": "Get Actual Fee - Futures",
                 "deprecated": false,
-                "description": "This interface is for the actual futures fee rate of the trading pair. The fee rate of your sub-account is the same as that of the master account.",
+                "description": "This interface is for the trading pair’s actual futures fee rate. The fee rate of your sub-account is the same as that of the master account.",
                 "tags": [],
                 "parameters": [
                     {
                         "name": "symbol",
                         "in": "query",
-                        "description": "Trading pair",
+                        "description": "The unique identity of the trading pair; will not change even if the trading pair is renamed",
                         "required": true,
                         "schema": {
                             "type": "string",
@@ -217,7 +225,7 @@
                                             "properties": {
                                                 "symbol": {
                                                     "type": "string",
-                                                    "description": "The unique identity of the trading pair and will not change even if the trading pair is renamed"
+                                                    "description": "The unique identity of the trading pair; will not change even if the trading pair is renamed"
                                                 },
                                                 "takerFeeRate": {
                                                     "type": "string",
@@ -253,8 +261,8 @@
                 "x-sdk-service": "Account",
                 "x-sdk-sub-service": "Fee",
                 "x-sdk-method-name": "getFuturesActualFee",
-                "x-sdk-method-description": "This interface is for the actual futures fee rate of the trading pair. The fee rate of your sub-account is the same as that of the master account.",
-                "x-api-rate-limit": 3,
+                "x-sdk-method-description": "This interface is for the trading pair’s actual futures fee rate. The fee rate of your sub-account is the same as that of the master account.",
+                "x-api-rate-limit-weight": 3,
                 "x-response-example": "{\\\"code\\\":\\\"200000\\\",\\\"data\\\":{\\\"symbol\\\":\\\"XBTUSDTM\\\",\\\"takerFeeRate\\\":\\\"0.0006\\\",\\\"makerFeeRate\\\":\\\"0.0002\\\"}}",
                 "x-request-example": "{\\\"symbol\\\": \\\"XBTUSDTM\\\"}",
                 "operationId": "003",

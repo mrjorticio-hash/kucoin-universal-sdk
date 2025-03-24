@@ -15,7 +15,7 @@ export class GetSubAccountItems implements Serializable {
     uid: string;
 
     /**
-     * Creation time, unix timestamp (milliseconds)
+     * Creation time, Unix timestamp (milliseconds)
      */
     createdAt: number;
 

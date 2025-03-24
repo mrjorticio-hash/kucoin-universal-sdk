@@ -22,7 +22,7 @@ export class GetSubAccountResp implements Response<RestResponse> {
     totalNum: number;
 
     /**
-     * Total Page
+     * Total Pages
      */
     totalPage: number;
 

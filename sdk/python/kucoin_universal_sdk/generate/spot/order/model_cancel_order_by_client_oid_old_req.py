@@ -15,18 +15,16 @@ class CancelOrderByClientOidOldReq(BaseModel):
     CancelOrderByClientOidOldReq
 
     Attributes:
-        symbol (str): symbol
         client_oid (str): Client Order Id，unique identifier created by the user
     """
 
-    symbol: Optional[str] = Field(default=None, description="symbol")
     client_oid: Optional[str] = Field(
         default=None,
         path_variable="True",
         description="Client Order Id，unique identifier created by the user",
         alias="clientOid")
 
-    __properties: ClassVar[List[str]] = ["symbol", "clientOid"]
+    __properties: ClassVar[List[str]] = ["clientOid"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -63,10 +61,7 @@ class CancelOrderByClientOidOldReq(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "symbol": obj.get("symbol"),
-            "clientOid": obj.get("clientOid")
-        })
+        _obj = cls.model_validate({"clientOid": obj.get("clientOid")})
         return _obj
 
 
@@ -74,13 +69,6 @@ class CancelOrderByClientOidOldReqBuilder:
 
     def __init__(self):
         self.obj = {}
-
-    def set_symbol(self, value: str) -> CancelOrderByClientOidOldReqBuilder:
-        """
-        symbol
-        """
-        self.obj['symbol'] = value
-        return self
 
     def set_client_oid(self,
                        value: str) -> CancelOrderByClientOidOldReqBuilder:

@@ -10,17 +10,17 @@ import (
 type APIBrokerAPI interface {
 
 	// GetRebase Get Broker Rebate
-	// Description: This interface supports downloading Broker rebate orders
+	// Description: This interface supports the downloading of Broker rebate orders.
 	// Documentation: https://www.kucoin.com/docs-new/api-3470280
-	// +---------------------+------------+
-	// | Extra API Info      | Value      |
-	// +---------------------+------------+
-	// | API-DOMAIN          | SPOT       |
-	// | API-CHANNEL         | PRIVATE    |
-	// | API-PERMISSION      | GENERAL    |
-	// | API-RATE-LIMIT-POOL | MANAGEMENT |
-	// | API-RATE-LIMIT      | 3          |
-	// +---------------------+------------+
+	// +-----------------------+------------+
+	// | Extra API Info        | Value      |
+	// +-----------------------+------------+
+	// | API-DOMAIN            | SPOT       |
+	// | API-CHANNEL           | PRIVATE    |
+	// | API-PERMISSION        | GENERAL    |
+	// | API-RATE-LIMIT-POOL   | MANAGEMENT |
+	// | API-RATE-LIMIT-WEIGHT | 3          |
+	// +-----------------------+------------+
 	GetRebase(req *GetRebaseReq, ctx context.Context) (*GetRebaseResp, error)
 }
 

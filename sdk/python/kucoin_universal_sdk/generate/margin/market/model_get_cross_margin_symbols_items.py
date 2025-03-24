@@ -16,37 +16,38 @@ class GetCrossMarginSymbolsItems(BaseModel):
 
     Attributes:
         symbol (str): symbol
-        name (str): symbol name
-        enable_trading (bool): Whether trading is enabled: true for enabled, false for disabled
+        name (str): Symbol name
+        enable_trading (bool): Whether trading is enabled: True for enabled; false for disabled
         market (str): Trading market
-        base_currency (str): Base currency,e.g. BTC.
-        quote_currency (str): Quote currency,e.g. USDT.
+        base_currency (str): Base currency, e.g. BTC.
+        quote_currency (str): Quote currency, e.g. USDT.
         base_increment (str): Quantity increment: The quantity for an order must be a positive integer multiple of this increment. Here, the size refers to the quantity of the base currency for the order. For example, for the ETH-USDT trading pair, if the baseIncrement is 0.0000001, the order quantity can be 1.0000001 but not 1.00000001.
-        base_min_size (str): The minimum order quantity requried to place an order.
+        base_min_size (str): The minimum order quantity required to place an order.
         quote_increment (str): Quote increment: The funds for a market order must be a positive integer multiple of this increment. The funds refer to the quote currency amount. For example, for the ETH-USDT trading pair, if the quoteIncrement is 0.000001, the amount of USDT for the order can be 3000.000001 but not 3000.0000001.
         quote_min_size (str): The minimum order funds required to place a market order.
         base_max_size (str): The maximum order size required to place an order.
         quote_max_size (str): The maximum order funds required to place a market order.
-        price_increment (str): Price increment: The price of an order must be a positive integer multiple of this increment. For example, for the ETH-USDT trading pair, if the priceIncrement is 0.01, the order price can be 3000.01 but not 3000.001.  specifies the min order price as well as the price increment.This also applies to quote currency.
+        price_increment (str): Price increment: The price of an order must be a positive integer multiple of this increment. For example, for the ETH-USDT trading pair, if the priceIncrement is 0.01, the order price can be 3000.01 but not 3000.001.  Specifies the min. order price as well as the price increment.This also applies to quote currency.
         fee_currency (str): The currency of charged fees.
-        price_limit_rate (str): Threshold for price portection
-        min_funds (str): the minimum trading amounts
+        price_limit_rate (str): Threshold for price protection
+        min_funds (str): The minimum trading amounts
     """
 
     symbol: Optional[str] = Field(default=None, description="symbol")
-    name: Optional[str] = Field(default=None, description="symbol name")
+    name: Optional[str] = Field(default=None, description="Symbol name")
     enable_trading: Optional[bool] = Field(
         default=None,
         description=
-        "Whether trading is enabled: true for enabled, false for disabled",
+        "Whether trading is enabled: True for enabled; false for disabled",
         alias="enableTrading")
     market: Optional[str] = Field(default=None, description="Trading market")
-    base_currency: Optional[str] = Field(default=None,
-                                         description="Base currency,e.g. BTC.",
-                                         alias="baseCurrency")
+    base_currency: Optional[str] = Field(
+        default=None,
+        description="Base currency, e.g. BTC.",
+        alias="baseCurrency")
     quote_currency: Optional[str] = Field(
         default=None,
-        description="Quote currency,e.g. USDT.",
+        description="Quote currency, e.g. USDT.",
         alias="quoteCurrency")
     base_increment: Optional[str] = Field(
         default=None,
@@ -55,7 +56,7 @@ class GetCrossMarginSymbolsItems(BaseModel):
         alias="baseIncrement")
     base_min_size: Optional[str] = Field(
         default=None,
-        description="The minimum order quantity requried to place an order.",
+        description="The minimum order quantity required to place an order.",
         alias="baseMinSize")
     quote_increment: Optional[str] = Field(
         default=None,
@@ -77,7 +78,7 @@ class GetCrossMarginSymbolsItems(BaseModel):
     price_increment: Optional[str] = Field(
         default=None,
         description=
-        "Price increment: The price of an order must be a positive integer multiple of this increment. For example, for the ETH-USDT trading pair, if the priceIncrement is 0.01, the order price can be 3000.01 but not 3000.001.  specifies the min order price as well as the price increment.This also applies to quote currency.",
+        "Price increment: The price of an order must be a positive integer multiple of this increment. For example, for the ETH-USDT trading pair, if the priceIncrement is 0.01, the order price can be 3000.01 but not 3000.001.  Specifies the min. order price as well as the price increment.This also applies to quote currency.",
         alias="priceIncrement")
     fee_currency: Optional[str] = Field(
         default=None,
@@ -85,10 +86,10 @@ class GetCrossMarginSymbolsItems(BaseModel):
         alias="feeCurrency")
     price_limit_rate: Optional[str] = Field(
         default=None,
-        description="Threshold for price portection",
+        description="Threshold for price protection",
         alias="priceLimitRate")
     min_funds: Optional[str] = Field(default=None,
-                                     description="the minimum trading amounts",
+                                     description="The minimum trading amounts",
                                      alias="minFunds")
 
     __properties: ClassVar[List[str]] = [

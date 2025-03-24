@@ -4,15 +4,15 @@ package positions
 
 // GetIsolatedMarginRiskLimitData struct for GetIsolatedMarginRiskLimitData
 type GetIsolatedMarginRiskLimitData struct {
-	// Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)
+	// Symbol of the contract. Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)
 	Symbol string `json:"symbol,omitempty"`
-	// level
+	// Level
 	Level int32 `json:"level,omitempty"`
-	// Upper limit USDT(includes)
+	// Upper limit USDT (included)
 	MaxRiskLimit int32 `json:"maxRiskLimit,omitempty"`
 	// Lower limit USDT
 	MinRiskLimit int32 `json:"minRiskLimit,omitempty"`
-	// Max leverage
+	// Max. leverage
 	MaxLeverage int32 `json:"maxLeverage,omitempty"`
 	// Initial margin rate
 	InitialMargin float32 `json:"initialMargin,omitempty"`

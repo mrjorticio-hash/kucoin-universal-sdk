@@ -4,7 +4,7 @@ package fee
 
 // GetSpotActualFeeReq struct for GetSpotActualFeeReq
 type GetSpotActualFeeReq struct {
-	// Trading pair (optional, you can inquire fee rates of 10 trading pairs each time at most)
+	// Trading pair (optional; you can inquire fee rates of 10 trading pairs each time at most)
 	Symbols *string `json:"symbols,omitempty" url:"symbols,omitempty"`
 }
 
@@ -36,7 +36,7 @@ func NewGetSpotActualFeeReqBuilder() *GetSpotActualFeeReqBuilder {
 	return &GetSpotActualFeeReqBuilder{obj: NewGetSpotActualFeeReqWithDefaults()}
 }
 
-// Trading pair (optional, you can inquire fee rates of 10 trading pairs each time at most)
+// Trading pair (optional; you can inquire fee rates of 10 trading pairs each time at most)
 func (builder *GetSpotActualFeeReqBuilder) SetSymbols(value string) *GetSpotActualFeeReqBuilder {
 	builder.obj.Symbols = &value
 	return builder

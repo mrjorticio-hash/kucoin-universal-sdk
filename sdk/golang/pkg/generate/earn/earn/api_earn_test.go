@@ -9,7 +9,7 @@ import (
 
 func TestEarnPurchaseReqModel(t *testing.T) {
 	// Purchase
-	// purchase
+	// Purchase
 	// /api/v1/earn/orders
 
 	data := "{\"productId\": \"2611\", \"amount\": \"1\", \"accountType\": \"TRADE\"}"
@@ -21,7 +21,7 @@ func TestEarnPurchaseReqModel(t *testing.T) {
 
 func TestEarnPurchaseRespModel(t *testing.T) {
 	// Purchase
-	// purchase
+	// Purchase
 	// /api/v1/earn/orders
 
 	data := "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"orderId\": \"2767291\",\n        \"orderTxId\": \"6603694\"\n    }\n}"
@@ -147,34 +147,6 @@ func TestEarnGetPromotionProductsRespModel(t *testing.T) {
 	assert.Nil(t, err)
 }
 
-func TestEarnGetAccountHoldingReqModel(t *testing.T) {
-	// GetAccountHolding
-	// Get Account Holding
-	// /api/v1/earn/hold-assets
-
-	data := "{\"currency\": \"KCS\", \"productId\": \"example_string_default_value\", \"productCategory\": \"DEMAND\", \"currentPage\": 1, \"pageSize\": 10}"
-	req := &GetAccountHoldingReq{}
-	err := json.Unmarshal([]byte(data), req)
-	req.ToMap()
-	assert.Nil(t, err)
-}
-
-func TestEarnGetAccountHoldingRespModel(t *testing.T) {
-	// GetAccountHolding
-	// Get Account Holding
-	// /api/v1/earn/hold-assets
-
-	data := "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"totalNum\": 1,\n        \"totalPage\": 1,\n        \"currentPage\": 1,\n        \"pageSize\": 15,\n        \"items\": [\n            {\n                \"orderId\": \"2767291\",\n                \"productId\": \"2611\",\n                \"productCategory\": \"KCS_STAKING\",\n                \"productType\": \"DEMAND\",\n                \"currency\": \"KCS\",\n                \"incomeCurrency\": \"KCS\",\n                \"returnRate\": \"0.03471727\",\n                \"holdAmount\": \"1\",\n                \"redeemedAmount\": \"0\",\n                \"redeemingAmount\": \"1\",\n                \"lockStartTime\": 1701252000000,\n                \"lockEndTime\": null,\n                \"purchaseTime\": 1729257513000,\n                \"redeemPeriod\": 3,\n                \"status\": \"REDEEMING\",\n                \"earlyRedeemSupported\": 0\n            }\n        ]\n    }\n}"
-	commonResp := &types.RestResponse{}
-	err := json.Unmarshal([]byte(data), commonResp)
-	assert.Nil(t, err)
-	assert.NotNil(t, commonResp.Data)
-	resp := &GetAccountHoldingResp{}
-	err = json.Unmarshal([]byte(commonResp.Data), resp)
-	resp.ToMap()
-	assert.Nil(t, err)
-}
-
 func TestEarnGetStakingProductsReqModel(t *testing.T) {
 	// GetStakingProducts
 	// Get Staking Products
@@ -254,6 +226,34 @@ func TestEarnGetETHStakingProductsRespModel(t *testing.T) {
 	assert.Nil(t, err)
 	assert.NotNil(t, commonResp.Data)
 	resp := &GetETHStakingProductsResp{}
+	err = json.Unmarshal([]byte(commonResp.Data), resp)
+	resp.ToMap()
+	assert.Nil(t, err)
+}
+
+func TestEarnGetAccountHoldingReqModel(t *testing.T) {
+	// GetAccountHolding
+	// Get Account Holding
+	// /api/v1/earn/hold-assets
+
+	data := "{\"currency\": \"KCS\", \"productId\": \"example_string_default_value\", \"productCategory\": \"DEMAND\", \"currentPage\": 1, \"pageSize\": 10}"
+	req := &GetAccountHoldingReq{}
+	err := json.Unmarshal([]byte(data), req)
+	req.ToMap()
+	assert.Nil(t, err)
+}
+
+func TestEarnGetAccountHoldingRespModel(t *testing.T) {
+	// GetAccountHolding
+	// Get Account Holding
+	// /api/v1/earn/hold-assets
+
+	data := "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"totalNum\": 1,\n        \"totalPage\": 1,\n        \"currentPage\": 1,\n        \"pageSize\": 15,\n        \"items\": [\n            {\n                \"orderId\": \"2767291\",\n                \"productId\": \"2611\",\n                \"productCategory\": \"KCS_STAKING\",\n                \"productType\": \"DEMAND\",\n                \"currency\": \"KCS\",\n                \"incomeCurrency\": \"KCS\",\n                \"returnRate\": \"0.03471727\",\n                \"holdAmount\": \"1\",\n                \"redeemedAmount\": \"0\",\n                \"redeemingAmount\": \"1\",\n                \"lockStartTime\": 1701252000000,\n                \"lockEndTime\": null,\n                \"purchaseTime\": 1729257513000,\n                \"redeemPeriod\": 3,\n                \"status\": \"REDEEMING\",\n                \"earlyRedeemSupported\": 0\n            }\n        ]\n    }\n}"
+	commonResp := &types.RestResponse{}
+	err := json.Unmarshal([]byte(data), commonResp)
+	assert.Nil(t, err)
+	assert.NotNil(t, commonResp.Data)
+	resp := &GetAccountHoldingResp{}
 	err = json.Unmarshal([]byte(commonResp.Data), resp)
 	resp.ToMap()
 	assert.Nil(t, err)

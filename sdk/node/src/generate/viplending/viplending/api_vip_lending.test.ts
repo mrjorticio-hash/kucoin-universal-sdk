@@ -1,20 +1,36 @@
-import { GetAccountDetailResp } from './model_get_account_detail_resp';
+import { GetLoanInfoResp } from './model_get_loan_info_resp';
+import { GetDiscountRateConfigsResp } from './model_get_discount_rate_configs_resp';
 import { GetAccountsResp } from './model_get_accounts_resp';
 import { RestResponse } from '@model/common';
 
 describe('Auto Test', () => {
-    test('getAccountDetail request test', () => {
+    test('getDiscountRateConfigs request test', () => {
         /**
-         * getAccountDetail
-         * Get Account Detail
+         * getDiscountRateConfigs
+         * Get Discount Rate Configs
+         * /api/v1/otc-loan/discount-rate-configs
+         */
+    });
+
+    test('getDiscountRateConfigs response test', () => {
+        /**
+         * getDiscountRateConfigs
+         * Get Discount Rate Configs
+         * /api/v1/otc-loan/discount-rate-configs
+         */
+    });
+    test('getLoanInfo request test', () => {
+        /**
+         * getLoanInfo
+         * Get Loan Info
          * /api/v1/otc-loan/loan
          */
     });
 
-    test('getAccountDetail response test', () => {
+    test('getLoanInfo response test', () => {
         /**
-         * getAccountDetail
-         * Get Account Detail
+         * getLoanInfo
+         * Get Loan Info
          * /api/v1/otc-loan/loan
          */
     });

@@ -7,6 +7,11 @@ from .model_get_all_symbols_resp import GetAllSymbolsResp
 from .model_get_all_tickers_resp import GetAllTickersResp
 from .model_get_announcements_req import GetAnnouncementsReq
 from .model_get_announcements_resp import GetAnnouncementsResp
+from .model_get_call_auction_info_req import GetCallAuctionInfoReq
+from .model_get_call_auction_info_resp import GetCallAuctionInfoResp
+from .model_get_call_auction_part_order_book_req import GetCallAuctionPartOrderBookReq
+from .model_get_call_auction_part_order_book_resp import GetCallAuctionPartOrderBookResp
+from .model_get_client_ip_address_resp import GetClientIpAddressResp
 from .model_get_currency_req import GetCurrencyReq
 from .model_get_currency_resp import GetCurrencyResp
 from .model_get_fiat_price_req import GetFiatPriceReq
@@ -103,7 +108,7 @@ class MarketAPITest(unittest.TestCase):
         Get Symbol 
         /api/v2/symbols/{symbol}
         """
-        data = "{\"code\":\"200000\",\"data\":{\"symbol\":\"BTC-USDT\",\"name\":\"BTC-USDT\",\"baseCurrency\":\"BTC\",\"quoteCurrency\":\"USDT\",\"feeCurrency\":\"USDT\",\"market\":\"USDS\",\"baseMinSize\":\"0.00001\",\"quoteMinSize\":\"0.1\",\"baseMaxSize\":\"10000000000\",\"quoteMaxSize\":\"99999999\",\"baseIncrement\":\"0.00000001\",\"quoteIncrement\":\"0.000001\",\"priceIncrement\":\"0.1\",\"priceLimitRate\":\"0.1\",\"minFunds\":\"0.1\",\"isMarginEnabled\":true,\"enableTrading\":true,\"feeCategory\":1,\"makerFeeCoefficient\":\"1.00\",\"takerFeeCoefficient\":\"1.00\",\"st\":false}}"
+        data = "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"symbol\": \"BTC-USDT\",\n        \"name\": \"BTC-USDT\",\n        \"baseCurrency\": \"BTC\",\n        \"quoteCurrency\": \"USDT\",\n        \"feeCurrency\": \"USDT\",\n        \"market\": \"USDS\",\n        \"baseMinSize\": \"0.00001\",\n        \"quoteMinSize\": \"0.1\",\n        \"baseMaxSize\": \"10000000000\",\n        \"quoteMaxSize\": \"99999999\",\n        \"baseIncrement\": \"0.00000001\",\n        \"quoteIncrement\": \"0.000001\",\n        \"priceIncrement\": \"0.1\",\n        \"priceLimitRate\": \"0.1\",\n        \"minFunds\": \"0.1\",\n        \"isMarginEnabled\": true,\n        \"enableTrading\": true,\n        \"feeCategory\": 1,\n        \"makerFeeCoefficient\": \"1.00\",\n        \"takerFeeCoefficient\": \"1.00\",\n        \"st\": false,\n        \"callauctionIsEnabled\": false,\n        \"callauctionPriceFloor\": null,\n        \"callauctionPriceCeiling\": null,\n        \"callauctionFirstStageStartTime\": null,\n        \"callauctionSecondStageStartTime\": null,\n        \"callauctionThirdStageStartTime\": null,\n        \"tradingStartTime\": null\n    }\n}"
         common_response = RestResponse.from_json(data)
         resp = GetSymbolResp.from_dict(common_response.data)
 
@@ -122,7 +127,7 @@ class MarketAPITest(unittest.TestCase):
         Get All Symbols
         /api/v2/symbols
         """
-        data = "{\n    \"code\": \"200000\",\n    \"data\": [\n        {\n            \"symbol\": \"BTC-USDT\",\n            \"name\": \"BTC-USDT\",\n            \"baseCurrency\": \"BTC\",\n            \"quoteCurrency\": \"USDT\",\n            \"feeCurrency\": \"USDT\",\n            \"market\": \"USDS\",\n            \"baseMinSize\": \"0.00001\",\n            \"quoteMinSize\": \"0.1\",\n            \"baseMaxSize\": \"10000000000\",\n            \"quoteMaxSize\": \"99999999\",\n            \"baseIncrement\": \"0.00000001\",\n            \"quoteIncrement\": \"0.000001\",\n            \"priceIncrement\": \"0.1\",\n            \"priceLimitRate\": \"0.1\",\n            \"minFunds\": \"0.1\",\n            \"isMarginEnabled\": true,\n            \"enableTrading\": true,\n            \"feeCategory\": 1,\n            \"makerFeeCoefficient\": \"1.00\",\n            \"takerFeeCoefficient\": \"1.00\",\n            \"st\": false\n        }\n    ]\n}"
+        data = "{\n    \"code\": \"200000\",\n    \"data\": [\n        {\n            \"symbol\": \"BTC-USDT\",\n            \"name\": \"BTC-USDT\",\n            \"baseCurrency\": \"BTC\",\n            \"quoteCurrency\": \"USDT\",\n            \"feeCurrency\": \"USDT\",\n            \"market\": \"USDS\",\n            \"baseMinSize\": \"0.00001\",\n            \"quoteMinSize\": \"0.1\",\n            \"baseMaxSize\": \"10000000000\",\n            \"quoteMaxSize\": \"99999999\",\n            \"baseIncrement\": \"0.00000001\",\n            \"quoteIncrement\": \"0.000001\",\n            \"priceIncrement\": \"0.1\",\n            \"priceLimitRate\": \"0.1\",\n            \"minFunds\": \"0.1\",\n            \"isMarginEnabled\": true,\n            \"enableTrading\": true,\n            \"feeCategory\": 1,\n            \"makerFeeCoefficient\": \"1.00\",\n            \"takerFeeCoefficient\": \"1.00\",\n            \"st\": false,\n            \"callauctionIsEnabled\": false,\n            \"callauctionPriceFloor\": null,\n            \"callauctionPriceCeiling\": null,\n            \"callauctionFirstStageStartTime\": null,\n            \"callauctionSecondStageStartTime\": null,\n            \"callauctionThirdStageStartTime\": null,\n            \"tradingStartTime\": null\n        }\n    ]\n}"
         common_response = RestResponse.from_json(data)
         resp = GetAllSymbolsResp.from_dict(common_response.data)
 
@@ -238,6 +243,44 @@ class MarketAPITest(unittest.TestCase):
         common_response = RestResponse.from_json(data)
         resp = GetFullOrderBookResp.from_dict(common_response.data)
 
+    def test_get_call_auction_part_order_book_req_model(self):
+        """
+       get_call_auction_part_order_book
+       Get Call Auction Part OrderBook
+       /api/v1/market/orderbook/callauction/level2_{size}
+       """
+        data = "{\"symbol\": \"BTC-USDT\", \"size\": \"20\"}"
+        req = GetCallAuctionPartOrderBookReq.from_json(data)
+
+    def test_get_call_auction_part_order_book_resp_model(self):
+        """
+        get_call_auction_part_order_book
+        Get Call Auction Part OrderBook
+        /api/v1/market/orderbook/callauction/level2_{size}
+        """
+        data = "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"time\": 1729176273859,\n        \"sequence\": \"14610502970\",\n        \"bids\": [\n            [\n                \"66976.4\",\n                \"0.69109872\"\n            ],\n            [\n                \"66976.3\",\n                \"0.14377\"\n            ]\n        ],\n        \"asks\": [\n            [\n                \"66976.5\",\n                \"0.05408199\"\n            ],\n            [\n                \"66976.8\",\n                \"0.0005\"\n            ]\n        ]\n    }\n}"
+        common_response = RestResponse.from_json(data)
+        resp = GetCallAuctionPartOrderBookResp.from_dict(common_response.data)
+
+    def test_get_call_auction_info_req_model(self):
+        """
+       get_call_auction_info
+       Get Call Auction Info
+       /api/v1/market/callauctionData
+       """
+        data = "{\"symbol\": \"BTC-USDT\"}"
+        req = GetCallAuctionInfoReq.from_json(data)
+
+    def test_get_call_auction_info_resp_model(self):
+        """
+        get_call_auction_info
+        Get Call Auction Info
+        /api/v1/market/callauctionData
+        """
+        data = "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"symbol\": \"BTC-USDT\",\n        \"estimatedPrice\": \"0.17\",\n        \"estimatedSize\": \"0.03715004\",\n        \"sellOrderRangeLowPrice\": \"1.788\",\n        \"sellOrderRangeHighPrice\": \"2.788\",\n        \"buyOrderRangeLowPrice\": \"1.788\",\n        \"buyOrderRangeHighPrice\": \"2.788\",\n        \"time\": 1550653727731\n    }\n}"
+        common_response = RestResponse.from_json(data)
+        resp = GetCallAuctionInfoResp.from_dict(common_response.data)
+
     def test_get_fiat_price_req_model(self):
         """
        get_fiat_price
@@ -292,6 +335,23 @@ class MarketAPITest(unittest.TestCase):
         data = "{\"code\":\"200000\",\"data\":[\"USDS\",\"TON\",\"AI\",\"DePIN\",\"PoW\",\"BRC-20\",\"ETF\",\"KCS\",\"Meme\",\"Solana\",\"FIAT\",\"VR&AR\",\"DeFi\",\"Polkadot\",\"BTC\",\"ALTS\",\"Layer 1\"]}"
         common_response = RestResponse.from_json(data)
         resp = GetMarketListResp.from_dict(common_response.data)
+
+    def test_get_client_ip_address_req_model(self):
+        """
+       get_client_ip_address
+       Get Client IP Address
+       /api/v1/my-ip
+       """
+
+    def test_get_client_ip_address_resp_model(self):
+        """
+        get_client_ip_address
+        Get Client IP Address
+        /api/v1/my-ip
+        """
+        data = "{\"code\":\"200000\",\"data\":\"20.***.***.128\"}"
+        common_response = RestResponse.from_json(data)
+        resp = GetClientIpAddressResp.from_dict(common_response.data)
 
     def test_get_server_time_req_model(self):
         """

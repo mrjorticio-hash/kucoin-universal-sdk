@@ -75,14 +75,24 @@ export class AddOrderReq implements Serializable {
     tags?: string;
 
     /**
-     * Cancel after n seconds，the order timing strategy is GTT
+     * Cancel after n seconds, the order timing strategy is GTT, -1 means it will not be cancelled automatically, the default value is -1
      */
-    cancelAfter?: number;
+    cancelAfter?: number = -1;
 
     /**
-     * When **type** is market, select one out of two: size or funds
+     * When **type** is market, select one out of two: size or funds  When placing a market order, the funds field refers to the funds for the priced asset (the asset name written latter) of the trading pair. The funds must be based on the quoteIncrement of the trading pair. The quoteIncrement represents the precision of the trading pair. The funds value for an order must be a multiple of quoteIncrement and must be between quoteMinSize and quoteMaxSize.
      */
     funds?: string;
+
+    /**
+     * Order failed after timeout of specified milliseconds, If clientTimestamp + allowMaxTimeWindow < the server reaches time, this order will fail.
+     */
+    allowMaxTimeWindow?: number;
+
+    /**
+     * Equal to KC-API-TIMESTAMP, Need to be defined if iceberg is specified.
+     */
+    clientTimestamp?: number;
 
     /**
      * Private constructor, please use the corresponding static methods to construct the object.
@@ -164,13 +174,21 @@ export class AddOrderReq implements Serializable {
          */
         tags?: string;
         /**
-         * Cancel after n seconds，the order timing strategy is GTT
+         * Cancel after n seconds, the order timing strategy is GTT, -1 means it will not be cancelled automatically, the default value is -1
          */
         cancelAfter?: number;
         /**
-         * When **type** is market, select one out of two: size or funds
+         * When **type** is market, select one out of two: size or funds  When placing a market order, the funds field refers to the funds for the priced asset (the asset name written latter) of the trading pair. The funds must be based on the quoteIncrement of the trading pair. The quoteIncrement represents the precision of the trading pair. The funds value for an order must be a multiple of quoteIncrement and must be between quoteMinSize and quoteMaxSize.
          */
         funds?: string;
+        /**
+         * Order failed after timeout of specified milliseconds, If clientTimestamp + allowMaxTimeWindow < the server reaches time, this order will fail.
+         */
+        allowMaxTimeWindow?: number;
+        /**
+         * Equal to KC-API-TIMESTAMP, Need to be defined if iceberg is specified.
+         */
+        clientTimestamp?: number;
     }): AddOrderReq {
         let obj = new AddOrderReq();
         obj.clientOid = data.clientOid;
@@ -203,8 +221,14 @@ export class AddOrderReq implements Serializable {
         }
         obj.visibleSize = data.visibleSize;
         obj.tags = data.tags;
-        obj.cancelAfter = data.cancelAfter;
+        if (data.cancelAfter) {
+            obj.cancelAfter = data.cancelAfter;
+        } else {
+            obj.cancelAfter = -1;
+        }
         obj.funds = data.funds;
+        obj.allowMaxTimeWindow = data.allowMaxTimeWindow;
+        obj.clientTimestamp = data.clientTimestamp;
         return obj;
     }
 
@@ -404,7 +428,7 @@ export class AddOrderReqBuilder {
     }
 
     /**
-     * Cancel after n seconds，the order timing strategy is GTT
+     * Cancel after n seconds, the order timing strategy is GTT, -1 means it will not be cancelled automatically, the default value is -1
      */
     setCancelAfter(value: number): AddOrderReqBuilder {
         this.obj.cancelAfter = value;
@@ -412,10 +436,26 @@ export class AddOrderReqBuilder {
     }
 
     /**
-     * When **type** is market, select one out of two: size or funds
+     * When **type** is market, select one out of two: size or funds  When placing a market order, the funds field refers to the funds for the priced asset (the asset name written latter) of the trading pair. The funds must be based on the quoteIncrement of the trading pair. The quoteIncrement represents the precision of the trading pair. The funds value for an order must be a multiple of quoteIncrement and must be between quoteMinSize and quoteMaxSize.
      */
     setFunds(value: string): AddOrderReqBuilder {
         this.obj.funds = value;
+        return this;
+    }
+
+    /**
+     * Order failed after timeout of specified milliseconds, If clientTimestamp + allowMaxTimeWindow < the server reaches time, this order will fail.
+     */
+    setAllowMaxTimeWindow(value: number): AddOrderReqBuilder {
+        this.obj.allowMaxTimeWindow = value;
+        return this;
+    }
+
+    /**
+     * Equal to KC-API-TIMESTAMP, Need to be defined if iceberg is specified.
+     */
+    setClientTimestamp(value: number): AddOrderReqBuilder {
+        this.obj.clientTimestamp = value;
         return this;
     }
 

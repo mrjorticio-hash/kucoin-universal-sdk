@@ -20,7 +20,7 @@ export class GetTradeHistoryOldItems implements Serializable {
     orderId?: string;
 
     /**
-     * Counterparty order Id
+     * Counterparty order ID
      */
     counterOrderId?: string;
 
@@ -40,12 +40,12 @@ export class GetTradeHistoryOldItems implements Serializable {
     forceTaker?: boolean;
 
     /**
-     * Order price
+     * Order Price
      */
     price?: string;
 
     /**
-     * Order size
+     * Order Size
      */
     size?: string;
 
@@ -65,7 +65,7 @@ export class GetTradeHistoryOldItems implements Serializable {
     feeRate?: string;
 
     /**
-     * currency used to calculate trading fee
+     * Currency used to calculate trading fee
      */
     feeCurrency?: string;
 
@@ -80,7 +80,7 @@ export class GetTradeHistoryOldItems implements Serializable {
     tradeType?: string;
 
     /**
-     * Specify if the order is an \'limit\' order or \'market\' order.
+     * Specify if the order is a \'limit\' order or \'market\' order.
      */
     type?: string;
 

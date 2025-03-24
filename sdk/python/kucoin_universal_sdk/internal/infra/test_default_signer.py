@@ -40,7 +40,7 @@ class TestKcSigner(unittest.TestCase):
 
         self.assertEqual(headers["KC-API-KEY"], self.api_key)
         self.assertEqual(headers["KC-API-PASSPHRASE"], self.signer.api_passphrase)
-        self.assertEqual(headers["KC-API-KEY-VERSION"], "2")
+        self.assertEqual(headers["KC-API-KEY-VERSION"], "3")
         self.assertEqual(headers["KC-API-TIMESTAMP"], "1234567890000")
 
     @patch("time.time", return_value=1234567890)
@@ -60,7 +60,7 @@ class TestKcSigner(unittest.TestCase):
 
         self.assertEqual(headers["KC-API-KEY"], self.api_key)
         self.assertEqual(headers["KC-API-PASSPHRASE"], self.signer.api_passphrase)
-        self.assertEqual(headers["KC-API-KEY-VERSION"], "2")
+        self.assertEqual(headers["KC-API-KEY-VERSION"], "3")
         self.assertEqual(headers["KC-API-PARTNER"], self.broker_partner)
         self.assertEqual(headers["KC-BROKER-NAME"], self.broker_name)
         self.assertEqual(headers["KC-API-PARTNER-VERIFY"], "true")

@@ -15,10 +15,14 @@ class GetFuturesActualFeeReq(BaseModel):
     GetFuturesActualFeeReq
 
     Attributes:
-        symbol (str): Trading pair
+        symbol (str): The unique identity of the trading pair; will not change even if the trading pair is renamed
     """
 
-    symbol: Optional[str] = Field(default=None, description="Trading pair")
+    symbol: Optional[str] = Field(
+        default=None,
+        description=
+        "The unique identity of the trading pair; will not change even if the trading pair is renamed"
+    )
 
     __properties: ClassVar[List[str]] = ["symbol"]
 
@@ -66,7 +70,7 @@ class GetFuturesActualFeeReqBuilder:
 
     def set_symbol(self, value: str) -> GetFuturesActualFeeReqBuilder:
         """
-        Trading pair
+        The unique identity of the trading pair; will not change even if the trading pair is renamed
         """
         self.obj['symbol'] = value
         return self

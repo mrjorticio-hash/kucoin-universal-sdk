@@ -10,7 +10,7 @@ import (
 type CancelOrderByOrderIdResp struct {
 	// common response
 	CommonResponse *types.RestResponse
-	// order id
+	// Order id
 	OrderId string `json:"orderId,omitempty"`
 }
 

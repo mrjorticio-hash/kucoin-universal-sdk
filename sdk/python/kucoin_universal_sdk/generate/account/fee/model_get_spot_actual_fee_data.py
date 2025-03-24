@@ -15,15 +15,17 @@ class GetSpotActualFeeData(BaseModel):
     GetSpotActualFeeData
 
     Attributes:
-        symbol (str): The unique identity of the trading pair and will not change even if the trading pair is renamed
+        symbol (str): The unique identity of the trading pair; will not change even if the trading pair is renamed
         taker_fee_rate (str): Actual taker fee rate of the symbol
         maker_fee_rate (str): Actual maker fee rate of the symbol
+        sell_tax_rate (str): Buy tax rate; this field is visible to users in certain countries
+        buy_tax_rate (str): Sell tax rate; this field is visible to users in certain countries
     """
 
     symbol: Optional[str] = Field(
         default=None,
         description=
-        "The unique identity of the trading pair and will not change even if the trading pair is renamed"
+        "The unique identity of the trading pair; will not change even if the trading pair is renamed"
     )
     taker_fee_rate: Optional[str] = Field(
         default=None,
@@ -33,9 +35,19 @@ class GetSpotActualFeeData(BaseModel):
         default=None,
         description="Actual maker fee rate of the symbol",
         alias="makerFeeRate")
+    sell_tax_rate: Optional[str] = Field(
+        default=None,
+        description=
+        "Buy tax rate; this field is visible to users in certain countries",
+        alias="sellTaxRate")
+    buy_tax_rate: Optional[str] = Field(
+        default=None,
+        description=
+        "Sell tax rate; this field is visible to users in certain countries",
+        alias="buyTaxRate")
 
     __properties: ClassVar[List[str]] = [
-        "symbol", "takerFeeRate", "makerFeeRate"
+        "symbol", "takerFeeRate", "makerFeeRate", "sellTaxRate", "buyTaxRate"
     ]
 
     model_config = ConfigDict(
@@ -74,6 +86,8 @@ class GetSpotActualFeeData(BaseModel):
         _obj = cls.model_validate({
             "symbol": obj.get("symbol"),
             "takerFeeRate": obj.get("takerFeeRate"),
-            "makerFeeRate": obj.get("makerFeeRate")
+            "makerFeeRate": obj.get("makerFeeRate"),
+            "sellTaxRate": obj.get("sellTaxRate"),
+            "buyTaxRate": obj.get("buyTaxRate")
         })
         return _obj

@@ -9,7 +9,7 @@
     "paths": {
         "/api/v2/sub/user/created": {
             "post": {
-                "summary": "Add SubAccount",
+                "summary": "Add sub-account",
                 "deprecated": false,
                 "description": "This endpoint can be used to create sub-accounts.",
                 "tags": [],
@@ -72,7 +72,7 @@
                 "x-sdk-sub-service": "SubAccount",
                 "x-sdk-method-name": "addSubAccount",
                 "x-sdk-method-description": "This endpoint can be used to create sub-accounts.",
-                "x-api-rate-limit": 15,
+                "x-api-rate-limit-weight": 15,
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -82,15 +82,15 @@
                                 "properties": {
                                     "password": {
                                         "type": "string",
-                                        "description": "Password(7-24 characters, must contain letters and numbers, cannot only contain numbers or include special characters)"
+                                        "description": "Password (7–24 characters, must contain letters and numbers, cannot only contain numbers or include special characters)"
                                     },
                                     "remarks": {
                                         "type": "string",
-                                        "description": "Remarks(1~24 characters)"
+                                        "description": "Remarks (1–24 characters)"
                                     },
                                     "subName": {
                                         "type": "string",
-                                        "description": "Sub-account name(must contain 7-32 characters, at least one number and one letter. Cannot contain any spaces.)"
+                                        "description": "Sub-account name (must contain 7–32 characters, at least one number and one letter. Cannot contain any spaces.)"
                                     },
                                     "access": {
                                         "type": "string",
@@ -136,9 +136,9 @@
         },
         "/api/v3/sub/user/margin/enable": {
             "post": {
-                "summary": "Add SubAccount Margin Permission",
+                "summary": "Add sub-account Margin Permission",
                 "deprecated": false,
-                "description": "This endpoint can be used to add sub-accounts Margin permission. Before using this endpoints, you need to ensure that the master account apikey has Margin permissions and the Margin function has been activated.",
+                "description": "This endpoint can be used to add sub-account Margin permissions. Before using this endpoint, you need to ensure that the master account apikey has Margin permissions and the Margin function has been activated.",
                 "tags": [],
                 "parameters": [],
                 "responses": {
@@ -174,8 +174,8 @@
                 "x-sdk-service": "Account",
                 "x-sdk-sub-service": "SubAccount",
                 "x-sdk-method-name": "addSubAccountMarginPermission",
-                "x-sdk-method-description": "This endpoint can be used to add sub-accounts Margin permission. Before using this endpoints, you need to ensure that the master account apikey has Margin permissions and the Margin function has been activated.",
-                "x-api-rate-limit": 15,
+                "x-sdk-method-description": "This endpoint can be used to add sub-account Margin permissions. Before using this endpoint, you need to ensure that the master account apikey has Margin permissions and the Margin function has been activated.",
+                "x-api-rate-limit-weight": 15,
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -203,9 +203,9 @@
         },
         "/api/v3/sub/user/futures/enable": {
             "post": {
-                "summary": "Add SubAccount Futures Permission",
+                "summary": "Add sub-account Futures Permission",
                 "deprecated": false,
-                "description": "This endpoint can be used to add sub-accounts Futures permission. Before using this endpoints, you need to ensure that the master account apikey has Futures permissions and the Futures function has been activated.",
+                "description": "This endpoint can be used to add sub-account Futures permissions. Before using this endpoint, you need to ensure that the master account apikey has Futures permissions and the Futures function has been activated.",
                 "tags": [],
                 "parameters": [],
                 "responses": {
@@ -241,8 +241,8 @@
                 "x-sdk-service": "Account",
                 "x-sdk-sub-service": "SubAccount",
                 "x-sdk-method-name": "addSubAccountFuturesPermission",
-                "x-sdk-method-description": "This endpoint can be used to add sub-accounts Futures permission. Before using this endpoints, you need to ensure that the master account apikey has Futures permissions and the Futures function has been activated.",
-                "x-api-rate-limit": 15,
+                "x-sdk-method-description": "This endpoint can be used to add sub-account Futures permissions. Before using this endpoint, you need to ensure that the master account apikey has Futures permissions and the Futures function has been activated.",
+                "x-api-rate-limit-weight": 15,
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -270,7 +270,7 @@
         },
         "/api/v2/sub/user": {
             "get": {
-                "summary": "Get SubAccount List - Summary Info",
+                "summary": "Get sub-account List - Summary Info",
                 "deprecated": false,
                 "description": "This endpoint can be used to get a paginated list of sub-accounts. Pagination is required.",
                 "tags": [],
@@ -325,7 +325,7 @@
                                                 },
                                                 "totalPage": {
                                                     "type": "integer",
-                                                    "description": "Total number of page"
+                                                    "description": "Total number of pages"
                                                 },
                                                 "items": {
                                                     "type": "array",
@@ -334,7 +334,7 @@
                                                         "properties": {
                                                             "userId": {
                                                                 "type": "string",
-                                                                "description": "Sub-account User Id"
+                                                                "description": "Sub-account User ID"
                                                             },
                                                             "uid": {
                                                                 "type": "integer",
@@ -377,12 +377,12 @@
                                                                     {
                                                                         "value": 0,
                                                                         "name": "NORMAL",
-                                                                        "description": "Normal subaccount"
+                                                                        "description": "Normal sub-account"
                                                                     },
                                                                     {
                                                                         "value": 1,
                                                                         "name": "ROBOT",
-                                                                        "description": "Robot subaccount"
+                                                                        "description": "Robot sub-account"
                                                                     },
                                                                     {
                                                                         "value": 2,
@@ -392,7 +392,7 @@
                                                                     {
                                                                         "value": 5,
                                                                         "name": "HOSTED",
-                                                                        "description": "Asset management subaccount"
+                                                                        "description": "Asset management sub-account"
                                                                     }
                                                                 ]
                                                             },
@@ -402,7 +402,7 @@
                                                             },
                                                             "createdAt": {
                                                                 "type": "integer",
-                                                                "description": "Time of the event",
+                                                                "description": "Time of event",
                                                                 "format": "int64"
                                                             },
                                                             "remarks": {
@@ -414,14 +414,14 @@
                                                                 "items": {
                                                                     "type": "string"
                                                                 },
-                                                                "description": "Subaccount Permissions"
+                                                                "description": "Sub-account Permissions"
                                                             },
                                                             "openedTradeTypes": {
                                                                 "type": "array",
                                                                 "items": {
                                                                     "type": "string"
                                                                 },
-                                                                "description": "Subaccount active permissions,If do not have the corresponding permissions, need to log in to the sub-account and go to the corresponding web page to activate"
+                                                                "description": "Sub-account active permissions: If you do not have the corresponding permissions, you must log in to the sub-account and go to the corresponding web page to activate."
                                                             },
                                                             "hostedStatus": {
                                                                 "type": "string"
@@ -471,7 +471,7 @@
                 "x-sdk-sub-service": "SubAccount",
                 "x-sdk-method-name": "getSpotSubAccountsSummaryV2",
                 "x-sdk-method-description": "This endpoint can be used to get a paginated list of sub-accounts. Pagination is required.",
-                "x-api-rate-limit": 20,
+                "x-api-rate-limit-weight": 20,
                 "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"currentPage\\\": 1,\\n        \\\"pageSize\\\": 10,\\n        \\\"totalNum\\\": 1,\\n        \\\"totalPage\\\": 1,\\n        \\\"items\\\": [\\n            {\\n                \\\"userId\\\": \\\"63743f07e0c5230001761d08\\\",\\n                \\\"uid\\\": 169579801,\\n                \\\"subName\\\": \\\"testapi6\\\",\\n                \\\"status\\\": 2,\\n                \\\"type\\\": 0,\\n                \\\"access\\\": \\\"All\\\",\\n                \\\"createdAt\\\": 1668562696000,\\n                \\\"remarks\\\": \\\"remarks\\\",\\n                \\\"tradeTypes\\\": [\\n                    \\\"Spot\\\",\\n                    \\\"Futures\\\",\\n                    \\\"Margin\\\"\\n                ],\\n                \\\"openedTradeTypes\\\": [\\n                    \\\"Spot\\\"\\n                ],\\n                \\\"hostedStatus\\\": null\\n            }\\n        ]\\n    }\\n}",
                 "x-request-example": "{\\\"currentPage\\\": 1, \\\"pageSize\\\": 10}",
                 "operationId": "004"
@@ -479,7 +479,7 @@
         },
         "/api/v1/sub-accounts/{subUserId}": {
             "get": {
-                "summary": "Get SubAccount Detail - Balance",
+                "summary": "Get sub-account Detail - Balance",
                 "deprecated": false,
                 "description": "This endpoint returns the account info of a sub-user specified by the subUserId.",
                 "tags": [],
@@ -496,10 +496,29 @@
                     {
                         "name": "includeBaseAmount",
                         "in": "query",
-                        "description": "false: do not display the currency which asset is 0, true: display all currency",
-                        "required": true,
+                        "description": "False: Do not display currencies with 0 assets; True: display all currencies",
+                        "required": false,
                         "schema": {
-                            "type": "boolean"
+                            "type": "boolean",
+                            "default": false
+                        }
+                    },
+                    {
+                        "name": "baseCurrency",
+                        "in": "query",
+                        "description": "Specify the currency used to convert assets",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "baseAmount",
+                        "in": "query",
+                        "description": "The currency balance specified must be greater than or equal to the amount",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
                         }
                     }
                 ],
@@ -682,15 +701,15 @@
                 "x-sdk-sub-service": "SubAccount",
                 "x-sdk-method-name": "getSpotSubAccountDetail",
                 "x-sdk-method-description": "This endpoint returns the account info of a sub-user specified by the subUserId.",
-                "x-api-rate-limit": 15,
+                "x-api-rate-limit-weight": 15,
                 "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"subUserId\\\": \\\"63743f07e0c5230001761d08\\\",\\n        \\\"subName\\\": \\\"testapi6\\\",\\n        \\\"mainAccounts\\\": [\\n            {\\n                \\\"currency\\\": \\\"USDT\\\",\\n                \\\"balance\\\": \\\"0.01\\\",\\n                \\\"available\\\": \\\"0.01\\\",\\n                \\\"holds\\\": \\\"0\\\",\\n                \\\"baseCurrency\\\": \\\"BTC\\\",\\n                \\\"baseCurrencyPrice\\\": \\\"62384.3\\\",\\n                \\\"baseAmount\\\": \\\"0.00000016\\\",\\n                \\\"tag\\\": \\\"DEFAULT\\\"\\n            }\\n        ],\\n        \\\"tradeAccounts\\\": [\\n            {\\n                \\\"currency\\\": \\\"USDT\\\",\\n                \\\"balance\\\": \\\"0.01\\\",\\n                \\\"available\\\": \\\"0.01\\\",\\n                \\\"holds\\\": \\\"0\\\",\\n                \\\"baseCurrency\\\": \\\"BTC\\\",\\n                \\\"baseCurrencyPrice\\\": \\\"62384.3\\\",\\n                \\\"baseAmount\\\": \\\"0.00000016\\\",\\n                \\\"tag\\\": \\\"DEFAULT\\\"\\n            }\\n        ],\\n        \\\"marginAccounts\\\": [\\n            {\\n                \\\"currency\\\": \\\"USDT\\\",\\n                \\\"balance\\\": \\\"0.01\\\",\\n                \\\"available\\\": \\\"0.01\\\",\\n                \\\"holds\\\": \\\"0\\\",\\n                \\\"baseCurrency\\\": \\\"BTC\\\",\\n                \\\"baseCurrencyPrice\\\": \\\"62384.3\\\",\\n                \\\"baseAmount\\\": \\\"0.00000016\\\",\\n                \\\"tag\\\": \\\"DEFAULT\\\"\\n            }\\n        ],\\n        \\\"tradeHFAccounts\\\": []\\n    }\\n}",
-                "x-request-example": "{\\\"subUserId\\\": \\\"63743f07e0c5230001761d08\\\", \\\"includeBaseAmount\\\": true}",
+                "x-request-example": "{\\\"subUserId\\\": \\\"63743f07e0c5230001761d08\\\", \\\"includeBaseAmount\\\": true, \\\"baseCurrency\\\": \\\"example_string_default_value\\\", \\\"baseAmount\\\": \\\"example_string_default_value\\\"}",
                 "operationId": "005"
             }
         },
         "/api/v2/sub-accounts": {
             "get": {
-                "summary": "Get SubAccount List - Spot Balance(V2)",
+                "summary": "Get sub-account List - Spot Balance (V2)",
                 "deprecated": false,
                 "description": "This endpoint can be used to get paginated Spot sub-account information. Pagination is required.",
                 "tags": [],
@@ -930,7 +949,7 @@
                 "x-sdk-sub-service": "SubAccount",
                 "x-sdk-method-name": "getSpotSubAccountListV2",
                 "x-sdk-method-description": "This endpoint can be used to get paginated Spot sub-account information. Pagination is required.",
-                "x-api-rate-limit": 20,
+                "x-api-rate-limit-weight": 20,
                 "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"currentPage\\\": 1,\\n        \\\"pageSize\\\": 10,\\n        \\\"totalNum\\\": 3,\\n        \\\"totalPage\\\": 1,\\n        \\\"items\\\": [\\n            {\\n                \\\"subUserId\\\": \\\"63743f07e0c5230001761d08\\\",\\n                \\\"subName\\\": \\\"testapi6\\\",\\n                \\\"mainAccounts\\\": [\\n                    {\\n                        \\\"currency\\\": \\\"USDT\\\",\\n                        \\\"balance\\\": \\\"0.01\\\",\\n                        \\\"available\\\": \\\"0.01\\\",\\n                        \\\"holds\\\": \\\"0\\\",\\n                        \\\"baseCurrency\\\": \\\"BTC\\\",\\n                        \\\"baseCurrencyPrice\\\": \\\"62514.5\\\",\\n                        \\\"baseAmount\\\": \\\"0.00000015\\\",\\n                        \\\"tag\\\": \\\"DEFAULT\\\"\\n                    }\\n                ],\\n                \\\"tradeAccounts\\\": [\\n                    {\\n                        \\\"currency\\\": \\\"USDT\\\",\\n                        \\\"balance\\\": \\\"0.01\\\",\\n                        \\\"available\\\": \\\"0.01\\\",\\n                        \\\"holds\\\": \\\"0\\\",\\n                        \\\"baseCurrency\\\": \\\"BTC\\\",\\n                        \\\"baseCurrencyPrice\\\": \\\"62514.5\\\",\\n                        \\\"baseAmount\\\": \\\"0.00000015\\\",\\n                        \\\"tag\\\": \\\"DEFAULT\\\"\\n                    }\\n                ],\\n                \\\"marginAccounts\\\": [\\n                    {\\n                        \\\"currency\\\": \\\"USDT\\\",\\n                        \\\"balance\\\": \\\"0.01\\\",\\n                        \\\"available\\\": \\\"0.01\\\",\\n                        \\\"holds\\\": \\\"0\\\",\\n                        \\\"baseCurrency\\\": \\\"BTC\\\",\\n                        \\\"baseCurrencyPrice\\\": \\\"62514.5\\\",\\n                        \\\"baseAmount\\\": \\\"0.00000015\\\",\\n                        \\\"tag\\\": \\\"DEFAULT\\\"\\n                    }\\n                ],\\n                \\\"tradeHFAccounts\\\": []\\n            },\\n            {\\n                \\\"subUserId\\\": \\\"670538a31037eb000115b076\\\",\\n                \\\"subName\\\": \\\"Name1234567\\\",\\n                \\\"mainAccounts\\\": [],\\n                \\\"tradeAccounts\\\": [],\\n                \\\"marginAccounts\\\": [],\\n                \\\"tradeHFAccounts\\\": []\\n            },\\n            {\\n                \\\"subUserId\\\": \\\"66b0c0905fc1480001c14c36\\\",\\n                \\\"subName\\\": \\\"LTkucoin1491\\\",\\n                \\\"mainAccounts\\\": [],\\n                \\\"tradeAccounts\\\": [],\\n                \\\"marginAccounts\\\": [],\\n                \\\"tradeHFAccounts\\\": []\\n            }\\n        ]\\n    }\\n}",
                 "x-request-example": "{\\\"currentPage\\\": 1, \\\"pageSize\\\": 10}",
                 "operationId": "006"
@@ -938,7 +957,7 @@
         },
         "/api/v1/account-overview-all": {
             "get": {
-                "summary": "Get SubAccount List - Futures Balance(V2)",
+                "summary": "Get sub-account List - Futures Balance (V2)",
                 "deprecated": false,
                 "description": "This endpoint can be used to get Futures sub-account information. ",
                 "tags": [],
@@ -946,7 +965,7 @@
                     {
                         "name": "currency",
                         "in": "query",
-                        "description": "Currecny, Default XBT",
+                        "description": "Currency, Default XBT",
                         "required": false,
                         "schema": {
                             "type": "string",
@@ -981,7 +1000,7 @@
                                                         },
                                                         "unrealisedPNLTotal": {
                                                             "type": "number",
-                                                            "description": "Total unrealisedPNL"
+                                                            "description": "Total unrealizedPNL"
                                                         },
                                                         "marginBalanceTotal": {
                                                             "type": "number",
@@ -1000,7 +1019,7 @@
                                                         },
                                                         "availableBalanceTotal": {
                                                             "type": "number",
-                                                            "description": "total available balance"
+                                                            "description": "Total available balance"
                                                         },
                                                         "currency": {
                                                             "type": "string"
@@ -1095,7 +1114,7 @@
                 "x-sdk-sub-service": "SubAccount",
                 "x-sdk-method-name": "getFuturesSubAccountListV2",
                 "x-sdk-method-description": "This endpoint can be used to get Futures sub-account information. ",
-                "x-api-rate-limit": 6,
+                "x-api-rate-limit-weight": 6,
                 "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"summary\\\": {\\n            \\\"accountEquityTotal\\\": 103.899081508,\\n            \\\"unrealisedPNLTotal\\\": 38.81075,\\n            \\\"marginBalanceTotal\\\": 65.336985668,\\n            \\\"positionMarginTotal\\\": 68.9588320683,\\n            \\\"orderMarginTotal\\\": 0,\\n            \\\"frozenFundsTotal\\\": 0,\\n            \\\"availableBalanceTotal\\\": 67.2492494397,\\n            \\\"currency\\\": \\\"USDT\\\"\\n        },\\n        \\\"accounts\\\": [\\n            {\\n                \\\"accountName\\\": \\\"Name1234567\\\",\\n                \\\"accountEquity\\\": 0,\\n                \\\"unrealisedPNL\\\": 0,\\n                \\\"marginBalance\\\": 0,\\n                \\\"positionMargin\\\": 0,\\n                \\\"orderMargin\\\": 0,\\n                \\\"frozenFunds\\\": 0,\\n                \\\"availableBalance\\\": 0,\\n                \\\"currency\\\": \\\"USDT\\\"\\n            },\\n            {\\n                \\\"accountName\\\": \\\"LTkucoin1491\\\",\\n                \\\"accountEquity\\\": 0,\\n                \\\"unrealisedPNL\\\": 0,\\n                \\\"marginBalance\\\": 0,\\n                \\\"positionMargin\\\": 0,\\n                \\\"orderMargin\\\": 0,\\n                \\\"frozenFunds\\\": 0,\\n                \\\"availableBalance\\\": 0,\\n                \\\"currency\\\": \\\"USDT\\\"\\n            },\\n            {\\n                \\\"accountName\\\": \\\"manage112233\\\",\\n                \\\"accountEquity\\\": 0,\\n                \\\"unrealisedPNL\\\": 0,\\n                \\\"marginBalance\\\": 0,\\n                \\\"positionMargin\\\": 0,\\n                \\\"orderMargin\\\": 0,\\n                \\\"frozenFunds\\\": 0,\\n                \\\"availableBalance\\\": 0,\\n                \\\"currency\\\": \\\"USDT\\\"\\n            },\\n            {\\n                \\\"accountName\\\": \\\"testapi6\\\",\\n                \\\"accountEquity\\\": 27.30545128,\\n                \\\"unrealisedPNL\\\": 22.549,\\n                \\\"marginBalance\\\": 4.75645128,\\n                \\\"positionMargin\\\": 24.1223749975,\\n                \\\"orderMargin\\\": 0,\\n                \\\"frozenFunds\\\": 0,\\n                \\\"availableBalance\\\": 25.7320762825,\\n                \\\"currency\\\": \\\"USDT\\\"\\n            },\\n            {\\n                \\\"accountName\\\": \\\"main\\\",\\n                \\\"accountEquity\\\": 76.593630228,\\n                \\\"unrealisedPNL\\\": 16.26175,\\n                \\\"marginBalance\\\": 60.580534388,\\n                \\\"positionMargin\\\": 44.8364570708,\\n                \\\"orderMargin\\\": 0,\\n                \\\"frozenFunds\\\": 0,\\n                \\\"availableBalance\\\": 41.5171731572,\\n                \\\"currency\\\": \\\"USDT\\\"\\n            }\\n        ]\\n    }\\n}",
                 "x-request-example": "{\\\"currency\\\": \\\"USDT\\\"}",
                 "operationId": "007"
@@ -1103,7 +1122,7 @@
         },
         "/api/v1/sub/api-key": {
             "post": {
-                "summary": "Add SubAccount API",
+                "summary": "Add sub-account API",
                 "deprecated": false,
                 "description": "This endpoint can be used to create APIs for sub-accounts.",
                 "tags": [],
@@ -1156,7 +1175,7 @@
                                                 },
                                                 "createdAt": {
                                                     "type": "integer",
-                                                    "description": "Time of the event",
+                                                    "description": "Time of event",
                                                     "format": "int64"
                                                 }
                                             },
@@ -1191,7 +1210,7 @@
                 "x-sdk-sub-service": "SubAccount",
                 "x-sdk-method-name": "addSubAccountApi",
                 "x-sdk-method-description": "This endpoint can be used to create APIs for sub-accounts.",
-                "x-api-rate-limit": 20,
+                "x-api-rate-limit-weight": 20,
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -1201,15 +1220,15 @@
                                 "properties": {
                                     "passphrase": {
                                         "type": "string",
-                                        "description": "Password(Must contain 7-32 characters. Cannot contain any spaces.)"
+                                        "description": "Password (Must contain 7–32 characters. Cannot contain any spaces.)"
                                     },
                                     "remark": {
                                         "type": "string",
-                                        "description": "Remarks(1~24 characters)"
+                                        "description": "Remarks (1–24 characters)"
                                     },
                                     "permission": {
                                         "type": "string",
-                                        "description": "[Permissions](https://www.kucoin.com/docs-new/doc-338144)(Only General、Spot、Futures、Margin、InnerTransfer(Flex Transfer) permissions can be set, such as \"General, Trade\". The default is \"General\")",
+                                        "description": "[Permissions](https://www.kucoin.com/docs-new/doc-338144)(Only General, Spot, Futures, Margin, InnerTransfer (Flex Transfer) permissions can be set, such as \"General, Trade\". The default is \"General\")",
                                         "default": "General",
                                         "example": [
                                             "General, Trade"
@@ -1217,11 +1236,11 @@
                                     },
                                     "ipWhitelist": {
                                         "type": "string",
-                                        "description": "IP whitelist(You may add up to 20 IPs. Use a halfwidth comma to each IP)"
+                                        "description": "IP whitelist (You may add up to 20 IPs. Use a halfwidth comma to each IP)"
                                     },
                                     "expire": {
                                         "type": "string",
-                                        "description": "API expiration time; Never expire(default)-1，30Day30，90Day90，180Day180，360Day360",
+                                        "description": "API expiration time: Never expire(default)-1, 30Day30, 90Day90, 180Day180, 360Day360",
                                         "default": "-1",
                                         "enum": [
                                             "-1",
@@ -1281,9 +1300,9 @@
                 "operationId": "008"
             },
             "get": {
-                "summary": "Get SubAccount API List",
+                "summary": "Get sub-account API List",
                 "deprecated": false,
-                "description": "This endpoint can be used to obtain a list of APIs pertaining to a sub-account.(Not contain ND Broker Sub Account)",
+                "description": "This endpoint can be used to obtain a list of APIs pertaining to a sub-account (not including ND broker sub-accounts).",
                 "tags": [],
                 "parameters": [
                     {
@@ -1380,14 +1399,14 @@
                 "x-sdk-service": "Account",
                 "x-sdk-sub-service": "SubAccount",
                 "x-sdk-method-name": "getSubAccountApiList",
-                "x-sdk-method-description": "This endpoint can be used to obtain a list of APIs pertaining to a sub-account.(Not contain ND Broker Sub Account)",
-                "x-api-rate-limit": 20,
+                "x-sdk-method-description": "This endpoint can be used to obtain a list of APIs pertaining to a sub-account (not including ND broker sub-accounts).",
+                "x-api-rate-limit-weight": 20,
                 "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": [\\n        {\\n            \\\"subName\\\": \\\"apiSdkTest\\\",\\n            \\\"remark\\\": \\\"sdk_test_integration\\\",\\n            \\\"apiKey\\\": \\\"673eab2a955ebf000195d7e4\\\",\\n            \\\"apiVersion\\\": 3,\\n            \\\"permission\\\": \\\"General\\\",\\n            \\\"ipWhitelist\\\": \\\"10.**.1\\\",\\n            \\\"createdAt\\\": 1732160298000,\\n            \\\"uid\\\": 215112467,\\n            \\\"isMaster\\\": false\\n        }\\n    ]\\n}",
                 "x-request-example": "{\\\"apiKey\\\": \\\"example_string_default_value\\\", \\\"subName\\\": \\\"testapi6\\\"}",
                 "operationId": "010"
             },
             "delete": {
-                "summary": "Delete SubAccount API",
+                "summary": "Delete sub-account API",
                 "deprecated": false,
                 "description": "This endpoint can be used to delete sub-account APIs.",
                 "tags": [],
@@ -1413,7 +1432,7 @@
                     {
                         "name": "passphrase",
                         "in": "query",
-                        "description": "Password(Password of the API key)",
+                        "description": "Password (password of the API key)",
                         "required": true,
                         "schema": {
                             "type": "string"
@@ -1468,7 +1487,7 @@
                 "x-sdk-sub-service": "SubAccount",
                 "x-sdk-method-name": "deleteSubAccountApi",
                 "x-sdk-method-description": "This endpoint can be used to delete sub-account APIs.",
-                "x-api-rate-limit": 30,
+                "x-api-rate-limit-weight": 30,
                 "x-response-example": "{\\\"code\\\":\\\"200000\\\",\\\"data\\\":{\\\"subName\\\":\\\"testapi6\\\",\\\"apiKey\\\":\\\"670621e3a25958000159c82f\\\"}}",
                 "x-request-example": "{\\\"apiKey\\\": \\\"670621e3a25958000159c82f\\\", \\\"subName\\\": \\\"testapi6\\\", \\\"passphrase\\\": \\\"11223344\\\"}",
                 "operationId": "011"
@@ -1476,7 +1495,7 @@
         },
         "/api/v1/sub/api-key/update": {
             "post": {
-                "summary": "Modify SubAccount API",
+                "summary": "Modify sub-account API",
                 "deprecated": false,
                 "description": "This endpoint can be used to modify sub-account APIs.",
                 "tags": [],
@@ -1538,7 +1557,7 @@
                 "x-sdk-sub-service": "SubAccount",
                 "x-sdk-method-name": "modifySubAccountApi",
                 "x-sdk-method-description": "This endpoint can be used to modify sub-account APIs.",
-                "x-api-rate-limit": 30,
+                "x-api-rate-limit-weight": 30,
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -1548,11 +1567,11 @@
                                 "properties": {
                                     "passphrase": {
                                         "type": "string",
-                                        "description": "Password(Must contain 7-32 characters. Cannot contain any spaces.)"
+                                        "description": "Password (Must contain 7–32 characters. Cannot contain any spaces.)"
                                     },
                                     "permission": {
                                         "type": "string",
-                                        "description": "[Permissions](https://www.kucoin.com/docs-new/doc-338144)(Only General、Spot、Futures、Margin、InnerTransfer(Flex Transfer) permissions can be set, such as \"General, Trade\". The default is \"General\")",
+                                        "description": "[Permissions](https://www.kucoin.com/docs-new/doc-338144)(Only General, Spot, Futures, Margin, InnerTransfer (Flex Transfer) permissions can be set, such as \"General, Trade\". The default is \"General\")",
                                         "default": "General",
                                         "example": [
                                             "General,Trade"
@@ -1560,11 +1579,11 @@
                                     },
                                     "ipWhitelist": {
                                         "type": "string",
-                                        "description": "IP whitelist(You may add up to 20 IPs. Use a halfwidth comma to each IP)"
+                                        "description": "IP whitelist (You may add up to 20 IPs. Use a halfwidth comma to each IP)"
                                     },
                                     "expire": {
                                         "type": "string",
-                                        "description": "API expiration time; Never expire(default)-1，30Day30，90Day90，180Day180，360Day360",
+                                        "description": "API expiration time: Never expire(default)-1, 30Day30, 90Day90, 180Day180, 360Day360",
                                         "default": "-1",
                                         "enum": [
                                             "-1",
@@ -1610,7 +1629,7 @@
                                     },
                                     "apiKey": {
                                         "type": "string",
-                                        "description": "API-Key(Sub-account APIKey)"
+                                        "description": "API-Key (Sub-account APIKey)"
                                     }
                                 },
                                 "required": [
@@ -1630,9 +1649,9 @@
         },
         "/api/v1/sub/user": {
             "get": {
-                "summary": "Get SubAccount List - Summary Info(V1)",
+                "summary": "Get sub-account List - Summary Info (V1)",
                 "deprecated": true,
-                "description": "You can get the user info of all sub-account via this interface It is recommended to use the GET /api/v2/sub/user interface for paging query",
+                "description": "You can get the user info of all sub-account via this interface; it is recommended to use the GET /api/v2/sub/user interface for paging query",
                 "tags": [],
                 "parameters": [],
                 "responses": {
@@ -1700,15 +1719,15 @@
                 "x-sdk-service": "Account",
                 "x-sdk-sub-service": "SubAccount",
                 "x-sdk-method-name": "getSpotSubAccountsSummaryV1",
-                "x-sdk-method-description": "You can get the user info of all sub-account via this interface It is recommended to use the GET /api/v2/sub/user interface for paging query",
-                "x-api-rate-limit": 20,
+                "x-sdk-method-description": "You can get the user info of all sub-account via this interface; it is recommended to use the GET /api/v2/sub/user interface for paging query",
+                "x-api-rate-limit-weight": 20,
                 "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": [\\n        {\\n            \\\"userId\\\": \\\"63743f07e0c5230001761d08\\\",\\n            \\\"uid\\\": 169579801,\\n            \\\"subName\\\": \\\"testapi6\\\",\\n            \\\"type\\\": 0,\\n            \\\"remarks\\\": \\\"remarks\\\",\\n            \\\"access\\\": \\\"All\\\"\\n        },\\n        {\\n            \\\"userId\\\": \\\"670538a31037eb000115b076\\\",\\n            \\\"uid\\\": 225139445,\\n            \\\"subName\\\": \\\"Name1234567\\\",\\n            \\\"type\\\": 0,\\n            \\\"remarks\\\": \\\"TheRemark\\\",\\n            \\\"access\\\": \\\"All\\\"\\n        }\\n    ]\\n}",
                 "operationId": "012"
             }
         },
         "/api/v1/sub-accounts": {
             "get": {
-                "summary": "Get SubAccount List - Spot Balance(V1)",
+                "summary": "Get sub-account List - Spot Balance (V1)",
                 "deprecated": true,
                 "description": "This endpoint returns the account info of all sub-users.",
                 "tags": [],
@@ -1895,7 +1914,7 @@
                 "x-sdk-sub-service": "SubAccount",
                 "x-sdk-method-name": "getSpotSubAccountListV1",
                 "x-sdk-method-description": "This endpoint returns the account info of all sub-users.",
-                "x-api-rate-limit": 20,
+                "x-api-rate-limit-weight": 20,
                 "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": [\\n        {\\n            \\\"subUserId\\\": \\\"63743f07e0c5230001761d08\\\",\\n            \\\"subName\\\": \\\"testapi6\\\",\\n            \\\"mainAccounts\\\": [\\n                {\\n                    \\\"currency\\\": \\\"USDT\\\",\\n                    \\\"balance\\\": \\\"0.01\\\",\\n                    \\\"available\\\": \\\"0.01\\\",\\n                    \\\"holds\\\": \\\"0\\\",\\n                    \\\"baseCurrency\\\": \\\"BTC\\\",\\n                    \\\"baseCurrencyPrice\\\": \\\"62489.8\\\",\\n                    \\\"baseAmount\\\": \\\"0.00000016\\\",\\n                    \\\"tag\\\": \\\"DEFAULT\\\"\\n                }\\n            ],\\n            \\\"tradeAccounts\\\": [\\n                {\\n                    \\\"currency\\\": \\\"USDT\\\",\\n                    \\\"balance\\\": \\\"0.01\\\",\\n                    \\\"available\\\": \\\"0.01\\\",\\n                    \\\"holds\\\": \\\"0\\\",\\n                    \\\"baseCurrency\\\": \\\"BTC\\\",\\n                    \\\"baseCurrencyPrice\\\": \\\"62489.8\\\",\\n                    \\\"baseAmount\\\": \\\"0.00000016\\\",\\n                    \\\"tag\\\": \\\"DEFAULT\\\"\\n                }\\n            ],\\n            \\\"marginAccounts\\\": [\\n                {\\n                    \\\"currency\\\": \\\"USDT\\\",\\n                    \\\"balance\\\": \\\"0.01\\\",\\n                    \\\"available\\\": \\\"0.01\\\",\\n                    \\\"holds\\\": \\\"0\\\",\\n                    \\\"baseCurrency\\\": \\\"BTC\\\",\\n                    \\\"baseCurrencyPrice\\\": \\\"62489.8\\\",\\n                    \\\"baseAmount\\\": \\\"0.00000016\\\",\\n                    \\\"tag\\\": \\\"DEFAULT\\\"\\n                }\\n            ],\\n            \\\"tradeHFAccounts\\\": []\\n        },\\n        {\\n            \\\"subUserId\\\": \\\"670538a31037eb000115b076\\\",\\n            \\\"subName\\\": \\\"Name1234567\\\",\\n            \\\"mainAccounts\\\": [],\\n            \\\"tradeAccounts\\\": [],\\n            \\\"marginAccounts\\\": [],\\n            \\\"tradeHFAccounts\\\": []\\n        },\\n        {\\n            \\\"subUserId\\\": \\\"66b0c0905fc1480001c14c36\\\",\\n            \\\"subName\\\": \\\"LTkucoin1491\\\",\\n            \\\"mainAccounts\\\": [],\\n            \\\"tradeAccounts\\\": [],\\n            \\\"marginAccounts\\\": [],\\n            \\\"tradeHFAccounts\\\": []\\n        }\\n    ]\\n}",
                 "operationId": "013"
             }

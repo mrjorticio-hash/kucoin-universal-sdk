@@ -3,7 +3,7 @@
 
 func TestEarnPurchaseReq(t *testing.T) {
     // Purchase
-    // purchase
+    // Purchase
     // /api/v1/earn/orders
 
     builder := earn.NewPurchaseReqBuilder()
@@ -116,29 +116,6 @@ func TestEarnGetPromotionProductsReq(t *testing.T) {
 }
 
 
-func TestEarnGetAccountHoldingReq(t *testing.T) {
-    // GetAccountHolding
-    // Get Account Holding
-    // /api/v1/earn/hold-assets
-
-    builder := earn.NewGetAccountHoldingReqBuilder()
-    builder.SetCurrency(?).SetProductId(?).SetProductCategory(?).SetCurrentPage(?).SetPageSize(?)
-    req := builder.Build()
-
-    resp, err := earnApi.GetAccountHolding(req, context.TODO())
-    if err != nil {
-        panic(err)
-    }
-    data, err := json.Marshal(resp.ToMap())
-    if err != nil {
-        panic(err)
-    }
-    fmt.Println("code:", resp.CommonResponse.Code)
-    fmt.Println("message:", resp.CommonResponse.Message)
-    fmt.Println("data:", string(data))
-}
-
-
 func TestEarnGetStakingProductsReq(t *testing.T) {
     // GetStakingProducts
     // Get Staking Products
@@ -195,6 +172,29 @@ func TestEarnGetETHStakingProductsReq(t *testing.T) {
     req := builder.Build()
 
     resp, err := earnApi.GetETHStakingProducts(req, context.TODO())
+    if err != nil {
+        panic(err)
+    }
+    data, err := json.Marshal(resp.ToMap())
+    if err != nil {
+        panic(err)
+    }
+    fmt.Println("code:", resp.CommonResponse.Code)
+    fmt.Println("message:", resp.CommonResponse.Message)
+    fmt.Println("data:", string(data))
+}
+
+
+func TestEarnGetAccountHoldingReq(t *testing.T) {
+    // GetAccountHolding
+    // Get Account Holding
+    // /api/v1/earn/hold-assets
+
+    builder := earn.NewGetAccountHoldingReqBuilder()
+    builder.SetCurrency(?).SetProductId(?).SetProductCategory(?).SetCurrentPage(?).SetPageSize(?)
+    req := builder.Build()
+
+    resp, err := earnApi.GetAccountHolding(req, context.TODO())
     if err != nil {
         panic(err)
     }

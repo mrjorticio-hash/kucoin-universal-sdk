@@ -10,7 +10,7 @@ import (
 type CancelStopOrderByOrderIdResp struct {
 	// common response
 	CommonResponse *types.RestResponse
-	// order id array
+	// order ID array
 	CancelledOrderIds []string `json:"cancelledOrderIds,omitempty"`
 }
 

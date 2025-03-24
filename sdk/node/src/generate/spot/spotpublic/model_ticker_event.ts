@@ -37,7 +37,7 @@ export class TickerEvent implements Response<WsMessage> {
     /**
      * The matching time of the latest transaction
      */
-    Time: number;
+    time: number;
 
     private constructor() {
         // @ts-ignore
@@ -55,7 +55,7 @@ export class TickerEvent implements Response<WsMessage> {
         // @ts-ignore
         this.bestBidSize = null;
         // @ts-ignore
-        this.Time = null;
+        this.time = null;
     }
     /**
      * common response

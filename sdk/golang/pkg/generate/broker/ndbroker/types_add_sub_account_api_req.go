@@ -4,13 +4,13 @@ package ndbroker
 
 // AddSubAccountApiReq struct for AddSubAccountApiReq
 type AddSubAccountApiReq struct {
-	// Subaccount UID
+	// Sub-account UID
 	Uid string `json:"uid,omitempty"`
 	// API passphrase
 	Passphrase string `json:"passphrase,omitempty"`
 	// IP whitelist list, supports up to 20 IPs
 	IpWhitelist []string `json:"ipWhitelist,omitempty"`
-	// Permission group list(Only General、Spot、Futures permissions can be set, such as \"General, Trade\". )
+	// Permission group list (only General, Spot and Futures permissions can be set, such as \"General, Trade\").
 	Permissions []string `json:"permissions,omitempty"`
 	// apikey remarks (length 4~32)
 	Label string `json:"label,omitempty"`
@@ -53,7 +53,7 @@ func NewAddSubAccountApiReqBuilder() *AddSubAccountApiReqBuilder {
 	return &AddSubAccountApiReqBuilder{obj: NewAddSubAccountApiReqWithDefaults()}
 }
 
-// Subaccount UID
+// Sub-account UID
 func (builder *AddSubAccountApiReqBuilder) SetUid(value string) *AddSubAccountApiReqBuilder {
 	builder.obj.Uid = value
 	return builder
@@ -71,7 +71,7 @@ func (builder *AddSubAccountApiReqBuilder) SetIpWhitelist(value []string) *AddSu
 	return builder
 }
 
-// Permission group list(Only General、Spot、Futures permissions can be set, such as \"General, Trade\". )
+// Permission group list (only General, Spot and Futures permissions can be set, such as \"General, Trade\").
 func (builder *AddSubAccountApiReqBuilder) SetPermissions(value []string) *AddSubAccountApiReqBuilder {
 	builder.obj.Permissions = value
 	return builder

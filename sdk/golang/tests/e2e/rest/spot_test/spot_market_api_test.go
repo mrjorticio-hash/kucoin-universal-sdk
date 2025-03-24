@@ -409,3 +409,64 @@ func TestMarketGetFullOrderBookReq(t *testing.T) {
 	fmt.Println("message:", resp.CommonResponse.Message)
 	fmt.Println("data:", string(data))
 }
+
+func TestMarketGetCallAuctionPartOrderBookReq(t *testing.T) {
+	// GetCallAuctionPartOrderBook
+	// Get Call Auction Part OrderBook
+	// /api/v1/market/orderbook/callauction/level2_{size}
+	builder := market.NewGetCallAuctionPartOrderBookReqBuilder()
+	builder.SetSymbol("HBAR-USDC").SetSize("20")
+	req := builder.Build()
+
+	resp, err := marketApi.GetCallAuctionPartOrderBook(req, context.TODO())
+	if err != nil {
+		panic(err)
+	}
+	data, err := json.Marshal(resp.ToMap())
+	if err != nil {
+		panic(err)
+	}
+	fmt.Println("code:", resp.CommonResponse.Code)
+	fmt.Println("message:", resp.CommonResponse.Message)
+	fmt.Println("data:", string(data))
+}
+
+func TestMarketGetCallAuctionInfoReq(t *testing.T) {
+	// GetCallAuctionInfo
+	// Get Call Auction Info
+	// /api/v1/market/callauctionData
+
+	builder := market.NewGetCallAuctionInfoReqBuilder()
+	builder.SetSymbol("HBAR-USDC")
+	req := builder.Build()
+
+	resp, err := marketApi.GetCallAuctionInfo(req, context.TODO())
+	if err != nil {
+		panic(err)
+	}
+	data, err := json.Marshal(resp.ToMap())
+	if err != nil {
+		panic(err)
+	}
+	fmt.Println("code:", resp.CommonResponse.Code)
+	fmt.Println("message:", resp.CommonResponse.Message)
+	fmt.Println("data:", string(data))
+}
+
+func TestMarketGetClientIPAddressReq(t *testing.T) {
+	// GetClientIPAddress
+	// Get Client IP Address
+	// /api/v1/my-ip
+
+	resp, err := marketApi.GetClientIPAddress(context.TODO())
+	if err != nil {
+		panic(err)
+	}
+	data, err := json.Marshal(resp.ToMap())
+	if err != nil {
+		panic(err)
+	}
+	fmt.Println("code:", resp.CommonResponse.Code)
+	fmt.Println("message:", resp.CommonResponse.Message)
+	fmt.Println("data:", string(data))
+}

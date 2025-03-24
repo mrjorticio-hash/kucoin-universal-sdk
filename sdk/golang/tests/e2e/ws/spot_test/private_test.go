@@ -118,3 +118,25 @@ func TestPrivateOrderV2(t *testing.T) {
 	err = spotPrivateApi.UnSubscribe(id)
 	assert.Nil(t, err)
 }
+
+func TestPrivateStopOrder(t *testing.T) {
+	wg := sync.WaitGroup{}
+	wg.Add(1)
+
+	i := 0
+	id, err := spotPrivateApi.StopOrder(func(topic string, subject string, data *spotprivate.StopOrderEvent) error {
+		assert.NotNil(t, data)
+		i++
+		if i == 1 {
+			wg.Done()
+		}
+		str, _ := json.Marshal(data)
+		fmt.Println(topic, subject, string(str))
+		return nil
+	})
+	assert.Nil(t, err)
+	wg.Wait()
+
+	err = spotPrivateApi.UnSubscribe(id)
+	assert.Nil(t, err)
+}

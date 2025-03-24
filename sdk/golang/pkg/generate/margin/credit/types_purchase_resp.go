@@ -10,7 +10,7 @@ import (
 type PurchaseResp struct {
 	// common response
 	CommonResponse *types.RestResponse
-	// Purchase order id
+	// Purchase order ID
 	OrderNo string `json:"orderNo,omitempty"`
 }
 

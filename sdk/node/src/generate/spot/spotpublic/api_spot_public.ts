@@ -5,6 +5,10 @@ import {
     OrderbookLevel5EventCallback,
 } from './model_orderbook_level5_event';
 import { KlinesEventCallbackWrapper, KlinesEventCallback } from './model_klines_event';
+import {
+    CallAuctionInfoEventCallback,
+    CallAuctionInfoEventCallbackWrapper,
+} from './model_call_auction_info_event';
 import { TickerEventCallback, TickerEventCallbackWrapper } from './model_ticker_event';
 import {
     SymbolSnapshotEventCallback,
@@ -28,15 +32,36 @@ import {
     MarketSnapshotEventCallback,
     MarketSnapshotEventCallbackWrapper,
 } from './model_market_snapshot_event';
+import {
+    CallAuctionOrderbookLevel50EventCallback,
+    CallAuctionOrderbookLevel50EventCallbackWrapper,
+} from './model_call_auction_orderbook_level50_event';
 import { WebSocketService } from '@internal/interfaces/websocket';
 
 export interface SpotPublicWS {
     /**
      * allTickers Get All Tickers
-     * Subscribe to this topic to get the push of all market symbols BBO change.
+     * Subscribe to this topic to get pushes on all market symbol BBO changes.
      * push frequency: once every 100ms
      */
     allTickers(callback: AllTickersEventCallback): Promise<string>;
+
+    /**
+     * callAuctionInfo Get Call Auction Info
+     * Subscribe to this topic to get the specified symbol call auction info.
+     * push frequency: once every 100ms
+     */
+    callAuctionInfo(symbol: string, callback: CallAuctionInfoEventCallback): Promise<string>;
+
+    /**
+     * callAuctionOrderbookLevel50 CallAuctionOrderbook - Level50
+     * The system will return the call auction 50 best ask/bid orders data; if there is no change in the market, data will not be pushed
+     * push frequency: once every 100ms
+     */
+    callAuctionOrderbookLevel50(
+        symbol: string,
+        callback: CallAuctionOrderbookLevel50EventCallback,
+    ): Promise<string>;
 
     /**
      * klines Klines
@@ -47,14 +72,14 @@ export interface SpotPublicWS {
 
     /**
      * marketSnapshot Market Snapshot
-     * Subscribe this topic to get the snapshot data of for the entire market.
+     * Subscribe to this topic to get snapshot data for the entire market.
      * push frequency: once every 2s
      */
     marketSnapshot(market: string, callback: MarketSnapshotEventCallback): Promise<string>;
 
     /**
      * orderbookIncrement Orderbook - Increment
-     * The system will return the increment change orderbook data(All depth), A topic supports up to 100 symbols. If there is no change in the market, data will not be pushed
+     * The system will return the increment change orderbook data (all depths); a topic supports up to 100 symbols. If there is no change in the market, data will not be pushed
      * push frequency: real-time
      */
     orderbookIncrement(
@@ -64,14 +89,14 @@ export interface SpotPublicWS {
 
     /**
      * orderbookLevel1 Orderbook - Level1
-     * The system will return the 1 best ask/bid orders data, A topic supports up to 100 symbols. If there is no change in the market, data will not be pushed
+     * The system will return the 1 best ask/bid orders data; a topic supports up to 100 symbols. If there is no change in the market, data will not be pushed
      * push frequency: once every 10ms
      */
     orderbookLevel1(symbol: Array<string>, callback: OrderbookLevel1EventCallback): Promise<string>;
 
     /**
      * orderbookLevel50 Orderbook - Level50
-     * The system will return the 50 best ask/bid orders data, A topic supports up to 100 symbols. If there is no change in the market, data will not be pushed
+     * The system will return data for the 50 best ask/bid orders; a topic supports up to 100 symbols. If there is no change in the market, data will not be pushed
      * push frequency: once every 100ms
      */
     orderbookLevel50(
@@ -81,7 +106,7 @@ export interface SpotPublicWS {
 
     /**
      * orderbookLevel5 Orderbook - Level5
-     * The system will return the 5 best ask/bid orders data,A topic supports up to 100 symbols. If there is no change in the market, data will not be pushed
+     * The system will return the 5 best ask/bid orders data; a topic supports up to 100 symbols. If there is no change in the market, data will not be pushed
      * push frequency: once every 100ms
      */
     orderbookLevel5(symbol: Array<string>, callback: OrderbookLevel5EventCallback): Promise<string>;
@@ -95,14 +120,14 @@ export interface SpotPublicWS {
 
     /**
      * ticker Get Ticker
-     * Subscribe to this topic to get the specified symbol push of BBO changes.
+     * Subscribe to this topic to get specified symbol pushes on BBO changes.
      * push frequency: once every 100ms
      */
     ticker(symbol: Array<string>, callback: TickerEventCallback): Promise<string>;
 
     /**
      * trade Trade
-     * Subscribe to this topic to get the matching event data flow of Level 3. A topic supports up to 100 symbols.
+     * Subscribe to this topic to get Level 3 matching event data flows. A topic supports up to 100 symbols.
      * push frequency: real-time
      */
     trade(symbol: Array<string>, callback: TradeEventCallback): Promise<string>;
@@ -139,6 +164,33 @@ export class SpotPublicWSImpl implements SpotPublicWS {
             topicPrefix,
             args,
             new AllTickersEventCallbackWrapper(callback),
+        );
+    }
+
+    callAuctionInfo(symbol: string, callback: CallAuctionInfoEventCallback): Promise<string> {
+        let topicPrefix = '/callauction/callauctionData';
+
+        let args: string[] = [symbol];
+
+        return this.wsService.subscribe(
+            topicPrefix,
+            args,
+            new CallAuctionInfoEventCallbackWrapper(callback),
+        );
+    }
+
+    callAuctionOrderbookLevel50(
+        symbol: string,
+        callback: CallAuctionOrderbookLevel50EventCallback,
+    ): Promise<string> {
+        let topicPrefix = '/callauction/level2Depth50';
+
+        let args: string[] = [symbol];
+
+        return this.wsService.subscribe(
+            topicPrefix,
+            args,
+            new CallAuctionOrderbookLevel50EventCallbackWrapper(callback),
         );
     }
 
@@ -200,7 +252,7 @@ export class SpotPublicWSImpl implements SpotPublicWS {
         symbol: Array<string>,
         callback: OrderbookLevel50EventCallback,
     ): Promise<string> {
-        let topicPrefix = '/market/level2';
+        let topicPrefix = '/spotMarket/level2Depth50';
 
         let args: string[] = symbol;
 

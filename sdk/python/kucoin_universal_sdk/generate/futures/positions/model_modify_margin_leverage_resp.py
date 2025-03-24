@@ -17,16 +17,14 @@ class ModifyMarginLeverageResp(BaseModel, Response):
     ModifyMarginLeverageResp
 
     Attributes:
-        symbol (str): 
-        leverage (str): 
+        data (bool): 
     """
 
     common_response: Optional[RestResponse] = Field(
         default=None, description="Common response")
-    symbol: Optional[str] = None
-    leverage: Optional[str] = None
+    data: Optional[bool] = None
 
-    __properties: ClassVar[List[str]] = ["symbol", "leverage"]
+    __properties: ClassVar[List[str]] = ["data"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -59,13 +57,13 @@ class ModifyMarginLeverageResp(BaseModel, Response):
         if obj is None:
             return None
 
+        # original response
+        obj = {'data': obj}
+
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "symbol": obj.get("symbol"),
-            "leverage": obj.get("leverage")
-        })
+        _obj = cls.model_validate({"data": obj.get("data")})
         return _obj
 
     def set_common_response(self, response: RestResponse):

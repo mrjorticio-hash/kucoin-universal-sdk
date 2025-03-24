@@ -4,13 +4,13 @@ package market
 
 // GetAllTickersData struct for GetAllTickersData
 type GetAllTickersData struct {
-	// Sequence number, used to judge whether the messages pushed by Websocket is continuous.
+	// Sequence number, used to judge whether the messages pushed by Websocket are continuous.
 	Sequence int64 `json:"sequence,omitempty"`
 	// Symbol
 	Symbol string `json:"symbol,omitempty"`
 	// Trade direction
 	Side string `json:"side,omitempty"`
-	// Filled side, The trade side indicates the taker order side. A taker order is the order that was matched with orders opened on the order book.
+	// Filled side; the trade side indicates the taker order side. A taker order is the order that was matched with orders opened on the order book.
 	Size int32 `json:"size,omitempty"`
 	// Transaction ID
 	TradeId string `json:"tradeId,omitempty"`
@@ -24,7 +24,7 @@ type GetAllTickersData struct {
 	BestAskPrice string `json:"bestAskPrice,omitempty"`
 	// Best ask size
 	BestAskSize int32 `json:"bestAskSize,omitempty"`
-	// Filled time(nanosecond)
+	// Filled time (nanoseconds)
 	Ts int64 `json:"ts,omitempty"`
 }
 

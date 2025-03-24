@@ -6,17 +6,17 @@ package account
 type GetFuturesLedgerReq struct {
 	// Currency of transaction history, XBT or USDT
 	Currency *string `json:"currency,omitempty" url:"currency,omitempty"`
-	// Type RealisedPNL-Realised profit and loss, Deposit-Deposit, Withdrawal-withdraw, Transferin-Transfer in, TransferOut-Transfer out
+	// Type RealizedPNL-Realized profit and loss, Deposit-Deposit, Withdrawal-withdraw, Transferin-Transfer in, TransferOut-Transfer out
 	Type *string `json:"type,omitempty" url:"type,omitempty"`
-	// Start offset. Generally, the only attribute of the last returned result of the previous request is used, and the first page is returned by default
+	// Start offset. Generally, only the attributes of the last returned result of the previous request are used, and the first page is returned by default
 	Offset *int64 `json:"offset,omitempty" url:"offset,omitempty"`
-	// This parameter functions to judge whether the lookup is forward or not. True means “yes” and False means “no”. This parameter is set as true by default
+	// This parameter functions to judge whether the lookup is forward or not. True means “yes” and False means “no”. This parameter is set as true by default.
 	Forward *bool `json:"forward,omitempty" url:"forward,omitempty"`
 	// Displayed size per page. The default size is 50
 	MaxCount *int64 `json:"maxCount,omitempty" url:"maxCount,omitempty"`
-	// Start time (milisecond)
+	// Start time (milliseconds)
 	StartAt *int64 `json:"startAt,omitempty" url:"startAt,omitempty"`
-	// End time (milisecond)
+	// End time (milliseconds)
 	EndAt *int64 `json:"endAt,omitempty" url:"endAt,omitempty"`
 }
 
@@ -68,19 +68,19 @@ func (builder *GetFuturesLedgerReqBuilder) SetCurrency(value string) *GetFutures
 	return builder
 }
 
-// Type RealisedPNL-Realised profit and loss, Deposit-Deposit, Withdrawal-withdraw, Transferin-Transfer in, TransferOut-Transfer out
+// Type RealizedPNL-Realized profit and loss, Deposit-Deposit, Withdrawal-withdraw, Transferin-Transfer in, TransferOut-Transfer out
 func (builder *GetFuturesLedgerReqBuilder) SetType(value string) *GetFuturesLedgerReqBuilder {
 	builder.obj.Type = &value
 	return builder
 }
 
-// Start offset. Generally, the only attribute of the last returned result of the previous request is used, and the first page is returned by default
+// Start offset. Generally, only the attributes of the last returned result of the previous request are used, and the first page is returned by default
 func (builder *GetFuturesLedgerReqBuilder) SetOffset(value int64) *GetFuturesLedgerReqBuilder {
 	builder.obj.Offset = &value
 	return builder
 }
 
-// This parameter functions to judge whether the lookup is forward or not. True means “yes” and False means “no”. This parameter is set as true by default
+// This parameter functions to judge whether the lookup is forward or not. True means “yes” and False means “no”. This parameter is set as true by default.
 func (builder *GetFuturesLedgerReqBuilder) SetForward(value bool) *GetFuturesLedgerReqBuilder {
 	builder.obj.Forward = &value
 	return builder
@@ -92,13 +92,13 @@ func (builder *GetFuturesLedgerReqBuilder) SetMaxCount(value int64) *GetFuturesL
 	return builder
 }
 
-// Start time (milisecond)
+// Start time (milliseconds)
 func (builder *GetFuturesLedgerReqBuilder) SetStartAt(value int64) *GetFuturesLedgerReqBuilder {
 	builder.obj.StartAt = &value
 	return builder
 }
 
-// End time (milisecond)
+// End time (milliseconds)
 func (builder *GetFuturesLedgerReqBuilder) SetEndAt(value int64) *GetFuturesLedgerReqBuilder {
 	builder.obj.EndAt = &value
 	return builder

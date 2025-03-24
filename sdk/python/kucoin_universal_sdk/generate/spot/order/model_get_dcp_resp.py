@@ -17,8 +17,8 @@ class GetDcpResp(BaseModel, Response):
     If the data is empty, it means that DCP is not set.
 
     Attributes:
-        timeout (int): Auto cancel order trigger setting time, the unit is second. range: timeout=-1 (meaning unset) or 5 <= timeout <= 86400
-        symbols (str): List of trading pairs. Separated by commas, empty means all trading pairs
+        timeout (int): Auto cancel order trigger setting time, the unit is second. Range: timeout=-1 (meaning unset) or 5 <= timeout <= 86400
+        symbols (str): List of trading pairs. Separated by commas; empty means all trading pairs
         current_time (int): System current time (in seconds)
         trigger_time (int): Trigger cancellation time (in seconds)
     """
@@ -28,12 +28,12 @@ class GetDcpResp(BaseModel, Response):
     timeout: Optional[int] = Field(
         default=None,
         description=
-        "Auto cancel order trigger setting time, the unit is second. range: timeout=-1 (meaning unset) or 5 <= timeout <= 86400"
+        "Auto cancel order trigger setting time, the unit is second. Range: timeout=-1 (meaning unset) or 5 <= timeout <= 86400"
     )
     symbols: Optional[str] = Field(
         default=None,
         description=
-        "List of trading pairs. Separated by commas, empty means all trading pairs"
+        "List of trading pairs. Separated by commas; empty means all trading pairs"
     )
     current_time: Optional[int] = Field(
         default=None,

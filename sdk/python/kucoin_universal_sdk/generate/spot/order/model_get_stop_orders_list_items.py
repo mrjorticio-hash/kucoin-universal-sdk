@@ -6,6 +6,7 @@ from __future__ import annotations
 import pprint
 import json
 
+from enum import Enum
 from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
 
@@ -19,7 +20,7 @@ class GetStopOrdersListItems(BaseModel):
         symbol (str): Symbol name
         user_id (str): User ID
         status (str): Order status, include NEW, TRIGGERED
-        type (str): Order type,limit, market, limit_stop or market_stop
+        type (TypeEnum): Order type
         side (str): transaction direction,include buy and sell
         price (str): order price
         size (str): order quantity
@@ -46,7 +47,20 @@ class GetStopOrdersListItems(BaseModel):
         stop (str): Stop order type, include loss and entry
         stop_trigger_time (int): The trigger time of the stop order
         stop_price (str): stop price
+        related_no (str): 
+        limit_price (str): 
+        pop (str): 
+        activate_condition (str): 
     """
+
+    class TypeEnum(Enum):
+        """
+        Attributes:
+            LIMIT: Limit order
+            MARKET: Market order
+        """
+        LIMIT = 'limit'
+        MARKET = 'market'
 
     id: Optional[str] = Field(default=None,
                               description="Order ID, the ID of an order.")
@@ -56,9 +70,7 @@ class GetStopOrdersListItems(BaseModel):
                                    alias="userId")
     status: Optional[str] = Field(
         default=None, description="Order status, include NEW, TRIGGERED")
-    type: Optional[str] = Field(
-        default=None,
-        description="Order type,limit, market, limit_stop or market_stop")
+    type: Optional[TypeEnum] = Field(default=None, description="Order type")
     side: Optional[str] = Field(
         default=None, description="transaction direction,include buy and sell")
     price: Optional[str] = Field(default=None, description="order price")
@@ -129,6 +141,11 @@ class GetStopOrdersListItems(BaseModel):
     stop_price: Optional[str] = Field(default=None,
                                       description="stop price",
                                       alias="stopPrice")
+    related_no: Optional[str] = Field(default=None, alias="relatedNo")
+    limit_price: Optional[str] = Field(default=None, alias="limitPrice")
+    pop: Optional[str] = None
+    activate_condition: Optional[str] = Field(default=None,
+                                              alias="activateCondition")
 
     __properties: ClassVar[List[str]] = [
         "id", "symbol", "userId", "status", "type", "side", "price", "size",
@@ -136,7 +153,7 @@ class GetStopOrdersListItems(BaseModel):
         "iceberg", "visibleSize", "channel", "clientOid", "remark", "tags",
         "orderTime", "domainId", "tradeSource", "tradeType", "feeCurrency",
         "takerFeeRate", "makerFeeRate", "createdAt", "stop", "stopTriggerTime",
-        "stopPrice"
+        "stopPrice", "relatedNo", "limitPrice", "pop", "activateCondition"
     ]
 
     model_config = ConfigDict(
@@ -173,36 +190,75 @@ class GetStopOrdersListItems(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "id": obj.get("id"),
-            "symbol": obj.get("symbol"),
-            "userId": obj.get("userId"),
-            "status": obj.get("status"),
-            "type": obj.get("type"),
-            "side": obj.get("side"),
-            "price": obj.get("price"),
-            "size": obj.get("size"),
-            "funds": obj.get("funds"),
-            "stp": obj.get("stp"),
-            "timeInForce": obj.get("timeInForce"),
-            "cancelAfter": obj.get("cancelAfter"),
-            "postOnly": obj.get("postOnly"),
-            "hidden": obj.get("hidden"),
-            "iceberg": obj.get("iceberg"),
-            "visibleSize": obj.get("visibleSize"),
-            "channel": obj.get("channel"),
-            "clientOid": obj.get("clientOid"),
-            "remark": obj.get("remark"),
-            "tags": obj.get("tags"),
-            "orderTime": obj.get("orderTime"),
-            "domainId": obj.get("domainId"),
-            "tradeSource": obj.get("tradeSource"),
-            "tradeType": obj.get("tradeType"),
-            "feeCurrency": obj.get("feeCurrency"),
-            "takerFeeRate": obj.get("takerFeeRate"),
-            "makerFeeRate": obj.get("makerFeeRate"),
-            "createdAt": obj.get("createdAt"),
-            "stop": obj.get("stop"),
-            "stopTriggerTime": obj.get("stopTriggerTime"),
-            "stopPrice": obj.get("stopPrice")
+            "id":
+            obj.get("id"),
+            "symbol":
+            obj.get("symbol"),
+            "userId":
+            obj.get("userId"),
+            "status":
+            obj.get("status"),
+            "type":
+            obj.get("type"),
+            "side":
+            obj.get("side"),
+            "price":
+            obj.get("price"),
+            "size":
+            obj.get("size"),
+            "funds":
+            obj.get("funds"),
+            "stp":
+            obj.get("stp"),
+            "timeInForce":
+            obj.get("timeInForce"),
+            "cancelAfter":
+            obj.get("cancelAfter"),
+            "postOnly":
+            obj.get("postOnly"),
+            "hidden":
+            obj.get("hidden"),
+            "iceberg":
+            obj.get("iceberg"),
+            "visibleSize":
+            obj.get("visibleSize"),
+            "channel":
+            obj.get("channel"),
+            "clientOid":
+            obj.get("clientOid"),
+            "remark":
+            obj.get("remark"),
+            "tags":
+            obj.get("tags"),
+            "orderTime":
+            obj.get("orderTime"),
+            "domainId":
+            obj.get("domainId"),
+            "tradeSource":
+            obj.get("tradeSource"),
+            "tradeType":
+            obj.get("tradeType"),
+            "feeCurrency":
+            obj.get("feeCurrency"),
+            "takerFeeRate":
+            obj.get("takerFeeRate"),
+            "makerFeeRate":
+            obj.get("makerFeeRate"),
+            "createdAt":
+            obj.get("createdAt"),
+            "stop":
+            obj.get("stop"),
+            "stopTriggerTime":
+            obj.get("stopTriggerTime"),
+            "stopPrice":
+            obj.get("stopPrice"),
+            "relatedNo":
+            obj.get("relatedNo"),
+            "limitPrice":
+            obj.get("limitPrice"),
+            "pop":
+            obj.get("pop"),
+            "activateCondition":
+            obj.get("activateCondition")
         })
         return _obj

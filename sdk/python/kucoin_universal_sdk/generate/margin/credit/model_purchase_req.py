@@ -16,14 +16,14 @@ class PurchaseReq(BaseModel):
 
     Attributes:
         currency (str): Currency
-        size (str): purchase amount
-        interest_rate (str): purchase interest rate
+        size (str): Purchase amount
+        interest_rate (str): Purchase interest rate
     """
 
     currency: Optional[str] = Field(default=None, description="Currency")
-    size: Optional[str] = Field(default=None, description="purchase amount")
+    size: Optional[str] = Field(default=None, description="Purchase amount")
     interest_rate: Optional[str] = Field(default=None,
-                                         description="purchase interest rate",
+                                         description="Purchase interest rate",
                                          alias="interestRate")
 
     __properties: ClassVar[List[str]] = ["currency", "size", "interestRate"]
@@ -81,14 +81,14 @@ class PurchaseReqBuilder:
 
     def set_size(self, value: str) -> PurchaseReqBuilder:
         """
-        purchase amount
+        Purchase amount
         """
         self.obj['size'] = value
         return self
 
     def set_interest_rate(self, value: str) -> PurchaseReqBuilder:
         """
-        purchase interest rate
+        Purchase interest rate
         """
         self.obj['interestRate'] = value
         return self

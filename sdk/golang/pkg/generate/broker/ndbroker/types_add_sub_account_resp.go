@@ -10,13 +10,13 @@ import (
 type AddSubAccountResp struct {
 	// common response
 	CommonResponse *types.RestResponse
-	// Sub-Account name
+	// Sub-account name
 	AccountName string `json:"accountName,omitempty"`
-	// Sub-Account UID
+	// Sub-account UID
 	Uid string `json:"uid,omitempty"`
-	// Creation time, unix timestamp (milliseconds)
+	// Creation time, Unix timestamp (milliseconds)
 	CreatedAt int64 `json:"createdAt,omitempty"`
-	// Subaccount VIP level
+	// Sub-account VIP level
 	Level int32 `json:"level,omitempty"`
 }
 

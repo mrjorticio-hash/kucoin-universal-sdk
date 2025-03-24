@@ -17,13 +17,13 @@ class PurchaseResp(BaseModel, Response):
     PurchaseResp
 
     Attributes:
-        order_no (str): Purchase order id
+        order_no (str): Purchase order ID
     """
 
     common_response: Optional[RestResponse] = Field(
         default=None, description="Common response")
     order_no: Optional[str] = Field(default=None,
-                                    description="Purchase order id",
+                                    description="Purchase order ID",
                                     alias="orderNo")
 
     __properties: ClassVar[List[str]] = ["orderNo"]

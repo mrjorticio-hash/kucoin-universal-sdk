@@ -6,7 +6,7 @@ import { Response } from '@internal/interfaces/serializable';
 
 export class GetServiceStatusResp implements Response<RestResponse> {
     /**
-     * Status of service: open：normal transaction, close：Stop Trading/Maintenance, cancelonly：can only cancel the order but not place order
+     * Status of service: open: normal transaction; close: Stop Trading/Maintenance; cancelonly: can only cancel the order but not place order
      */
     status: GetServiceStatusResp.StatusEnum;
 

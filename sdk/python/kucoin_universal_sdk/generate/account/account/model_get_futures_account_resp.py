@@ -17,31 +17,32 @@ class GetFuturesAccountResp(BaseModel, Response):
     GetFuturesAccountResp
 
     Attributes:
-        account_equity (float): Account equity = marginBalance + Unrealised PNL
-        unrealised_pnl (float): Unrealised profit and loss
-        margin_balance (float): Margin balance = positionMargin + orderMargin + frozenFunds + availableBalance - unrealisedPNL
+        account_equity (float): Account equity = marginBalance + unrealizedPNL
+        unrealised_pnl (float): Unrealized profit and loss
+        margin_balance (float): Margin balance = positionMargin + orderMargin + frozenFunds + availableBalance - unrealizedPNL
         position_margin (float): Position margin
         order_margin (float): Order margin
         frozen_funds (float): Frozen funds for out-transfer
         available_balance (float): Available balance
         currency (str): Currency
         risk_ratio (float): Cross margin risk rate
+        max_withdraw_amount (float): Maximum amount that can be withdrawn/transferred.
     """
 
     common_response: Optional[RestResponse] = Field(
         default=None, description="Common response")
     account_equity: Optional[float] = Field(
         default=None,
-        description="Account equity = marginBalance + Unrealised PNL",
+        description="Account equity = marginBalance + unrealizedPNL",
         alias="accountEquity")
     unrealised_pnl: Optional[float] = Field(
         default=None,
-        description="Unrealised profit and loss",
+        description="Unrealized profit and loss",
         alias="unrealisedPNL")
     margin_balance: Optional[float] = Field(
         default=None,
         description=
-        "Margin balance = positionMargin + orderMargin + frozenFunds + availableBalance - unrealisedPNL",
+        "Margin balance = positionMargin + orderMargin + frozenFunds + availableBalance - unrealizedPNL",
         alias="marginBalance")
     position_margin: Optional[float] = Field(default=None,
                                              description="Position margin",
@@ -60,11 +61,15 @@ class GetFuturesAccountResp(BaseModel, Response):
     risk_ratio: Optional[float] = Field(default=None,
                                         description="Cross margin risk rate",
                                         alias="riskRatio")
+    max_withdraw_amount: Optional[float] = Field(
+        default=None,
+        description="Maximum amount that can be withdrawn/transferred.",
+        alias="maxWithdrawAmount")
 
     __properties: ClassVar[List[str]] = [
         "accountEquity", "unrealisedPNL", "marginBalance", "positionMargin",
         "orderMargin", "frozenFunds", "availableBalance", "currency",
-        "riskRatio"
+        "riskRatio", "maxWithdrawAmount"
     ]
 
     model_config = ConfigDict(
@@ -118,7 +123,9 @@ class GetFuturesAccountResp(BaseModel, Response):
             "currency":
             obj.get("currency"),
             "riskRatio":
-            obj.get("riskRatio")
+            obj.get("riskRatio"),
+            "maxWithdrawAmount":
+            obj.get("maxWithdrawAmount")
         })
         return _obj
 

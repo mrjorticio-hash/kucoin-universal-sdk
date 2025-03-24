@@ -32,6 +32,12 @@ class GetPositionsHistoryItems(BaseModel):
         open_price (str): Opening price of the position 
         close_price (str): Closing price of the position 
         margin_mode (MarginModeEnum): Margin Mode: CROSS，ISOLATED
+        realised_gross_cost_new (str): 
+        tax (str): Tax
+        roe (str): 
+        liquid_amount (str): 
+        liquid_price (str): 
+        side (str): Position side
     """
 
     class MarginModeEnum(Enum):
@@ -100,11 +106,20 @@ class GetPositionsHistoryItems(BaseModel):
         default=None,
         description="Margin Mode: CROSS，ISOLATED",
         alias="marginMode")
+    realised_gross_cost_new: Optional[str] = Field(
+        default=None, alias="realisedGrossCostNew")
+    tax: Optional[str] = Field(default=None, description="Tax")
+    roe: Optional[str] = None
+    liquid_amount: Optional[str] = Field(default=None, alias="liquidAmount")
+    liquid_price: Optional[str] = Field(default=None, alias="liquidPrice")
+    side: Optional[str] = Field(default=None, description="Position side")
 
     __properties: ClassVar[List[str]] = [
         "closeId", "userId", "symbol", "settleCurrency", "leverage", "type",
         "pnl", "realisedGrossCost", "withdrawPnl", "tradeFee", "fundingFee",
-        "openTime", "closeTime", "openPrice", "closePrice", "marginMode"
+        "openTime", "closeTime", "openPrice", "closePrice", "marginMode",
+        "realisedGrossCostNew", "tax", "roe", "liquidAmount", "liquidPrice",
+        "side"
     ]
 
     model_config = ConfigDict(
@@ -173,6 +188,18 @@ class GetPositionsHistoryItems(BaseModel):
             "closePrice":
             obj.get("closePrice"),
             "marginMode":
-            obj.get("marginMode")
+            obj.get("marginMode"),
+            "realisedGrossCostNew":
+            obj.get("realisedGrossCostNew"),
+            "tax":
+            obj.get("tax"),
+            "roe":
+            obj.get("roe"),
+            "liquidAmount":
+            obj.get("liquidAmount"),
+            "liquidPrice":
+            obj.get("liquidPrice"),
+            "side":
+            obj.get("side")
         })
         return _obj

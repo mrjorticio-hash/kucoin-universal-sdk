@@ -11,49 +11,49 @@ import { GetBasicFeeReq } from './model_get_basic_fee_req';
 export interface FeeAPI {
     /**
      * getBasicFee Get Basic Fee - Spot/Margin
-     * Description: This interface is for the spot/margin basic fee rate of users
+     * Description: This interface is for the user’s spot/margin basic fee rate.
      * Documentation: https://www.kucoin.com/docs-new/api-3470149
-     * +---------------------+---------+
-     * | Extra API Info      | Value   |
-     * +---------------------+---------+
-     * | API-DOMAIN          | SPOT    |
-     * | API-CHANNEL         | PRIVATE |
-     * | API-PERMISSION      | GENERAL |
-     * | API-RATE-LIMIT-POOL | SPOT    |
-     * | API-RATE-LIMIT      | 3       |
-     * +---------------------+---------+
+     * +-----------------------+---------+
+     * | Extra API Info        | Value   |
+     * +-----------------------+---------+
+     * | API-DOMAIN            | SPOT    |
+     * | API-CHANNEL           | PRIVATE |
+     * | API-PERMISSION        | GENERAL |
+     * | API-RATE-LIMIT-POOL   | SPOT    |
+     * | API-RATE-LIMIT-WEIGHT | 3       |
+     * +-----------------------+---------+
      */
     getBasicFee(req: GetBasicFeeReq): Promise<GetBasicFeeResp>;
 
     /**
      * getSpotActualFee Get Actual Fee - Spot/Margin
-     * Description: This interface is for the actual fee rate of the trading pair. You can inquire about fee rates of 10 trading pairs each time at most. The fee rate of your sub-account is the same as that of the master account.
+     * Description: This interface is for the trading pair’s actual fee rate. You can inquire about fee rates of 10 trading pairs each time at most. The fee rate of your sub-account is the same as that of the master account.
      * Documentation: https://www.kucoin.com/docs-new/api-3470150
-     * +---------------------+---------+
-     * | Extra API Info      | Value   |
-     * +---------------------+---------+
-     * | API-DOMAIN          | SPOT    |
-     * | API-CHANNEL         | PRIVATE |
-     * | API-PERMISSION      | GENERAL |
-     * | API-RATE-LIMIT-POOL | SPOT    |
-     * | API-RATE-LIMIT      | 3       |
-     * +---------------------+---------+
+     * +-----------------------+---------+
+     * | Extra API Info        | Value   |
+     * +-----------------------+---------+
+     * | API-DOMAIN            | SPOT    |
+     * | API-CHANNEL           | PRIVATE |
+     * | API-PERMISSION        | GENERAL |
+     * | API-RATE-LIMIT-POOL   | SPOT    |
+     * | API-RATE-LIMIT-WEIGHT | 3       |
+     * +-----------------------+---------+
      */
     getSpotActualFee(req: GetSpotActualFeeReq): Promise<GetSpotActualFeeResp>;
 
     /**
      * getFuturesActualFee Get Actual Fee - Futures
-     * Description: This interface is for the actual futures fee rate of the trading pair. The fee rate of your sub-account is the same as that of the master account.
+     * Description: This interface is for the trading pair’s actual futures fee rate. The fee rate of your sub-account is the same as that of the master account.
      * Documentation: https://www.kucoin.com/docs-new/api-3470151
-     * +---------------------+---------+
-     * | Extra API Info      | Value   |
-     * +---------------------+---------+
-     * | API-DOMAIN          | FUTURES |
-     * | API-CHANNEL         | PRIVATE |
-     * | API-PERMISSION      | GENERAL |
-     * | API-RATE-LIMIT-POOL | FUTURES |
-     * | API-RATE-LIMIT      | 3       |
-     * +---------------------+---------+
+     * +-----------------------+---------+
+     * | Extra API Info        | Value   |
+     * +-----------------------+---------+
+     * | API-DOMAIN            | FUTURES |
+     * | API-CHANNEL           | PRIVATE |
+     * | API-PERMISSION        | GENERAL |
+     * | API-RATE-LIMIT-POOL   | FUTURES |
+     * | API-RATE-LIMIT-WEIGHT | 3       |
+     * +-----------------------+---------+
      */
     getFuturesActualFee(req: GetFuturesActualFeeReq): Promise<GetFuturesActualFeeResp>;
 }

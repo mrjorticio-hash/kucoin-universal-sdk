@@ -5,72 +5,102 @@ package order
 // GetStopOrdersListItems struct for GetStopOrdersListItems
 type GetStopOrdersListItems struct {
 	// Order ID, the ID of an order.
-	Id *string `json:"id,omitempty"`
+	Id string `json:"id,omitempty"`
 	// Symbol name
-	Symbol *string `json:"symbol,omitempty"`
+	Symbol string `json:"symbol,omitempty"`
 	// User ID
-	UserId *string `json:"userId,omitempty"`
+	UserId string `json:"userId,omitempty"`
 	// Order status, include NEW, TRIGGERED
-	Status *string `json:"status,omitempty"`
-	// Order type,limit, market, limit_stop or market_stop
-	Type *string `json:"type,omitempty"`
+	Status string `json:"status,omitempty"`
+	// Order type
+	Type string `json:"type,omitempty"`
 	// transaction direction,include buy and sell
-	Side *string `json:"side,omitempty"`
+	Side string `json:"side,omitempty"`
 	// order price
-	Price *string `json:"price,omitempty"`
+	Price string `json:"price,omitempty"`
 	// order quantity
-	Size *string `json:"size,omitempty"`
+	Size string `json:"size,omitempty"`
 	// order funds
 	Funds *string `json:"funds,omitempty"`
 	Stp   *string `json:"stp,omitempty"`
 	// time InForce,include GTC,GTT,IOC,FOK
-	TimeInForce *string `json:"timeInForce,omitempty"`
+	TimeInForce string `json:"timeInForce,omitempty"`
 	// cancel orders after n seconds，requires timeInForce to be GTT
-	CancelAfter *int32 `json:"cancelAfter,omitempty"`
+	CancelAfter int32 `json:"cancelAfter,omitempty"`
 	// postOnly
-	PostOnly *bool `json:"postOnly,omitempty"`
+	PostOnly bool `json:"postOnly,omitempty"`
 	// hidden order
-	Hidden *bool `json:"hidden,omitempty"`
+	Hidden bool `json:"hidden,omitempty"`
 	// Iceberg order
-	Iceberg *bool `json:"iceberg,omitempty"`
+	Iceberg bool `json:"iceberg,omitempty"`
 	// displayed quantity for iceberg order
 	VisibleSize *string `json:"visibleSize,omitempty"`
 	// order source
-	Channel *string `json:"channel,omitempty"`
+	Channel string `json:"channel,omitempty"`
 	// user-entered order unique mark
-	ClientOid *string `json:"clientOid,omitempty"`
+	ClientOid string `json:"clientOid,omitempty"`
 	// Remarks at stop order creation
-	Remark *string `json:"remark,omitempty"`
+	Remark string `json:"remark,omitempty"`
 	// tag order source
 	Tags *string `json:"tags,omitempty"`
 	// Time of place a stop order, accurate to nanoseconds
-	OrderTime *int64 `json:"orderTime,omitempty"`
+	OrderTime int64 `json:"orderTime,omitempty"`
 	// domainId, e.g: kucoin
-	DomainId *string `json:"domainId,omitempty"`
+	DomainId string `json:"domainId,omitempty"`
 	// trade source: USER（Order by user）, MARGIN_SYSTEM（Order by margin system）
-	TradeSource *string `json:"tradeSource,omitempty"`
+	TradeSource string `json:"tradeSource,omitempty"`
 	// The type of trading : TRADE（Spot）, MARGIN_TRADE (Cross Margin), MARGIN_ISOLATED_TRADE (Isolated Margin).
-	TradeType *string `json:"tradeType,omitempty"`
+	TradeType string `json:"tradeType,omitempty"`
 	// The currency of the fee
-	FeeCurrency *string `json:"feeCurrency,omitempty"`
+	FeeCurrency string `json:"feeCurrency,omitempty"`
 	// Fee Rate of taker
-	TakerFeeRate *string `json:"takerFeeRate,omitempty"`
+	TakerFeeRate string `json:"takerFeeRate,omitempty"`
 	// Fee Rate of maker
-	MakerFeeRate *string `json:"makerFeeRate,omitempty"`
+	MakerFeeRate string `json:"makerFeeRate,omitempty"`
 	// order creation time
-	CreatedAt *int64 `json:"createdAt,omitempty"`
+	CreatedAt int64 `json:"createdAt,omitempty"`
 	// Stop order type, include loss and entry
-	Stop *string `json:"stop,omitempty"`
+	Stop string `json:"stop,omitempty"`
 	// The trigger time of the stop order
 	StopTriggerTime *int64 `json:"stopTriggerTime,omitempty"`
 	// stop price
-	StopPrice *string `json:"stopPrice,omitempty"`
+	StopPrice         string  `json:"stopPrice,omitempty"`
+	RelatedNo         *string `json:"relatedNo,omitempty"`
+	LimitPrice        *string `json:"limitPrice,omitempty"`
+	Pop               *string `json:"pop,omitempty"`
+	ActivateCondition *string `json:"activateCondition,omitempty"`
 }
 
 // NewGetStopOrdersListItems instantiates a new GetStopOrdersListItems object
 // This constructor will assign default values to properties that have it defined
-func NewGetStopOrdersListItems() *GetStopOrdersListItems {
+func NewGetStopOrdersListItems(id string, symbol string, userId string, status string, Type_ string, side string, price string, size string, timeInForce string, cancelAfter int32, postOnly bool, hidden bool, iceberg bool, channel string, clientOid string, remark string, orderTime int64, domainId string, tradeSource string, tradeType string, feeCurrency string, takerFeeRate string, makerFeeRate string, createdAt int64, stop string, stopPrice string) *GetStopOrdersListItems {
 	this := GetStopOrdersListItems{}
+	this.Id = id
+	this.Symbol = symbol
+	this.UserId = userId
+	this.Status = status
+	this.Type = Type_
+	this.Side = side
+	this.Price = price
+	this.Size = size
+	this.TimeInForce = timeInForce
+	this.CancelAfter = cancelAfter
+	this.PostOnly = postOnly
+	this.Hidden = hidden
+	this.Iceberg = iceberg
+	this.Channel = channel
+	this.ClientOid = clientOid
+	this.Remark = remark
+	this.OrderTime = orderTime
+	this.DomainId = domainId
+	this.TradeSource = tradeSource
+	this.TradeType = tradeType
+	this.FeeCurrency = feeCurrency
+	this.TakerFeeRate = takerFeeRate
+	this.MakerFeeRate = makerFeeRate
+	this.CreatedAt = createdAt
+	this.Stop = stop
+	this.StopPrice = stopPrice
 	return &this
 }
 
@@ -114,5 +144,9 @@ func (o *GetStopOrdersListItems) ToMap() map[string]interface{} {
 	toSerialize["stop"] = o.Stop
 	toSerialize["stopTriggerTime"] = o.StopTriggerTime
 	toSerialize["stopPrice"] = o.StopPrice
+	toSerialize["relatedNo"] = o.RelatedNo
+	toSerialize["limitPrice"] = o.LimitPrice
+	toSerialize["pop"] = o.Pop
+	toSerialize["activateCondition"] = o.ActivateCondition
 	return toSerialize
 }

@@ -20,22 +20,22 @@ export class GetFuturesAccountTransferOutLedgerReq implements Serializable {
     tag?: Array<string>;
 
     /**
-     * Start time (milisecond)
+     * Start time (milliseconds)
      */
     startAt?: number;
 
     /**
-     * End time (milisecond)
+     * End time (milliseconds)
      */
     endAt?: number;
 
     /**
-     * Current request page, The default currentPage is 1
+     * Current request page. The default currentPage is 1
      */
     currentPage?: number = 1;
 
     /**
-     * pageSize, The default pageSize is 50
+     * pageSize; the default pageSize is 50
      */
     pageSize?: number = 50;
 
@@ -70,19 +70,19 @@ export class GetFuturesAccountTransferOutLedgerReq implements Serializable {
          */
         tag?: Array<string>;
         /**
-         * Start time (milisecond)
+         * Start time (milliseconds)
          */
         startAt?: number;
         /**
-         * End time (milisecond)
+         * End time (milliseconds)
          */
         endAt?: number;
         /**
-         * Current request page, The default currentPage is 1
+         * Current request page. The default currentPage is 1
          */
         currentPage?: number;
         /**
-         * pageSize, The default pageSize is 50
+         * pageSize; the default pageSize is 50
          */
         pageSize?: number;
     }): GetFuturesAccountTransferOutLedgerReq {
@@ -177,7 +177,7 @@ export class GetFuturesAccountTransferOutLedgerReqBuilder {
     }
 
     /**
-     * Start time (milisecond)
+     * Start time (milliseconds)
      */
     setStartAt(value: number): GetFuturesAccountTransferOutLedgerReqBuilder {
         this.obj.startAt = value;
@@ -185,7 +185,7 @@ export class GetFuturesAccountTransferOutLedgerReqBuilder {
     }
 
     /**
-     * End time (milisecond)
+     * End time (milliseconds)
      */
     setEndAt(value: number): GetFuturesAccountTransferOutLedgerReqBuilder {
         this.obj.endAt = value;
@@ -193,7 +193,7 @@ export class GetFuturesAccountTransferOutLedgerReqBuilder {
     }
 
     /**
-     * Current request page, The default currentPage is 1
+     * Current request page. The default currentPage is 1
      */
     setCurrentPage(value: number): GetFuturesAccountTransferOutLedgerReqBuilder {
         this.obj.currentPage = value;
@@ -201,7 +201,7 @@ export class GetFuturesAccountTransferOutLedgerReqBuilder {
     }
 
     /**
-     * pageSize, The default pageSize is 50
+     * pageSize; the default pageSize is 50
      */
     setPageSize(value: number): GetFuturesAccountTransferOutLedgerReqBuilder {
         this.obj.pageSize = value;

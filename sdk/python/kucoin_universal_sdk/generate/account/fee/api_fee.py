@@ -18,17 +18,17 @@ class FeeAPI(ABC):
                       **kwargs: Any) -> GetBasicFeeResp:
         """
         summary: Get Basic Fee - Spot/Margin
-        description: This interface is for the spot/margin basic fee rate of users
+        description: This interface is for the user’s spot/margin basic fee rate.
         documentation: https://www.kucoin.com/docs-new/api-3470149
-        +---------------------+---------+
-        | Extra API Info      | Value   |
-        +---------------------+---------+
-        | API-DOMAIN          | SPOT    |
-        | API-CHANNEL         | PRIVATE |
-        | API-PERMISSION      | GENERAL |
-        | API-RATE-LIMIT-POOL | SPOT    |
-        | API-RATE-LIMIT      | 3       |
-        +---------------------+---------+
+        +-----------------------+---------+
+        | Extra API Info        | Value   |
+        +-----------------------+---------+
+        | API-DOMAIN            | SPOT    |
+        | API-CHANNEL           | PRIVATE |
+        | API-PERMISSION        | GENERAL |
+        | API-RATE-LIMIT-POOL   | SPOT    |
+        | API-RATE-LIMIT-WEIGHT | 3       |
+        +-----------------------+---------+
         """
         pass
 
@@ -37,17 +37,17 @@ class FeeAPI(ABC):
                             **kwargs: Any) -> GetSpotActualFeeResp:
         """
         summary: Get Actual Fee - Spot/Margin
-        description: This interface is for the actual fee rate of the trading pair. You can inquire about fee rates of 10 trading pairs each time at most. The fee rate of your sub-account is the same as that of the master account.
+        description: This interface is for the trading pair’s actual fee rate. You can inquire about fee rates of 10 trading pairs each time at most. The fee rate of your sub-account is the same as that of the master account.
         documentation: https://www.kucoin.com/docs-new/api-3470150
-        +---------------------+---------+
-        | Extra API Info      | Value   |
-        +---------------------+---------+
-        | API-DOMAIN          | SPOT    |
-        | API-CHANNEL         | PRIVATE |
-        | API-PERMISSION      | GENERAL |
-        | API-RATE-LIMIT-POOL | SPOT    |
-        | API-RATE-LIMIT      | 3       |
-        +---------------------+---------+
+        +-----------------------+---------+
+        | Extra API Info        | Value   |
+        +-----------------------+---------+
+        | API-DOMAIN            | SPOT    |
+        | API-CHANNEL           | PRIVATE |
+        | API-PERMISSION        | GENERAL |
+        | API-RATE-LIMIT-POOL   | SPOT    |
+        | API-RATE-LIMIT-WEIGHT | 3       |
+        +-----------------------+---------+
         """
         pass
 
@@ -56,17 +56,17 @@ class FeeAPI(ABC):
                                **kwargs: Any) -> GetFuturesActualFeeResp:
         """
         summary: Get Actual Fee - Futures
-        description: This interface is for the actual futures fee rate of the trading pair. The fee rate of your sub-account is the same as that of the master account.
+        description: This interface is for the trading pair’s actual futures fee rate. The fee rate of your sub-account is the same as that of the master account.
         documentation: https://www.kucoin.com/docs-new/api-3470151
-        +---------------------+---------+
-        | Extra API Info      | Value   |
-        +---------------------+---------+
-        | API-DOMAIN          | FUTURES |
-        | API-CHANNEL         | PRIVATE |
-        | API-PERMISSION      | GENERAL |
-        | API-RATE-LIMIT-POOL | FUTURES |
-        | API-RATE-LIMIT      | 3       |
-        +---------------------+---------+
+        +-----------------------+---------+
+        | Extra API Info        | Value   |
+        +-----------------------+---------+
+        | API-DOMAIN            | FUTURES |
+        | API-CHANNEL           | PRIVATE |
+        | API-PERMISSION        | GENERAL |
+        | API-RATE-LIMIT-POOL   | FUTURES |
+        | API-RATE-LIMIT-WEIGHT | 3       |
+        +-----------------------+---------+
         """
         pass
 

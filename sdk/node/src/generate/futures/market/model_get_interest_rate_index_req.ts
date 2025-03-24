@@ -5,22 +5,22 @@ import { Serializable } from '@internal/interfaces/serializable';
 
 export class GetInterestRateIndexReq implements Serializable {
     /**
-     * Symbol of the contract, Please refer to [Get Symbol endpoint: fundingBaseSymbol, fundingQuoteSymbol, fundingBaseSymbol1M, fundingQuoteSymbol1M](https://www.kucoin.com/docs-new/api-3470220)
+     * Symbol of the contract. Please refer to [Get Symbol endpoint: fundingBaseSymbol, fundingQuoteSymbol, fundingBaseSymbol1M, fundingQuoteSymbol1M](https://www.kucoin.com/docs-new/api-3470220)
      */
     symbol?: string;
 
     /**
-     * Start time (milisecond)
+     * Start time (milliseconds)
      */
     startAt?: number;
 
     /**
-     * End time (milisecond)
+     * End time (milliseconds)
      */
     endAt?: number;
 
     /**
-     * This parameter functions to judge whether the lookup is reverse. True means “yes”. False means no. This parameter is set as True by default.
+     * This parameter functions to judge whether the lookup is reversed. True means “yes”. False means “no”. This parameter is set as True by default.
      */
     reverse?: boolean = true;
 
@@ -30,12 +30,12 @@ export class GetInterestRateIndexReq implements Serializable {
     offset?: number;
 
     /**
-     * This parameter functions to judge whether the lookup is forward or not. True means “yes” and False means “no”. This parameter is set as true by default
+     * This parameter functions to judge whether the lookup is forward or not. True means “yes” and False means “no”. This parameter is set as true by default.
      */
     forward?: boolean = true;
 
     /**
-     * Max record count. The default record count is 10, The maximum length cannot exceed 100
+     * Max. record count. The default record count is 10; the maximum length cannot exceed 100
      */
     maxCount?: number = 10;
 
@@ -56,19 +56,19 @@ export class GetInterestRateIndexReq implements Serializable {
      */
     static create(data: {
         /**
-         * Symbol of the contract, Please refer to [Get Symbol endpoint: fundingBaseSymbol, fundingQuoteSymbol, fundingBaseSymbol1M, fundingQuoteSymbol1M](https://www.kucoin.com/docs-new/api-3470220)
+         * Symbol of the contract. Please refer to [Get Symbol endpoint: fundingBaseSymbol, fundingQuoteSymbol, fundingBaseSymbol1M, fundingQuoteSymbol1M](https://www.kucoin.com/docs-new/api-3470220)
          */
         symbol?: string;
         /**
-         * Start time (milisecond)
+         * Start time (milliseconds)
          */
         startAt?: number;
         /**
-         * End time (milisecond)
+         * End time (milliseconds)
          */
         endAt?: number;
         /**
-         * This parameter functions to judge whether the lookup is reverse. True means “yes”. False means no. This parameter is set as True by default.
+         * This parameter functions to judge whether the lookup is reversed. True means “yes”. False means “no”. This parameter is set as True by default.
          */
         reverse?: boolean;
         /**
@@ -76,11 +76,11 @@ export class GetInterestRateIndexReq implements Serializable {
          */
         offset?: number;
         /**
-         * This parameter functions to judge whether the lookup is forward or not. True means “yes” and False means “no”. This parameter is set as true by default
+         * This parameter functions to judge whether the lookup is forward or not. True means “yes” and False means “no”. This parameter is set as true by default.
          */
         forward?: boolean;
         /**
-         * Max record count. The default record count is 10, The maximum length cannot exceed 100
+         * Max. record count. The default record count is 10; the maximum length cannot exceed 100
          */
         maxCount?: number;
     }): GetInterestRateIndexReq {
@@ -132,7 +132,7 @@ export class GetInterestRateIndexReqBuilder {
         this.obj = obj;
     }
     /**
-     * Symbol of the contract, Please refer to [Get Symbol endpoint: fundingBaseSymbol, fundingQuoteSymbol, fundingBaseSymbol1M, fundingQuoteSymbol1M](https://www.kucoin.com/docs-new/api-3470220)
+     * Symbol of the contract. Please refer to [Get Symbol endpoint: fundingBaseSymbol, fundingQuoteSymbol, fundingBaseSymbol1M, fundingQuoteSymbol1M](https://www.kucoin.com/docs-new/api-3470220)
      */
     setSymbol(value: string): GetInterestRateIndexReqBuilder {
         this.obj.symbol = value;
@@ -140,7 +140,7 @@ export class GetInterestRateIndexReqBuilder {
     }
 
     /**
-     * Start time (milisecond)
+     * Start time (milliseconds)
      */
     setStartAt(value: number): GetInterestRateIndexReqBuilder {
         this.obj.startAt = value;
@@ -148,7 +148,7 @@ export class GetInterestRateIndexReqBuilder {
     }
 
     /**
-     * End time (milisecond)
+     * End time (milliseconds)
      */
     setEndAt(value: number): GetInterestRateIndexReqBuilder {
         this.obj.endAt = value;
@@ -156,7 +156,7 @@ export class GetInterestRateIndexReqBuilder {
     }
 
     /**
-     * This parameter functions to judge whether the lookup is reverse. True means “yes”. False means no. This parameter is set as True by default.
+     * This parameter functions to judge whether the lookup is reversed. True means “yes”. False means “no”. This parameter is set as True by default.
      */
     setReverse(value: boolean): GetInterestRateIndexReqBuilder {
         this.obj.reverse = value;
@@ -172,7 +172,7 @@ export class GetInterestRateIndexReqBuilder {
     }
 
     /**
-     * This parameter functions to judge whether the lookup is forward or not. True means “yes” and False means “no”. This parameter is set as true by default
+     * This parameter functions to judge whether the lookup is forward or not. True means “yes” and False means “no”. This parameter is set as true by default.
      */
     setForward(value: boolean): GetInterestRateIndexReqBuilder {
         this.obj.forward = value;
@@ -180,7 +180,7 @@ export class GetInterestRateIndexReqBuilder {
     }
 
     /**
-     * Max record count. The default record count is 10, The maximum length cannot exceed 100
+     * Max. record count. The default record count is 10; the maximum length cannot exceed 100
      */
     setMaxCount(value: number): GetInterestRateIndexReqBuilder {
         this.obj.maxCount = value;

@@ -12,17 +12,17 @@ export class GetStopOrdersListReq implements Serializable {
     /**
      * buy or sell
      */
-    side?: GetStopOrdersListReq.SideEnum;
+    side?: string;
 
     /**
-     * limit, market, limit_stop or market_stop
+     * limit, market
      */
     type?: GetStopOrdersListReq.TypeEnum;
 
     /**
      * The type of trading : TRADE（Spot）, MARGIN_TRADE (Cross Margin), MARGIN_ISOLATED_TRADE (Isolated Margin). Default is TRADE
      */
-    tradeType?: GetStopOrdersListReq.TradeTypeEnum;
+    tradeType?: string;
 
     /**
      * Start time (milisecond)
@@ -35,19 +35,19 @@ export class GetStopOrdersListReq implements Serializable {
     endAt?: number;
 
     /**
-     * current page
+     * Current page
      */
-    currentPage?: number;
+    currentPage?: number = 1;
 
     /**
-     * comma seperated order ID list
+     * Comma seperated order ID list
      */
     orderIds?: string;
 
     /**
-     * page size
+     * Page size
      */
-    pageSize?: number;
+    pageSize?: number = 50;
 
     /**
      * Order type: stop: stop loss order, oco: oco order
@@ -77,15 +77,15 @@ export class GetStopOrdersListReq implements Serializable {
         /**
          * buy or sell
          */
-        side?: GetStopOrdersListReq.SideEnum;
+        side?: string;
         /**
-         * limit, market, limit_stop or market_stop
+         * limit, market
          */
         type?: GetStopOrdersListReq.TypeEnum;
         /**
          * The type of trading : TRADE（Spot）, MARGIN_TRADE (Cross Margin), MARGIN_ISOLATED_TRADE (Isolated Margin). Default is TRADE
          */
-        tradeType?: GetStopOrdersListReq.TradeTypeEnum;
+        tradeType?: string;
         /**
          * Start time (milisecond)
          */
@@ -95,15 +95,15 @@ export class GetStopOrdersListReq implements Serializable {
          */
         endAt?: number;
         /**
-         * current page
+         * Current page
          */
         currentPage?: number;
         /**
-         * comma seperated order ID list
+         * Comma seperated order ID list
          */
         orderIds?: string;
         /**
-         * page size
+         * Page size
          */
         pageSize?: number;
         /**
@@ -118,9 +118,17 @@ export class GetStopOrdersListReq implements Serializable {
         obj.tradeType = data.tradeType;
         obj.startAt = data.startAt;
         obj.endAt = data.endAt;
-        obj.currentPage = data.currentPage;
+        if (data.currentPage) {
+            obj.currentPage = data.currentPage;
+        } else {
+            obj.currentPage = 1;
+        }
         obj.orderIds = data.orderIds;
-        obj.pageSize = data.pageSize;
+        if (data.pageSize) {
+            obj.pageSize = data.pageSize;
+        } else {
+            obj.pageSize = 50;
+        }
         obj.stop = data.stop;
         return obj;
     }
@@ -146,47 +154,15 @@ export class GetStopOrdersListReq implements Serializable {
 }
 
 export namespace GetStopOrdersListReq {
-    export enum SideEnum {
-        /**
-         *
-         */
-        BUY = <any>'buy',
-        /**
-         *
-         */
-        SELL = <any>'sell',
-    }
     export enum TypeEnum {
         /**
-         *
+         * limit order
          */
         LIMIT = <any>'limit',
         /**
-         *
+         * market order
          */
         MARKET = <any>'market',
-        /**
-         *
-         */
-        LIMIT_STOP = <any>'limit_stop',
-        /**
-         *
-         */
-        MARKET_STOP = <any>'market_stop',
-    }
-    export enum TradeTypeEnum {
-        /**
-         *
-         */
-        TRADE = <any>'TRADE',
-        /**
-         *
-         */
-        MARGIN_TRADE = <any>'MARGIN_TRADE',
-        /**
-         *
-         */
-        MARGIN_ISOLATED_TRADE = <any>'MARGIN_ISOLATED_TRADE',
     }
 }
 
@@ -205,13 +181,13 @@ export class GetStopOrdersListReqBuilder {
     /**
      * buy or sell
      */
-    setSide(value: GetStopOrdersListReq.SideEnum): GetStopOrdersListReqBuilder {
+    setSide(value: string): GetStopOrdersListReqBuilder {
         this.obj.side = value;
         return this;
     }
 
     /**
-     * limit, market, limit_stop or market_stop
+     * limit, market
      */
     setType(value: GetStopOrdersListReq.TypeEnum): GetStopOrdersListReqBuilder {
         this.obj.type = value;
@@ -221,7 +197,7 @@ export class GetStopOrdersListReqBuilder {
     /**
      * The type of trading : TRADE（Spot）, MARGIN_TRADE (Cross Margin), MARGIN_ISOLATED_TRADE (Isolated Margin). Default is TRADE
      */
-    setTradeType(value: GetStopOrdersListReq.TradeTypeEnum): GetStopOrdersListReqBuilder {
+    setTradeType(value: string): GetStopOrdersListReqBuilder {
         this.obj.tradeType = value;
         return this;
     }
@@ -243,7 +219,7 @@ export class GetStopOrdersListReqBuilder {
     }
 
     /**
-     * current page
+     * Current page
      */
     setCurrentPage(value: number): GetStopOrdersListReqBuilder {
         this.obj.currentPage = value;
@@ -251,7 +227,7 @@ export class GetStopOrdersListReqBuilder {
     }
 
     /**
-     * comma seperated order ID list
+     * Comma seperated order ID list
      */
     setOrderIds(value: string): GetStopOrdersListReqBuilder {
         this.obj.orderIds = value;
@@ -259,7 +235,7 @@ export class GetStopOrdersListReqBuilder {
     }
 
     /**
-     * page size
+     * Page size
      */
     setPageSize(value: number): GetStopOrdersListReqBuilder {
         this.obj.pageSize = value;

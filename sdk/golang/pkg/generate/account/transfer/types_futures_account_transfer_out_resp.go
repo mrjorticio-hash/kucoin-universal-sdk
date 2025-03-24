@@ -32,7 +32,7 @@ type FuturesAccountTransferOutResp struct {
 	Status string `json:"status,omitempty"`
 	// Currency
 	Currency string `json:"currency,omitempty"`
-	// Transfer amout
+	// Transfer amount
 	Amount string `json:"amount,omitempty"`
 	// Transfer fee
 	Fee string `json:"fee,omitempty"`

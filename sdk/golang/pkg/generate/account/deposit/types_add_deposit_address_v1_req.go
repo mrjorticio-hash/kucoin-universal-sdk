@@ -6,8 +6,10 @@ package deposit
 type AddDepositAddressV1Req struct {
 	// currency
 	Currency string `json:"currency,omitempty"`
-	// The chainId of currency, e.g. The available value for USDT are OMNI, ERC20, TRC20, default is ERC20. The available value for BTC are Native, Segwit, TRC20, the parameters are bech32, btc, trx, default is Native. This only apply for multi-chain currency, and there is no need for single chain currency.
+	// The chainId of currency, e.g. the available values for USDT are OMNI, ERC20, and TRC20; default is ERC20. The available values for BTC are Native, Segwit, TRC20; the parameters are bech32, btc, trx; default is Native. This only applies to multi-chain currencies; no need for single-chain currencies.
 	Chain *string `json:"chain,omitempty"`
+	// Deposit account type: main (funding account), trade (spot trading account); the default is main
+	To *string `json:"to,omitempty"`
 }
 
 // NewAddDepositAddressV1Req instantiates a new AddDepositAddressV1Req object
@@ -17,6 +19,8 @@ func NewAddDepositAddressV1Req(currency string) *AddDepositAddressV1Req {
 	this.Currency = currency
 	var chain string = "eth"
 	this.Chain = &chain
+	var to string = "main"
+	this.To = &to
 	return &this
 }
 
@@ -26,6 +30,8 @@ func NewAddDepositAddressV1ReqWithDefaults() *AddDepositAddressV1Req {
 	this := AddDepositAddressV1Req{}
 	var chain string = "eth"
 	this.Chain = &chain
+	var to string = "main"
+	this.To = &to
 	return &this
 }
 
@@ -33,6 +39,7 @@ func (o *AddDepositAddressV1Req) ToMap() map[string]interface{} {
 	toSerialize := map[string]interface{}{}
 	toSerialize["currency"] = o.Currency
 	toSerialize["chain"] = o.Chain
+	toSerialize["to"] = o.To
 	return toSerialize
 }
 
@@ -50,9 +57,15 @@ func (builder *AddDepositAddressV1ReqBuilder) SetCurrency(value string) *AddDepo
 	return builder
 }
 
-// The chainId of currency, e.g. The available value for USDT are OMNI, ERC20, TRC20, default is ERC20. The available value for BTC are Native, Segwit, TRC20, the parameters are bech32, btc, trx, default is Native. This only apply for multi-chain currency, and there is no need for single chain currency.
+// The chainId of currency, e.g. the available values for USDT are OMNI, ERC20, and TRC20; default is ERC20. The available values for BTC are Native, Segwit, TRC20; the parameters are bech32, btc, trx; default is Native. This only applies to multi-chain currencies; no need for single-chain currencies.
 func (builder *AddDepositAddressV1ReqBuilder) SetChain(value string) *AddDepositAddressV1ReqBuilder {
 	builder.obj.Chain = &value
+	return builder
+}
+
+// Deposit account type: main (funding account), trade (spot trading account); the default is main
+func (builder *AddDepositAddressV1ReqBuilder) SetTo(value string) *AddDepositAddressV1ReqBuilder {
+	builder.obj.To = &value
 	return builder
 }
 

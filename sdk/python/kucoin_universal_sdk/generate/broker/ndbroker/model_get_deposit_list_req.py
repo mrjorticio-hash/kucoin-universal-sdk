@@ -8,7 +8,6 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
-from typing_extensions import Annotated
 
 
 class GetDepositListReq(BaseModel):
@@ -19,8 +18,8 @@ class GetDepositListReq(BaseModel):
         currency (str): currency
         status (str): Status. Available value: PROCESSING, SUCCESS, FAILURE
         hash (str): hash
-        start_timestamp (int): Start time (milisecond)
-        end_timestamp (int): End time (milisecond)，Default sorting in descending order
+        start_timestamp (int): Start time (milliseconds)
+        end_timestamp (int): End time (milliseconds); default sorting in descending order
         limit (int): Maximum number of returned items, maximum 1000, default 1000
     """
 
@@ -31,13 +30,14 @@ class GetDepositListReq(BaseModel):
     hash: Optional[str] = Field(default=None, description="hash")
     start_timestamp: Optional[int] = Field(
         default=None,
-        description="Start time (milisecond)",
+        description="Start time (milliseconds)",
         alias="startTimestamp")
     end_timestamp: Optional[int] = Field(
         default=None,
-        description="End time (milisecond)，Default sorting in descending order",
+        description=
+        "End time (milliseconds); default sorting in descending order",
         alias="endTimestamp")
-    limit: Optional[Annotated[int, Field(le=1000, strict=True)]] = Field(
+    limit: Optional[int] = Field(
         default=1000,
         description=
         "Maximum number of returned items, maximum 1000, default 1000")
@@ -123,14 +123,14 @@ class GetDepositListReqBuilder:
 
     def set_start_timestamp(self, value: int) -> GetDepositListReqBuilder:
         """
-        Start time (milisecond)
+        Start time (milliseconds)
         """
         self.obj['startTimestamp'] = value
         return self
 
     def set_end_timestamp(self, value: int) -> GetDepositListReqBuilder:
         """
-        End time (milisecond)，Default sorting in descending order
+        End time (milliseconds); default sorting in descending order
         """
         self.obj['endTimestamp'] = value
         return self

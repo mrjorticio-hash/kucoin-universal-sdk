@@ -4,23 +4,23 @@ package order
 
 // BatchAddOrdersOrderList struct for BatchAddOrdersOrderList
 type BatchAddOrdersOrderList struct {
-	// Client Order Id，The ClientOid field is a unique ID created by the user（we recommend using a UUID）, and can only contain numbers, letters, underscores （_）, and hyphens （-）. This field is returned when order information is obtained. You can use clientOid to tag your orders. ClientOid is different from the order ID created by the service provider. Please do not initiate requests using the same clientOid. The maximum length for the ClientOid is 40 characters.
+	// Client Order ID: The ClientOid field is a unique ID created by the user (we recommend using a UUID), and can only contain numbers, letters, underscores (_), and hyphens (-). This field is returned when order information is obtained. You can use clientOid to tag your orders. ClientOid is different from the order ID created by the service provider. Please do not initiate requests using the same clientOid. The maximum length for the ClientOid is 40 characters.
 	ClientOid *string `json:"clientOid,omitempty"`
 	// symbol
 	Symbol string `json:"symbol,omitempty"`
-	// Specify if the order is an 'limit' order or 'market' order.
+	// Specify if the order is a 'limit' order or 'market' order.
 	Type string `json:"type,omitempty"`
 	// [Time in force](https://www.kucoin.com/docs-new/doc-338146) is a special strategy used during trading
 	TimeInForce *string `json:"timeInForce,omitempty"`
-	// Specify if the order is to 'buy' or 'sell'
+	// Specify if the order is to 'buy' or 'sell'.
 	Side string `json:"side,omitempty"`
 	// Specify price for order
 	Price string `json:"price,omitempty"`
-	// Specify quantity for order  When **type** is limit, select one out of two: size or funds, size refers to the amount of trading targets (the asset name written in front) for the trading pair. Teh Size must be based on the baseIncrement of the trading pair. The baseIncrement represents the precision for the trading pair. The size of an order must be a positive-integer multiple of baseIncrement and must be between baseMinSize and baseMaxSize.  When **type** is market, select one out of two: size or funds
+	// Specify quantity for order.  When **type** is limited, select one out of two: size or funds. Size refers to the amount of trading targets (the asset name written in front) for the trading pair. The Size must be based on the baseIncrement of the trading pair. The baseIncrement represents the precision for the trading pair. The size of an order must be a positive-integer multiple of baseIncrement and must be between baseMinSize and baseMaxSize.  When **type** is market, select one out of two: size or funds
 	Size *string `json:"size,omitempty"`
 	// [Self Trade Prevention](https://www.kucoin.com/docs-new/doc-338146) is divided into four strategies: CN, CO, CB , and DC
 	Stp *string `json:"stp,omitempty"`
-	// Cancel after n seconds，the order timing strategy is GTT
+	// Cancel after n seconds, the order timing strategy is GTT, -1 means it will not be cancelled automatically, the default value is -1
 	CancelAfter *int64 `json:"cancelAfter,omitempty"`
 	// passive order labels, this is disabled when the order timing strategy is IOC or FOK
 	PostOnly *bool `json:"postOnly,omitempty"`
@@ -36,6 +36,10 @@ type BatchAddOrdersOrderList struct {
 	Remark *string `json:"remark,omitempty"`
 	// When **type** is market, select one out of two: size or funds
 	Funds *string `json:"funds,omitempty"`
+	// Equal to KC-API-TIMESTAMP. Needs to be defined if iceberg is specified.
+	ClientTimestamp *int64 `json:"clientTimestamp,omitempty"`
+	// The order will fail if it times out after the specified duration in milliseconds. Specifically, if clientTimestamp + allowMaxTimeWindow (in milliseconds) is less than the time the server receives the message, the order will fail.
+	AllowMaxTimeWindow *int64 `json:"allowMaxTimeWindow,omitempty"`
 }
 
 // NewBatchAddOrdersOrderList instantiates a new BatchAddOrdersOrderList object
@@ -48,6 +52,8 @@ func NewBatchAddOrdersOrderList(symbol string, Type_ string, side string, price 
 	this.TimeInForce = &timeInForce
 	this.Side = side
 	this.Price = price
+	var cancelAfter int64 = -1
+	this.CancelAfter = &cancelAfter
 	var postOnly bool = false
 	this.PostOnly = &postOnly
 	var hidden bool = false
@@ -63,6 +69,8 @@ func NewBatchAddOrdersOrderListWithDefaults() *BatchAddOrdersOrderList {
 	this := BatchAddOrdersOrderList{}
 	var timeInForce string = "GTC"
 	this.TimeInForce = &timeInForce
+	var cancelAfter int64 = -1
+	this.CancelAfter = &cancelAfter
 	var postOnly bool = false
 	this.PostOnly = &postOnly
 	var hidden bool = false
@@ -90,6 +98,8 @@ func (o *BatchAddOrdersOrderList) ToMap() map[string]interface{} {
 	toSerialize["tags"] = o.Tags
 	toSerialize["remark"] = o.Remark
 	toSerialize["funds"] = o.Funds
+	toSerialize["clientTimestamp"] = o.ClientTimestamp
+	toSerialize["allowMaxTimeWindow"] = o.AllowMaxTimeWindow
 	return toSerialize
 }
 
@@ -101,7 +111,7 @@ func NewBatchAddOrdersOrderListBuilder() *BatchAddOrdersOrderListBuilder {
 	return &BatchAddOrdersOrderListBuilder{obj: NewBatchAddOrdersOrderListWithDefaults()}
 }
 
-// Client Order Id，The ClientOid field is a unique ID created by the user（we recommend using a UUID）, and can only contain numbers, letters, underscores （_）, and hyphens （-）. This field is returned when order information is obtained. You can use clientOid to tag your orders. ClientOid is different from the order ID created by the service provider. Please do not initiate requests using the same clientOid. The maximum length for the ClientOid is 40 characters.
+// Client Order ID: The ClientOid field is a unique ID created by the user (we recommend using a UUID), and can only contain numbers, letters, underscores (_), and hyphens (-). This field is returned when order information is obtained. You can use clientOid to tag your orders. ClientOid is different from the order ID created by the service provider. Please do not initiate requests using the same clientOid. The maximum length for the ClientOid is 40 characters.
 func (builder *BatchAddOrdersOrderListBuilder) SetClientOid(value string) *BatchAddOrdersOrderListBuilder {
 	builder.obj.ClientOid = &value
 	return builder
@@ -113,7 +123,7 @@ func (builder *BatchAddOrdersOrderListBuilder) SetSymbol(value string) *BatchAdd
 	return builder
 }
 
-// Specify if the order is an 'limit' order or 'market' order.
+// Specify if the order is a 'limit' order or 'market' order.
 func (builder *BatchAddOrdersOrderListBuilder) SetType(value string) *BatchAddOrdersOrderListBuilder {
 	builder.obj.Type = value
 	return builder
@@ -125,7 +135,7 @@ func (builder *BatchAddOrdersOrderListBuilder) SetTimeInForce(value string) *Bat
 	return builder
 }
 
-// Specify if the order is to 'buy' or 'sell'
+// Specify if the order is to 'buy' or 'sell'.
 func (builder *BatchAddOrdersOrderListBuilder) SetSide(value string) *BatchAddOrdersOrderListBuilder {
 	builder.obj.Side = value
 	return builder
@@ -137,7 +147,7 @@ func (builder *BatchAddOrdersOrderListBuilder) SetPrice(value string) *BatchAddO
 	return builder
 }
 
-// Specify quantity for order  When **type** is limit, select one out of two: size or funds, size refers to the amount of trading targets (the asset name written in front) for the trading pair. Teh Size must be based on the baseIncrement of the trading pair. The baseIncrement represents the precision for the trading pair. The size of an order must be a positive-integer multiple of baseIncrement and must be between baseMinSize and baseMaxSize.  When **type** is market, select one out of two: size or funds
+// Specify quantity for order.  When **type** is limited, select one out of two: size or funds. Size refers to the amount of trading targets (the asset name written in front) for the trading pair. The Size must be based on the baseIncrement of the trading pair. The baseIncrement represents the precision for the trading pair. The size of an order must be a positive-integer multiple of baseIncrement and must be between baseMinSize and baseMaxSize.  When **type** is market, select one out of two: size or funds
 func (builder *BatchAddOrdersOrderListBuilder) SetSize(value string) *BatchAddOrdersOrderListBuilder {
 	builder.obj.Size = &value
 	return builder
@@ -149,7 +159,7 @@ func (builder *BatchAddOrdersOrderListBuilder) SetStp(value string) *BatchAddOrd
 	return builder
 }
 
-// Cancel after n seconds，the order timing strategy is GTT
+// Cancel after n seconds, the order timing strategy is GTT, -1 means it will not be cancelled automatically, the default value is -1
 func (builder *BatchAddOrdersOrderListBuilder) SetCancelAfter(value int64) *BatchAddOrdersOrderListBuilder {
 	builder.obj.CancelAfter = &value
 	return builder
@@ -194,6 +204,18 @@ func (builder *BatchAddOrdersOrderListBuilder) SetRemark(value string) *BatchAdd
 // When **type** is market, select one out of two: size or funds
 func (builder *BatchAddOrdersOrderListBuilder) SetFunds(value string) *BatchAddOrdersOrderListBuilder {
 	builder.obj.Funds = &value
+	return builder
+}
+
+// Equal to KC-API-TIMESTAMP. Needs to be defined if iceberg is specified.
+func (builder *BatchAddOrdersOrderListBuilder) SetClientTimestamp(value int64) *BatchAddOrdersOrderListBuilder {
+	builder.obj.ClientTimestamp = &value
+	return builder
+}
+
+// The order will fail if it times out after the specified duration in milliseconds. Specifically, if clientTimestamp + allowMaxTimeWindow (in milliseconds) is less than the time the server receives the message, the order will fail.
+func (builder *BatchAddOrdersOrderListBuilder) SetAllowMaxTimeWindow(value int64) *BatchAddOrdersOrderListBuilder {
+	builder.obj.AllowMaxTimeWindow = &value
 	return builder
 }
 

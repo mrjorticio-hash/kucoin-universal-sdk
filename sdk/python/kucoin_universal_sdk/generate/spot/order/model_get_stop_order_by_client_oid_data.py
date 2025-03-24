@@ -6,6 +6,7 @@ from __future__ import annotations
 import pprint
 import json
 
+from enum import Enum
 from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
 
@@ -19,7 +20,7 @@ class GetStopOrderByClientOidData(BaseModel):
         symbol (str): Symbol name
         user_id (str): User ID
         status (str): Order status, include NEW, TRIGGERED
-        type (str): Order type,limit, market, limit_stop or market_stop
+        type (TypeEnum): Order type
         side (str): transaction direction,include buy and sell
         price (str): order price
         size (str): order quantity
@@ -48,6 +49,15 @@ class GetStopOrderByClientOidData(BaseModel):
         order_time (int): Time of place a stop order, accurate to nanoseconds
     """
 
+    class TypeEnum(Enum):
+        """
+        Attributes:
+            LIMIT: Limit order
+            MARKET: Market order
+        """
+        LIMIT = 'limit'
+        MARKET = 'market'
+
     id: Optional[str] = Field(default=None,
                               description="Order ID, the ID of an order.")
     symbol: Optional[str] = Field(default=None, description="Symbol name")
@@ -56,9 +66,7 @@ class GetStopOrderByClientOidData(BaseModel):
                                    alias="userId")
     status: Optional[str] = Field(
         default=None, description="Order status, include NEW, TRIGGERED")
-    type: Optional[str] = Field(
-        default=None,
-        description="Order type,limit, market, limit_stop or market_stop")
+    type: Optional[TypeEnum] = Field(default=None, description="Order type")
     side: Optional[str] = Field(
         default=None, description="transaction direction,include buy and sell")
     price: Optional[str] = Field(default=None, description="order price")

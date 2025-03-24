@@ -6,7 +6,7 @@ import { Response } from '@internal/interfaces/serializable';
 
 export class CancelOrderByClientOidResp implements Response<RestResponse> {
     /**
-     * Client Order Id，unique identifier created by the user
+     * Client Order Id, unique identifier created by the user
      */
     clientOid: string;
 

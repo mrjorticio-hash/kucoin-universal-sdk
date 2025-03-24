@@ -15,29 +15,30 @@ class GetPrivateFundingHistoryReq(BaseModel):
     GetPrivateFundingHistoryReq
 
     Attributes:
-        symbol (str): Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) 
-        from_ (int): Begin time (milisecond) 
-        to (int): End time (milisecond) 
-        reverse (bool): This parameter functions to judge whether the lookup is forward or not. True means “yes” and False means “no”. This parameter is set as true by default 
+        symbol (str): Symbol of the contract. Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) 
+        start_at (int): Begin time (milliseconds) 
+        end_at (int): End time (milliseconds) 
+        reverse (bool): This parameter functions to judge whether the lookup is forward or not. True means “yes” and False means “no”. This parameter is set as true by default. 
         offset (int): Start offset. The unique attribute of the last returned result of the last request. The data of the first page will be returned by default. 
-        forward (bool): This parameter functions to judge whether the lookup is forward or not. True means “yes” and False means “no”. This parameter is set as true by default 
-        max_count (int): Max record count. The default record count is 10
+        forward (bool): This parameter functions to judge whether the lookup is forward or not. True means “yes” and False means “no”. This parameter is set as true by default. 
+        max_count (int): Max. record count. The default record count is 10
     """
 
     symbol: Optional[str] = Field(
         default=None,
         description=
-        "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) "
+        "Symbol of the contract. Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) "
     )
-    from_: Optional[int] = Field(default=None,
-                                 description="Begin time (milisecond) ",
-                                 alias="from")
-    to: Optional[int] = Field(default=None,
-                              description="End time (milisecond) ")
+    start_at: Optional[int] = Field(default=None,
+                                    description="Begin time (milliseconds) ",
+                                    alias="startAt")
+    end_at: Optional[int] = Field(default=None,
+                                  description="End time (milliseconds) ",
+                                  alias="endAt")
     reverse: Optional[bool] = Field(
         default=None,
         description=
-        "This parameter functions to judge whether the lookup is forward or not. True means “yes” and False means “no”. This parameter is set as true by default "
+        "This parameter functions to judge whether the lookup is forward or not. True means “yes” and False means “no”. This parameter is set as true by default. "
     )
     offset: Optional[int] = Field(
         default=None,
@@ -47,15 +48,16 @@ class GetPrivateFundingHistoryReq(BaseModel):
     forward: Optional[bool] = Field(
         default=None,
         description=
-        "This parameter functions to judge whether the lookup is forward or not. True means “yes” and False means “no”. This parameter is set as true by default "
+        "This parameter functions to judge whether the lookup is forward or not. True means “yes” and False means “no”. This parameter is set as true by default. "
     )
     max_count: Optional[int] = Field(
         default=None,
-        description="Max record count. The default record count is 10",
+        description="Max. record count. The default record count is 10",
         alias="maxCount")
 
     __properties: ClassVar[List[str]] = [
-        "symbol", "from", "to", "reverse", "offset", "forward", "maxCount"
+        "symbol", "startAt", "endAt", "reverse", "offset", "forward",
+        "maxCount"
     ]
 
     model_config = ConfigDict(
@@ -94,8 +96,8 @@ class GetPrivateFundingHistoryReq(BaseModel):
 
         _obj = cls.model_validate({
             "symbol": obj.get("symbol"),
-            "from": obj.get("from"),
-            "to": obj.get("to"),
+            "startAt": obj.get("startAt"),
+            "endAt": obj.get("endAt"),
             "reverse": obj.get("reverse"),
             "offset": obj.get("offset"),
             "forward": obj.get("forward"),
@@ -111,28 +113,28 @@ class GetPrivateFundingHistoryReqBuilder:
 
     def set_symbol(self, value: str) -> GetPrivateFundingHistoryReqBuilder:
         """
-        Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) 
+        Symbol of the contract. Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) 
         """
         self.obj['symbol'] = value
         return self
 
-    def set_from_(self, value: int) -> GetPrivateFundingHistoryReqBuilder:
+    def set_start_at(self, value: int) -> GetPrivateFundingHistoryReqBuilder:
         """
-        Begin time (milisecond) 
+        Begin time (milliseconds) 
         """
-        self.obj['from'] = value
+        self.obj['startAt'] = value
         return self
 
-    def set_to(self, value: int) -> GetPrivateFundingHistoryReqBuilder:
+    def set_end_at(self, value: int) -> GetPrivateFundingHistoryReqBuilder:
         """
-        End time (milisecond) 
+        End time (milliseconds) 
         """
-        self.obj['to'] = value
+        self.obj['endAt'] = value
         return self
 
     def set_reverse(self, value: bool) -> GetPrivateFundingHistoryReqBuilder:
         """
-        This parameter functions to judge whether the lookup is forward or not. True means “yes” and False means “no”. This parameter is set as true by default 
+        This parameter functions to judge whether the lookup is forward or not. True means “yes” and False means “no”. This parameter is set as true by default. 
         """
         self.obj['reverse'] = value
         return self
@@ -146,14 +148,14 @@ class GetPrivateFundingHistoryReqBuilder:
 
     def set_forward(self, value: bool) -> GetPrivateFundingHistoryReqBuilder:
         """
-        This parameter functions to judge whether the lookup is forward or not. True means “yes” and False means “no”. This parameter is set as true by default 
+        This parameter functions to judge whether the lookup is forward or not. True means “yes” and False means “no”. This parameter is set as true by default. 
         """
         self.obj['forward'] = value
         return self
 
     def set_max_count(self, value: int) -> GetPrivateFundingHistoryReqBuilder:
         """
-        Max record count. The default record count is 10
+        Max. record count. The default record count is 10
         """
         self.obj['maxCount'] = value
         return self

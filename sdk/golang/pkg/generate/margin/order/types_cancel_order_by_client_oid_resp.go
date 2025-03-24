@@ -10,7 +10,7 @@ import (
 type CancelOrderByClientOidResp struct {
 	// common response
 	CommonResponse *types.RestResponse
-	// Client Order Id，unique identifier created by the user
+	// Client Order Id, unique identifier created by the user
 	ClientOid string `json:"clientOid,omitempty"`
 }
 

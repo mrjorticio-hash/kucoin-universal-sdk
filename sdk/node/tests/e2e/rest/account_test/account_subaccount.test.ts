@@ -147,7 +147,7 @@ describe('Auto Test', () => {
          * /api/v1/sub-accounts/{subUserId}
          */
         let builder = GetSpotSubAccountDetailReq.builder();
-        builder.setSubUserId('6744227ce235b300012232d6').setIncludeBaseAmount(false);
+        builder.setSubUserId('6745b7bc890ba20001911363').setIncludeBaseAmount(false).setBaseCurrency("USDT").setBaseAmount("0.1");
         let req = builder.build();
         let resp = api.getSpotSubAccountDetail(req);
         return resp.then((result) => {

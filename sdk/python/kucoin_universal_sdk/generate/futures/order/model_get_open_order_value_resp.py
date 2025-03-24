@@ -17,33 +17,33 @@ class GetOpenOrderValueResp(BaseModel, Response):
     GetOpenOrderValueResp
 
     Attributes:
-        open_order_buy_size (int): Total number of the unexecuted buy orders 
-        open_order_sell_size (int): Total number of the unexecuted sell orders 
-        open_order_buy_cost (str): Value of all the unexecuted buy orders 
-        open_order_sell_cost (str): Value of all the unexecuted sell orders 
-        settle_currency (str): settlement currency 
+        open_order_buy_size (int): Total number of unexecuted buy orders 
+        open_order_sell_size (int): Total number of unexecuted sell orders 
+        open_order_buy_cost (str): Value of all unexecuted buy orders 
+        open_order_sell_cost (str): Value of all unexecuted sell orders 
+        settle_currency (str): Settlement currency 
     """
 
     common_response: Optional[RestResponse] = Field(
         default=None, description="Common response")
     open_order_buy_size: Optional[int] = Field(
         default=None,
-        description="Total number of the unexecuted buy orders ",
+        description="Total number of unexecuted buy orders ",
         alias="openOrderBuySize")
     open_order_sell_size: Optional[int] = Field(
         default=None,
-        description="Total number of the unexecuted sell orders ",
+        description="Total number of unexecuted sell orders ",
         alias="openOrderSellSize")
     open_order_buy_cost: Optional[str] = Field(
         default=None,
-        description="Value of all the unexecuted buy orders ",
+        description="Value of all unexecuted buy orders ",
         alias="openOrderBuyCost")
     open_order_sell_cost: Optional[str] = Field(
         default=None,
-        description="Value of all the unexecuted sell orders ",
+        description="Value of all unexecuted sell orders ",
         alias="openOrderSellCost")
     settle_currency: Optional[str] = Field(default=None,
-                                           description="settlement currency ",
+                                           description="Settlement currency ",
                                            alias="settleCurrency")
 
     __properties: ClassVar[List[str]] = [

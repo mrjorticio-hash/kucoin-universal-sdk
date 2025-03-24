@@ -70,9 +70,9 @@ export class AddStopOrderReq implements Serializable {
     visibleSize?: string;
 
     /**
-     * Cancel after n seconds，the order timing strategy is GTT when **type** is limit.
+     * Cancel after n seconds, the order timing strategy is GTT, -1 means it will not be cancelled automatically, the default value is -1
      */
-    cancelAfter?: number;
+    cancelAfter?: number = -1;
 
     /**
      * When **type** is market, select one out of two: size or funds
@@ -167,7 +167,7 @@ export class AddStopOrderReq implements Serializable {
          */
         visibleSize?: string;
         /**
-         * Cancel after n seconds，the order timing strategy is GTT when **type** is limit.
+         * Cancel after n seconds, the order timing strategy is GTT, -1 means it will not be cancelled automatically, the default value is -1
          */
         cancelAfter?: number;
         /**
@@ -213,7 +213,11 @@ export class AddStopOrderReq implements Serializable {
             obj.iceberg = false;
         }
         obj.visibleSize = data.visibleSize;
-        obj.cancelAfter = data.cancelAfter;
+        if (data.cancelAfter) {
+            obj.cancelAfter = data.cancelAfter;
+        } else {
+            obj.cancelAfter = -1;
+        }
         obj.funds = data.funds;
         obj.stopPrice = data.stopPrice;
         obj.tradeType = data.tradeType;
@@ -408,7 +412,7 @@ export class AddStopOrderReqBuilder {
     }
 
     /**
-     * Cancel after n seconds，the order timing strategy is GTT when **type** is limit.
+     * Cancel after n seconds, the order timing strategy is GTT, -1 means it will not be cancelled automatically, the default value is -1
      */
     setCancelAfter(value: number): AddStopOrderReqBuilder {
         this.obj.cancelAfter = value;

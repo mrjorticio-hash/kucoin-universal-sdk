@@ -4,11 +4,11 @@ package transfer
 
 // FuturesAccountTransferOutReq struct for FuturesAccountTransferOutReq
 type FuturesAccountTransferOutReq struct {
-	// Currency, including XBT,USDT...
+	// Currency, including XBT, USDT...
 	Currency string `json:"currency,omitempty"`
-	// Amount to be transfered out, the maximum cannot exceed 1000000000
+	// Amount to be transferred out; cannot exceed 1000000000
 	Amount float32 `json:"amount,omitempty"`
-	// Receive account type, including MAIN,TRADE
+	// Receive account type, including MAIN, TRADE
 	RecAccountType string `json:"recAccountType,omitempty"`
 }
 
@@ -45,19 +45,19 @@ func NewFuturesAccountTransferOutReqBuilder() *FuturesAccountTransferOutReqBuild
 	return &FuturesAccountTransferOutReqBuilder{obj: NewFuturesAccountTransferOutReqWithDefaults()}
 }
 
-// Currency, including XBT,USDT...
+// Currency, including XBT, USDT...
 func (builder *FuturesAccountTransferOutReqBuilder) SetCurrency(value string) *FuturesAccountTransferOutReqBuilder {
 	builder.obj.Currency = value
 	return builder
 }
 
-// Amount to be transfered out, the maximum cannot exceed 1000000000
+// Amount to be transferred out; cannot exceed 1000000000
 func (builder *FuturesAccountTransferOutReqBuilder) SetAmount(value float32) *FuturesAccountTransferOutReqBuilder {
 	builder.obj.Amount = value
 	return builder
 }
 
-// Receive account type, including MAIN,TRADE
+// Receive account type, including MAIN, TRADE
 func (builder *FuturesAccountTransferOutReqBuilder) SetRecAccountType(value string) *FuturesAccountTransferOutReqBuilder {
 	builder.obj.RecAccountType = value
 	return builder

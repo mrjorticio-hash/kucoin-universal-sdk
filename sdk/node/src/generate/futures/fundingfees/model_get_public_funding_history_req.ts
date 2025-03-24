@@ -5,17 +5,17 @@ import { Serializable } from '@internal/interfaces/serializable';
 
 export class GetPublicFundingHistoryReq implements Serializable {
     /**
-     * Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)
+     * Symbol of the contract. Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)
      */
     symbol?: string;
 
     /**
-     * Begin time (milisecond)
+     * Begin time (milliseconds)
      */
     from?: number;
 
     /**
-     * End time (milisecond)
+     * End time (milliseconds)
      */
     to?: number;
 
@@ -36,15 +36,15 @@ export class GetPublicFundingHistoryReq implements Serializable {
      */
     static create(data: {
         /**
-         * Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)
+         * Symbol of the contract. Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)
          */
         symbol?: string;
         /**
-         * Begin time (milisecond)
+         * Begin time (milliseconds)
          */
         from?: number;
         /**
-         * End time (milisecond)
+         * End time (milliseconds)
          */
         to?: number;
     }): GetPublicFundingHistoryReq {
@@ -80,7 +80,7 @@ export class GetPublicFundingHistoryReqBuilder {
         this.obj = obj;
     }
     /**
-     * Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)
+     * Symbol of the contract. Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)
      */
     setSymbol(value: string): GetPublicFundingHistoryReqBuilder {
         this.obj.symbol = value;
@@ -88,7 +88,7 @@ export class GetPublicFundingHistoryReqBuilder {
     }
 
     /**
-     * Begin time (milisecond)
+     * Begin time (milliseconds)
      */
     setFrom(value: number): GetPublicFundingHistoryReqBuilder {
         this.obj.from = value;
@@ -96,7 +96,7 @@ export class GetPublicFundingHistoryReqBuilder {
     }
 
     /**
-     * End time (milisecond)
+     * End time (milliseconds)
      */
     setTo(value: number): GetPublicFundingHistoryReqBuilder {
         this.obj.to = value;

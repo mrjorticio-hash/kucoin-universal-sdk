@@ -17,7 +17,7 @@ class GetAccountMargins(BaseModel):
     Attributes:
         margin_ccy (str): Margin Currency
         margin_qty (str): Maintenance Quantity (Calculated with Margin Coefficient)
-        margin_factor (str): Margin Coefficient return real time margin discount rate to USDT
+        margin_factor (str): Margin Coefficient return real-time margin discount rate to USDT
     """
 
     margin_ccy: Optional[str] = Field(default=None,
@@ -30,7 +30,7 @@ class GetAccountMargins(BaseModel):
     margin_factor: Optional[str] = Field(
         default=None,
         description=
-        "Margin Coefficient return real time margin discount rate to USDT",
+        "Margin Coefficient return real-time margin discount rate to USDT",
         alias="marginFactor")
 
     __properties: ClassVar[List[str]] = [

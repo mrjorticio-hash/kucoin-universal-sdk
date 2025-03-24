@@ -6,7 +6,7 @@ package credit
 type GetPurchaseOrdersItems struct {
 	// Currency
 	Currency string `json:"currency,omitempty"`
-	// Purchase order id
+	// Purchase order ID
 	PurchaseOrderNo string `json:"purchaseOrderNo,omitempty"`
 	// Total purchase size
 	PurchaseSize string `json:"purchaseSize,omitempty"`

@@ -32,10 +32,14 @@ type AddOrderTestReq struct {
 	VisibleSize *string `json:"visibleSize,omitempty"`
 	// Order tag, length cannot exceed 20 characters (ASCII)
 	Tags *string `json:"tags,omitempty"`
-	// Cancel after n seconds，the order timing strategy is GTT
+	// Cancel after n seconds, the order timing strategy is GTT, -1 means it will not be cancelled automatically, the default value is -1
 	CancelAfter *int64 `json:"cancelAfter,omitempty"`
 	// When **type** is market, select one out of two: size or funds
 	Funds *string `json:"funds,omitempty"`
+	// Order failed after timeout of specified milliseconds, If clientTimestamp + allowMaxTimeWindow < the server reaches time, this order will fail.
+	AllowMaxTimeWindow *int64 `json:"allowMaxTimeWindow,omitempty"`
+	// Equal to KC-API-TIMESTAMP, Need to be defined if iceberg is specified.
+	ClientTimestamp *int64 `json:"clientTimestamp,omitempty"`
 }
 
 // NewAddOrderTestReq instantiates a new AddOrderTestReq object
@@ -53,6 +57,8 @@ func NewAddOrderTestReq(side string, symbol string, Type_ string) *AddOrderTestR
 	this.Hidden = &hidden
 	var iceberg bool = false
 	this.Iceberg = &iceberg
+	var cancelAfter int64 = -1
+	this.CancelAfter = &cancelAfter
 	return &this
 }
 
@@ -68,6 +74,8 @@ func NewAddOrderTestReqWithDefaults() *AddOrderTestReq {
 	this.Hidden = &hidden
 	var iceberg bool = false
 	this.Iceberg = &iceberg
+	var cancelAfter int64 = -1
+	this.CancelAfter = &cancelAfter
 	return &this
 }
 
@@ -89,6 +97,8 @@ func (o *AddOrderTestReq) ToMap() map[string]interface{} {
 	toSerialize["tags"] = o.Tags
 	toSerialize["cancelAfter"] = o.CancelAfter
 	toSerialize["funds"] = o.Funds
+	toSerialize["allowMaxTimeWindow"] = o.AllowMaxTimeWindow
+	toSerialize["clientTimestamp"] = o.ClientTimestamp
 	return toSerialize
 }
 
@@ -184,7 +194,7 @@ func (builder *AddOrderTestReqBuilder) SetTags(value string) *AddOrderTestReqBui
 	return builder
 }
 
-// Cancel after n seconds，the order timing strategy is GTT
+// Cancel after n seconds, the order timing strategy is GTT, -1 means it will not be cancelled automatically, the default value is -1
 func (builder *AddOrderTestReqBuilder) SetCancelAfter(value int64) *AddOrderTestReqBuilder {
 	builder.obj.CancelAfter = &value
 	return builder
@@ -193,6 +203,18 @@ func (builder *AddOrderTestReqBuilder) SetCancelAfter(value int64) *AddOrderTest
 // When **type** is market, select one out of two: size or funds
 func (builder *AddOrderTestReqBuilder) SetFunds(value string) *AddOrderTestReqBuilder {
 	builder.obj.Funds = &value
+	return builder
+}
+
+// Order failed after timeout of specified milliseconds, If clientTimestamp + allowMaxTimeWindow < the server reaches time, this order will fail.
+func (builder *AddOrderTestReqBuilder) SetAllowMaxTimeWindow(value int64) *AddOrderTestReqBuilder {
+	builder.obj.AllowMaxTimeWindow = &value
+	return builder
+}
+
+// Equal to KC-API-TIMESTAMP, Need to be defined if iceberg is specified.
+func (builder *AddOrderTestReqBuilder) SetClientTimestamp(value int64) *AddOrderTestReqBuilder {
+	builder.obj.ClientTimestamp = &value
 	return builder
 }
 

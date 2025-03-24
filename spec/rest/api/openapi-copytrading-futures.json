@@ -62,7 +62,7 @@
                 "x-sdk-sub-service": "Futures",
                 "x-sdk-method-name": "addOrder",
                 "x-sdk-method-description": "Place order to the futures trading system, you can place two major types of orders: limit and market. Orders can only be placed if your account has sufficient funds. Once an order is placed, your funds will be put on hold for the duration of the order. The amount of funds on hold depends on the order type and parameters specified.",
-                "x-api-rate-limit": 2,
+                "x-api-rate-limit-weight": 2,
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -109,6 +109,8 @@
                                     "leverage": {
                                         "type": "integer",
                                         "description": "Used to calculate the margin to be frozen for the order. If you are to close the position, this parameter is not required.",
+                                        "minimum": 1,
+                                        "maximum": 10,
                                         "example": [
                                             3
                                         ]
@@ -137,10 +139,6 @@
                                             "limit"
                                         ]
                                     },
-                                    "remark": {
-                                        "type": "string",
-                                        "description": "remark for the order, length cannot exceed 100 utf8 characters"
-                                    },
                                     "stop": {
                                         "type": "string",
                                         "description": "Either 'down' or 'up'.  If stop is used,parameter stopPrice and stopPriceType also need to be provieded.",
@@ -163,11 +161,10 @@
                                     },
                                     "stopPriceType": {
                                         "type": "string",
-                                        "description": "Either 'TP', 'IP' or 'MP', Need to be defined if stop is specified.",
+                                        "description": "Either 'TP' or 'MP', Need to be defined if stop is specified.",
                                         "enum": [
                                             "TP",
-                                            "MP",
-                                            "IP"
+                                            "MP"
                                         ],
                                         "x-api-enum": [
                                             {
@@ -179,11 +176,6 @@
                                                 "value": "MP",
                                                 "name": "mark price",
                                                 "description": "MP for mark price, The mark price can be obtained through relevant OPEN API for index services"
-                                            },
-                                            {
-                                                "value": "IP",
-                                                "name": "index price",
-                                                "description": "IP for index price, The index price can be obtained through relevant OPEN API for index services"
                                             }
                                         ]
                                     },
@@ -201,17 +193,11 @@
                                         "description": "A mark to close the position. Set to false by default. If closeOrder is set to true, the system will close the position and the position size will become 0. Side, Size and Leverage fields can be left empty and the system will determine the side and size automatically.",
                                         "default": false
                                     },
-                                    "forceHold": {
-                                        "type": "boolean",
-                                        "description": "A mark to forcely hold the funds for an order, even though it's an order to reduce the position size. This helps the order stay on the order book and not get canceled when the position size changes. Set to false by default. The system will forcely freeze certain amount of funds for this order, including orders whose direction is opposite to the current positions. This feature is to ensure that the order won’t be canceled by the matching engine in such a circumstance that not enough funds are frozen for the order.",
-                                        "default": false
-                                    },
                                     "marginMode": {
                                         "type": "string",
-                                        "description": "Margin mode: ISOLATED, CROSS, default: ISOLATED",
+                                        "description": "Margin mode: ISOLATED, default: ISOLATED",
                                         "enum": [
-                                            "ISOLATED",
-                                            "CROSS"
+                                            "ISOLATED"
                                         ],
                                         "default": "ISOLATED",
                                         "x-api-enum": [
@@ -219,11 +205,6 @@
                                                 "value": "ISOLATED",
                                                 "name": "ISOLATED",
                                                 "description": "Isolated Margin"
-                                            },
-                                            {
-                                                "value": "CROSS",
-                                                "name": "CROSS",
-                                                "description": "Cross Margin"
                                             }
                                         ]
                                     },
@@ -276,7 +257,7 @@
                                     },
                                     "visibleSize": {
                                         "type": "string",
-                                        "description": "Optional for type is 'limit' order, The maximum visible size of an iceberg order. please place order in size (lots), The units of qty (base currency) and valueQty (value) are not supported."
+                                        "description": "Optional for type is 'limit' order, The maximum visible size of an iceberg order. please place order in size (lots), The units of qty (base currency) and valueQty (value) are not supported. Need to be defined if iceberg is specified."
                                     }
                                 },
                                 "required": [
@@ -298,13 +279,13 @@
             "delete": {
                 "summary": "Cancel Order By OrderId",
                 "deprecated": false,
-                "description": "Cancel order by system generated orderId.",
+                "description": "Cancel order by system-generated orderId.",
                 "tags": [],
                 "parameters": [
                     {
                         "name": "orderId",
                         "in": "query",
-                        "description": "Order id",
+                        "description": "Order ID",
                         "required": false,
                         "schema": {
                             "type": "string"
@@ -351,13 +332,13 @@
                 "x-abandon": "normal",
                 "x-domain": "Futures",
                 "x-api-channel": "Private",
-                "x-api-permission": "Futures",
+                "x-api-permission": "LeadtradeFutures",
                 "x-api-rate-limit-pool": "CopyTrading",
                 "x-sdk-service": "CopyTrading",
                 "x-sdk-sub-service": "Futures",
                 "x-sdk-method-name": "cancelOrderById",
-                "x-sdk-method-description": "Cancel order by system generated orderId.",
-                "x-api-rate-limit": 1,
+                "x-sdk-method-description": "Cancel order by system-generated orderId.",
+                "x-api-rate-limit-weight": 1,
                 "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"cancelledOrderIds\\\": [\\n            \\\"263485113055133696\\\"\\n        ]\\n    }\\n}",
                 "x-request-example": "{\\\"orderId\\\": \\\"263485113055133696\\\"}",
                 "operationId": "004"
@@ -367,7 +348,7 @@
             "post": {
                 "summary": "Add Order Test",
                 "deprecated": false,
-                "description": "Place order to the futures trading system just for validation",
+                "description": "Place order  the futures trading system just for validation",
                 "tags": [],
                 "parameters": [],
                 "responses": {
@@ -386,7 +367,7 @@
                                             "properties": {
                                                 "orderId": {
                                                     "type": "string",
-                                                    "description": "The unique order id generated by the trading system,which can be used later for further actions such as canceling the order."
+                                                    "description": "The unique order ID generated by the trading system, which can be used later for further actions such as canceling the order."
                                                 },
                                                 "clientOid": {
                                                     "type": "string",
@@ -412,13 +393,13 @@
                 "x-abandon": "normal",
                 "x-domain": "Futures",
                 "x-api-channel": "Private",
-                "x-api-permission": "Futures",
+                "x-api-permission": "LeadtradeFutures",
                 "x-api-rate-limit-pool": "CopyTrading",
                 "x-sdk-service": "CopyTrading",
                 "x-sdk-sub-service": "Futures",
                 "x-sdk-method-name": "addOrderTest",
-                "x-sdk-method-description": "Place order to the futures trading system just for validation",
-                "x-api-rate-limit": 2,
+                "x-sdk-method-description": "Place order  the futures trading system just for validation",
+                "x-api-rate-limit-weight": 2,
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -427,14 +408,14 @@
                                 "properties": {
                                     "clientOid": {
                                         "type": "string",
-                                        "description": "Unique order id created by users to identify their orders, the maximum length cannot exceed 40, e.g. UUID, Only allows numbers, characters, underline(_), and separator(-)",
+                                        "description": "Unique order ID created by users to identify their orders. The maximum length cannot exceed 40, e.g. UUID only allows numbers, characters, underline(_), and separator (-).",
                                         "example": [
                                             "5c52e11203aa677f33e493fb"
                                         ]
                                     },
                                     "side": {
                                         "type": "string",
-                                        "description": "specify if the order is to 'buy' or 'sell'",
+                                        "description": "Specify if the order is to 'buy' or 'sell'.",
                                         "enum": [
                                             "buy",
                                             "sell"
@@ -457,7 +438,7 @@
                                     },
                                     "symbol": {
                                         "type": "string",
-                                        "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) ",
+                                        "description": "Symbol of the contract. Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) ",
                                         "example": [
                                             "XBTUSDTM"
                                         ]
@@ -465,13 +446,15 @@
                                     "leverage": {
                                         "type": "integer",
                                         "description": "Used to calculate the margin to be frozen for the order. If you are to close the position, this parameter is not required.",
+                                        "minimum": 1,
+                                        "maximum": 10,
                                         "example": [
                                             3
                                         ]
                                     },
                                     "type": {
                                         "type": "string",
-                                        "description": "specify if the order is an 'limit' order or 'market' order",
+                                        "description": "Specify if the order is a 'limit' order or 'market' order",
                                         "enum": [
                                             "limit",
                                             "market"
@@ -493,13 +476,9 @@
                                             "limit"
                                         ]
                                     },
-                                    "remark": {
-                                        "type": "string",
-                                        "description": "remark for the order, length cannot exceed 100 utf8 characters"
-                                    },
                                     "stop": {
                                         "type": "string",
-                                        "description": "Either 'down' or 'up'.  If stop is used,parameter stopPrice and stopPriceType also need to be provieded.",
+                                        "description": "Either 'down' or 'up'.  If stop is used, parameter stopPrice and stopPriceType also need to be provided.",
                                         "enum": [
                                             "down",
                                             "up"
@@ -513,17 +492,16 @@
                                             {
                                                 "value": "up",
                                                 "name": "up",
-                                                "description": "Triggers when the price reaches or goes above the stopPrice"
+                                                "description": "Triggers when the price reaches or goes above the stopPrice."
                                             }
                                         ]
                                     },
                                     "stopPriceType": {
                                         "type": "string",
-                                        "description": "Either 'TP', 'IP' or 'MP', Need to be defined if stop is specified.",
+                                        "description": "Either 'TP' or 'MP' need to be defined if stop is specified.",
                                         "enum": [
                                             "TP",
-                                            "MP",
-                                            "IP"
+                                            "MP"
                                         ],
                                         "x-api-enum": [
                                             {
@@ -534,18 +512,13 @@
                                             {
                                                 "value": "MP",
                                                 "name": "mark price",
-                                                "description": "MP for mark price, The mark price can be obtained through relevant OPEN API for index services"
-                                            },
-                                            {
-                                                "value": "IP",
-                                                "name": "index price",
-                                                "description": "IP for index price, The index price can be obtained through relevant OPEN API for index services"
+                                                "description": "MP for mark price. The mark price can be obtained through relevant OPEN API for index services."
                                             }
                                         ]
                                     },
                                     "stopPrice": {
                                         "type": "string",
-                                        "description": "Need to be defined if stop is specified. "
+                                        "description": "Needs to be defined if stop is specified. "
                                     },
                                     "reduceOnly": {
                                         "type": "boolean",
@@ -557,29 +530,18 @@
                                         "description": "A mark to close the position. Set to false by default. If closeOrder is set to true, the system will close the position and the position size will become 0. Side, Size and Leverage fields can be left empty and the system will determine the side and size automatically.",
                                         "default": false
                                     },
-                                    "forceHold": {
-                                        "type": "boolean",
-                                        "description": "A mark to forcely hold the funds for an order, even though it's an order to reduce the position size. This helps the order stay on the order book and not get canceled when the position size changes. Set to false by default. The system will forcely freeze certain amount of funds for this order, including orders whose direction is opposite to the current positions. This feature is to ensure that the order won’t be canceled by the matching engine in such a circumstance that not enough funds are frozen for the order.",
-                                        "default": false
-                                    },
                                     "marginMode": {
                                         "type": "string",
-                                        "description": "Margin mode: ISOLATED, CROSS, default: ISOLATED",
+                                        "description": "Margin mode: ISOLATED, default: ISOLATED",
                                         "enum": [
-                                            "ISOLATED",
-                                            "CROSS"
+                                            "ISOLATED"
                                         ],
                                         "default": "ISOLATED",
                                         "x-api-enum": [
                                             {
                                                 "value": "ISOLATED",
-                                                "name": "",
-                                                "description": ""
-                                            },
-                                            {
-                                                "value": "CROSS",
-                                                "name": "",
-                                                "description": ""
+                                                "name": "ISOLATED",
+                                                "description": "Isolated Margin"
                                             }
                                         ]
                                     },
@@ -592,7 +554,7 @@
                                     },
                                     "size": {
                                         "type": "integer",
-                                        "description": "Order size (Lot), must be a positive integer. The quantity unit of coin-swap contracts is size(lot), and other units are not supported."
+                                        "description": "Order size (lot), must be a positive integer. The quantity unit of coin-swap contracts is size (lot), and other units are not supported."
                                     },
                                     "timeInForce": {
                                         "type": "string",
@@ -617,22 +579,22 @@
                                     },
                                     "postOnly": {
                                         "type": "boolean",
-                                        "description": "Optional for type is 'limit' order,  post only flag, invalid when timeInForce is IOC. When postOnly is true, not allowed choose hidden or iceberg. The post-only flag ensures that the trader always pays the maker fee and provides liquidity to the order book. If any part of the order is going to pay taker fee, the order will be fully rejected.",
+                                        "description": "Optional for type is 'limit' order, post only flag, invalid when timeInForce is IOC. When postOnly is true, not allowed to choose hidden or iceberg. The post-only flag ensures that the trader always pays the maker fee and provides liquidity to the order book. If any part of the order is going to pay taker fees, the order will be fully rejected.",
                                         "default": false
                                     },
                                     "hidden": {
                                         "type": "boolean",
-                                        "description": "Optional for type is 'limit' order, orders not displaying in order book. When hidden chose, not allowed choose postOnly.",
+                                        "description": "Optional for type is 'limit' order, orders not displaying in order book. When hidden is chosen, choosing postOnly is not allowed.",
                                         "default": false
                                     },
                                     "iceberg": {
                                         "type": "boolean",
-                                        "description": "Optional for type is 'limit' order, Only visible portion of the order is displayed in the order book. When iceberg chose, not allowed choose postOnly.",
+                                        "description": "Optional for type is 'limit' order, Only visible portion of the order is displayed in the order book. When iceberg is chose, choosing postOnly is not allowed.",
                                         "default": false
                                     },
                                     "visibleSize": {
                                         "type": "string",
-                                        "description": "Optional for type is 'limit' order, The maximum visible size of an iceberg order. please place order in size (lots), The units of qty (base currency) and valueQty (value) are not supported."
+                                        "description": "Optional for type is 'limit' order, the maximum visible size of an iceberg order. Please place order in size (lots). The units of qty (base currency) and valueQty (value) are not supported. Need to be defined if iceberg is specified."
                                     }
                                 },
                                 "required": [
@@ -676,11 +638,11 @@
                                             "properties": {
                                                 "orderId": {
                                                     "type": "string",
-                                                    "description": "The unique order id generated by the trading system,which can be used later for further actions such as canceling the order."
+                                                    "description": "The unique order ID generated by the trading system, which can be used later for further actions such as canceling the order."
                                                 },
                                                 "clientOid": {
                                                     "type": "string",
-                                                    "description": "The user self-defined order id."
+                                                    "description": "The user self-defined order ID."
                                                 }
                                             },
                                             "required": [
@@ -702,13 +664,13 @@
                 "x-abandon": "normal",
                 "x-domain": "Futures",
                 "x-api-channel": "Private",
-                "x-api-permission": "Futures",
+                "x-api-permission": "LeadtradeFutures",
                 "x-api-rate-limit-pool": "CopyTrading",
                 "x-sdk-service": "CopyTrading",
                 "x-sdk-sub-service": "Futures",
                 "x-sdk-method-name": "addTPSLOrder",
                 "x-sdk-method-description": "Place take profit and stop loss order supports both take-profit and stop-loss functions, and other functions are exactly the same as the place order interface.",
-                "x-api-rate-limit": 2,
+                "x-api-rate-limit-weight": 2,
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -717,14 +679,14 @@
                                 "properties": {
                                     "clientOid": {
                                         "type": "string",
-                                        "description": "Unique order id created by users to identify their orders, the maximum length cannot exceed 40, e.g. UUID, Only allows numbers, characters, underline(_), and separator(-)",
+                                        "description": "Unique order ID created by users to identify their orders. The maximum length cannot exceed 40, e.g. UUID only allows numbers, characters, underline(_), and separator (-).",
                                         "example": [
                                             "5c52e11203aa677f33e493fb"
                                         ]
                                     },
                                     "side": {
                                         "type": "string",
-                                        "description": "specify if the order is to 'buy' or 'sell'",
+                                        "description": "Specify if the order is to 'buy' or 'sell'.",
                                         "enum": [
                                             "buy",
                                             "sell"
@@ -747,7 +709,7 @@
                                     },
                                     "symbol": {
                                         "type": "string",
-                                        "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) ",
+                                        "description": "Symbol of the contract. Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) ",
                                         "example": [
                                             "XBTUSDTM"
                                         ]
@@ -755,13 +717,15 @@
                                     "leverage": {
                                         "type": "integer",
                                         "description": "Used to calculate the margin to be frozen for the order. If you are to close the position, this parameter is not required.",
+                                        "minimum": 1,
+                                        "maximum": 10,
                                         "example": [
                                             3
                                         ]
                                     },
                                     "type": {
                                         "type": "string",
-                                        "description": "specify if the order is an 'limit' order or 'market' order",
+                                        "description": "Specify if the order is a 'limit' order or 'market' order",
                                         "enum": [
                                             "limit",
                                             "market"
@@ -783,17 +747,12 @@
                                             "limit"
                                         ]
                                     },
-                                    "remark": {
-                                        "type": "string",
-                                        "description": "remark for the order, length cannot exceed 100 utf8 characters"
-                                    },
                                     "stopPriceType": {
                                         "type": "string",
-                                        "description": "Either 'TP', 'IP' or 'MP'",
+                                        "description": "Either 'TP' or 'MP'",
                                         "enum": [
                                             "TP",
-                                            "MP",
-                                            "IP"
+                                            "MP"
                                         ],
                                         "x-api-enum": [
                                             {
@@ -804,12 +763,7 @@
                                             {
                                                 "value": "MP",
                                                 "name": "mark price",
-                                                "description": "MP for mark price, The mark price can be obtained through relevant OPEN API for index services"
-                                            },
-                                            {
-                                                "value": "IP",
-                                                "name": "index price",
-                                                "description": "IP for index price, The index price can be obtained through relevant OPEN API for index services"
+                                                "description": "MP for mark price. The mark price can be obtained through relevant OPEN API for index services."
                                             }
                                         ]
                                     },
@@ -823,27 +777,16 @@
                                         "description": "A mark to close the position. Set to false by default. If closeOrder is set to true, the system will close the position and the position size will become 0. Side, Size and Leverage fields can be left empty and the system will determine the side and size automatically.",
                                         "default": false
                                     },
-                                    "forceHold": {
-                                        "type": "boolean",
-                                        "description": "A mark to forcely hold the funds for an order, even though it's an order to reduce the position size. This helps the order stay on the order book and not get canceled when the position size changes. Set to false by default. The system will forcely freeze certain amount of funds for this order, including orders whose direction is opposite to the current positions. This feature is to ensure that the order won’t be canceled by the matching engine in such a circumstance that not enough funds are frozen for the order.",
-                                        "default": false
-                                    },
                                     "marginMode": {
                                         "type": "string",
-                                        "description": "Margin mode: ISOLATED, CROSS, default: ISOLATED",
+                                        "description": "Margin mode: ISOLATED, default: ISOLATED",
                                         "enum": [
-                                            "ISOLATED",
-                                            "CROSS"
+                                            "ISOLATED"
                                         ],
                                         "default": "ISOLATED",
                                         "x-api-enum": [
                                             {
                                                 "value": "ISOLATED",
-                                                "name": "",
-                                                "description": ""
-                                            },
-                                            {
-                                                "value": "CROSS",
                                                 "name": "",
                                                 "description": ""
                                             }
@@ -858,7 +801,7 @@
                                     },
                                     "size": {
                                         "type": "integer",
-                                        "description": "Order size (Lot), must be a positive integer. The quantity unit of coin-swap contracts is size(lot), and other units are not supported."
+                                        "description": "Order size (lot), must be a positive integer. The quantity unit of coin-swap contracts is size (lot), and other units are not supported."
                                     },
                                     "timeInForce": {
                                         "type": "string",
@@ -872,33 +815,33 @@
                                             {
                                                 "value": "GTC",
                                                 "name": "Good Till Canceled",
-                                                "description": "order remains open on the order book until canceled. This is the default type if the field is left empty."
+                                                "description": "Order remains open on the order book until canceled. This is the default type if the field is left empty."
                                             },
                                             {
                                                 "value": "IOC",
                                                 "name": "Immediate Or Cancel",
-                                                "description": "being matched or not, the remaining size of the order will be instantly canceled instead of entering the order book."
+                                                "description": "Being matched or not, the remaining size of the order will be instantly canceled instead of entering the order book."
                                             }
                                         ]
                                     },
                                     "postOnly": {
                                         "type": "boolean",
-                                        "description": "Optional for type is 'limit' order,  post only flag, invalid when timeInForce is IOC. When postOnly is true, not allowed choose hidden or iceberg. The post-only flag ensures that the trader always pays the maker fee and provides liquidity to the order book. If any part of the order is going to pay taker fee, the order will be fully rejected.",
+                                        "description": "Optional for type is 'limit' order, post only flag, invalid when timeInForce is IOC. When postOnly is true, choosing hidden or iceberg is not allowed. The post-only flag ensures that the trader always pays the maker fee and provides liquidity to the order book. If any part of the order is going to pay taker fees, the order will be fully rejected.",
                                         "default": false
                                     },
                                     "hidden": {
                                         "type": "boolean",
-                                        "description": "Optional for type is 'limit' order, orders not displaying in order book. When hidden chose, not allowed choose postOnly.",
+                                        "description": "Optional for type is 'limit' order, orders not displaying in order book. When hidden is chosen, choosing postOnly is not allowed.",
                                         "default": false
                                     },
                                     "iceberg": {
                                         "type": "boolean",
-                                        "description": "Optional for type is 'limit' order, Only visible portion of the order is displayed in the order book. When iceberg chose, not allowed choose postOnly.",
+                                        "description": "Optional for type is 'limit' order, Only visible portion of the order is displayed in the order book. When iceberg is chosen, choosing postOnly is not allowed.",
                                         "default": false
                                     },
                                     "visibleSize": {
                                         "type": "string",
-                                        "description": "Optional for type is 'limit' order, The maximum visible size of an iceberg order. please place order in size (lots), The units of qty (base currency) and valueQty (value) are not supported."
+                                        "description": "Optional for type is 'limit' order, the maximum visible size of an iceberg order. Please place order in size (lots). The units of qty (base currency) and valueQty (value) are not supported. Need to be defined if iceberg is specified."
                                     },
                                     "triggerStopUpPrice": {
                                         "type": "string",
@@ -931,13 +874,13 @@
             "delete": {
                 "summary": "Cancel Order By ClientOid",
                 "deprecated": false,
-                "description": "Cancel order by client defined orderId.",
+                "description": "Cancel order by client-defined orderId.",
                 "tags": [],
                 "parameters": [
                     {
                         "name": "symbol",
                         "in": "query",
-                        "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) ",
+                        "description": "Symbol of the contract. Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) ",
                         "required": true,
                         "schema": {
                             "type": "string"
@@ -946,8 +889,8 @@
                     {
                         "name": "clientOid",
                         "in": "query",
-                        "description": "The user self-defined order id.",
-                        "required": false,
+                        "description": "The user self-defined order ID.",
+                        "required": true,
                         "schema": {
                             "type": "string"
                         }
@@ -989,13 +932,13 @@
                 "x-abandon": "normal",
                 "x-domain": "Futures",
                 "x-api-channel": "Private",
-                "x-api-permission": "Futures",
+                "x-api-permission": "LeadtradeFutures",
                 "x-api-rate-limit-pool": "CopyTrading",
                 "x-sdk-service": "CopyTrading",
                 "x-sdk-sub-service": "Futures",
                 "x-sdk-method-name": "cancelOrderByClientOid",
-                "x-sdk-method-description": "Cancel order by client defined orderId.",
-                "x-api-rate-limit": 1,
+                "x-sdk-method-description": "Cancel order by client-defined orderId.",
+                "x-api-rate-limit-weight": 1,
                 "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"clientOid\\\": \\\"5c52e11203aa677f331e4913fb\\\"\\n    }\\n}",
                 "x-request-example": "{\\\"symbol\\\": \\\"XBTUSDTM\\\", \\\"clientOid\\\": \\\"5c52e11203aa677f331e493fb\\\"}",
                 "operationId": "005"
@@ -1011,7 +954,7 @@
                     {
                         "name": "symbol",
                         "in": "query",
-                        "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) ",
+                        "description": "Symbol of the contract. Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) ",
                         "required": true,
                         "schema": {
                             "type": "string",
@@ -1025,10 +968,10 @@
                     {
                         "name": "price",
                         "in": "query",
-                        "description": "Order price\n",
+                        "description": "Order Price\n",
                         "required": true,
                         "schema": {
-                            "type": "string"
+                            "type": "number"
                         }
                     },
                     {
@@ -1057,7 +1000,7 @@
                                             "properties": {
                                                 "symbol": {
                                                     "type": "string",
-                                                    "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) "
+                                                    "description": "Symbol of the contract. Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) "
                                                 },
                                                 "maxBuyOpenSize": {
                                                     "type": "string",
@@ -1088,15 +1031,15 @@
                 "x-abandon": "normal",
                 "x-domain": "Futures",
                 "x-api-channel": "Private",
-                "x-api-permission": "Futures",
+                "x-api-permission": "LeadtradeFutures",
                 "x-api-rate-limit-pool": "CopyTrading",
                 "x-sdk-service": "CopyTrading",
                 "x-sdk-sub-service": "Futures",
                 "x-sdk-method-name": "GetMaxOpenSize",
                 "x-sdk-method-description": "Get Maximum Open Position Size.",
-                "x-api-rate-limit": 2,
-                "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"symbol\\\": \\\"XBTUSDTM\\\",\\n        \\\"maxBuyOpenSize\\\": \\\"8\\\",\\n        \\\"maxSellOpenSize\\\": \\\"5\\\"\\n    }\\n}",
-                "x-request-example": "{\\\"symbol\\\": \\\"XBTUSDTM\\\", \\\"price\\\": \\\"example_string_default_value\\\", \\\"leverage\\\": 123456}",
+                "x-api-rate-limit-weight": 4,
+                "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"symbol\\\": \\\"XBTUSDTM\\\",\\n        \\\"maxBuyOpenSize\\\": \\\"1000000\\\",\\n        \\\"maxSellOpenSize\\\": \\\"51\\\"\\n    }\\n}",
+                "x-request-example": "{\\\"symbol\\\": \\\"XBTUSDTM\\\", \\\"price\\\": 123456.0, \\\"leverage\\\": 123456}",
                 "operationId": "006"
             }
         },
@@ -1146,13 +1089,13 @@
                 "x-abandon": "normal",
                 "x-domain": "Futures",
                 "x-api-channel": "Private",
-                "x-api-permission": "Futures",
+                "x-api-permission": "LeadtradeFutures",
                 "x-api-rate-limit-pool": "CopyTrading",
                 "x-sdk-service": "CopyTrading",
                 "x-sdk-sub-service": "Futures",
                 "x-sdk-method-name": "GetMaxWithdrawMargin",
                 "x-sdk-method-description": "This interface can query the maximum amount of margin that the current position supports withdrawal.",
-                "x-api-rate-limit": 10,
+                "x-api-rate-limit-weight": 10,
                 "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": \\\"21.1135719252\\\"\\n}",
                 "x-request-example": "{\\\"symbol\\\": \\\"example_string_default_value\\\"}",
                 "operationId": "007"
@@ -1379,13 +1322,13 @@
                 "x-abandon": "normal",
                 "x-domain": "Futures",
                 "x-api-channel": "Private",
-                "x-api-permission": "Futures",
+                "x-api-permission": "LeadtradeFutures",
                 "x-api-rate-limit-pool": "CopyTrading",
                 "x-sdk-service": "CopyTrading",
                 "x-sdk-sub-service": "Futures",
                 "x-sdk-method-name": "AddIsolatedMargin",
                 "x-sdk-method-description": "Add Isolated Margin Manually.",
-                "x-api-rate-limit": 4,
+                "x-api-rate-limit-weight": 4,
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -1456,13 +1399,13 @@
                 "x-abandon": "normal",
                 "x-domain": "Futures",
                 "x-api-channel": "Private",
-                "x-api-permission": "Futures",
+                "x-api-permission": "LeadtradeFutures",
                 "x-api-rate-limit-pool": "CopyTrading",
                 "x-sdk-service": "CopyTrading",
                 "x-sdk-sub-service": "Futures",
                 "x-sdk-method-name": "RemoveIsolatedMargin",
                 "x-sdk-method-description": "Remove Isolated Margin Manually.",
-                "x-api-rate-limit": 10,
+                "x-api-rate-limit-weight": 10,
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -1474,7 +1417,7 @@
                                         "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) "
                                     },
                                     "withdrawAmount": {
-                                        "type": "string",
+                                        "type": "number",
                                         "description": "The size of the position that can be deposited. If it is USDT-margin, it represents the amount of USDT. If it is coin-margin, this value represents the number of coins\n"
                                     }
                                 },
@@ -1483,12 +1426,12 @@
                                     "withdrawAmount"
                                 ]
                             },
-                            "example": "{\n    \"symbol\": \"XBTUSDTM\",\n    \"withdrawAmount\": \"0.0000001\"\n}"
+                            "example": "{\n    \"symbol\": \"XBTUSDTM\",\n    \"withdrawAmount\": 0.0000001\n}"
                         }
                     }
                 },
                 "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": \\\"0.1\\\"\\n}",
-                "x-request-example": "{\\\"symbol\\\": \\\"XBTUSDTM\\\", \\\"withdrawAmount\\\": \\\"0.0000001\\\"}",
+                "x-request-example": "{\\\"symbol\\\": \\\"XBTUSDTM\\\", \\\"withdrawAmount\\\": 1e-07}",
                 "operationId": "009"
             }
         },
@@ -1496,7 +1439,7 @@
             "post": {
                 "summary": "Modify Isolated Margin Risk Limit",
                 "deprecated": false,
-                "description": "This interface can be used to obtain information about risk limit level of a specific contract(Only valid for isolated Margin).",
+                "description": "This interface can be used to obtain information about risk limit level of a specific contract (only valid for Isolated Margin).",
                 "tags": [],
                 "parameters": [],
                 "responses": {
@@ -1512,7 +1455,7 @@
                                         },
                                         "data": {
                                             "type": "boolean",
-                                            "description": "To adjust the level will cancel the open order, the response can only indicate whether the submit of the adjustment request is successful or not.\n"
+                                            "description": "Adjusting the level will result in the cancellation of any open orders. The response will indicate only whether the adjustment request was successfully submitted.\n"
                                         }
                                     },
                                     "required": [
@@ -1528,13 +1471,13 @@
                 "x-abandon": "normal",
                 "x-domain": "Futures",
                 "x-api-channel": "Private",
-                "x-api-permission": "Futures",
+                "x-api-permission": "LeadtradeFutures",
                 "x-api-rate-limit-pool": "CopyTrading",
                 "x-sdk-service": "CopyTrading",
                 "x-sdk-sub-service": "Futures",
                 "x-sdk-method-name": "modifyIsolatedMarginRiskLimt",
-                "x-sdk-method-description": "This interface can be used to obtain information about risk limit level of a specific contract(Only valid for isolated Margin).",
-                "x-api-rate-limit": 4,
+                "x-sdk-method-description": "This interface can be used to obtain information about risk limit level of a specific contract (only valid for Isolated Margin).",
+                "x-api-rate-limit-weight": 2,
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -1543,11 +1486,11 @@
                                 "properties": {
                                     "symbol": {
                                         "type": "string",
-                                        "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) "
+                                        "description": "Symbol of the contract. Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) "
                                     },
                                     "level": {
                                         "type": "integer",
-                                        "description": "level"
+                                        "description": "Level"
                                     }
                                 },
                                 "required": [
@@ -1599,13 +1542,13 @@
                 "x-abandon": "normal",
                 "x-domain": "Futures",
                 "x-api-channel": "Private",
-                "x-api-permission": "Futures",
+                "x-api-permission": "LeadtradeFutures",
                 "x-api-rate-limit-pool": "CopyTrading",
                 "x-sdk-service": "CopyTrading",
                 "x-sdk-sub-service": "Futures",
                 "x-sdk-method-name": "modifyAutoDepositStatus",
                 "x-sdk-method-description": "This endpoint is only applicable to isolated margin and is no longer recommended. It is recommended to use cross margin instead.",
-                "x-api-rate-limit": 4,
+                "x-api-rate-limit-weight": 4,
                 "requestBody": {
                     "content": {
                         "application/json": {

@@ -9,7 +9,7 @@ For an overview of the project and SDKs in other languages, refer to the [Main R
 
 ## 📦 Installation
 
-### Latest Version: `1.1.0`
+### Latest Version: `1.2.0`
 Install the Golang SDK using `go get`:
 
 ```bash

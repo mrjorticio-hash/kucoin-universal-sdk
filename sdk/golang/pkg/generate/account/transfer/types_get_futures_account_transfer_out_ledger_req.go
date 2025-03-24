@@ -10,13 +10,13 @@ type GetFuturesAccountTransferOutLedgerReq struct {
 	Type *string `json:"type,omitempty" url:"type,omitempty"`
 	// Status List PROCESSING, SUCCESS, FAILURE
 	Tag []string `json:"tag,omitempty" url:"tag,omitempty"`
-	// Start time (milisecond)
+	// Start time (milliseconds)
 	StartAt *int64 `json:"startAt,omitempty" url:"startAt,omitempty"`
-	// End time (milisecond)
+	// End time (milliseconds)
 	EndAt *int64 `json:"endAt,omitempty" url:"endAt,omitempty"`
-	// Current request page, The default currentPage is 1
+	// Current request page. The default currentPage is 1
 	CurrentPage *int64 `json:"currentPage,omitempty" url:"currentPage,omitempty"`
-	// pageSize, The default pageSize is 50
+	// pageSize; the default pageSize is 50
 	PageSize *int64 `json:"pageSize,omitempty" url:"pageSize,omitempty"`
 }
 
@@ -80,25 +80,25 @@ func (builder *GetFuturesAccountTransferOutLedgerReqBuilder) SetTag(value []stri
 	return builder
 }
 
-// Start time (milisecond)
+// Start time (milliseconds)
 func (builder *GetFuturesAccountTransferOutLedgerReqBuilder) SetStartAt(value int64) *GetFuturesAccountTransferOutLedgerReqBuilder {
 	builder.obj.StartAt = &value
 	return builder
 }
 
-// End time (milisecond)
+// End time (milliseconds)
 func (builder *GetFuturesAccountTransferOutLedgerReqBuilder) SetEndAt(value int64) *GetFuturesAccountTransferOutLedgerReqBuilder {
 	builder.obj.EndAt = &value
 	return builder
 }
 
-// Current request page, The default currentPage is 1
+// Current request page. The default currentPage is 1
 func (builder *GetFuturesAccountTransferOutLedgerReqBuilder) SetCurrentPage(value int64) *GetFuturesAccountTransferOutLedgerReqBuilder {
 	builder.obj.CurrentPage = &value
 	return builder
 }
 
-// pageSize, The default pageSize is 50
+// pageSize; the default pageSize is 50
 func (builder *GetFuturesAccountTransferOutLedgerReqBuilder) SetPageSize(value int64) *GetFuturesAccountTransferOutLedgerReqBuilder {
 	builder.obj.PageSize = &value
 	return builder

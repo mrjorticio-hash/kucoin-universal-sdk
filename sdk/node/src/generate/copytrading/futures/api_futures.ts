@@ -29,31 +29,31 @@ export interface FuturesAPI {
      * addOrder Add Order
      * Description: Place order to the futures trading system, you can place two major types of orders: limit and market. Orders can only be placed if your account has sufficient funds. Once an order is placed, your funds will be put on hold for the duration of the order. The amount of funds on hold depends on the order type and parameters specified.
      * Documentation: https://www.kucoin.com/docs-new/api-3470363
-     * +---------------------+------------------+
-     * | Extra API Info      | Value            |
-     * +---------------------+------------------+
-     * | API-DOMAIN          | FUTURES          |
-     * | API-CHANNEL         | PRIVATE          |
-     * | API-PERMISSION      | LEADTRADEFUTURES |
-     * | API-RATE-LIMIT-POOL | COPYTRADING      |
-     * | API-RATE-LIMIT      | 2                |
-     * +---------------------+------------------+
+     * +-----------------------+------------------+
+     * | Extra API Info        | Value            |
+     * +-----------------------+------------------+
+     * | API-DOMAIN            | FUTURES          |
+     * | API-CHANNEL           | PRIVATE          |
+     * | API-PERMISSION        | LEADTRADEFUTURES |
+     * | API-RATE-LIMIT-POOL   | COPYTRADING      |
+     * | API-RATE-LIMIT-WEIGHT | 2                |
+     * +-----------------------+------------------+
      */
     addOrder(req: AddOrderReq): Promise<AddOrderResp>;
 
     /**
      * addOrderTest Add Order Test
-     * Description: Place order to the futures trading system just for validation
+     * Description: Place order  the futures trading system just for validation
      * Documentation: https://www.kucoin.com/docs-new/api-3470618
-     * +---------------------+-------------+
-     * | Extra API Info      | Value       |
-     * +---------------------+-------------+
-     * | API-DOMAIN          | FUTURES     |
-     * | API-CHANNEL         | PRIVATE     |
-     * | API-PERMISSION      | FUTURES     |
-     * | API-RATE-LIMIT-POOL | COPYTRADING |
-     * | API-RATE-LIMIT      | 2           |
-     * +---------------------+-------------+
+     * +-----------------------+------------------+
+     * | Extra API Info        | Value            |
+     * +-----------------------+------------------+
+     * | API-DOMAIN            | FUTURES          |
+     * | API-CHANNEL           | PRIVATE          |
+     * | API-PERMISSION        | LEADTRADEFUTURES |
+     * | API-RATE-LIMIT-POOL   | COPYTRADING      |
+     * | API-RATE-LIMIT-WEIGHT | 2                |
+     * +-----------------------+------------------+
      */
     addOrderTest(req: AddOrderTestReq): Promise<AddOrderTestResp>;
 
@@ -61,47 +61,47 @@ export interface FuturesAPI {
      * addTPSLOrder Add Take Profit And Stop Loss Order
      * Description: Place take profit and stop loss order supports both take-profit and stop-loss functions, and other functions are exactly the same as the place order interface.
      * Documentation: https://www.kucoin.com/docs-new/api-3470619
-     * +---------------------+-------------+
-     * | Extra API Info      | Value       |
-     * +---------------------+-------------+
-     * | API-DOMAIN          | FUTURES     |
-     * | API-CHANNEL         | PRIVATE     |
-     * | API-PERMISSION      | FUTURES     |
-     * | API-RATE-LIMIT-POOL | COPYTRADING |
-     * | API-RATE-LIMIT      | 2           |
-     * +---------------------+-------------+
+     * +-----------------------+------------------+
+     * | Extra API Info        | Value            |
+     * +-----------------------+------------------+
+     * | API-DOMAIN            | FUTURES          |
+     * | API-CHANNEL           | PRIVATE          |
+     * | API-PERMISSION        | LEADTRADEFUTURES |
+     * | API-RATE-LIMIT-POOL   | COPYTRADING      |
+     * | API-RATE-LIMIT-WEIGHT | 2                |
+     * +-----------------------+------------------+
      */
     addTPSLOrder(req: AddTPSLOrderReq): Promise<AddTPSLOrderResp>;
 
     /**
      * cancelOrderById Cancel Order By OrderId
-     * Description: Cancel order by system generated orderId.
+     * Description: Cancel order by system-generated orderId.
      * Documentation: https://www.kucoin.com/docs-new/api-3470620
-     * +---------------------+-------------+
-     * | Extra API Info      | Value       |
-     * +---------------------+-------------+
-     * | API-DOMAIN          | FUTURES     |
-     * | API-CHANNEL         | PRIVATE     |
-     * | API-PERMISSION      | FUTURES     |
-     * | API-RATE-LIMIT-POOL | COPYTRADING |
-     * | API-RATE-LIMIT      | 1           |
-     * +---------------------+-------------+
+     * +-----------------------+------------------+
+     * | Extra API Info        | Value            |
+     * +-----------------------+------------------+
+     * | API-DOMAIN            | FUTURES          |
+     * | API-CHANNEL           | PRIVATE          |
+     * | API-PERMISSION        | LEADTRADEFUTURES |
+     * | API-RATE-LIMIT-POOL   | COPYTRADING      |
+     * | API-RATE-LIMIT-WEIGHT | 1                |
+     * +-----------------------+------------------+
      */
     cancelOrderById(req: CancelOrderByIdReq): Promise<CancelOrderByIdResp>;
 
     /**
      * cancelOrderByClientOid Cancel Order By ClientOid
-     * Description: Cancel order by client defined orderId.
+     * Description: Cancel order by client-defined orderId.
      * Documentation: https://www.kucoin.com/docs-new/api-3470621
-     * +---------------------+-------------+
-     * | Extra API Info      | Value       |
-     * +---------------------+-------------+
-     * | API-DOMAIN          | FUTURES     |
-     * | API-CHANNEL         | PRIVATE     |
-     * | API-PERMISSION      | FUTURES     |
-     * | API-RATE-LIMIT-POOL | COPYTRADING |
-     * | API-RATE-LIMIT      | 1           |
-     * +---------------------+-------------+
+     * +-----------------------+------------------+
+     * | Extra API Info        | Value            |
+     * +-----------------------+------------------+
+     * | API-DOMAIN            | FUTURES          |
+     * | API-CHANNEL           | PRIVATE          |
+     * | API-PERMISSION        | LEADTRADEFUTURES |
+     * | API-RATE-LIMIT-POOL   | COPYTRADING      |
+     * | API-RATE-LIMIT-WEIGHT | 1                |
+     * +-----------------------+------------------+
      */
     cancelOrderByClientOid(req: CancelOrderByClientOidReq): Promise<CancelOrderByClientOidResp>;
 
@@ -109,15 +109,15 @@ export interface FuturesAPI {
      * getMaxOpenSize Get Max Open Size
      * Description: Get Maximum Open Position Size.
      * Documentation: https://www.kucoin.com/docs-new/api-3470612
-     * +---------------------+-------------+
-     * | Extra API Info      | Value       |
-     * +---------------------+-------------+
-     * | API-DOMAIN          | FUTURES     |
-     * | API-CHANNEL         | PRIVATE     |
-     * | API-PERMISSION      | FUTURES     |
-     * | API-RATE-LIMIT-POOL | COPYTRADING |
-     * | API-RATE-LIMIT      | 2           |
-     * +---------------------+-------------+
+     * +-----------------------+------------------+
+     * | Extra API Info        | Value            |
+     * +-----------------------+------------------+
+     * | API-DOMAIN            | FUTURES          |
+     * | API-CHANNEL           | PRIVATE          |
+     * | API-PERMISSION        | LEADTRADEFUTURES |
+     * | API-RATE-LIMIT-POOL   | COPYTRADING      |
+     * | API-RATE-LIMIT-WEIGHT | 4                |
+     * +-----------------------+------------------+
      */
     getMaxOpenSize(req: GetMaxOpenSizeReq): Promise<GetMaxOpenSizeResp>;
 
@@ -125,15 +125,15 @@ export interface FuturesAPI {
      * getMaxWithdrawMargin Get Max Withdraw Margin
      * Description: This interface can query the maximum amount of margin that the current position supports withdrawal.
      * Documentation: https://www.kucoin.com/docs-new/api-3470616
-     * +---------------------+-------------+
-     * | Extra API Info      | Value       |
-     * +---------------------+-------------+
-     * | API-DOMAIN          | FUTURES     |
-     * | API-CHANNEL         | PRIVATE     |
-     * | API-PERMISSION      | FUTURES     |
-     * | API-RATE-LIMIT-POOL | COPYTRADING |
-     * | API-RATE-LIMIT      | 10          |
-     * +---------------------+-------------+
+     * +-----------------------+------------------+
+     * | Extra API Info        | Value            |
+     * +-----------------------+------------------+
+     * | API-DOMAIN            | FUTURES          |
+     * | API-CHANNEL           | PRIVATE          |
+     * | API-PERMISSION        | LEADTRADEFUTURES |
+     * | API-RATE-LIMIT-POOL   | COPYTRADING      |
+     * | API-RATE-LIMIT-WEIGHT | 10               |
+     * +-----------------------+------------------+
      */
     getMaxWithdrawMargin(req: GetMaxWithdrawMarginReq): Promise<GetMaxWithdrawMarginResp>;
 
@@ -141,15 +141,15 @@ export interface FuturesAPI {
      * addIsolatedMargin Add Isolated Margin
      * Description: Add Isolated Margin Manually.
      * Documentation: https://www.kucoin.com/docs-new/api-3470614
-     * +---------------------+-------------+
-     * | Extra API Info      | Value       |
-     * +---------------------+-------------+
-     * | API-DOMAIN          | FUTURES     |
-     * | API-CHANNEL         | PRIVATE     |
-     * | API-PERMISSION      | FUTURES     |
-     * | API-RATE-LIMIT-POOL | COPYTRADING |
-     * | API-RATE-LIMIT      | 4           |
-     * +---------------------+-------------+
+     * +-----------------------+------------------+
+     * | Extra API Info        | Value            |
+     * +-----------------------+------------------+
+     * | API-DOMAIN            | FUTURES          |
+     * | API-CHANNEL           | PRIVATE          |
+     * | API-PERMISSION        | LEADTRADEFUTURES |
+     * | API-RATE-LIMIT-POOL   | COPYTRADING      |
+     * | API-RATE-LIMIT-WEIGHT | 4                |
+     * +-----------------------+------------------+
      */
     addIsolatedMargin(req: AddIsolatedMarginReq): Promise<AddIsolatedMarginResp>;
 
@@ -157,31 +157,31 @@ export interface FuturesAPI {
      * removeIsolatedMargin Remove Isolated Margin
      * Description: Remove Isolated Margin Manually.
      * Documentation: https://www.kucoin.com/docs-new/api-3470615
-     * +---------------------+-------------+
-     * | Extra API Info      | Value       |
-     * +---------------------+-------------+
-     * | API-DOMAIN          | FUTURES     |
-     * | API-CHANNEL         | PRIVATE     |
-     * | API-PERMISSION      | FUTURES     |
-     * | API-RATE-LIMIT-POOL | COPYTRADING |
-     * | API-RATE-LIMIT      | 10          |
-     * +---------------------+-------------+
+     * +-----------------------+------------------+
+     * | Extra API Info        | Value            |
+     * +-----------------------+------------------+
+     * | API-DOMAIN            | FUTURES          |
+     * | API-CHANNEL           | PRIVATE          |
+     * | API-PERMISSION        | LEADTRADEFUTURES |
+     * | API-RATE-LIMIT-POOL   | COPYTRADING      |
+     * | API-RATE-LIMIT-WEIGHT | 10               |
+     * +-----------------------+------------------+
      */
     removeIsolatedMargin(req: RemoveIsolatedMarginReq): Promise<RemoveIsolatedMarginResp>;
 
     /**
      * modifyIsolatedMarginRiskLimt Modify Isolated Margin Risk Limit
-     * Description: This interface can be used to obtain information about risk limit level of a specific contract(Only valid for isolated Margin).
+     * Description: This interface can be used to obtain information about risk limit level of a specific contract (only valid for Isolated Margin).
      * Documentation: https://www.kucoin.com/docs-new/api-3470613
-     * +---------------------+-------------+
-     * | Extra API Info      | Value       |
-     * +---------------------+-------------+
-     * | API-DOMAIN          | FUTURES     |
-     * | API-CHANNEL         | PRIVATE     |
-     * | API-PERMISSION      | FUTURES     |
-     * | API-RATE-LIMIT-POOL | COPYTRADING |
-     * | API-RATE-LIMIT      | 4           |
-     * +---------------------+-------------+
+     * +-----------------------+------------------+
+     * | Extra API Info        | Value            |
+     * +-----------------------+------------------+
+     * | API-DOMAIN            | FUTURES          |
+     * | API-CHANNEL           | PRIVATE          |
+     * | API-PERMISSION        | LEADTRADEFUTURES |
+     * | API-RATE-LIMIT-POOL   | COPYTRADING      |
+     * | API-RATE-LIMIT-WEIGHT | 2                |
+     * +-----------------------+------------------+
      */
     modifyIsolatedMarginRiskLimt(
         req: ModifyIsolatedMarginRiskLimtReq,
@@ -191,15 +191,15 @@ export interface FuturesAPI {
      * modifyAutoDepositStatus Modify Isolated Margin Auto-Deposit Status
      * Description: This endpoint is only applicable to isolated margin and is no longer recommended. It is recommended to use cross margin instead.
      * Documentation: https://www.kucoin.com/docs-new/api-3470617
-     * +---------------------+-------------+
-     * | Extra API Info      | Value       |
-     * +---------------------+-------------+
-     * | API-DOMAIN          | FUTURES     |
-     * | API-CHANNEL         | PRIVATE     |
-     * | API-PERMISSION      | FUTURES     |
-     * | API-RATE-LIMIT-POOL | COPYTRADING |
-     * | API-RATE-LIMIT      | 4           |
-     * +---------------------+-------------+
+     * +-----------------------+------------------+
+     * | Extra API Info        | Value            |
+     * +-----------------------+------------------+
+     * | API-DOMAIN            | FUTURES          |
+     * | API-CHANNEL           | PRIVATE          |
+     * | API-PERMISSION        | LEADTRADEFUTURES |
+     * | API-RATE-LIMIT-POOL   | COPYTRADING      |
+     * | API-RATE-LIMIT-WEIGHT | 4                |
+     * +-----------------------+------------------+
      */
     modifyAutoDepositStatus(req: ModifyAutoDepositStatusReq): Promise<ModifyAutoDepositStatusResp>;
 }

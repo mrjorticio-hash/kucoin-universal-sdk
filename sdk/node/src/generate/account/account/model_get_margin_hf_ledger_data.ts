@@ -20,7 +20,7 @@ export class GetMarginHFLedgerData implements Serializable {
     amount?: string;
 
     /**
-     * Deposit or withdrawal fee
+     * Transaction, Deposit or withdrawal fee
      */
     fee?: string;
 
@@ -35,12 +35,12 @@ export class GetMarginHFLedgerData implements Serializable {
     accountType?: string;
 
     /**
-     * Trnasaction type，such as TRANSFER, TRADE_EXCHANGE, etc.
+     * Trnasaction type, such as TRANSFER, TRADE_EXCHANGE, etc.
      */
     bizType?: string;
 
     /**
-     * Direction of transfer( out or in)
+     * Direction of transfer (out or in)
      */
     direction?: string;
 

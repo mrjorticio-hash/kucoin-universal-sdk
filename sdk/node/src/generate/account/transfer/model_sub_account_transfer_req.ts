@@ -5,7 +5,7 @@ import { Serializable } from '@internal/interfaces/serializable';
 
 export class SubAccountTransferReq implements Serializable {
     /**
-     * Unique order id created by users to identify their orders, e.g. UUID, with a maximum length of 128 bits
+     * Unique order ID created by users to identify their orders, e.g. UUID, with a maximum length of 128 bits
      */
     clientOid: string;
 
@@ -15,23 +15,23 @@ export class SubAccountTransferReq implements Serializable {
     currency: string;
 
     /**
-     * Transfer amount, the amount is a positive integer multiple of the currency precision.
+     * Transfer amount: The amount is a positive integer multiple of the currency precision.
      */
     amount: string;
 
     /**
-     * OUT — the master user to sub user IN — the sub user to the master user.
+     * OUT — the master user to sub user IN — the sub user to the master user
      */
     direction: SubAccountTransferReq.DirectionEnum;
 
     /**
-     * Account type：MAIN、TRADE、CONTRACT、MARGIN
+     * Account type: MAIN, TRADE, CONTRACT, MARGIN, ISOLATED
      */
     accountType?: SubAccountTransferReq.AccountTypeEnum =
         SubAccountTransferReq.AccountTypeEnum.MAIN;
 
     /**
-     * Sub Account type：MAIN、TRADE、CONTRACT、MARGIN
+     * Sub-account type: MAIN, TRADE, CONTRACT, MARGIN, ISOLATED
      */
     subAccountType?: SubAccountTransferReq.SubAccountTypeEnum =
         SubAccountTransferReq.SubAccountTypeEnum.MAIN;
@@ -40,6 +40,16 @@ export class SubAccountTransferReq implements Serializable {
      * the user ID of a sub-account.
      */
     subUserId?: string;
+
+    /**
+     *  Need to be defined if accountType=ISOLATED.
+     */
+    tag?: string;
+
+    /**
+     *  Need to be defined if subAccountType=ISOLATED.
+     */
+    subTag: string;
 
     /**
      * Private constructor, please use the corresponding static methods to construct the object.
@@ -53,6 +63,8 @@ export class SubAccountTransferReq implements Serializable {
         this.amount = null;
         // @ts-ignore
         this.direction = null;
+        // @ts-ignore
+        this.subTag = null;
     }
     /**
      * Creates a new instance of the `SubAccountTransferReq` class.
@@ -67,7 +79,7 @@ export class SubAccountTransferReq implements Serializable {
      */
     static create(data: {
         /**
-         * Unique order id created by users to identify their orders, e.g. UUID, with a maximum length of 128 bits
+         * Unique order ID created by users to identify their orders, e.g. UUID, with a maximum length of 128 bits
          */
         clientOid: string;
         /**
@@ -75,25 +87,33 @@ export class SubAccountTransferReq implements Serializable {
          */
         currency: string;
         /**
-         * Transfer amount, the amount is a positive integer multiple of the currency precision.
+         * Transfer amount: The amount is a positive integer multiple of the currency precision.
          */
         amount: string;
         /**
-         * OUT — the master user to sub user IN — the sub user to the master user.
+         * OUT — the master user to sub user IN — the sub user to the master user
          */
         direction: SubAccountTransferReq.DirectionEnum;
         /**
-         * Account type：MAIN、TRADE、CONTRACT、MARGIN
+         * Account type: MAIN, TRADE, CONTRACT, MARGIN, ISOLATED
          */
         accountType?: SubAccountTransferReq.AccountTypeEnum;
         /**
-         * Sub Account type：MAIN、TRADE、CONTRACT、MARGIN
+         * Sub-account type: MAIN, TRADE, CONTRACT, MARGIN, ISOLATED
          */
         subAccountType?: SubAccountTransferReq.SubAccountTypeEnum;
         /**
          * the user ID of a sub-account.
          */
         subUserId?: string;
+        /**
+         *  Need to be defined if accountType=ISOLATED.
+         */
+        tag?: string;
+        /**
+         *  Need to be defined if subAccountType=ISOLATED.
+         */
+        subTag: string;
     }): SubAccountTransferReq {
         let obj = new SubAccountTransferReq();
         obj.clientOid = data.clientOid;
@@ -111,6 +131,8 @@ export class SubAccountTransferReq implements Serializable {
             obj.subAccountType = SubAccountTransferReq.SubAccountTypeEnum.MAIN;
         }
         obj.subUserId = data.subUserId;
+        obj.tag = data.tag;
+        obj.subTag = data.subTag;
         return obj;
     }
 
@@ -192,7 +214,7 @@ export class SubAccountTransferReqBuilder {
         this.obj = obj;
     }
     /**
-     * Unique order id created by users to identify their orders, e.g. UUID, with a maximum length of 128 bits
+     * Unique order ID created by users to identify their orders, e.g. UUID, with a maximum length of 128 bits
      */
     setClientOid(value: string): SubAccountTransferReqBuilder {
         this.obj.clientOid = value;
@@ -208,7 +230,7 @@ export class SubAccountTransferReqBuilder {
     }
 
     /**
-     * Transfer amount, the amount is a positive integer multiple of the currency precision.
+     * Transfer amount: The amount is a positive integer multiple of the currency precision.
      */
     setAmount(value: string): SubAccountTransferReqBuilder {
         this.obj.amount = value;
@@ -216,7 +238,7 @@ export class SubAccountTransferReqBuilder {
     }
 
     /**
-     * OUT — the master user to sub user IN — the sub user to the master user.
+     * OUT — the master user to sub user IN — the sub user to the master user
      */
     setDirection(value: SubAccountTransferReq.DirectionEnum): SubAccountTransferReqBuilder {
         this.obj.direction = value;
@@ -224,7 +246,7 @@ export class SubAccountTransferReqBuilder {
     }
 
     /**
-     * Account type：MAIN、TRADE、CONTRACT、MARGIN
+     * Account type: MAIN, TRADE, CONTRACT, MARGIN, ISOLATED
      */
     setAccountType(value: SubAccountTransferReq.AccountTypeEnum): SubAccountTransferReqBuilder {
         this.obj.accountType = value;
@@ -232,7 +254,7 @@ export class SubAccountTransferReqBuilder {
     }
 
     /**
-     * Sub Account type：MAIN、TRADE、CONTRACT、MARGIN
+     * Sub-account type: MAIN, TRADE, CONTRACT, MARGIN, ISOLATED
      */
     setSubAccountType(
         value: SubAccountTransferReq.SubAccountTypeEnum,
@@ -246,6 +268,22 @@ export class SubAccountTransferReqBuilder {
      */
     setSubUserId(value: string): SubAccountTransferReqBuilder {
         this.obj.subUserId = value;
+        return this;
+    }
+
+    /**
+     *  Need to be defined if accountType=ISOLATED.
+     */
+    setTag(value: string): SubAccountTransferReqBuilder {
+        this.obj.tag = value;
+        return this;
+    }
+
+    /**
+     *  Need to be defined if subAccountType=ISOLATED.
+     */
+    setSubTag(value: string): SubAccountTransferReqBuilder {
+        this.obj.subTag = value;
         return this;
     }
 

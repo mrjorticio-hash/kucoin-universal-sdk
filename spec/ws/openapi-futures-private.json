@@ -19,7 +19,7 @@
                 "x-sdk-private": true,
                 "x-sdk-method-name": "order",
                 "x-topic": "/contractMarket/tradeOrders:{symbol}",
-                "x-push_frequency": "realtime",
+                "x-push_frequency": "real-time",
                 "x-response-example": "{\\\"topic\\\":\\\"/contractMarket/tradeOrders:XBTUSDTM\\\",\\\"type\\\":\\\"message\\\",\\\"subject\\\":\\\"symbolOrderChange\\\",\\\"userId\\\":\\\"633559791e1cbc0001f319bc\\\",\\\"channelType\\\":\\\"private\\\",\\\"data\\\":{\\\"symbol\\\":\\\"XBTUSDTM\\\",\\\"side\\\":\\\"buy\\\",\\\"canceledSize\\\":\\\"0\\\",\\\"orderId\\\":\\\"247899236673269761\\\",\\\"liquidity\\\":\\\"maker\\\",\\\"marginMode\\\":\\\"ISOLATED\\\",\\\"type\\\":\\\"open\\\",\\\"orderTime\\\":1731916985768138917,\\\"size\\\":\\\"1\\\",\\\"filledSize\\\":\\\"0\\\",\\\"price\\\":\\\"91670\\\",\\\"remainSize\\\":\\\"1\\\",\\\"status\\\":\\\"open\\\",\\\"ts\\\":1731916985789000000}}",
                 "responses": {
                     "200": {
@@ -47,7 +47,7 @@
                 "x-sdk-private": true,
                 "x-sdk-method-name": "allOrder",
                 "x-topic": "/contractMarket/tradeOrders",
-                "x-push_frequency": "realtime",
+                "x-push_frequency": "real-time",
                 "x-response-example": "{\\\"topic\\\":\\\"/contractMarket/tradeOrders:XBTUSDTM\\\",\\\"type\\\":\\\"message\\\",\\\"subject\\\":\\\"symbolOrderChange\\\",\\\"userId\\\":\\\"633559791e1cbc0001f319bc\\\",\\\"channelType\\\":\\\"private\\\",\\\"data\\\":{\\\"symbol\\\":\\\"XBTUSDTM\\\",\\\"side\\\":\\\"buy\\\",\\\"canceledSize\\\":\\\"0\\\",\\\"orderId\\\":\\\"247899236673269761\\\",\\\"liquidity\\\":\\\"maker\\\",\\\"marginMode\\\":\\\"ISOLATED\\\",\\\"type\\\":\\\"open\\\",\\\"orderTime\\\":1731916985768138917,\\\"size\\\":\\\"1\\\",\\\"filledSize\\\":\\\"0\\\",\\\"price\\\":\\\"91670\\\",\\\"remainSize\\\":\\\"1\\\",\\\"status\\\":\\\"open\\\",\\\"ts\\\":1731916985789000000}}",
                 "responses": {
                     "200": {
@@ -67,7 +67,7 @@
             "trace": {
                 "summary": "the balance change push",
                 "deprecated": "false",
-                "description": "Subscribe this topic to get the realtime push of balance change",
+                "description": "Subscribe to this topic to get real-time balance change pushes",
                 "tags": [],
                 "parameters": [],
                 "x-sdk-service": "Futures",
@@ -75,7 +75,7 @@
                 "x-sdk-private": true,
                 "x-sdk-method-name": "balance",
                 "x-topic": "/contractAccount/wallet",
-                "x-push_frequency": "realtime",
+                "x-push_frequency": "real-time",
                 "x-response-example": "{\\\"topic\\\":\\\"/contractAccount/wallet\\\",\\\"type\\\":\\\"message\\\",\\\"subject\\\":\\\"walletBalance.change\\\",\\\"id\\\":\\\"673b0bb925b4bc0001fadfef\\\",\\\"userId\\\":\\\"633559791e1cbc0001f319bc\\\",\\\"channelType\\\":\\\"private\\\",\\\"data\\\":{\\\"crossPosMargin\\\":\\\"0\\\",\\\"isolatedOrderMargin\\\":\\\"18.1188\\\",\\\"holdBalance\\\":\\\"0\\\",\\\"equity\\\":\\\"81.273621258\\\",\\\"version\\\":\\\"1337\\\",\\\"availableBalance\\\":\\\"26.144281178\\\",\\\"isolatedPosMargin\\\":\\\"36.80984008\\\",\\\"walletBalance\\\":\\\"81.072921258\\\",\\\"isolatedFundingFeeMargin\\\":\\\"0\\\",\\\"crossUnPnl\\\":\\\"0\\\",\\\"totalCrossMargin\\\":\\\"26.144281178\\\",\\\"currency\\\":\\\"USDT\\\",\\\"isolatedUnPnl\\\":\\\"0.2007\\\",\\\"crossOrderMargin\\\":\\\"0\\\",\\\"timestamp\\\":\\\"1731916996764\\\"}}",
                 "responses": {
                     "200": {
@@ -95,7 +95,7 @@
             "trace": {
                 "summary": "the position change events push",
                 "deprecated": "false",
-                "description": "Subscribe this topic to get the realtime push of position change event of a symbol",
+                "description": "Subscribe this topic to get real-time pushes on symbols’ position change events",
                 "tags": [],
                 "parameters": [],
                 "x-sdk-service": "Futures",
@@ -103,7 +103,7 @@
                 "x-sdk-private": true,
                 "x-sdk-method-name": "position",
                 "x-topic": "/contract/position:{symbol}",
-                "x-push_frequency": "realtime",
+                "x-push_frequency": "real-time",
                 "x-response-example": "{\\\"topic\\\":\\\"/contract/position:XBTUSDTM\\\",\\\"type\\\":\\\"message\\\",\\\"data\\\":{\\\"symbol\\\":\\\"XBTUSDTM\\\",\\\"maintMarginReq\\\":0.005,\\\"riskLimit\\\":500000,\\\"realLeverage\\\":4.9685590767,\\\"crossMode\\\":false,\\\"delevPercentage\\\":0.10,\\\"openingTimestamp\\\":1731916913097,\\\"autoDeposit\\\":true,\\\"currentTimestamp\\\":1731924561514,\\\"currentQty\\\":1,\\\"currentCost\\\":91.5306,\\\"currentComm\\\":0.09179284,\\\"unrealisedCost\\\":91.6945,\\\"realisedCost\\\":-0.07210716,\\\"isOpen\\\":true,\\\"markPrice\\\":91839.79,\\\"markValue\\\":91.83979,\\\"posCost\\\":91.6945,\\\"posCross\\\":0,\\\"posInit\\\":18.3389,\\\"posComm\\\":0.06602004,\\\"posLoss\\\":0,\\\"posMargin\\\":18.40492004,\\\"posFunding\\\":0,\\\"posMaint\\\":0.5634627025,\\\"maintMargin\\\":18.55021004,\\\"avgEntryPrice\\\":91694.5,\\\"liquidationPrice\\\":73853.0426625,\\\"bankruptPrice\\\":73355.6,\\\"settleCurrency\\\":\\\"USDT\\\",\\\"changeReason\\\":\\\"positionChange\\\",\\\"riskLimitLevel\\\":2,\\\"realisedGrossCost\\\":-0.1639,\\\"realisedGrossPnl\\\":0.1639,\\\"realisedPnl\\\":0.07210716,\\\"unrealisedPnl\\\":0.14529,\\\"unrealisedPnlPcnt\\\":0.0016,\\\"unrealisedRoePcnt\\\":0.0079,\\\"leverage\\\":4.9685590767,\\\"marginMode\\\":\\\"ISOLATED\\\",\\\"positionSide\\\":\\\"BOTH\\\"},\\\"subject\\\":\\\"position.change\\\",\\\"userId\\\":\\\"633559791e1cbc0001f319bc\\\",\\\"channelType\\\":\\\"private\\\"}",
                 "responses": {
                     "200": {
@@ -123,7 +123,7 @@
             "trace": {
                 "summary": "All symbol position change events push",
                 "deprecated": "false",
-                "description": "Subscribe this topic to get the realtime push of position change event of all symbol",
+                "description": "Subscribe to this topic to get real-time pushes on all symbols’ position change events",
                 "tags": [],
                 "parameters": [],
                 "x-sdk-service": "Futures",
@@ -131,7 +131,7 @@
                 "x-sdk-private": true,
                 "x-sdk-method-name": "allPosition",
                 "x-topic": "/contract/positionAll",
-                "x-push_frequency": "realtime",
+                "x-push_frequency": "real-time",
                 "x-response-example": "{\\\"topic\\\":\\\"/contract/position:XBTUSDTM\\\",\\\"type\\\":\\\"message\\\",\\\"data\\\":{\\\"symbol\\\":\\\"XBTUSDTM\\\",\\\"maintMarginReq\\\":0.005,\\\"riskLimit\\\":500000,\\\"realLeverage\\\":4.9685590767,\\\"crossMode\\\":false,\\\"delevPercentage\\\":0.10,\\\"openingTimestamp\\\":1731916913097,\\\"autoDeposit\\\":true,\\\"currentTimestamp\\\":1731924561514,\\\"currentQty\\\":1,\\\"currentCost\\\":91.5306,\\\"currentComm\\\":0.09179284,\\\"unrealisedCost\\\":91.6945,\\\"realisedCost\\\":-0.07210716,\\\"isOpen\\\":true,\\\"markPrice\\\":91839.79,\\\"markValue\\\":91.83979,\\\"posCost\\\":91.6945,\\\"posCross\\\":0,\\\"posInit\\\":18.3389,\\\"posComm\\\":0.06602004,\\\"posLoss\\\":0,\\\"posMargin\\\":18.40492004,\\\"posFunding\\\":0,\\\"posMaint\\\":0.5634627025,\\\"maintMargin\\\":18.55021004,\\\"avgEntryPrice\\\":91694.5,\\\"liquidationPrice\\\":73853.0426625,\\\"bankruptPrice\\\":73355.6,\\\"settleCurrency\\\":\\\"USDT\\\",\\\"changeReason\\\":\\\"positionChange\\\",\\\"riskLimitLevel\\\":2,\\\"realisedGrossCost\\\":-0.1639,\\\"realisedGrossPnl\\\":0.1639,\\\"realisedPnl\\\":0.07210716,\\\"unrealisedPnl\\\":0.14529,\\\"unrealisedPnlPcnt\\\":0.0016,\\\"unrealisedRoePcnt\\\":0.0079,\\\"leverage\\\":4.9685590767,\\\"marginMode\\\":\\\"ISOLATED\\\",\\\"positionSide\\\":\\\"BOTH\\\"},\\\"subject\\\":\\\"position.change\\\",\\\"userId\\\":\\\"633559791e1cbc0001f319bc\\\",\\\"channelType\\\":\\\"private\\\"}",
                 "responses": {
                     "200": {
@@ -151,7 +151,7 @@
             "trace": {
                 "summary": "the margin mode change",
                 "deprecated": "false",
-                "description": "Subscribe this topic to get the realtime push of margin mode change event of a symbol",
+                "description": "Subscribe to this topic to get real-time pushes on symbols’ margin mode change events",
                 "tags": [],
                 "parameters": [],
                 "x-sdk-service": "Futures",
@@ -159,7 +159,7 @@
                 "x-sdk-private": true,
                 "x-sdk-method-name": "marginMode",
                 "x-topic": "/contract/marginMode",
-                "x-push_frequency": "realtime",
+                "x-push_frequency": "real-time",
                 "x-response-example": "{\\\"topic\\\":\\\"/contract/marginMode\\\",\\\"type\\\":\\\"message\\\",\\\"data\\\":{\\\"ETHUSDTM\\\":\\\"ISOLATED\\\"},\\\"subject\\\":\\\"user.config\\\",\\\"userId\\\":\\\"66f12e8befb04d0001882b49\\\",\\\"channelType\\\":\\\"private\\\"}",
                 "responses": {
                     "200": {
@@ -179,7 +179,7 @@
             "trace": {
                 "summary": "the leverage change push",
                 "deprecated": "false",
-                "description": "Subscribe this topic to get the realtime push of leverage change of contracts that are in cross margin mode",
+                "description": "Subscribe to this topic to get real-time pushes on leverage changes of contracts that are in cross margin mode",
                 "tags": [],
                 "parameters": [],
                 "x-sdk-service": "Futures",
@@ -187,7 +187,7 @@
                 "x-sdk-private": true,
                 "x-sdk-method-name": "crossLeverage",
                 "x-topic": "/contract/crossLeverage",
-                "x-push_frequency": "realtime",
+                "x-push_frequency": "real-time",
                 "x-response-example": "{\\\"topic\\\":\\\"/contract/crossLeverage\\\",\\\"type\\\":\\\"message\\\",\\\"data\\\":{\\\"ETHUSDTM\\\":{\\\"leverage\\\":\\\"8\\\"}},\\\"subject\\\":\\\"user.config\\\",\\\"userId\\\":\\\"66f12e8befb04d0001882b49\\\",\\\"channelType\\\":\\\"private\\\"}",
                 "responses": {
                     "200": {
@@ -207,7 +207,7 @@
             "trace": {
                 "summary": "stop order change pushes.",
                 "deprecated": "false",
-                "description": "Subscribe this topic to get the realtime push of stop order changes.",
+                "description": "Subscribe to this topic to get real-time pushes on stop order changes.",
                 "tags": [],
                 "parameters": [],
                 "x-sdk-service": "Futures",
@@ -215,7 +215,7 @@
                 "x-sdk-private": true,
                 "x-sdk-method-name": "stopOrders",
                 "x-topic": "/contractMarket/advancedOrders",
-                "x-push_frequency": "realtime",
+                "x-push_frequency": "real-time",
                 "x-response-example": "{\\\"topic\\\":\\\"/contractMarket/advancedOrders\\\",\\\"type\\\":\\\"message\\\",\\\"data\\\":{\\\"createdAt\\\":1730194206837,\\\"marginMode\\\":\\\"ISOLATED\\\",\\\"orderId\\\":\\\"240673378116083712\\\",\\\"orderPrice\\\":\\\"0.1\\\",\\\"orderType\\\":\\\"stop\\\",\\\"side\\\":\\\"buy\\\",\\\"size\\\":1,\\\"stop\\\":\\\"down\\\",\\\"stopPrice\\\":\\\"1000\\\",\\\"stopPriceType\\\":\\\"TP\\\",\\\"symbol\\\":\\\"XBTUSDTM\\\",\\\"ts\\\":1730194206843133000,\\\"type\\\":\\\"open\\\"},\\\"subject\\\":\\\"stopOrder\\\",\\\"id\\\":\\\"6720ab1ea52a9b0001734392\\\",\\\"userId\\\":\\\"66f12e8befb04d0001882b49\\\",\\\"channelType\\\":\\\"private\\\"}",
                 "responses": {
                     "200": {
@@ -273,7 +273,7 @@
                         "properties": {
                             "symbol": {
                                 "type": "string",
-                                "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-221752070) "
+                                "description": "Symbol of the contract. Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-221752070) "
                             },
                             "orderType": {
                                 "type": "string",
@@ -357,17 +357,17 @@
                                     {
                                         "value": "open",
                                         "name": "open",
-                                        "description": "the order is in the order book（maker order）"
+                                        "description": "the order is in the order book (maker order)"
                                     },
                                     {
                                         "value": "match",
                                         "name": "match",
-                                        "description": "the message sent when the order is match,  1. When the status is open and the type is match, it is a maker match.  2. When the status is match and the type is match, it is a taker match."
+                                        "description": "The message sent when the order is match, 1. When the status is open and the type is match, it is a maker match.  2. When the status is match and the type is match, it is a taker match."
                                     },
                                     {
                                         "value": "update",
                                         "name": "update",
-                                        "description": "The message sent due to the order being modified: STP triggering, partial cancellation of the order. Includes these three situations:  1. When the status is open and the type is update: partial amounts of the order have been canceled, or STP triggers  2. When the status is match and the type is update: STP triggers  3. When the status is done and the type is update: partial amounts of the order have been filled and the unfilled part got canceled, or STP is triggered."
+                                        "description": "The message sent due to the order being modified: STP triggering, partial cancellation of the order. Includes these three scenarios:  1. When the status is open and the type is update: partial amounts of the order have been canceled, or STP triggers  2. When the status is match and the type is update: STP triggers  3. When the status is done and the type is update: partial amounts of the order have been filled and the unfilled part got canceled, or STP is triggered."
                                     },
                                     {
                                         "value": "filled",
@@ -384,7 +384,7 @@
                             "orderTime": {
                                 "type": "integer",
                                 "format": "int64",
-                                "description": "Order time(Nanosecond)"
+                                "description": "Order time (nanoseconds)"
                             },
                             "size": {
                                 "type": "string",
@@ -392,7 +392,7 @@
                             },
                             "filledSize": {
                                 "type": "string",
-                                "description": "Cumulative number of filled"
+                                "description": "Cumulative number filled"
                             },
                             "price": {
                                 "type": "string",
@@ -414,7 +414,7 @@
                                     {
                                         "value": "open",
                                         "name": "open",
-                                        "description": "the order is in the order book（maker order）"
+                                        "description": "the order is in the order book (maker order)"
                                     },
                                     {
                                         "value": "match",
@@ -431,7 +431,7 @@
                             "ts": {
                                 "type": "integer",
                                 "format": "int64",
-                                "description": "Push time(Nanosecond)"
+                                "description": "Push time (nanoseconds)"
                             },
                             "liquidity": {
                                 "type": "string",
@@ -475,7 +475,7 @@
                             },
                             "matchPrice": {
                                 "type": "string",
-                                "description": "Match Price(when the type is \"match\")"
+                                "description": "Match Price (when the type is \"match\")"
                             },
                             "matchSize": {
                                 "type": "string",
@@ -483,7 +483,7 @@
                             },
                             "tradeId": {
                                 "type": "string",
-                                "description": "Trade id, it is generated by Matching engine."
+                                "description": "Trade ID: Generated by Matching engine."
                             },
                             "oldSize": {
                                 "type": "string",
@@ -491,7 +491,7 @@
                             },
                             "clientOid": {
                                 "type": "string",
-                                "description": "Client Order Id，The ClientOid field is a unique ID created by the user"
+                                "description": "Client Order ID: The ClientOid field is a unique ID created by the user"
                             },
                             "tradeType": {
                                 "type": "string",
@@ -509,7 +509,7 @@
                                     {
                                         "value": "liquid",
                                         "name": "liquid",
-                                        "description": "Liquid order, except type=update, all other types will be pushed"
+                                        "description": "Liquid order; all other types with the exception of type=update will be pushed"
                                     }
                                 ]
                             }
@@ -580,7 +580,7 @@
                         "properties": {
                             "symbol": {
                                 "type": "string",
-                                "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-221752070) "
+                                "description": "Symbol of the contract. Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-221752070) "
                             },
                             "orderType": {
                                 "type": "string",
@@ -664,17 +664,17 @@
                                     {
                                         "value": "open",
                                         "name": "open",
-                                        "description": "the order is in the order book（maker order）"
+                                        "description": "the order is in the order book (maker order)"
                                     },
                                     {
                                         "value": "match",
                                         "name": "match",
-                                        "description": "the message sent when the order is match,  1. When the status is open and the type is match, it is a maker match.  2. When the status is match and the type is match, it is a taker match."
+                                        "description": "The message sent when the order is match, 1. When the status is open and the type is match, it is a maker match.  2. When the status is match and the type is match, it is a taker match."
                                     },
                                     {
                                         "value": "update",
                                         "name": "update",
-                                        "description": "The message sent due to the order being modified: STP triggering, partial cancellation of the order. Includes these three situations:  1. When the status is open and the type is update: partial amounts of the order have been canceled, or STP triggers  2. When the status is match and the type is update: STP triggers  3. When the status is done and the type is update: partial amounts of the order have been filled and the unfilled part got canceled, or STP is triggered."
+                                        "description": "The message sent due to the order being modified: STP triggering, partial cancellation of the order. Includes these three scenarios:  1. When the status is open and the type is update: partial amounts of the order have been canceled, or STP triggers  2. When the status is match and the type is update: STP triggers  3. When the status is done and the type is update: partial amounts of the order have been filled and the unfilled part got canceled, or STP is triggered."
                                     },
                                     {
                                         "value": "filled",
@@ -691,7 +691,7 @@
                             "orderTime": {
                                 "type": "integer",
                                 "format": "int64",
-                                "description": "Order time(Nanosecond)"
+                                "description": "Order time (nanoseconds)"
                             },
                             "size": {
                                 "type": "string",
@@ -699,7 +699,7 @@
                             },
                             "filledSize": {
                                 "type": "string",
-                                "description": "Cumulative number of filled"
+                                "description": "Cumulative number filled"
                             },
                             "price": {
                                 "type": "string",
@@ -721,7 +721,7 @@
                                     {
                                         "value": "open",
                                         "name": "open",
-                                        "description": "the order is in the order book（maker order）"
+                                        "description": "the order is in the order book (maker order)"
                                     },
                                     {
                                         "value": "match",
@@ -738,7 +738,7 @@
                             "ts": {
                                 "type": "integer",
                                 "format": "int64",
-                                "description": "Push time(Nanosecond)"
+                                "description": "Push time (nanoseconds)"
                             },
                             "liquidity": {
                                 "type": "string",
@@ -782,7 +782,7 @@
                             },
                             "matchPrice": {
                                 "type": "string",
-                                "description": "Match Price(when the type is \"match\")"
+                                "description": "Match Price (when the type is \"match\")"
                             },
                             "matchSize": {
                                 "type": "string",
@@ -790,7 +790,7 @@
                             },
                             "tradeId": {
                                 "type": "string",
-                                "description": "Trade id, it is generated by Matching engine."
+                                "description": "Trade ID: Generated by Matching engine."
                             },
                             "oldSize": {
                                 "type": "string",
@@ -798,7 +798,7 @@
                             },
                             "clientOid": {
                                 "type": "string",
-                                "description": "Client Order Id，The ClientOid field is a unique ID created by the user"
+                                "description": "Client Order ID: The ClientOid field is a unique ID created by the user"
                             },
                             "tradeType": {
                                 "type": "string",
@@ -816,7 +816,7 @@
                                     {
                                         "value": "liquid",
                                         "name": "liquid",
-                                        "description": "Liquid order, except type=update, all other types will be pushed"
+                                        "description": "Liquid order; all other types with the exception of type=update will be pushed"
                                     }
                                 ]
                             }
@@ -967,7 +967,7 @@
                 "properties": {
                     "userId": {
                         "type": "string",
-                        "description": "Deprecated, will detele later"
+                        "description": "Deprecated, will delete later"
                     },
                     "topic": {
                         "type": "string"
@@ -980,7 +980,7 @@
                         "properties": {
                             "symbol": {
                                 "type": "string",
-                                "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-221752070) ",
+                                "description": "Symbol of the contract. Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-221752070) ",
                                 "example": [
                                     "XBTUSDTM",
                                     "XBTUSDM",
@@ -1007,11 +1007,11 @@
                             },
                             "currentQty": {
                                 "type": "integer",
-                                "description": "Current postion quantity\n"
+                                "description": "Current position quantity\n"
                             },
                             "currentCost": {
                                 "type": "number",
-                                "description": "Current postion value\n"
+                                "description": "Current position value\n"
                             },
                             "currentComm": {
                                 "type": "number",
@@ -1019,15 +1019,15 @@
                             },
                             "unrealisedCost": {
                                 "type": "number",
-                                "description": "Unrealised value\n"
+                                "description": "Unrealized value\n"
                             },
                             "realisedGrossCost": {
                                 "type": "number",
-                                "description": "Accumulated realised gross profit value\n"
+                                "description": "Accumulated realized gross profit value\n"
                             },
                             "realisedCost": {
                                 "type": "number",
-                                "description": "Current realised position value\n"
+                                "description": "Current realized position value\n"
                             },
                             "isOpen": {
                                 "type": "boolean",
@@ -1055,15 +1055,15 @@
                             },
                             "realisedGrossPnl": {
                                 "type": "number",
-                                "description": "Accumulated realised gross profit value\n"
+                                "description": "Accumulated realized gross profit value\n"
                             },
                             "realisedPnl": {
                                 "type": "number",
-                                "description": "Realised profit and loss\n"
+                                "description": "Realized profit and loss\n"
                             },
                             "unrealisedPnl": {
                                 "type": "number",
-                                "description": "Unrealised profit and loss\n"
+                                "description": "Unrealized profit and loss\n"
                             },
                             "unrealisedPnlPcnt": {
                                 "type": "number",
@@ -1079,11 +1079,11 @@
                             },
                             "liquidationPrice": {
                                 "type": "number",
-                                "description": "Liquidation price For Cross Margin, you can refer to the liquidationPrice, and the liquidation is based on the risk rate.\n"
+                                "description": "Liquidation price: For Cross Margin, you can refer to the liquidationPrice, and the liquidation is based on the risk rate.\n"
                             },
                             "bankruptPrice": {
                                 "type": "number",
-                                "description": "Bankruptcy price For Cross Margin, you can refer to the bankruptPrice, and the liquidation is based on the risk rate.\n"
+                                "description": "Bankruptcy price: For Cross Margin, you can refer to the bankruptPrice, and the liquidation is based on the risk rate.\n"
                             },
                             "settleCurrency": {
                                 "type": "string",
@@ -1091,7 +1091,7 @@
                             },
                             "marginMode": {
                                 "type": "string",
-                                "description": "Margin Mode: CROSS，ISOLATED\n",
+                                "description": "Margin Mode: CROSS, ISOLATED\n",
                                 "enum": [
                                     "CROSS",
                                     "ISOLATED"
@@ -1145,7 +1145,7 @@
                             },
                             "posCross": {
                                 "type": "number",
-                                "description": "added margin **Only applicable to Isolated Margin**\n"
+                                "description": "Added margin **Only applicable to Isolated Margin**\n"
                             },
                             "posComm": {
                                 "type": "number",
@@ -1187,7 +1187,7 @@
                             "ts": {
                                 "type": "integer",
                                 "format": "int64",
-                                "description": "Funding Fee Settlement Time (nanosecond)"
+                                "description": "Funding Fee Settlement Time (nanoseconds)"
                             },
                             "success": {
                                 "type": "boolean",
@@ -1251,7 +1251,7 @@
                 "properties": {
                     "userId": {
                         "type": "string",
-                        "description": "Deprecated, will detele later"
+                        "description": "Deprecated, will delete later"
                     },
                     "topic": {
                         "type": "string"
@@ -1264,7 +1264,7 @@
                         "properties": {
                             "symbol": {
                                 "type": "string",
-                                "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-221752070) ",
+                                "description": "Symbol of the contract. Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-221752070) ",
                                 "example": [
                                     "XBTUSDTM",
                                     "XBTUSDM",
@@ -1291,11 +1291,11 @@
                             },
                             "currentQty": {
                                 "type": "integer",
-                                "description": "Current postion quantity\n"
+                                "description": "Current position quantity\n"
                             },
                             "currentCost": {
                                 "type": "number",
-                                "description": "Current postion value\n"
+                                "description": "Current position value\n"
                             },
                             "currentComm": {
                                 "type": "number",
@@ -1303,15 +1303,15 @@
                             },
                             "unrealisedCost": {
                                 "type": "number",
-                                "description": "Unrealised value\n"
+                                "description": "Unrealized value\n"
                             },
                             "realisedGrossCost": {
                                 "type": "number",
-                                "description": "Accumulated realised gross profit value\n"
+                                "description": "Accumulated realized gross profit value\n"
                             },
                             "realisedCost": {
                                 "type": "number",
-                                "description": "Current realised position value\n"
+                                "description": "Current realized position value\n"
                             },
                             "isOpen": {
                                 "type": "boolean",
@@ -1339,15 +1339,15 @@
                             },
                             "realisedGrossPnl": {
                                 "type": "number",
-                                "description": "Accumulated realised gross profit value\n"
+                                "description": "Accumulated realized gross profit value\n"
                             },
                             "realisedPnl": {
                                 "type": "number",
-                                "description": "Realised profit and loss\n"
+                                "description": "Realized profit and loss\n"
                             },
                             "unrealisedPnl": {
                                 "type": "number",
-                                "description": "Unrealised profit and loss\n"
+                                "description": "Unrealized profit and loss\n"
                             },
                             "unrealisedPnlPcnt": {
                                 "type": "number",
@@ -1363,11 +1363,11 @@
                             },
                             "liquidationPrice": {
                                 "type": "number",
-                                "description": "Liquidation price For Cross Margin, you can refer to the liquidationPrice, and the liquidation is based on the risk rate.\n"
+                                "description": "Liquidation price: For Cross Margin, you can refer to the liquidationPrice, and the liquidation is based on the risk rate.\n"
                             },
                             "bankruptPrice": {
                                 "type": "number",
-                                "description": "Bankruptcy price For Cross Margin, you can refer to the bankruptPrice, and the liquidation is based on the risk rate.\n"
+                                "description": "Bankruptcy price: For Cross Margin, you can refer to the bankruptPrice, and the liquidation is based on the risk rate.\n"
                             },
                             "settleCurrency": {
                                 "type": "string",
@@ -1375,7 +1375,7 @@
                             },
                             "marginMode": {
                                 "type": "string",
-                                "description": "Margin Mode: CROSS，ISOLATED\n",
+                                "description": "Margin Mode: CROSS, ISOLATED\n",
                                 "enum": [
                                     "CROSS",
                                     "ISOLATED"
@@ -1429,7 +1429,7 @@
                             },
                             "posCross": {
                                 "type": "number",
-                                "description": "added margin **Only applicable to Isolated Margin**\n"
+                                "description": "Added margin **Only applicable to Isolated Margin**\n"
                             },
                             "posComm": {
                                 "type": "number",
@@ -1471,7 +1471,7 @@
                             "ts": {
                                 "type": "integer",
                                 "format": "int64",
-                                "description": "Funding Fee Settlement Time (nanosecond)"
+                                "description": "Funding Fee Settlement Time (nanoseconds)"
                             },
                             "success": {
                                 "type": "boolean",
@@ -1655,7 +1655,7 @@
                             },
                             "orderPrice": {
                                 "type": "string",
-                                "description": "Order price"
+                                "description": "Order Price"
                             },
                             "orderType": {
                                 "type": "string",
@@ -1711,7 +1711,7 @@
                                     {
                                         "value": "up",
                                         "name": "up",
-                                        "description": "Triggers when the price reaches or goes above the stopPrice"
+                                        "description": "Triggers when the price reaches or goes above the stopPrice."
                                     }
                                 ]
                             },
@@ -1724,7 +1724,7 @@
                             },
                             "symbol": {
                                 "type": "string",
-                                "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-221752070) "
+                                "description": "Symbol of the contract. Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-221752070) "
                             },
                             "ts": {
                                 "type": "integer",
@@ -1742,7 +1742,7 @@
                                     {
                                         "value": "open",
                                         "name": "open",
-                                        "description": "the order is in the order book（maker order）"
+                                        "description": "the order is in the order book (maker order)"
                                     },
                                     {
                                         "value": "triggered",

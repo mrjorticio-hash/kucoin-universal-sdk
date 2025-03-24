@@ -10,241 +10,241 @@ import (
 type MarketAPI interface {
 
 	// GetSymbol Get Symbol
-	// Description: Get information of specified contracts that can be traded. This API will return a list of tradable contracts, including some key parameters of the contract such as the symbol name, tick size, mark price,etc.
+	// Description: Get information of specified contracts that can be traded. This API will return a list of tradable contracts, including some key parameters of the contract such as the symbol name, tick size, mark price, etc.
 	// Documentation: https://www.kucoin.com/docs-new/api-3470221
-	// +---------------------+---------+
-	// | Extra API Info      | Value   |
-	// +---------------------+---------+
-	// | API-DOMAIN          | FUTURES |
-	// | API-CHANNEL         | PUBLIC  |
-	// | API-PERMISSION      | NULL    |
-	// | API-RATE-LIMIT-POOL | PUBLIC  |
-	// | API-RATE-LIMIT      | 3       |
-	// +---------------------+---------+
+	// +-----------------------+---------+
+	// | Extra API Info        | Value   |
+	// +-----------------------+---------+
+	// | API-DOMAIN            | FUTURES |
+	// | API-CHANNEL           | PUBLIC  |
+	// | API-PERMISSION        | NULL    |
+	// | API-RATE-LIMIT-POOL   | PUBLIC  |
+	// | API-RATE-LIMIT-WEIGHT | 3       |
+	// +-----------------------+---------+
 	GetSymbol(req *GetSymbolReq, ctx context.Context) (*GetSymbolResp, error)
 
 	// GetAllSymbols Get All Symbols
-	// Description: Get detailed information of all contracts that can be traded. This API will return a list of tradable contracts, including some key parameters of the contract such as the symbol name, tick size, mark price,etc.
+	// Description: Get detailed information of all contracts that can be traded. This API will return a list of tradable contracts, including some key parameters of the contract such as the symbol name, tick size, mark price, etc.
 	// Documentation: https://www.kucoin.com/docs-new/api-3470220
-	// +---------------------+---------+
-	// | Extra API Info      | Value   |
-	// +---------------------+---------+
-	// | API-DOMAIN          | FUTURES |
-	// | API-CHANNEL         | PUBLIC  |
-	// | API-PERMISSION      | NULL    |
-	// | API-RATE-LIMIT-POOL | PUBLIC  |
-	// | API-RATE-LIMIT      | 3       |
-	// +---------------------+---------+
+	// +-----------------------+---------+
+	// | Extra API Info        | Value   |
+	// +-----------------------+---------+
+	// | API-DOMAIN            | FUTURES |
+	// | API-CHANNEL           | PUBLIC  |
+	// | API-PERMISSION        | NULL    |
+	// | API-RATE-LIMIT-POOL   | PUBLIC  |
+	// | API-RATE-LIMIT-WEIGHT | 3       |
+	// +-----------------------+---------+
 	GetAllSymbols(ctx context.Context) (*GetAllSymbolsResp, error)
 
 	// GetTicker Get Ticker
-	// Description: This endpoint returns \&quot;last traded price/size\&quot;、\&quot;best bid/ask price/size\&quot; etc. of a single symbol. These messages can also be obtained through Websocket.
+	// Description: This endpoint returns \&quot;last traded price/size\&quot;, \&quot;best bid/ask price/size\&quot; etc. of a single symbol. These messages can also be obtained through Websocket.
 	// Documentation: https://www.kucoin.com/docs-new/api-3470222
-	// +---------------------+---------+
-	// | Extra API Info      | Value   |
-	// +---------------------+---------+
-	// | API-DOMAIN          | FUTURES |
-	// | API-CHANNEL         | PUBLIC  |
-	// | API-PERMISSION      | NULL    |
-	// | API-RATE-LIMIT-POOL | PUBLIC  |
-	// | API-RATE-LIMIT      | 2       |
-	// +---------------------+---------+
+	// +-----------------------+---------+
+	// | Extra API Info        | Value   |
+	// +-----------------------+---------+
+	// | API-DOMAIN            | FUTURES |
+	// | API-CHANNEL           | PUBLIC  |
+	// | API-PERMISSION        | NULL    |
+	// | API-RATE-LIMIT-POOL   | PUBLIC  |
+	// | API-RATE-LIMIT-WEIGHT | 2       |
+	// +-----------------------+---------+
 	GetTicker(req *GetTickerReq, ctx context.Context) (*GetTickerResp, error)
 
 	// GetAllTickers Get All Tickers
-	// Description: This endpoint returns \&quot;last traded price/size\&quot;、\&quot;best bid/ask price/size\&quot; etc. of a single symbol. These messages can also be obtained through Websocket.
+	// Description: This endpoint returns \&quot;last traded price/size\&quot;, \&quot;best bid/ask price/size\&quot; etc. of a single symbol. These messages can also be obtained through Websocket.
 	// Documentation: https://www.kucoin.com/docs-new/api-3470223
-	// +---------------------+---------+
-	// | Extra API Info      | Value   |
-	// +---------------------+---------+
-	// | API-DOMAIN          | FUTURES |
-	// | API-CHANNEL         | PUBLIC  |
-	// | API-PERMISSION      | NULL    |
-	// | API-RATE-LIMIT-POOL | PUBLIC  |
-	// | API-RATE-LIMIT      | 5       |
-	// +---------------------+---------+
+	// +-----------------------+---------+
+	// | Extra API Info        | Value   |
+	// +-----------------------+---------+
+	// | API-DOMAIN            | FUTURES |
+	// | API-CHANNEL           | PUBLIC  |
+	// | API-PERMISSION        | NULL    |
+	// | API-RATE-LIMIT-POOL   | PUBLIC  |
+	// | API-RATE-LIMIT-WEIGHT | 5       |
+	// +-----------------------+---------+
 	GetAllTickers(ctx context.Context) (*GetAllTickersResp, error)
 
 	// GetFullOrderBook Get Full OrderBook
-	// Description: Query for Full orderbook depth data. (aggregated by price)  It is generally used by professional traders because it uses more server resources and traffic, and we have strict access rate limit control.  To maintain up-to-date Order Book, please use Websocket incremental feed after retrieving the OrderBook.
+	// Description: Query for Full orderbook depth data (aggregated by price). It is generally used by professional traders because it uses more server resources and traffic, and we have strict access rate limit control.  To maintain an up-to-date Order Book, please use Websocket incremental feed after retrieving the OrderBook.
 	// Documentation: https://www.kucoin.com/docs-new/api-3470224
-	// +---------------------+---------+
-	// | Extra API Info      | Value   |
-	// +---------------------+---------+
-	// | API-DOMAIN          | FUTURES |
-	// | API-CHANNEL         | PUBLIC  |
-	// | API-PERMISSION      | NULL    |
-	// | API-RATE-LIMIT-POOL | PUBLIC  |
-	// | API-RATE-LIMIT      | 3       |
-	// +---------------------+---------+
+	// +-----------------------+---------+
+	// | Extra API Info        | Value   |
+	// +-----------------------+---------+
+	// | API-DOMAIN            | FUTURES |
+	// | API-CHANNEL           | PUBLIC  |
+	// | API-PERMISSION        | NULL    |
+	// | API-RATE-LIMIT-POOL   | PUBLIC  |
+	// | API-RATE-LIMIT-WEIGHT | 3       |
+	// +-----------------------+---------+
 	GetFullOrderBook(req *GetFullOrderBookReq, ctx context.Context) (*GetFullOrderBookResp, error)
 
 	// GetPartOrderBook Get Part OrderBook
-	// Description: Query for part orderbook depth data. (aggregated by price)  You are recommended to request via this endpoint as the system reponse would be faster and cosume less traffic.
+	// Description: Query for part orderbook depth data. (aggregated by price). It is recommended that you request via this endpoint, as the system response will be faster and consume less traffic.
 	// Documentation: https://www.kucoin.com/docs-new/api-3470225
-	// +---------------------+---------+
-	// | Extra API Info      | Value   |
-	// +---------------------+---------+
-	// | API-DOMAIN          | FUTURES |
-	// | API-CHANNEL         | PUBLIC  |
-	// | API-PERMISSION      | NULL    |
-	// | API-RATE-LIMIT-POOL | PUBLIC  |
-	// | API-RATE-LIMIT      | 5       |
-	// +---------------------+---------+
+	// +-----------------------+---------+
+	// | Extra API Info        | Value   |
+	// +-----------------------+---------+
+	// | API-DOMAIN            | FUTURES |
+	// | API-CHANNEL           | PUBLIC  |
+	// | API-PERMISSION        | NULL    |
+	// | API-RATE-LIMIT-POOL   | PUBLIC  |
+	// | API-RATE-LIMIT-WEIGHT | 5       |
+	// +-----------------------+---------+
 	GetPartOrderBook(req *GetPartOrderBookReq, ctx context.Context) (*GetPartOrderBookResp, error)
 
 	// GetTradeHistory Get Trade History
-	// Description: Request via this endpoint to get the trade history of the specified symbol, the returned quantity is the last 100 transaction records.
+	// Description: Request the trade history of the specified symbol via this endpoint. The returned quantity is the last 100 transaction records.
 	// Documentation: https://www.kucoin.com/docs-new/api-3470232
-	// +---------------------+---------+
-	// | Extra API Info      | Value   |
-	// +---------------------+---------+
-	// | API-DOMAIN          | FUTURES |
-	// | API-CHANNEL         | PUBLIC  |
-	// | API-PERMISSION      | NULL    |
-	// | API-RATE-LIMIT-POOL | PUBLIC  |
-	// | API-RATE-LIMIT      | 5       |
-	// +---------------------+---------+
+	// +-----------------------+---------+
+	// | Extra API Info        | Value   |
+	// +-----------------------+---------+
+	// | API-DOMAIN            | FUTURES |
+	// | API-CHANNEL           | PUBLIC  |
+	// | API-PERMISSION        | NULL    |
+	// | API-RATE-LIMIT-POOL   | PUBLIC  |
+	// | API-RATE-LIMIT-WEIGHT | 5       |
+	// +-----------------------+---------+
 	GetTradeHistory(req *GetTradeHistoryReq, ctx context.Context) (*GetTradeHistoryResp, error)
 
 	// GetKlines Get Klines
-	// Description: Get the Kline of the symbol. Data are returned in grouped buckets based on requested type. For each query, the system would return at most 500 pieces of data. To obtain more data, please page the data by time.
+	// Description: Get the symbol’s candlestick chart. Data are returned in grouped buckets based on requested type. For each query, the system will return at most 500 pieces of data. To obtain more data, please page the data by time.
 	// Documentation: https://www.kucoin.com/docs-new/api-3470234
-	// +---------------------+---------+
-	// | Extra API Info      | Value   |
-	// +---------------------+---------+
-	// | API-DOMAIN          | FUTURES |
-	// | API-CHANNEL         | PUBLIC  |
-	// | API-PERMISSION      | NULL    |
-	// | API-RATE-LIMIT-POOL | PUBLIC  |
-	// | API-RATE-LIMIT      | 3       |
-	// +---------------------+---------+
+	// +-----------------------+---------+
+	// | Extra API Info        | Value   |
+	// +-----------------------+---------+
+	// | API-DOMAIN            | FUTURES |
+	// | API-CHANNEL           | PUBLIC  |
+	// | API-PERMISSION        | NULL    |
+	// | API-RATE-LIMIT-POOL   | PUBLIC  |
+	// | API-RATE-LIMIT-WEIGHT | 3       |
+	// +-----------------------+---------+
 	GetKlines(req *GetKlinesReq, ctx context.Context) (*GetKlinesResp, error)
 
 	// GetMarkPrice Get Mark Price
-	// Description: Get current mark price
+	// Description: Get the current mark price (Update snapshots once per second, real-time query).
 	// Documentation: https://www.kucoin.com/docs-new/api-3470233
-	// +---------------------+---------+
-	// | Extra API Info      | Value   |
-	// +---------------------+---------+
-	// | API-DOMAIN          | FUTURES |
-	// | API-CHANNEL         | PUBLIC  |
-	// | API-PERMISSION      | NULL    |
-	// | API-RATE-LIMIT-POOL | PUBLIC  |
-	// | API-RATE-LIMIT      | 3       |
-	// +---------------------+---------+
+	// +-----------------------+---------+
+	// | Extra API Info        | Value   |
+	// +-----------------------+---------+
+	// | API-DOMAIN            | FUTURES |
+	// | API-CHANNEL           | PUBLIC  |
+	// | API-PERMISSION        | NULL    |
+	// | API-RATE-LIMIT-POOL   | PUBLIC  |
+	// | API-RATE-LIMIT-WEIGHT | 3       |
+	// +-----------------------+---------+
 	GetMarkPrice(req *GetMarkPriceReq, ctx context.Context) (*GetMarkPriceResp, error)
 
 	// GetSpotIndexPrice Get Spot Index Price
-	// Description: Get Spot Index Price
+	// Description: Get Spot Index Price (Update snapshots once per second,  and there is a 5s cache when querying).
 	// Documentation: https://www.kucoin.com/docs-new/api-3470231
-	// +---------------------+---------+
-	// | Extra API Info      | Value   |
-	// +---------------------+---------+
-	// | API-DOMAIN          | FUTURES |
-	// | API-CHANNEL         | PUBLIC  |
-	// | API-PERMISSION      | NULL    |
-	// | API-RATE-LIMIT-POOL | PUBLIC  |
-	// | API-RATE-LIMIT      | 2       |
-	// +---------------------+---------+
+	// +-----------------------+---------+
+	// | Extra API Info        | Value   |
+	// +-----------------------+---------+
+	// | API-DOMAIN            | FUTURES |
+	// | API-CHANNEL           | PUBLIC  |
+	// | API-PERMISSION        | NULL    |
+	// | API-RATE-LIMIT-POOL   | PUBLIC  |
+	// | API-RATE-LIMIT-WEIGHT | 2       |
+	// +-----------------------+---------+
 	GetSpotIndexPrice(req *GetSpotIndexPriceReq, ctx context.Context) (*GetSpotIndexPriceResp, error)
 
 	// GetInterestRateIndex Get Interest Rate Index
-	// Description: Get interest rate Index.
+	// Description: Get interest rate Index (real-time query).
 	// Documentation: https://www.kucoin.com/docs-new/api-3470226
-	// +---------------------+---------+
-	// | Extra API Info      | Value   |
-	// +---------------------+---------+
-	// | API-DOMAIN          | FUTURES |
-	// | API-CHANNEL         | PUBLIC  |
-	// | API-PERMISSION      | NULL    |
-	// | API-RATE-LIMIT-POOL | PUBLIC  |
-	// | API-RATE-LIMIT      | 5       |
-	// +---------------------+---------+
+	// +-----------------------+---------+
+	// | Extra API Info        | Value   |
+	// +-----------------------+---------+
+	// | API-DOMAIN            | FUTURES |
+	// | API-CHANNEL           | PUBLIC  |
+	// | API-PERMISSION        | NULL    |
+	// | API-RATE-LIMIT-POOL   | PUBLIC  |
+	// | API-RATE-LIMIT-WEIGHT | 5       |
+	// +-----------------------+---------+
 	GetInterestRateIndex(req *GetInterestRateIndexReq, ctx context.Context) (*GetInterestRateIndexResp, error)
 
 	// GetPremiumIndex Get Premium Index
-	// Description: Submit request to get premium index.
+	// Description: Submit request to get premium index (Update snapshots once per second, real-time query).
 	// Documentation: https://www.kucoin.com/docs-new/api-3470227
-	// +---------------------+---------+
-	// | Extra API Info      | Value   |
-	// +---------------------+---------+
-	// | API-DOMAIN          | FUTURES |
-	// | API-CHANNEL         | PUBLIC  |
-	// | API-PERMISSION      | NULL    |
-	// | API-RATE-LIMIT-POOL | PUBLIC  |
-	// | API-RATE-LIMIT      | 3       |
-	// +---------------------+---------+
+	// +-----------------------+---------+
+	// | Extra API Info        | Value   |
+	// +-----------------------+---------+
+	// | API-DOMAIN            | FUTURES |
+	// | API-CHANNEL           | PUBLIC  |
+	// | API-PERMISSION        | NULL    |
+	// | API-RATE-LIMIT-POOL   | PUBLIC  |
+	// | API-RATE-LIMIT-WEIGHT | 3       |
+	// +-----------------------+---------+
 	GetPremiumIndex(req *GetPremiumIndexReq, ctx context.Context) (*GetPremiumIndexResp, error)
 
-	// Get24hrStats Get 24hr Stats
+	// Get24hrStats Get 24hr stats
 	// Description: Get the statistics of the platform futures trading volume in the last 24 hours.
 	// Documentation: https://www.kucoin.com/docs-new/api-3470228
-	// +---------------------+---------+
-	// | Extra API Info      | Value   |
-	// +---------------------+---------+
-	// | API-DOMAIN          | FUTURES |
-	// | API-CHANNEL         | PUBLIC  |
-	// | API-PERMISSION      | NULL    |
-	// | API-RATE-LIMIT-POOL | FUTURES |
-	// | API-RATE-LIMIT      | 3       |
-	// +---------------------+---------+
+	// +-----------------------+---------+
+	// | Extra API Info        | Value   |
+	// +-----------------------+---------+
+	// | API-DOMAIN            | FUTURES |
+	// | API-CHANNEL           | PUBLIC  |
+	// | API-PERMISSION        | NULL    |
+	// | API-RATE-LIMIT-POOL   | FUTURES |
+	// | API-RATE-LIMIT-WEIGHT | 3       |
+	// +-----------------------+---------+
 	Get24hrStats(ctx context.Context) (*Get24hrStatsResp, error)
 
 	// GetServerTime Get Server Time
 	// Description: Get the API server time. This is the Unix timestamp.
 	// Documentation: https://www.kucoin.com/docs-new/api-3470229
-	// +---------------------+---------+
-	// | Extra API Info      | Value   |
-	// +---------------------+---------+
-	// | API-DOMAIN          | FUTURES |
-	// | API-CHANNEL         | PUBLIC  |
-	// | API-PERMISSION      | NULL    |
-	// | API-RATE-LIMIT-POOL | PUBLIC  |
-	// | API-RATE-LIMIT      | 2       |
-	// +---------------------+---------+
+	// +-----------------------+---------+
+	// | Extra API Info        | Value   |
+	// +-----------------------+---------+
+	// | API-DOMAIN            | FUTURES |
+	// | API-CHANNEL           | PUBLIC  |
+	// | API-PERMISSION        | NULL    |
+	// | API-RATE-LIMIT-POOL   | PUBLIC  |
+	// | API-RATE-LIMIT-WEIGHT | 2       |
+	// +-----------------------+---------+
 	GetServerTime(ctx context.Context) (*GetServerTimeResp, error)
 
 	// GetServiceStatus Get Service Status
 	// Description: Get the service status.
 	// Documentation: https://www.kucoin.com/docs-new/api-3470230
-	// +---------------------+---------+
-	// | Extra API Info      | Value   |
-	// +---------------------+---------+
-	// | API-DOMAIN          | FUTURES |
-	// | API-CHANNEL         | PUBLIC  |
-	// | API-PERMISSION      | NULL    |
-	// | API-RATE-LIMIT-POOL | PUBLIC  |
-	// | API-RATE-LIMIT      | 4       |
-	// +---------------------+---------+
+	// +-----------------------+---------+
+	// | Extra API Info        | Value   |
+	// +-----------------------+---------+
+	// | API-DOMAIN            | FUTURES |
+	// | API-CHANNEL           | PUBLIC  |
+	// | API-PERMISSION        | NULL    |
+	// | API-RATE-LIMIT-POOL   | PUBLIC  |
+	// | API-RATE-LIMIT-WEIGHT | 4       |
+	// +-----------------------+---------+
 	GetServiceStatus(ctx context.Context) (*GetServiceStatusResp, error)
 
 	// GetPublicToken Get Public Token - Futures
-	// Description: This interface can obtain the token required for websocket to establish a Futures connection. If you need use public channels (e.g. all public market data), please make request as follows to obtain the server list and public token
+	// Description: This interface can obtain the token required for Websocket to establish a Futures connection. If you need use public channels (e.g. all public market data), please make request as follows to obtain the server list and public token
 	// Documentation: https://www.kucoin.com/docs-new/api-3470297
-	// +---------------------+---------+
-	// | Extra API Info      | Value   |
-	// +---------------------+---------+
-	// | API-DOMAIN          | FUTURES |
-	// | API-CHANNEL         | PUBLIC  |
-	// | API-PERMISSION      | NULL    |
-	// | API-RATE-LIMIT-POOL | PUBLIC  |
-	// | API-RATE-LIMIT      | 10      |
-	// +---------------------+---------+
+	// +-----------------------+---------+
+	// | Extra API Info        | Value   |
+	// +-----------------------+---------+
+	// | API-DOMAIN            | FUTURES |
+	// | API-CHANNEL           | PUBLIC  |
+	// | API-PERMISSION        | NULL    |
+	// | API-RATE-LIMIT-POOL   | PUBLIC  |
+	// | API-RATE-LIMIT-WEIGHT | 10      |
+	// +-----------------------+---------+
 	GetPublicToken(ctx context.Context) (*GetPublicTokenResp, error)
 
 	// GetPrivateToken Get Private Token - Futures
-	// Description: This interface can obtain the token required for websocket to establish a Futures private connection. If you need use private channels(e.g. account balance notice), please make request as follows to obtain the server list and private token
+	// Description: This interface can obtain the token required for Websocket to establish a Futures private connection. If you need use private channels (e.g. account balance notice), please make request as follows to obtain the server list and private token
 	// Documentation: https://www.kucoin.com/docs-new/api-3470296
-	// +---------------------+---------+
-	// | Extra API Info      | Value   |
-	// +---------------------+---------+
-	// | API-DOMAIN          | FUTURES |
-	// | API-CHANNEL         | PRIVATE |
-	// | API-PERMISSION      | GENERAL |
-	// | API-RATE-LIMIT-POOL | FUTURES |
-	// | API-RATE-LIMIT      | 10      |
-	// +---------------------+---------+
+	// +-----------------------+---------+
+	// | Extra API Info        | Value   |
+	// +-----------------------+---------+
+	// | API-DOMAIN            | FUTURES |
+	// | API-CHANNEL           | PRIVATE |
+	// | API-PERMISSION        | GENERAL |
+	// | API-RATE-LIMIT-POOL   | FUTURES |
+	// | API-RATE-LIMIT-WEIGHT | 10      |
+	// +-----------------------+---------+
 	GetPrivateToken(ctx context.Context) (*GetPrivateTokenResp, error)
 }
 

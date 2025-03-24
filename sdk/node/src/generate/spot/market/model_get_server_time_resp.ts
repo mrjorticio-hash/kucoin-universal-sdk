@@ -6,7 +6,7 @@ import { Response } from '@internal/interfaces/serializable';
 
 export class GetServerTimeResp implements Response<RestResponse> {
     /**
-     * ServerTime(millisecond)
+     * ServerTime (milliseconds)
      */
     data: number;
 

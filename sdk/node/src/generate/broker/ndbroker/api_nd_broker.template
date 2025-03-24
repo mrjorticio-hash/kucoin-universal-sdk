@@ -26,7 +26,7 @@ describe('Auto Test', ()=> {
     test('addSubAccount request test', ()=> {
     /**
     * addSubAccount
-    * Add SubAccount
+    * Add sub-account
     * /api/v1/broker/nd/account
     */
     let builder = AddSubAccountReq.builder();
@@ -45,7 +45,7 @@ describe('Auto Test', ()=> {
     test('getSubAccount request test', ()=> {
     /**
     * getSubAccount
-    * Get SubAccount
+    * Get sub-account
     * /api/v1/broker/nd/account
     */
     let builder = GetSubAccountReq.builder();
@@ -65,7 +65,7 @@ describe('Auto Test', ()=> {
     test('addSubAccountApi request test', ()=> {
     /**
     * addSubAccountApi
-    * Add SubAccount API
+    * Add sub-account API
     * /api/v1/broker/nd/account/apikey
     */
     let builder = AddSubAccountApiReq.builder();
@@ -88,7 +88,7 @@ describe('Auto Test', ()=> {
     test('getSubAccountAPI request test', ()=> {
     /**
     * getSubAccountAPI
-    * Get SubAccount API
+    * Get sub-account API
     * /api/v1/broker/nd/account/apikey
     */
     let builder = GetSubAccountAPIReq.builder();
@@ -104,7 +104,7 @@ describe('Auto Test', ()=> {
     test('modifySubAccountApi request test', ()=> {
     /**
     * modifySubAccountApi
-    * Modify SubAccount API
+    * Modify sub-account API
     * /api/v1/broker/nd/account/update-apikey
     */
     let builder = ModifySubAccountApiReq.builder();
@@ -126,7 +126,7 @@ describe('Auto Test', ()=> {
     test('deleteSubAccountAPI request test', ()=> {
     /**
     * deleteSubAccountAPI
-    * Delete SubAccount API
+    * Delete sub-account API
     * /api/v1/broker/nd/account/apikey
     */
     let builder = DeleteSubAccountAPIReq.builder();

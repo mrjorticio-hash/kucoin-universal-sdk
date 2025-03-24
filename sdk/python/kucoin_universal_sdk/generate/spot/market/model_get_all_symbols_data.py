@@ -16,27 +16,34 @@ class GetAllSymbolsData(BaseModel):
     GetAllSymbolsData
 
     Attributes:
-        symbol (str): unique code of a symbol, it would not change after renaming
-        name (str): Name of trading pairs, it would change after renaming
-        base_currency (str): Base currency,e.g. BTC.
-        quote_currency (str): Quote currency,e.g. USDT.
+        symbol (str): Unique code of a symbol; it will not change after renaming
+        name (str): Name of trading pairs, it will change after renaming
+        base_currency (str): Base currency, e.g. BTC.
+        quote_currency (str): Quote currency, e.g. USDT.
         fee_currency (str): The currency of charged fees.
         market (str): The trading market.
-        base_min_size (str): The minimum order quantity requried to place an order.
+        base_min_size (str): The minimum order quantity required to place an order.
         quote_min_size (str): The minimum order funds required to place a market order.
         base_max_size (str): The maximum order size required to place an order.
         quote_max_size (str): The maximum order funds required to place a market order.
         base_increment (str): Quantity increment: The quantity for an order must be a positive integer multiple of this increment. Here, the size refers to the quantity of the base currency for the order. For example, for the ETH-USDT trading pair, if the baseIncrement is 0.0000001, the order quantity can be 1.0000001 but not 1.00000001.
         quote_increment (str): Quote increment: The funds for a market order must be a positive integer multiple of this increment. The funds refer to the quote currency amount. For example, for the ETH-USDT trading pair, if the quoteIncrement is 0.000001, the amount of USDT for the order can be 3000.000001 but not 3000.0000001.
-        price_increment (str): Price increment: The price of an order must be a positive integer multiple of this increment. For example, for the ETH-USDT trading pair, if the priceIncrement is 0.01, the order price can be 3000.01 but not 3000.001.  specifies the min order price as well as the price increment.This also applies to quote currency.
-        price_limit_rate (str): Threshold for price portection
-        min_funds (str): the minimum trading amounts
+        price_increment (str): Price increment: The price of an order must be a positive integer multiple of this increment. For example, for the ETH-USDT trading pair, if the priceIncrement is 0.01, the order price can be 3000.01 but not 3000.001.  Specifies the min. order price as well as the price increment.This also applies to quote currency.
+        price_limit_rate (str): Threshold for price protection
+        min_funds (str): The minimum trading amounts
         is_margin_enabled (bool): Available for margin or not.
         enable_trading (bool): Available for transaction or not.
         fee_category (FeeCategoryEnum): [Fee Type](https://www.kucoin.com/vip/privilege)
         maker_fee_coefficient (str): The maker fee coefficient. The actual fee needs to be multiplied by this coefficient to get the final fee. Most currencies have a coefficient of 1. If set to 0, it means no fee
         taker_fee_coefficient (str): The taker fee coefficient. The actual fee needs to be multiplied by this coefficient to get the final fee. Most currencies have a coefficient of 1. If set to 0, it means no fee
-        st (bool): Whether it is an [Special Treatment](https://www.kucoin.com/legal/special-treatment) symbol
+        st (bool): Whether it is a [Special Treatment](https://www.kucoin.com/legal/special-treatment) symbol
+        callauction_is_enabled (bool): The [call auction](https://www.kucoin.com/support/40999744334105) status returns true/false
+        callauction_price_floor (str): The lowest price declared in the call auction
+        callauction_price_ceiling (str): The highest bid price in the call auction 
+        callauction_first_stage_start_time (int): The first phase of the call auction starts at (Allow add orders, allow cancel orders)
+        callauction_second_stage_start_time (int): The second phase of the call auction starts at (Allow add orders, don't allow cancel orders)
+        callauction_third_stage_start_time (int): The third phase of the call auction starts at (Don't allow add orders, don't allow cancel orders)
+        trading_start_time (int): Official opening time (end time of the third phase of call auction)
     """
 
     class FeeCategoryEnum(Enum):
@@ -52,17 +59,18 @@ class GetAllSymbolsData(BaseModel):
 
     symbol: Optional[str] = Field(
         default=None,
-        description=
-        "unique code of a symbol, it would not change after renaming")
+        description="Unique code of a symbol; it will not change after renaming"
+    )
     name: Optional[str] = Field(
         default=None,
-        description="Name of trading pairs, it would change after renaming")
-    base_currency: Optional[str] = Field(default=None,
-                                         description="Base currency,e.g. BTC.",
-                                         alias="baseCurrency")
+        description="Name of trading pairs, it will change after renaming")
+    base_currency: Optional[str] = Field(
+        default=None,
+        description="Base currency, e.g. BTC.",
+        alias="baseCurrency")
     quote_currency: Optional[str] = Field(
         default=None,
-        description="Quote currency,e.g. USDT.",
+        description="Quote currency, e.g. USDT.",
         alias="quoteCurrency")
     fee_currency: Optional[str] = Field(
         default=None,
@@ -72,7 +80,7 @@ class GetAllSymbolsData(BaseModel):
                                   description="The trading market.")
     base_min_size: Optional[str] = Field(
         default=None,
-        description="The minimum order quantity requried to place an order.",
+        description="The minimum order quantity required to place an order.",
         alias="baseMinSize")
     quote_min_size: Optional[str] = Field(
         default=None,
@@ -99,14 +107,14 @@ class GetAllSymbolsData(BaseModel):
     price_increment: Optional[str] = Field(
         default=None,
         description=
-        "Price increment: The price of an order must be a positive integer multiple of this increment. For example, for the ETH-USDT trading pair, if the priceIncrement is 0.01, the order price can be 3000.01 but not 3000.001.  specifies the min order price as well as the price increment.This also applies to quote currency.",
+        "Price increment: The price of an order must be a positive integer multiple of this increment. For example, for the ETH-USDT trading pair, if the priceIncrement is 0.01, the order price can be 3000.01 but not 3000.001.  Specifies the min. order price as well as the price increment.This also applies to quote currency.",
         alias="priceIncrement")
     price_limit_rate: Optional[str] = Field(
         default=None,
-        description="Threshold for price portection",
+        description="Threshold for price protection",
         alias="priceLimitRate")
     min_funds: Optional[str] = Field(default=None,
-                                     description="the minimum trading amounts",
+                                     description="The minimum trading amounts",
                                      alias="minFunds")
     is_margin_enabled: Optional[bool] = Field(
         default=None,
@@ -133,15 +141,52 @@ class GetAllSymbolsData(BaseModel):
     st: Optional[bool] = Field(
         default=None,
         description=
-        "Whether it is an [Special Treatment](https://www.kucoin.com/legal/special-treatment) symbol"
+        "Whether it is a [Special Treatment](https://www.kucoin.com/legal/special-treatment) symbol"
     )
+    callauction_is_enabled: Optional[bool] = Field(
+        default=None,
+        description=
+        "The [call auction](https://www.kucoin.com/support/40999744334105) status returns true/false",
+        alias="callauctionIsEnabled")
+    callauction_price_floor: Optional[str] = Field(
+        default=None,
+        description="The lowest price declared in the call auction",
+        alias="callauctionPriceFloor")
+    callauction_price_ceiling: Optional[str] = Field(
+        default=None,
+        description="The highest bid price in the call auction ",
+        alias="callauctionPriceCeiling")
+    callauction_first_stage_start_time: Optional[int] = Field(
+        default=None,
+        description=
+        "The first phase of the call auction starts at (Allow add orders, allow cancel orders)",
+        alias="callauctionFirstStageStartTime")
+    callauction_second_stage_start_time: Optional[int] = Field(
+        default=None,
+        description=
+        "The second phase of the call auction starts at (Allow add orders, don't allow cancel orders)",
+        alias="callauctionSecondStageStartTime")
+    callauction_third_stage_start_time: Optional[int] = Field(
+        default=None,
+        description=
+        "The third phase of the call auction starts at (Don't allow add orders, don't allow cancel orders)",
+        alias="callauctionThirdStageStartTime")
+    trading_start_time: Optional[int] = Field(
+        default=None,
+        description=
+        "Official opening time (end time of the third phase of call auction)",
+        alias="tradingStartTime")
 
     __properties: ClassVar[List[str]] = [
         "symbol", "name", "baseCurrency", "quoteCurrency", "feeCurrency",
         "market", "baseMinSize", "quoteMinSize", "baseMaxSize", "quoteMaxSize",
         "baseIncrement", "quoteIncrement", "priceIncrement", "priceLimitRate",
         "minFunds", "isMarginEnabled", "enableTrading", "feeCategory",
-        "makerFeeCoefficient", "takerFeeCoefficient", "st"
+        "makerFeeCoefficient", "takerFeeCoefficient", "st",
+        "callauctionIsEnabled", "callauctionPriceFloor",
+        "callauctionPriceCeiling", "callauctionFirstStageStartTime",
+        "callauctionSecondStageStartTime", "callauctionThirdStageStartTime",
+        "tradingStartTime"
     ]
 
     model_config = ConfigDict(
@@ -218,6 +263,20 @@ class GetAllSymbolsData(BaseModel):
             "takerFeeCoefficient":
             obj.get("takerFeeCoefficient"),
             "st":
-            obj.get("st")
+            obj.get("st"),
+            "callauctionIsEnabled":
+            obj.get("callauctionIsEnabled"),
+            "callauctionPriceFloor":
+            obj.get("callauctionPriceFloor"),
+            "callauctionPriceCeiling":
+            obj.get("callauctionPriceCeiling"),
+            "callauctionFirstStageStartTime":
+            obj.get("callauctionFirstStageStartTime"),
+            "callauctionSecondStageStartTime":
+            obj.get("callauctionSecondStageStartTime"),
+            "callauctionThirdStageStartTime":
+            obj.get("callauctionThirdStageStartTime"),
+            "tradingStartTime":
+            obj.get("tradingStartTime")
         })
         return _obj

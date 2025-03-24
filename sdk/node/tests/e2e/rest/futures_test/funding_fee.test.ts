@@ -87,7 +87,6 @@ describe('Auto Test', () => {
         });
     });
 
-    // TODO empty
     test('getPrivateFundingHistory request test', () => {
         /**
          * getPrivateFundingHistory
@@ -97,8 +96,8 @@ describe('Auto Test', () => {
         let builder = GetPrivateFundingHistoryReq.builder();
         builder
             .setSymbol('XBTUSDTM')
-            .setFrom(1739203200000)
-            .setTo(1739289600000)
+            .setStartAt(1700310700000)
+            .setEndAt(1702310700000)
             .setReverse(true)
             .setMaxCount(100);
         let req = builder.build();

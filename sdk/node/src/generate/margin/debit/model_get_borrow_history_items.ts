@@ -5,7 +5,7 @@ import { Serializable } from '@internal/interfaces/serializable';
 
 export class GetBorrowHistoryItems implements Serializable {
     /**
-     * Borrow Order Id
+     * Borrow Order ID
      */
     orderNo: string;
 
@@ -35,7 +35,7 @@ export class GetBorrowHistoryItems implements Serializable {
     status: GetBorrowHistoryItems.StatusEnum;
 
     /**
-     * borrow time
+     * Borrow time
      */
     createdTime: number;
 

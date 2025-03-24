@@ -20,12 +20,12 @@ export class GetDepositListReq implements Serializable {
     hash?: string;
 
     /**
-     * Start time (milisecond)
+     * Start time (milliseconds)
      */
     startTimestamp?: number;
 
     /**
-     * End time (milisecond)，Default sorting in descending order
+     * End time (milliseconds); default sorting in descending order
      */
     endTimestamp?: number;
 
@@ -63,11 +63,11 @@ export class GetDepositListReq implements Serializable {
          */
         hash?: string;
         /**
-         * Start time (milisecond)
+         * Start time (milliseconds)
          */
         startTimestamp?: number;
         /**
-         * End time (milisecond)，Default sorting in descending order
+         * End time (milliseconds); default sorting in descending order
          */
         endTimestamp?: number;
         /**
@@ -138,7 +138,7 @@ export class GetDepositListReqBuilder {
     }
 
     /**
-     * Start time (milisecond)
+     * Start time (milliseconds)
      */
     setStartTimestamp(value: number): GetDepositListReqBuilder {
         this.obj.startTimestamp = value;
@@ -146,7 +146,7 @@ export class GetDepositListReqBuilder {
     }
 
     /**
-     * End time (milisecond)，Default sorting in descending order
+     * End time (milliseconds); default sorting in descending order
      */
     setEndTimestamp(value: number): GetDepositListReqBuilder {
         this.obj.endTimestamp = value;

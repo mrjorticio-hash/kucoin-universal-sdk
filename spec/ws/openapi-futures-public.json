@@ -11,7 +11,7 @@
             "trace": {
                 "summary": "Get Ticker V2",
                 "deprecated": "false",
-                "description": "Subscribe this topic to get the realtime push of BBO changes. After subscription, when there are changes in the order book（Not necessarily ask1/bid1 changes）, the system will push the real-time ticker symbol information to you.",
+                "description": "Subscribe to this topic to get real-time pushes of BBO changes. After subscription, when there are changes in the order book (not necessarily ask1/bid1 changes), the system will push the real-time ticker symbol information to you.",
                 "tags": [],
                 "parameters": [],
                 "x-sdk-service": "Futures",
@@ -19,7 +19,7 @@
                 "x-sdk-private": false,
                 "x-sdk-method-name": "tickerV2",
                 "x-topic": "/contractMarket/tickerV2:{symbol}",
-                "x-push_frequency": "realtime",
+                "x-push_frequency": "real-time",
                 "x-response-example": "{\\\"topic\\\":\\\"/contractMarket/tickerV2:XBTUSDTM\\\",\\\"type\\\":\\\"message\\\",\\\"subject\\\":\\\"tickerV2\\\",\\\"sn\\\":1709284589209,\\\"data\\\":{\\\"symbol\\\":\\\"XBTUSDTM\\\",\\\"sequence\\\":1709284589209,\\\"bestBidSize\\\":713,\\\"bestBidPrice\\\":\\\"88987.4\\\",\\\"bestAskPrice\\\":\\\"88987.5\\\",\\\"bestAskSize\\\":1037,\\\"ts\\\":1731665526461000000}}",
                 "responses": {
                     "200": {
@@ -39,7 +39,7 @@
             "trace": {
                 "summary": "Get Ticker(not recommended)",
                 "deprecated": "false",
-                "description": "Subscribe this topic to get the realtime push of BBO changes.It is not recommended to use this topic any more. For real-time ticker information, please subscribe /contractMarket/tickerV2:{symbol}.",
+                "description": "Subscribe to this topic to get real-time pushes on BBO changes. It is not recommended to use this topic any more. For real-time ticker information, please subscribe /contractMarket/tickerV2:{symbol}.",
                 "tags": [],
                 "parameters": [],
                 "x-sdk-service": "Futures",
@@ -47,7 +47,7 @@
                 "x-sdk-private": false,
                 "x-sdk-method-name": "tickerV1",
                 "x-topic": "/contractMarket/ticker:{symbol}",
-                "x-push_frequency": "realtime",
+                "x-push_frequency": "real-time",
                 "x-response-example": "{\\\"topic\\\":\\\"/contractMarket/ticker:XBTUSDTM\\\",\\\"type\\\":\\\"message\\\",\\\"subject\\\":\\\"ticker\\\",\\\"sn\\\":1793133570931,\\\"data\\\":{\\\"symbol\\\":\\\"XBTUSDTM\\\",\\\"sequence\\\":1793133570931,\\\"side\\\":\\\"sell\\\",\\\"size\\\":1,\\\"price\\\":\\\"90147.7\\\",\\\"bestBidSize\\\":2186,\\\"bestBidPrice\\\":\\\"90147.7\\\",\\\"bestAskPrice\\\":\\\"90147.8\\\",\\\"tradeId\\\":\\\"1793133570931\\\",\\\"bestAskSize\\\":275,\\\"ts\\\":1731679215637000000}}",
                 "responses": {
                     "200": {
@@ -67,7 +67,7 @@
             "trace": {
                 "summary": "Orderbook - Level5",
                 "deprecated": "false",
-                "description": "The system will return the 5 best ask/bid orders data, If there is no change in the market, data will not be pushed",
+                "description": "The system will return the 5 best ask/bid orders data. If there is no change in the market, data will not be pushed",
                 "tags": [],
                 "parameters": [],
                 "x-sdk-service": "Futures",
@@ -123,7 +123,7 @@
             "trace": {
                 "summary": "Orderbook - Increment",
                 "deprecated": "false",
-                "description": "The system will return the increment change orderbook data(All depth), If there is no change in the market, data will not be pushed",
+                "description": "The system will return the increment change orderbook data (all depth). If there is no change in the market, data will not be pushed.",
                 "tags": [],
                 "parameters": [],
                 "x-sdk-service": "Futures",
@@ -131,7 +131,7 @@
                 "x-sdk-private": false,
                 "x-sdk-method-name": "orderbookIncrement",
                 "x-topic": "/contractMarket/level2:{symbol}",
-                "x-push_frequency": "realtime",
+                "x-push_frequency": "real-time",
                 "x-response-example": "{\\\"topic\\\":\\\"/contractMarket/level2:XBTUSDTM\\\",\\\"type\\\":\\\"message\\\",\\\"subject\\\":\\\"level2\\\",\\\"sn\\\":1709400450243,\\\"data\\\":{\\\"sequence\\\":1709400450243,\\\"change\\\":\\\"90631.2,sell,2\\\",\\\"timestamp\\\":1731897467182}}",
                 "responses": {
                     "200": {
@@ -187,7 +187,7 @@
                 "x-sdk-private": false,
                 "x-sdk-method-name": "execution",
                 "x-topic": "/contractMarket/execution:{symbol}",
-                "x-push_frequency": "realtime",
+                "x-push_frequency": "real-time",
                 "x-response-example": "{\\\"topic\\\":\\\"/contractMarket/execution:XBTUSDTM\\\",\\\"type\\\":\\\"message\\\",\\\"subject\\\":\\\"match\\\",\\\"sn\\\":1794100537695,\\\"data\\\":{\\\"symbol\\\":\\\"XBTUSDTM\\\",\\\"sequence\\\":1794100537695,\\\"side\\\":\\\"buy\\\",\\\"size\\\":2,\\\"price\\\":\\\"90503.9\\\",\\\"takerOrderId\\\":\\\"247822202957807616\\\",\\\"makerOrderId\\\":\\\"247822167163555840\\\",\\\"tradeId\\\":\\\"1794100537695\\\",\\\"ts\\\":1731898619520000000}}",
                 "responses": {
                     "200": {
@@ -263,7 +263,7 @@
             "trace": {
                 "summary": "Symbol Snapshot",
                 "deprecated": "false",
-                "description": "Get symbol's snapshot.",
+                "description": "Get symbol snapshot.",
                 "tags": [],
                 "parameters": [],
                 "x-sdk-service": "Futures",
@@ -759,7 +759,7 @@
                         "properties": {
                             "granularity": {
                                 "type": "integer",
-                                "description": "Granularity (predicted funding rate: 1-min granularity: 60000; Funding rate: 8-hours granularity: 28800000. )"
+                                "description": "Granularity (predicted funding rate: 1-min granularity: 60000; Funding rate: 8-hours granularity: 28800000.)"
                             },
                             "fundingRate": {
                                 "type": "number"
