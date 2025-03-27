@@ -148,6 +148,7 @@ class WebSocketClient:
             data: WriteMsg = self.ack_event.pop(m.id, None)
             if not data:
                 logging.warning(f"Cannot find ack event, id: {m.id}")
+                logging.warning(f"error message: {m}")
                 return
             if m.type == WsMessageType.ERROR.value:
                 error = m.raw_data
