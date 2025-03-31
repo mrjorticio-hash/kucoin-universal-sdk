@@ -72,6 +72,7 @@ class WebSocketClient(WebsocketTransport):
             self.shutdown.set()
             self.close()
             self.reconnect_thread.join()
+            self.token_provider.close()
 
     def run(self):
         if not self.keep_alive_thread or not self.keep_alive_thread.is_alive():
@@ -300,7 +301,6 @@ class WebSocketClient(WebsocketTransport):
                 self.write_msg_queue.get_nowait()
 
             self.on_event(WebSocketEvent.EVENT_DISCONNECTED, "", "")
-            self.token_provider.close()
             self.connected.clear()
         logging.info("WebSocket client closed.")
 
