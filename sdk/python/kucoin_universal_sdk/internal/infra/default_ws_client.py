@@ -152,7 +152,7 @@ class WebSocketClient(WebsocketTransport):
 
                 finally:
                     self.reconnecting.clear()
-                time.sleep(1)
+            time.sleep(1)
         logging.info("Exiting read loop...")
 
     def keep_alive_loop(self):
