@@ -1,4 +1,5 @@
 import logging
+import time
 import uuid
 from typing import List
 
@@ -40,7 +41,8 @@ class DefaultWsService(WebSocketService):
                 self.notify_event(WebSocketEvent.EVENT_RE_SUBSCRIBE_OK, "", "")
                 break
 
-            logging.info(f"[Attempt {attempt}] Resubscribing {len(pending)} items...")
+            logging.info(f"[Attempt {attempt}] Resubscribing {len(pending)} items in 5 seconds...")
+            time.sleep(5)
 
             failed = []
             for cm in pending:
@@ -52,7 +54,7 @@ class DefaultWsService(WebSocketService):
         if pending:
             self.notify_event(WebSocketEvent.EVENT_RE_SUBSCRIBE_ERROR, "", "")
             logging.info(
-                f"Resubscribe failed after {self.option.auto_resubscribe_max_attempts} attempts for: {pending}")
+                f"Resubscribe failed after {self.option.auto_resubscribe_max_attempts} attempts")
 
     def _resubscribe(self, callback_manager: CallbackManager) -> bool:
         sub_info_list = callback_manager.get_sub_info()
