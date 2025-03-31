@@ -77,7 +77,7 @@ class DefaultWsService(WebSocketService):
             cb.on_message(msg)
         except Exception as e:
             logging.error(f"Exception in callback: {e}")
-            self.notify_event(WebSocketEvent.EVENT_CALLBACK_ERROR, str(e))
+            self.notify_event(WebSocketEvent.EVENT_CALLBACK_ERROR, msg.id, str(e))
 
     def stop(self):
         logging.info("Closing WebSocket client")
@@ -85,6 +85,7 @@ class DefaultWsService(WebSocketService):
 
     def subscribe(self, prefix: str, args: List[str], callback: WebSocketMessageCallback) -> str:
         callback_manager = None
+        sub_id = None
         try:
             if args is None:
                 args = []
@@ -101,25 +102,25 @@ class DefaultWsService(WebSocketService):
                 id=sub_id,
                 type=WsMessageType.SUBSCRIBE.value,
                 topic=sub_info.sub_topic(),
-                privateChannel=self.private,
+                private_channel=self.private,
                 response=True
             )
 
             data: WriteMsg = self.client.write(sub_event, self.option.write_timeout)
             event_triggered = data.event.wait(timeout=data.timeout)
             if event_triggered:
-                logging.info(f"ACK received for message ID {data.msg.id}")
+                logging.info(f"ACK received for subscribe message, id: {data.msg.id}")
                 data.event.clear()
             else:
-                logging.warning(f"Timeout for message ID {data.msg.id}")
-                raise TimeoutError(f"Timeout for message ID {data.msg.id}")
+                logging.warning(f"Timeout for subscribe, id: {data.msg.id}")
+                raise TimeoutError(f"Timeout for subscribe, id: {data.msg.id}")
             if data.exception is not None:
-                logging.error(f"ERROR received for message ID {data.msg.id}: {data.exception}")
+                logging.error(f"ERROR received for subscribe, id: {data.msg.id}, exception: {data.exception}")
                 raise data.exception
             return sub_id
 
         except Exception as err:
-            if callback_manager is not None:
+            if callback_manager is not None and sub_id is not None:
                 callback_manager.remove(sub_id)
             logging.error(f"Subscribe error: {sub_id}, error: {err}")
             raise
@@ -131,7 +132,7 @@ class DefaultWsService(WebSocketService):
 
             sub_event = WsMessage(
                 id=str(uuid.uuid4()),
-                msg_type=WsMessageType.UNSUBSCRIBE.value,
+                type=WsMessageType.UNSUBSCRIBE.value,
                 topic=sub_info.sub_topic(),
                 private_channel=self.private,
                 response=True
@@ -141,13 +142,13 @@ class DefaultWsService(WebSocketService):
                 data: WriteMsg = self.client.write(sub_event, self.option.write_timeout)
                 event_triggered = data.event.wait(timeout=data.timeout)
                 if event_triggered:
-                    logging.info(f"ACK received for message ID {data.msg.id}")
+                    logging.info(f"ACK received for unsubscribe, id: {sub_id}")
                     data.event.clear()
                 else:
-                    logging.warning(f"Timeout for message ID {data.msg.id}")
-                    raise TimeoutError(f"Timeout for message ID {data.msg.id}")
+                    logging.warning(f"Timeout for unsubscribe, id: {sub_id}")
+                    raise TimeoutError(f"Timeout for unsubscribe, id: {sub_id}")
                 if data.exception is not None:
-                    logging.error(f"ERROR received for message ID {data.msg.id}: {data.exception}")
+                    logging.error(f"Error received for unsubscribe, id: {sub_id}, exception: {data.exception}")
                     raise data.exception
                 callback_manager.remove(sub_id)
                 logging.info(f"Unsubscribe success: {sub_id}")
