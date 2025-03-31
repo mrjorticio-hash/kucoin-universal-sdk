@@ -1,3 +1,5 @@
+import threading
+import time
 from abc import ABC, abstractmethod
 from typing import Any, Dict, List, Optional
 
@@ -14,6 +16,33 @@ class WebSocketMessageCallback(ABC):
 
         :param message: The WsMessage object to process
         """
+        pass
+
+
+class WriteMsg:
+    def __init__(self, msg: WsMessage, timeout: float):
+        self.msg = msg
+        self.ts = time.time()
+        self.timeout = timeout
+        self.exception = None
+        self.event = threading.Event()
+
+    def set_exception(self, exception: Exception):
+        self.exception = exception
+        self.event.set()
+
+
+class WebsocketTransport(ABC):
+    @abstractmethod
+    def start(self):
+        pass
+
+    @abstractmethod
+    def stop(self):
+        pass
+
+    @abstractmethod
+    def write(self, ms: WsMessage, timeout: float) -> WriteMsg:
         pass
 
 
@@ -64,11 +93,13 @@ class WsToken(BaseModel):
     WsToken holds the token and API endpoint for a WebSocket connection.
     """
     token: Optional[str] = Field(default=None, description="The token for authentication")
-    ping_interval: Optional[int] = Field(default=None, alias="pingInterval", description="Interval between ping messages (in milliseconds)")
+    ping_interval: Optional[int] = Field(default=None, alias="pingInterval",
+                                         description="Interval between ping messages (in milliseconds)")
     endpoint: Optional[str] = Field(default=None, description="The WebSocket API endpoint")
     protocol: Optional[str] = Field(default=None, description="Protocol used for WebSocket connection")
     encrypt: Optional[bool] = Field(default=None, description="Indicates if the connection is encrypted")
-    ping_timeout: Optional[int] = Field(default=None, alias="pingTimeout", description="Ping timeout duration (in milliseconds)")
+    ping_timeout: Optional[int] = Field(default=None, alias="pingTimeout",
+                                        description="Ping timeout duration (in milliseconds)")
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]):
@@ -80,19 +111,20 @@ class WsToken(BaseModel):
 
         _obj = cls.model_validate({
             "token":
-            obj.get("token"),
+                obj.get("token"),
             "pingInterval":
-            obj.get("pingInterval"),
+                obj.get("pingInterval"),
             "endpoint":
-            obj.get("endpoint"),
+                obj.get("endpoint"),
             "protocol":
-            obj.get("protocol"),
+                obj.get("protocol"),
             "encrypt":
-            obj.get("encrypt"),
+                obj.get("encrypt"),
             "pingTimeout":
-            obj.get("pingTimeout")
+                obj.get("pingTimeout")
         })
         return _obj
+
 
 class WsTokenProvider(ABC):
     @abstractmethod
@@ -103,7 +135,7 @@ class WsTokenProvider(ABC):
         :return: list of WsToken objects.
         """
         pass
-    
+
     @abstractmethod
     def close(self):
         """

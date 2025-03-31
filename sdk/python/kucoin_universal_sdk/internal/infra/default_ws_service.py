@@ -1,7 +1,5 @@
 import logging
-import threading
 import uuid
-import queue
 from typing import List
 
 from kucoin_universal_sdk.model.client_option import ClientOption
@@ -13,48 +11,37 @@ from ..infra.default_transport import DefaultTransport
 from ..infra.default_ws_callback import TopicManager, CallbackManager
 from ..infra.default_ws_client import WebSocketClient, WriteMsg
 from ..infra.default_ws_token_provider import DefaultWsTokenProvider
-from ..interfaces.websocket import WebSocketService, WebSocketMessageCallback
+from ..interfaces.websocket import WebSocketService, WebSocketMessageCallback, WebsocketTransport
 from ..util.sub import SubInfo
 
+
 class DefaultWsService(WebSocketService):
-    def __init__(self, client_option: ClientOption, domain: DomainType, private: bool, sdk_version:str):
+    def __init__(self, client_option: ClientOption, domain: DomainType, private: bool, sdk_version: str):
         self.token_transport = DefaultTransport(client_option, sdk_version)
         ws_option = client_option.websocket_client_option
 
-        self.client = WebSocketClient(DefaultWsTokenProvider(self.token_transport, domain, private), ws_option)
+        self.client: WebsocketTransport = WebSocketClient(DefaultWsTokenProvider(self.token_transport, domain, private),
+                                                          ws_option, self.on_reconnected, self.on_message,
+                                                          self.notify_event)
         self.topic_manager = TopicManager()
         self.option = ws_option
-        self.stop_event = threading.Event()
         self.private = private
 
-    def recovery(self):
-        def recovery_loop():
-            while not self.stop_event.wait(timeout=1):
-                event_triggered = self.client.reconnected_event.is_set()
-                if self.stop_event.is_set():
-                    return
-                if event_triggered:
-                    logging.info("WebSocket client reconnected, resubscribe...")
-                    if self.client.welcome_received.is_set():
-                        old_topic_manager = self.topic_manager
-                        self.topic_manager = TopicManager()
-                        old_topic_manager.range(lambda _, value: self._resubscribe(value))
-
-                        self.client.reconnected_event.clear()
-            logging.info("Recovery loop exiting...")
-
-        self.recovery_thread = threading.Thread(target=recovery_loop, daemon=True)
-        self.recovery_thread.start()
-
+    def on_reconnected(self):
+        logging.info("WebSocket client reconnected, resubscribe...")
+        old_topic_manager = self.topic_manager
+        self.topic_manager = TopicManager()
+        old_topic_manager.range(lambda _, value: self._resubscribe(value))
 
     def _resubscribe(self, callback_manager: CallbackManager):
         sub_info_list = callback_manager.get_sub_info()
         for sub in sub_info_list:
+            sub_id = ""
             try:
                 sub_id = self.subscribe(sub.prefix, sub.args, sub.callback)
-                self.notify_event(WebSocketEvent.EVENT_RE_SUBSCRIBE_OK, sub_id)
+                self.notify_event(WebSocketEvent.EVENT_RE_SUBSCRIBE_OK, sub_id, "")
             except Exception as err:
-                self.notify_event(WebSocketEvent.EVENT_RE_SUBSCRIBE_ERROR, f"id: {sub_id}, err: {err}")
+                self.notify_event(WebSocketEvent.EVENT_RE_SUBSCRIBE_ERROR, sub_id, err.__str__())
 
     def start(self):
         try:
@@ -62,58 +49,42 @@ class DefaultWsService(WebSocketService):
         except Exception as err:
             logging.error(f"Failed to start client: {err}")
             raise
-        self.run()
-        self.recovery()
 
-    def notify_event(self, event, msg, msg2=""):
+    def notify_event(self, event: WebSocketEvent, msg: str, error: str):
         try:
             if self.option.event_callback:
-                self.option.event_callback(event, msg, msg2)
+                self.option.event_callback(event, msg, error)
         except Exception as e:
             logging.error(f"Exception in notify_event: {e}")
 
-    def run(self):
-        def message_loop():
-            while not self.stop_event.is_set():
-                try:
-                    msg: WsMessage = self.client.read().get(timeout=1)
-                    if msg is None:
-                        break
-                    if msg.type != WsMessageType.MESSAGE.value:
-                        continue
+    def on_message(self, msg: WsMessage):
+        if msg is None:
+            return
+        if msg.type != WsMessageType.MESSAGE.value:
+            return
 
-                    callback_manager = self.topic_manager.get_callback_manager(msg.topic)
-                    if callback_manager is None:
-                        logging.error(f"Cannot find callback manager, id: {msg.id}, topic: {msg.topic}")
-                        continue
+        callback_manager = self.topic_manager.get_callback_manager(msg.topic)
+        if callback_manager is None:
+            logging.error(f"Cannot find callback manager, id: {msg.id}, topic: {msg.topic}")
+            return
 
-                    cb = callback_manager.get(msg.topic)
-                    if cb is None:
-                        logging.error(f"Cannot find callback for id: {msg.id}, topic: {msg.topic}")
-                        continue
+        cb = callback_manager.get(msg.topic)
+        if cb is None:
+            logging.error(f"Cannot find callback for id: {msg.id}, topic: {msg.topic}")
+            return
 
-                    try:
-                        cb.on_message(msg)
-                    except Exception as e:
-                        logging.error(f"Exception in callback: {e}")
-                        self.notify_event(WebSocketEvent.EVENT_CALLBACK_ERROR, str(e))
-                except queue.Empty:
-                    continue
-                except Exception as e:
-                    logging.error(f"Error in message loop: {e}")
-                    break
-
-        self.message_thread = threading.Thread(target=message_loop, daemon=True)
-        self.message_thread.start()
+        try:
+            cb.on_message(msg)
+        except Exception as e:
+            logging.error(f"Exception in callback: {e}")
+            self.notify_event(WebSocketEvent.EVENT_CALLBACK_ERROR, str(e))
 
     def stop(self):
-        self.stop_event.set()
         logging.info("Closing WebSocket client")
         self.client.stop()
-        self.recovery_thread.join()
-        self.message_thread.join()
 
     def subscribe(self, prefix: str, args: List[str], callback: WebSocketMessageCallback) -> str:
+        callback_manager = None
         try:
             if args is None:
                 args = []
@@ -134,22 +105,22 @@ class DefaultWsService(WebSocketService):
                 response=True
             )
 
-            try:
-                data: WriteMsg = self.client.write(sub_event, self.option.write_timeout)
-                event_triggered = data.event.wait(timeout=data.timeout)
-                if event_triggered:
-                    logging.info(f"ACK received for message ID {data.msg.id}")
-                    data.event.clear()
-                else:
-                    logging.warning(f"Timeout for message ID {data.msg.id}")
-                    raise TimeoutError(f"Timeout for message ID {data.msg.id}")
-                if data.exception is not None:
-                    logging.error(f"ERROR received for message ID {data.msg.id}: {data.exception}")
-                return sub_id
-            except Exception as err:
-                raise
+            data: WriteMsg = self.client.write(sub_event, self.option.write_timeout)
+            event_triggered = data.event.wait(timeout=data.timeout)
+            if event_triggered:
+                logging.info(f"ACK received for message ID {data.msg.id}")
+                data.event.clear()
+            else:
+                logging.warning(f"Timeout for message ID {data.msg.id}")
+                raise TimeoutError(f"Timeout for message ID {data.msg.id}")
+            if data.exception is not None:
+                logging.error(f"ERROR received for message ID {data.msg.id}: {data.exception}")
+                raise data.exception
+            return sub_id
+
         except Exception as err:
-            callback_manager.remove(sub_id)
+            if callback_manager is not None:
+                callback_manager.remove(sub_id)
             logging.error(f"Subscribe error: {sub_id}, error: {err}")
             raise
 
@@ -167,7 +138,17 @@ class DefaultWsService(WebSocketService):
             )
 
             try:
-                self.client.write(sub_event, self.option.write_timeout)
+                data: WriteMsg = self.client.write(sub_event, self.option.write_timeout)
+                event_triggered = data.event.wait(timeout=data.timeout)
+                if event_triggered:
+                    logging.info(f"ACK received for message ID {data.msg.id}")
+                    data.event.clear()
+                else:
+                    logging.warning(f"Timeout for message ID {data.msg.id}")
+                    raise TimeoutError(f"Timeout for message ID {data.msg.id}")
+                if data.exception is not None:
+                    logging.error(f"ERROR received for message ID {data.msg.id}: {data.exception}")
+                    raise data.exception
                 callback_manager.remove(sub_id)
                 logging.info(f"Unsubscribe success: {sub_id}")
             except Exception as err:
