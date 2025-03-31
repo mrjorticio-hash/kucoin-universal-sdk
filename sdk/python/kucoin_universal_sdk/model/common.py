@@ -127,50 +127,20 @@ class WsMessage(BaseModel):
     response: Optional[bool] = Field(default=None, description="Indicates if the message is a response.")
     raw_data: Any = Field(default=None, alias="data", description="Raw message data")
 
+    model_config = {
+        "populate_by_name": True
+    }
+
     def to_json(self) -> str:
-        """
-        Converts the WebSocket message to JSON string format.
-
-        :return: JSON string representation of the message
-        """
-        return json.dumps({
-            "id": self.id,
-            "type": self.type,
-            "sn": self.sn,
-            "topic": self.topic,
-            "subject": self.subject,
-            "privateChannel": self.private_channel,
-            "response": self.response,
-            "data": self.raw_data
-        })
+        return self.model_dump_json(by_alias=True, exclude_none=True)
 
     @classmethod
-    def from_json(cls, json_str: str) -> Optional[WsMessage]:
-        """
-        Converts a JSON string to a WsMessage instance.
-
-        :param json_str: JSON string representation of the message
-        :return: WsMessage instance or None if the input is invalid
-        """
-        return cls.from_dict(json.loads(json_str))
+    def from_json(cls, json_str: str) -> Optional["WsMessage"]:
+        data = json.loads(json_str)
+        return cls.model_validate(data)
 
     @classmethod
-    def from_dict(
-            cls, obj: Optional[Dict[str, Any]]) -> Optional[WsMessage]:
+    def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional["WsMessage"]:
         if obj is None:
             return None
-
-        if not isinstance(obj, dict):
-            return cls.model_validate(obj)
-
-        _obj = cls.model_validate({
-            "id": obj.get("id"),
-            "type": obj.get("type"),
-            "sn": obj.get("sn"),
-            "topic": obj.get("topic"),
-            "subject": obj.get("subject"),
-            "privateChannel": obj.get("privateChannel"),
-            "response": obj.get("response"),
-            "data": obj.get("data"),
-        })
-        return _obj
+        return cls.model_validate(obj)

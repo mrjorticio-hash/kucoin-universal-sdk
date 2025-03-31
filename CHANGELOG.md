@@ -4,6 +4,9 @@ API documentation [Changelog](https://www.kucoin.com/docs-new/change-log)
 
 Current synchronized API documentation version [20250313](https://www.kucoin.com/docs-new/change-log#20250313)
 
+# 2025-03-31(Python 1.2.1)
+- Optimize WebSocket reconnection logic
+
 ## 2025-03-21(1.2.0)
 - Update the latest APIs, documentation, etc
 - Remove range validation in Python
