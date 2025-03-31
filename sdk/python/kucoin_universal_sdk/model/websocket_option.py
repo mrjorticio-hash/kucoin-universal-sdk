@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from enum import Enum, auto
-from typing import Callable, Any, Optional
+from typing import Callable, Optional
 
 
 class WebSocketEvent(Enum):
@@ -58,12 +58,12 @@ class WebSocketClientOption:
                  reconnect: bool = True,
                  reconnect_attempts: int = -1,
                  reconnect_interval: float = 5.0,
-                 token_renew_interval: float = 6 * 60 * 60,  # 6 hours in seconds
                  dial_timeout: float = 10.0,
                  read_message_buffer: int = 1024,
                  write_message_buffer: int = 256,
                  write_timeout: float = 5.0,
-                 event_callback: Optional[WebSocketCallback] = None):
+                 event_callback: Optional[WebSocketCallback] = None,
+                 auto_resubscribe_max_attempts: int = 3):
         """
         Initializes WebSocket client options for managing connection behavior and settings.
 
@@ -76,6 +76,7 @@ class WebSocketClientOption:
             write_message_buffer (int): Buffer size for writing messages in the queue. Defaults to 256.
             write_timeout (int): Timeout for sending messages in seconds. Defaults to 5.0.
             event_callback (Optional[WebSocketCallback]): A callback function to handle WebSocket events. Defaults to None.
+            auto_resubscribe_max_attempts(int): Maximum number of retry attempts for automatic resubscription upon failure. After exceeding this limit, failed items will not be retried further.
         """
 
         self.reconnect = reconnect
@@ -86,6 +87,7 @@ class WebSocketClientOption:
         self.write_message_buffer = write_message_buffer
         self.write_timeout = write_timeout
         self.event_callback = event_callback
+        self.auto_resubscribe_max_attempts = auto_resubscribe_max_attempts
 
 
 class WebSocketClientOptionBuilder:
@@ -125,6 +127,10 @@ class WebSocketClientOptionBuilder:
 
     def with_event_callback(self, callback: WebSocketCallback) -> WebSocketClientOptionBuilder:
         self.option.event_callback = callback
+        return self
+
+    def with_auto_resubscribe_max_attempts(self, auto_resubscribe_max_attempts: int) -> WebSocketClientOptionBuilder:
+        self.option.auto_resubscribe_max_attempts = auto_resubscribe_max_attempts
         return self
 
     def build(self) -> WebSocketClientOption:

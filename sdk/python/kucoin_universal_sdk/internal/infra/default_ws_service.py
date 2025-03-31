@@ -31,17 +31,37 @@ class DefaultWsService(WebSocketService):
         logging.info("WebSocket client reconnected, resubscribe...")
         old_topic_manager = self.topic_manager
         self.topic_manager = TopicManager()
-        old_topic_manager.range(lambda _, value: self._resubscribe(value))
 
-    def _resubscribe(self, callback_manager: CallbackManager):
+        pending = list()
+        old_topic_manager.range(lambda _, value: pending.append(value))
+
+        for attempt in range(0, self.option.auto_resubscribe_max_attempts):
+            if len(pending) == 0:
+                self.notify_event(WebSocketEvent.EVENT_RE_SUBSCRIBE_OK, "", "")
+                break
+
+            logging.info(f"[Attempt {attempt}] Resubscribing {len(pending)} items...")
+
+            failed = []
+            for cm in pending:
+                success = self._resubscribe(cm)
+                if not success:
+                    failed.append(cm)
+
+            pending = failed
+        if pending:
+            self.notify_event(WebSocketEvent.EVENT_RE_SUBSCRIBE_ERROR, "", "")
+            logging.info(
+                f"Resubscribe failed after {self.option.auto_resubscribe_max_attempts} attempts for: {pending}")
+
+    def _resubscribe(self, callback_manager: CallbackManager) -> bool:
         sub_info_list = callback_manager.get_sub_info()
         for sub in sub_info_list:
-            sub_id = ""
             try:
-                sub_id = self.subscribe(sub.prefix, sub.args, sub.callback)
-                self.notify_event(WebSocketEvent.EVENT_RE_SUBSCRIBE_OK, sub_id, "")
+                self.subscribe(sub.prefix, sub.args, sub.callback)
             except Exception as err:
-                self.notify_event(WebSocketEvent.EVENT_RE_SUBSCRIBE_ERROR, sub_id, err.__str__())
+                return False
+        return True
 
     def start(self):
         try:
