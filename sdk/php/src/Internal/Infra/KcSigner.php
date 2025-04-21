@@ -34,7 +34,8 @@ class KcSigner
         $brokerName = '',
         $brokerPartner = '',
         $brokerKey = ''
-    ) {
+    )
+    {
         $this->apiKey = $apiKey;
         $this->apiSecret = $apiSecret;
         $this->apiPassphrase = ($apiPassphrase && $apiSecret)

@@ -83,4 +83,13 @@ class WsMessage
     {
         return $serializer->deserialize($json, self::class, 'json');
     }
+
+    /**
+     * @param Serializer $serializer
+     * @return string
+     */
+    public function jsonSerialize(Serializer $serializer): string
+    {
+        return $serializer->serialize($this->response, 'json');
+    }
 }
