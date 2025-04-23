@@ -5,6 +5,7 @@
 {{/imports}}
 namespace {{package}};
 use KuCoin\UniversalSDK\Internal\Interfaces\WebSocketService;
+use React\Promise\PromiseInterface;
 
 interface {{classname}} {
 
@@ -16,8 +17,9 @@ interface {{classname}} {
     * {{notes}}
     * push frequency: {{vendorExtensions.x-push_frequency}}
     * @param callable $callback function(string $topic, string $subject, {{vendorExtensions.x-meta.methodServiceFmt}}Event $data): void
+    * @return PromiseInterface<string> A promise that resolves to the subscription ID or rejects with an error.
     */
-    public function {{vendorExtensions.x-meta.method}}{{operationName}}({{#vendorExtensions.x-meta.otherProperties}}{{#parameters}}{{#type}}{{#type.simple}}string ${{paras}},{{/type.simple}}{{#type.array}}array ${{paras}},{{/type.array}}{{#type.object}}{{#paras}}string ${{.}},{{/paras}}{{/type.object}}{{/type}}{{/parameters}}{{/vendorExtensions.x-meta.otherProperties}}callable $callback) :string;
+    public function {{vendorExtensions.x-meta.method}}{{operationName}}({{#vendorExtensions.x-meta.otherProperties}}{{#parameters}}{{#type}}{{#type.simple}}string ${{paras}},{{/type.simple}}{{#type.array}}array ${{paras}},{{/type.array}}{{#type.object}}{{#paras}}string ${{.}},{{/paras}}{{/type.object}}{{/type}}{{/parameters}}{{/vendorExtensions.x-meta.otherProperties}}callable $callback) : PromiseInterface;
     {{/operation}}
 
     /**
@@ -48,7 +50,7 @@ class {{classname}}Impl implements {{classname}} {
 {{#operations}}
     {{#operation}}
 
-    public function {{vendorExtensions.x-meta.method}}{{operationName}}({{#vendorExtensions.x-meta.otherProperties}}{{#parameters}}{{#type}}{{#type.simple}}string ${{paras}},{{/type.simple}}{{#type.array}}array ${{paras}},{{/type.array}}{{#type.object}}{{#paras}}string ${{.}},{{/paras}}{{/type.object}}{{/type}}{{/parameters}}{{/vendorExtensions.x-meta.otherProperties}}callable $callback) :string{
+    public function {{vendorExtensions.x-meta.method}}{{operationName}}({{#vendorExtensions.x-meta.otherProperties}}{{#parameters}}{{#type}}{{#type.simple}}string ${{paras}},{{/type.simple}}{{#type.array}}array ${{paras}},{{/type.array}}{{#type.object}}{{#paras}}string ${{.}},{{/paras}}{{/type.object}}{{/type}}{{/parameters}}{{/vendorExtensions.x-meta.otherProperties}}callable $callback) : PromiseInterface{
         $topicPrefix = "{{vendorExtensions.x-meta.otherProperties.topic}}";
         {{#vendorExtensions.x-meta.otherProperties}}{{#parameters}}{{#type}}
         {{#type.none}}$args = [];{{/type.none}}
