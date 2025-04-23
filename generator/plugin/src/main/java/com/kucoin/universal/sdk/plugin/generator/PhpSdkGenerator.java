@@ -101,6 +101,7 @@ public class PhpSdkGenerator extends AbstractPhpCodegen implements NameService {
             case WS: {
                 modelTemplateFiles.put("model_ws.mustache", ".php");
                 apiTemplateFiles.put("api_ws.mustache", ".php");
+                apiTemplateFiles.put("api_ws_impl.mustache", "Impl.php");
                 additionalProperties.put("WS_MODE", "true");
                 break;
             }

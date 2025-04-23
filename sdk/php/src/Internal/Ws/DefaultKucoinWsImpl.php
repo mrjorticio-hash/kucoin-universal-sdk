@@ -19,6 +19,8 @@ use KuCoin\UniversalSDK\Generate\Version;
 use KuCoin\UniversalSDK\Internal\Infra\DefaultWsService;
 use KuCoin\UniversalSDK\Model\ClientOption;
 use KuCoin\UniversalSDK\Model\Constants;
+use React\EventLoop\Loop;
+use React\EventLoop\LoopInterface;
 
 class DefaultKucoinWsImpl implements KucoinWSService
 {
@@ -27,18 +29,39 @@ class DefaultKucoinWsImpl implements KucoinWSService
      */
     private $clientOption;
 
+
     /**
-     * @param ClientOption $clientOption
+     * @var LoopInterface $loop
      */
-    public function __construct(ClientOption $clientOption)
+    private $loop;
+
+    public function __construct(ClientOption $clientOption, ?LoopInterface $loop = null)
     {
         $this->clientOption = $clientOption;
+        $this->loop = $loop ?: Loop::get();
     }
+
+    public function startEventLoop()
+    {
+        $this->loop->run();
+    }
+
+    public function stopEventLoop()
+    {
+        $this->loop->stop();
+    }
+
+    public function getLoop(): LoopInterface
+    {
+        return $this->loop;
+    }
+
 
     public function newSpotPublicWS(): SpotPublicWs
     {
         $wsService = new DefaultWsService(
             $this->clientOption,
+            $this->loop,
             Constants::DOMAIN_TYPE_SPOT,
             false,
             Version::SDK_VERSION);
@@ -50,6 +73,8 @@ class DefaultKucoinWsImpl implements KucoinWSService
     {
         $wsService = new DefaultWsService(
             $this->clientOption,
+            $this->loop,
+
             Constants::DOMAIN_TYPE_SPOT,
             true,
             Version::SDK_VERSION);
@@ -61,6 +86,7 @@ class DefaultKucoinWsImpl implements KucoinWSService
     {
         $wsService = new DefaultWsService(
             $this->clientOption,
+            $this->loop,
             Constants::DOMAIN_TYPE_SPOT,
             false,
             Version::SDK_VERSION);
@@ -72,6 +98,7 @@ class DefaultKucoinWsImpl implements KucoinWSService
     {
         $wsService = new DefaultWsService(
             $this->clientOption,
+            $this->loop,
             Constants::DOMAIN_TYPE_SPOT,
             true,
             Version::SDK_VERSION);
@@ -83,6 +110,7 @@ class DefaultKucoinWsImpl implements KucoinWSService
     {
         $wsService = new DefaultWsService(
             $this->clientOption,
+            $this->loop,
             Constants::DOMAIN_TYPE_FUTURES,
             false,
             Version::SDK_VERSION);
@@ -94,6 +122,7 @@ class DefaultKucoinWsImpl implements KucoinWSService
     {
         $wsService = new DefaultWsService(
             $this->clientOption,
+            $this->loop,
             Constants::DOMAIN_TYPE_FUTURES,
             true,
             Version::SDK_VERSION);

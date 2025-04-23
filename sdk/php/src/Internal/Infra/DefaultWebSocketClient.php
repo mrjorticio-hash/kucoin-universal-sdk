@@ -5,11 +5,13 @@ namespace KuCoin\UniversalSDK\Internal\Infra;
 use Evenement\EventEmitterTrait;
 use Exception;
 use JMS\Serializer\SerializerBuilder;
+use KuCoin\UniversalSDK\Common\Logger;
 use KuCoin\UniversalSDK\Internal\Interfaces\WebSocketClient;
 use KuCoin\UniversalSDK\Internal\Interfaces\WsTokenProvider;
 use KuCoin\UniversalSDK\Internal\Utils\JsonSerializedHandler;
 use KuCoin\UniversalSDK\Model\Constants;
 use KuCoin\UniversalSDK\Model\WebSocketClientOption;
+use KuCoin\UniversalSDK\Model\WebSocketEvent;
 use KuCoin\UniversalSDK\Model\WsMessage;
 use Ratchet\Client\Connector;
 use Ratchet\Client\WebSocket;
@@ -23,6 +25,19 @@ class DefaultWebSocketClient implements WebSocketClient
 {
     use EventEmitterTrait;
 
+    /**
+     * Connection State
+     */
+    const STATE_DISCONNECTED = 0;
+    const STATE_CONNECTING = 1;
+    const STATE_CONNECTED = 2;
+
+
+    private $state;
+
+    /**
+     * @var Loop $loop
+     */
     private $loop;
     private $connector;
     private $conn;
@@ -38,11 +53,11 @@ class DefaultWebSocketClient implements WebSocketClient
     private $ackMap = [];
     private $serializer;
 
-    private $timer;
+    private $keepAliveTimer;
 
-    public function __construct($tokenProvider, $options)
+    public function __construct($tokenProvider, $options, $loop)
     {
-        $this->loop = Loop::get();
+        $this->loop = $loop;
         $this->connector = new Connector($this->loop);
         $this->tokenProvider = $tokenProvider;
         $this->options = $options;
@@ -54,7 +69,19 @@ class DefaultWebSocketClient implements WebSocketClient
 
     public function start(): PromiseInterface
     {
-        return $this->dial();
+        if ($this->state != self::STATE_DISCONNECTED) {
+            $deferred = new Deferred();
+            $deferred->resolve("");
+            return $deferred->promise();
+        }
+        $this->state = self::STATE_CONNECTING;
+        return $this->dial()->then(function () {
+            $this->startHeartbeat();
+            $this->emit('event', [WebSocketEvent::EVENT_CONNECTED, '']);
+        }, function ($exception) {
+            $this->state = self::STATE_DISCONNECTED;
+            throw $exception;
+        });
     }
 
     private function dial(): PromiseInterface
@@ -74,7 +101,10 @@ class DefaultWebSocketClient implements WebSocketClient
 
                 $conn->once('message', function ($message) use ($conn, $deferred, $dailTimer) {
                     $this->loop->cancelTimer($dailTimer);
-                    if ($this->onHelloMessage($message)) {
+
+                    $helloResult = $this->onHelloMessage($message);
+
+                    if ($helloResult[0]) {
                         $conn->on('message', function ($msg) {
                             try {
                                 $this->onMessage($msg);
@@ -82,9 +112,9 @@ class DefaultWebSocketClient implements WebSocketClient
                                 error_log('[WebSocketClient] onMessage error: ' . $exception->getMessage());
                             }
                         });
-                        $deferred->resolve($message);
+                        $deferred->resolve('');
                     } else {
-                        $deferred->reject(new RuntimeException("Handshake failed: unexpected hello message: " . $message));
+                        $deferred->reject(new RuntimeException("Handshake failed: unexpected hello message: " . $helloResult[1]));
                     }
                 });
 
@@ -95,7 +125,6 @@ class DefaultWebSocketClient implements WebSocketClient
             function (Exception $e) use ($deferred, $dailTimer) {
                 $this->loop->cancelTimer($dailTimer);
                 $deferred->reject($e);
-                $this->onError($e);
             }
         );
         return $deferred->promise();
@@ -108,14 +137,19 @@ class DefaultWebSocketClient implements WebSocketClient
     }
 
 
-    private function onHelloMessage($msg): bool
+    private function onHelloMessage($msg): array
     {
-        $data = WsMessage::jsonDeserialize($msg, $this->serializer);
-
-        if ($data->type === Constants::WS_MESSAGE_TYPE_WELCOME) {
-            return true;
-        } else {
-            return false;
+        try {
+            $data = WsMessage::jsonDeserialize($msg, $this->serializer);
+            if ($data->type === Constants::WS_MESSAGE_TYPE_WELCOME) {
+                return [true, ""];
+            } else if ($data->type === Constants::WS_MESSAGE_TYPE_ERROR) {
+                return [false, ""];
+            } else {
+                return [false, "unknown message type: " . $data->type];
+            }
+        } catch (Exception $exception) {
+            return [false, $exception->getMessage()];
         }
     }
 
@@ -173,14 +207,14 @@ class DefaultWebSocketClient implements WebSocketClient
 
     private function startHeartbeat()
     {
-        $this->timer = $this->loop->addPeriodicTimer($this->options->pingInterval, function () {
+        $this->keepAliveTimer = $this->loop->addPeriodicTimer($this->options->pingInterval, function () {
             if ($this->connected && $this->conn) {
                 $pingMessage = new WsMessage('ping', []);
                 $this->write($pingMessage, $this->options->writeTimeout)
                     ->then(function () {
                         echo "Ping acknowledged.\n";
                     })
-                    ->otherwise(function ($e) {
+                    ->catch(function ($e) {
                         echo "Ping failed: {$e->getMessage()}\n";
                     });
             }
@@ -189,8 +223,8 @@ class DefaultWebSocketClient implements WebSocketClient
 
     public function stop(): PromiseInterface
     {
-        if ($this->timer) {
-            $this->timer->cancel();
+        if ($this->keepAliveTimer) {
+            $this->keepAliveTimer->cancel();
         }
         if ($this->conn) {
             $this->conn->close();

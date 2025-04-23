@@ -8,12 +8,31 @@ use KuCoin\UniversalSDK\Generate\Margin\MarginPrivate\MarginPrivateWs;
 use KuCoin\UniversalSDK\Generate\Margin\MarginPublic\MarginPublicWs;
 use KuCoin\UniversalSDK\Generate\Spot\SpotPrivate\SpotPrivateWs;
 use KuCoin\UniversalSDK\Generate\Spot\SpotPublic\SpotPublicWs;
+use React\EventLoop\LoopInterface;
 
 /**
  * KucoinWSService provides WebSocket interfaces for Spot, Margin, and Futures trading.
  */
 interface KucoinWSService
 {
+    /**
+     * Starts the shared event loop to begin processing asynchronous WebSocket events.
+     * Should be called once after all desired WebSocket clients are started.
+     */
+    public function startEventLoop();
+
+    /**
+     * Stops the shared event loop and halts all asynchronous event processing.
+     */
+    public function stopEventLoop();
+
+    /**
+     * Returns the shared ReactPHP event loop used by all WebSocket clients.
+     *
+     * @return LoopInterface
+     */
+    public function getLoop(): LoopInterface;
+
     /**
      * Returns the interface to interact with the Spot Trading WebSocket (public channel) API of KuCoin.
      *

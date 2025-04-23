@@ -46,7 +46,7 @@ class DefaultWsService implements WebSocketService
      */
     private $serializer;
 
-    public function __construct(ClientOption $option, $domainType, $privateChannel, $versionString)
+    public function __construct(ClientOption $option, $loop, $domainType, $privateChannel, $versionString)
     {
         if (!$option->websocketClientOption) {
             throw new RuntimeException("websocketClientOption is undefined");
@@ -67,7 +67,7 @@ class DefaultWsService implements WebSocketService
 
         $this->client = new DefaultWebSocketClient(
             new DefaultWsTokenProvider($this->tokenTransport, $domainType, $privateChannel),
-            $this->wsOption
+            $this->wsOption, $loop
         );
 
         $this->client->on("event", function (WebSocketEvent $event, $msg) {

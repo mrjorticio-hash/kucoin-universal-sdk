@@ -3,6 +3,9 @@
 namespace KuCoin\UniversalSDK\Model;
 
 use JMS\Serializer\Serializer;
+use JMS\Serializer\Annotation\Exclude;
+use JMS\Serializer\Annotation\SerializedName;
+use JMS\Serializer\Annotation\Type;
 
 /**
  * Class WsMessage

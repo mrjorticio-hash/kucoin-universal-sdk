@@ -51,6 +51,7 @@ Data and Message Handling:
 use KuCoin\UniversalSDK\Internal\Rest\DefaultKucoinRestAPIImpl;
 use KuCoin\UniversalSDK\Internal\Ws\DefaultKucoinWsImpl;
 use KuCoin\UniversalSDK\Model\ClientOption;
+use React\EventLoop\LoopInterface;
 
 
 /**
@@ -73,10 +74,10 @@ class DefaultClient implements Client
      *
      * @param ClientOption $op
      */
-    public function __construct(ClientOption $op)
+    public function __construct(ClientOption $op, ?LoopInterface $loop = null)
     {
         $this->restImpl = new DefaultKucoinRestAPIImpl($op);
-        $this->wsImpl = new DefaultKucoinWsImpl($op);
+        $this->wsImpl = new DefaultKucoinWsImpl($op, $loop);
     }
 
     /**
