@@ -3,6 +3,7 @@
 
 namespace KuCoin\UniversalSDK\Generate\Futures\FuturesPrivate;
 use KuCoin\UniversalSDK\Internal\Interfaces\WebSocketService;
+use React\Promise\PromiseInterface;
 
 interface FuturesPrivateWs
 {
@@ -11,64 +12,75 @@ interface FuturesPrivateWs
      * Push order changes for all symbol
      * push frequency: real-time
      * @param callable $callback function(string $topic, string $subject, AllOrderEvent $data): void
+     * @return PromiseInterface<string> A promise that resolves to the subscription ID or rejects with an error.
      */
-    public function allOrder(callable $callback): string;
+    public function allOrder(callable $callback): PromiseInterface;
 
     /**
      * All symbol position change events push
      * Subscribe to this topic to get real-time pushes on all symbols’ position change events
      * push frequency: real-time
      * @param callable $callback function(string $topic, string $subject, AllPositionEvent $data): void
+     * @return PromiseInterface<string> A promise that resolves to the subscription ID or rejects with an error.
      */
-    public function allPosition(callable $callback): string;
+    public function allPosition(callable $callback): PromiseInterface;
 
     /**
      * the balance change push
      * Subscribe to this topic to get real-time balance change pushes
      * push frequency: real-time
      * @param callable $callback function(string $topic, string $subject, BalanceEvent $data): void
+     * @return PromiseInterface<string> A promise that resolves to the subscription ID or rejects with an error.
      */
-    public function balance(callable $callback): string;
+    public function balance(callable $callback): PromiseInterface;
 
     /**
      * the leverage change push
      * Subscribe to this topic to get real-time pushes on leverage changes of contracts that are in cross margin mode
      * push frequency: real-time
      * @param callable $callback function(string $topic, string $subject, CrossLeverageEvent $data): void
+     * @return PromiseInterface<string> A promise that resolves to the subscription ID or rejects with an error.
      */
-    public function crossLeverage(callable $callback): string;
+    public function crossLeverage(callable $callback): PromiseInterface;
 
     /**
      * the margin mode change
      * Subscribe to this topic to get real-time pushes on symbols’ margin mode change events
      * push frequency: real-time
      * @param callable $callback function(string $topic, string $subject, MarginModeEvent $data): void
+     * @return PromiseInterface<string> A promise that resolves to the subscription ID or rejects with an error.
      */
-    public function marginMode(callable $callback): string;
+    public function marginMode(callable $callback): PromiseInterface;
 
     /**
      * Order change pushes.
      * Push order changes for the specified symbol
      * push frequency: real-time
      * @param callable $callback function(string $topic, string $subject, OrderEvent $data): void
+     * @return PromiseInterface<string> A promise that resolves to the subscription ID or rejects with an error.
      */
-    public function order(string $symbol, callable $callback): string;
+    public function order(string $symbol, callable $callback): PromiseInterface;
 
     /**
      * the position change events push
      * Subscribe this topic to get real-time pushes on symbols’ position change events
      * push frequency: real-time
      * @param callable $callback function(string $topic, string $subject, PositionEvent $data): void
+     * @return PromiseInterface<string> A promise that resolves to the subscription ID or rejects with an error.
      */
-    public function position(string $symbol, callable $callback): string;
+    public function position(
+        string $symbol,
+        callable $callback
+    ): PromiseInterface;
 
     /**
      * stop order change pushes.
      * Subscribe to this topic to get real-time pushes on stop order changes.
      * push frequency: real-time
      * @param callable $callback function(string $topic, string $subject, StopOrdersEvent $data): void
+     * @return PromiseInterface<string> A promise that resolves to the subscription ID or rejects with an error.
      */
-    public function stopOrders(callable $callback): string;
+    public function stopOrders(callable $callback): PromiseInterface;
 
     /**
      * Unsubscribe from topics
@@ -96,7 +108,7 @@ class FuturesPrivateWsImpl implements FuturesPrivateWs
         $this->wsService = $wsService;
     }
 
-    public function allOrder(callable $callback): string
+    public function allOrder(callable $callback): PromiseInterface
     {
         $topicPrefix = "/contractMarket/tradeOrders";
 
@@ -109,7 +121,7 @@ class FuturesPrivateWsImpl implements FuturesPrivateWs
         );
     }
 
-    public function allPosition(callable $callback): string
+    public function allPosition(callable $callback): PromiseInterface
     {
         $topicPrefix = "/contract/positionAll";
 
@@ -122,7 +134,7 @@ class FuturesPrivateWsImpl implements FuturesPrivateWs
         );
     }
 
-    public function balance(callable $callback): string
+    public function balance(callable $callback): PromiseInterface
     {
         $topicPrefix = "/contractAccount/wallet";
 
@@ -135,7 +147,7 @@ class FuturesPrivateWsImpl implements FuturesPrivateWs
         );
     }
 
-    public function crossLeverage(callable $callback): string
+    public function crossLeverage(callable $callback): PromiseInterface
     {
         $topicPrefix = "/contract/crossLeverage";
 
@@ -148,7 +160,7 @@ class FuturesPrivateWsImpl implements FuturesPrivateWs
         );
     }
 
-    public function marginMode(callable $callback): string
+    public function marginMode(callable $callback): PromiseInterface
     {
         $topicPrefix = "/contract/marginMode";
 
@@ -161,7 +173,7 @@ class FuturesPrivateWsImpl implements FuturesPrivateWs
         );
     }
 
-    public function order(string $symbol, callable $callback): string
+    public function order(string $symbol, callable $callback): PromiseInterface
     {
         $topicPrefix = "/contractMarket/tradeOrders";
 
@@ -174,8 +186,10 @@ class FuturesPrivateWsImpl implements FuturesPrivateWs
         );
     }
 
-    public function position(string $symbol, callable $callback): string
-    {
+    public function position(
+        string $symbol,
+        callable $callback
+    ): PromiseInterface {
         $topicPrefix = "/contract/position";
 
         $args = [$symbol];
@@ -187,7 +201,7 @@ class FuturesPrivateWsImpl implements FuturesPrivateWs
         );
     }
 
-    public function stopOrders(callable $callback): string
+    public function stopOrders(callable $callback): PromiseInterface
     {
         $topicPrefix = "/contractMarket/advancedOrders";
 

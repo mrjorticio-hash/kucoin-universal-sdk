@@ -54,7 +54,7 @@ class DefaultWebSocketClient implements WebSocketClient
 
     public function start(): PromiseInterface
     {
-        $this->dial();
+        return $this->dial();
     }
 
     private function dial(): PromiseInterface

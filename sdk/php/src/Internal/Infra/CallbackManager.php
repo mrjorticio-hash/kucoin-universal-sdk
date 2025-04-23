@@ -2,6 +2,9 @@
 
 namespace KuCoin\UniversalSDK\Internal\Infra;
 
+use KuCoin\UniversalSDK\Internal\Interfaces\WebSocketMessageCallback;
+use KuCoin\UniversalSDK\Internal\Utils\SubInfo;
+
 class CallbackManager
 {
     /** @var array<string, array<string, bool>> */
@@ -50,7 +53,7 @@ class CallbackManager
         return $subInfoList;
     }
 
-    public function add(SubInfo $subInfo)
+    public function add(SubInfo $subInfo): bool
     {
         $id = $subInfo->toId();
         if (isset($this->idTopicMapping[$id])) {
@@ -87,7 +90,7 @@ class CallbackManager
 
     /**
      * @param string $topic
-     * @return callable|null
+     * @return WebSocketMessageCallback|null
      */
     public function get($topic)
     {
@@ -95,4 +98,33 @@ class CallbackManager
             ? $this->topicCallbackMapping[$topic]->callback
             : null;
     }
+}
+
+class Callback
+{
+    /**
+     * @var WebSocketMessageCallback $callback
+     */
+    public $callback;
+    /**
+     * @var string $id
+     */
+    public $id;
+    /**
+     * var string $topic
+     */
+    public $topic;
+
+    /**
+     * @param WebSocketMessageCallback $callback
+     * @param string $id
+     * @param $topic
+     */
+    public function __construct(WebSocketMessageCallback $callback, string $id, $topic)
+    {
+        $this->callback = $callback;
+        $this->id = $id;
+        $this->topic = $topic;
+    }
+
 }

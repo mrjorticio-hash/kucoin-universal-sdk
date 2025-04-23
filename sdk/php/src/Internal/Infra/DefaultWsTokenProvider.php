@@ -42,7 +42,7 @@ class DefaultWsTokenProvider implements WsTokenProvider
 
         /** @var TokenResponse $result */
         $result = $this->transport->call(
-            $this->domain,
+            $this->domainType,
             false,
             'POST',
             $path,

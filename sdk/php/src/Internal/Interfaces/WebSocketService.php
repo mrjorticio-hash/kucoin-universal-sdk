@@ -19,11 +19,12 @@ interface WebSocketService
     /**
      * Subscribes to a topic with a provided message callback.
      *
-     * @param string $topicPrefix The topic to subscribe to
+     * @param string $prefix The topic to subscribe to
      * @param string[] $args Arguments for the subscription
      * @param WebSocketMessageCallback $callback A callback for handling messages on this topic
+     * @return PromiseInterface<string> A promise that resolves to the subscription ID or rejects with an error.
      */
-    public function subscribe($topicPrefix, array $args, $callback): PromiseInterface;
+    public function subscribe(string $prefix, array $args, WebSocketMessageCallback $callback): PromiseInterface;
 
     /**
      * Unsubscribes from a topic.

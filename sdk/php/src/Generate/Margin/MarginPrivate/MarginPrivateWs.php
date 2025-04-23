@@ -3,6 +3,7 @@
 
 namespace KuCoin\UniversalSDK\Generate\Margin\MarginPrivate;
 use KuCoin\UniversalSDK\Internal\Interfaces\WebSocketService;
+use React\Promise\PromiseInterface;
 
 interface MarginPrivateWs
 {
@@ -11,19 +12,21 @@ interface MarginPrivateWs
      * The system will push the change event when the position status changes, or push the current debt message periodically when there is a liability.
      * push frequency: once every 4s
      * @param callable $callback function(string $topic, string $subject, CrossMarginPositionEvent $data): void
+     * @return PromiseInterface<string> A promise that resolves to the subscription ID or rejects with an error.
      */
-    public function crossMarginPosition(callable $callback): string;
+    public function crossMarginPosition(callable $callback): PromiseInterface;
 
     /**
      * Get Isolated Margin Position change
      * The system will push the change event when the position status changes, or push the current debt message periodically when there is a liability.
      * push frequency: real time
      * @param callable $callback function(string $topic, string $subject, IsolatedMarginPositionEvent $data): void
+     * @return PromiseInterface<string> A promise that resolves to the subscription ID or rejects with an error.
      */
     public function isolatedMarginPosition(
         string $symbol,
         callable $callback
-    ): string;
+    ): PromiseInterface;
 
     /**
      * Unsubscribe from topics
@@ -51,7 +54,7 @@ class MarginPrivateWsImpl implements MarginPrivateWs
         $this->wsService = $wsService;
     }
 
-    public function crossMarginPosition(callable $callback): string
+    public function crossMarginPosition(callable $callback): PromiseInterface
     {
         $topicPrefix = "/margin/position";
 
@@ -67,7 +70,7 @@ class MarginPrivateWsImpl implements MarginPrivateWs
     public function isolatedMarginPosition(
         string $symbol,
         callable $callback
-    ): string {
+    ): PromiseInterface {
         $topicPrefix = "/margin/isolatedPosition";
 
         $args = [$symbol];

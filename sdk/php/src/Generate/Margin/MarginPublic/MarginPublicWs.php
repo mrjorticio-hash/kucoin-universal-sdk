@@ -3,6 +3,7 @@
 
 namespace KuCoin\UniversalSDK\Generate\Margin\MarginPublic;
 use KuCoin\UniversalSDK\Internal\Interfaces\WebSocketService;
+use React\Promise\PromiseInterface;
 
 interface MarginPublicWs
 {
@@ -11,16 +12,24 @@ interface MarginPublicWs
      * Subscribe to this topic to get the index price for margin trading. The following ticker symbols are supported: List of currently supported symbols.
      * push frequency: once every 1s
      * @param callable $callback function(string $topic, string $subject, IndexPriceEvent $data): void
+     * @return PromiseInterface<string> A promise that resolves to the subscription ID or rejects with an error.
      */
-    public function indexPrice(array $symbol, callable $callback): string;
+    public function indexPrice(
+        array $symbol,
+        callable $callback
+    ): PromiseInterface;
 
     /**
      * Mark Price
      * Subscribe to this topic to get the mark price for margin trading. The following ticker symbols are supported: List of currently supported symbols
      * push frequency: once every 1s
      * @param callable $callback function(string $topic, string $subject, MarkPriceEvent $data): void
+     * @return PromiseInterface<string> A promise that resolves to the subscription ID or rejects with an error.
      */
-    public function markPrice(array $symbol, callable $callback): string;
+    public function markPrice(
+        array $symbol,
+        callable $callback
+    ): PromiseInterface;
 
     /**
      * Unsubscribe from topics
@@ -48,8 +57,10 @@ class MarginPublicWsImpl implements MarginPublicWs
         $this->wsService = $wsService;
     }
 
-    public function indexPrice(array $symbol, callable $callback): string
-    {
+    public function indexPrice(
+        array $symbol,
+        callable $callback
+    ): PromiseInterface {
         $topicPrefix = "/indicator/index";
 
         $args = $symbol;
@@ -61,8 +72,10 @@ class MarginPublicWsImpl implements MarginPublicWs
         );
     }
 
-    public function markPrice(array $symbol, callable $callback): string
-    {
+    public function markPrice(
+        array $symbol,
+        callable $callback
+    ): PromiseInterface {
         $topicPrefix = "/indicator/markPrice";
 
         $args = $symbol;

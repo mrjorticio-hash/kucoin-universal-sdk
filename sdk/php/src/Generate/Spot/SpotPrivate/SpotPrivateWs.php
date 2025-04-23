@@ -3,6 +3,7 @@
 
 namespace KuCoin\UniversalSDK\Generate\Spot\SpotPrivate;
 use KuCoin\UniversalSDK\Internal\Interfaces\WebSocketService;
+use React\Promise\PromiseInterface;
 
 interface SpotPrivateWs
 {
@@ -11,32 +12,36 @@ interface SpotPrivateWs
      * You will receive this message when an account balance changes. The message contains the details of the change.
      * push frequency: real-time
      * @param callable $callback function(string $topic, string $subject, AccountEvent $data): void
+     * @return PromiseInterface<string> A promise that resolves to the subscription ID or rejects with an error.
      */
-    public function account(callable $callback): string;
+    public function account(callable $callback): PromiseInterface;
 
     /**
      * Get Order(V1)
      * This topic will push all change events of your orders.
      * push frequency: real-time
      * @param callable $callback function(string $topic, string $subject, OrderV1Event $data): void
+     * @return PromiseInterface<string> A promise that resolves to the subscription ID or rejects with an error.
      */
-    public function orderV1(callable $callback): string;
+    public function orderV1(callable $callback): PromiseInterface;
 
     /**
      * Get Order(V2)
      * This topic will push all change events of your orders. Compared with v1, v2 adds an Order Status: \&quot;new\&quot;, there is no difference in push speed
      * push frequency: real-time
      * @param callable $callback function(string $topic, string $subject, OrderV2Event $data): void
+     * @return PromiseInterface<string> A promise that resolves to the subscription ID or rejects with an error.
      */
-    public function orderV2(callable $callback): string;
+    public function orderV2(callable $callback): PromiseInterface;
 
     /**
      * Get Stop Order
      * This topic will push all change events of your stop orders.
      * push frequency: real-time
      * @param callable $callback function(string $topic, string $subject, StopOrderEvent $data): void
+     * @return PromiseInterface<string> A promise that resolves to the subscription ID or rejects with an error.
      */
-    public function stopOrder(callable $callback): string;
+    public function stopOrder(callable $callback): PromiseInterface;
 
     /**
      * Unsubscribe from topics
@@ -64,7 +69,7 @@ class SpotPrivateWsImpl implements SpotPrivateWs
         $this->wsService = $wsService;
     }
 
-    public function account(callable $callback): string
+    public function account(callable $callback): PromiseInterface
     {
         $topicPrefix = "/account/balance";
 
@@ -77,7 +82,7 @@ class SpotPrivateWsImpl implements SpotPrivateWs
         );
     }
 
-    public function orderV1(callable $callback): string
+    public function orderV1(callable $callback): PromiseInterface
     {
         $topicPrefix = "/spotMarket/tradeOrders";
 
@@ -90,7 +95,7 @@ class SpotPrivateWsImpl implements SpotPrivateWs
         );
     }
 
-    public function orderV2(callable $callback): string
+    public function orderV2(callable $callback): PromiseInterface
     {
         $topicPrefix = "/spotMarket/tradeOrdersV2";
 
@@ -103,7 +108,7 @@ class SpotPrivateWsImpl implements SpotPrivateWs
         );
     }
 
-    public function stopOrder(callable $callback): string
+    public function stopOrder(callable $callback): PromiseInterface
     {
         $topicPrefix = "/spotMarket/advancedOrders";
 

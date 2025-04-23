@@ -3,6 +3,7 @@
 
 namespace KuCoin\UniversalSDK\Generate\Futures\FuturesPublic;
 use KuCoin\UniversalSDK\Internal\Interfaces\WebSocketService;
+use React\Promise\PromiseInterface;
 
 interface FuturesPublicWs
 {
@@ -11,90 +12,121 @@ interface FuturesPublicWs
      * Subscribe this topic to get Funding Fee Settlement.
      * push frequency: Settlement is made every 8 hours, real-time push
      * @param callable $callback function(string $topic, string $subject, AnnouncementEvent $data): void
+     * @return PromiseInterface<string> A promise that resolves to the subscription ID or rejects with an error.
      */
-    public function announcement(string $symbol, callable $callback): string;
+    public function announcement(
+        string $symbol,
+        callable $callback
+    ): PromiseInterface;
 
     /**
      * Match execution data.
      * For each order executed, the system will send you the match messages in the format as following.
      * push frequency: real-time
      * @param callable $callback function(string $topic, string $subject, ExecutionEvent $data): void
+     * @return PromiseInterface<string> A promise that resolves to the subscription ID or rejects with an error.
      */
-    public function execution(string $symbol, callable $callback): string;
+    public function execution(
+        string $symbol,
+        callable $callback
+    ): PromiseInterface;
 
     /**
      * instrument
      * Subscribe this topic to get the mark Price, index Price or funding fee Rate
      * push frequency: mark.index.price 1s, funding.rate 1min
      * @param callable $callback function(string $topic, string $subject, InstrumentEvent $data): void
+     * @return PromiseInterface<string> A promise that resolves to the subscription ID or rejects with an error.
      */
-    public function instrument(string $symbol, callable $callback): string;
+    public function instrument(
+        string $symbol,
+        callable $callback
+    ): PromiseInterface;
 
     /**
      * Klines
      * Subscribe to this topic to get K-Line data.
      * push frequency: 1s
      * @param callable $callback function(string $topic, string $subject, KlinesEvent $data): void
+     * @return PromiseInterface<string> A promise that resolves to the subscription ID or rejects with an error.
      */
     public function klines(
         string $symbol,
         string $type,
         callable $callback
-    ): string;
+    ): PromiseInterface;
 
     /**
      * Orderbook - Increment
      * The system will return the increment change orderbook data (all depth). If there is no change in the market, data will not be pushed.
      * push frequency: real-time
      * @param callable $callback function(string $topic, string $subject, OrderbookIncrementEvent $data): void
+     * @return PromiseInterface<string> A promise that resolves to the subscription ID or rejects with an error.
      */
     public function orderbookIncrement(
         string $symbol,
         callable $callback
-    ): string;
+    ): PromiseInterface;
 
     /**
      * Orderbook - Level50
      * The depth50 market data.
      * push frequency: 100ms
      * @param callable $callback function(string $topic, string $subject, OrderbookLevel50Event $data): void
+     * @return PromiseInterface<string> A promise that resolves to the subscription ID or rejects with an error.
      */
     public function orderbookLevel50(
         string $symbol,
         callable $callback
-    ): string;
+    ): PromiseInterface;
 
     /**
      * Orderbook - Level5
      * The system will return the 5 best ask/bid orders data. If there is no change in the market, data will not be pushed
      * push frequency: 100ms
      * @param callable $callback function(string $topic, string $subject, OrderbookLevel5Event $data): void
+     * @return PromiseInterface<string> A promise that resolves to the subscription ID or rejects with an error.
      */
-    public function orderbookLevel5(string $symbol, callable $callback): string;
+    public function orderbookLevel5(
+        string $symbol,
+        callable $callback
+    ): PromiseInterface;
 
     /**
      * Symbol Snapshot
      * Get symbol snapshot.
      * push frequency: 5000ms
      * @param callable $callback function(string $topic, string $subject, SymbolSnapshotEvent $data): void
+     * @return PromiseInterface<string> A promise that resolves to the subscription ID or rejects with an error.
      */
-    public function symbolSnapshot(string $symbol, callable $callback): string;
+    public function symbolSnapshot(
+        string $symbol,
+        callable $callback
+    ): PromiseInterface;
 
     /**
      * Get Ticker(not recommended)
      * Subscribe to this topic to get real-time pushes on BBO changes. It is not recommended to use this topic any more. For real-time ticker information, please subscribe /contractMarket/tickerV2:{symbol}.
      * push frequency: real-time
      * @param callable $callback function(string $topic, string $subject, TickerV1Event $data): void
+     * @return PromiseInterface<string> A promise that resolves to the subscription ID or rejects with an error.
      */
-    public function tickerV1(string $symbol, callable $callback): string;
+    public function tickerV1(
+        string $symbol,
+        callable $callback
+    ): PromiseInterface;
 
     /**
      * Get Ticker V2
      * Subscribe to this topic to get real-time pushes of BBO changes. After subscription, when there are changes in the order book (not necessarily ask1/bid1 changes), the system will push the real-time ticker symbol information to you.
      * push frequency: real-time
      * @param callable $callback function(string $topic, string $subject, TickerV2Event $data): void
+     * @return PromiseInterface<string> A promise that resolves to the subscription ID or rejects with an error.
      */
-    public function tickerV2(string $symbol, callable $callback): string;
+    public function tickerV2(
+        string $symbol,
+        callable $callback
+    ): PromiseInterface;
 
     /**
      * Unsubscribe from topics
@@ -122,8 +154,10 @@ class FuturesPublicWsImpl implements FuturesPublicWs
         $this->wsService = $wsService;
     }
 
-    public function announcement(string $symbol, callable $callback): string
-    {
+    public function announcement(
+        string $symbol,
+        callable $callback
+    ): PromiseInterface {
         $topicPrefix = "/contract/announcement";
 
         $args = [$symbol];
@@ -135,8 +169,10 @@ class FuturesPublicWsImpl implements FuturesPublicWs
         );
     }
 
-    public function execution(string $symbol, callable $callback): string
-    {
+    public function execution(
+        string $symbol,
+        callable $callback
+    ): PromiseInterface {
         $topicPrefix = "/contractMarket/execution";
 
         $args = [$symbol];
@@ -148,8 +184,10 @@ class FuturesPublicWsImpl implements FuturesPublicWs
         );
     }
 
-    public function instrument(string $symbol, callable $callback): string
-    {
+    public function instrument(
+        string $symbol,
+        callable $callback
+    ): PromiseInterface {
         $topicPrefix = "/contract/instrument";
 
         $args = [$symbol];
@@ -165,7 +203,7 @@ class FuturesPublicWsImpl implements FuturesPublicWs
         string $symbol,
         string $type,
         callable $callback
-    ): string {
+    ): PromiseInterface {
         $topicPrefix = "/contractMarket/limitCandle";
 
         $args = [implode("_", [$symbol, $type])];
@@ -180,7 +218,7 @@ class FuturesPublicWsImpl implements FuturesPublicWs
     public function orderbookIncrement(
         string $symbol,
         callable $callback
-    ): string {
+    ): PromiseInterface {
         $topicPrefix = "/contractMarket/level2";
 
         $args = [$symbol];
@@ -192,8 +230,10 @@ class FuturesPublicWsImpl implements FuturesPublicWs
         );
     }
 
-    public function orderbookLevel50(string $symbol, callable $callback): string
-    {
+    public function orderbookLevel50(
+        string $symbol,
+        callable $callback
+    ): PromiseInterface {
         $topicPrefix = "/contractMarket/level2Depth50";
 
         $args = [$symbol];
@@ -205,8 +245,10 @@ class FuturesPublicWsImpl implements FuturesPublicWs
         );
     }
 
-    public function orderbookLevel5(string $symbol, callable $callback): string
-    {
+    public function orderbookLevel5(
+        string $symbol,
+        callable $callback
+    ): PromiseInterface {
         $topicPrefix = "/contractMarket/level2Depth5";
 
         $args = [$symbol];
@@ -218,8 +260,10 @@ class FuturesPublicWsImpl implements FuturesPublicWs
         );
     }
 
-    public function symbolSnapshot(string $symbol, callable $callback): string
-    {
+    public function symbolSnapshot(
+        string $symbol,
+        callable $callback
+    ): PromiseInterface {
         $topicPrefix = "/contractMarket/snapshot";
 
         $args = [$symbol];
@@ -231,8 +275,10 @@ class FuturesPublicWsImpl implements FuturesPublicWs
         );
     }
 
-    public function tickerV1(string $symbol, callable $callback): string
-    {
+    public function tickerV1(
+        string $symbol,
+        callable $callback
+    ): PromiseInterface {
         $topicPrefix = "/contractMarket/ticker";
 
         $args = [$symbol];
@@ -244,8 +290,10 @@ class FuturesPublicWsImpl implements FuturesPublicWs
         );
     }
 
-    public function tickerV2(string $symbol, callable $callback): string
-    {
+    public function tickerV2(
+        string $symbol,
+        callable $callback
+    ): PromiseInterface {
         $topicPrefix = "/contractMarket/tickerV2";
 
         $args = [$symbol];

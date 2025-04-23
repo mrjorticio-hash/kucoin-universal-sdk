@@ -3,6 +3,7 @@
 namespace KuCoin\UniversalSDK\Internal\Utils;
 
 use Exception;
+use KuCoin\UniversalSDK\Internal\Interfaces\WebSocketMessageCallback;
 
 class SubInfo
 {
@@ -14,15 +15,15 @@ class SubInfo
     /** @var string[] */
     public $args;
 
-    /** @var callable|null */
+    /** @var WebSocketMessageCallback|null */
     public $callback;
 
     /**
      * @param string $prefix
      * @param string[] $args
-     * @param callable|null $callback
+     * @param WebSocketMessageCallback|null $callback
      */
-    public function __construct(string $prefix, array $args = [], $callback = null)
+    public function __construct(string $prefix, array $args = [], WebSocketMessageCallback $callback = null)
     {
         $this->prefix = $prefix;
         $this->args = $args;
@@ -51,7 +52,7 @@ class SubInfo
      * @return SubInfo
      * @throws Exception
      */
-    public static function fromId($id, $callback = null): SubInfo
+    public static function fromId(string $id, WebSocketMessageCallback $callback = null): SubInfo
     {
         $parts = explode('@@', $id, 2);
         if (count($parts) !== 2) {

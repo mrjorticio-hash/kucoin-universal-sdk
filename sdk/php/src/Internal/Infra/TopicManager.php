@@ -4,10 +4,10 @@ namespace KuCoin\UniversalSDK\Internal\Infra;
 
 class TopicManager
 {
-    /** @var array<string, CallbackManager> $topicPrefix*/
+    /** @var array<string, CallbackManager> $topicPrefix */
     private $topicPrefix = [];
 
-    public function getCallbackManager($topic)
+    public function getCallbackManager($topic): CallbackManager
     {
         $parts = explode(':', $topic);
         $prefix = (count($parts) === 2 && $parts[1] !== 'all') ? $parts[0] : $topic;
