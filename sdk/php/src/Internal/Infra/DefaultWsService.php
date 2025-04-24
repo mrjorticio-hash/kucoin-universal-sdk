@@ -70,7 +70,7 @@ class DefaultWsService implements WebSocketService
             $this->wsOption, $loop
         );
 
-        $this->client->on("event", function (WebSocketEvent $event, $msg) {
+        $this->client->on("event", function ($event, $msg) {
             $this->emitEvent($event, $msg);
         });
 

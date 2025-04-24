@@ -15,11 +15,11 @@ use KuCoin\UniversalSDK\Model\WebSocketEvent;
 use KuCoin\UniversalSDK\Model\WsMessage;
 use Ratchet\Client\Connector;
 use Ratchet\Client\WebSocket;
-use React\EventLoop\Loop;
+use React\EventLoop\LoopInterface;
 use React\Promise\Deferred;
 use React\Promise\PromiseInterface;
 use RuntimeException;
-use function React\Promise\reject;
+use Throwable;
 
 class DefaultWebSocketClient implements WebSocketClient
 {
@@ -31,28 +31,38 @@ class DefaultWebSocketClient implements WebSocketClient
     const STATE_DISCONNECTED = 0;
     const STATE_CONNECTING = 1;
     const STATE_CONNECTED = 2;
-
-
     private $state;
-
     /**
-     * @var Loop $loop
+     * @var LoopInterface $loop
      */
     private $loop;
+    /**
+     * @var Connector $connector
+     */
     private $connector;
+    /**
+     * @var WebSocket $conn
+     */
     private $conn;
+    /**
+     * @var string $url
+     */
     private $url;
     /**
      * @var WsTokenProvider $tokenProvider
      */
     private $tokenProvider;
-    /**@var WebSocketClientOption $options */
+    /**
+     * @var WebSocketClientOption $options
+     */
     private $options;
-    private $connected = false;
+    /**
+     * @var WsToken $tokenInfo
+     */
+    private $tokenInfo;
     private $reconnectAttempts = 0;
     private $ackMap = [];
     private $serializer;
-
     private $keepAliveTimer;
 
     public function __construct($tokenProvider, $options, $loop)
@@ -61,6 +71,7 @@ class DefaultWebSocketClient implements WebSocketClient
         $this->connector = new Connector($this->loop);
         $this->tokenProvider = $tokenProvider;
         $this->options = $options;
+        $this->state = self::STATE_DISCONNECTED;
         $this->serializer = SerializerBuilder::create()->addDefaultHandlers()
             ->configureHandlers(function ($handlerRegistry) {
                 $handlerRegistry->registerSubscribingHandler(new JsonSerializedHandler());
@@ -70,50 +81,59 @@ class DefaultWebSocketClient implements WebSocketClient
     public function start(): PromiseInterface
     {
         if ($this->state != self::STATE_DISCONNECTED) {
+            Logger::warn('WebSocket already started');
             $deferred = new Deferred();
-            $deferred->resolve("");
+            $deferred->resolve([]);
             return $deferred->promise();
         }
         $this->state = self::STATE_CONNECTING;
+        Logger::info('Dialing WebSocket');
         return $this->dial()->then(function () {
+            $this->state = self::STATE_CONNECTED;
             $this->startHeartbeat();
+            Logger::info('WebSocket connected');
             $this->emit('event', [WebSocketEvent::EVENT_CONNECTED, '']);
         }, function ($exception) {
             $this->state = self::STATE_DISCONNECTED;
+            Logger::error('WebSocket connection failed', ['error' => $exception]);
             throw $exception;
         });
     }
 
     private function dial(): PromiseInterface
     {
-        $tokenInfo = $this->randomEndpoint($this->tokenProvider->getToken());
-        $this->url = $tokenInfo->endpoint . '?token=' . $tokenInfo->token;
+        $this->tokenInfo = $this->randomEndpoint($this->tokenProvider->getToken());
+        $this->url = $this->tokenInfo->endpoint . '?token=' . $this->tokenInfo->token;
+
+        Logger::info('Connecting to WebSocket endpoint', ['url' => $this->tokenInfo->endpoint]);
 
         $deferred = new Deferred();
         $dailTimer = $this->loop->addTimer($this->options->dialTimeout, function () use ($deferred) {
+            Logger::error('Dial timeout');
             $deferred->reject(new RuntimeException("wait server response timed out"));
         });
         $this->connector->__invoke($this->url)->then(
             function (WebSocket $conn) use ($deferred, $dailTimer) {
                 $this->conn = $conn;
-                $this->connected = true;
                 $this->reconnectAttempts = 0;
+                Logger::info('WebSocket handshake started');
 
                 $conn->once('message', function ($message) use ($conn, $deferred, $dailTimer) {
                     $this->loop->cancelTimer($dailTimer);
-
                     $helloResult = $this->onHelloMessage($message);
 
                     if ($helloResult[0]) {
+                        Logger::info('Handshake successful');
                         $conn->on('message', function ($msg) {
                             try {
                                 $this->onMessage($msg);
                             } catch (Exception $exception) {
-                                error_log('[WebSocketClient] onMessage error: ' . $exception->getMessage());
+                                Logger::error('onMessage error', ['error' => $exception->getMessage()]);
                             }
                         });
-                        $deferred->resolve('');
+                        $deferred->resolve([]);
                     } else {
+                        Logger::error('Handshake failed', ['reason' => $helloResult[1]]);
                         $deferred->reject(new RuntimeException("Handshake failed: unexpected hello message: " . $helloResult[1]));
                     }
                 });
@@ -124,6 +144,7 @@ class DefaultWebSocketClient implements WebSocketClient
             },
             function (Exception $e) use ($deferred, $dailTimer) {
                 $this->loop->cancelTimer($dailTimer);
+                Logger::error('Connection error', ['error' => $e->getMessage()]);
                 $deferred->reject($e);
             }
         );
@@ -155,13 +176,12 @@ class DefaultWebSocketClient implements WebSocketClient
 
     private function onMessage($msg)
     {
-        echo "Received message: {$msg}\n";
-
+        Logger::debug('Message received', ['msg' => $msg]);
         $data = WsMessage::jsonDeserialize($msg, $this->serializer);
 
         switch ($data->type) {
-            case Constants::WS_MESSAGE_TYPE_WELCOME :
-                echo "Welcome message received.\n";
+            case Constants::WS_MESSAGE_TYPE_WELCOME:
+                Logger::info('Welcome message received');
                 break;
             case Constants::WS_MESSAGE_TYPE_PONG:
             case Constants::WS_MESSAGE_TYPE_ACK:
@@ -174,21 +194,13 @@ class DefaultWebSocketClient implements WebSocketClient
                 $this->emit('message', [$data]);
                 break;
             default:
-                echo "Unknown message type: " . $data->type . "\n";
+                Logger::warn('Unknown message type', ['type' => $data->type]);
         }
     }
 
     private function onClose($code, $reason)
     {
-        echo "Connection closed ({$code} - {$reason}).\n";
-        $this->connected = false;
-        $this->attemptReconnect();
-    }
-
-    private function onError($e)
-    {
-        echo "Connection error: {$e->getMessage()}\n";
-        $this->connected = false;
+        Logger::warn('Connection closed', ['code' => $code, 'reason' => $reason]);
         $this->attemptReconnect();
     }
 
@@ -196,26 +208,28 @@ class DefaultWebSocketClient implements WebSocketClient
     {
         if ($this->reconnectAttempts < $this->options->reconnectAttempts) {
             $this->reconnectAttempts++;
-            echo "Reconnecting in {$this->options->reconnectInterval} seconds...\n";
+            Logger::info('Reconnecting...', ['attempt' => $this->reconnectAttempts]);
             $this->loop->addTimer($this->options->reconnectInterval, function () {
                 $this->dail();
             });
         } else {
-            echo "Max reconnect attempts reached. Giving up.\n";
+            Logger::error('Max reconnect attempts reached');
         }
     }
 
     private function startHeartbeat()
     {
-        $this->keepAliveTimer = $this->loop->addPeriodicTimer($this->options->pingInterval, function () {
-            if ($this->connected && $this->conn) {
-                $pingMessage = new WsMessage('ping', []);
+        $this->keepAliveTimer = $this->loop->addPeriodicTimer($this->tokenInfo->pingInterval / 1000, function () {
+            if ($this->state == self::STATE_CONNECTED) {
+                $pingMessage = new WsMessage();
+                $pingMessage->type = Constants::WS_MESSAGE_TYPE_PING;
+                $pingMessage->id = uniqid('', true);
                 $this->write($pingMessage, $this->options->writeTimeout)
                     ->then(function () {
-                        echo "Ping acknowledged.\n";
+                        Logger::info('Ping acknowledged');
                     })
                     ->catch(function ($e) {
-                        echo "Ping failed: {$e->getMessage()}\n";
+                        Logger::warn('Ping failed', ['error' => $e]);
                     });
             }
         });
@@ -229,36 +243,38 @@ class DefaultWebSocketClient implements WebSocketClient
         if ($this->conn) {
             $this->conn->close();
         }
-        $this->connected = false;
-        echo "WebSocket client stopped.\n";
+        Logger::info('WebSocket client stopped');
     }
 
     public function write(WsMessage $message, int $timeout): PromiseInterface
     {
-        if ($this->connected && $this->conn) {
+
+        if ($this->state !== self::STATE_CONNECTED) {
             $deferred = new Deferred();
-            $this->ackMap[$message->id] = $deferred;
-
-            $this->loop->addTimer($timeout / 1000, function () use ($message, $deferred) {
-                if (isset($this->ackMap[$message->id])) {
-                    unset($this->ackMap[$message->id]);
-                    $deferred->reject(new Exception("Ack timeout for {$message->id}"));
-                }
-            });
-
-            try {
-                $this->conn->send($message->jsonSerialize($this->serializer));
-            } catch (Exception $e) {
-                if (isset($this->ackMap[$message->id])) {
-                    unset($this->ackMap[$message->id]);
-                }
-                $deferred->reject($e);
-            }
-
+            $deferred->reject(new RuntimeException("WebSocket server is not connected"));
             return $deferred->promise();
-        } else {
-            return reject(new Exception("Not connected"));
         }
+
+        $deferred = new Deferred();
+        $this->ackMap[$message->id] = $deferred;
+
+        $this->loop->addTimer($timeout, function () use ($message, $deferred) {
+            if (isset($this->ackMap[$message->id])) {
+                unset($this->ackMap[$message->id]);
+                Logger::error('Ack timeout', ['id' => $message->id]);
+                $deferred->reject(new Exception("Ack timeout for {$message->id}"));
+            }
+        });
+
+        try {
+            $this->conn->send($message->jsonSerialize($this->serializer));
+        } catch (Throwable $e) {
+            unset($this->ackMap[$message->id]);
+            Logger::error('Send failed', ['id' => $message->id, 'error' => $e]);
+            $deferred->reject($e);
+        }
+
+        return $deferred->promise();
     }
 
     private function handleAck($id, $err)
@@ -267,12 +283,14 @@ class DefaultWebSocketClient implements WebSocketClient
             $deferred = $this->ackMap[$id];
             unset($this->ackMap[$id]);
             if ($err) {
+                Logger::warn('Ack rejected', ['id' => $id, 'error' => $err]);
                 $deferred->reject($err);
             } else {
-                $deferred->resolve();
+                Logger::debug('Ack resolved', ['id' => $id]);
+                $deferred->resolve([]);
             }
         } else {
-            echo "Unknown ack id: $id\n";
+            Logger::warn('Unknown ack id', ['id' => $id]);
         }
     }
 

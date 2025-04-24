@@ -93,6 +93,6 @@ class WsMessage
      */
     public function jsonSerialize(Serializer $serializer): string
     {
-        return $serializer->serialize($this->response, 'json');
+        return $serializer->serialize($this, 'json');
     }
 }

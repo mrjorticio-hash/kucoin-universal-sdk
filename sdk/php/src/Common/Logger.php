@@ -2,6 +2,8 @@
 
 namespace KuCoin\UniversalSDK\Common;
 
+use Throwable;
+
 class Logger
 {
     /** @var callable|null */
@@ -82,14 +84,17 @@ class Logger
 
     private static function formatLog(string $level, string $message, array $context = []): string
     {
-        $contextStr = '';
-        if (!empty($context)) {
-            $pairs = [];
-            foreach ($context as $k => $v) {
+        $pairs = [];
+        foreach ($context as $k => $v) {
+            if ($v instanceof Throwable) {
+                $pairs[] = "{$k}=" . get_class($v) . ": " . $v->getMessage();
+                $pairs[] = "trace=" . str_replace(PHP_EOL, ' | ', $v->getTraceAsString());
+            } else {
                 $pairs[] = "$k=$v";
             }
-            $contextStr = ' ' . implode(' ', $pairs);
         }
+
+        $contextStr = $pairs ? ' ' . implode(' ', $pairs) : '';
 
         $replacements = [
             '{time}' => date('Y-m-d H:i:s'),
@@ -100,4 +105,5 @@ class Logger
 
         return str_replace(array_keys($replacements), array_values($replacements), self::$format);
     }
+
 }
