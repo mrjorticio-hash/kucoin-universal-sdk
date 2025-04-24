@@ -62,6 +62,15 @@ class KlinesEvent implements Response
     {
         return $serializer->deserialize($json, KlinesEvent::class, "json");
     }
+
+    /**
+     * @param callable $callback function(string $topic, string $subject, KlinesEvent $data): void
+     */
+    public static function createCallback(
+        callable $callback
+    ): KlinesEventCallbackWrapper {
+        return new KlinesEventCallbackWrapper($callback);
+    }
 }
 
 class KlinesEventCallbackWrapper implements WebSocketMessageCallback

@@ -48,6 +48,15 @@ class MarginModeEvent implements Response
     {
         return $serializer->deserialize($json, MarginModeEvent::class, "json");
     }
+
+    /**
+     * @param callable $callback function(string $topic, string $subject, MarginModeEvent $data): void
+     */
+    public static function createCallback(
+        callable $callback
+    ): MarginModeEventCallbackWrapper {
+        return new MarginModeEventCallbackWrapper($callback);
+    }
 }
 
 class MarginModeEventCallbackWrapper implements WebSocketMessageCallback

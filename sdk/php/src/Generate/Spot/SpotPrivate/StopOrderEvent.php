@@ -125,6 +125,15 @@ class StopOrderEvent implements Response
     {
         return $serializer->deserialize($json, StopOrderEvent::class, "json");
     }
+
+    /**
+     * @param callable $callback function(string $topic, string $subject, StopOrderEvent $data): void
+     */
+    public static function createCallback(
+        callable $callback
+    ): StopOrderEventCallbackWrapper {
+        return new StopOrderEventCallbackWrapper($callback);
+    }
 }
 
 class StopOrderEventCallbackWrapper implements WebSocketMessageCallback

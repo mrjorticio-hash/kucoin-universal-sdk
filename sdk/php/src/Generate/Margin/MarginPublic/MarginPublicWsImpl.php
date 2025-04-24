@@ -26,7 +26,7 @@ class MarginPublicWsImpl implements MarginPublicWs
         return $this->wsService->subscribe(
             $topicPrefix,
             $args,
-            new IndexPriceEventCallbackWrapper($callback)
+            IndexPriceEvent::createCallback($callback)
         );
     }
 
@@ -41,7 +41,7 @@ class MarginPublicWsImpl implements MarginPublicWs
         return $this->wsService->subscribe(
             $topicPrefix,
             $args,
-            new MarkPriceEventCallbackWrapper($callback)
+            MarkPriceEvent::createCallback($callback)
         );
     }
 

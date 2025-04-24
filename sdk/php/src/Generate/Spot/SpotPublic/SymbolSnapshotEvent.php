@@ -59,6 +59,15 @@ class SymbolSnapshotEvent implements Response
             "json"
         );
     }
+
+    /**
+     * @param callable $callback function(string $topic, string $subject, SymbolSnapshotEvent $data): void
+     */
+    public static function createCallback(
+        callable $callback
+    ): SymbolSnapshotEventCallbackWrapper {
+        return new SymbolSnapshotEventCallbackWrapper($callback);
+    }
 }
 
 class SymbolSnapshotEventCallbackWrapper implements WebSocketMessageCallback

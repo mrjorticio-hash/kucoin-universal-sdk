@@ -80,6 +80,15 @@ class OrderbookIncrementEvent implements Response
             "json"
         );
     }
+
+    /**
+     * @param callable $callback function(string $topic, string $subject, OrderbookIncrementEvent $data): void
+     */
+    public static function createCallback(
+        callable $callback
+    ): OrderbookIncrementEventCallbackWrapper {
+        return new OrderbookIncrementEventCallbackWrapper($callback);
+    }
 }
 
 class OrderbookIncrementEventCallbackWrapper implements WebSocketMessageCallback

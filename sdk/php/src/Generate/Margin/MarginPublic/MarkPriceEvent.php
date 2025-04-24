@@ -69,6 +69,15 @@ class MarkPriceEvent implements Response
     {
         return $serializer->deserialize($json, MarkPriceEvent::class, "json");
     }
+
+    /**
+     * @param callable $callback function(string $topic, string $subject, MarkPriceEvent $data): void
+     */
+    public static function createCallback(
+        callable $callback
+    ): MarkPriceEventCallbackWrapper {
+        return new MarkPriceEventCallbackWrapper($callback);
+    }
 }
 
 class MarkPriceEventCallbackWrapper implements WebSocketMessageCallback

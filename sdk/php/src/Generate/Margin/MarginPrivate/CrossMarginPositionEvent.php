@@ -101,6 +101,15 @@ class CrossMarginPositionEvent implements Response
             "json"
         );
     }
+
+    /**
+     * @param callable $callback function(string $topic, string $subject, CrossMarginPositionEvent $data): void
+     */
+    public static function createCallback(
+        callable $callback
+    ): CrossMarginPositionEventCallbackWrapper {
+        return new CrossMarginPositionEventCallbackWrapper($callback);
+    }
 }
 
 class CrossMarginPositionEventCallbackWrapper implements

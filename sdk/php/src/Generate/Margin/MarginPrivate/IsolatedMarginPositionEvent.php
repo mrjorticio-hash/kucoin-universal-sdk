@@ -87,6 +87,15 @@ class IsolatedMarginPositionEvent implements Response
             "json"
         );
     }
+
+    /**
+     * @param callable $callback function(string $topic, string $subject, IsolatedMarginPositionEvent $data): void
+     */
+    public static function createCallback(
+        callable $callback
+    ): IsolatedMarginPositionEventCallbackWrapper {
+        return new IsolatedMarginPositionEventCallbackWrapper($callback);
+    }
 }
 
 class IsolatedMarginPositionEventCallbackWrapper implements

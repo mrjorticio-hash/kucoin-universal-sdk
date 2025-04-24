@@ -111,6 +111,15 @@ class TradeEvent implements Response
     {
         return $serializer->deserialize($json, TradeEvent::class, "json");
     }
+
+    /**
+     * @param callable $callback function(string $topic, string $subject, TradeEvent $data): void
+     */
+    public static function createCallback(
+        callable $callback
+    ): TradeEventCallbackWrapper {
+        return new TradeEventCallbackWrapper($callback);
+    }
 }
 
 class TradeEventCallbackWrapper implements WebSocketMessageCallback

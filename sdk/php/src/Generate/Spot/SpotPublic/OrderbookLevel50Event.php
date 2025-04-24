@@ -66,6 +66,15 @@ class OrderbookLevel50Event implements Response
             "json"
         );
     }
+
+    /**
+     * @param callable $callback function(string $topic, string $subject, OrderbookLevel50Event $data): void
+     */
+    public static function createCallback(
+        callable $callback
+    ): OrderbookLevel50EventCallbackWrapper {
+        return new OrderbookLevel50EventCallbackWrapper($callback);
+    }
 }
 
 class OrderbookLevel50EventCallbackWrapper implements WebSocketMessageCallback

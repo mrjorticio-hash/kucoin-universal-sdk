@@ -88,6 +88,15 @@ class {{classname}} implements Serializable{
     }
 
 {{/vendorExtensions.x-original-response}}
+
+{{#vendorExtensions.x-response-model}}
+    /**
+     * @param callable $callback function(string $topic, string $subject, {{classname}} $data): void
+     */
+    public static function createCallback(callable $callback) : {{classname}}CallbackWrapper{
+        return new {{classname}}CallbackWrapper($callback);
+    }
+{{/vendorExtensions.x-response-model}}
 }
 
 {{#vendorExtensions.x-response-model}}

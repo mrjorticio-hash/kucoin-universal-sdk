@@ -76,6 +76,15 @@ class InstrumentEvent implements Response
     {
         return $serializer->deserialize($json, InstrumentEvent::class, "json");
     }
+
+    /**
+     * @param callable $callback function(string $topic, string $subject, InstrumentEvent $data): void
+     */
+    public static function createCallback(
+        callable $callback
+    ): InstrumentEventCallbackWrapper {
+        return new InstrumentEventCallbackWrapper($callback);
+    }
 }
 
 class InstrumentEventCallbackWrapper implements WebSocketMessageCallback

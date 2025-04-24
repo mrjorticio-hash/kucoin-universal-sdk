@@ -41,6 +41,26 @@ class Logger
         self::$format = $format;
     }
 
+    /**
+     * Get the current log level.
+     *
+     * @return string
+     */
+    public static function getLevel(): string
+    {
+        return self::$level;
+    }
+
+    /**
+     * Check if current log level is debug.
+     *
+     * @return bool
+     */
+    public static function isDebugEnabled(): bool
+    {
+        return self::getLevel() === 'debug';
+    }
+
     public static function debug(string $message, array $context = [])
     {
         self::log('debug', $message, $context);

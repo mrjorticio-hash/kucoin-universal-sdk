@@ -24,7 +24,7 @@ class FuturesPrivateWsImpl implements FuturesPrivateWs
         return $this->wsService->subscribe(
             $topicPrefix,
             $args,
-            new AllOrderEventCallbackWrapper($callback)
+            AllOrderEvent::createCallback($callback)
         );
     }
 
@@ -37,7 +37,7 @@ class FuturesPrivateWsImpl implements FuturesPrivateWs
         return $this->wsService->subscribe(
             $topicPrefix,
             $args,
-            new AllPositionEventCallbackWrapper($callback)
+            AllPositionEvent::createCallback($callback)
         );
     }
 
@@ -50,7 +50,7 @@ class FuturesPrivateWsImpl implements FuturesPrivateWs
         return $this->wsService->subscribe(
             $topicPrefix,
             $args,
-            new BalanceEventCallbackWrapper($callback)
+            BalanceEvent::createCallback($callback)
         );
     }
 
@@ -63,7 +63,7 @@ class FuturesPrivateWsImpl implements FuturesPrivateWs
         return $this->wsService->subscribe(
             $topicPrefix,
             $args,
-            new CrossLeverageEventCallbackWrapper($callback)
+            CrossLeverageEvent::createCallback($callback)
         );
     }
 
@@ -76,7 +76,7 @@ class FuturesPrivateWsImpl implements FuturesPrivateWs
         return $this->wsService->subscribe(
             $topicPrefix,
             $args,
-            new MarginModeEventCallbackWrapper($callback)
+            MarginModeEvent::createCallback($callback)
         );
     }
 
@@ -89,7 +89,7 @@ class FuturesPrivateWsImpl implements FuturesPrivateWs
         return $this->wsService->subscribe(
             $topicPrefix,
             $args,
-            new OrderEventCallbackWrapper($callback)
+            OrderEvent::createCallback($callback)
         );
     }
 
@@ -104,7 +104,7 @@ class FuturesPrivateWsImpl implements FuturesPrivateWs
         return $this->wsService->subscribe(
             $topicPrefix,
             $args,
-            new PositionEventCallbackWrapper($callback)
+            PositionEvent::createCallback($callback)
         );
     }
 
@@ -117,7 +117,7 @@ class FuturesPrivateWsImpl implements FuturesPrivateWs
         return $this->wsService->subscribe(
             $topicPrefix,
             $args,
-            new StopOrdersEventCallbackWrapper($callback)
+            StopOrdersEvent::createCallback($callback)
         );
     }
 

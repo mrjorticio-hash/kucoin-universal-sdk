@@ -24,7 +24,7 @@ class SpotPublicWsImpl implements SpotPublicWs
         return $this->wsService->subscribe(
             $topicPrefix,
             $args,
-            new AllTickersEventCallbackWrapper($callback)
+            AllTickersEvent::createCallback($callback)
         );
     }
 
@@ -39,7 +39,7 @@ class SpotPublicWsImpl implements SpotPublicWs
         return $this->wsService->subscribe(
             $topicPrefix,
             $args,
-            new CallAuctionInfoEventCallbackWrapper($callback)
+            CallAuctionInfoEvent::createCallback($callback)
         );
     }
 
@@ -54,7 +54,7 @@ class SpotPublicWsImpl implements SpotPublicWs
         return $this->wsService->subscribe(
             $topicPrefix,
             $args,
-            new CallAuctionOrderbookLevel50EventCallbackWrapper($callback)
+            CallAuctionOrderbookLevel50Event::createCallback($callback)
         );
     }
 
@@ -70,7 +70,7 @@ class SpotPublicWsImpl implements SpotPublicWs
         return $this->wsService->subscribe(
             $topicPrefix,
             $args,
-            new KlinesEventCallbackWrapper($callback)
+            KlinesEvent::createCallback($callback)
         );
     }
 
@@ -85,7 +85,7 @@ class SpotPublicWsImpl implements SpotPublicWs
         return $this->wsService->subscribe(
             $topicPrefix,
             $args,
-            new MarketSnapshotEventCallbackWrapper($callback)
+            MarketSnapshotEvent::createCallback($callback)
         );
     }
 
@@ -100,7 +100,7 @@ class SpotPublicWsImpl implements SpotPublicWs
         return $this->wsService->subscribe(
             $topicPrefix,
             $args,
-            new OrderbookIncrementEventCallbackWrapper($callback)
+            OrderbookIncrementEvent::createCallback($callback)
         );
     }
 
@@ -115,7 +115,7 @@ class SpotPublicWsImpl implements SpotPublicWs
         return $this->wsService->subscribe(
             $topicPrefix,
             $args,
-            new OrderbookLevel1EventCallbackWrapper($callback)
+            OrderbookLevel1Event::createCallback($callback)
         );
     }
 
@@ -130,7 +130,7 @@ class SpotPublicWsImpl implements SpotPublicWs
         return $this->wsService->subscribe(
             $topicPrefix,
             $args,
-            new OrderbookLevel50EventCallbackWrapper($callback)
+            OrderbookLevel50Event::createCallback($callback)
         );
     }
 
@@ -145,7 +145,7 @@ class SpotPublicWsImpl implements SpotPublicWs
         return $this->wsService->subscribe(
             $topicPrefix,
             $args,
-            new OrderbookLevel5EventCallbackWrapper($callback)
+            OrderbookLevel5Event::createCallback($callback)
         );
     }
 
@@ -160,7 +160,7 @@ class SpotPublicWsImpl implements SpotPublicWs
         return $this->wsService->subscribe(
             $topicPrefix,
             $args,
-            new SymbolSnapshotEventCallbackWrapper($callback)
+            SymbolSnapshotEvent::createCallback($callback)
         );
     }
 
@@ -173,7 +173,7 @@ class SpotPublicWsImpl implements SpotPublicWs
         return $this->wsService->subscribe(
             $topicPrefix,
             $args,
-            new TickerEventCallbackWrapper($callback)
+            TickerEvent::createCallback($callback)
         );
     }
 
@@ -186,7 +186,7 @@ class SpotPublicWsImpl implements SpotPublicWs
         return $this->wsService->subscribe(
             $topicPrefix,
             $args,
-            new TradeEventCallbackWrapper($callback)
+            TradeEvent::createCallback($callback)
         );
     }
 

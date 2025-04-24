@@ -50,6 +50,15 @@ class CrossLeverageEvent implements Response
         $obj->data = $item;
         return $obj;
     }
+
+    /**
+     * @param callable $callback function(string $topic, string $subject, CrossLeverageEvent $data): void
+     */
+    public static function createCallback(
+        callable $callback
+    ): CrossLeverageEventCallbackWrapper {
+        return new CrossLeverageEventCallbackWrapper($callback);
+    }
 }
 
 class CrossLeverageEventCallbackWrapper implements WebSocketMessageCallback

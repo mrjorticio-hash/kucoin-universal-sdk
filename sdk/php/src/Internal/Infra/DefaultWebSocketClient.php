@@ -176,7 +176,9 @@ class DefaultWebSocketClient implements WebSocketClient
 
     private function onMessage($msg)
     {
-        Logger::debug('Message received', ['msg' => $msg]);
+        if (Logger::isDebugEnabled()) {
+            Logger::debug('Message received', ['msg' => $msg]);
+        }
         $data = WsMessage::jsonDeserialize($msg, $this->serializer);
 
         switch ($data->type) {

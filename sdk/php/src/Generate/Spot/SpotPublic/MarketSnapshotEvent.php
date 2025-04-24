@@ -59,6 +59,15 @@ class MarketSnapshotEvent implements Response
             "json"
         );
     }
+
+    /**
+     * @param callable $callback function(string $topic, string $subject, MarketSnapshotEvent $data): void
+     */
+    public static function createCallback(
+        callable $callback
+    ): MarketSnapshotEventCallbackWrapper {
+        return new MarketSnapshotEventCallbackWrapper($callback);
+    }
 }
 
 class MarketSnapshotEventCallbackWrapper implements WebSocketMessageCallback

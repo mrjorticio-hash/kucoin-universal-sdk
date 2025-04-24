@@ -118,6 +118,15 @@ class AccountEvent implements Response
     {
         return $serializer->deserialize($json, AccountEvent::class, "json");
     }
+
+    /**
+     * @param callable $callback function(string $topic, string $subject, AccountEvent $data): void
+     */
+    public static function createCallback(
+        callable $callback
+    ): AccountEventCallbackWrapper {
+        return new AccountEventCallbackWrapper($callback);
+    }
 }
 
 class AccountEventCallbackWrapper implements WebSocketMessageCallback

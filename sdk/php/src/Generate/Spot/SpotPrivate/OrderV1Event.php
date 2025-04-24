@@ -195,6 +195,15 @@ class OrderV1Event implements Response
     {
         return $serializer->deserialize($json, OrderV1Event::class, "json");
     }
+
+    /**
+     * @param callable $callback function(string $topic, string $subject, OrderV1Event $data): void
+     */
+    public static function createCallback(
+        callable $callback
+    ): OrderV1EventCallbackWrapper {
+        return new OrderV1EventCallbackWrapper($callback);
+    }
 }
 
 class OrderV1EventCallbackWrapper implements WebSocketMessageCallback

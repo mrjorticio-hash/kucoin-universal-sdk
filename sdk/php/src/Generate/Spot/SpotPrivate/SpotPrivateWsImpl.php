@@ -24,7 +24,7 @@ class SpotPrivateWsImpl implements SpotPrivateWs
         return $this->wsService->subscribe(
             $topicPrefix,
             $args,
-            new AccountEventCallbackWrapper($callback)
+            AccountEvent::createCallback($callback)
         );
     }
 
@@ -37,7 +37,7 @@ class SpotPrivateWsImpl implements SpotPrivateWs
         return $this->wsService->subscribe(
             $topicPrefix,
             $args,
-            new OrderV1EventCallbackWrapper($callback)
+            OrderV1Event::createCallback($callback)
         );
     }
 
@@ -50,7 +50,7 @@ class SpotPrivateWsImpl implements SpotPrivateWs
         return $this->wsService->subscribe(
             $topicPrefix,
             $args,
-            new OrderV2EventCallbackWrapper($callback)
+            OrderV2Event::createCallback($callback)
         );
     }
 
@@ -63,7 +63,7 @@ class SpotPrivateWsImpl implements SpotPrivateWs
         return $this->wsService->subscribe(
             $topicPrefix,
             $args,
-            new StopOrderEventCallbackWrapper($callback)
+            StopOrderEvent::createCallback($callback)
         );
     }
 

@@ -4,6 +4,7 @@ namespace KuCoin\UniversalSDK\Internal\Infra;
 
 use JMS\Serializer\Serializer;
 use JMS\Serializer\SerializerBuilder;
+use KuCoin\UniversalSDK\Common\Logger;
 use KuCoin\UniversalSDK\Internal\Interfaces\Transport;
 use KuCoin\UniversalSDK\Internal\Interfaces\WebSocketClient;
 use KuCoin\UniversalSDK\Internal\Interfaces\WebSocketMessageCallback;
@@ -59,11 +60,8 @@ class DefaultWsService implements WebSocketService
         $this->serializer = SerializerBuilder::create()
             ->addDefaultHandlers()
             ->configureHandlers(function ($handlerRegistry) {
-                $handlerRegistry->registerSubscribingHandler(
-                    new JsonSerializedHandler()
-                );
-            })
-            ->build();
+                $handlerRegistry->registerSubscribingHandler(new JsonSerializedHandler());
+            })->build();
 
         $this->client = new DefaultWebSocketClient(
             new DefaultWsTokenProvider($this->tokenTransport, $domainType, $privateChannel),
@@ -79,6 +77,7 @@ class DefaultWsService implements WebSocketService
         });
 
         $this->client->on("reconnected", function () {
+            Logger::info("WebSocket reconnected, start recovery");
             $this->recovery();
         });
     }
@@ -89,22 +88,24 @@ class DefaultWsService implements WebSocketService
             try {
                 call_user_func($this->wsOption->eventCallback, $event, $msg);
             } catch (\Throwable $e) {
-                error_log('event callback error: ' . $e->getMessage());
+                Logger::error('event callback error', ['exception' => $e]);
             }
         }
     }
 
     public function start(): PromiseInterface
     {
+        Logger::info("WebSocketService start");
         return $this->client->start();
     }
 
     public function stop(): PromiseInterface
     {
+        Logger::info("WebSocketService stop");
         return $this->client->stop()->then(function () {
             $this->tokenTransport->close();
             $deferred = new Deferred();
-            $deferred->resolve('');
+            $deferred->resolve(null);
             return $deferred->promise();
         });
     }
@@ -118,6 +119,7 @@ class DefaultWsService implements WebSocketService
         $callbackManager = $this->topicManager->getCallbackManager($prefix);
 
         if (!$callbackManager->add($subInfo)) {
+            Logger::warn("Already subscribed", ['id' => $subId]);
             $deferred->reject(new RuntimeException("Already subscribed: $subId"));
             return $deferred->promise();
         }
@@ -129,9 +131,13 @@ class DefaultWsService implements WebSocketService
         $subEvent->privateChannel = $this->privateChannel;
         $subEvent->response = true;
 
+        Logger::info("Subscribing", ['id' => $subId, 'topic' => $subEvent->topic]);
+
         $this->client->write($subEvent, $this->wsOption->writeTimeout)->then(function () use ($deferred, $subId) {
+            Logger::info("Subscribed successfully", ['id' => $subId]);
             $deferred->resolve($subId);
         }, function ($err) use ($deferred, $callbackManager, $subId, $prefix) {
+            Logger::error("Subscribe failed", ['id' => $subId, 'error' => $err]);
             $callbackManager->remove($subId);
             $deferred->reject($err);
         });
@@ -153,10 +159,14 @@ class DefaultWsService implements WebSocketService
         $unsubEvent->privateChannel = $this->privateChannel;
         $unsubEvent->response = true;
 
+        Logger::info("Unsubscribing", ['id' => $id]);
+
         $this->client->write($unsubEvent, $this->wsOption->writeTimeout)->then(function () use ($callbackManager, $id, $deferred) {
             $callbackManager->remove($id);
-            $deferred->resolve();
-        }, function ($e) use ($deferred) {
+            Logger::info("Unsubscribed successfully", ['id' => $id]);
+            $deferred->resolve(null);
+        }, function ($e) use ($deferred, $id) {
+            Logger::error("Unsubscribe failed", ['id' => $id, 'error' => $e]);
             $deferred->reject($e);
         });
 
@@ -166,21 +176,23 @@ class DefaultWsService implements WebSocketService
     private function processMessages(WsMessage $message)
     {
         $callbackManager = $this->topicManager->getCallbackManager($message->topic);
-
         $callback = $callbackManager->get($message->topic);
         if (!$callback) {
+            Logger::warn("No callback found for topic", ['topic' => $message->topic]);
             return;
         }
 
         try {
             $callback->onMessage($message, $this->serializer);
         } catch (\Throwable $e) {
+            Logger::error("Callback processing failed", ['topic' => $message->topic, 'exception' => $e]);
             $this->emitEvent(WebSocketEvent::EVENT_CALLBACK_ERROR, (string)$e);
         }
     }
 
     private function recovery()
     {
+        Logger::info("Start recovery process");
         $oldTopicManager = $this->topicManager;
         $this->topicManager = new TopicManager();
 
@@ -188,8 +200,10 @@ class DefaultWsService implements WebSocketService
             foreach ($callbackManager->getSubInfo() as $sub) {
                 if ($sub->callback) {
                     $this->subscribe($sub->prefix, $sub->args, $sub->callback)->then(function ($id) {
+                        Logger::info("Resubscribed successfully", ['id' => $id]);
                         $this->emitEvent(WebSocketEvent::EVENT_RE_SUBSCRIBE_OK, $id);
                     }, function ($err) use ($sub) {
+                        Logger::error("Resubscribe failed", ['id' => $sub->toId(), 'error' => $err]);
                         $this->emitEvent(WebSocketEvent::EVENT_RE_SUBSCRIBE_ERROR, (string)$err);
                     });
                 }

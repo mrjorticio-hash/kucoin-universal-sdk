@@ -24,7 +24,7 @@ class MarginPrivateWsImpl implements MarginPrivateWs
         return $this->wsService->subscribe(
             $topicPrefix,
             $args,
-            new CrossMarginPositionEventCallbackWrapper($callback)
+            CrossMarginPositionEvent::createCallback($callback)
         );
     }
 
@@ -39,7 +39,7 @@ class MarginPrivateWsImpl implements MarginPrivateWs
         return $this->wsService->subscribe(
             $topicPrefix,
             $args,
-            new IsolatedMarginPositionEventCallbackWrapper($callback)
+            IsolatedMarginPositionEvent::createCallback($callback)
         );
     }
 

@@ -26,7 +26,7 @@ class {{classname}}Impl implements {{classname}} {
         {{#type.array}}$args = ${{paras}};{{/type.array}}
         {{#type.object}}$args = [implode('_', [{{#paras}}${{.}},{{/paras}}])];{{/type.object}}
         {{/type}}{{/parameters}}{{/vendorExtensions.x-meta.otherProperties}}
-        return $this->wsService->subscribe($topicPrefix,  $args, new {{vendorExtensions.x-meta.methodServiceFmt}}EventCallbackWrapper($callback));
+        return $this->wsService->subscribe($topicPrefix,  $args, {{vendorExtensions.x-meta.methodServiceFmt}}Event::createCallback($callback));
     }
     {{/operation}}
 {{/operations}}

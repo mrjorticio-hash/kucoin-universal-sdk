@@ -146,6 +146,15 @@ class BalanceEvent implements Response
     {
         return $serializer->deserialize($json, BalanceEvent::class, "json");
     }
+
+    /**
+     * @param callable $callback function(string $topic, string $subject, BalanceEvent $data): void
+     */
+    public static function createCallback(
+        callable $callback
+    ): BalanceEventCallbackWrapper {
+        return new BalanceEventCallbackWrapper($callback);
+    }
 }
 
 class BalanceEventCallbackWrapper implements WebSocketMessageCallback

@@ -73,6 +73,15 @@ class AnnouncementEvent implements Response
             "json"
         );
     }
+
+    /**
+     * @param callable $callback function(string $topic, string $subject, AnnouncementEvent $data): void
+     */
+    public static function createCallback(
+        callable $callback
+    ): AnnouncementEventCallbackWrapper {
+        return new AnnouncementEventCallbackWrapper($callback);
+    }
 }
 
 class AnnouncementEventCallbackWrapper implements WebSocketMessageCallback

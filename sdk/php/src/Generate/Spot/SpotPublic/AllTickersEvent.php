@@ -97,6 +97,15 @@ class AllTickersEvent implements Response
     {
         return $serializer->deserialize($json, AllTickersEvent::class, "json");
     }
+
+    /**
+     * @param callable $callback function(string $topic, string $subject, AllTickersEvent $data): void
+     */
+    public static function createCallback(
+        callable $callback
+    ): AllTickersEventCallbackWrapper {
+        return new AllTickersEventCallbackWrapper($callback);
+    }
 }
 
 class AllTickersEventCallbackWrapper implements WebSocketMessageCallback

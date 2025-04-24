@@ -90,6 +90,15 @@ class TickerV2Event implements Response
     {
         return $serializer->deserialize($json, TickerV2Event::class, "json");
     }
+
+    /**
+     * @param callable $callback function(string $topic, string $subject, TickerV2Event $data): void
+     */
+    public static function createCallback(
+        callable $callback
+    ): TickerV2EventCallbackWrapper {
+        return new TickerV2EventCallbackWrapper($callback);
+    }
 }
 
 class TickerV2EventCallbackWrapper implements WebSocketMessageCallback

@@ -104,6 +104,15 @@ class ExecutionEvent implements Response
     {
         return $serializer->deserialize($json, ExecutionEvent::class, "json");
     }
+
+    /**
+     * @param callable $callback function(string $topic, string $subject, ExecutionEvent $data): void
+     */
+    public static function createCallback(
+        callable $callback
+    ): ExecutionEventCallbackWrapper {
+        return new ExecutionEventCallbackWrapper($callback);
+    }
 }
 
 class ExecutionEventCallbackWrapper implements WebSocketMessageCallback

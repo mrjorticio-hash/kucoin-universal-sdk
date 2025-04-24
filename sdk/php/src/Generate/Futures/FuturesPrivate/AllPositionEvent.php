@@ -363,6 +363,15 @@ class AllPositionEvent implements Response
     {
         return $serializer->deserialize($json, AllPositionEvent::class, "json");
     }
+
+    /**
+     * @param callable $callback function(string $topic, string $subject, AllPositionEvent $data): void
+     */
+    public static function createCallback(
+        callable $callback
+    ): AllPositionEventCallbackWrapper {
+        return new AllPositionEventCallbackWrapper($callback);
+    }
 }
 
 class AllPositionEventCallbackWrapper implements WebSocketMessageCallback

@@ -101,6 +101,15 @@ class CallAuctionInfoEvent implements Response
             "json"
         );
     }
+
+    /**
+     * @param callable $callback function(string $topic, string $subject, CallAuctionInfoEvent $data): void
+     */
+    public static function createCallback(
+        callable $callback
+    ): CallAuctionInfoEventCallbackWrapper {
+        return new CallAuctionInfoEventCallbackWrapper($callback);
+    }
 }
 
 class CallAuctionInfoEventCallbackWrapper implements WebSocketMessageCallback

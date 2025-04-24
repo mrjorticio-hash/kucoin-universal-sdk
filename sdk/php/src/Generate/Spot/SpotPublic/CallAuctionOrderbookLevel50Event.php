@@ -66,6 +66,15 @@ class CallAuctionOrderbookLevel50Event implements Response
             "json"
         );
     }
+
+    /**
+     * @param callable $callback function(string $topic, string $subject, CallAuctionOrderbookLevel50Event $data): void
+     */
+    public static function createCallback(
+        callable $callback
+    ): CallAuctionOrderbookLevel50EventCallbackWrapper {
+        return new CallAuctionOrderbookLevel50EventCallbackWrapper($callback);
+    }
 }
 
 class CallAuctionOrderbookLevel50EventCallbackWrapper implements

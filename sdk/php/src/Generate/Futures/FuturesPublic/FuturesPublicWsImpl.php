@@ -26,7 +26,7 @@ class FuturesPublicWsImpl implements FuturesPublicWs
         return $this->wsService->subscribe(
             $topicPrefix,
             $args,
-            new AnnouncementEventCallbackWrapper($callback)
+            AnnouncementEvent::createCallback($callback)
         );
     }
 
@@ -41,7 +41,7 @@ class FuturesPublicWsImpl implements FuturesPublicWs
         return $this->wsService->subscribe(
             $topicPrefix,
             $args,
-            new ExecutionEventCallbackWrapper($callback)
+            ExecutionEvent::createCallback($callback)
         );
     }
 
@@ -56,7 +56,7 @@ class FuturesPublicWsImpl implements FuturesPublicWs
         return $this->wsService->subscribe(
             $topicPrefix,
             $args,
-            new InstrumentEventCallbackWrapper($callback)
+            InstrumentEvent::createCallback($callback)
         );
     }
 
@@ -72,7 +72,7 @@ class FuturesPublicWsImpl implements FuturesPublicWs
         return $this->wsService->subscribe(
             $topicPrefix,
             $args,
-            new KlinesEventCallbackWrapper($callback)
+            KlinesEvent::createCallback($callback)
         );
     }
 
@@ -87,7 +87,7 @@ class FuturesPublicWsImpl implements FuturesPublicWs
         return $this->wsService->subscribe(
             $topicPrefix,
             $args,
-            new OrderbookIncrementEventCallbackWrapper($callback)
+            OrderbookIncrementEvent::createCallback($callback)
         );
     }
 
@@ -102,7 +102,7 @@ class FuturesPublicWsImpl implements FuturesPublicWs
         return $this->wsService->subscribe(
             $topicPrefix,
             $args,
-            new OrderbookLevel50EventCallbackWrapper($callback)
+            OrderbookLevel50Event::createCallback($callback)
         );
     }
 
@@ -117,7 +117,7 @@ class FuturesPublicWsImpl implements FuturesPublicWs
         return $this->wsService->subscribe(
             $topicPrefix,
             $args,
-            new OrderbookLevel5EventCallbackWrapper($callback)
+            OrderbookLevel5Event::createCallback($callback)
         );
     }
 
@@ -132,7 +132,7 @@ class FuturesPublicWsImpl implements FuturesPublicWs
         return $this->wsService->subscribe(
             $topicPrefix,
             $args,
-            new SymbolSnapshotEventCallbackWrapper($callback)
+            SymbolSnapshotEvent::createCallback($callback)
         );
     }
 
@@ -147,7 +147,7 @@ class FuturesPublicWsImpl implements FuturesPublicWs
         return $this->wsService->subscribe(
             $topicPrefix,
             $args,
-            new TickerV1EventCallbackWrapper($callback)
+            TickerV1Event::createCallback($callback)
         );
     }
 
@@ -162,7 +162,7 @@ class FuturesPublicWsImpl implements FuturesPublicWs
         return $this->wsService->subscribe(
             $topicPrefix,
             $args,
-            new TickerV2EventCallbackWrapper($callback)
+            TickerV2Event::createCallback($callback)
         );
     }
 

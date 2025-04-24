@@ -69,6 +69,15 @@ class IndexPriceEvent implements Response
     {
         return $serializer->deserialize($json, IndexPriceEvent::class, "json");
     }
+
+    /**
+     * @param callable $callback function(string $topic, string $subject, IndexPriceEvent $data): void
+     */
+    public static function createCallback(
+        callable $callback
+    ): IndexPriceEventCallbackWrapper {
+        return new IndexPriceEventCallbackWrapper($callback);
+    }
 }
 
 class IndexPriceEventCallbackWrapper implements WebSocketMessageCallback
