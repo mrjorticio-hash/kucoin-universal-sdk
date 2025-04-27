@@ -6,6 +6,9 @@ use KuCoin\UniversalSDK\Internal\Interfaces\Response;
 use KuCoin\UniversalSDK\Internal\Interfaces\WebSocketMessageCallback;
 use KuCoin\UniversalSDK\Model\WsMessage;
 use JMS\Serializer\Serializer;
+use JMS\Serializer\Annotation\Exclude;
+use JMS\Serializer\Annotation\SerializedName;
+use JMS\Serializer\Annotation\Type;
 
 class TradeEvent implements Response
 {
@@ -139,8 +142,11 @@ class TradeEventCallbackWrapper implements WebSocketMessageCallback
 
     public function onMessage(WsMessage $msg, Serializer $serializer)
     {
-        $event = TradeEvent::jsonDeserialize($msg->rawData, $serializer);
+        $event = TradeEvent::jsonDeserialize(
+            $serializer->serialize($msg->rawData, "json"),
+            $serializer
+        );
         $event->setCommonResponse($msg);
-        $this->callback($msg->topic, $msg->subject, $event);
+        call_user_func($this->callback, $msg->topic, $msg->subject, $event);
     }
 }
