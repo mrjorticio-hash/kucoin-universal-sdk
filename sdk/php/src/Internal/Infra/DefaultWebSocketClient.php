@@ -90,7 +90,7 @@ class DefaultWebSocketClient implements WebSocketClient
         }
 
         if ($this->keepAliveTimer) {
-            $this->keepAliveTimer->cancel();
+            $this->loop->cancelTimer($this->keepAliveTimer);
             $this->keepAliveTimer = null;
         }
 
@@ -314,7 +314,7 @@ class DefaultWebSocketClient implements WebSocketClient
         $this->reconnecting = false;
 
         if ($this->keepAliveTimer) {
-            $this->keepAliveTimer->cancel();
+            $this->loop->cancelTimer($this->keepAliveTimer);
             $this->keepAliveTimer = null;
         }
 
