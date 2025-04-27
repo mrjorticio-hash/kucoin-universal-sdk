@@ -23,7 +23,7 @@ class SubInfo
      * @param string[] $args
      * @param WebSocketMessageCallback|null $callback
      */
-    public function __construct(string $prefix, array $args = [], WebSocketMessageCallback $callback = null)
+    public function __construct(string $prefix, array $args = [], ?WebSocketMessageCallback $callback = null)
     {
         $this->prefix = $prefix;
         $this->args = $args;
@@ -52,7 +52,7 @@ class SubInfo
      * @return SubInfo
      * @throws Exception
      */
-    public static function fromId(string $id, WebSocketMessageCallback $callback = null): SubInfo
+    public static function fromId(string $id, ?WebSocketMessageCallback $callback = null): SubInfo
     {
         $parts = explode('@@', $id, 2);
         if (count($parts) !== 2) {
