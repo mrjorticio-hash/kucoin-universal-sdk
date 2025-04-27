@@ -67,8 +67,7 @@ class DefaultWebSocketClient implements WebSocketClient
     private $shutdown = false;
     private $reconnecting = false;
 
-
-    public function __construct($tokenProvider, $options, $loop)
+    public function __construct(WsTokenProvider $tokenProvider, WebSocketClientOption $options, LoopInterface $loop)
     {
         $this->loop = $loop;
         $this->connector = new Connector($this->loop);
@@ -83,7 +82,7 @@ class DefaultWebSocketClient implements WebSocketClient
 
     public function start(): PromiseInterface
     {
-        if ($this->state != self::STATE_DISCONNECTED) {
+        if ($this->state !== self::STATE_DISCONNECTED) {
             Logger::warn('WebSocket already started');
             $deferred = new Deferred();
             $deferred->resolve(null);
@@ -129,11 +128,7 @@ class DefaultWebSocketClient implements WebSocketClient
                         if ($helloResult[0]) {
                             Logger::info('Handshake successful');
                             $conn->on('message', function ($msg) {
-                                try {
-                                    $this->onMessage($msg);
-                                } catch (Exception $exception) {
-                                    Logger::error('onMessage error', ['error' => $exception->getMessage()]);
-                                }
+                                $this->onMessage($msg);
                             });
                             $deferred->resolve(null);
                         } else {
