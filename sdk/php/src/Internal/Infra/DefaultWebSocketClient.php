@@ -88,6 +88,12 @@ class DefaultWebSocketClient implements WebSocketClient
             $deferred->resolve(null);
             return $deferred->promise();
         }
+
+        if ($this->keepAliveTimer) {
+            $this->keepAliveTimer->cancel();
+            $this->keepAliveTimer = null;
+        }
+
         $this->state = self::STATE_CONNECTING;
         Logger::info('Dialing WebSocket');
         return $this->dial()->then(function () {
@@ -177,7 +183,13 @@ class DefaultWebSocketClient implements WebSocketClient
         if (Logger::isDebugEnabled()) {
             Logger::debug('Message received', ['msg' => $msg]);
         }
-        $data = WsMessage::jsonDeserialize($msg, $this->serializer);
+
+        try {
+            $data = WsMessage::jsonDeserialize($msg, $this->serializer);
+        } catch (Throwable $e) {
+            Logger::error('Failed to deserialize message', ['error' => $e]);
+            return;
+        }
 
         switch ($data->type) {
             case Constants::WS_MESSAGE_TYPE_WELCOME:
@@ -251,7 +263,7 @@ class DefaultWebSocketClient implements WebSocketClient
                 $this->loop->addTimer($interval, function () use ($deferred, $tryReconnect) {
                     $this->start()->then(function () use ($deferred) {
                         Logger::info('Reconnect successful');
-                        $this->emit('reconnected');
+                        $this->emit('reconnected', []);
                         $deferred->resolve(null);
                         $this->reconnecting = false;
                     }, function ($e) use ($tryReconnect) {
@@ -299,6 +311,7 @@ class DefaultWebSocketClient implements WebSocketClient
     public function close(): PromiseInterface
     {
         Logger::info('Closing WebSocket client...');
+        $this->reconnecting = false;
 
         if ($this->keepAliveTimer) {
             $this->keepAliveTimer->cancel();
@@ -315,7 +328,11 @@ class DefaultWebSocketClient implements WebSocketClient
         $this->emit('event', [WebSocketEvent::EVENT_DISCONNECTED, '']);
 
         if ($this->conn) {
-            $this->conn->close();
+            try {
+                $this->conn->close();
+            } catch (Throwable $e) {
+                Logger::warn('Close connection failed', ['error' => $e]);
+            }
             $this->conn = null;
         }
 
