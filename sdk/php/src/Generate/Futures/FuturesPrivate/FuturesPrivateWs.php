@@ -10,76 +10,123 @@ interface FuturesPrivateWs
      * All Order change pushes.
      * Push order changes for all symbol
      * push frequency: real-time
-     * @param callable $callback function(string $topic, string $subject, AllOrderEvent $data): void
+     * @param callable $onData function(string $topic, string $subject, AllOrderEvent $data): void
+     * @param ?callable $onSuccess function(string $id): void
+     * @param ?callable $onError function(Exception $e): void
      * @return PromiseInterface<string> A promise that resolves to the subscription ID or rejects with an error.
      */
-    public function allOrder(callable $callback): PromiseInterface;
+    public function allOrder(
+        callable $onData,
+        ?callable $onSuccess = null,
+        ?callable $onError = null
+    ): PromiseInterface;
 
     /**
      * All symbol position change events push
      * Subscribe to this topic to get real-time pushes on all symbols’ position change events
      * push frequency: real-time
-     * @param callable $callback function(string $topic, string $subject, AllPositionEvent $data): void
+     * @param callable $onData function(string $topic, string $subject, AllPositionEvent $data): void
+     * @param ?callable $onSuccess function(string $id): void
+     * @param ?callable $onError function(Exception $e): void
      * @return PromiseInterface<string> A promise that resolves to the subscription ID or rejects with an error.
      */
-    public function allPosition(callable $callback): PromiseInterface;
+    public function allPosition(
+        callable $onData,
+        ?callable $onSuccess = null,
+        ?callable $onError = null
+    ): PromiseInterface;
 
     /**
      * the balance change push
      * Subscribe to this topic to get real-time balance change pushes
      * push frequency: real-time
-     * @param callable $callback function(string $topic, string $subject, BalanceEvent $data): void
+     * @param callable $onData function(string $topic, string $subject, BalanceEvent $data): void
+     * @param ?callable $onSuccess function(string $id): void
+     * @param ?callable $onError function(Exception $e): void
      * @return PromiseInterface<string> A promise that resolves to the subscription ID or rejects with an error.
      */
-    public function balance(callable $callback): PromiseInterface;
+    public function balance(
+        callable $onData,
+        ?callable $onSuccess = null,
+        ?callable $onError = null
+    ): PromiseInterface;
 
     /**
      * the leverage change push
      * Subscribe to this topic to get real-time pushes on leverage changes of contracts that are in cross margin mode
      * push frequency: real-time
-     * @param callable $callback function(string $topic, string $subject, CrossLeverageEvent $data): void
+     * @param callable $onData function(string $topic, string $subject, CrossLeverageEvent $data): void
+     * @param ?callable $onSuccess function(string $id): void
+     * @param ?callable $onError function(Exception $e): void
      * @return PromiseInterface<string> A promise that resolves to the subscription ID or rejects with an error.
      */
-    public function crossLeverage(callable $callback): PromiseInterface;
+    public function crossLeverage(
+        callable $onData,
+        ?callable $onSuccess = null,
+        ?callable $onError = null
+    ): PromiseInterface;
 
     /**
      * the margin mode change
      * Subscribe to this topic to get real-time pushes on symbols’ margin mode change events
      * push frequency: real-time
-     * @param callable $callback function(string $topic, string $subject, MarginModeEvent $data): void
+     * @param callable $onData function(string $topic, string $subject, MarginModeEvent $data): void
+     * @param ?callable $onSuccess function(string $id): void
+     * @param ?callable $onError function(Exception $e): void
      * @return PromiseInterface<string> A promise that resolves to the subscription ID or rejects with an error.
      */
-    public function marginMode(callable $callback): PromiseInterface;
+    public function marginMode(
+        callable $onData,
+        ?callable $onSuccess = null,
+        ?callable $onError = null
+    ): PromiseInterface;
 
     /**
      * Order change pushes.
      * Push order changes for the specified symbol
      * push frequency: real-time
-     * @param callable $callback function(string $topic, string $subject, OrderEvent $data): void
+     * @param callable $onData function(string $topic, string $subject, OrderEvent $data): void
+     * @param ?callable $onSuccess function(string $id): void
+     * @param ?callable $onError function(Exception $e): void
      * @return PromiseInterface<string> A promise that resolves to the subscription ID or rejects with an error.
      */
-    public function order(string $symbol, callable $callback): PromiseInterface;
+    public function order(
+        string $symbol,
+        callable $onData,
+        ?callable $onSuccess = null,
+        ?callable $onError = null
+    ): PromiseInterface;
 
     /**
      * the position change events push
      * Subscribe this topic to get real-time pushes on symbols’ position change events
      * push frequency: real-time
-     * @param callable $callback function(string $topic, string $subject, PositionEvent $data): void
+     * @param callable $onData function(string $topic, string $subject, PositionEvent $data): void
+     * @param ?callable $onSuccess function(string $id): void
+     * @param ?callable $onError function(Exception $e): void
      * @return PromiseInterface<string> A promise that resolves to the subscription ID or rejects with an error.
      */
     public function position(
         string $symbol,
-        callable $callback
+        callable $onData,
+        ?callable $onSuccess = null,
+        ?callable $onError = null
     ): PromiseInterface;
 
     /**
      * stop order change pushes.
      * Subscribe to this topic to get real-time pushes on stop order changes.
      * push frequency: real-time
-     * @param callable $callback function(string $topic, string $subject, StopOrdersEvent $data): void
+     * @param callable $onData function(string $topic, string $subject, StopOrdersEvent $data): void
+     * @param ?callable $onSuccess function(string $id): void
+     * @param ?callable $onError function(Exception $e): void
      * @return PromiseInterface<string> A promise that resolves to the subscription ID or rejects with an error.
      */
-    public function stopOrders(callable $callback): PromiseInterface;
+    public function stopOrders(
+        callable $onData,
+        ?callable $onSuccess = null,
+        ?callable $onError = null
+    ): PromiseInterface;
 
     /**
      * Unsubscribe from topics

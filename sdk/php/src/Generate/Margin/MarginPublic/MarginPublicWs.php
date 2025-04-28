@@ -10,24 +10,32 @@ interface MarginPublicWs
      * Index Price
      * Subscribe to this topic to get the index price for margin trading. The following ticker symbols are supported: List of currently supported symbols.
      * push frequency: once every 1s
-     * @param callable $callback function(string $topic, string $subject, IndexPriceEvent $data): void
+     * @param callable $onData function(string $topic, string $subject, IndexPriceEvent $data): void
+     * @param ?callable $onSuccess function(string $id): void
+     * @param ?callable $onError function(Exception $e): void
      * @return PromiseInterface<string> A promise that resolves to the subscription ID or rejects with an error.
      */
     public function indexPrice(
         array $symbol,
-        callable $callback
+        callable $onData,
+        ?callable $onSuccess = null,
+        ?callable $onError = null
     ): PromiseInterface;
 
     /**
      * Mark Price
      * Subscribe to this topic to get the mark price for margin trading. The following ticker symbols are supported: List of currently supported symbols
      * push frequency: once every 1s
-     * @param callable $callback function(string $topic, string $subject, MarkPriceEvent $data): void
+     * @param callable $onData function(string $topic, string $subject, MarkPriceEvent $data): void
+     * @param ?callable $onSuccess function(string $id): void
+     * @param ?callable $onError function(Exception $e): void
      * @return PromiseInterface<string> A promise that resolves to the subscription ID or rejects with an error.
      */
     public function markPrice(
         array $symbol,
-        callable $callback
+        callable $onData,
+        ?callable $onSuccess = null,
+        ?callable $onError = null
     ): PromiseInterface;
 
     /**

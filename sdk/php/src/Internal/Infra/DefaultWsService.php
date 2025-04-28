@@ -101,7 +101,6 @@ class DefaultWsService implements WebSocketService
 
     public function stop(): PromiseInterface
     {
-        Logger::info("WebSocketService stop");
         return $this->client->stop()->then(function () {
             $this->tokenTransport->close();
             $deferred = new Deferred();

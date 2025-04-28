@@ -15,56 +15,128 @@ class SpotPrivateWsImpl implements SpotPrivateWs
         $this->wsService = $wsService;
     }
 
-    public function account(callable $callback): PromiseInterface
-    {
+    public function account(
+        callable $onData,
+        ?callable $onSuccess = null,
+        ?callable $onError = null
+    ): PromiseInterface {
         $topicPrefix = "/account/balance";
 
         $args = [];
 
-        return $this->wsService->subscribe(
-            $topicPrefix,
-            $args,
-            AccountEvent::createCallback($callback)
-        );
+        return $this->wsService
+            ->subscribe(
+                $topicPrefix,
+                $args,
+                AccountEvent::createCallback($onData)
+            )
+            ->then(
+                function ($id) use ($onSuccess) {
+                    if ($onSuccess) {
+                        $onSuccess($id);
+                    }
+                    return $id;
+                },
+                function ($e) use ($onError) {
+                    if ($onError) {
+                        $onError($e);
+                    }
+                    throw $e;
+                }
+            );
     }
 
-    public function orderV1(callable $callback): PromiseInterface
-    {
+    public function orderV1(
+        callable $onData,
+        ?callable $onSuccess = null,
+        ?callable $onError = null
+    ): PromiseInterface {
         $topicPrefix = "/spotMarket/tradeOrders";
 
         $args = [];
 
-        return $this->wsService->subscribe(
-            $topicPrefix,
-            $args,
-            OrderV1Event::createCallback($callback)
-        );
+        return $this->wsService
+            ->subscribe(
+                $topicPrefix,
+                $args,
+                OrderV1Event::createCallback($onData)
+            )
+            ->then(
+                function ($id) use ($onSuccess) {
+                    if ($onSuccess) {
+                        $onSuccess($id);
+                    }
+                    return $id;
+                },
+                function ($e) use ($onError) {
+                    if ($onError) {
+                        $onError($e);
+                    }
+                    throw $e;
+                }
+            );
     }
 
-    public function orderV2(callable $callback): PromiseInterface
-    {
+    public function orderV2(
+        callable $onData,
+        ?callable $onSuccess = null,
+        ?callable $onError = null
+    ): PromiseInterface {
         $topicPrefix = "/spotMarket/tradeOrdersV2";
 
         $args = [];
 
-        return $this->wsService->subscribe(
-            $topicPrefix,
-            $args,
-            OrderV2Event::createCallback($callback)
-        );
+        return $this->wsService
+            ->subscribe(
+                $topicPrefix,
+                $args,
+                OrderV2Event::createCallback($onData)
+            )
+            ->then(
+                function ($id) use ($onSuccess) {
+                    if ($onSuccess) {
+                        $onSuccess($id);
+                    }
+                    return $id;
+                },
+                function ($e) use ($onError) {
+                    if ($onError) {
+                        $onError($e);
+                    }
+                    throw $e;
+                }
+            );
     }
 
-    public function stopOrder(callable $callback): PromiseInterface
-    {
+    public function stopOrder(
+        callable $onData,
+        ?callable $onSuccess = null,
+        ?callable $onError = null
+    ): PromiseInterface {
         $topicPrefix = "/spotMarket/advancedOrders";
 
         $args = [];
 
-        return $this->wsService->subscribe(
-            $topicPrefix,
-            $args,
-            StopOrderEvent::createCallback($callback)
-        );
+        return $this->wsService
+            ->subscribe(
+                $topicPrefix,
+                $args,
+                StopOrderEvent::createCallback($onData)
+            )
+            ->then(
+                function ($id) use ($onSuccess) {
+                    if ($onSuccess) {
+                        $onSuccess($id);
+                    }
+                    return $id;
+                },
+                function ($e) use ($onError) {
+                    if ($onError) {
+                        $onError($e);
+                    }
+                    throw $e;
+                }
+            );
     }
 
     public function unSubscribe(string $id): PromiseInterface

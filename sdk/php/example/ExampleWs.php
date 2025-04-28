@@ -13,6 +13,7 @@ include '../vendor/autoload.php';
 
 function wsExample()
 {
+    // Credentials & setup
     $key = getenv('API_KEY') ?: '';
     $secret = getenv('API_SECRET') ?: '';
     $passphrase = getenv('API_PASSPHRASE') ?: '';
@@ -27,8 +28,7 @@ function wsExample()
         ->setMaxConnectionPerPool(10)
         ->build();
 
-    $websocketTransportOption = (new WebSocketClientOptionBuilder())
-        ->build();
+    $websocketTransportOption = (new WebSocketClientOptionBuilder())->build();
 
     $clientOption = (new ClientOptionBuilder())
         ->setKey($key)
@@ -44,53 +44,51 @@ function wsExample()
         ->setWebSocketClientOption($websocketTransportOption)
         ->build();
 
+    // Create or get the global event loop
     $loop = Loop::get();
 
     $client = new DefaultClient($clientOption, $loop);
-    $wsService = $client->wsService();
-    $spotWs = $wsService->newSpotPublicWS();
+    $spotWs = $client->wsService()->newSpotPublicWS();
 
-    $spotWs->start()->then(function () use ($spotWs, $loop, $wsService) {
-        Logger::info("Spot WebSocket started");
+    // Start connection
+    $spotWs->start()->then(function () use ($spotWs, $loop) {
+        Logger::info("WebSocket started");
 
-        $spotWs->allTickers(function (string $topic, string $subject, AllTickersEvent $data) {
-            Logger::info("Ticker update", [
-                "topic" => $topic,
-                "subject" => $subject,
-                "bestBid" => $data->bestBid,
-                "bestAsk" => $data->bestAsk
-            ]);
-        })->then(function (string $id) use ($spotWs, $loop, $wsService) {
-            Logger::info("Subscribed to allTickers with ID: $id");
+        // Subscribe to allTickers
+        return $spotWs->allTickers(
+        // Called when data is received
+            function (string $topic, string $subject, AllTickersEvent $data) {
+                Logger::info("Ticker update", [
+                    'topic' => $topic,
+                    'subject' => $subject,
+                    'bestBid' => $data->bestBid,
+                    'bestAsk' => $data->bestAsk,
+                ]);
+            },
+            // Called when subscription is successful
+            function (string $id) use ($spotWs, $loop) {
+                Logger::info("Subscribed with ID: $id");
 
-            $loop->addTimer(1, function () use ($id, $spotWs, $loop, $wsService) {
-                Logger::info("Unsubscribing from allTickers...");
-
-                $spotWs->unSubscribe($id)->then(function () use ($spotWs, $wsService, $loop) {
-                    Logger::info("Unsubscribed, stopping WebSocket");
-
-                    $spotWs->stop()->then(function () use ($wsService, $loop) {
-                        $wsService->stopEventLoop();
-                        $loop->stop();
-                    })->catch(function ($e) {
-                        Logger::error("Failed to stop WebSocket", ['error' => $e->getMessage()]);
+                // Schedule unsubscribe and shutdown after 5 seconds
+                $loop->addTimer(5, function () use ($id, $spotWs) {
+                    Logger::info("Unsubscribing...");
+                    $spotWs->unSubscribe($id)->finally(function () use ($spotWs) {
+                        $spotWs->stop();
                     });
-
-                })->catch(function ($e) {
-                    Logger::error("Unsubscribe failed", ['error' => $e->getMessage()]);
                 });
-            });
-
-        })->catch(function (Exception $e) {
-            Logger::error("Subscription error", ['error' => $e->getMessage()]);
-        });
-
-    }, function (Exception $e) use ($wsService, $loop) {
-        Logger::error("WebSocket start failed", ['error' => $e->getMessage()]);
-        $wsService->stopEventLoop();
-        $loop->stop();
+            },
+            // Called when subscription fails
+            function (Exception $e) use ($spotWs) {
+                Logger::error("Subscription failed", ['error' => $e->getMessage()]);
+                $spotWs->stop();
+            }
+        );
+    })->catch(function (Exception $e) use ($spotWs) {
+        Logger::error("Failed to start", ['error' => $e->getMessage()]);
+        $spotWs->stop();
     });
 
+    // Run the event loop to process async tasks
     $loop->run();
 }
 

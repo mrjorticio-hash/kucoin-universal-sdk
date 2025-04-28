@@ -10,37 +10,61 @@ interface SpotPrivateWs
      * Get Account Balance
      * You will receive this message when an account balance changes. The message contains the details of the change.
      * push frequency: real-time
-     * @param callable $callback function(string $topic, string $subject, AccountEvent $data): void
+     * @param callable $onData function(string $topic, string $subject, AccountEvent $data): void
+     * @param ?callable $onSuccess function(string $id): void
+     * @param ?callable $onError function(Exception $e): void
      * @return PromiseInterface<string> A promise that resolves to the subscription ID or rejects with an error.
      */
-    public function account(callable $callback): PromiseInterface;
+    public function account(
+        callable $onData,
+        ?callable $onSuccess = null,
+        ?callable $onError = null
+    ): PromiseInterface;
 
     /**
      * Get Order(V1)
      * This topic will push all change events of your orders.
      * push frequency: real-time
-     * @param callable $callback function(string $topic, string $subject, OrderV1Event $data): void
+     * @param callable $onData function(string $topic, string $subject, OrderV1Event $data): void
+     * @param ?callable $onSuccess function(string $id): void
+     * @param ?callable $onError function(Exception $e): void
      * @return PromiseInterface<string> A promise that resolves to the subscription ID or rejects with an error.
      */
-    public function orderV1(callable $callback): PromiseInterface;
+    public function orderV1(
+        callable $onData,
+        ?callable $onSuccess = null,
+        ?callable $onError = null
+    ): PromiseInterface;
 
     /**
      * Get Order(V2)
      * This topic will push all change events of your orders. Compared with v1, v2 adds an Order Status: \&quot;new\&quot;, there is no difference in push speed
      * push frequency: real-time
-     * @param callable $callback function(string $topic, string $subject, OrderV2Event $data): void
+     * @param callable $onData function(string $topic, string $subject, OrderV2Event $data): void
+     * @param ?callable $onSuccess function(string $id): void
+     * @param ?callable $onError function(Exception $e): void
      * @return PromiseInterface<string> A promise that resolves to the subscription ID or rejects with an error.
      */
-    public function orderV2(callable $callback): PromiseInterface;
+    public function orderV2(
+        callable $onData,
+        ?callable $onSuccess = null,
+        ?callable $onError = null
+    ): PromiseInterface;
 
     /**
      * Get Stop Order
      * This topic will push all change events of your stop orders.
      * push frequency: real-time
-     * @param callable $callback function(string $topic, string $subject, StopOrderEvent $data): void
+     * @param callable $onData function(string $topic, string $subject, StopOrderEvent $data): void
+     * @param ?callable $onSuccess function(string $id): void
+     * @param ?callable $onError function(Exception $e): void
      * @return PromiseInterface<string> A promise that resolves to the subscription ID or rejects with an error.
      */
-    public function stopOrder(callable $callback): PromiseInterface;
+    public function stopOrder(
+        callable $onData,
+        ?callable $onSuccess = null,
+        ?callable $onError = null
+    ): PromiseInterface;
 
     /**
      * Unsubscribe from topics

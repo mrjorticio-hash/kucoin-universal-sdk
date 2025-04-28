@@ -66,30 +66,6 @@ class WebSocketClientOptionBuilder
     }
 
     /**
-     * Set the buffer size for reading messages.
-     *
-     * @param int $size
-     * @return self
-     */
-    public function setReadMessageBuffer(int $size): self
-    {
-        $this->option->readMessageBuffer = $size;
-        return $this;
-    }
-
-    /**
-     * Set the buffer size for writing messages.
-     *
-     * @param int $size
-     * @return self
-     */
-    public function setWriteMessageBuffer(int $size): self
-    {
-        $this->option->writeMessageBuffer = $size;
-        return $this;
-    }
-
-    /**
      * Set the timeout for sending messages (in seconds).
      *
      * @param float $timeout

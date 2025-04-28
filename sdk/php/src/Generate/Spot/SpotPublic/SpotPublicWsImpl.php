@@ -15,179 +15,388 @@ class SpotPublicWsImpl implements SpotPublicWs
         $this->wsService = $wsService;
     }
 
-    public function allTickers(callable $callback): PromiseInterface
-    {
+    public function allTickers(
+        callable $onData,
+        ?callable $onSuccess = null,
+        ?callable $onError = null
+    ): PromiseInterface {
         $topicPrefix = "/market/ticker:all";
 
         $args = [];
 
-        return $this->wsService->subscribe(
-            $topicPrefix,
-            $args,
-            AllTickersEvent::createCallback($callback)
-        );
+        return $this->wsService
+            ->subscribe(
+                $topicPrefix,
+                $args,
+                AllTickersEvent::createCallback($onData)
+            )
+            ->then(
+                function ($id) use ($onSuccess) {
+                    if ($onSuccess) {
+                        $onSuccess($id);
+                    }
+                    return $id;
+                },
+                function ($e) use ($onError) {
+                    if ($onError) {
+                        $onError($e);
+                    }
+                    throw $e;
+                }
+            );
     }
 
     public function callAuctionInfo(
         string $symbol,
-        callable $callback
+        callable $onData,
+        ?callable $onSuccess = null,
+        ?callable $onError = null
     ): PromiseInterface {
         $topicPrefix = "/callauction/callauctionData";
 
         $args = [$symbol];
 
-        return $this->wsService->subscribe(
-            $topicPrefix,
-            $args,
-            CallAuctionInfoEvent::createCallback($callback)
-        );
+        return $this->wsService
+            ->subscribe(
+                $topicPrefix,
+                $args,
+                CallAuctionInfoEvent::createCallback($onData)
+            )
+            ->then(
+                function ($id) use ($onSuccess) {
+                    if ($onSuccess) {
+                        $onSuccess($id);
+                    }
+                    return $id;
+                },
+                function ($e) use ($onError) {
+                    if ($onError) {
+                        $onError($e);
+                    }
+                    throw $e;
+                }
+            );
     }
 
     public function callAuctionOrderbookLevel50(
         string $symbol,
-        callable $callback
+        callable $onData,
+        ?callable $onSuccess = null,
+        ?callable $onError = null
     ): PromiseInterface {
         $topicPrefix = "/callauction/level2Depth50";
 
         $args = [$symbol];
 
-        return $this->wsService->subscribe(
-            $topicPrefix,
-            $args,
-            CallAuctionOrderbookLevel50Event::createCallback($callback)
-        );
+        return $this->wsService
+            ->subscribe(
+                $topicPrefix,
+                $args,
+                CallAuctionOrderbookLevel50Event::createCallback($onData)
+            )
+            ->then(
+                function ($id) use ($onSuccess) {
+                    if ($onSuccess) {
+                        $onSuccess($id);
+                    }
+                    return $id;
+                },
+                function ($e) use ($onError) {
+                    if ($onError) {
+                        $onError($e);
+                    }
+                    throw $e;
+                }
+            );
     }
 
     public function klines(
         string $symbol,
         string $type,
-        callable $callback
+        callable $onData,
+        ?callable $onSuccess = null,
+        ?callable $onError = null
     ): PromiseInterface {
         $topicPrefix = "/market/candles";
 
         $args = [implode("_", [$symbol, $type])];
 
-        return $this->wsService->subscribe(
-            $topicPrefix,
-            $args,
-            KlinesEvent::createCallback($callback)
-        );
+        return $this->wsService
+            ->subscribe(
+                $topicPrefix,
+                $args,
+                KlinesEvent::createCallback($onData)
+            )
+            ->then(
+                function ($id) use ($onSuccess) {
+                    if ($onSuccess) {
+                        $onSuccess($id);
+                    }
+                    return $id;
+                },
+                function ($e) use ($onError) {
+                    if ($onError) {
+                        $onError($e);
+                    }
+                    throw $e;
+                }
+            );
     }
 
     public function marketSnapshot(
         string $market,
-        callable $callback
+        callable $onData,
+        ?callable $onSuccess = null,
+        ?callable $onError = null
     ): PromiseInterface {
         $topicPrefix = "/market/snapshot";
 
         $args = [$market];
 
-        return $this->wsService->subscribe(
-            $topicPrefix,
-            $args,
-            MarketSnapshotEvent::createCallback($callback)
-        );
+        return $this->wsService
+            ->subscribe(
+                $topicPrefix,
+                $args,
+                MarketSnapshotEvent::createCallback($onData)
+            )
+            ->then(
+                function ($id) use ($onSuccess) {
+                    if ($onSuccess) {
+                        $onSuccess($id);
+                    }
+                    return $id;
+                },
+                function ($e) use ($onError) {
+                    if ($onError) {
+                        $onError($e);
+                    }
+                    throw $e;
+                }
+            );
     }
 
     public function orderbookIncrement(
         array $symbol,
-        callable $callback
+        callable $onData,
+        ?callable $onSuccess = null,
+        ?callable $onError = null
     ): PromiseInterface {
         $topicPrefix = "/market/level2";
 
         $args = $symbol;
 
-        return $this->wsService->subscribe(
-            $topicPrefix,
-            $args,
-            OrderbookIncrementEvent::createCallback($callback)
-        );
+        return $this->wsService
+            ->subscribe(
+                $topicPrefix,
+                $args,
+                OrderbookIncrementEvent::createCallback($onData)
+            )
+            ->then(
+                function ($id) use ($onSuccess) {
+                    if ($onSuccess) {
+                        $onSuccess($id);
+                    }
+                    return $id;
+                },
+                function ($e) use ($onError) {
+                    if ($onError) {
+                        $onError($e);
+                    }
+                    throw $e;
+                }
+            );
     }
 
     public function orderbookLevel1(
         array $symbol,
-        callable $callback
+        callable $onData,
+        ?callable $onSuccess = null,
+        ?callable $onError = null
     ): PromiseInterface {
         $topicPrefix = "/spotMarket/level1";
 
         $args = $symbol;
 
-        return $this->wsService->subscribe(
-            $topicPrefix,
-            $args,
-            OrderbookLevel1Event::createCallback($callback)
-        );
+        return $this->wsService
+            ->subscribe(
+                $topicPrefix,
+                $args,
+                OrderbookLevel1Event::createCallback($onData)
+            )
+            ->then(
+                function ($id) use ($onSuccess) {
+                    if ($onSuccess) {
+                        $onSuccess($id);
+                    }
+                    return $id;
+                },
+                function ($e) use ($onError) {
+                    if ($onError) {
+                        $onError($e);
+                    }
+                    throw $e;
+                }
+            );
     }
 
     public function orderbookLevel50(
         array $symbol,
-        callable $callback
+        callable $onData,
+        ?callable $onSuccess = null,
+        ?callable $onError = null
     ): PromiseInterface {
         $topicPrefix = "/spotMarket/level2Depth50";
 
         $args = $symbol;
 
-        return $this->wsService->subscribe(
-            $topicPrefix,
-            $args,
-            OrderbookLevel50Event::createCallback($callback)
-        );
+        return $this->wsService
+            ->subscribe(
+                $topicPrefix,
+                $args,
+                OrderbookLevel50Event::createCallback($onData)
+            )
+            ->then(
+                function ($id) use ($onSuccess) {
+                    if ($onSuccess) {
+                        $onSuccess($id);
+                    }
+                    return $id;
+                },
+                function ($e) use ($onError) {
+                    if ($onError) {
+                        $onError($e);
+                    }
+                    throw $e;
+                }
+            );
     }
 
     public function orderbookLevel5(
         array $symbol,
-        callable $callback
+        callable $onData,
+        ?callable $onSuccess = null,
+        ?callable $onError = null
     ): PromiseInterface {
         $topicPrefix = "/spotMarket/level2Depth5";
 
         $args = $symbol;
 
-        return $this->wsService->subscribe(
-            $topicPrefix,
-            $args,
-            OrderbookLevel5Event::createCallback($callback)
-        );
+        return $this->wsService
+            ->subscribe(
+                $topicPrefix,
+                $args,
+                OrderbookLevel5Event::createCallback($onData)
+            )
+            ->then(
+                function ($id) use ($onSuccess) {
+                    if ($onSuccess) {
+                        $onSuccess($id);
+                    }
+                    return $id;
+                },
+                function ($e) use ($onError) {
+                    if ($onError) {
+                        $onError($e);
+                    }
+                    throw $e;
+                }
+            );
     }
 
     public function symbolSnapshot(
         string $symbol,
-        callable $callback
+        callable $onData,
+        ?callable $onSuccess = null,
+        ?callable $onError = null
     ): PromiseInterface {
         $topicPrefix = "/market/snapshot";
 
         $args = [$symbol];
 
-        return $this->wsService->subscribe(
-            $topicPrefix,
-            $args,
-            SymbolSnapshotEvent::createCallback($callback)
-        );
+        return $this->wsService
+            ->subscribe(
+                $topicPrefix,
+                $args,
+                SymbolSnapshotEvent::createCallback($onData)
+            )
+            ->then(
+                function ($id) use ($onSuccess) {
+                    if ($onSuccess) {
+                        $onSuccess($id);
+                    }
+                    return $id;
+                },
+                function ($e) use ($onError) {
+                    if ($onError) {
+                        $onError($e);
+                    }
+                    throw $e;
+                }
+            );
     }
 
-    public function ticker(array $symbol, callable $callback): PromiseInterface
-    {
+    public function ticker(
+        array $symbol,
+        callable $onData,
+        ?callable $onSuccess = null,
+        ?callable $onError = null
+    ): PromiseInterface {
         $topicPrefix = "/market/ticker";
 
         $args = $symbol;
 
-        return $this->wsService->subscribe(
-            $topicPrefix,
-            $args,
-            TickerEvent::createCallback($callback)
-        );
+        return $this->wsService
+            ->subscribe(
+                $topicPrefix,
+                $args,
+                TickerEvent::createCallback($onData)
+            )
+            ->then(
+                function ($id) use ($onSuccess) {
+                    if ($onSuccess) {
+                        $onSuccess($id);
+                    }
+                    return $id;
+                },
+                function ($e) use ($onError) {
+                    if ($onError) {
+                        $onError($e);
+                    }
+                    throw $e;
+                }
+            );
     }
 
-    public function trade(array $symbol, callable $callback): PromiseInterface
-    {
+    public function trade(
+        array $symbol,
+        callable $onData,
+        ?callable $onSuccess = null,
+        ?callable $onError = null
+    ): PromiseInterface {
         $topicPrefix = "/market/match";
 
         $args = $symbol;
 
-        return $this->wsService->subscribe(
-            $topicPrefix,
-            $args,
-            TradeEvent::createCallback($callback)
-        );
+        return $this->wsService
+            ->subscribe(
+                $topicPrefix,
+                $args,
+                TradeEvent::createCallback($onData)
+            )
+            ->then(
+                function ($id) use ($onSuccess) {
+                    if ($onSuccess) {
+                        $onSuccess($id);
+                    }
+                    return $id;
+                },
+                function ($e) use ($onError) {
+                    if ($onError) {
+                        $onError($e);
+                    }
+                    throw $e;
+                }
+            );
     }
 
     public function unSubscribe(string $id): PromiseInterface

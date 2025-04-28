@@ -10,21 +10,31 @@ interface MarginPrivateWs
      * Get Cross Margin Position change
      * The system will push the change event when the position status changes, or push the current debt message periodically when there is a liability.
      * push frequency: once every 4s
-     * @param callable $callback function(string $topic, string $subject, CrossMarginPositionEvent $data): void
+     * @param callable $onData function(string $topic, string $subject, CrossMarginPositionEvent $data): void
+     * @param ?callable $onSuccess function(string $id): void
+     * @param ?callable $onError function(Exception $e): void
      * @return PromiseInterface<string> A promise that resolves to the subscription ID or rejects with an error.
      */
-    public function crossMarginPosition(callable $callback): PromiseInterface;
+    public function crossMarginPosition(
+        callable $onData,
+        ?callable $onSuccess = null,
+        ?callable $onError = null
+    ): PromiseInterface;
 
     /**
      * Get Isolated Margin Position change
      * The system will push the change event when the position status changes, or push the current debt message periodically when there is a liability.
      * push frequency: real time
-     * @param callable $callback function(string $topic, string $subject, IsolatedMarginPositionEvent $data): void
+     * @param callable $onData function(string $topic, string $subject, IsolatedMarginPositionEvent $data): void
+     * @param ?callable $onSuccess function(string $id): void
+     * @param ?callable $onError function(Exception $e): void
      * @return PromiseInterface<string> A promise that resolves to the subscription ID or rejects with an error.
      */
     public function isolatedMarginPosition(
         string $symbol,
-        callable $callback
+        callable $onData,
+        ?callable $onSuccess = null,
+        ?callable $onError = null
     ): PromiseInterface;
 
     /**

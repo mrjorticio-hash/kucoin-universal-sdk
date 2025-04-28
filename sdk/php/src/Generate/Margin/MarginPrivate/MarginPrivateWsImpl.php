@@ -15,32 +15,67 @@ class MarginPrivateWsImpl implements MarginPrivateWs
         $this->wsService = $wsService;
     }
 
-    public function crossMarginPosition(callable $callback): PromiseInterface
-    {
+    public function crossMarginPosition(
+        callable $onData,
+        ?callable $onSuccess = null,
+        ?callable $onError = null
+    ): PromiseInterface {
         $topicPrefix = "/margin/position";
 
         $args = [];
 
-        return $this->wsService->subscribe(
-            $topicPrefix,
-            $args,
-            CrossMarginPositionEvent::createCallback($callback)
-        );
+        return $this->wsService
+            ->subscribe(
+                $topicPrefix,
+                $args,
+                CrossMarginPositionEvent::createCallback($onData)
+            )
+            ->then(
+                function ($id) use ($onSuccess) {
+                    if ($onSuccess) {
+                        $onSuccess($id);
+                    }
+                    return $id;
+                },
+                function ($e) use ($onError) {
+                    if ($onError) {
+                        $onError($e);
+                    }
+                    throw $e;
+                }
+            );
     }
 
     public function isolatedMarginPosition(
         string $symbol,
-        callable $callback
+        callable $onData,
+        ?callable $onSuccess = null,
+        ?callable $onError = null
     ): PromiseInterface {
         $topicPrefix = "/margin/isolatedPosition";
 
         $args = [$symbol];
 
-        return $this->wsService->subscribe(
-            $topicPrefix,
-            $args,
-            IsolatedMarginPositionEvent::createCallback($callback)
-        );
+        return $this->wsService
+            ->subscribe(
+                $topicPrefix,
+                $args,
+                IsolatedMarginPositionEvent::createCallback($onData)
+            )
+            ->then(
+                function ($id) use ($onSuccess) {
+                    if ($onSuccess) {
+                        $onSuccess($id);
+                    }
+                    return $id;
+                },
+                function ($e) use ($onError) {
+                    if ($onError) {
+                        $onError($e);
+                    }
+                    throw $e;
+                }
+            );
     }
 
     public function unSubscribe(string $id): PromiseInterface

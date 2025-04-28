@@ -33,18 +33,6 @@ class WebSocketClientOption
     public $dialTimeout = 10.0;
 
     /**
-     * Buffer size for reading messages.
-     * @var int
-     */
-    public $readMessageBuffer = 1024;
-
-    /**
-     * Buffer size for writing messages.
-     * @var int
-     */
-    public $writeMessageBuffer = 256;
-
-    /**
      * Timeout for sending messages (in seconds).
      * @var float
      */

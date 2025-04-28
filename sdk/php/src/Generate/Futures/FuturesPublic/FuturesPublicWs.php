@@ -10,121 +10,161 @@ interface FuturesPublicWs
      * announcement
      * Subscribe this topic to get Funding Fee Settlement.
      * push frequency: Settlement is made every 8 hours, real-time push
-     * @param callable $callback function(string $topic, string $subject, AnnouncementEvent $data): void
+     * @param callable $onData function(string $topic, string $subject, AnnouncementEvent $data): void
+     * @param ?callable $onSuccess function(string $id): void
+     * @param ?callable $onError function(Exception $e): void
      * @return PromiseInterface<string> A promise that resolves to the subscription ID or rejects with an error.
      */
     public function announcement(
         string $symbol,
-        callable $callback
+        callable $onData,
+        ?callable $onSuccess = null,
+        ?callable $onError = null
     ): PromiseInterface;
 
     /**
      * Match execution data.
      * For each order executed, the system will send you the match messages in the format as following.
      * push frequency: real-time
-     * @param callable $callback function(string $topic, string $subject, ExecutionEvent $data): void
+     * @param callable $onData function(string $topic, string $subject, ExecutionEvent $data): void
+     * @param ?callable $onSuccess function(string $id): void
+     * @param ?callable $onError function(Exception $e): void
      * @return PromiseInterface<string> A promise that resolves to the subscription ID or rejects with an error.
      */
     public function execution(
         string $symbol,
-        callable $callback
+        callable $onData,
+        ?callable $onSuccess = null,
+        ?callable $onError = null
     ): PromiseInterface;
 
     /**
      * instrument
      * Subscribe this topic to get the mark Price, index Price or funding fee Rate
      * push frequency: mark.index.price 1s, funding.rate 1min
-     * @param callable $callback function(string $topic, string $subject, InstrumentEvent $data): void
+     * @param callable $onData function(string $topic, string $subject, InstrumentEvent $data): void
+     * @param ?callable $onSuccess function(string $id): void
+     * @param ?callable $onError function(Exception $e): void
      * @return PromiseInterface<string> A promise that resolves to the subscription ID or rejects with an error.
      */
     public function instrument(
         string $symbol,
-        callable $callback
+        callable $onData,
+        ?callable $onSuccess = null,
+        ?callable $onError = null
     ): PromiseInterface;
 
     /**
      * Klines
      * Subscribe to this topic to get K-Line data.
      * push frequency: 1s
-     * @param callable $callback function(string $topic, string $subject, KlinesEvent $data): void
+     * @param callable $onData function(string $topic, string $subject, KlinesEvent $data): void
+     * @param ?callable $onSuccess function(string $id): void
+     * @param ?callable $onError function(Exception $e): void
      * @return PromiseInterface<string> A promise that resolves to the subscription ID or rejects with an error.
      */
     public function klines(
         string $symbol,
         string $type,
-        callable $callback
+        callable $onData,
+        ?callable $onSuccess = null,
+        ?callable $onError = null
     ): PromiseInterface;
 
     /**
      * Orderbook - Increment
      * The system will return the increment change orderbook data (all depth). If there is no change in the market, data will not be pushed.
      * push frequency: real-time
-     * @param callable $callback function(string $topic, string $subject, OrderbookIncrementEvent $data): void
+     * @param callable $onData function(string $topic, string $subject, OrderbookIncrementEvent $data): void
+     * @param ?callable $onSuccess function(string $id): void
+     * @param ?callable $onError function(Exception $e): void
      * @return PromiseInterface<string> A promise that resolves to the subscription ID or rejects with an error.
      */
     public function orderbookIncrement(
         string $symbol,
-        callable $callback
+        callable $onData,
+        ?callable $onSuccess = null,
+        ?callable $onError = null
     ): PromiseInterface;
 
     /**
      * Orderbook - Level50
      * The depth50 market data.
      * push frequency: 100ms
-     * @param callable $callback function(string $topic, string $subject, OrderbookLevel50Event $data): void
+     * @param callable $onData function(string $topic, string $subject, OrderbookLevel50Event $data): void
+     * @param ?callable $onSuccess function(string $id): void
+     * @param ?callable $onError function(Exception $e): void
      * @return PromiseInterface<string> A promise that resolves to the subscription ID or rejects with an error.
      */
     public function orderbookLevel50(
         string $symbol,
-        callable $callback
+        callable $onData,
+        ?callable $onSuccess = null,
+        ?callable $onError = null
     ): PromiseInterface;
 
     /**
      * Orderbook - Level5
      * The system will return the 5 best ask/bid orders data. If there is no change in the market, data will not be pushed
      * push frequency: 100ms
-     * @param callable $callback function(string $topic, string $subject, OrderbookLevel5Event $data): void
+     * @param callable $onData function(string $topic, string $subject, OrderbookLevel5Event $data): void
+     * @param ?callable $onSuccess function(string $id): void
+     * @param ?callable $onError function(Exception $e): void
      * @return PromiseInterface<string> A promise that resolves to the subscription ID or rejects with an error.
      */
     public function orderbookLevel5(
         string $symbol,
-        callable $callback
+        callable $onData,
+        ?callable $onSuccess = null,
+        ?callable $onError = null
     ): PromiseInterface;
 
     /**
      * Symbol Snapshot
      * Get symbol snapshot.
      * push frequency: 5000ms
-     * @param callable $callback function(string $topic, string $subject, SymbolSnapshotEvent $data): void
+     * @param callable $onData function(string $topic, string $subject, SymbolSnapshotEvent $data): void
+     * @param ?callable $onSuccess function(string $id): void
+     * @param ?callable $onError function(Exception $e): void
      * @return PromiseInterface<string> A promise that resolves to the subscription ID or rejects with an error.
      */
     public function symbolSnapshot(
         string $symbol,
-        callable $callback
+        callable $onData,
+        ?callable $onSuccess = null,
+        ?callable $onError = null
     ): PromiseInterface;
 
     /**
      * Get Ticker(not recommended)
      * Subscribe to this topic to get real-time pushes on BBO changes. It is not recommended to use this topic any more. For real-time ticker information, please subscribe /contractMarket/tickerV2:{symbol}.
      * push frequency: real-time
-     * @param callable $callback function(string $topic, string $subject, TickerV1Event $data): void
+     * @param callable $onData function(string $topic, string $subject, TickerV1Event $data): void
+     * @param ?callable $onSuccess function(string $id): void
+     * @param ?callable $onError function(Exception $e): void
      * @return PromiseInterface<string> A promise that resolves to the subscription ID or rejects with an error.
      */
     public function tickerV1(
         string $symbol,
-        callable $callback
+        callable $onData,
+        ?callable $onSuccess = null,
+        ?callable $onError = null
     ): PromiseInterface;
 
     /**
      * Get Ticker V2
      * Subscribe to this topic to get real-time pushes of BBO changes. After subscription, when there are changes in the order book (not necessarily ask1/bid1 changes), the system will push the real-time ticker symbol information to you.
      * push frequency: real-time
-     * @param callable $callback function(string $topic, string $subject, TickerV2Event $data): void
+     * @param callable $onData function(string $topic, string $subject, TickerV2Event $data): void
+     * @param ?callable $onSuccess function(string $id): void
+     * @param ?callable $onError function(Exception $e): void
      * @return PromiseInterface<string> A promise that resolves to the subscription ID or rejects with an error.
      */
     public function tickerV2(
         string $symbol,
-        callable $callback
+        callable $onData,
+        ?callable $onSuccess = null,
+        ?callable $onError = null
     ): PromiseInterface;
 
     /**

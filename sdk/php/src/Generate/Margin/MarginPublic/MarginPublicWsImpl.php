@@ -17,32 +17,66 @@ class MarginPublicWsImpl implements MarginPublicWs
 
     public function indexPrice(
         array $symbol,
-        callable $callback
+        callable $onData,
+        ?callable $onSuccess = null,
+        ?callable $onError = null
     ): PromiseInterface {
         $topicPrefix = "/indicator/index";
 
         $args = $symbol;
 
-        return $this->wsService->subscribe(
-            $topicPrefix,
-            $args,
-            IndexPriceEvent::createCallback($callback)
-        );
+        return $this->wsService
+            ->subscribe(
+                $topicPrefix,
+                $args,
+                IndexPriceEvent::createCallback($onData)
+            )
+            ->then(
+                function ($id) use ($onSuccess) {
+                    if ($onSuccess) {
+                        $onSuccess($id);
+                    }
+                    return $id;
+                },
+                function ($e) use ($onError) {
+                    if ($onError) {
+                        $onError($e);
+                    }
+                    throw $e;
+                }
+            );
     }
 
     public function markPrice(
         array $symbol,
-        callable $callback
+        callable $onData,
+        ?callable $onSuccess = null,
+        ?callable $onError = null
     ): PromiseInterface {
         $topicPrefix = "/indicator/markPrice";
 
         $args = $symbol;
 
-        return $this->wsService->subscribe(
-            $topicPrefix,
-            $args,
-            MarkPriceEvent::createCallback($callback)
-        );
+        return $this->wsService
+            ->subscribe(
+                $topicPrefix,
+                $args,
+                MarkPriceEvent::createCallback($onData)
+            )
+            ->then(
+                function ($id) use ($onSuccess) {
+                    if ($onSuccess) {
+                        $onSuccess($id);
+                    }
+                    return $id;
+                },
+                function ($e) use ($onError) {
+                    if ($onError) {
+                        $onError($e);
+                    }
+                    throw $e;
+                }
+            );
     }
 
     public function unSubscribe(string $id): PromiseInterface
