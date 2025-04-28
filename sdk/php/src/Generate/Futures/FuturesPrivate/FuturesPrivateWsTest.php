@@ -8,7 +8,7 @@ use KuCoin\UniversalSDK\Model\RestResponse;
 use PHPUnit\Framework\TestCase;
 use ReflectionClass;
 
-class FuturesPrivateApiWsTest extends TestCase
+class FuturesPrivateWsTest extends TestCase
 {
     /**
      * @var Serializer $serializer

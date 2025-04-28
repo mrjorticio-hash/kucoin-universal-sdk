@@ -4,8 +4,8 @@
 namespace KuCoin\UniversalSDK\Generate\Service;
 
 use KuCoin\UniversalSDK\Generate\Spot\Market\MarketAPI;
-use KuCoin\UniversalSDK\Generate\Spot\Market\MarketAPIImpl;
 use KuCoin\UniversalSDK\Generate\Spot\Order\OrderAPI;
+use KuCoin\UniversalSDK\Generate\Spot\Market\MarketAPIImpl;
 use KuCoin\UniversalSDK\Generate\Spot\Order\OrderAPIImpl;
 
 class SpotServiceImpl implements SpotService

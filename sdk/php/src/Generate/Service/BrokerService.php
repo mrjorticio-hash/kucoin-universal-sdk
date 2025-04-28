@@ -4,9 +4,7 @@
 namespace KuCoin\UniversalSDK\Generate\Service;
 
 use KuCoin\UniversalSDK\Generate\Broker\APIBroker\APIBrokerAPI;
-use KuCoin\UniversalSDK\Generate\Broker\APIBroker\APIBrokerAPIImpl;
 use KuCoin\UniversalSDK\Generate\Broker\NDBroker\NDBrokerAPI;
-use KuCoin\UniversalSDK\Generate\Broker\NDBroker\NDBrokerAPIImpl;
 
 interface BrokerService
 {

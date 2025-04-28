@@ -4,7 +4,6 @@
 namespace KuCoin\UniversalSDK\Generate\Service;
 
 use KuCoin\UniversalSDK\Generate\Earn\Earn\EarnAPI;
-use KuCoin\UniversalSDK\Generate\Earn\Earn\EarnAPIImpl;
 
 interface EarnService
 {

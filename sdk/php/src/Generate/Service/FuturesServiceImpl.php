@@ -4,12 +4,12 @@
 namespace KuCoin\UniversalSDK\Generate\Service;
 
 use KuCoin\UniversalSDK\Generate\Futures\FundingFees\FundingFeesAPI;
-use KuCoin\UniversalSDK\Generate\Futures\FundingFees\FundingFeesAPIImpl;
 use KuCoin\UniversalSDK\Generate\Futures\Market\MarketAPI;
-use KuCoin\UniversalSDK\Generate\Futures\Market\MarketAPIImpl;
 use KuCoin\UniversalSDK\Generate\Futures\Order\OrderAPI;
-use KuCoin\UniversalSDK\Generate\Futures\Order\OrderAPIImpl;
 use KuCoin\UniversalSDK\Generate\Futures\Positions\PositionsAPI;
+use KuCoin\UniversalSDK\Generate\Futures\FundingFees\FundingFeesAPIImpl;
+use KuCoin\UniversalSDK\Generate\Futures\Market\MarketAPIImpl;
+use KuCoin\UniversalSDK\Generate\Futures\Order\OrderAPIImpl;
 use KuCoin\UniversalSDK\Generate\Futures\Positions\PositionsAPIImpl;
 
 class FuturesServiceImpl implements FuturesService

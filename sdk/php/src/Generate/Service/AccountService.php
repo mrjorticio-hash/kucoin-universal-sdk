@@ -4,17 +4,11 @@
 namespace KuCoin\UniversalSDK\Generate\Service;
 
 use KuCoin\UniversalSDK\Generate\Account\Account\AccountAPI;
-use KuCoin\UniversalSDK\Generate\Account\Account\AccountAPIImpl;
 use KuCoin\UniversalSDK\Generate\Account\Deposit\DepositAPI;
-use KuCoin\UniversalSDK\Generate\Account\Deposit\DepositAPIImpl;
 use KuCoin\UniversalSDK\Generate\Account\Fee\FeeAPI;
-use KuCoin\UniversalSDK\Generate\Account\Fee\FeeAPIImpl;
 use KuCoin\UniversalSDK\Generate\Account\SubAccount\SubAccountAPI;
-use KuCoin\UniversalSDK\Generate\Account\SubAccount\SubAccountAPIImpl;
 use KuCoin\UniversalSDK\Generate\Account\Transfer\TransferAPI;
-use KuCoin\UniversalSDK\Generate\Account\Transfer\TransferAPIImpl;
 use KuCoin\UniversalSDK\Generate\Account\Withdrawal\WithdrawalAPI;
-use KuCoin\UniversalSDK\Generate\Account\Withdrawal\WithdrawalAPIImpl;
 
 interface AccountService
 {

@@ -4,15 +4,10 @@
 namespace KuCoin\UniversalSDK\Generate\Service;
 
 use KuCoin\UniversalSDK\Generate\Margin\Credit\CreditAPI;
-use KuCoin\UniversalSDK\Generate\Margin\Credit\CreditAPIImpl;
 use KuCoin\UniversalSDK\Generate\Margin\Debit\DebitAPI;
-use KuCoin\UniversalSDK\Generate\Margin\Debit\DebitAPIImpl;
 use KuCoin\UniversalSDK\Generate\Margin\Market\MarketAPI;
-use KuCoin\UniversalSDK\Generate\Margin\Market\MarketAPIImpl;
 use KuCoin\UniversalSDK\Generate\Margin\Order\OrderAPI;
-use KuCoin\UniversalSDK\Generate\Margin\Order\OrderAPIImpl;
 use KuCoin\UniversalSDK\Generate\Margin\RiskLimit\RiskLimitAPI;
-use KuCoin\UniversalSDK\Generate\Margin\RiskLimit\RiskLimitAPIImpl;
 
 interface MarginService
 {

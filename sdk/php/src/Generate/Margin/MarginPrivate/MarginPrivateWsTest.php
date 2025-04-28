@@ -8,7 +8,7 @@ use KuCoin\UniversalSDK\Model\RestResponse;
 use PHPUnit\Framework\TestCase;
 use ReflectionClass;
 
-class MarginPrivateApiWsTest extends TestCase
+class MarginPrivateWsTest extends TestCase
 {
     /**
      * @var Serializer $serializer

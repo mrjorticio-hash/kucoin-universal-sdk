@@ -15,10 +15,12 @@ interface {{classname}} {
     * {{summary}}
     * {{notes}}
     * push frequency: {{vendorExtensions.x-push_frequency}}
-    * @param callable $callback function(string $topic, string $subject, {{vendorExtensions.x-meta.methodServiceFmt}}Event $data): void
+    * @param callable $onData function(string $topic, string $subject, {{vendorExtensions.x-meta.methodServiceFmt}}Event $data): void
+    * @param ?callable $onSuccess function(string $id): void
+    * @param ?callable $onError function(Exception $e): void
     * @return PromiseInterface<string> A promise that resolves to the subscription ID or rejects with an error.
     */
-    public function {{vendorExtensions.x-meta.method}}{{operationName}}({{#vendorExtensions.x-meta.otherProperties}}{{#parameters}}{{#type}}{{#type.simple}}string ${{paras}},{{/type.simple}}{{#type.array}}array ${{paras}},{{/type.array}}{{#type.object}}{{#paras}}string ${{.}},{{/paras}}{{/type.object}}{{/type}}{{/parameters}}{{/vendorExtensions.x-meta.otherProperties}}callable $callback) : PromiseInterface;
+    public function {{vendorExtensions.x-meta.method}}{{operationName}}({{#vendorExtensions.x-meta.otherProperties}}{{#parameters}}{{#type}}{{#type.simple}}string ${{paras}},{{/type.simple}}{{#type.array}}array ${{paras}},{{/type.array}}{{#type.object}}{{#paras}}string ${{.}},{{/paras}}{{/type.object}}{{/type}}{{/parameters}}{{/vendorExtensions.x-meta.otherProperties}}callable $onData, ?callable $onSuccess = null, ?callable $onError = null) : PromiseInterface;
     {{/operation}}
 
     /**

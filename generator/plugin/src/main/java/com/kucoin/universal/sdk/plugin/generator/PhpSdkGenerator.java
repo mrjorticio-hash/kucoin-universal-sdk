@@ -8,6 +8,7 @@ import com.kucoin.universal.sdk.plugin.service.OperationService;
 import com.kucoin.universal.sdk.plugin.service.SchemaService;
 import com.kucoin.universal.sdk.plugin.service.impl.OperationServiceImpl;
 import com.kucoin.universal.sdk.plugin.service.impl.SchemaServiceImpl;
+import com.kucoin.universal.sdk.plugin.util.KeywordsUtil;
 import com.kucoin.universal.sdk.plugin.util.SpecificationUtil;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.Operation;
@@ -74,7 +75,7 @@ public class PhpSdkGenerator extends AbstractPhpCodegen implements NameService {
         super.processOpts();
         this.supportingFiles.clear();
         modeSwitch = new ModeSwitch(additionalProperties);
-        service = camelize(openAPI.getInfo().getTitle(), CamelizeOption.UPPERCASE_FIRST_CHAR);
+        service = KeywordsUtil.getKeyword(camelize(openAPI.getInfo().getTitle(), CamelizeOption.UPPERCASE_FIRST_CHAR));
         subService = camelize(openAPI.getInfo().getDescription(), CamelizeOption.UPPERCASE_FIRST_CHAR);
         apiPackage = String.format("KuCoin\\UniversalSDK\\Generate\\%s\\%s", service, subService);
         modelPackage = String.format("KuCoin\\UniversalSDK\\Generate\\%s\\%s", service, subService);
@@ -307,7 +308,7 @@ public class PhpSdkGenerator extends AbstractPhpCodegen implements NameService {
 
     @Override
     public String toApiName(String name) {
-        return camelize(name + "_" + (modeSwitch.isWs() ? "Ws" : "Api"));
+        return camelize(name + "_" + (modeSwitch.isWs() || modeSwitch.isWsTest() ? "Ws" : "Api"));
     }
 
     @Override
@@ -403,6 +404,7 @@ public class PhpSdkGenerator extends AbstractPhpCodegen implements NameService {
 
 
         Set<String> imports = new TreeSet<>();
+        Set<String> implImports = new TreeSet<>();
 
         for (CodegenOperation op : operationMap.getOperation()) {
             Meta meta = SpecificationUtil.getMeta(op.vendorExtensions);
@@ -419,7 +421,7 @@ public class PhpSdkGenerator extends AbstractPhpCodegen implements NameService {
                                 kv.put("target_service", formatService(k + "API"));
                                 entryValue.add(kv);
                                 imports.add(String.format("use KuCoin\\UniversalSDK\\Generate\\%s\\%s\\%s;", v.getService(), v.getSubService(), formatService(k + "API")));
-                                imports.add(String.format("use KuCoin\\UniversalSDK\\Generate\\%s\\%s\\%sImpl;", v.getService(), v.getSubService(), formatService(k + "API")));
+                                implImports.add(String.format("use KuCoin\\UniversalSDK\\Generate\\%s\\%s\\%sImpl;", v.getService(), v.getSubService(), formatService(k + "API")));
                             }
                         });
                         Map<String, Object> apiEntryInfo = new HashMap<>();
@@ -445,6 +447,7 @@ public class PhpSdkGenerator extends AbstractPhpCodegen implements NameService {
             }
         }
         objs.put("imports", imports);
+        objs.put("implImports", implImports);
         return objs;
     }
 }
