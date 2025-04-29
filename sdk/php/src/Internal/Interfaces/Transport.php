@@ -18,7 +18,7 @@ interface Transport
      * @param bool $broker Whether this is a broker service request
      * @param string $method HTTP method such as GET, POST, etc.
      * @param string $path Path or endpoint of the request
-     * @param Request $requestObj|null The request payload (array or object)
+     * @param Request|null $requestObj The request payload (array or object)
      * @param class-string<Response> $responseClass The response class to populate
      * @param bool $requestAsJson Whether to serialize the request as JSON
      * @param array $options Optional arguments (headers, query params, etc.)

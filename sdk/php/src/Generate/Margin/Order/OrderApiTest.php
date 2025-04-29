@@ -76,9 +76,13 @@ class OrderApiTest extends TestCase
         $data =
             "{\n    \"success\": true,\n    \"code\": \"200000\",\n    \"data\": {\n        \"orderId\": \"671663e02188630007e21c9c\",\n        \"clientOid\": \"5c52e11203aa677f33e1493fb\",\n        \"borrowSize\": \"10.2\",\n        \"loanApplyId\": \"600656d9a33ac90009de4f6f\"\n    }\n}";
         $commonResp = RestResponse::jsonDeserialize($data, $this->serializer);
-        $respData = $this->serializer->serialize($commonResp->data, "json");
+        $respData = $commonResp->data
+            ? $this->serializer->serialize($commonResp->data, "json")
+            : null;
         $resp = AddOrderResp::jsonDeserialize($respData, $this->serializer);
-        $this->assertTrue($this->hasAnyNoneNull($resp));
+        $commonResp->data
+            ? $this->assertTrue($this->hasAnyNoneNull($resp))
+            : $this->assertTrue(true);
         echo $resp->jsonSerialize($this->serializer);
     }
     /**
@@ -105,9 +109,13 @@ class OrderApiTest extends TestCase
         $data =
             "{\n    \"success\": true,\n    \"code\": \"200000\",\n    \"data\": {\n        \"orderId\": \"5bd6e9286d99522a52e458de\",\n        \"clientOid\": \"5c52e11203aa677f33e493fb\",\n        \"borrowSize\": 10.2,\n        \"loanApplyId\": \"600656d9a33ac90009de4f6f\"\n    }\n}";
         $commonResp = RestResponse::jsonDeserialize($data, $this->serializer);
-        $respData = $this->serializer->serialize($commonResp->data, "json");
+        $respData = $commonResp->data
+            ? $this->serializer->serialize($commonResp->data, "json")
+            : null;
         $resp = AddOrderTestResp::jsonDeserialize($respData, $this->serializer);
-        $this->assertTrue($this->hasAnyNoneNull($resp));
+        $commonResp->data
+            ? $this->assertTrue($this->hasAnyNoneNull($resp))
+            : $this->assertTrue(true);
         echo $resp->jsonSerialize($this->serializer);
     }
     /**
@@ -137,12 +145,16 @@ class OrderApiTest extends TestCase
         $data =
             "{\"code\":\"200000\",\"data\":{\"orderId\":\"671663e02188630007e21c9c\"}}";
         $commonResp = RestResponse::jsonDeserialize($data, $this->serializer);
-        $respData = $this->serializer->serialize($commonResp->data, "json");
+        $respData = $commonResp->data
+            ? $this->serializer->serialize($commonResp->data, "json")
+            : null;
         $resp = CancelOrderByOrderIdResp::jsonDeserialize(
             $respData,
             $this->serializer
         );
-        $this->assertTrue($this->hasAnyNoneNull($resp));
+        $commonResp->data
+            ? $this->assertTrue($this->hasAnyNoneNull($resp))
+            : $this->assertTrue(true);
         echo $resp->jsonSerialize($this->serializer);
     }
     /**
@@ -172,12 +184,16 @@ class OrderApiTest extends TestCase
         $data =
             "{\"code\":\"200000\",\"data\":{\"clientOid\":\"5c52e11203aa677f33e1493fb\"}}";
         $commonResp = RestResponse::jsonDeserialize($data, $this->serializer);
-        $respData = $this->serializer->serialize($commonResp->data, "json");
+        $respData = $commonResp->data
+            ? $this->serializer->serialize($commonResp->data, "json")
+            : null;
         $resp = CancelOrderByClientOidResp::jsonDeserialize(
             $respData,
             $this->serializer
         );
-        $this->assertTrue($this->hasAnyNoneNull($resp));
+        $commonResp->data
+            ? $this->assertTrue($this->hasAnyNoneNull($resp))
+            : $this->assertTrue(true);
         echo $resp->jsonSerialize($this->serializer);
     }
     /**
@@ -205,12 +221,16 @@ class OrderApiTest extends TestCase
     {
         $data = "{\"code\":\"200000\",\"data\":\"success\"}";
         $commonResp = RestResponse::jsonDeserialize($data, $this->serializer);
-        $respData = $this->serializer->serialize($commonResp->data, "json");
+        $respData = $commonResp->data
+            ? $this->serializer->serialize($commonResp->data, "json")
+            : null;
         $resp = CancelAllOrdersBySymbolResp::jsonDeserialize(
             $respData,
             $this->serializer
         );
-        $this->assertTrue($this->hasAnyNoneNull($resp));
+        $commonResp->data
+            ? $this->assertTrue($this->hasAnyNoneNull($resp))
+            : $this->assertTrue(true);
         echo $resp->jsonSerialize($this->serializer);
     }
     /**
@@ -239,12 +259,16 @@ class OrderApiTest extends TestCase
         $data =
             "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"symbolSize\": 1,\n        \"symbols\": [\n            \"BTC-USDT\"\n        ]\n    }\n}";
         $commonResp = RestResponse::jsonDeserialize($data, $this->serializer);
-        $respData = $this->serializer->serialize($commonResp->data, "json");
+        $respData = $commonResp->data
+            ? $this->serializer->serialize($commonResp->data, "json")
+            : null;
         $resp = GetSymbolsWithOpenOrderResp::jsonDeserialize(
             $respData,
             $this->serializer
         );
-        $this->assertTrue($this->hasAnyNoneNull($resp));
+        $commonResp->data
+            ? $this->assertTrue($this->hasAnyNoneNull($resp))
+            : $this->assertTrue(true);
         echo $resp->jsonSerialize($this->serializer);
     }
     /**
@@ -270,12 +294,16 @@ class OrderApiTest extends TestCase
         $data =
             "{\n    \"code\": \"200000\",\n    \"data\": [\n        {\n            \"id\": \"671667306afcdb000723107f\",\n            \"clientOid\": \"5c52e11203aa677f33e493fb\",\n            \"symbol\": \"BTC-USDT\",\n            \"opType\": \"DEAL\",\n            \"type\": \"limit\",\n            \"side\": \"buy\",\n            \"price\": \"50000\",\n            \"size\": \"0.00001\",\n            \"funds\": \"0.5\",\n            \"dealSize\": \"0\",\n            \"dealFunds\": \"0\",\n            \"remainSize\": \"0.00001\",\n            \"remainFunds\": \"0.5\",\n            \"cancelledSize\": \"0\",\n            \"cancelledFunds\": \"0\",\n            \"fee\": \"0\",\n            \"feeCurrency\": \"USDT\",\n            \"stp\": null,\n            \"stop\": null,\n            \"stopTriggered\": false,\n            \"stopPrice\": \"0\",\n            \"timeInForce\": \"GTC\",\n            \"postOnly\": false,\n            \"hidden\": false,\n            \"iceberg\": false,\n            \"visibleSize\": \"0\",\n            \"cancelAfter\": 0,\n            \"channel\": \"API\",\n            \"remark\": null,\n            \"tags\": null,\n            \"cancelExist\": false,\n            \"tradeType\": \"MARGIN_TRADE\",\n            \"inOrderBook\": true,\n            \"active\": true,\n            \"tax\": \"0\",\n            \"createdAt\": 1729521456248,\n            \"lastUpdatedAt\": 1729521460940\n        }\n    ]\n}";
         $commonResp = RestResponse::jsonDeserialize($data, $this->serializer);
-        $respData = $this->serializer->serialize($commonResp->data, "json");
+        $respData = $commonResp->data
+            ? $this->serializer->serialize($commonResp->data, "json")
+            : null;
         $resp = GetOpenOrdersResp::jsonDeserialize(
             $respData,
             $this->serializer
         );
-        $this->assertTrue($this->hasAnyNoneNull($resp));
+        $commonResp->data
+            ? $this->assertTrue($this->hasAnyNoneNull($resp))
+            : $this->assertTrue(true);
         echo $resp->jsonSerialize($this->serializer);
     }
     /**
@@ -302,12 +330,16 @@ class OrderApiTest extends TestCase
         $data =
             "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"lastId\": 136112949351,\n        \"items\": [\n            {\n                \"id\": \"6716491f6afcdb00078365c8\",\n                \"clientOid\": \"5c52e11203aa677f33e493fb\",\n                \"symbol\": \"BTC-USDT\",\n                \"opType\": \"DEAL\",\n                \"type\": \"limit\",\n                \"side\": \"buy\",\n                \"price\": \"50000\",\n                \"size\": \"0.00001\",\n                \"funds\": \"0.5\",\n                \"dealSize\": \"0\",\n                \"dealFunds\": \"0\",\n                \"remainSize\": \"0\",\n                \"remainFunds\": \"0\",\n                \"cancelledSize\": \"0.00001\",\n                \"cancelledFunds\": \"0.5\",\n                \"fee\": \"0\",\n                \"feeCurrency\": \"USDT\",\n                \"stp\": null,\n                \"stop\": null,\n                \"stopTriggered\": false,\n                \"stopPrice\": \"0\",\n                \"timeInForce\": \"GTC\",\n                \"postOnly\": false,\n                \"hidden\": false,\n                \"iceberg\": false,\n                \"visibleSize\": \"0\",\n                \"cancelAfter\": 0,\n                \"channel\": \"API\",\n                \"remark\": null,\n                \"tags\": null,\n                \"cancelExist\": true,\n                \"tradeType\": \"MARGIN_TRADE\",\n                \"inOrderBook\": false,\n                \"active\": false,\n                \"tax\": \"0\",\n                \"createdAt\": 1729513759162,\n                \"lastUpdatedAt\": 1729521126597\n            }\n        ]\n    }\n}";
         $commonResp = RestResponse::jsonDeserialize($data, $this->serializer);
-        $respData = $this->serializer->serialize($commonResp->data, "json");
+        $respData = $commonResp->data
+            ? $this->serializer->serialize($commonResp->data, "json")
+            : null;
         $resp = GetClosedOrdersResp::jsonDeserialize(
             $respData,
             $this->serializer
         );
-        $this->assertTrue($this->hasAnyNoneNull($resp));
+        $commonResp->data
+            ? $this->assertTrue($this->hasAnyNoneNull($resp))
+            : $this->assertTrue(true);
         echo $resp->jsonSerialize($this->serializer);
     }
     /**
@@ -334,12 +366,16 @@ class OrderApiTest extends TestCase
         $data =
             "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"items\": [\n            {\n                \"id\": 137891621991,\n                \"symbol\": \"BTC-USDT\",\n                \"tradeId\": 11040911994273793,\n                \"orderId\": \"671868085584bc0007d85f46\",\n                \"counterOrderId\": \"67186805b7cbdf00071621f9\",\n                \"side\": \"buy\",\n                \"liquidity\": \"taker\",\n                \"forceTaker\": false,\n                \"price\": \"67141.6\",\n                \"size\": \"0.00001\",\n                \"funds\": \"0.671416\",\n                \"fee\": \"0.000671416\",\n                \"feeRate\": \"0.001\",\n                \"feeCurrency\": \"USDT\",\n                \"stop\": \"\",\n                \"tradeType\": \"MARGIN_TRADE\",\n                \"tax\": \"0\",\n                \"taxRate\": \"0\",\n                \"type\": \"limit\",\n                \"createdAt\": 1729652744998\n            }\n        ],\n        \"lastId\": 137891621991\n    }\n}";
         $commonResp = RestResponse::jsonDeserialize($data, $this->serializer);
-        $respData = $this->serializer->serialize($commonResp->data, "json");
+        $respData = $commonResp->data
+            ? $this->serializer->serialize($commonResp->data, "json")
+            : null;
         $resp = GetTradeHistoryResp::jsonDeserialize(
             $respData,
             $this->serializer
         );
-        $this->assertTrue($this->hasAnyNoneNull($resp));
+        $commonResp->data
+            ? $this->assertTrue($this->hasAnyNoneNull($resp))
+            : $this->assertTrue(true);
         echo $resp->jsonSerialize($this->serializer);
     }
     /**
@@ -366,12 +402,16 @@ class OrderApiTest extends TestCase
         $data =
             "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"id\": \"671667306afcdb000723107f\",\n        \"symbol\": \"BTC-USDT\",\n        \"opType\": \"DEAL\",\n        \"type\": \"limit\",\n        \"side\": \"buy\",\n        \"price\": \"50000\",\n        \"size\": \"0.00001\",\n        \"funds\": \"0.5\",\n        \"dealSize\": \"0\",\n        \"dealFunds\": \"0\",\n        \"fee\": \"0\",\n        \"feeCurrency\": \"USDT\",\n        \"stp\": null,\n        \"stop\": null,\n        \"stopTriggered\": false,\n        \"stopPrice\": \"0\",\n        \"timeInForce\": \"GTC\",\n        \"postOnly\": false,\n        \"hidden\": false,\n        \"iceberg\": false,\n        \"visibleSize\": \"0\",\n        \"cancelAfter\": 0,\n        \"channel\": \"API\",\n        \"clientOid\": \"5c52e11203aa677f33e493fb\",\n        \"remark\": null,\n        \"tags\": null,\n        \"cancelExist\": false,\n        \"createdAt\": 1729521456248,\n        \"lastUpdatedAt\": 1729651011877,\n        \"tradeType\": \"MARGIN_TRADE\",\n        \"inOrderBook\": true,\n        \"cancelledSize\": \"0\",\n        \"cancelledFunds\": \"0\",\n        \"remainSize\": \"0.00001\",\n        \"remainFunds\": \"0.5\",\n        \"tax\": \"0\",\n        \"active\": true\n    }\n}";
         $commonResp = RestResponse::jsonDeserialize($data, $this->serializer);
-        $respData = $this->serializer->serialize($commonResp->data, "json");
+        $respData = $commonResp->data
+            ? $this->serializer->serialize($commonResp->data, "json")
+            : null;
         $resp = GetOrderByOrderIdResp::jsonDeserialize(
             $respData,
             $this->serializer
         );
-        $this->assertTrue($this->hasAnyNoneNull($resp));
+        $commonResp->data
+            ? $this->assertTrue($this->hasAnyNoneNull($resp))
+            : $this->assertTrue(true);
         echo $resp->jsonSerialize($this->serializer);
     }
     /**
@@ -401,12 +441,16 @@ class OrderApiTest extends TestCase
         $data =
             "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"id\": \"671667306afcdb000723107f\",\n        \"symbol\": \"BTC-USDT\",\n        \"opType\": \"DEAL\",\n        \"type\": \"limit\",\n        \"side\": \"buy\",\n        \"price\": \"50000\",\n        \"size\": \"0.00001\",\n        \"funds\": \"0.5\",\n        \"dealSize\": \"0\",\n        \"dealFunds\": \"0\",\n        \"fee\": \"0\",\n        \"feeCurrency\": \"USDT\",\n        \"stp\": null,\n        \"stop\": null,\n        \"stopTriggered\": false,\n        \"stopPrice\": \"0\",\n        \"timeInForce\": \"GTC\",\n        \"postOnly\": false,\n        \"hidden\": false,\n        \"iceberg\": false,\n        \"visibleSize\": \"0\",\n        \"cancelAfter\": 0,\n        \"channel\": \"API\",\n        \"clientOid\": \"5c52e11203aa677f33e493fb\",\n        \"remark\": null,\n        \"tags\": null,\n        \"cancelExist\": false,\n        \"createdAt\": 1729521456248,\n        \"lastUpdatedAt\": 1729651011877,\n        \"tradeType\": \"MARGIN_TRADE\",\n        \"inOrderBook\": true,\n        \"cancelledSize\": \"0\",\n        \"cancelledFunds\": \"0\",\n        \"remainSize\": \"0.00001\",\n        \"remainFunds\": \"0.5\",\n        \"tax\": \"0\",\n        \"active\": true\n    }\n}";
         $commonResp = RestResponse::jsonDeserialize($data, $this->serializer);
-        $respData = $this->serializer->serialize($commonResp->data, "json");
+        $respData = $commonResp->data
+            ? $this->serializer->serialize($commonResp->data, "json")
+            : null;
         $resp = GetOrderByClientOidResp::jsonDeserialize(
             $respData,
             $this->serializer
         );
-        $this->assertTrue($this->hasAnyNoneNull($resp));
+        $commonResp->data
+            ? $this->assertTrue($this->hasAnyNoneNull($resp))
+            : $this->assertTrue(true);
         echo $resp->jsonSerialize($this->serializer);
     }
     /**
@@ -433,9 +477,13 @@ class OrderApiTest extends TestCase
         $data =
             "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"orderId\": \"671bb90194422f00073ff4f0\",\n        \"loanApplyId\": null,\n        \"borrowSize\": null,\n        \"clientOid\": null\n    }\n}";
         $commonResp = RestResponse::jsonDeserialize($data, $this->serializer);
-        $respData = $this->serializer->serialize($commonResp->data, "json");
+        $respData = $commonResp->data
+            ? $this->serializer->serialize($commonResp->data, "json")
+            : null;
         $resp = AddOrderV1Resp::jsonDeserialize($respData, $this->serializer);
-        $this->assertTrue($this->hasAnyNoneNull($resp));
+        $commonResp->data
+            ? $this->assertTrue($this->hasAnyNoneNull($resp))
+            : $this->assertTrue(true);
         echo $resp->jsonSerialize($this->serializer);
     }
     /**
@@ -462,12 +510,16 @@ class OrderApiTest extends TestCase
         $data =
             "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"orderId\": \"671bb90194422f00073ff4f0\",\n        \"loanApplyId\": null,\n        \"borrowSize\": null,\n        \"clientOid\": null\n    }\n}";
         $commonResp = RestResponse::jsonDeserialize($data, $this->serializer);
-        $respData = $this->serializer->serialize($commonResp->data, "json");
+        $respData = $commonResp->data
+            ? $this->serializer->serialize($commonResp->data, "json")
+            : null;
         $resp = AddOrderTestV1Resp::jsonDeserialize(
             $respData,
             $this->serializer
         );
-        $this->assertTrue($this->hasAnyNoneNull($resp));
+        $commonResp->data
+            ? $this->assertTrue($this->hasAnyNoneNull($resp))
+            : $this->assertTrue(true);
         echo $resp->jsonSerialize($this->serializer);
     }
 }

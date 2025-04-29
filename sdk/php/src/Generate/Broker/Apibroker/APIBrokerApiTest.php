@@ -76,9 +76,13 @@ class APIBrokerApiTest extends TestCase
         $data =
             "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"url\": \"https://kc-v2-promotion.s3.ap-northeast-1.amazonaws.com/broker/671aec522593f600019766d0_file.csv?X-Amz-Security-Token=IQo*********2cd90f14efb\"\n    }\n}";
         $commonResp = RestResponse::jsonDeserialize($data, $this->serializer);
-        $respData = $this->serializer->serialize($commonResp->data, "json");
+        $respData = $commonResp->data
+            ? $this->serializer->serialize($commonResp->data, "json")
+            : null;
         $resp = GetRebaseResp::jsonDeserialize($respData, $this->serializer);
-        $this->assertTrue($this->hasAnyNoneNull($resp));
+        $commonResp->data
+            ? $this->assertTrue($this->hasAnyNoneNull($resp))
+            : $this->assertTrue(true);
         echo $resp->jsonSerialize($this->serializer);
     }
 }

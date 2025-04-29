@@ -220,6 +220,15 @@ public class PhpSdkGenerator extends AbstractPhpCodegen implements NameService {
         return prop;
     }
 
+    @Override
+    public String toEnumDefaultValue(String value, String datatype) {
+        return value;
+    }
+
+    @Override
+    public String toEnumDefaultValue(CodegenProperty property, String value) {
+        return property.defaultValue;
+    }
 
     private String getTypeAnnotationString(CodegenProperty prop) {
         if (prop == null) {

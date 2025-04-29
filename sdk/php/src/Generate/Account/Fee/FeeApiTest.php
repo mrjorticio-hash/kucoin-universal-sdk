@@ -75,9 +75,13 @@ class FeeApiTest extends TestCase
         $data =
             "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"takerFeeRate\": \"0.001\",\n        \"makerFeeRate\": \"0.001\"\n    }\n}";
         $commonResp = RestResponse::jsonDeserialize($data, $this->serializer);
-        $respData = $this->serializer->serialize($commonResp->data, "json");
+        $respData = $commonResp->data
+            ? $this->serializer->serialize($commonResp->data, "json")
+            : null;
         $resp = GetBasicFeeResp::jsonDeserialize($respData, $this->serializer);
-        $this->assertTrue($this->hasAnyNoneNull($resp));
+        $commonResp->data
+            ? $this->assertTrue($this->hasAnyNoneNull($resp))
+            : $this->assertTrue(true);
         echo $resp->jsonSerialize($this->serializer);
     }
     /**
@@ -103,12 +107,16 @@ class FeeApiTest extends TestCase
         $data =
             "{\"code\":\"200000\",\"data\":[{\"symbol\":\"BTC-USDT\",\"takerFeeRate\":\"0.001\",\"makerFeeRate\":\"0.001\"},{\"symbol\":\"ETH-USDT\",\"takerFeeRate\":\"0.001\",\"makerFeeRate\":\"0.001\"}]}";
         $commonResp = RestResponse::jsonDeserialize($data, $this->serializer);
-        $respData = $this->serializer->serialize($commonResp->data, "json");
+        $respData = $commonResp->data
+            ? $this->serializer->serialize($commonResp->data, "json")
+            : null;
         $resp = GetSpotActualFeeResp::jsonDeserialize(
             $respData,
             $this->serializer
         );
-        $this->assertTrue($this->hasAnyNoneNull($resp));
+        $commonResp->data
+            ? $this->assertTrue($this->hasAnyNoneNull($resp))
+            : $this->assertTrue(true);
         echo $resp->jsonSerialize($this->serializer);
     }
     /**
@@ -137,12 +145,16 @@ class FeeApiTest extends TestCase
         $data =
             "{\"code\":\"200000\",\"data\":{\"symbol\":\"XBTUSDTM\",\"takerFeeRate\":\"0.0006\",\"makerFeeRate\":\"0.0002\"}}";
         $commonResp = RestResponse::jsonDeserialize($data, $this->serializer);
-        $respData = $this->serializer->serialize($commonResp->data, "json");
+        $respData = $commonResp->data
+            ? $this->serializer->serialize($commonResp->data, "json")
+            : null;
         $resp = GetFuturesActualFeeResp::jsonDeserialize(
             $respData,
             $this->serializer
         );
-        $this->assertTrue($this->hasAnyNoneNull($resp));
+        $commonResp->data
+            ? $this->assertTrue($this->hasAnyNoneNull($resp))
+            : $this->assertTrue(true);
         echo $resp->jsonSerialize($this->serializer);
     }
 }

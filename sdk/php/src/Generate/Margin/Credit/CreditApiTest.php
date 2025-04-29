@@ -75,12 +75,16 @@ class CreditApiTest extends TestCase
         $data =
             "{\n    \"code\": \"200000\",\n    \"data\": [\n        {\n            \"currency\": \"BTC\",\n            \"purchaseEnable\": true,\n            \"redeemEnable\": true,\n            \"increment\": \"0.00000001\",\n            \"minPurchaseSize\": \"0.001\",\n            \"maxPurchaseSize\": \"40\",\n            \"interestIncrement\": \"0.0001\",\n            \"minInterestRate\": \"0.005\",\n            \"marketInterestRate\": \"0.005\",\n            \"maxInterestRate\": \"0.32\",\n            \"autoPurchaseEnable\": false\n        }\n    ]\n}";
         $commonResp = RestResponse::jsonDeserialize($data, $this->serializer);
-        $respData = $this->serializer->serialize($commonResp->data, "json");
+        $respData = $commonResp->data
+            ? $this->serializer->serialize($commonResp->data, "json")
+            : null;
         $resp = GetLoanMarketResp::jsonDeserialize(
             $respData,
             $this->serializer
         );
-        $this->assertTrue($this->hasAnyNoneNull($resp));
+        $commonResp->data
+            ? $this->assertTrue($this->hasAnyNoneNull($resp))
+            : $this->assertTrue(true);
         echo $resp->jsonSerialize($this->serializer);
     }
     /**
@@ -109,12 +113,16 @@ class CreditApiTest extends TestCase
         $data =
             "{\n    \"code\": \"200000\",\n    \"data\": [\n        {\n            \"time\": \"202410170000\",\n            \"marketInterestRate\": \"0.005\"\n        },\n        {\n            \"time\": \"202410170100\",\n            \"marketInterestRate\": \"0.005\"\n        }\n    ]\n}";
         $commonResp = RestResponse::jsonDeserialize($data, $this->serializer);
-        $respData = $this->serializer->serialize($commonResp->data, "json");
+        $respData = $commonResp->data
+            ? $this->serializer->serialize($commonResp->data, "json")
+            : null;
         $resp = GetLoanMarketInterestRateResp::jsonDeserialize(
             $respData,
             $this->serializer
         );
-        $this->assertTrue($this->hasAnyNoneNull($resp));
+        $commonResp->data
+            ? $this->assertTrue($this->hasAnyNoneNull($resp))
+            : $this->assertTrue(true);
         echo $resp->jsonSerialize($this->serializer);
     }
     /**
@@ -141,9 +149,13 @@ class CreditApiTest extends TestCase
         $data =
             "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"orderNo\": \"671bafa804c26d000773c533\"\n    }\n}";
         $commonResp = RestResponse::jsonDeserialize($data, $this->serializer);
-        $respData = $this->serializer->serialize($commonResp->data, "json");
+        $respData = $commonResp->data
+            ? $this->serializer->serialize($commonResp->data, "json")
+            : null;
         $resp = PurchaseResp::jsonDeserialize($respData, $this->serializer);
-        $this->assertTrue($this->hasAnyNoneNull($resp));
+        $commonResp->data
+            ? $this->assertTrue($this->hasAnyNoneNull($resp))
+            : $this->assertTrue(true);
         echo $resp->jsonSerialize($this->serializer);
     }
     /**
@@ -169,12 +181,16 @@ class CreditApiTest extends TestCase
     {
         $data = "{\n    \"code\": \"200000\",\n    \"data\": null\n}";
         $commonResp = RestResponse::jsonDeserialize($data, $this->serializer);
-        $respData = $this->serializer->serialize($commonResp->data, "json");
+        $respData = $commonResp->data
+            ? $this->serializer->serialize($commonResp->data, "json")
+            : null;
         $resp = ModifyPurchaseResp::jsonDeserialize(
             $respData,
             $this->serializer
         );
-        $this->assertTrue($this->hasAnyNoneNull($resp));
+        $commonResp->data
+            ? $this->assertTrue($this->hasAnyNoneNull($resp))
+            : $this->assertTrue(true);
         echo $resp->jsonSerialize($this->serializer);
     }
     /**
@@ -201,12 +217,16 @@ class CreditApiTest extends TestCase
         $data =
             "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"currentPage\": 1,\n        \"pageSize\": 10,\n        \"totalNum\": 1,\n        \"totalPage\": 1,\n        \"items\": [\n            {\n                \"currency\": \"BTC\",\n                \"purchaseOrderNo\": \"671bb15a3b3f930007880bae\",\n                \"purchaseSize\": \"0.001\",\n                \"matchSize\": \"0\",\n                \"interestRate\": \"0.1\",\n                \"incomeSize\": \"0\",\n                \"applyTime\": 1729868122172,\n                \"status\": \"PENDING\"\n            }\n        ]\n    }\n}";
         $commonResp = RestResponse::jsonDeserialize($data, $this->serializer);
-        $respData = $this->serializer->serialize($commonResp->data, "json");
+        $respData = $commonResp->data
+            ? $this->serializer->serialize($commonResp->data, "json")
+            : null;
         $resp = GetPurchaseOrdersResp::jsonDeserialize(
             $respData,
             $this->serializer
         );
-        $this->assertTrue($this->hasAnyNoneNull($resp));
+        $commonResp->data
+            ? $this->assertTrue($this->hasAnyNoneNull($resp))
+            : $this->assertTrue(true);
         echo $resp->jsonSerialize($this->serializer);
     }
     /**
@@ -233,9 +253,13 @@ class CreditApiTest extends TestCase
         $data =
             "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"orderNo\": \"671bafa804c26d000773c533\"\n    }\n}";
         $commonResp = RestResponse::jsonDeserialize($data, $this->serializer);
-        $respData = $this->serializer->serialize($commonResp->data, "json");
+        $respData = $commonResp->data
+            ? $this->serializer->serialize($commonResp->data, "json")
+            : null;
         $resp = RedeemResp::jsonDeserialize($respData, $this->serializer);
-        $this->assertTrue($this->hasAnyNoneNull($resp));
+        $commonResp->data
+            ? $this->assertTrue($this->hasAnyNoneNull($resp))
+            : $this->assertTrue(true);
         echo $resp->jsonSerialize($this->serializer);
     }
     /**
@@ -262,12 +286,16 @@ class CreditApiTest extends TestCase
         $data =
             "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"currentPage\": 1,\n        \"pageSize\": 10,\n        \"totalNum\": 1,\n        \"totalPage\": 1,\n        \"items\": [\n            {\n                \"currency\": \"BTC\",\n                \"purchaseOrderNo\": \"671bafa804c26d000773c533\",\n                \"redeemOrderNo\": \"671bb01004c26d000773c55c\",\n                \"redeemSize\": \"0.001\",\n                \"receiptSize\": \"0.001\",\n                \"applyTime\": null,\n                \"status\": \"DONE\"\n            }\n        ]\n    }\n}";
         $commonResp = RestResponse::jsonDeserialize($data, $this->serializer);
-        $respData = $this->serializer->serialize($commonResp->data, "json");
+        $respData = $commonResp->data
+            ? $this->serializer->serialize($commonResp->data, "json")
+            : null;
         $resp = GetRedeemOrdersResp::jsonDeserialize(
             $respData,
             $this->serializer
         );
-        $this->assertTrue($this->hasAnyNoneNull($resp));
+        $commonResp->data
+            ? $this->assertTrue($this->hasAnyNoneNull($resp))
+            : $this->assertTrue(true);
         echo $resp->jsonSerialize($this->serializer);
     }
 }

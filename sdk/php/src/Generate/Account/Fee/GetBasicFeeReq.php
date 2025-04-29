@@ -29,7 +29,7 @@ class GetBasicFeeReq implements Serializable
      * @Type("int")
      * @SerializedName("currencyType")
      */
-    public $currencyType = self::CURRENCY_TYPE__0;
+    public $currencyType = 0;
 
     private function __construct() {}
 

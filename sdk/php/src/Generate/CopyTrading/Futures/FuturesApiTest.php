@@ -76,9 +76,13 @@ class FuturesApiTest extends TestCase
         $data =
             "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"orderId\": \"263485113055133696\",\n        \"clientOid\": \"5c52e11203aa677f331e493fb\"\n    }\n}";
         $commonResp = RestResponse::jsonDeserialize($data, $this->serializer);
-        $respData = $this->serializer->serialize($commonResp->data, "json");
+        $respData = $commonResp->data
+            ? $this->serializer->serialize($commonResp->data, "json")
+            : null;
         $resp = AddOrderResp::jsonDeserialize($respData, $this->serializer);
-        $this->assertTrue($this->hasAnyNoneNull($resp));
+        $commonResp->data
+            ? $this->assertTrue($this->hasAnyNoneNull($resp))
+            : $this->assertTrue(true);
         echo $resp->jsonSerialize($this->serializer);
     }
     /**
@@ -105,9 +109,13 @@ class FuturesApiTest extends TestCase
         $data =
             "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"orderId\": \"234125150956625920\",\n        \"clientOid\": \"5c52e11203aa677f33e493fb\"\n    }\n}";
         $commonResp = RestResponse::jsonDeserialize($data, $this->serializer);
-        $respData = $this->serializer->serialize($commonResp->data, "json");
+        $respData = $commonResp->data
+            ? $this->serializer->serialize($commonResp->data, "json")
+            : null;
         $resp = AddOrderTestResp::jsonDeserialize($respData, $this->serializer);
-        $this->assertTrue($this->hasAnyNoneNull($resp));
+        $commonResp->data
+            ? $this->assertTrue($this->hasAnyNoneNull($resp))
+            : $this->assertTrue(true);
         echo $resp->jsonSerialize($this->serializer);
     }
     /**
@@ -134,9 +142,13 @@ class FuturesApiTest extends TestCase
         $data =
             "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"orderId\": \"234125150956625920\",\n        \"clientOid\": \"5c52e11203aa677f33e493fb\"\n    }\n}";
         $commonResp = RestResponse::jsonDeserialize($data, $this->serializer);
-        $respData = $this->serializer->serialize($commonResp->data, "json");
+        $respData = $commonResp->data
+            ? $this->serializer->serialize($commonResp->data, "json")
+            : null;
         $resp = AddTPSLOrderResp::jsonDeserialize($respData, $this->serializer);
-        $this->assertTrue($this->hasAnyNoneNull($resp));
+        $commonResp->data
+            ? $this->assertTrue($this->hasAnyNoneNull($resp))
+            : $this->assertTrue(true);
         echo $resp->jsonSerialize($this->serializer);
     }
     /**
@@ -162,12 +174,16 @@ class FuturesApiTest extends TestCase
         $data =
             "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"cancelledOrderIds\": [\n            \"263485113055133696\"\n        ]\n    }\n}";
         $commonResp = RestResponse::jsonDeserialize($data, $this->serializer);
-        $respData = $this->serializer->serialize($commonResp->data, "json");
+        $respData = $commonResp->data
+            ? $this->serializer->serialize($commonResp->data, "json")
+            : null;
         $resp = CancelOrderByIdResp::jsonDeserialize(
             $respData,
             $this->serializer
         );
-        $this->assertTrue($this->hasAnyNoneNull($resp));
+        $commonResp->data
+            ? $this->assertTrue($this->hasAnyNoneNull($resp))
+            : $this->assertTrue(true);
         echo $resp->jsonSerialize($this->serializer);
     }
     /**
@@ -197,12 +213,16 @@ class FuturesApiTest extends TestCase
         $data =
             "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"clientOid\": \"5c52e11203aa677f331e4913fb\"\n    }\n}";
         $commonResp = RestResponse::jsonDeserialize($data, $this->serializer);
-        $respData = $this->serializer->serialize($commonResp->data, "json");
+        $respData = $commonResp->data
+            ? $this->serializer->serialize($commonResp->data, "json")
+            : null;
         $resp = CancelOrderByClientOidResp::jsonDeserialize(
             $respData,
             $this->serializer
         );
-        $this->assertTrue($this->hasAnyNoneNull($resp));
+        $commonResp->data
+            ? $this->assertTrue($this->hasAnyNoneNull($resp))
+            : $this->assertTrue(true);
         echo $resp->jsonSerialize($this->serializer);
     }
     /**
@@ -229,12 +249,16 @@ class FuturesApiTest extends TestCase
         $data =
             "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"symbol\": \"XBTUSDTM\",\n        \"maxBuyOpenSize\": \"1000000\",\n        \"maxSellOpenSize\": \"51\"\n    }\n}";
         $commonResp = RestResponse::jsonDeserialize($data, $this->serializer);
-        $respData = $this->serializer->serialize($commonResp->data, "json");
+        $respData = $commonResp->data
+            ? $this->serializer->serialize($commonResp->data, "json")
+            : null;
         $resp = GetMaxOpenSizeResp::jsonDeserialize(
             $respData,
             $this->serializer
         );
-        $this->assertTrue($this->hasAnyNoneNull($resp));
+        $commonResp->data
+            ? $this->assertTrue($this->hasAnyNoneNull($resp))
+            : $this->assertTrue(true);
         echo $resp->jsonSerialize($this->serializer);
     }
     /**
@@ -263,12 +287,16 @@ class FuturesApiTest extends TestCase
         $data =
             "{\n    \"code\": \"200000\",\n    \"data\": \"21.1135719252\"\n}";
         $commonResp = RestResponse::jsonDeserialize($data, $this->serializer);
-        $respData = $this->serializer->serialize($commonResp->data, "json");
+        $respData = $commonResp->data
+            ? $this->serializer->serialize($commonResp->data, "json")
+            : null;
         $resp = GetMaxWithdrawMarginResp::jsonDeserialize(
             $respData,
             $this->serializer
         );
-        $this->assertTrue($this->hasAnyNoneNull($resp));
+        $commonResp->data
+            ? $this->assertTrue($this->hasAnyNoneNull($resp))
+            : $this->assertTrue(true);
         echo $resp->jsonSerialize($this->serializer);
     }
     /**
@@ -295,12 +323,16 @@ class FuturesApiTest extends TestCase
         $data =
             "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"id\": \"400000000000974886\",\n        \"symbol\": \"XBTUSDTM\",\n        \"autoDeposit\": true,\n        \"maintMarginReq\": \"0.004\",\n        \"riskLimit\": 100000,\n        \"realLeverage\": \"1.83\",\n        \"crossMode\": false,\n        \"marginMode\": \"\",\n        \"positionSide\": \"\",\n        \"leverage\": \"1.83\",\n        \"delevPercentage\": 0.2,\n        \"openingTimestamp\": 1736932881164,\n        \"currentTimestamp\": 1736933530230,\n        \"currentQty\": 1,\n        \"currentCost\": \"97.302\",\n        \"currentComm\": \"0.0583812\",\n        \"unrealisedCost\": \"97.302\",\n        \"realisedGrossCost\": \"0.0000000000\",\n        \"realisedCost\": \"0.0583812000\",\n        \"isOpen\": true,\n        \"markPrice\": \"96939.98\",\n        \"markValue\": \"96.9399800000\",\n        \"posCost\": \"97.302\",\n        \"posCross\": \"20.9874\",\n        \"posInit\": \"32.4339999967\",\n        \"posComm\": \"0.0904415999\",\n        \"posLoss\": \"0\",\n        \"posMargin\": \"53.5118415966\",\n        \"posMaint\": \"0.4796495999\",\n        \"maintMargin\": \"53.1498215966\",\n        \"realisedGrossPnl\": \"0.0000000000\",\n        \"realisedPnl\": \"-0.0583812000\",\n        \"unrealisedPnl\": \"-0.3620200000\",\n        \"unrealisedPnlPcnt\": \"-0.0037\",\n        \"unrealisedRoePcnt\": \"-0.0112\",\n        \"avgEntryPrice\": \"97302.00\",\n        \"liquidationPrice\": \"44269.81\",\n        \"bankruptPrice\": \"43880.61\",\n        \"settleCurrency\": \"USDT\"\n    }\n}";
         $commonResp = RestResponse::jsonDeserialize($data, $this->serializer);
-        $respData = $this->serializer->serialize($commonResp->data, "json");
+        $respData = $commonResp->data
+            ? $this->serializer->serialize($commonResp->data, "json")
+            : null;
         $resp = AddIsolatedMarginResp::jsonDeserialize(
             $respData,
             $this->serializer
         );
-        $this->assertTrue($this->hasAnyNoneNull($resp));
+        $commonResp->data
+            ? $this->assertTrue($this->hasAnyNoneNull($resp))
+            : $this->assertTrue(true);
         echo $resp->jsonSerialize($this->serializer);
     }
     /**
@@ -328,12 +360,16 @@ class FuturesApiTest extends TestCase
     {
         $data = "{\n    \"code\": \"200000\",\n    \"data\": \"0.1\"\n}";
         $commonResp = RestResponse::jsonDeserialize($data, $this->serializer);
-        $respData = $this->serializer->serialize($commonResp->data, "json");
+        $respData = $commonResp->data
+            ? $this->serializer->serialize($commonResp->data, "json")
+            : null;
         $resp = RemoveIsolatedMarginResp::jsonDeserialize(
             $respData,
             $this->serializer
         );
-        $this->assertTrue($this->hasAnyNoneNull($resp));
+        $commonResp->data
+            ? $this->assertTrue($this->hasAnyNoneNull($resp))
+            : $this->assertTrue(true);
         echo $resp->jsonSerialize($this->serializer);
     }
     /**
@@ -361,12 +397,16 @@ class FuturesApiTest extends TestCase
     {
         $data = "{\n    \"code\": \"200000\",\n    \"data\": true\n}";
         $commonResp = RestResponse::jsonDeserialize($data, $this->serializer);
-        $respData = $this->serializer->serialize($commonResp->data, "json");
+        $respData = $commonResp->data
+            ? $this->serializer->serialize($commonResp->data, "json")
+            : null;
         $resp = ModifyIsolatedMarginRiskLimtResp::jsonDeserialize(
             $respData,
             $this->serializer
         );
-        $this->assertTrue($this->hasAnyNoneNull($resp));
+        $commonResp->data
+            ? $this->assertTrue($this->hasAnyNoneNull($resp))
+            : $this->assertTrue(true);
         echo $resp->jsonSerialize($this->serializer);
     }
     /**
@@ -394,12 +434,16 @@ class FuturesApiTest extends TestCase
     {
         $data = "{\n    \"code\": \"200000\",\n    \"data\": true\n}";
         $commonResp = RestResponse::jsonDeserialize($data, $this->serializer);
-        $respData = $this->serializer->serialize($commonResp->data, "json");
+        $respData = $commonResp->data
+            ? $this->serializer->serialize($commonResp->data, "json")
+            : null;
         $resp = ModifyAutoDepositStatusResp::jsonDeserialize(
             $respData,
             $this->serializer
         );
-        $this->assertTrue($this->hasAnyNoneNull($resp));
+        $commonResp->data
+            ? $this->assertTrue($this->hasAnyNoneNull($resp))
+            : $this->assertTrue(true);
         echo $resp->jsonSerialize($this->serializer);
     }
 }

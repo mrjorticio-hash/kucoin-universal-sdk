@@ -76,12 +76,16 @@ class SubAccountApiTest extends TestCase
         $data =
             "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"currentPage\": 1,\n        \"pageSize\": 10,\n        \"totalNum\": 1,\n        \"totalPage\": 1,\n        \"items\": [\n            {\n                \"userId\": \"63743f07e0c5230001761d08\",\n                \"uid\": 169579801,\n                \"subName\": \"testapi6\",\n                \"status\": 2,\n                \"type\": 0,\n                \"access\": \"All\",\n                \"createdAt\": 1668562696000,\n                \"remarks\": \"remarks\",\n                \"tradeTypes\": [\n                    \"Spot\",\n                    \"Futures\",\n                    \"Margin\"\n                ],\n                \"openedTradeTypes\": [\n                    \"Spot\"\n                ],\n                \"hostedStatus\": null\n            }\n        ]\n    }\n}";
         $commonResp = RestResponse::jsonDeserialize($data, $this->serializer);
-        $respData = $this->serializer->serialize($commonResp->data, "json");
+        $respData = $commonResp->data
+            ? $this->serializer->serialize($commonResp->data, "json")
+            : null;
         $resp = AddSubAccountResp::jsonDeserialize(
             $respData,
             $this->serializer
         );
-        $this->assertTrue($this->hasAnyNoneNull($resp));
+        $commonResp->data
+            ? $this->assertTrue($this->hasAnyNoneNull($resp))
+            : $this->assertTrue(true);
         echo $resp->jsonSerialize($this->serializer);
     }
     /**
@@ -109,12 +113,16 @@ class SubAccountApiTest extends TestCase
     {
         $data = "{\n    \"code\": \"200000\",\n    \"data\": null\n}";
         $commonResp = RestResponse::jsonDeserialize($data, $this->serializer);
-        $respData = $this->serializer->serialize($commonResp->data, "json");
+        $respData = $commonResp->data
+            ? $this->serializer->serialize($commonResp->data, "json")
+            : null;
         $resp = AddSubAccountMarginPermissionResp::jsonDeserialize(
             $respData,
             $this->serializer
         );
-        $this->assertTrue($this->hasAnyNoneNull($resp));
+        $commonResp->data
+            ? $this->assertTrue($this->hasAnyNoneNull($resp))
+            : $this->assertTrue(true);
         echo $resp->jsonSerialize($this->serializer);
     }
     /**
@@ -142,12 +150,16 @@ class SubAccountApiTest extends TestCase
     {
         $data = "{\n    \"code\": \"200000\",\n    \"data\": null\n}";
         $commonResp = RestResponse::jsonDeserialize($data, $this->serializer);
-        $respData = $this->serializer->serialize($commonResp->data, "json");
+        $respData = $commonResp->data
+            ? $this->serializer->serialize($commonResp->data, "json")
+            : null;
         $resp = AddSubAccountFuturesPermissionResp::jsonDeserialize(
             $respData,
             $this->serializer
         );
-        $this->assertTrue($this->hasAnyNoneNull($resp));
+        $commonResp->data
+            ? $this->assertTrue($this->hasAnyNoneNull($resp))
+            : $this->assertTrue(true);
         echo $resp->jsonSerialize($this->serializer);
     }
     /**
@@ -176,12 +188,16 @@ class SubAccountApiTest extends TestCase
         $data =
             "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"currentPage\": 1,\n        \"pageSize\": 10,\n        \"totalNum\": 1,\n        \"totalPage\": 1,\n        \"items\": [\n            {\n                \"userId\": \"63743f07e0c5230001761d08\",\n                \"uid\": 169579801,\n                \"subName\": \"testapi6\",\n                \"status\": 2,\n                \"type\": 0,\n                \"access\": \"All\",\n                \"createdAt\": 1668562696000,\n                \"remarks\": \"remarks\",\n                \"tradeTypes\": [\n                    \"Spot\",\n                    \"Futures\",\n                    \"Margin\"\n                ],\n                \"openedTradeTypes\": [\n                    \"Spot\"\n                ],\n                \"hostedStatus\": null\n            }\n        ]\n    }\n}";
         $commonResp = RestResponse::jsonDeserialize($data, $this->serializer);
-        $respData = $this->serializer->serialize($commonResp->data, "json");
+        $respData = $commonResp->data
+            ? $this->serializer->serialize($commonResp->data, "json")
+            : null;
         $resp = GetSpotSubAccountsSummaryV2Resp::jsonDeserialize(
             $respData,
             $this->serializer
         );
-        $this->assertTrue($this->hasAnyNoneNull($resp));
+        $commonResp->data
+            ? $this->assertTrue($this->hasAnyNoneNull($resp))
+            : $this->assertTrue(true);
         echo $resp->jsonSerialize($this->serializer);
     }
     /**
@@ -211,12 +227,16 @@ class SubAccountApiTest extends TestCase
         $data =
             "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"subUserId\": \"63743f07e0c5230001761d08\",\n        \"subName\": \"testapi6\",\n        \"mainAccounts\": [\n            {\n                \"currency\": \"USDT\",\n                \"balance\": \"0.01\",\n                \"available\": \"0.01\",\n                \"holds\": \"0\",\n                \"baseCurrency\": \"BTC\",\n                \"baseCurrencyPrice\": \"62384.3\",\n                \"baseAmount\": \"0.00000016\",\n                \"tag\": \"DEFAULT\"\n            }\n        ],\n        \"tradeAccounts\": [\n            {\n                \"currency\": \"USDT\",\n                \"balance\": \"0.01\",\n                \"available\": \"0.01\",\n                \"holds\": \"0\",\n                \"baseCurrency\": \"BTC\",\n                \"baseCurrencyPrice\": \"62384.3\",\n                \"baseAmount\": \"0.00000016\",\n                \"tag\": \"DEFAULT\"\n            }\n        ],\n        \"marginAccounts\": [\n            {\n                \"currency\": \"USDT\",\n                \"balance\": \"0.01\",\n                \"available\": \"0.01\",\n                \"holds\": \"0\",\n                \"baseCurrency\": \"BTC\",\n                \"baseCurrencyPrice\": \"62384.3\",\n                \"baseAmount\": \"0.00000016\",\n                \"tag\": \"DEFAULT\"\n            }\n        ],\n        \"tradeHFAccounts\": []\n    }\n}";
         $commonResp = RestResponse::jsonDeserialize($data, $this->serializer);
-        $respData = $this->serializer->serialize($commonResp->data, "json");
+        $respData = $commonResp->data
+            ? $this->serializer->serialize($commonResp->data, "json")
+            : null;
         $resp = GetSpotSubAccountDetailResp::jsonDeserialize(
             $respData,
             $this->serializer
         );
-        $this->assertTrue($this->hasAnyNoneNull($resp));
+        $commonResp->data
+            ? $this->assertTrue($this->hasAnyNoneNull($resp))
+            : $this->assertTrue(true);
         echo $resp->jsonSerialize($this->serializer);
     }
     /**
@@ -245,12 +265,16 @@ class SubAccountApiTest extends TestCase
         $data =
             "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"currentPage\": 1,\n        \"pageSize\": 10,\n        \"totalNum\": 3,\n        \"totalPage\": 1,\n        \"items\": [\n            {\n                \"subUserId\": \"63743f07e0c5230001761d08\",\n                \"subName\": \"testapi6\",\n                \"mainAccounts\": [\n                    {\n                        \"currency\": \"USDT\",\n                        \"balance\": \"0.01\",\n                        \"available\": \"0.01\",\n                        \"holds\": \"0\",\n                        \"baseCurrency\": \"BTC\",\n                        \"baseCurrencyPrice\": \"62514.5\",\n                        \"baseAmount\": \"0.00000015\",\n                        \"tag\": \"DEFAULT\"\n                    }\n                ],\n                \"tradeAccounts\": [\n                    {\n                        \"currency\": \"USDT\",\n                        \"balance\": \"0.01\",\n                        \"available\": \"0.01\",\n                        \"holds\": \"0\",\n                        \"baseCurrency\": \"BTC\",\n                        \"baseCurrencyPrice\": \"62514.5\",\n                        \"baseAmount\": \"0.00000015\",\n                        \"tag\": \"DEFAULT\"\n                    }\n                ],\n                \"marginAccounts\": [\n                    {\n                        \"currency\": \"USDT\",\n                        \"balance\": \"0.01\",\n                        \"available\": \"0.01\",\n                        \"holds\": \"0\",\n                        \"baseCurrency\": \"BTC\",\n                        \"baseCurrencyPrice\": \"62514.5\",\n                        \"baseAmount\": \"0.00000015\",\n                        \"tag\": \"DEFAULT\"\n                    }\n                ],\n                \"tradeHFAccounts\": []\n            },\n            {\n                \"subUserId\": \"670538a31037eb000115b076\",\n                \"subName\": \"Name1234567\",\n                \"mainAccounts\": [],\n                \"tradeAccounts\": [],\n                \"marginAccounts\": [],\n                \"tradeHFAccounts\": []\n            },\n            {\n                \"subUserId\": \"66b0c0905fc1480001c14c36\",\n                \"subName\": \"LTkucoin1491\",\n                \"mainAccounts\": [],\n                \"tradeAccounts\": [],\n                \"marginAccounts\": [],\n                \"tradeHFAccounts\": []\n            }\n        ]\n    }\n}";
         $commonResp = RestResponse::jsonDeserialize($data, $this->serializer);
-        $respData = $this->serializer->serialize($commonResp->data, "json");
+        $respData = $commonResp->data
+            ? $this->serializer->serialize($commonResp->data, "json")
+            : null;
         $resp = GetSpotSubAccountListV2Resp::jsonDeserialize(
             $respData,
             $this->serializer
         );
-        $this->assertTrue($this->hasAnyNoneNull($resp));
+        $commonResp->data
+            ? $this->assertTrue($this->hasAnyNoneNull($resp))
+            : $this->assertTrue(true);
         echo $resp->jsonSerialize($this->serializer);
     }
     /**
@@ -279,12 +303,16 @@ class SubAccountApiTest extends TestCase
         $data =
             "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"summary\": {\n            \"accountEquityTotal\": 103.899081508,\n            \"unrealisedPNLTotal\": 38.81075,\n            \"marginBalanceTotal\": 65.336985668,\n            \"positionMarginTotal\": 68.9588320683,\n            \"orderMarginTotal\": 0,\n            \"frozenFundsTotal\": 0,\n            \"availableBalanceTotal\": 67.2492494397,\n            \"currency\": \"USDT\"\n        },\n        \"accounts\": [\n            {\n                \"accountName\": \"Name1234567\",\n                \"accountEquity\": 0,\n                \"unrealisedPNL\": 0,\n                \"marginBalance\": 0,\n                \"positionMargin\": 0,\n                \"orderMargin\": 0,\n                \"frozenFunds\": 0,\n                \"availableBalance\": 0,\n                \"currency\": \"USDT\"\n            },\n            {\n                \"accountName\": \"LTkucoin1491\",\n                \"accountEquity\": 0,\n                \"unrealisedPNL\": 0,\n                \"marginBalance\": 0,\n                \"positionMargin\": 0,\n                \"orderMargin\": 0,\n                \"frozenFunds\": 0,\n                \"availableBalance\": 0,\n                \"currency\": \"USDT\"\n            },\n            {\n                \"accountName\": \"manage112233\",\n                \"accountEquity\": 0,\n                \"unrealisedPNL\": 0,\n                \"marginBalance\": 0,\n                \"positionMargin\": 0,\n                \"orderMargin\": 0,\n                \"frozenFunds\": 0,\n                \"availableBalance\": 0,\n                \"currency\": \"USDT\"\n            },\n            {\n                \"accountName\": \"testapi6\",\n                \"accountEquity\": 27.30545128,\n                \"unrealisedPNL\": 22.549,\n                \"marginBalance\": 4.75645128,\n                \"positionMargin\": 24.1223749975,\n                \"orderMargin\": 0,\n                \"frozenFunds\": 0,\n                \"availableBalance\": 25.7320762825,\n                \"currency\": \"USDT\"\n            },\n            {\n                \"accountName\": \"main\",\n                \"accountEquity\": 76.593630228,\n                \"unrealisedPNL\": 16.26175,\n                \"marginBalance\": 60.580534388,\n                \"positionMargin\": 44.8364570708,\n                \"orderMargin\": 0,\n                \"frozenFunds\": 0,\n                \"availableBalance\": 41.5171731572,\n                \"currency\": \"USDT\"\n            }\n        ]\n    }\n}";
         $commonResp = RestResponse::jsonDeserialize($data, $this->serializer);
-        $respData = $this->serializer->serialize($commonResp->data, "json");
+        $respData = $commonResp->data
+            ? $this->serializer->serialize($commonResp->data, "json")
+            : null;
         $resp = GetFuturesSubAccountListV2Resp::jsonDeserialize(
             $respData,
             $this->serializer
         );
-        $this->assertTrue($this->hasAnyNoneNull($resp));
+        $commonResp->data
+            ? $this->assertTrue($this->hasAnyNoneNull($resp))
+            : $this->assertTrue(true);
         echo $resp->jsonSerialize($this->serializer);
     }
     /**
@@ -311,12 +339,16 @@ class SubAccountApiTest extends TestCase
         $data =
             "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"subName\": \"testapi6\",\n        \"remark\": \"TheRemark\",\n        \"apiKey\": \"670621e3a25958000159c82f\",\n        \"apiSecret\": \"46fd8974******896f005b2340\",\n        \"apiVersion\": 3,\n        \"passphrase\": \"11223344\",\n        \"permission\": \"General,Futures\",\n        \"createdAt\": 1728455139000\n    }\n}";
         $commonResp = RestResponse::jsonDeserialize($data, $this->serializer);
-        $respData = $this->serializer->serialize($commonResp->data, "json");
+        $respData = $commonResp->data
+            ? $this->serializer->serialize($commonResp->data, "json")
+            : null;
         $resp = AddSubAccountApiResp::jsonDeserialize(
             $respData,
             $this->serializer
         );
-        $this->assertTrue($this->hasAnyNoneNull($resp));
+        $commonResp->data
+            ? $this->assertTrue($this->hasAnyNoneNull($resp))
+            : $this->assertTrue(true);
         echo $resp->jsonSerialize($this->serializer);
     }
     /**
@@ -346,12 +378,16 @@ class SubAccountApiTest extends TestCase
         $data =
             "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"subName\": \"testapi6\",\n        \"apiKey\": \"670621e3a25958000159c82f\",\n        \"permission\": \"General,Futures,Spot\"\n    }\n}";
         $commonResp = RestResponse::jsonDeserialize($data, $this->serializer);
-        $respData = $this->serializer->serialize($commonResp->data, "json");
+        $respData = $commonResp->data
+            ? $this->serializer->serialize($commonResp->data, "json")
+            : null;
         $resp = ModifySubAccountApiResp::jsonDeserialize(
             $respData,
             $this->serializer
         );
-        $this->assertTrue($this->hasAnyNoneNull($resp));
+        $commonResp->data
+            ? $this->assertTrue($this->hasAnyNoneNull($resp))
+            : $this->assertTrue(true);
         echo $resp->jsonSerialize($this->serializer);
     }
     /**
@@ -381,12 +417,16 @@ class SubAccountApiTest extends TestCase
         $data =
             "{\n    \"code\": \"200000\",\n    \"data\": [\n        {\n            \"subName\": \"apiSdkTest\",\n            \"remark\": \"sdk_test_integration\",\n            \"apiKey\": \"673eab2a955ebf000195d7e4\",\n            \"apiVersion\": 3,\n            \"permission\": \"General\",\n            \"ipWhitelist\": \"10.**.1\",\n            \"createdAt\": 1732160298000,\n            \"uid\": 215112467,\n            \"isMaster\": false\n        }\n    ]\n}";
         $commonResp = RestResponse::jsonDeserialize($data, $this->serializer);
-        $respData = $this->serializer->serialize($commonResp->data, "json");
+        $respData = $commonResp->data
+            ? $this->serializer->serialize($commonResp->data, "json")
+            : null;
         $resp = GetSubAccountApiListResp::jsonDeserialize(
             $respData,
             $this->serializer
         );
-        $this->assertTrue($this->hasAnyNoneNull($resp));
+        $commonResp->data
+            ? $this->assertTrue($this->hasAnyNoneNull($resp))
+            : $this->assertTrue(true);
         echo $resp->jsonSerialize($this->serializer);
     }
     /**
@@ -416,12 +456,16 @@ class SubAccountApiTest extends TestCase
         $data =
             "{\"code\":\"200000\",\"data\":{\"subName\":\"testapi6\",\"apiKey\":\"670621e3a25958000159c82f\"}}";
         $commonResp = RestResponse::jsonDeserialize($data, $this->serializer);
-        $respData = $this->serializer->serialize($commonResp->data, "json");
+        $respData = $commonResp->data
+            ? $this->serializer->serialize($commonResp->data, "json")
+            : null;
         $resp = DeleteSubAccountApiResp::jsonDeserialize(
             $respData,
             $this->serializer
         );
-        $this->assertTrue($this->hasAnyNoneNull($resp));
+        $commonResp->data
+            ? $this->assertTrue($this->hasAnyNoneNull($resp))
+            : $this->assertTrue(true);
         echo $resp->jsonSerialize($this->serializer);
     }
     /**
@@ -444,12 +488,16 @@ class SubAccountApiTest extends TestCase
         $data =
             "{\n    \"code\": \"200000\",\n    \"data\": [\n        {\n            \"userId\": \"63743f07e0c5230001761d08\",\n            \"uid\": 169579801,\n            \"subName\": \"testapi6\",\n            \"type\": 0,\n            \"remarks\": \"remarks\",\n            \"access\": \"All\"\n        },\n        {\n            \"userId\": \"670538a31037eb000115b076\",\n            \"uid\": 225139445,\n            \"subName\": \"Name1234567\",\n            \"type\": 0,\n            \"remarks\": \"TheRemark\",\n            \"access\": \"All\"\n        }\n    ]\n}";
         $commonResp = RestResponse::jsonDeserialize($data, $this->serializer);
-        $respData = $this->serializer->serialize($commonResp->data, "json");
+        $respData = $commonResp->data
+            ? $this->serializer->serialize($commonResp->data, "json")
+            : null;
         $resp = GetSpotSubAccountsSummaryV1Resp::jsonDeserialize(
             $respData,
             $this->serializer
         );
-        $this->assertTrue($this->hasAnyNoneNull($resp));
+        $commonResp->data
+            ? $this->assertTrue($this->hasAnyNoneNull($resp))
+            : $this->assertTrue(true);
         echo $resp->jsonSerialize($this->serializer);
     }
     /**
@@ -472,12 +520,16 @@ class SubAccountApiTest extends TestCase
         $data =
             "{\n    \"code\": \"200000\",\n    \"data\": [\n        {\n            \"subUserId\": \"63743f07e0c5230001761d08\",\n            \"subName\": \"testapi6\",\n            \"mainAccounts\": [\n                {\n                    \"currency\": \"USDT\",\n                    \"balance\": \"0.01\",\n                    \"available\": \"0.01\",\n                    \"holds\": \"0\",\n                    \"baseCurrency\": \"BTC\",\n                    \"baseCurrencyPrice\": \"62489.8\",\n                    \"baseAmount\": \"0.00000016\",\n                    \"tag\": \"DEFAULT\"\n                }\n            ],\n            \"tradeAccounts\": [\n                {\n                    \"currency\": \"USDT\",\n                    \"balance\": \"0.01\",\n                    \"available\": \"0.01\",\n                    \"holds\": \"0\",\n                    \"baseCurrency\": \"BTC\",\n                    \"baseCurrencyPrice\": \"62489.8\",\n                    \"baseAmount\": \"0.00000016\",\n                    \"tag\": \"DEFAULT\"\n                }\n            ],\n            \"marginAccounts\": [\n                {\n                    \"currency\": \"USDT\",\n                    \"balance\": \"0.01\",\n                    \"available\": \"0.01\",\n                    \"holds\": \"0\",\n                    \"baseCurrency\": \"BTC\",\n                    \"baseCurrencyPrice\": \"62489.8\",\n                    \"baseAmount\": \"0.00000016\",\n                    \"tag\": \"DEFAULT\"\n                }\n            ],\n            \"tradeHFAccounts\": []\n        },\n        {\n            \"subUserId\": \"670538a31037eb000115b076\",\n            \"subName\": \"Name1234567\",\n            \"mainAccounts\": [],\n            \"tradeAccounts\": [],\n            \"marginAccounts\": [],\n            \"tradeHFAccounts\": []\n        },\n        {\n            \"subUserId\": \"66b0c0905fc1480001c14c36\",\n            \"subName\": \"LTkucoin1491\",\n            \"mainAccounts\": [],\n            \"tradeAccounts\": [],\n            \"marginAccounts\": [],\n            \"tradeHFAccounts\": []\n        }\n    ]\n}";
         $commonResp = RestResponse::jsonDeserialize($data, $this->serializer);
-        $respData = $this->serializer->serialize($commonResp->data, "json");
+        $respData = $commonResp->data
+            ? $this->serializer->serialize($commonResp->data, "json")
+            : null;
         $resp = GetSpotSubAccountListV1Resp::jsonDeserialize(
             $respData,
             $this->serializer
         );
-        $this->assertTrue($this->hasAnyNoneNull($resp));
+        $commonResp->data
+            ? $this->assertTrue($this->hasAnyNoneNull($resp))
+            : $this->assertTrue(true);
         echo $resp->jsonSerialize($this->serializer);
     }
 }

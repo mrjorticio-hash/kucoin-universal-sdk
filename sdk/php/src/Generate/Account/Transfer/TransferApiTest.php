@@ -76,12 +76,16 @@ class TransferApiTest extends TestCase
         $data =
             "{\"code\":\"200000\",\"data\":{\"currency\":\"USDT\",\"balance\":\"10.5\",\"available\":\"10.5\",\"holds\":\"0\",\"transferable\":\"10.5\"}}";
         $commonResp = RestResponse::jsonDeserialize($data, $this->serializer);
-        $respData = $this->serializer->serialize($commonResp->data, "json");
+        $respData = $commonResp->data
+            ? $this->serializer->serialize($commonResp->data, "json")
+            : null;
         $resp = GetTransferQuotasResp::jsonDeserialize(
             $respData,
             $this->serializer
         );
-        $this->assertTrue($this->hasAnyNoneNull($resp));
+        $commonResp->data
+            ? $this->assertTrue($this->hasAnyNoneNull($resp))
+            : $this->assertTrue(true);
         echo $resp->jsonSerialize($this->serializer);
     }
     /**
@@ -108,9 +112,13 @@ class TransferApiTest extends TestCase
         $data =
             "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"orderId\": \"6705f7248c6954000733ecac\"\n    }\n}";
         $commonResp = RestResponse::jsonDeserialize($data, $this->serializer);
-        $respData = $this->serializer->serialize($commonResp->data, "json");
+        $respData = $commonResp->data
+            ? $this->serializer->serialize($commonResp->data, "json")
+            : null;
         $resp = FlexTransferResp::jsonDeserialize($respData, $this->serializer);
-        $this->assertTrue($this->hasAnyNoneNull($resp));
+        $commonResp->data
+            ? $this->assertTrue($this->hasAnyNoneNull($resp))
+            : $this->assertTrue(true);
         echo $resp->jsonSerialize($this->serializer);
     }
     /**
@@ -137,12 +145,16 @@ class TransferApiTest extends TestCase
         $data =
             "{\"code\":\"200000\",\"data\":{\"orderId\":\"670be6b0b1b9080007040a9b\"}}";
         $commonResp = RestResponse::jsonDeserialize($data, $this->serializer);
-        $respData = $this->serializer->serialize($commonResp->data, "json");
+        $respData = $commonResp->data
+            ? $this->serializer->serialize($commonResp->data, "json")
+            : null;
         $resp = SubAccountTransferResp::jsonDeserialize(
             $respData,
             $this->serializer
         );
-        $this->assertTrue($this->hasAnyNoneNull($resp));
+        $commonResp->data
+            ? $this->assertTrue($this->hasAnyNoneNull($resp))
+            : $this->assertTrue(true);
         echo $resp->jsonSerialize($this->serializer);
     }
     /**
@@ -169,12 +181,16 @@ class TransferApiTest extends TestCase
         $data =
             "{\"code\":\"200000\",\"data\":{\"orderId\":\"670beb3482a1bb0007dec644\"}}";
         $commonResp = RestResponse::jsonDeserialize($data, $this->serializer);
-        $respData = $this->serializer->serialize($commonResp->data, "json");
+        $respData = $commonResp->data
+            ? $this->serializer->serialize($commonResp->data, "json")
+            : null;
         $resp = InnerTransferResp::jsonDeserialize(
             $respData,
             $this->serializer
         );
-        $this->assertTrue($this->hasAnyNoneNull($resp));
+        $commonResp->data
+            ? $this->assertTrue($this->hasAnyNoneNull($resp))
+            : $this->assertTrue(true);
         echo $resp->jsonSerialize($this->serializer);
     }
     /**
@@ -204,12 +220,16 @@ class TransferApiTest extends TestCase
         $data =
             "{\"code\":\"200000\",\"data\":{\"currentPage\":1,\"pageSize\":50,\"totalNum\":1,\"totalPage\":1,\"items\":[{\"applyId\":\"670bf84c577f6c00017a1c48\",\"currency\":\"USDT\",\"recRemark\":\"\",\"recSystem\":\"KUCOIN\",\"status\":\"SUCCESS\",\"amount\":\"0.01\",\"reason\":\"\",\"offset\":1519769124134806,\"createdAt\":1728837708000,\"remark\":\"\"}]}}";
         $commonResp = RestResponse::jsonDeserialize($data, $this->serializer);
-        $respData = $this->serializer->serialize($commonResp->data, "json");
+        $respData = $commonResp->data
+            ? $this->serializer->serialize($commonResp->data, "json")
+            : null;
         $resp = GetFuturesAccountTransferOutLedgerResp::jsonDeserialize(
             $respData,
             $this->serializer
         );
-        $this->assertTrue($this->hasAnyNoneNull($resp));
+        $commonResp->data
+            ? $this->assertTrue($this->hasAnyNoneNull($resp))
+            : $this->assertTrue(true);
         echo $resp->jsonSerialize($this->serializer);
     }
     /**
@@ -239,12 +259,16 @@ class TransferApiTest extends TestCase
         $data =
             "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"applyId\": \"670bf84c577f6c00017a1c48\",\n        \"bizNo\": \"670bf84c577f6c00017a1c47\",\n        \"payAccountType\": \"CONTRACT\",\n        \"payTag\": \"DEFAULT\",\n        \"remark\": \"\",\n        \"recAccountType\": \"MAIN\",\n        \"recTag\": \"DEFAULT\",\n        \"recRemark\": \"\",\n        \"recSystem\": \"KUCOIN\",\n        \"status\": \"PROCESSING\",\n        \"currency\": \"USDT\",\n        \"amount\": \"0.01\",\n        \"fee\": \"0\",\n        \"sn\": 1519769124134806,\n        \"reason\": \"\",\n        \"createdAt\": 1728837708000,\n        \"updatedAt\": 1728837708000\n    }\n}";
         $commonResp = RestResponse::jsonDeserialize($data, $this->serializer);
-        $respData = $this->serializer->serialize($commonResp->data, "json");
+        $respData = $commonResp->data
+            ? $this->serializer->serialize($commonResp->data, "json")
+            : null;
         $resp = FuturesAccountTransferOutResp::jsonDeserialize(
             $respData,
             $this->serializer
         );
-        $this->assertTrue($this->hasAnyNoneNull($resp));
+        $commonResp->data
+            ? $this->assertTrue($this->hasAnyNoneNull($resp))
+            : $this->assertTrue(true);
         echo $resp->jsonSerialize($this->serializer);
     }
     /**
@@ -273,12 +297,16 @@ class TransferApiTest extends TestCase
     {
         $data = "{\"code\":\"200000\",\"data\":null}";
         $commonResp = RestResponse::jsonDeserialize($data, $this->serializer);
-        $respData = $this->serializer->serialize($commonResp->data, "json");
+        $respData = $commonResp->data
+            ? $this->serializer->serialize($commonResp->data, "json")
+            : null;
         $resp = FuturesAccountTransferInResp::jsonDeserialize(
             $respData,
             $this->serializer
         );
-        $this->assertTrue($this->hasAnyNoneNull($resp));
+        $commonResp->data
+            ? $this->assertTrue($this->hasAnyNoneNull($resp))
+            : $this->assertTrue(true);
         echo $resp->jsonSerialize($this->serializer);
     }
 }

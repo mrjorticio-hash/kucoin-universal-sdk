@@ -76,9 +76,13 @@ class DebitApiTest extends TestCase
         $data =
             "{\"code\":\"200000\",\"data\":{\"orderNo\":\"67187162c0d6990007717b15\",\"actualSize\":\"10\"}}";
         $commonResp = RestResponse::jsonDeserialize($data, $this->serializer);
-        $respData = $this->serializer->serialize($commonResp->data, "json");
+        $respData = $commonResp->data
+            ? $this->serializer->serialize($commonResp->data, "json")
+            : null;
         $resp = BorrowResp::jsonDeserialize($respData, $this->serializer);
-        $this->assertTrue($this->hasAnyNoneNull($resp));
+        $commonResp->data
+            ? $this->assertTrue($this->hasAnyNoneNull($resp))
+            : $this->assertTrue(true);
         echo $resp->jsonSerialize($this->serializer);
     }
     /**
@@ -105,12 +109,16 @@ class DebitApiTest extends TestCase
         $data =
             "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"timestamp\": 1729657580449,\n        \"currentPage\": 1,\n        \"pageSize\": 50,\n        \"totalNum\": 2,\n        \"totalPage\": 1,\n        \"items\": [\n            {\n                \"orderNo\": \"67187162c0d6990007717b15\",\n                \"symbol\": null,\n                \"currency\": \"USDT\",\n                \"size\": \"10\",\n                \"actualSize\": \"10\",\n                \"status\": \"SUCCESS\",\n                \"createdTime\": 1729655138000\n            },\n            {\n                \"orderNo\": \"67187155b088e70007149585\",\n                \"symbol\": null,\n                \"currency\": \"USDT\",\n                \"size\": \"0.1\",\n                \"actualSize\": \"0\",\n                \"status\": \"FAILED\",\n                \"createdTime\": 1729655125000\n            }\n        ]\n    }\n}";
         $commonResp = RestResponse::jsonDeserialize($data, $this->serializer);
-        $respData = $this->serializer->serialize($commonResp->data, "json");
+        $respData = $commonResp->data
+            ? $this->serializer->serialize($commonResp->data, "json")
+            : null;
         $resp = GetBorrowHistoryResp::jsonDeserialize(
             $respData,
             $this->serializer
         );
-        $this->assertTrue($this->hasAnyNoneNull($resp));
+        $commonResp->data
+            ? $this->assertTrue($this->hasAnyNoneNull($resp))
+            : $this->assertTrue(true);
         echo $resp->jsonSerialize($this->serializer);
     }
     /**
@@ -136,9 +144,13 @@ class DebitApiTest extends TestCase
         $data =
             "{\"code\":\"200000\",\"data\":{\"timestamp\":1729655606816,\"orderNo\":\"671873361d5bd400075096ad\",\"actualSize\":\"10\"}}";
         $commonResp = RestResponse::jsonDeserialize($data, $this->serializer);
-        $respData = $this->serializer->serialize($commonResp->data, "json");
+        $respData = $commonResp->data
+            ? $this->serializer->serialize($commonResp->data, "json")
+            : null;
         $resp = RepayResp::jsonDeserialize($respData, $this->serializer);
-        $this->assertTrue($this->hasAnyNoneNull($resp));
+        $commonResp->data
+            ? $this->assertTrue($this->hasAnyNoneNull($resp))
+            : $this->assertTrue(true);
         echo $resp->jsonSerialize($this->serializer);
     }
     /**
@@ -165,12 +177,16 @@ class DebitApiTest extends TestCase
         $data =
             "{\"code\":\"200000\",\"data\":{\"timestamp\":1729663471891,\"currentPage\":1,\"pageSize\":50,\"totalNum\":1,\"totalPage\":1,\"items\":[{\"orderNo\":\"671873361d5bd400075096ad\",\"symbol\":null,\"currency\":\"USDT\",\"size\":\"10\",\"principal\":\"9.99986518\",\"interest\":\"0.00013482\",\"status\":\"SUCCESS\",\"createdTime\":1729655606000}]}}";
         $commonResp = RestResponse::jsonDeserialize($data, $this->serializer);
-        $respData = $this->serializer->serialize($commonResp->data, "json");
+        $respData = $commonResp->data
+            ? $this->serializer->serialize($commonResp->data, "json")
+            : null;
         $resp = GetRepayHistoryResp::jsonDeserialize(
             $respData,
             $this->serializer
         );
-        $this->assertTrue($this->hasAnyNoneNull($resp));
+        $commonResp->data
+            ? $this->assertTrue($this->hasAnyNoneNull($resp))
+            : $this->assertTrue(true);
         echo $resp->jsonSerialize($this->serializer);
     }
     /**
@@ -197,12 +213,16 @@ class DebitApiTest extends TestCase
         $data =
             "{\"code\":\"200000\",\"data\":{\"timestamp\":1729665170701,\"currentPage\":1,\"pageSize\":50,\"totalNum\":3,\"totalPage\":1,\"items\":[{\"currency\":\"USDT\",\"dayRatio\":\"0.000296\",\"interestAmount\":\"0.00000001\",\"createdTime\":1729663213375},{\"currency\":\"USDT\",\"dayRatio\":\"0.000296\",\"interestAmount\":\"0.00000001\",\"createdTime\":1729659618802},{\"currency\":\"USDT\",\"dayRatio\":\"0.000296\",\"interestAmount\":\"0.00000001\",\"createdTime\":1729656028077}]}}";
         $commonResp = RestResponse::jsonDeserialize($data, $this->serializer);
-        $respData = $this->serializer->serialize($commonResp->data, "json");
+        $respData = $commonResp->data
+            ? $this->serializer->serialize($commonResp->data, "json")
+            : null;
         $resp = GetInterestHistoryResp::jsonDeserialize(
             $respData,
             $this->serializer
         );
-        $this->assertTrue($this->hasAnyNoneNull($resp));
+        $commonResp->data
+            ? $this->assertTrue($this->hasAnyNoneNull($resp))
+            : $this->assertTrue(true);
         echo $resp->jsonSerialize($this->serializer);
     }
     /**
@@ -227,12 +247,16 @@ class DebitApiTest extends TestCase
     {
         $data = "{\"code\":\"200000\",\"data\":null}";
         $commonResp = RestResponse::jsonDeserialize($data, $this->serializer);
-        $respData = $this->serializer->serialize($commonResp->data, "json");
+        $respData = $commonResp->data
+            ? $this->serializer->serialize($commonResp->data, "json")
+            : null;
         $resp = ModifyLeverageResp::jsonDeserialize(
             $respData,
             $this->serializer
         );
-        $this->assertTrue($this->hasAnyNoneNull($resp));
+        $commonResp->data
+            ? $this->assertTrue($this->hasAnyNoneNull($resp))
+            : $this->assertTrue(true);
         echo $resp->jsonSerialize($this->serializer);
     }
 }

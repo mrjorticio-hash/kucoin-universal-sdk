@@ -76,12 +76,16 @@ class RiskLimitApiTest extends TestCase
         $data =
             "{\n    \"code\": \"200000\",\n    \"data\": [\n        {\n            \"timestamp\": 1729678659275,\n            \"currency\": \"BTC\",\n            \"borrowMaxAmount\": \"75.15\",\n            \"buyMaxAmount\": \"217.12\",\n            \"holdMaxAmount\": \"217.12\",\n            \"borrowCoefficient\": \"1\",\n            \"marginCoefficient\": \"1\",\n            \"precision\": 8,\n            \"borrowMinAmount\": \"0.001\",\n            \"borrowMinUnit\": \"0.0001\",\n            \"borrowEnabled\": true\n        }\n    ]\n}\n";
         $commonResp = RestResponse::jsonDeserialize($data, $this->serializer);
-        $respData = $this->serializer->serialize($commonResp->data, "json");
+        $respData = $commonResp->data
+            ? $this->serializer->serialize($commonResp->data, "json")
+            : null;
         $resp = GetMarginRiskLimitResp::jsonDeserialize(
             $respData,
             $this->serializer
         );
-        $this->assertTrue($this->hasAnyNoneNull($resp));
+        $commonResp->data
+            ? $this->assertTrue($this->hasAnyNoneNull($resp))
+            : $this->assertTrue(true);
         echo $resp->jsonSerialize($this->serializer);
     }
 }

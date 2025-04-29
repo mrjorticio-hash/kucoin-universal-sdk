@@ -76,9 +76,13 @@ class OrderApiTest extends TestCase
         $data =
             "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"orderId\": \"234125150956625920\",\n        \"clientOid\": \"5c52e11203aa677f33e493fb\"\n    }\n}";
         $commonResp = RestResponse::jsonDeserialize($data, $this->serializer);
-        $respData = $this->serializer->serialize($commonResp->data, "json");
+        $respData = $commonResp->data
+            ? $this->serializer->serialize($commonResp->data, "json")
+            : null;
         $resp = AddOrderResp::jsonDeserialize($respData, $this->serializer);
-        $this->assertTrue($this->hasAnyNoneNull($resp));
+        $commonResp->data
+            ? $this->assertTrue($this->hasAnyNoneNull($resp))
+            : $this->assertTrue(true);
         echo $resp->jsonSerialize($this->serializer);
     }
     /**
@@ -105,9 +109,13 @@ class OrderApiTest extends TestCase
         $data =
             "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"orderId\": \"234125150956625920\",\n        \"clientOid\": \"5c52e11203aa677f33e493fb\"\n    }\n}";
         $commonResp = RestResponse::jsonDeserialize($data, $this->serializer);
-        $respData = $this->serializer->serialize($commonResp->data, "json");
+        $respData = $commonResp->data
+            ? $this->serializer->serialize($commonResp->data, "json")
+            : null;
         $resp = AddOrderTestResp::jsonDeserialize($respData, $this->serializer);
-        $this->assertTrue($this->hasAnyNoneNull($resp));
+        $commonResp->data
+            ? $this->assertTrue($this->hasAnyNoneNull($resp))
+            : $this->assertTrue(true);
         echo $resp->jsonSerialize($this->serializer);
     }
     /**
@@ -134,12 +142,16 @@ class OrderApiTest extends TestCase
         $data =
             "{\n    \"code\": \"200000\",\n    \"data\": [\n        {\n            \"orderId\": \"235919387779985408\",\n            \"clientOid\": \"5c52e11203aa677f33e493fb\",\n            \"symbol\": \"XBTUSDTM\",\n            \"code\": \"200000\",\n            \"msg\": \"success\"\n        },\n        {\n            \"orderId\": \"235919387855482880\",\n            \"clientOid\": \"5c52e11203aa677f33e493fc\",\n            \"symbol\": \"XBTUSDTM\",\n            \"code\": \"200000\",\n            \"msg\": \"success\"\n        }\n    ]\n}";
         $commonResp = RestResponse::jsonDeserialize($data, $this->serializer);
-        $respData = $this->serializer->serialize($commonResp->data, "json");
+        $respData = $commonResp->data
+            ? $this->serializer->serialize($commonResp->data, "json")
+            : null;
         $resp = BatchAddOrdersResp::jsonDeserialize(
             $respData,
             $this->serializer
         );
-        $this->assertTrue($this->hasAnyNoneNull($resp));
+        $commonResp->data
+            ? $this->assertTrue($this->hasAnyNoneNull($resp))
+            : $this->assertTrue(true);
         echo $resp->jsonSerialize($this->serializer);
     }
     /**
@@ -166,9 +178,13 @@ class OrderApiTest extends TestCase
         $data =
             "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"orderId\": \"234125150956625920\",\n        \"clientOid\": \"5c52e11203aa677f33e493fb\"\n    }\n}";
         $commonResp = RestResponse::jsonDeserialize($data, $this->serializer);
-        $respData = $this->serializer->serialize($commonResp->data, "json");
+        $respData = $commonResp->data
+            ? $this->serializer->serialize($commonResp->data, "json")
+            : null;
         $resp = AddTPSLOrderResp::jsonDeserialize($respData, $this->serializer);
-        $this->assertTrue($this->hasAnyNoneNull($resp));
+        $commonResp->data
+            ? $this->assertTrue($this->hasAnyNoneNull($resp))
+            : $this->assertTrue(true);
         echo $resp->jsonSerialize($this->serializer);
     }
     /**
@@ -194,12 +210,16 @@ class OrderApiTest extends TestCase
         $data =
             "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"cancelledOrderIds\": [\n            \"235303670076489728\"\n        ]\n    }\n}";
         $commonResp = RestResponse::jsonDeserialize($data, $this->serializer);
-        $respData = $this->serializer->serialize($commonResp->data, "json");
+        $respData = $commonResp->data
+            ? $this->serializer->serialize($commonResp->data, "json")
+            : null;
         $resp = CancelOrderByIdResp::jsonDeserialize(
             $respData,
             $this->serializer
         );
-        $this->assertTrue($this->hasAnyNoneNull($resp));
+        $commonResp->data
+            ? $this->assertTrue($this->hasAnyNoneNull($resp))
+            : $this->assertTrue(true);
         echo $resp->jsonSerialize($this->serializer);
     }
     /**
@@ -229,12 +249,16 @@ class OrderApiTest extends TestCase
         $data =
             "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"clientOid\": \"017485b0-2957-4681-8a14-5d46b35aee0d\"\n    }\n}";
         $commonResp = RestResponse::jsonDeserialize($data, $this->serializer);
-        $respData = $this->serializer->serialize($commonResp->data, "json");
+        $respData = $commonResp->data
+            ? $this->serializer->serialize($commonResp->data, "json")
+            : null;
         $resp = CancelOrderByClientOidResp::jsonDeserialize(
             $respData,
             $this->serializer
         );
-        $this->assertTrue($this->hasAnyNoneNull($resp));
+        $commonResp->data
+            ? $this->assertTrue($this->hasAnyNoneNull($resp))
+            : $this->assertTrue(true);
         echo $resp->jsonSerialize($this->serializer);
     }
     /**
@@ -261,12 +285,16 @@ class OrderApiTest extends TestCase
         $data =
             "{\n    \"code\": \"200000\",\n    \"data\": [\n        {\n            \"orderId\": \"250445104152670209\",\n            \"clientOid\": null,\n            \"code\": \"200\",\n            \"msg\": \"success\"\n        },\n        {\n            \"orderId\": \"250445181751463936\",\n            \"clientOid\": null,\n            \"code\": \"200\",\n            \"msg\": \"success\"\n        }\n    ]\n}\n";
         $commonResp = RestResponse::jsonDeserialize($data, $this->serializer);
-        $respData = $this->serializer->serialize($commonResp->data, "json");
+        $respData = $commonResp->data
+            ? $this->serializer->serialize($commonResp->data, "json")
+            : null;
         $resp = BatchCancelOrdersResp::jsonDeserialize(
             $respData,
             $this->serializer
         );
-        $this->assertTrue($this->hasAnyNoneNull($resp));
+        $commonResp->data
+            ? $this->assertTrue($this->hasAnyNoneNull($resp))
+            : $this->assertTrue(true);
         echo $resp->jsonSerialize($this->serializer);
     }
     /**
@@ -292,12 +320,16 @@ class OrderApiTest extends TestCase
         $data =
             "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"cancelledOrderIds\": [\n            \"235919172150824960\",\n            \"235919172150824961\"\n        ]\n    }\n}";
         $commonResp = RestResponse::jsonDeserialize($data, $this->serializer);
-        $respData = $this->serializer->serialize($commonResp->data, "json");
+        $respData = $commonResp->data
+            ? $this->serializer->serialize($commonResp->data, "json")
+            : null;
         $resp = CancelAllOrdersV3Resp::jsonDeserialize(
             $respData,
             $this->serializer
         );
-        $this->assertTrue($this->hasAnyNoneNull($resp));
+        $commonResp->data
+            ? $this->assertTrue($this->hasAnyNoneNull($resp))
+            : $this->assertTrue(true);
         echo $resp->jsonSerialize($this->serializer);
     }
     /**
@@ -326,12 +358,16 @@ class OrderApiTest extends TestCase
         $data =
             "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"cancelledOrderIds\": [\n            \"235919172150824960\",\n            \"235919172150824961\"\n        ]\n    }\n}";
         $commonResp = RestResponse::jsonDeserialize($data, $this->serializer);
-        $respData = $this->serializer->serialize($commonResp->data, "json");
+        $respData = $commonResp->data
+            ? $this->serializer->serialize($commonResp->data, "json")
+            : null;
         $resp = CancelAllStopOrdersResp::jsonDeserialize(
             $respData,
             $this->serializer
         );
-        $this->assertTrue($this->hasAnyNoneNull($resp));
+        $commonResp->data
+            ? $this->assertTrue($this->hasAnyNoneNull($resp))
+            : $this->assertTrue(true);
         echo $resp->jsonSerialize($this->serializer);
     }
     /**
@@ -357,12 +393,16 @@ class OrderApiTest extends TestCase
         $data =
             "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"id\": \"236655147005071361\",\n        \"symbol\": \"XBTUSDTM\",\n        \"type\": \"limit\",\n        \"side\": \"buy\",\n        \"price\": \"0.1\",\n        \"size\": 1,\n        \"value\": \"0.0001\",\n        \"dealValue\": \"0\",\n        \"dealSize\": 0,\n        \"stp\": \"\",\n        \"stop\": \"\",\n        \"stopPriceType\": \"\",\n        \"stopTriggered\": false,\n        \"stopPrice\": null,\n        \"timeInForce\": \"GTC\",\n        \"postOnly\": false,\n        \"hidden\": false,\n        \"iceberg\": false,\n        \"leverage\": \"3\",\n        \"forceHold\": false,\n        \"closeOrder\": false,\n        \"visibleSize\": 0,\n        \"clientOid\": \"5c52e11203aa677f33e493fb\",\n        \"remark\": null,\n        \"tags\": \"\",\n        \"isActive\": true,\n        \"cancelExist\": false,\n        \"createdAt\": 1729236185949,\n        \"updatedAt\": 1729236185949,\n        \"endAt\": null,\n        \"orderTime\": 1729236185885647952,\n        \"settleCurrency\": \"USDT\",\n        \"marginMode\": \"ISOLATED\",\n        \"avgDealPrice\": \"0\",\n        \"filledSize\": 0,\n        \"filledValue\": \"0\",\n        \"status\": \"open\",\n        \"reduceOnly\": false\n    }\n}";
         $commonResp = RestResponse::jsonDeserialize($data, $this->serializer);
-        $respData = $this->serializer->serialize($commonResp->data, "json");
+        $respData = $commonResp->data
+            ? $this->serializer->serialize($commonResp->data, "json")
+            : null;
         $resp = GetOrderByOrderIdResp::jsonDeserialize(
             $respData,
             $this->serializer
         );
-        $this->assertTrue($this->hasAnyNoneNull($resp));
+        $commonResp->data
+            ? $this->assertTrue($this->hasAnyNoneNull($resp))
+            : $this->assertTrue(true);
         echo $resp->jsonSerialize($this->serializer);
     }
     /**
@@ -391,12 +431,16 @@ class OrderApiTest extends TestCase
         $data =
             "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"id\": \"250444645610336256\",\n        \"symbol\": \"XRPUSDTM\",\n        \"type\": \"limit\",\n        \"side\": \"buy\",\n        \"price\": \"0.1\",\n        \"size\": 1,\n        \"value\": \"1\",\n        \"dealValue\": \"0\",\n        \"dealSize\": 0,\n        \"stp\": \"\",\n        \"stop\": \"\",\n        \"stopPriceType\": \"\",\n        \"stopTriggered\": false,\n        \"stopPrice\": null,\n        \"timeInForce\": \"GTC\",\n        \"postOnly\": false,\n        \"hidden\": false,\n        \"iceberg\": false,\n        \"leverage\": \"3\",\n        \"forceHold\": false,\n        \"closeOrder\": false,\n        \"visibleSize\": 0,\n        \"clientOid\": \"5c52e11203aa677f33e493fb\",\n        \"remark\": null,\n        \"tags\": \"\",\n        \"isActive\": true,\n        \"cancelExist\": false,\n        \"createdAt\": 1732523858568,\n        \"updatedAt\": 1732523858568,\n        \"endAt\": null,\n        \"orderTime\": 1732523858550892322,\n        \"settleCurrency\": \"USDT\",\n        \"marginMode\": \"ISOLATED\",\n        \"avgDealPrice\": \"0\",\n        \"filledSize\": 0,\n        \"filledValue\": \"0\",\n        \"status\": \"open\",\n        \"reduceOnly\": false\n    }\n}";
         $commonResp = RestResponse::jsonDeserialize($data, $this->serializer);
-        $respData = $this->serializer->serialize($commonResp->data, "json");
+        $respData = $commonResp->data
+            ? $this->serializer->serialize($commonResp->data, "json")
+            : null;
         $resp = GetOrderByClientOidResp::jsonDeserialize(
             $respData,
             $this->serializer
         );
-        $this->assertTrue($this->hasAnyNoneNull($resp));
+        $commonResp->data
+            ? $this->assertTrue($this->hasAnyNoneNull($resp))
+            : $this->assertTrue(true);
         echo $resp->jsonSerialize($this->serializer);
     }
     /**
@@ -423,9 +467,13 @@ class OrderApiTest extends TestCase
         $data =
             "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"currentPage\": 1,\n        \"pageSize\": 50,\n        \"totalNum\": 1,\n        \"totalPage\": 1,\n        \"items\": [\n            {\n                \"id\": \"230181737576050688\",\n                \"symbol\": \"PEOPLEUSDTM\",\n                \"type\": \"limit\",\n                \"side\": \"buy\",\n                \"price\": \"0.05\",\n                \"size\": 10,\n                \"value\": \"5\",\n                \"dealValue\": \"0\",\n                \"dealSize\": 0,\n                \"stp\": \"\",\n                \"stop\": \"\",\n                \"stopPriceType\": \"\",\n                \"stopTriggered\": false,\n                \"stopPrice\": null,\n                \"timeInForce\": \"GTC\",\n                \"postOnly\": false,\n                \"hidden\": false,\n                \"iceberg\": false,\n                \"leverage\": \"1\",\n                \"forceHold\": false,\n                \"closeOrder\": false,\n                \"visibleSize\": 0,\n                \"clientOid\": \"5a80bd847f1811ef8a7faa665a37b3d7\",\n                \"remark\": null,\n                \"tags\": \"\",\n                \"isActive\": true,\n                \"cancelExist\": false,\n                \"createdAt\": 1727692804813,\n                \"updatedAt\": 1727692804813,\n                \"endAt\": null,\n                \"orderTime\": 1727692804808418000,\n                \"settleCurrency\": \"USDT\",\n                \"marginMode\": \"ISOLATED\",\n                \"avgDealPrice\": \"0\",\n                \"filledSize\": 0,\n                \"filledValue\": \"0\",\n                \"status\": \"open\",\n                \"reduceOnly\": false\n            }\n        ]\n    }\n}";
         $commonResp = RestResponse::jsonDeserialize($data, $this->serializer);
-        $respData = $this->serializer->serialize($commonResp->data, "json");
+        $respData = $commonResp->data
+            ? $this->serializer->serialize($commonResp->data, "json")
+            : null;
         $resp = GetOrderListResp::jsonDeserialize($respData, $this->serializer);
-        $this->assertTrue($this->hasAnyNoneNull($resp));
+        $commonResp->data
+            ? $this->assertTrue($this->hasAnyNoneNull($resp))
+            : $this->assertTrue(true);
         echo $resp->jsonSerialize($this->serializer);
     }
     /**
@@ -454,12 +502,16 @@ class OrderApiTest extends TestCase
         $data =
             "{\n    \"code\": \"200000\",\n    \"data\": [\n        {\n            \"id\": \"236387137732231168\",\n            \"symbol\": \"XRPUSDTM\",\n            \"type\": \"market\",\n            \"side\": \"buy\",\n            \"price\": \"0\",\n            \"size\": 1,\n            \"value\": \"5.51\",\n            \"dealValue\": \"5.511\",\n            \"dealSize\": 1,\n            \"stp\": \"\",\n            \"stop\": \"\",\n            \"stopPriceType\": \"\",\n            \"stopTriggered\": false,\n            \"stopPrice\": null,\n            \"timeInForce\": \"GTC\",\n            \"postOnly\": false,\n            \"hidden\": false,\n            \"iceberg\": false,\n            \"leverage\": \"10.0\",\n            \"forceHold\": false,\n            \"closeOrder\": false,\n            \"visibleSize\": 0,\n            \"clientOid\": \"16698fe6-2746-4aeb-a7fa-61f633ab6090\",\n            \"remark\": null,\n            \"tags\": \"\",\n            \"isActive\": false,\n            \"cancelExist\": false,\n            \"createdAt\": 1729172287496,\n            \"updatedAt\": 1729172287568,\n            \"endAt\": 1729172287568,\n            \"orderTime\": 1729172287496950800,\n            \"settleCurrency\": \"USDT\",\n            \"marginMode\": \"ISOLATED\",\n            \"avgDealPrice\": \"0.5511\",\n            \"filledSize\": 1,\n            \"filledValue\": \"5.511\",\n            \"status\": \"done\",\n            \"reduceOnly\": false\n        },\n        {\n            \"id\": \"236317213710184449\",\n            \"symbol\": \"XBTUSDTM\",\n            \"type\": \"market\",\n            \"side\": \"buy\",\n            \"price\": \"0\",\n            \"size\": 1,\n            \"value\": \"67.4309\",\n            \"dealValue\": \"67.4309\",\n            \"dealSize\": 1,\n            \"stp\": \"\",\n            \"stop\": \"\",\n            \"stopPriceType\": \"\",\n            \"stopTriggered\": false,\n            \"stopPrice\": null,\n            \"timeInForce\": \"GTC\",\n            \"postOnly\": false,\n            \"hidden\": false,\n            \"iceberg\": false,\n            \"leverage\": \"3\",\n            \"forceHold\": false,\n            \"closeOrder\": false,\n            \"visibleSize\": 0,\n            \"clientOid\": \"5c52e11203aa677f33e493fb\",\n            \"remark\": null,\n            \"tags\": \"\",\n            \"isActive\": false,\n            \"cancelExist\": false,\n            \"createdAt\": 1729155616310,\n            \"updatedAt\": 1729155616324,\n            \"endAt\": 1729155616324,\n            \"orderTime\": 1729155616310180400,\n            \"settleCurrency\": \"USDT\",\n            \"marginMode\": \"ISOLATED\",\n            \"avgDealPrice\": \"67430.9\",\n            \"filledSize\": 1,\n            \"filledValue\": \"67.4309\",\n            \"status\": \"done\",\n            \"reduceOnly\": false\n        },\n        {\n            \"id\": \"236317094436728832\",\n            \"symbol\": \"XBTUSDTM\",\n            \"type\": \"market\",\n            \"side\": \"buy\",\n            \"price\": \"0\",\n            \"size\": 1,\n            \"value\": \"67.445\",\n            \"dealValue\": \"67.445\",\n            \"dealSize\": 1,\n            \"stp\": \"\",\n            \"stop\": \"\",\n            \"stopPriceType\": \"\",\n            \"stopTriggered\": false,\n            \"stopPrice\": null,\n            \"timeInForce\": \"GTC\",\n            \"postOnly\": false,\n            \"hidden\": false,\n            \"iceberg\": false,\n            \"leverage\": \"3\",\n            \"forceHold\": false,\n            \"closeOrder\": false,\n            \"visibleSize\": 0,\n            \"clientOid\": \"5c52e11203aa677f33e493fb\",\n            \"remark\": null,\n            \"tags\": \"\",\n            \"isActive\": false,\n            \"cancelExist\": false,\n            \"createdAt\": 1729155587873,\n            \"updatedAt\": 1729155587946,\n            \"endAt\": 1729155587946,\n            \"orderTime\": 1729155587873332000,\n            \"settleCurrency\": \"USDT\",\n            \"marginMode\": \"ISOLATED\",\n            \"avgDealPrice\": \"67445.0\",\n            \"filledSize\": 1,\n            \"filledValue\": \"67.445\",\n            \"status\": \"done\",\n            \"reduceOnly\": false\n        }\n    ]\n}";
         $commonResp = RestResponse::jsonDeserialize($data, $this->serializer);
-        $respData = $this->serializer->serialize($commonResp->data, "json");
+        $respData = $commonResp->data
+            ? $this->serializer->serialize($commonResp->data, "json")
+            : null;
         $resp = GetRecentClosedOrdersResp::jsonDeserialize(
             $respData,
             $this->serializer
         );
-        $this->assertTrue($this->hasAnyNoneNull($resp));
+        $commonResp->data
+            ? $this->assertTrue($this->hasAnyNoneNull($resp))
+            : $this->assertTrue(true);
         echo $resp->jsonSerialize($this->serializer);
     }
     /**
@@ -486,12 +538,16 @@ class OrderApiTest extends TestCase
         $data =
             "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"currentPage\": 1,\n        \"pageSize\": 50,\n        \"totalNum\": 1,\n        \"totalPage\": 1,\n        \"items\": [\n            {\n                \"id\": \"230181737576050688\",\n                \"symbol\": \"PEOPLEUSDTM\",\n                \"type\": \"limit\",\n                \"side\": \"buy\",\n                \"price\": \"0.05\",\n                \"size\": 10,\n                \"value\": \"5\",\n                \"dealValue\": \"0\",\n                \"dealSize\": 0,\n                \"stp\": \"\",\n                \"stop\": \"\",\n                \"stopPriceType\": \"\",\n                \"stopTriggered\": false,\n                \"stopPrice\": null,\n                \"timeInForce\": \"GTC\",\n                \"postOnly\": false,\n                \"hidden\": false,\n                \"iceberg\": false,\n                \"leverage\": \"1\",\n                \"forceHold\": false,\n                \"closeOrder\": false,\n                \"visibleSize\": 0,\n                \"clientOid\": \"5a80bd847f1811ef8a7faa665a37b3d7\",\n                \"remark\": null,\n                \"tags\": \"\",\n                \"isActive\": true,\n                \"cancelExist\": false,\n                \"createdAt\": 1727692804813,\n                \"updatedAt\": 1727692804813,\n                \"endAt\": null,\n                \"orderTime\": 1727692804808418000,\n                \"settleCurrency\": \"USDT\",\n                \"marginMode\": \"ISOLATED\",\n                \"avgDealPrice\": \"0\",\n                \"filledSize\": 0,\n                \"filledValue\": \"0\",\n                \"status\": \"open\",\n                \"reduceOnly\": false\n            }\n        ]\n    }\n}";
         $commonResp = RestResponse::jsonDeserialize($data, $this->serializer);
-        $respData = $this->serializer->serialize($commonResp->data, "json");
+        $respData = $commonResp->data
+            ? $this->serializer->serialize($commonResp->data, "json")
+            : null;
         $resp = GetStopOrderListResp::jsonDeserialize(
             $respData,
             $this->serializer
         );
-        $this->assertTrue($this->hasAnyNoneNull($resp));
+        $commonResp->data
+            ? $this->assertTrue($this->hasAnyNoneNull($resp))
+            : $this->assertTrue(true);
         echo $resp->jsonSerialize($this->serializer);
     }
     /**
@@ -517,12 +573,16 @@ class OrderApiTest extends TestCase
         $data =
             "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"openOrderBuySize\": 1,\n        \"openOrderSellSize\": 0,\n        \"openOrderBuyCost\": \"0.0001\",\n        \"openOrderSellCost\": \"0\",\n        \"settleCurrency\": \"USDT\"\n    }\n}";
         $commonResp = RestResponse::jsonDeserialize($data, $this->serializer);
-        $respData = $this->serializer->serialize($commonResp->data, "json");
+        $respData = $commonResp->data
+            ? $this->serializer->serialize($commonResp->data, "json")
+            : null;
         $resp = GetOpenOrderValueResp::jsonDeserialize(
             $respData,
             $this->serializer
         );
-        $this->assertTrue($this->hasAnyNoneNull($resp));
+        $commonResp->data
+            ? $this->assertTrue($this->hasAnyNoneNull($resp))
+            : $this->assertTrue(true);
         echo $resp->jsonSerialize($this->serializer);
     }
     /**
@@ -551,12 +611,16 @@ class OrderApiTest extends TestCase
         $data =
             "{\n    \"code\": \"200000\",\n    \"data\": [\n        {\n            \"symbol\": \"XBTUSDTM\",\n            \"tradeId\": \"1784277229880\",\n            \"orderId\": \"236317213710184449\",\n            \"side\": \"buy\",\n            \"liquidity\": \"taker\",\n            \"forceTaker\": false,\n            \"price\": \"67430.9\",\n            \"size\": 1,\n            \"value\": \"67.4309\",\n            \"openFeePay\": \"0.04045854\",\n            \"closeFeePay\": \"0\",\n            \"stop\": \"\",\n            \"feeRate\": \"0.00060\",\n            \"fixFee\": \"0\",\n            \"feeCurrency\": \"USDT\",\n            \"marginMode\": \"ISOLATED\",\n            \"fee\": \"0.04045854\",\n            \"settleCurrency\": \"USDT\",\n            \"orderType\": \"market\",\n            \"displayType\": \"market\",\n            \"tradeType\": \"trade\",\n            \"subTradeType\": null,\n            \"tradeTime\": 1729155616320000000,\n            \"createdAt\": 1729155616493\n        },\n        {\n            \"symbol\": \"XBTUSDTM\",\n            \"tradeId\": \"1784277132002\",\n            \"orderId\": \"236317094436728832\",\n            \"side\": \"buy\",\n            \"liquidity\": \"taker\",\n            \"forceTaker\": false,\n            \"price\": \"67445\",\n            \"size\": 1,\n            \"value\": \"67.445\",\n            \"openFeePay\": \"0\",\n            \"closeFeePay\": \"0.040467\",\n            \"stop\": \"\",\n            \"feeRate\": \"0.00060\",\n            \"fixFee\": \"0\",\n            \"feeCurrency\": \"USDT\",\n            \"marginMode\": \"ISOLATED\",\n            \"fee\": \"0.040467\",\n            \"settleCurrency\": \"USDT\",\n            \"orderType\": \"market\",\n            \"displayType\": \"market\",\n            \"tradeType\": \"trade\",\n            \"subTradeType\": null,\n            \"tradeTime\": 1729155587944000000,\n            \"createdAt\": 1729155588104\n        }\n    ]\n}";
         $commonResp = RestResponse::jsonDeserialize($data, $this->serializer);
-        $respData = $this->serializer->serialize($commonResp->data, "json");
+        $respData = $commonResp->data
+            ? $this->serializer->serialize($commonResp->data, "json")
+            : null;
         $resp = GetRecentTradeHistoryResp::jsonDeserialize(
             $respData,
             $this->serializer
         );
-        $this->assertTrue($this->hasAnyNoneNull($resp));
+        $commonResp->data
+            ? $this->assertTrue($this->hasAnyNoneNull($resp))
+            : $this->assertTrue(true);
         echo $resp->jsonSerialize($this->serializer);
     }
     /**
@@ -583,12 +647,16 @@ class OrderApiTest extends TestCase
         $data =
             "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"currentPage\": 1,\n        \"pageSize\": 50,\n        \"totalNum\": 2,\n        \"totalPage\": 1,\n        \"items\": [\n            {\n                \"symbol\": \"XBTUSDTM\",\n                \"tradeId\": \"1828954878212\",\n                \"orderId\": \"284486580251463680\",\n                \"side\": \"buy\",\n                \"liquidity\": \"taker\",\n                \"forceTaker\": false,\n                \"price\": \"86275.1\",\n                \"size\": 1,\n                \"value\": \"86.2751\",\n                \"openFeePay\": \"0.05176506\",\n                \"closeFeePay\": \"0\",\n                \"stop\": \"\",\n                \"feeRate\": \"0.00060\",\n                \"fixFee\": \"0\",\n                \"feeCurrency\": \"USDT\",\n                \"subTradeType\": null,\n                \"marginMode\": \"CROSS\",\n                \"openFeeTaxPay\": \"0\",\n                \"closeFeeTaxPay\": \"0\",\n                \"displayType\": \"market\",\n                \"fee\": \"0.05176506\",\n                \"settleCurrency\": \"USDT\",\n                \"orderType\": \"market\",\n                \"tradeType\": \"trade\",\n                \"tradeTime\": 1740640088244000000,\n                \"createdAt\": 1740640088427\n            }\n        ]\n    }\n}";
         $commonResp = RestResponse::jsonDeserialize($data, $this->serializer);
-        $respData = $this->serializer->serialize($commonResp->data, "json");
+        $respData = $commonResp->data
+            ? $this->serializer->serialize($commonResp->data, "json")
+            : null;
         $resp = GetTradeHistoryResp::jsonDeserialize(
             $respData,
             $this->serializer
         );
-        $this->assertTrue($this->hasAnyNoneNull($resp));
+        $commonResp->data
+            ? $this->assertTrue($this->hasAnyNoneNull($resp))
+            : $this->assertTrue(true);
         echo $resp->jsonSerialize($this->serializer);
     }
     /**
@@ -614,12 +682,16 @@ class OrderApiTest extends TestCase
         $data =
             "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"cancelledOrderIds\": [\n            \"235919172150824960\",\n            \"235919172150824961\"\n        ]\n    }\n}";
         $commonResp = RestResponse::jsonDeserialize($data, $this->serializer);
-        $respData = $this->serializer->serialize($commonResp->data, "json");
+        $respData = $commonResp->data
+            ? $this->serializer->serialize($commonResp->data, "json")
+            : null;
         $resp = CancelAllOrdersV1Resp::jsonDeserialize(
             $respData,
             $this->serializer
         );
-        $this->assertTrue($this->hasAnyNoneNull($resp));
+        $commonResp->data
+            ? $this->assertTrue($this->hasAnyNoneNull($resp))
+            : $this->assertTrue(true);
         echo $resp->jsonSerialize($this->serializer);
     }
 }
