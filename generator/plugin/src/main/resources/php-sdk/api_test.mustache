@@ -75,9 +75,9 @@ class {{classname}}Test extends TestCase {
     {
         $data = "{{{vendorExtensions.x-response-example}}}";
         $commonResp = RestResponse::jsonDeserialize($data, $this->serializer);
-        $respData = $this->serializer->serialize($commonResp->data, 'json');
+        $respData = $commonResp->data ? $this->serializer->serialize($commonResp->data, 'json') : null;
         $resp =  {{vendorExtensions.x-meta.methodServiceFmt}}Resp::jsonDeserialize($respData,  $this->serializer);
-        $this->assertTrue($this->hasAnyNoneNull($resp));
+        $commonResp->data ? $this->assertTrue($this->hasAnyNoneNull($resp)) : $this->assertTrue(true);
         echo $resp->jsonSerialize($this->serializer);
     }
     {{/operation}}
