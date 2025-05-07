@@ -4,7 +4,7 @@ namespace {{package}};
 use JMS\Serializer\Serializer;
 use JMS\Serializer\SerializerBuilder;
 use KuCoin\UniversalSDK\Internal\Utils\JsonSerializedHandler;
-use KuCoin\UniversalSDK\Model\RestResponse;
+use KuCoin\UniversalSDK\Model\WsMessage;
 use PHPUnit\Framework\TestCase;
 use ReflectionClass;
 
@@ -48,9 +48,17 @@ class {{classname}}Test extends TestCase {
 
 {{#operations}}
     {{#operation}}
+    /**
+    * {{vendorExtensions.x-meta.method}}
+    * {{summary}}
+    * {{path}}
+    */
     public function test{{vendorExtensions.x-meta.methodServiceFmt}}Response() {
-
-
+        $data = "{{{vendorExtensions.x-response-example}}}";
+        $commonResp = WsMessage::jsonDeserialize($data, $this->serializer);
+        $resp = {{vendorExtensions.x-meta.methodServiceFmt}}Event::jsonDeserialize($this->serializer->serialize($commonResp->rawData, 'json'), $this->serializer);
+        $result = $this->hasAnyNoneNull($resp);
+        self::assertTrue($result);
     }
     {{/operation}}
 {{/operations}}
