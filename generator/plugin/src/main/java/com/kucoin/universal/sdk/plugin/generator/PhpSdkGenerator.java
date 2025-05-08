@@ -236,7 +236,7 @@ public class PhpSdkGenerator extends AbstractPhpCodegen implements NameService {
         }
 
         if (prop.isArray) {
-            if (prop.items != null) {
+            if (prop.items != null  && !"mixed".equalsIgnoreCase(prop.items.dataType)) {
                 return String.format("array<%s>", getTypeAnnotationString(prop.items));
             } else {
                 return "array";
