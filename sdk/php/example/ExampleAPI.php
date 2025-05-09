@@ -1,6 +1,7 @@
 <?php
 
 use KuCoin\UniversalSDK\Api\DefaultClient;
+use KuCoin\UniversalSDK\Common\Logger;
 use KuCoin\UniversalSDK\Generate\Account\Fee\GetSpotActualFeeReq;
 use KuCoin\UniversalSDK\Generate\Futures\Market\GetKlinesReq;
 use KuCoin\UniversalSDK\Generate\Service\AccountService;
@@ -17,24 +18,24 @@ include '../vendor/autoload.php';
 
 function restExample()
 {
-    date_default_timezone_set('UTC');
-    error_reporting(E_ALL);
-    ini_set('display_errors', '1');
-
+    // Retrieve API secret information from environment variables
     $key = getenv('API_KEY') ?: '';
     $secret = getenv('API_SECRET') ?: '';
     $passphrase = getenv('API_PASSPHRASE') ?: '';
 
+    // Optional: Retrieve broker secret information from environment variables; applicable for broker API only
     $brokerName = getenv('BROKER_NAME');
     $brokerKey = getenv('BROKER_KEY');
     $brokerPartner = getenv('BROKER_PARTNER');
 
+    // Set specific options, others will fall back to default values
     $httpTransportOption = (new TransportOptionBuilder())
         ->setKeepAlive(true)
         ->setMaxPoolSize(10)
         ->setMaxConnectionPerPool(10)
         ->build();
 
+    // Create a client using the specified options
     $clientOption = (new ClientOptionBuilder())
         ->setKey($key)
         ->setSecret($secret)
@@ -60,7 +61,7 @@ function accountServiceExample(AccountService $accountService)
 {
     $accountApi = $accountService->getAccountApi();
     $accountInfoResp = $accountApi->getAccountInfo();
-    error_log("account info: level: {$accountInfoResp->level}, SubAccountSize: {$accountInfoResp->subQuantity}");
+    Logger::info("account info: level: {$accountInfoResp->level}, SubAccountSize: {$accountInfoResp->subQuantity}");
 
     $feeApi = $accountService->getFeeApi();
     $getActualFeeReq = GetSpotActualFeeReq::builder()
@@ -70,7 +71,7 @@ function accountServiceExample(AccountService $accountService)
     $getActualFeeResp = $feeApi->getSpotActualFee($getActualFeeReq);
 
     foreach ($getActualFeeResp->data as $feeData) {
-        error_log("Fee info: symbol: {$feeData->symbol}, TakerFee: {$feeData->takerFeeRate}, MakerFee: {$feeData->makerFeeRate}");
+        Logger::info("Fee info: symbol: {$feeData->symbol}, TakerFee: {$feeData->takerFeeRate}, MakerFee: {$feeData->makerFeeRate}");
     }
 }
 
@@ -89,21 +90,21 @@ function spotServiceExample(SpotService $spotService)
         ->build();
 
     $resp = $orderApi->addOrderSync($addOrderReq);
-    error_log("Add order success, id: {$resp->orderId}, oid: {$resp->clientOid}");
+    Logger::info("Add order success, id: {$resp->orderId}, oid: {$resp->clientOid}");
 
     $queryOrderDetailReq = GetOrderByOrderIdReq::builder()
         ->setOrderId($resp->orderId)
         ->setSymbol("BTC-USDT")
         ->build();
     $orderDetailResp = $orderApi->getOrderByOrderId($queryOrderDetailReq);
-    error_log("Order detail: " . $orderDetailResp->jsonSerialize(JMS\Serializer\SerializerBuilder::create()->build()));
+    Logger::info("Order detail: " . $orderDetailResp->jsonSerialize(JMS\Serializer\SerializerBuilder::create()->build()));
 
     $cancelOrderReq = CancelOrderByOrderIdSyncReq::builder()
         ->setOrderId($resp->orderId)
         ->setSymbol("BTC-USDT")
         ->build();
     $cancelOrderResp = $orderApi->cancelOrderByOrderIdSync($cancelOrderReq);
-    error_log("Cancel order success, id: {$cancelOrderResp->orderId}");
+    Logger::info("Cancel order success, id: {$cancelOrderResp->orderId}");
 }
 
 function futuresServiceExample(FuturesService $futuresService)
@@ -139,7 +140,7 @@ function futuresServiceExample(FuturesService $futuresService)
             $rows[] = $formattedRow;
         }
 
-        error_log("Symbol: {$symbol->symbol}, Kline: " . implode(', ', $rows));
+        Logger::info("Symbol: {$symbol->symbol}, Kline: " . implode(', ', $rows));
     }
 }
 

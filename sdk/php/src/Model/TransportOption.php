@@ -14,16 +14,12 @@ class TransportOption
     public $keepAlive = true;
 
     /**
-     * The number of connection pools to cache (i.e., how many hosts). Defaults to 10.
+     * Maximum concurrent HTTP connections allowed.
+     * Applies across all domains and requests.
+     * Use -1 to disable the limit (Guzzle default behavior).
      * @var int
      */
-    public $maxPoolSize = 10;
-
-    /**
-     * The maximum number of connections to save in the pool. Defaults to 10.
-     * @var int
-     */
-    public $maxConnectionPerPool = 10;
+    public $maxConnections = -1;
 
     /**
      * Connection timeout duration in seconds. Defaults to 10.

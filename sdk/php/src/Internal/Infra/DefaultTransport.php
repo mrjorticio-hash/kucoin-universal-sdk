@@ -4,6 +4,10 @@ namespace KuCoin\UniversalSDK\Internal\Infra;
 
 use Exception;
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception\ConnectException;
+use GuzzleHttp\Handler\CurlMultiHandler;
+use GuzzleHttp\HandlerStack;
+use GuzzleHttp\Middleware;
 use InvalidArgumentException;
 use JMS\Serializer\Serializer;
 use JMS\Serializer\SerializerBuilder;
@@ -63,31 +67,60 @@ class DefaultTransport implements Transport
             })->build();
     }
 
-    private function createHttpClient(TransportOption $option)
+    private function createHttpClient(TransportOption $option): Client
     {
+        $handlerOptions = [];
+        if ($option->maxConnections > 0) {
+            $handlerOptions['max_connections'] = $option->maxConnections;
+        }
+
+        $handler = new CurlMultiHandler($handlerOptions);
+        $handlerStack = HandlerStack::create($handler);
+
+        // Interceptors
+        foreach ($option->interceptors as $interceptor) {
+            if (method_exists($interceptor, 'middleware')) {
+                $handlerStack->push($interceptor->middleware());
+            }
+        }
+
+        // Retry middleware
+        if ($option->maxRetries > 0) {
+            $handlerStack->push(Middleware::retry(
+                function ($retries, $request, $response, $exception) use ($option) {
+                    if ($retries >= $option->maxRetries) return false;
+                    if ($exception instanceof ConnectException) return true;
+                    if ($response && $response->getStatusCode() >= 500) return true;
+                    return false;
+                },
+                function () use ($option) {
+                    return $option->retryDelay * 1000;
+                }
+            ));
+        }
+
         $config = [
+            'handler' => $handlerStack,
             'timeout' => $option->readTimeout,
+            'connect_timeout' => $option->connectTimeout,
             'headers' => [
                 'Connection' => $option->keepAlive ? 'keep-alive' : 'close',
             ],
         ];
 
-        // Proxy
-//        if ($option->proxy) {
-//            $proxy = $option->proxy;
-//            $proxyString = '';
-//            if ($proxy->getHttps()) {
-//                $proxyString = $proxy->getHttps()->getHost() . ':' . $proxy->getHttps()->getPort();
-//            } elseif ($proxy->getHttp()) {
-//                $proxyString = $proxy->getHttp()->getHost() . ':' . $proxy->getHttp()->getPort();
-//            }
-//
-//            if ($proxyString) {
-//                $config['proxy'] = $proxyString;
-//            }
-//        }
-
-        // Retry Middleware can be added here with HandlerStack
+        // Proxy support
+        if (is_array($option->proxy)) {
+            $proxyParts = [];
+            if (isset($option->proxy['http'])) {
+                $proxyParts['http'] = $option->proxy['http'];
+            }
+            if (isset($option->proxy['https'])) {
+                $proxyParts['https'] = $option->proxy['https'];
+            }
+            if (!empty($proxyParts)) {
+                $config['proxy'] = $proxyParts;
+            }
+        }
 
         return new Client($config);
     }

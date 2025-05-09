@@ -2,6 +2,7 @@
 
 
 use KuCoin\UniversalSDK\Api\DefaultClient;
+use KuCoin\UniversalSDK\Common\Logger;
 use KuCoin\UniversalSDK\Generate\Spot\Market\GetPartOrderBookReq;
 use KuCoin\UniversalSDK\Model\ClientOptionBuilder;
 use KuCoin\UniversalSDK\Model\Constants;
@@ -19,12 +20,6 @@ function stringifyDepth($depth): string
 
 function example()
 {
-
-    // Logger configuration
-    date_default_timezone_set('UTC');
-    error_reporting(E_ALL);
-    ini_set('display_errors', '1');
-
     // Retrieve API secret information from environment variables
     $key = getenv('API_KEY') ?: '';
     $secret = getenv('API_SECRET') ?: '';
@@ -55,15 +50,21 @@ function example()
 
     $spotMarketApi = $kucoinRestService->getSpotService()->getMarketApi();
 
-    // Query for part orderbook depth data. (aggregated by price)
+    // Query partial order book depth data (aggregated by price).
+    // Build the request using the builder pattern.
     $request = GetPartOrderBookReq::builder()
         ->setSymbol("BTC-USDT")
         ->setSize("20")
         ->build();
 
+    // Or build the request using an array.
+    // Ensure that the keys in the array match the field names in the API documentation,
+    // not the variable names in the class. This is useful when migrating code from an older SDK.
+    $request = GetPartOrderBookReq::create(["symbol" => "BTC-USDT", "size" => "20"]);
+
     $response = $spotMarketApi->getPartOrderBook($request);
 
-    error_log(sprintf(
+    Logger::info(sprintf(
         "time=%d, sequence=%d, bids=%s, asks=%s",
         $response->time,
         $response->sequence,

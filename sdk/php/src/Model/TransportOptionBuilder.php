@@ -30,28 +30,18 @@ class TransportOptionBuilder
     }
 
     /**
-     * Set the number of connection pools to cache.
-     *
-     * @param int $maxPoolSize
+     * Set maximum concurrent HTTP connections allowed.
+     * Applies across all domains and requests.
+     * Use -1 to disable the limit (Guzzle default behavior).
+     * @param int $maxConnections
      * @return self
      */
-    public function setMaxPoolSize(int $maxPoolSize): self
+    public function setMaxConnections(int $maxConnections): self
     {
-        $this->option->maxPoolSize = $maxPoolSize;
+        $this->option->maxConnections = $maxConnections;
         return $this;
     }
 
-    /**
-     * Set the maximum number of connections per pool.
-     *
-     * @param int $maxConnectionPerPool
-     * @return self
-     */
-    public function setMaxConnectionPerPool(int $maxConnectionPerPool): self
-    {
-        $this->option->maxConnectionPerPool = $maxConnectionPerPool;
-        return $this;
-    }
 
     /**
      * Set connection timeout duration (in seconds).
