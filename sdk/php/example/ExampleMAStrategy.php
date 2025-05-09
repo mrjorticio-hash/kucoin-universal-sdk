@@ -12,6 +12,7 @@
  */
 
 use KuCoin\UniversalSDK\Api\DefaultClient;
+use KuCoin\UniversalSDK\Common\Logger;
 use KuCoin\UniversalSDK\Generate\Account\Account\AccountApi;
 use KuCoin\UniversalSDK\Generate\Account\Account\GetSpotAccountListReq;
 use KuCoin\UniversalSDK\Generate\Spot\Market\Get24hrStatsReq;
@@ -39,7 +40,7 @@ class Action
 function simpleMovingAverageStrategy(MarketAPI $marketApi, string $symbol, int $shortWindow, int $longWindow, int $endTime): string
 {
     $startTime = $endTime - $longWindow * 60;
-    error_log("Query kline data start Time: " . date('Y-m-d H:i:s', $startTime) . ", end Time: " . date('Y-m-d H:i:s', $endTime));
+    Logger::info("Query kline data start Time: " . date('Y-m-d H:i:s', $startTime) . ", end Time: " . date('Y-m-d H:i:s', $endTime));
 
     $getKlineReq = GetKlinesReq::builder()
         ->setSymbol($symbol)
@@ -58,13 +59,13 @@ function simpleMovingAverageStrategy(MarketAPI $marketApi, string $symbol, int $
     $shortMA = array_sum(array_slice($prices, -$shortWindow)) / $shortWindow;
     $longMA = array_sum(array_slice($prices, -$longWindow)) / $longWindow;
 
-    error_log("Short MA: {$shortMA}, Long MA: {$longMA}");
+    Logger::info("Short MA: {$shortMA}, Long MA: {$longMA}");
 
     if ($shortMA > $longMA) {
-        error_log("{$symbol}: Short MA > Long MA. Should place a BUY order.");
+        Logger::info("{$symbol}: Short MA > Long MA. Should place a BUY order.");
         return Action::BUY;
     } elseif ($shortMA < $longMA) {
-        error_log("{$symbol}: Short MA < Long MA. Should place a SELL order.");
+        Logger::info("{$symbol}: Short MA < Long MA. Should place a SELL order.");
         return Action::SELL;
     } else {
         return Action::SKIP;
@@ -82,7 +83,7 @@ function checkAvailableBalance(AccountApi $accountApi, float $lastPrice, float $
 {
     $tradeValue = $lastPrice * $amount;
     $currency = $action === Action::BUY ? 'USDT' : 'DOGE';
-    error_log("Checking balance for currency: {$currency}");
+    Logger::info("Checking balance for currency: {$currency}");
 
     $req = GetSpotAccountListReq::builder()
         ->setType('trade')
@@ -95,14 +96,14 @@ function checkAvailableBalance(AccountApi $accountApi, float $lastPrice, float $
         $available += floatval($acc->available);
     }
 
-    error_log("Available {$currency} balance: {$available}");
+    Logger::info("Available {$currency} balance: {$available}");
 
     if ($action === Action::BUY) {
         if ($tradeValue <= $available) {
-            error_log("Balance is sufficient for the trade: {$tradeValue} {$currency} required.");
+            Logger::info("Balance is sufficient for the trade: {$tradeValue} {$currency} required.");
             return true;
         } else {
-            error_log("Insufficient balance: {$tradeValue} {$currency} required, but only {$available} available.");
+            Logger::info("Insufficient balance: {$tradeValue} {$currency} required, but only {$available} available.");
             return false;
         }
     } else {
@@ -118,7 +119,7 @@ function placeOrder(OrderApi $orderApi, string $symbol, string $action, float $l
     if (!empty($openOrdersResp->data)) {
         $cancelReq = CancelAllOrdersBySymbolReq::builder()->setSymbol($symbol)->build();
         $cancelResp = $orderApi->cancelAllOrdersBySymbol($cancelReq);
-        error_log("Canceled all open orders: " . $cancelResp->data);
+        Logger::info("Canceled all open orders: " . $cancelResp->data);
     }
 
     $side = "buy";
@@ -128,7 +129,7 @@ function placeOrder(OrderApi $orderApi, string $symbol, string $action, float $l
         $price = $lastPrice * (1 + $delta);
     }
 
-    error_log("Placing a " . strtoupper($side) . " order at {$price} for {$symbol}");
+    Logger::info("Placing a " . strtoupper($side) . " order at {$price} for {$symbol}");
 
     $orderReq = AddOrderSyncReq::builder()
         ->setClientOid(uniqid('', true))
@@ -141,19 +142,16 @@ function placeOrder(OrderApi $orderApi, string $symbol, string $action, float $l
         ->build();
 
     $orderResp = $orderApi->addOrderSync($orderReq);
-    error_log("Order placed successfully with ID: {$orderResp->orderId}");
+    Logger::info("Order placed successfully with ID: {$orderResp->orderId}");
 
     $dcpReq = SetDCPReq::builder()->setSymbols($symbol)->setTimeout(30)->build();
     $dcpResp = $orderApi->setDcp($dcpReq);
-    error_log("DCP set: current_time={$dcpResp->currentTime}, trigger_time={$dcpResp->triggerTime}");
+    Logger::info("DCP set: current_time={$dcpResp->currentTime}, trigger_time={$dcpResp->triggerTime}");
 }
 
 
 function example()
 {
-    date_default_timezone_set('UTC');
-    error_reporting(E_ALL);
-    ini_set('display_errors', '1');
     // Entry point
     $key = getenv("API_KEY") ?: '';
     $secret = getenv("API_SECRET") ?: '';
@@ -161,8 +159,7 @@ function example()
 
     $transportOption = (new TransportOptionBuilder())
         ->setKeepAlive(true)
-        ->setMaxPoolSize(10)
-        ->setMaxConnectionPerPool(10)
+        ->setMaxConnections(10)
         ->build();
 
     $clientOption = (new ClientOptionBuilder())
@@ -188,20 +185,20 @@ function example()
 
     $currentTime = floor(time() / 60) * 60;
 
-    error_log("Starting the moving average strategy using K-line data. Press Ctrl+C to stop.");
+    Logger::info("Starting the moving average strategy using K-line data. Press Ctrl+C to stop.");
     while (true) {
         $action = simpleMovingAverageStrategy($marketApi, SYMBOL, 10, 30, $currentTime);
         if ($action !== Action::SKIP) {
             $lastPrice = getLastTradePrice($marketApi, SYMBOL);
-            error_log("Last trade price for " . SYMBOL . ": {$lastPrice}");
+            Logger::info("Last trade price for " . SYMBOL . ": {$lastPrice}");
             if (checkAvailableBalance($accountApi, $lastPrice, ORDER_AMOUNT, $action)) {
-                error_log("Sufficient balance available. Attempting to place the order...");
+                Logger::info("Sufficient balance available. Attempting to place the order...");
                 placeOrder($orderApi, SYMBOL, $action, $lastPrice, ORDER_AMOUNT, PRICE_DELTA);
             } else {
-                error_log("Insufficient balance. Skipping the trade...");
+                Logger::info("Insufficient balance. Skipping the trade...");
             }
         }
-        error_log("Waiting for 1 minute before the next run...");
+        Logger::info("Waiting for 1 minute before the next run...");
         sleep(60);
         $currentTime += 60;
     }

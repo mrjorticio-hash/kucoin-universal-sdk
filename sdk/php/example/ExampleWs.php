@@ -24,8 +24,7 @@ function wsExample()
 
     $httpTransportOption = (new TransportOptionBuilder())
         ->setKeepAlive(true)
-        ->setMaxPoolSize(10)
-        ->setMaxConnectionPerPool(10)
+        ->setMaxConnections(10)
         ->build();
 
     $websocketTransportOption = (new WebSocketClientOptionBuilder())->build();

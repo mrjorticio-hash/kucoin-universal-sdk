@@ -31,8 +31,7 @@ function restExample()
     // Set specific options, others will fall back to default values
     $httpTransportOption = (new TransportOptionBuilder())
         ->setKeepAlive(true)
-        ->setMaxPoolSize(10)
-        ->setMaxConnectionPerPool(10)
+        ->setMaxConnections(10)
         ->build();
 
     // Create a client using the specified options
