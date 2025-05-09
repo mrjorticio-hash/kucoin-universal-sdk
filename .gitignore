@@ -10,3 +10,4 @@ test.log
 build/
 dist/
 vendor
+sdk/php/composer.lock
