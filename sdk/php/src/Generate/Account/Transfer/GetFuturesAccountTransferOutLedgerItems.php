@@ -12,16 +12,6 @@ use KuCoin\UniversalSDK\Internal\Interfaces\Serializable;
 class GetFuturesAccountTransferOutLedgerItems implements Serializable
 {
     /**
-     * @var string[] $pathVarMapping
-     * @Exclude()
-     */
-    public static $pathVarMapping = [];
-
-    public function pathVarMapping()
-    {
-        return self::$pathVarMapping;
-    }
-    /**
      * Transfer order ID
      * @var string|null $applyId
      * @Type("string")
@@ -113,7 +103,7 @@ class GetFuturesAccountTransferOutLedgerItems implements Serializable
      */
     public static function jsonDeserialize($json, $serializer)
     {
-        if ($json == null) {
+        if ($json === null) {
             return new self();
         }
         return $serializer->deserialize(

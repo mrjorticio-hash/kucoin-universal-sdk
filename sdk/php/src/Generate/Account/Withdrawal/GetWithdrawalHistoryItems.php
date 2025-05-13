@@ -12,16 +12,6 @@ use KuCoin\UniversalSDK\Internal\Interfaces\Serializable;
 class GetWithdrawalHistoryItems implements Serializable
 {
     /**
-     * @var string[] $pathVarMapping
-     * @Exclude()
-     */
-    public static $pathVarMapping = [];
-
-    public function pathVarMapping()
-    {
-        return self::$pathVarMapping;
-    }
-    /**
      * Unique ID
      * @var string|null $id
      * @Type("string")
@@ -136,7 +126,7 @@ class GetWithdrawalHistoryItems implements Serializable
      */
     public static function jsonDeserialize($json, $serializer)
     {
-        if ($json == null) {
+        if ($json === null) {
             return new self();
         }
         return $serializer->deserialize(

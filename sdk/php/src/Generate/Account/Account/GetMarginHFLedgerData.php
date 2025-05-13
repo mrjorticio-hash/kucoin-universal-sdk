@@ -12,16 +12,6 @@ use KuCoin\UniversalSDK\Internal\Interfaces\Serializable;
 class GetMarginHFLedgerData implements Serializable
 {
     /**
-     * @var string[] $pathVarMapping
-     * @Exclude()
-     */
-    public static $pathVarMapping = [];
-
-    public function pathVarMapping()
-    {
-        return self::$pathVarMapping;
-    }
-    /**
      *
      * @var int|null $id
      * @Type("int")
@@ -117,7 +107,7 @@ class GetMarginHFLedgerData implements Serializable
      */
     public static function jsonDeserialize($json, $serializer)
     {
-        if ($json == null) {
+        if ($json === null) {
             return new self();
         }
         return $serializer->deserialize(

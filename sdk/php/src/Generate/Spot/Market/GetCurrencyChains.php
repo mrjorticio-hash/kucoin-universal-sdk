@@ -12,16 +12,6 @@ use KuCoin\UniversalSDK\Internal\Interfaces\Serializable;
 class GetCurrencyChains implements Serializable
 {
     /**
-     * @var string[] $pathVarMapping
-     * @Exclude()
-     */
-    public static $pathVarMapping = [];
-
-    public function pathVarMapping()
-    {
-        return self::$pathVarMapping;
-    }
-    /**
      * Chain name of currency
      * @var string $chainName
      * @Type("string")
@@ -145,7 +135,7 @@ class GetCurrencyChains implements Serializable
      */
     public static function jsonDeserialize($json, $serializer)
     {
-        if ($json == null) {
+        if ($json === null) {
             return new self();
         }
         return $serializer->deserialize(

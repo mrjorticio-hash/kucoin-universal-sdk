@@ -12,16 +12,6 @@ use KuCoin\UniversalSDK\Internal\Interfaces\Serializable;
 class GetTradeHistoryItems implements Serializable
 {
     /**
-     * @var string[] $pathVarMapping
-     * @Exclude()
-     */
-    public static $pathVarMapping = [];
-
-    public function pathVarMapping()
-    {
-        return self::$pathVarMapping;
-    }
-    /**
      * Id of transaction detail
      * @var int $id
      * @Type("int")
@@ -186,7 +176,7 @@ class GetTradeHistoryItems implements Serializable
      */
     public static function jsonDeserialize($json, $serializer)
     {
-        if ($json == null) {
+        if ($json === null) {
             return new self();
         }
         return $serializer->deserialize(

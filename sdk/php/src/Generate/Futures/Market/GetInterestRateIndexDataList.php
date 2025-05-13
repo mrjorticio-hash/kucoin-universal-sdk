@@ -12,16 +12,6 @@ use KuCoin\UniversalSDK\Internal\Interfaces\Serializable;
 class GetInterestRateIndexDataList implements Serializable
 {
     /**
-     * @var string[] $pathVarMapping
-     * @Exclude()
-     */
-    public static $pathVarMapping = [];
-
-    public function pathVarMapping()
-    {
-        return self::$pathVarMapping;
-    }
-    /**
      * Symbol of the contract. Please refer to [Get Symbol endpoint: fundingBaseSymbol, fundingQuoteSymbol, fundingBaseSymbol1M, fundingQuoteSymbol1M](https://www.kucoin.com/docs-new/api-3470220)
      * @var string $symbol
      * @Type("string")
@@ -68,7 +58,7 @@ class GetInterestRateIndexDataList implements Serializable
      */
     public static function jsonDeserialize($json, $serializer)
     {
-        if ($json == null) {
+        if ($json === null) {
             return new self();
         }
         return $serializer->deserialize(

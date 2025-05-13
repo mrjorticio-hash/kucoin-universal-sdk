@@ -17,6 +17,7 @@ class {{classname}} implements Response {
 use KuCoin\UniversalSDK\Internal\Interfaces\Serializable;
 
 class {{classname}} implements Serializable {
+{{#vendorExtensions.x-request-model}}
     /**
      * @var string[] $pathVarMapping
      * @Exclude()
@@ -33,6 +34,7 @@ class {{classname}} implements Serializable {
     {
         return self::$pathVarMapping;
     }
+{{/vendorExtensions.x-request-model}}
 {{/vendorExtensions.x-response-model}}
 {{#vars}}
     /**
@@ -83,7 +85,7 @@ class {{classname}} implements Serializable {
     * @return self
     */
     public static function jsonDeserialize($json , $serializer) {
-        if ($json == null) {
+        if ($json === null) {
             return new self();
         }
     {{#vars}}
@@ -109,7 +111,7 @@ class {{classname}} implements Serializable {
     * @return self
     */
     public static function jsonDeserialize($json ,$serializer) {
-        if ($json == null) {
+        if ($json === null) {
             return new self();
         }
         $item = $serializer->deserialize($json, 'array<{{modelPackage}}\{{#vars}}{{complexType}}{{/vars}}>', 'json');
@@ -132,7 +134,7 @@ class {{classname}} implements Serializable {
     * @return self
     */
     public static function jsonDeserialize($json, $serializer) {
-        if ($json == null) {
+        if ($json === null) {
             return new self();
         }
         return $serializer->deserialize($json, {{classname}}::class, 'json');

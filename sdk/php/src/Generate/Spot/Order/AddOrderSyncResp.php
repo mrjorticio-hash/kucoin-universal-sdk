@@ -108,7 +108,7 @@ class AddOrderSyncResp implements Response
      */
     public static function jsonDeserialize($json, $serializer)
     {
-        if ($json == null) {
+        if ($json === null) {
             return new self();
         }
         return $serializer->deserialize($json, AddOrderSyncResp::class, "json");
