@@ -1,0 +1,68 @@
+
+    /**
+    * getCurrentFundingRate
+    * Get Current Funding Rate.
+    * /api/v1/funding-rate/{symbol}/current
+    */
+    public function testGetCurrentFundingRate() {
+        $builder = GetCurrentFundingRateReq::builder();
+        $builder->setSymbol(?);
+        $req = $builder->build();
+        $resp = $this->api->getCurrentFundingRate($req);
+        self::assertNotNull($resp->symbol);
+        self::assertNotNull($resp->granularity);
+        self::assertNotNull($resp->timePoint);
+        self::assertNotNull($resp->value);
+        self::assertNotNull($resp->predictedValue);
+        self::assertNotNull($resp->fundingRateCap);
+        self::assertNotNull($resp->fundingRateFloor);
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
+    /**
+    * getPublicFundingHistory
+    * Get Public Funding History
+    * /api/v1/contract/funding-rates
+    */
+    public function testGetPublicFundingHistory() {
+        $builder = GetPublicFundingHistoryReq::builder();
+        $builder->setSymbol(?)->setFrom(?)->setTo(?);
+        $req = $builder->build();
+        $resp = $this->api->getPublicFundingHistory($req);
+        foreach($resp->data as $item) {
+            self::assertNotNull($item->symbol);
+            self::assertNotNull($item->fundingRate);
+            self::assertNotNull($item->timepoint);
+        }
+
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
+    /**
+    * getPrivateFundingHistory
+    * Get Private Funding History
+    * /api/v1/funding-history
+    */
+    public function testGetPrivateFundingHistory() {
+        $builder = GetPrivateFundingHistoryReq::builder();
+        $builder->setSymbol(?)->setStartAt(?)->setEndAt(?)->setReverse(?)->setOffset(?)->setForward(?)->setMaxCount(?);
+        $req = $builder->build();
+        $resp = $this->api->getPrivateFundingHistory($req);
+        foreach($resp->dataList as $item) {
+            self::assertNotNull($item->id);
+            self::assertNotNull($item->symbol);
+            self::assertNotNull($item->timePoint);
+            self::assertNotNull($item->fundingRate);
+            self::assertNotNull($item->markPrice);
+            self::assertNotNull($item->positionQty);
+            self::assertNotNull($item->positionCost);
+            self::assertNotNull($item->funding);
+            self::assertNotNull($item->settleCurrency);
+            self::assertNotNull($item->context);
+            self::assertNotNull($item->marginMode);
+        }
+
+        self::assertNotNull($resp->hasMore);
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+

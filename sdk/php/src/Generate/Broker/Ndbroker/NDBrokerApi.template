@@ -1,0 +1,281 @@
+
+    /**
+    * getBrokerInfo
+    * Get Broker Info
+    * /api/v1/broker/nd/info
+    */
+    public function testGetBrokerInfo() {
+        $builder = GetBrokerInfoReq::builder();
+        $builder->setBegin(?)->setEnd(?)->setTradeType(?);
+        $req = $builder->build();
+        $resp = $this->api->getBrokerInfo($req);
+        self::assertNotNull($resp->accountSize);
+        self::assertNotNull($resp->maxAccountSize);
+        self::assertNotNull($resp->level);
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
+    /**
+    * addSubAccount
+    * Add sub-account
+    * /api/v1/broker/nd/account
+    */
+    public function testAddSubAccount() {
+        $builder = AddSubAccountReq::builder();
+        $builder->setAccountName(?);
+        $req = $builder->build();
+        $resp = $this->api->addSubAccount($req);
+        self::assertNotNull($resp->accountName);
+        self::assertNotNull($resp->uid);
+        self::assertNotNull($resp->createdAt);
+        self::assertNotNull($resp->level);
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
+    /**
+    * getSubAccount
+    * Get sub-account
+    * /api/v1/broker/nd/account
+    */
+    public function testGetSubAccount() {
+        $builder = GetSubAccountReq::builder();
+        $builder->setUid(?)->setCurrentPage(?)->setPageSize(?);
+        $req = $builder->build();
+        $resp = $this->api->getSubAccount($req);
+        self::assertNotNull($resp->currentPage);
+        self::assertNotNull($resp->pageSize);
+        self::assertNotNull($resp->totalNum);
+        self::assertNotNull($resp->totalPage);
+        foreach($resp->items as $item) {
+            self::assertNotNull($item->accountName);
+            self::assertNotNull($item->uid);
+            self::assertNotNull($item->createdAt);
+            self::assertNotNull($item->level);
+        }
+
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
+    /**
+    * addSubAccountApi
+    * Add sub-account API
+    * /api/v1/broker/nd/account/apikey
+    */
+    public function testAddSubAccountApi() {
+        $builder = AddSubAccountApiReq::builder();
+        $builder->setUid(?)->setPassphrase(?)->setIpWhitelist(?)->setPermissions(?)->setLabel(?);
+        $req = $builder->build();
+        $resp = $this->api->addSubAccountApi($req);
+        self::assertNotNull($resp->uid);
+        self::assertNotNull($resp->label);
+        self::assertNotNull($resp->apiKey);
+        self::assertNotNull($resp->secretKey);
+        self::assertNotNull($resp->apiVersion);
+        foreach($resp->permissions as $item) {
+        }
+
+        foreach($resp->ipWhitelist as $item) {
+        }
+
+        self::assertNotNull($resp->createdAt);
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
+    /**
+    * getSubAccountAPI
+    * Get sub-account API
+    * /api/v1/broker/nd/account/apikey
+    */
+    public function testGetSubAccountAPI() {
+        $builder = GetSubAccountAPIReq::builder();
+        $builder->setUid(?)->setApiKey(?);
+        $req = $builder->build();
+        $resp = $this->api->getSubAccountAPI($req);
+        foreach($resp->data as $item) {
+            self::assertNotNull($item->uid);
+            self::assertNotNull($item->label);
+            self::assertNotNull($item->apiKey);
+            self::assertNotNull($item->apiVersion);
+            self::assertNotNull($item->permissions);
+            self::assertNotNull($item->ipWhitelist);
+            self::assertNotNull($item->createdAt);
+        }
+
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
+    /**
+    * modifySubAccountApi
+    * Modify sub-account API
+    * /api/v1/broker/nd/account/update-apikey
+    */
+    public function testModifySubAccountApi() {
+        $builder = ModifySubAccountApiReq::builder();
+        $builder->setUid(?)->setIpWhitelist(?)->setPermissions(?)->setLabel(?)->setApiKey(?);
+        $req = $builder->build();
+        $resp = $this->api->modifySubAccountApi($req);
+        self::assertNotNull($resp->uid);
+        self::assertNotNull($resp->label);
+        self::assertNotNull($resp->apiKey);
+        self::assertNotNull($resp->apiVersion);
+        foreach($resp->permissions as $item) {
+        }
+
+        foreach($resp->ipWhitelist as $item) {
+        }
+
+        self::assertNotNull($resp->createdAt);
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
+    /**
+    * deleteSubAccountAPI
+    * Delete sub-account API
+    * /api/v1/broker/nd/account/apikey
+    */
+    public function testDeleteSubAccountAPI() {
+        $builder = DeleteSubAccountAPIReq::builder();
+        $builder->setUid(?)->setApiKey(?);
+        $req = $builder->build();
+        $resp = $this->api->deleteSubAccountAPI($req);
+        self::assertNotNull($resp->data);
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
+    /**
+    * transfer
+    * Transfer
+    * /api/v1/broker/nd/transfer
+    */
+    public function testTransfer() {
+        $builder = TransferReq::builder();
+        $builder->setCurrency(?)->setAmount(?)->setDirection(?)->setAccountType(?)->setSpecialUid(?)->setSpecialAccountType(?)->setClientOid(?);
+        $req = $builder->build();
+        $resp = $this->api->transfer($req);
+        self::assertNotNull($resp->orderId);
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
+    /**
+    * getTransferHistory
+    * Get Transfer History
+    * /api/v3/broker/nd/transfer/detail
+    */
+    public function testGetTransferHistory() {
+        $builder = GetTransferHistoryReq::builder();
+        $builder->setOrderId(?);
+        $req = $builder->build();
+        $resp = $this->api->getTransferHistory($req);
+        self::assertNotNull($resp->orderId);
+        self::assertNotNull($resp->currency);
+        self::assertNotNull($resp->amount);
+        self::assertNotNull($resp->fromUid);
+        self::assertNotNull($resp->fromAccountType);
+        self::assertNotNull($resp->fromAccountTag);
+        self::assertNotNull($resp->toUid);
+        self::assertNotNull($resp->toAccountType);
+        self::assertNotNull($resp->toAccountTag);
+        self::assertNotNull($resp->status);
+        self::assertNotNull($resp->reason);
+        self::assertNotNull($resp->createdAt);
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
+    /**
+    * getDepositList
+    * Get Deposit List
+    * /api/v1/asset/ndbroker/deposit/list
+    */
+    public function testGetDepositList() {
+        $builder = GetDepositListReq::builder();
+        $builder->setCurrency(?)->setStatus(?)->setHash(?)->setStartTimestamp(?)->setEndTimestamp(?)->setLimit(?);
+        $req = $builder->build();
+        $resp = $this->api->getDepositList($req);
+        foreach($resp->data as $item) {
+            self::assertNotNull($item->uid);
+            self::assertNotNull($item->hash);
+            self::assertNotNull($item->address);
+            self::assertNotNull($item->memo);
+            self::assertNotNull($item->amount);
+            self::assertNotNull($item->fee);
+            self::assertNotNull($item->currency);
+            self::assertNotNull($item->isInner);
+            self::assertNotNull($item->walletTxId);
+            self::assertNotNull($item->status);
+            self::assertNotNull($item->remark);
+            self::assertNotNull($item->chain);
+            self::assertNotNull($item->createdAt);
+            self::assertNotNull($item->updatedAt);
+        }
+
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
+    /**
+    * getDepositDetail
+    * Get Deposit Detail
+    * /api/v3/broker/nd/deposit/detail
+    */
+    public function testGetDepositDetail() {
+        $builder = GetDepositDetailReq::builder();
+        $builder->setCurrency(?)->setHash(?);
+        $req = $builder->build();
+        $resp = $this->api->getDepositDetail($req);
+        self::assertNotNull($resp->chain);
+        self::assertNotNull($resp->hash);
+        self::assertNotNull($resp->walletTxId);
+        self::assertNotNull($resp->uid);
+        self::assertNotNull($resp->updatedAt);
+        self::assertNotNull($resp->amount);
+        self::assertNotNull($resp->memo);
+        self::assertNotNull($resp->fee);
+        self::assertNotNull($resp->address);
+        self::assertNotNull($resp->remark);
+        self::assertNotNull($resp->isInner);
+        self::assertNotNull($resp->currency);
+        self::assertNotNull($resp->status);
+        self::assertNotNull($resp->createdAt);
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
+    /**
+    * getWithdrawDetail
+    * Get Withdraw Detail
+    * /api/v3/broker/nd/withdraw/detail
+    */
+    public function testGetWithdrawDetail() {
+        $builder = GetWithdrawDetailReq::builder();
+        $builder->setWithdrawalId(?);
+        $req = $builder->build();
+        $resp = $this->api->getWithdrawDetail($req);
+        self::assertNotNull($resp->id);
+        self::assertNotNull($resp->chain);
+        self::assertNotNull($resp->walletTxId);
+        self::assertNotNull($resp->uid);
+        self::assertNotNull($resp->updatedAt);
+        self::assertNotNull($resp->amount);
+        self::assertNotNull($resp->memo);
+        self::assertNotNull($resp->fee);
+        self::assertNotNull($resp->address);
+        self::assertNotNull($resp->remark);
+        self::assertNotNull($resp->isInner);
+        self::assertNotNull($resp->currency);
+        self::assertNotNull($resp->status);
+        self::assertNotNull($resp->createdAt);
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
+    /**
+    * getRebase
+    * Get Broker Rebate
+    * /api/v1/broker/nd/rebase/download
+    */
+    public function testGetRebase() {
+        $builder = GetRebaseReq::builder();
+        $builder->setBegin(?)->setEnd(?)->setTradeType(?);
+        $req = $builder->build();
+        $resp = $this->api->getRebase($req);
+        self::assertNotNull($resp->url);
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+

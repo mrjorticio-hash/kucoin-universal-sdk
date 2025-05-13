@@ -92,6 +92,7 @@ public class PhpSdkGenerator extends AbstractPhpCodegen implements NameService {
                 break;
             }
             case TEST_TEMPLATE: {
+                apiTemplateFiles.put("api_test_template.mustache", ".template");
                 break;
             }
             case ENTRY: {
@@ -236,7 +237,7 @@ public class PhpSdkGenerator extends AbstractPhpCodegen implements NameService {
         }
 
         if (prop.isArray) {
-            if (prop.items != null  && !"mixed".equalsIgnoreCase(prop.items.dataType)) {
+            if (prop.items != null && !"mixed".equalsIgnoreCase(prop.items.dataType)) {
                 return String.format("array<%s>", getTypeAnnotationString(prop.items));
             } else {
                 return "array";
@@ -450,6 +451,33 @@ public class PhpSdkGenerator extends AbstractPhpCodegen implements NameService {
                         break;
                     }
                     case TEST_TEMPLATE: {
+                        String reqName = String.format("%s.%s", modelPackage, meta.getMethodServiceFmt() + "Req");
+                        String responseName = String.format("%s.%s", modelPackage, meta.getMethodServiceFmt() + "Resp");
+                        allModels.stream().filter(m -> reqName.equalsIgnoreCase((String) m.get("importPath"))).
+                                forEach(m -> op.vendorExtensions.put("x-request-model", m.getModel()));
+                        allModels.stream().filter(m -> responseName.equalsIgnoreCase((String) m.get("importPath"))).
+                                forEach(m -> {
+
+                                    CodegenModel model = m.getModel();
+                                    for (CodegenProperty var : model.vars) {
+                                        if (var.isArray) {
+                                            String innerDataName = String.format("%s.%s", modelPackage, var.getComplexType());
+                                            CodegenModel innerClass = null;
+                                            for (ModelMap map : allModels) {
+                                                if (innerDataName.equalsIgnoreCase((String) map.get("importPath"))) {
+                                                    innerClass = map.getModel();
+                                                    break;
+                                                }
+                                            }
+
+                                            if (innerClass != null) {
+                                                var.vendorExtensions.put("x-response-inner-model", innerClass);
+                                            }
+                                        }
+                                    }
+
+                                    op.vendorExtensions.put("x-response-model", m.getModel());
+                                });
                         break;
                     }
                 }
