@@ -184,32 +184,42 @@ class DefaultTransport implements Transport
             'User-Agent' => 'Kucoin-Universal-PHP-SDK/' . $this->version,
         ];
 
-        if (!$requestAsJson && ($method === 'GET' || $method === 'DELETE')) {
-            $queryParts = [];
-            $rawParts = [];
-
-            if ($requestObj) {
-                foreach ((array)$requestObj as $k => $v) {
-                    if ($v === null) {
-                        continue;
-                    }
-
-                    if (array_key_exists($k, $pathVarFields)) {
-                        continue;
-                    }
-
-                    $queryParts[] = urlencode($k) . '=' . urlencode($v);
-                    $rawParts[] = $k . '=' . $v;
-                }
-
-                if (!empty($queryParts)) {
-                    $path .= '?' . implode('&', $queryParts);
-                    $rawPath .= '?' . implode('&', $rawParts);
-                }
+        if ($requestAsJson) {
+            if (!is_null($requestObj)) {
+                $body = $requestObj->jsonSerialize($this->serializer);
             }
-        } elseif ($method === 'POST' && $requestObj) {
-            $body = $requestObj->jsonSerialize($this->serializer);
+        } else {
+            if ($method === 'GET' || $method === 'DELETE') {
+                if (!is_null($requestObj)) {
+                    $queryParts = [];
+                    $rawParts = [];
+                    foreach ((array)$requestObj as $k => $v) {
+                        if ($v === null) {
+                            continue;
+                        }
+
+                        if (array_key_exists($k, $pathVarFields)) {
+                            continue;
+                        }
+
+                        $queryParts[] = urlencode($k) . '=' . urlencode($v);
+                        $rawParts[] = $k . '=' . $v;
+                    }
+
+                    if (!empty($queryParts)) {
+                        $path .= '?' . implode('&', $queryParts);
+                        $rawPath .= '?' . implode('&', $rawParts);
+                    }
+                }
+            } elseif ($method === 'POST') {
+                if (!is_null($requestObj)) {
+                    $body = $requestObj->jsonSerialize($this->serializer);
+                }
+            } else {
+                throw new RuntimeException('Invalid request method');
+            }
         }
+
 
         $fullUrl = $endpoint . $path;
         $this->processHeaders($body, $rawPath, $headers, $method, $broker);
@@ -267,6 +277,8 @@ class DefaultTransport implements Transport
         array $options = []
     )
     {
+        $method = strtoupper($method);
+
         try {
             $endpoint = $this->getEndpoint($domain);
             [$processedPath, $pathVarFields] = $this->processPathVariable($path, $requestObj);
