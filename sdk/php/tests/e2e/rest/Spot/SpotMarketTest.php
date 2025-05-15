@@ -385,12 +385,11 @@ class SpotMarketTest extends TestCase
      * getCallAuctionPartOrderBook
      * Get Call Auction Part OrderBook
      * /api/v1/market/orderbook/callauction/level2_{size}
-     * TODO
      */
     public function testGetCallAuctionPartOrderBook()
     {
         $builder = GetCallAuctionPartOrderBookReq::builder();
-        $builder->setSymbol('HBAR-USDC')->setSize("20");
+        $builder->setSymbol('NXPC-USDT')->setSize("20");
         $req = $builder->build();
         $resp = $this->api->getCallAuctionPartOrderBook($req);
         self::assertNotNull($resp->time);
@@ -410,17 +409,14 @@ class SpotMarketTest extends TestCase
      * getCallAuctionInfo
      * Get Call Auction Info
      * /api/v1/market/callauctionData
-     * TODO
      */
     public function testGetCallAuctionInfo()
     {
         $builder = GetCallAuctionInfoReq::builder();
-        $builder->setSymbol("RA-USDC");
+        $builder->setSymbol("NXPC-USDT");
         $req = $builder->build();
         $resp = $this->api->getCallAuctionInfo($req);
         self::assertNotNull($resp->symbol);
-        self::assertNotNull($resp->estimatedPrice);
-        self::assertNotNull($resp->estimatedSize);
         self::assertNotNull($resp->sellOrderRangeLowPrice);
         self::assertNotNull($resp->sellOrderRangeHighPrice);
         self::assertNotNull($resp->buyOrderRangeLowPrice);

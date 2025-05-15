@@ -121,7 +121,6 @@ class FuturesFeeTest extends TestCase
      * getPrivateFundingHistory
      * Get Private Funding History
      * /api/v1/funding-history
-     * // TODO
      */
     public function testGetPrivateFundingHistory()
     {

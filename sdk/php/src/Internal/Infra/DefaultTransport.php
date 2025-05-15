@@ -23,6 +23,7 @@ use KuCoin\UniversalSDK\Model\RestResponse;
 use KuCoin\UniversalSDK\Model\TransportOption;
 use Psr\Http\Message\ResponseInterface;
 use ReflectionClass;
+use ReflectionObject;
 use RuntimeException;
 
 class DefaultTransport implements Transport
@@ -167,6 +168,49 @@ class DefaultTransport implements Transport
         $headers = array_merge($headers, $signedHeaders);
     }
 
+    function buildQueryFromRequest(object $requestObj, array $pathVarFields): array
+    {
+        $queryParts = [];
+        $rawParts = [];
+
+        $ref = new ReflectionObject($requestObj);
+        foreach ($ref->getProperties() as $prop) {
+            $prop->setAccessible(true);
+            $value = $prop->getValue($requestObj);
+            $propName = $prop->getName();
+
+            if ($value === null || array_key_exists($propName, $pathVarFields) || $propName === "pathVarMapping") {
+                continue;
+            }
+
+            // parse @SerializedName("xxx")
+            $docComment = $prop->getDocComment();
+            $serializedName = $propName;
+            if ($docComment && preg_match('/@SerializedName\("([^"]+)"\)/', $docComment, $matches)) {
+                $serializedName = $matches[1];
+            }
+
+            if (!is_scalar($value)) {
+                throw new RuntimeException("Unexpected value type for '{$serializedName}'");
+            }
+
+            $stringValue = (string)$value;
+            if (is_bool($value)) {
+                $stringValue = $value ? 'true' : 'false';
+            }
+
+            $queryParts[] = urlencode($serializedName) . '=' . urlencode($stringValue);
+            $rawParts[] = $serializedName . '=' . $stringValue;
+        }
+
+        if (empty($queryParts)) {
+            return [];
+        }
+
+        return [implode('&', $queryParts), implode('&', $rawParts)];
+    }
+
+
     private function processRequest(
         $requestObj,
         $broker,
@@ -191,24 +235,10 @@ class DefaultTransport implements Transport
         } else {
             if ($method === 'GET' || $method === 'DELETE') {
                 if (!is_null($requestObj)) {
-                    $queryParts = [];
-                    $rawParts = [];
-                    foreach ((array)$requestObj as $k => $v) {
-                        if ($v === null) {
-                            continue;
-                        }
-
-                        if (array_key_exists($k, $pathVarFields)) {
-                            continue;
-                        }
-
-                        $queryParts[] = urlencode($k) . '=' . urlencode($v);
-                        $rawParts[] = $k . '=' . $v;
-                    }
-
-                    if (!empty($queryParts)) {
-                        $path .= '?' . implode('&', $queryParts);
-                        $rawPath .= '?' . implode('&', $rawParts);
+                    $paths = $this->buildQueryFromRequest($requestObj, $pathVarFields);
+                    if (!empty($paths)) {
+                        $path .= '?' . $paths[0];
+                        $rawPath .= '?' .  $paths[1];
                     }
                 }
             } elseif ($method === 'POST') {
