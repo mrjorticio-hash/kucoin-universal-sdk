@@ -1,12 +1,16 @@
 <?php
 
 
+namespace Margin;
+
+use Exception;
 use JMS\Serializer\Serializer;
 use JMS\Serializer\SerializerBuilder;
 use KuCoin\UniversalSDK\Api\DefaultClient;
 use KuCoin\UniversalSDK\Common\Logger;
-use KuCoin\UniversalSDK\Generate\Spot\SpotPublic\AllTickersEvent;
-use KuCoin\UniversalSDK\Generate\Spot\SpotPublic\SpotPublicWs;
+use KuCoin\UniversalSDK\Generate\Margin\MarginPrivate\CrossMarginPositionEvent;
+use KuCoin\UniversalSDK\Generate\Margin\MarginPrivate\IsolatedMarginPositionEvent;
+use KuCoin\UniversalSDK\Generate\Margin\MarginPrivate\MarginPrivateWs;
 use KuCoin\UniversalSDK\Internal\Utils\JsonSerializedHandler;
 use KuCoin\UniversalSDK\Model\ClientOptionBuilder;
 use KuCoin\UniversalSDK\Model\Constants;
@@ -16,14 +20,29 @@ use PHPUnit\Framework\TestCase;
 use React\EventLoop\Loop;
 use React\Promise\Deferred;
 use React\Promise\PromiseInterface;
+use Throwable;
 use function React\Async\await;
 
-class PublicTest extends TestCase
+/**
+ * Create a Promise that resolves after N seconds.
+ */
+function waitFor(float $seconds, $result): PromiseInterface
+{
+    $deferred = new Deferred();
+
+    Loop::get()->addTimer($seconds, function () use ($result, $deferred) {
+        $deferred->resolve($result);
+    });
+
+    return $deferred->promise();
+}
+
+class MarginPrivateTest extends TestCase
 {
     /**
-     * @var SpotPublicWs $spotPublic
+     * @var MarginPrivateWs $marginPrivate
      */
-    private static $spotPublic;
+    private static $marginPrivate;
 
     /**
      * @var Serializer $serializer
@@ -87,16 +106,16 @@ class PublicTest extends TestCase
 
         $client = new DefaultClient($clientOption, self::$loop);
         $kucoinWsService = $client->wsService();
-        self::$spotPublic = $kucoinWsService->newSpotPublicWS();
+        self::$marginPrivate = $kucoinWsService->newMarginPrivateWS();
 
         register_shutdown_function(function () {
             self::$loop->run();
         });
 
 
-        await(self::$spotPublic->start()->then(
+        await(self::$marginPrivate->start()->then(
             function () {
-                Logger::info("SpotPublic started");
+                Logger::info("FuturesPublic started");
             },
             function (Exception $e) {
                 Logger::error("Failed to start", ['error' => $e->getMessage()]);
@@ -110,9 +129,9 @@ class PublicTest extends TestCase
      */
     public static function tearDownAfterClass(): void
     {
-        await(self::$spotPublic->stop()->then(
+        await(self::$marginPrivate->stop()->then(
             function () {
-                Logger::info("SpotPublic stopped");
+                Logger::info("MarginPrivate stopped");
                 self::$loop->stop();
             },
             function (Exception $e) {
@@ -123,29 +142,21 @@ class PublicTest extends TestCase
     }
 
     /**
-     * Create a Promise that resolves after N seconds.
-     */
-    public static function waitFor(float $seconds, $result): PromiseInterface
-    {
-        $deferred = new Deferred();
-
-        Loop::get()->addTimer($seconds, function () use ($result, $deferred) {
-            $deferred->resolve($result);
-        });
-
-        return $deferred->promise();
-    }
-
-
-    /**
      * @throws Throwable
      */
-    public function testAllTicker()
+    public function testCrossMarginPosition()
     {
         $counter = 0;
         await(
-            self::$spotPublic->allTickers(
-                function (string $topic, string $subject, AllTickersEvent $data) use (&$counter) {
+            self::$marginPrivate->crossMarginPosition(
+                function (string $topic, string $subject, CrossMarginPositionEvent $data) use (&$counter) {
+                    self::assertNotNull($data->debtRatio);
+                    self::assertNotNull($data->totalAsset);
+                    self::assertNotNull($data->marginCoefficientTotalAsset);
+                    self::assertNotNull($data->totalDebt);
+                    self::assertNotNull($data->assetList);
+                    self::assertNotNull($data->debtList);
+                    self::assertNotNull($data->timestamp);
                     Logger::info($data->jsonSerialize(self::$serializer));
                     $counter++;
                     self::assertTrue(true);
@@ -158,10 +169,10 @@ class PublicTest extends TestCase
                 }
             )->then(function (string $id) {
                 Logger::info("Subscribed with ID: $id");
-                return self::waitFor(5.0, $id);
+                return waitFor(120, $id);
             })->then(function (string $id) {
                 Logger::info("Unsubscribing...");
-                return self::$spotPublic->unSubscribe($id)->catch(function ($e) {
+                return self::$marginPrivate->unSubscribe($id)->catch(function ($e) {
                     self::fail($e->getMessage());
                 });
             })->then(function () use (&$counter) {
@@ -169,4 +180,45 @@ class PublicTest extends TestCase
             })
         );
     }
+
+    /**
+     * @throws Throwable
+     */
+    public function testIsolatedMarginPosition()
+    {
+        $counter = 0;
+        await(
+            self::$marginPrivate->isolatedMarginPosition("BTC-USDT",
+                function (string $topic, string $subject, IsolatedMarginPositionEvent $data) use (&$counter) {
+                    self::assertNotNull($data->tag);
+                    self::assertNotNull($data->status);
+                    self::assertNotNull($data->statusBizType);
+                    self::assertNotNull($data->accumulatedPrincipal);
+                    self::assertNotNull($data->changeAssets);
+                    self::assertNotNull($data->timestamp);
+                    Logger::info($data->jsonSerialize(self::$serializer));
+                    $counter++;
+                    self::assertTrue(true);
+                },
+                null,
+                // Called when subscription fails
+                function (Exception $e) {
+                    Logger::error("Subscription failed", ['error' => $e->getMessage()]);
+                    self::fail($e->getMessage());
+                }
+            )->then(function (string $id) {
+                Logger::info("Subscribed with ID: $id");
+                return waitFor(30.0, $id);
+            })->then(function (string $id) {
+                Logger::info("Unsubscribing...");
+                return self::$marginPrivate->unSubscribe($id)->catch(function ($e) {
+                    self::fail($e->getMessage());
+                });
+            })->then(function () use (&$counter) {
+                self::assertTrue($counter > 0);
+            })
+        );
+    }
+
+
 }

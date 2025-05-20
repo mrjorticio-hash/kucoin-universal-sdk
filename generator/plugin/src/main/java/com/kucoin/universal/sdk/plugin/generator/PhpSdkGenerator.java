@@ -112,6 +112,11 @@ public class PhpSdkGenerator extends AbstractPhpCodegen implements NameService {
                 apiTemplateFiles.put("api_ws_test.mustache", "Test.php");
                 break;
             }
+            case WS_TEST_TEMPLATE: {
+                additionalProperties.put("WS_MODE", "true");
+                apiTemplateFiles.put("ws_test_template.mustache", ".template");
+                break;
+            }
             default:
                 throw new RuntimeException("unsupported mode");
         }
@@ -350,7 +355,8 @@ public class PhpSdkGenerator extends AbstractPhpCodegen implements NameService {
                 break;
             }
             case WS:
-            case WS_TEST: {
+            case WS_TEST:
+            case WS_TEST_TEMPLATE: {
                 apiName = apiName + "Ws";
                 break;
             }
@@ -476,6 +482,31 @@ public class PhpSdkGenerator extends AbstractPhpCodegen implements NameService {
                                         }
                                     }
 
+                                    op.vendorExtensions.put("x-response-model", m.getModel());
+                                });
+                        break;
+                    }
+                    case WS_TEST_TEMPLATE: {
+                        String eventName = String.format("%s.%s", modelPackage, meta.getMethodServiceFmt() + "Event");
+                        allModels.stream().filter(m -> eventName.equalsIgnoreCase((String) m.get("importPath"))).
+                                forEach(m -> {
+                                    CodegenModel model = m.getModel();
+                                    for (CodegenProperty var : model.vars) {
+                                        if (var.isArray) {
+                                            String innerDataName = String.format("%s.%s", modelPackage, var.getComplexType());
+                                            CodegenModel innerClass = null;
+                                            for (ModelMap map : allModels) {
+                                                if (innerDataName.equalsIgnoreCase((String) map.get("importPath"))) {
+                                                    innerClass = map.getModel();
+                                                    break;
+                                                }
+                                            }
+
+                                            if (innerClass != null) {
+                                                var.vendorExtensions.put("x-response-inner-model", innerClass);
+                                            }
+                                        }
+                                    }
                                     op.vendorExtensions.put("x-response-model", m.getModel());
                                 });
                         break;
