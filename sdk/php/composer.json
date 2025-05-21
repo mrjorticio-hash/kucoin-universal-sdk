@@ -32,6 +32,10 @@
     "react/promise": "^3.2",
     "ext-curl": "*"
   },
+  "suggest": {
+    "swlib/saber": "Required if useCoroutineHttp=true (Swoole-based HTTP client for high performance).",
+    "ext-swoole": "Required if useCoroutineHttp=true."
+  },
   "require-dev": {
     "phpunit/phpunit": "^9.5",
     "ramsey/uuid": "^4.7",

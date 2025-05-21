@@ -12,5 +12,5 @@ interface Request extends Serializable
      * @return void
      * @return array
      */
-    public function pathVarMapping();
+    public function pathVarMapping(): array;
 }

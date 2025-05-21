@@ -29,6 +29,20 @@ class TransportOptionBuilder
         return $this;
     }
 
+
+    /**
+     * Use coroutine-based HTTP transport (Saber + Swoole).
+     * Requires `ext-swoole` and `swlib/saber`.
+     * Defaults to false (uses Guzzle).
+     * @param bool $useCoroutineHttp
+     * @return self
+     */
+    public function setUseCoroutineHttp(bool $useCoroutineHttp): self
+    {
+        $this->option->useCoroutineHttp = $useCoroutineHttp;
+        return $this;
+    }
+
     /**
      * Set maximum concurrent HTTP connections allowed.
      * Applies across all domains and requests.

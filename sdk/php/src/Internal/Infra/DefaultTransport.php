@@ -3,11 +3,6 @@
 namespace KuCoin\UniversalSDK\Internal\Infra;
 
 use Exception;
-use GuzzleHttp\Client;
-use GuzzleHttp\Exception\ConnectException;
-use GuzzleHttp\Handler\CurlMultiHandler;
-use GuzzleHttp\HandlerStack;
-use GuzzleHttp\Middleware;
 use InvalidArgumentException;
 use JMS\Serializer\Serializer;
 use JMS\Serializer\SerializerBuilder;
@@ -21,7 +16,6 @@ use KuCoin\UniversalSDK\Model\RestError;
 use KuCoin\UniversalSDK\Model\RestRateLimit;
 use KuCoin\UniversalSDK\Model\RestResponse;
 use KuCoin\UniversalSDK\Model\TransportOption;
-use Psr\Http\Message\ResponseInterface;
 use ReflectionClass;
 use ReflectionObject;
 use RuntimeException;
@@ -40,7 +34,7 @@ class DefaultTransport implements Transport
     /** @var KcSigner $signer */
     private $signer;
 
-    /** @var Client $httpClient */
+    /** @var HttpClientInterface $httpClient */
     private $httpClient;
 
     /** @var Serializer $serializer */
@@ -68,62 +62,20 @@ class DefaultTransport implements Transport
             })->build();
     }
 
-    private function createHttpClient(TransportOption $option): Client
+    private function createHttpClient(TransportOption $option): HttpClientInterface
     {
-        $handlerOptions = [];
-        if ($option->maxConnections > 0) {
-            $handlerOptions[CURLMOPT_MAX_TOTAL_CONNECTIONS] = $option->maxConnections;
+        if ($option->useCoroutineHttp) {
+            if (!extension_loaded('swoole')) {
+                throw new \RuntimeException("ext-swoole is required when useCoroutineHttp = true.");
+            }
+
+            if (!class_exists(\Swlib\Saber::class)) {
+                throw new \RuntimeException("useCoroutineHttp = true requires `swlib/saber` and `ext-swoole`.");
+            }
+            return new SaberHttpClient($option);
         }
 
-        $handler = new CurlMultiHandler($handlerOptions);
-        $handlerStack = HandlerStack::create($handler);
-
-        // Interceptors
-        foreach ($option->interceptors as $interceptor) {
-            if (method_exists($interceptor, 'middleware')) {
-                $handlerStack->push($interceptor->middleware());
-            }
-        }
-
-        // Retry middleware
-        if ($option->maxRetries > 0) {
-            $handlerStack->push(Middleware::retry(
-                function ($retries, $request, $response, $exception) use ($option) {
-                    if ($retries >= $option->maxRetries) return false;
-                    if ($exception instanceof ConnectException) return true;
-                    if ($response && $response->getStatusCode() >= 500) return true;
-                    return false;
-                },
-                function () use ($option) {
-                    return $option->retryDelay * 1000;
-                }
-            ));
-        }
-
-        $config = [
-            'handler' => $handlerStack,
-            'timeout' => $option->totalTimeout,
-            'connect_timeout' => $option->connectTimeout,
-            'headers' => [
-                'Connection' => $option->keepAlive ? 'keep-alive' : 'close',
-            ],
-        ];
-
-        // Proxy support
-        if (is_array($option->proxy)) {
-            $proxyParts = [];
-            if (isset($option->proxy['http'])) {
-                $proxyParts['http'] = $option->proxy['http'];
-            }
-            if (isset($option->proxy['https'])) {
-                $proxyParts['https'] = $option->proxy['https'];
-            }
-            if (!empty($proxyParts)) {
-                $config['proxy'] = $proxyParts;
-            }
-        }
-
-        return new Client($config);
+        return new GuzzleHttpClient($option);
     }
 
     /**
@@ -238,7 +190,7 @@ class DefaultTransport implements Transport
                     $paths = $this->buildQueryFromRequest($requestObj, $pathVarFields);
                     if (!empty($paths)) {
                         $path .= '?' . $paths[0];
-                        $rawPath .= '?' .  $paths[1];
+                        $rawPath .= '?' . $paths[1];
                     }
                 }
             } elseif ($method === 'POST') {
@@ -263,15 +215,15 @@ class DefaultTransport implements Transport
     }
 
     /**
-     * @param ResponseInterface $response
+     * @param HttpResponse $response
      * @param class-string<Response> $responseClass
      * @return mixed
      * @throws Exception
      */
     private function processResponse($response, $responseClass)
     {
-        $body = (string)$response->getBody();
-        $statusCode = $response->getStatusCode();
+        $body = (string)$response->body;
+        $statusCode = $response->status;
 
         if ($statusCode !== 200) {
             throw new RuntimeException("Invalid status code: $statusCode, body: $body");
@@ -279,7 +231,7 @@ class DefaultTransport implements Transport
 
         $commonResponse = RestResponse::jsonDeserialize($body, $this->serializer);
 
-        $headers = $response->getHeaders();
+        $headers = $response->headers;
         $rateLimit = new RestRateLimit(
             isset($headers['gw-ratelimit-limit'][0]) ? (int)$headers['gw-ratelimit-limit'][0] : -1,
             isset($headers['gw-ratelimit-remaining'][0]) ? (int)$headers['gw-ratelimit-remaining'][0] : -1,
@@ -326,10 +278,8 @@ class DefaultTransport implements Transport
             $response = $this->httpClient->request(
                 $req['method'],
                 $req['url'],
-                [
-                    'headers' => $req['headers'],
-                    'body' => $req['body'],
-                ]
+                $req['headers'],
+                $req['body'],
             );
             return $this->processResponse($response, $responseClass);
         } catch (Exception $e) {

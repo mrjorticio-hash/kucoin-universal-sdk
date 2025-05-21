@@ -14,6 +14,14 @@ class TransportOption
     public $keepAlive = true;
 
     /**
+     * Use coroutine-based HTTP transport (Saber + Swoole).
+     * Requires `ext-swoole` and `swlib/saber`.
+     * Defaults to false (uses Guzzle).
+     * @var bool $useCoroutineHttp
+     */
+    public $useCoroutineHttp = false;
+
+    /**
      * Maximum concurrent HTTP connections allowed.
      * Applies across all domains and requests.
      * Use 0 to disable the limit
