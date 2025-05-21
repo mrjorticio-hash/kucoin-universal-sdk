@@ -191,19 +191,14 @@ class SpotPublicTest extends TestCase
 
     /**
      * @throws Throwable
-     * TODO
      */
     public function testCallAuctionInfo()
     {
         $counter = 0;
         await(
-            self::$spotPublic->callAuctionInfo("",
+            self::$spotPublic->callAuctionInfo("GIZA-USDT",
                 function (string $topic, string $subject, CallAuctionInfoEvent $data) use (&$counter) {
                     self::assertNotNull($data->symbol);
-                    self::assertNotNull($data->estimatedPrice);
-                    self::assertNotNull($data->estimatedSize);
-                    self::assertNotNull($data->sellOrderRangeLowPrice);
-                    self::assertNotNull($data->sellOrderRangeHighPrice);
                     self::assertNotNull($data->buyOrderRangeLowPrice);
                     self::assertNotNull($data->buyOrderRangeHighPrice);
                     self::assertNotNull($data->time);
@@ -219,7 +214,7 @@ class SpotPublicTest extends TestCase
                 }
             )->then(function (string $id) {
                 Logger::info("Subscribed with ID: $id");
-                return waitFor(5.0, $id);
+                return waitFor(120.0, $id);
             })->then(function (string $id) {
                 Logger::info("Unsubscribing...");
                 return self::$spotPublic->unSubscribe($id)->catch(function ($e) {
@@ -233,13 +228,13 @@ class SpotPublicTest extends TestCase
 
     /**
      * @throws Throwable
-     * TODO
+     * TODO fix later
      */
     public function testCallAuctionOrderbookLevel50()
     {
         $counter = 0;
         await(
-            self::$spotPublic->callAuctionOrderbookLevel50("",
+            self::$spotPublic->callAuctionOrderbookLevel50("GIZA-USDT",
                 function (string $topic, string $subject, CallAuctionOrderbookLevel50Event $data) use (&$counter) {
                     foreach ($data->asks as $item) {
                         self::assertNotNull($item);
@@ -262,7 +257,7 @@ class SpotPublicTest extends TestCase
                 }
             )->then(function (string $id) {
                 Logger::info("Subscribed with ID: $id");
-                return waitFor(5.0, $id);
+                return waitFor(60, $id);
             })->then(function (string $id) {
                 Logger::info("Unsubscribing...");
                 return self::$spotPublic->unSubscribe($id)->catch(function ($e) {

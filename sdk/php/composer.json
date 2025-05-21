@@ -29,7 +29,8 @@
     "guzzlehttp/guzzle": "^7.9",
     "ratchet/pawl": "^0.4.3",
     "react/event-loop": "^1.5",
-    "react/promise": "^3.2"
+    "react/promise": "^3.2",
+    "ext-curl": "*"
   },
   "require-dev": {
     "phpunit/phpunit": "^9.5",

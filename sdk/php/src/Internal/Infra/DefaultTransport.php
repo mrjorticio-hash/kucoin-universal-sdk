@@ -72,7 +72,7 @@ class DefaultTransport implements Transport
     {
         $handlerOptions = [];
         if ($option->maxConnections > 0) {
-            $handlerOptions['max_connections'] = $option->maxConnections;
+            $handlerOptions[CURLMOPT_MAX_TOTAL_CONNECTIONS] = $option->maxConnections;
         }
 
         $handler = new CurlMultiHandler($handlerOptions);
@@ -102,7 +102,7 @@ class DefaultTransport implements Transport
 
         $config = [
             'handler' => $handlerStack,
-            'timeout' => $option->readTimeout,
+            'timeout' => $option->totalTimeout,
             'connect_timeout' => $option->connectTimeout,
             'headers' => [
                 'Connection' => $option->keepAlive ? 'keep-alive' : 'close',

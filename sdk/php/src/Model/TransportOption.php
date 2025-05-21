@@ -16,10 +16,10 @@ class TransportOption
     /**
      * Maximum concurrent HTTP connections allowed.
      * Applies across all domains and requests.
-     * Use -1 to disable the limit (Guzzle default behavior).
+     * Use 0 to disable the limit
      * @var int
      */
-    public $maxConnections = -1;
+    public $maxConnections = 100;
 
     /**
      * Connection timeout duration in seconds. Defaults to 10.
@@ -28,10 +28,10 @@ class TransportOption
     public $connectTimeout = 10;
 
     /**
-     * Read timeout duration in seconds. Defaults to 30.
+     * Total timeout of the request in seconds. Defaults to 30.
      * @var float
      */
-    public $readTimeout = 30;
+    public $totalTimeout = 30;
 
     /**
      * HTTP(s) proxy. Example: ['http' => '192.168.1.1', 'https' => '192.168.1.1']

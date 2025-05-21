@@ -56,14 +56,14 @@ class TransportOptionBuilder
     }
 
     /**
-     * Set read timeout duration (in seconds).
+     * Total timeout of the request in seconds.
      *
-     * @param float $readTimeout
+     * @param float $totalTimeout
      * @return self
      */
-    public function setReadTimeout(float $readTimeout): self
+    public function setTotalTimeout(float $totalTimeout): self
     {
-        $this->option->readTimeout = $readTimeout;
+        $this->option->totalTimeout = $totalTimeout;
         return $this;
     }
 
