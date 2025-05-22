@@ -45,6 +45,7 @@ class DefaultTransport implements Transport
         $this->option = $option;
         $this->version = $version;
         $this->transportOption = $option->transportOption ?: new TransportOption();
+        $this->transportOption->useCoroutineHttp = false;
 
         $this->signer = new KcSigner(
             $option->key,
@@ -282,6 +283,8 @@ class DefaultTransport implements Transport
                 $req['body'],
             );
             return $this->processResponse($response, $responseClass);
+        } catch (RestError $e) {
+            throw $e;
         } catch (Exception $e) {
             throw new RestError(null, $e);
         }
@@ -304,6 +307,7 @@ class DefaultTransport implements Transport
 
     public function close()
     {
+        $this->httpClient->close();
         $this->httpClient = null;
     }
 }

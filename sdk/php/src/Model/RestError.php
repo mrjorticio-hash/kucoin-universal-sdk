@@ -22,7 +22,7 @@ class RestError extends Exception
 
     public function __construct(?RestResponse $response = null, ?Exception $err = null)
     {
-        parent::__construct($err ? $err->getMessage() : 'unknown');
+        parent::__construct($err ? $err->getMessage() : 'unknown', 0, $err);
         $this->response = $response;
         $this->err = $err;
     }

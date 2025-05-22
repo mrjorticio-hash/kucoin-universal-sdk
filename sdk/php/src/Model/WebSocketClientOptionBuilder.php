@@ -79,8 +79,8 @@ class WebSocketClientOptionBuilder
 
     /**
      * Set the callback function for handling WebSocket events.
-     * Signature: function(string $eventType, string $eventData, string $eventMessage): void
-     *
+     * Signature: function(string $eventType, string $eventMessage): void
+     * @see WebSocketEvent.php
      * @param callable|null $callback
      * @return self
      */

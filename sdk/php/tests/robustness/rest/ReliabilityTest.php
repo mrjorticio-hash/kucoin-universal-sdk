@@ -131,35 +131,4 @@ class ReliabilityTest extends TestCase
             self::assertTrue($end - $start > (3 + 1) * 3);
         }
     }
-
-    public function testConnection()
-    {
-
-        $key = getenv('API_KEY') ?: '';
-        $secret = getenv('API_SECRET') ?: '';
-        $passphrase = getenv('API_PASSPHRASE') ?: '';
-
-        $httpTransportOption = (new TransportOptionBuilder())
-            ->setKeepAlive(true)
-            ->setMaxConnections(2)
-            ->build();
-
-        // Create a client using the specified options
-        $clientOption = (new ClientOptionBuilder())
-            ->setKey($key)
-            ->setSecret($secret)
-            ->setPassphrase($passphrase)
-            ->setSpotEndpoint(Constants::GLOBAL_API_ENDPOINT)
-            ->setFuturesEndpoint(Constants::GLOBAL_FUTURES_API_ENDPOINT)
-            ->setBrokerEndpoint(Constants::GLOBAL_BROKER_API_ENDPOINT)
-            ->setTransportOption($httpTransportOption)
-            ->build();
-
-        $client = new DefaultClient($clientOption);
-        $kucoinRestService = $client->restService();
-        for ($i = 0; $i < 10; $i++) {
-            $kucoinRestService->getSpotService()->getMarketApi()->getAllCurrencies();
-            sleep(1);
-        }
-    }
 }

@@ -52,7 +52,7 @@ class RestResponse
     public function checkError()
     {
         if ($this->code !== Constants::RESULT_CODE_SUCCESS) {
-            throw new Exception("Server returned an error, code: {$this->code}, msg: {$this->message}");
+            throw new RestError($this, new Exception("Server returned an error, code: {$this->code}, msg: {$this->message}"));
         }
     }
 

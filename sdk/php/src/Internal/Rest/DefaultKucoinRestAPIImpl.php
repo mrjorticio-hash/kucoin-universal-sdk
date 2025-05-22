@@ -3,6 +3,7 @@
 namespace KuCoin\UniversalSDK\Internal\Rest;
 
 use KuCoin\UniversalSDK\Api\KucoinRestService;
+use KuCoin\UniversalSDK\Common\Logger;
 use KuCoin\UniversalSDK\Generate\Service\AccountService;
 use KuCoin\UniversalSDK\Generate\Service\AccountServiceImpl;
 use KuCoin\UniversalSDK\Generate\Service\AffiliateService;
@@ -53,6 +54,7 @@ class DefaultKucoinRestAPIImpl implements KucoinRestService
         $this->marginService = new MarginServiceImpl($transport);
         $this->spotService = new SpotServiceImpl($transport);
         $this->vipLendingService = new VIPLendingServiceImpl($transport);
+        Logger::info('SDK version: '.Version::SDK_VERSION);
     }
 
     public function getAccountService(): AccountService

@@ -267,7 +267,7 @@ class DefaultWebSocketClient implements WebSocketClient
                         $deferred->resolve(null);
                         $this->reconnecting = false;
                     }, function ($e) use ($tryReconnect) {
-                        Logger::warn('Reconnect failed, will retry', ['error' => $e]);
+                        Logger::error('Reconnect failed, will retry', ['error' => $e]);
                         $tryReconnect(); // Retry
                     });
                 });

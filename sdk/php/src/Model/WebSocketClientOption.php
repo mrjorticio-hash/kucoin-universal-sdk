@@ -40,8 +40,8 @@ class WebSocketClientOption
 
     /**
      * Callback function to handle WebSocket events.
-     * Signature: function(string $eventType, string $eventData, string $eventMessage): void
-     *
+     * Signature: function(string $eventType, string $eventMessage): void
+     * @see WebSocketEvent.php
      * @var callable|null
      */
     public $eventCallback = null;
