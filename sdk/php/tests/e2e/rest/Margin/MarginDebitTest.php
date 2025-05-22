@@ -58,7 +58,6 @@ class MarginDebitTest extends TestCase
         $httpTransportOption = (new TransportOptionBuilder())
             ->setKeepAlive(true)
             ->setMaxConnections(10)
-            ->setInterceptors([new Logging()])
             ->build();
 
         // Create a client using the specified options

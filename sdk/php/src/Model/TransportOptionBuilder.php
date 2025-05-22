@@ -44,6 +44,39 @@ class TransportOptionBuilder
     }
 
     /**
+     * Extra client-specific options.
+     *
+     * This field allows passing additional configuration parameters that are specific
+     * to the selected HTTP client implementation.
+     *
+     * Example usage:
+     * - For Guzzle:
+     *   [
+     *     'debug' => true,
+     *     'verify' => false,
+     *   ]
+     *
+     * - For Saber (Swlib\Saber):
+     *   [
+     *     'retry_time' => 3,              // Retry times on failure
+     *     'ssl_verify_peer' => false,     // Disable SSL verification
+     *     'use_pool' => true,             // Enable connection pool
+     *   ]
+     *
+     * These options will be merged into the underlying client's configuration.
+     * Please refer to each client’s official documentation for supported parameters:
+     * - Guzzle: https://docs.guzzlephp.org/en/stable/request-options.html
+     * - Saber:  https://github.com/swlib/saber
+     *
+     * @param array<string, mixed> $extraOptions
+     */
+    public function setExtraOptions(array $extraOptions): self
+    {
+        $this->option->extraOptions = $extraOptions;
+        return $this;
+    }
+
+    /**
      * Set maximum concurrent HTTP connections allowed.
      * Applies across all domains and requests.
      * Use -1 to disable the limit (Guzzle default behavior).
@@ -58,18 +91,6 @@ class TransportOptionBuilder
 
 
     /**
-     * Set connection timeout duration (in seconds).
-     *
-     * @param float $connectTimeout
-     * @return self
-     */
-    public function setConnectTimeout(float $connectTimeout): self
-    {
-        $this->option->connectTimeout = $connectTimeout;
-        return $this;
-    }
-
-    /**
      * Total timeout of the request in seconds.
      *
      * @param float $totalTimeout
@@ -78,30 +99,6 @@ class TransportOptionBuilder
     public function setTotalTimeout(float $totalTimeout): self
     {
         $this->option->totalTimeout = $totalTimeout;
-        return $this;
-    }
-
-    /**
-     * Set HTTP(s) proxy.
-     *
-     * @param array|null $proxy
-     * @return self
-     */
-    public function setProxy($proxy): self
-    {
-        $this->option->proxy = $proxy;
-        return $this;
-    }
-
-    /**
-     * Set the maximum number of retry attempts.
-     *
-     * @param int $maxRetries
-     * @return self
-     */
-    public function setMaxRetries(int $maxRetries): self
-    {
-        $this->option->maxRetries = $maxRetries;
         return $this;
     }
 
@@ -118,14 +115,14 @@ class TransportOptionBuilder
     }
 
     /**
-     * Set the list of HTTP interceptors.
+     * Set the maximum number of retry attempts.
      *
-     * @param InterceptorInterface[] $interceptors
+     * @param int $maxRetries
      * @return self
      */
-    public function setInterceptors(array $interceptors): self
+    public function setMaxRetries(int $maxRetries): self
     {
-        $this->option->interceptors = $interceptors;
+        $this->option->maxRetries = $maxRetries;
         return $this;
     }
 

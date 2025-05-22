@@ -3,6 +3,7 @@
 namespace KuCoin\UniversalSDK\Internal\Infra;
 
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception\ConnectException;
 use GuzzleHttp\Handler\CurlMultiHandler;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Middleware;
@@ -25,19 +26,12 @@ class GuzzleHttpClient implements HttpClientInterface
         $handler = new CurlMultiHandler($handlerOptions);
         $stack = HandlerStack::create($handler);
 
-        // Interceptors
-        foreach ($option->interceptors as $interceptor) {
-            if (method_exists($interceptor, 'middleware')) {
-                $stack->push($interceptor->middleware());
-            }
-        }
-
         // Retry middleware
         if ($option->maxRetries > 0) {
             $stack->push(Middleware::retry(
                 function ($retries, $request, $response, $exception) use ($option) {
                     if ($retries >= $option->maxRetries) return false;
-                    if ($exception instanceof \GuzzleHttp\Exception\ConnectException) return true;
+                    if ($exception instanceof ConnectException) return true;
                     if ($response && $response->getStatusCode() >= 500) return true;
                     return false;
                 },
@@ -50,16 +44,12 @@ class GuzzleHttpClient implements HttpClientInterface
         $config = [
             'handler' => $stack,
             'timeout' => $option->totalTimeout,
-            'connect_timeout' => $option->connectTimeout,
             'headers' => [
                 'Connection' => $option->keepAlive ? 'keep-alive' : 'close',
             ],
         ];
 
-        // Proxy support
-        if (is_array($option->proxy) && !empty($option->proxy)) {
-            $config['proxy'] = $option->proxy;
-        }
+        $config = array_merge($config, $option->extraOptions ?? []);
 
         $this->client = new Client($config);
     }
