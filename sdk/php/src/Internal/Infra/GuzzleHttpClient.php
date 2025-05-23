@@ -7,6 +7,8 @@ use GuzzleHttp\Exception\ConnectException;
 use GuzzleHttp\Handler\CurlMultiHandler;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Middleware;
+use KuCoin\UniversalSDK\Model\HttpRequest;
+use KuCoin\UniversalSDK\Model\HttpResponse;
 use KuCoin\UniversalSDK\Model\TransportOption;
 
 class GuzzleHttpClient implements HttpClientInterface
@@ -65,12 +67,12 @@ class GuzzleHttpClient implements HttpClientInterface
         $this->client = new Client($config);
     }
 
-    public function request(string $method, string $url, array $headers = [], ?string $body = null): HttpResponse
+    public function request(HttpRequest &$request): HttpResponse
     {
         try {
-            $res = $this->client->request($method, $url, [
-                'headers' => $headers,
-                'body' => $body,
+            $res = $this->client->request($request->method, $request->url, [
+                'headers' => $request->headers,
+                'body' => $request->body,
             ]);
 
         } catch (ConnectException $e) {
@@ -79,7 +81,7 @@ class GuzzleHttpClient implements HttpClientInterface
             }
             throw $e;
         }
-        return new HttpResponse($res->getStatusCode(), $res->getHeaders(), (string)$res->getBody());
+        return new HttpResponse($res->getStatusCode(), $res->getHeaders(), (string)$res->getBody(), $res);
     }
 
     public function close(): void

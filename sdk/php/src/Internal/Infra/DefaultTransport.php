@@ -12,6 +12,8 @@ use KuCoin\UniversalSDK\Internal\Interfaces\Transport;
 use KuCoin\UniversalSDK\Internal\Utils\JsonSerializedHandler;
 use KuCoin\UniversalSDK\Model\ClientOption;
 use KuCoin\UniversalSDK\Model\Constants;
+use KuCoin\UniversalSDK\Model\HttpRequest;
+use KuCoin\UniversalSDK\Model\HttpResponse;
 use KuCoin\UniversalSDK\Model\RestError;
 use KuCoin\UniversalSDK\Model\RestRateLimit;
 use KuCoin\UniversalSDK\Model\RestResponse;
@@ -206,12 +208,7 @@ class DefaultTransport implements Transport
         $fullUrl = $endpoint . $path;
         $this->processHeaders($body, $rawPath, $headers, $method, $broker);
 
-        return [
-            'method' => strtoupper($method),
-            'url' => $fullUrl,
-            'headers' => $headers,
-            'body' => $body,
-        ];
+        return new HttpRequest(strtoupper($method), $fullUrl, $headers, $body);
     }
 
     /**
@@ -261,6 +258,13 @@ class DefaultTransport implements Transport
     {
         $method = strtoupper($method);
 
+        $interceptorContext = [];
+        for ($i = 0; $i < count($this->transportOption->interceptors); $i++) {
+            $interceptorContext[$i] = [];
+        }
+        $exception = null;
+        $response = null;
+
         try {
             $endpoint = $this->getEndpoint($domain);
             [$processedPath, $pathVarFields] = $this->processPathVariable($path, $requestObj);
@@ -275,18 +279,30 @@ class DefaultTransport implements Transport
                 $requestAsJson
             );
 
-            $response = $this->httpClient->request(
-                $req['method'],
-                $req['url'],
-                $req['headers'],
-                $req['body'],
-            );
-            return $this->processResponse($response, $responseClass);
+
+            $index = 0;
+            foreach ($this->transportOption->interceptors as $interceptor) {
+                $interceptor->before($req, $interceptorContext[$index]);
+                $index++;
+            }
+
+            $response = $this->httpClient->request($req);
         } catch (RestError $e) {
+            $exception = $e;
             throw $e;
-        } catch (Exception $e) {
-            throw new RestError(null, $e);
+        } catch (Exception $ee) {
+            $e = new RestError(null, $ee);
+            $exception = $e;
+            throw $e;
+        } finally {
+            $index = 0;
+            foreach ($this->transportOption->interceptors as $interceptor) {
+                $interceptor->after($response, $exception, $interceptorContext[$index]);
+                $index++;
+            }
         }
+
+        return $this->processResponse($response, $responseClass);
     }
 
     private function getEndpoint($domain): string

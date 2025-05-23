@@ -127,6 +127,18 @@ class TransportOptionBuilder
     }
 
     /**
+     * Set the list of HTTP interceptors.
+     *
+     * @param InterceptorInterface[] $interceptors
+     * @return self
+     */
+    public function setInterceptors(array $interceptors): self
+    {
+        $this->option->interceptors = $interceptors;
+        return $this;
+    }
+
+    /**
      * Build and return the TransportOption object with configured values.
      *
      * @return TransportOption

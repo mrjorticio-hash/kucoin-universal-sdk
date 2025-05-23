@@ -6,6 +6,7 @@ use JMS\Serializer\Serializer;
 use JMS\Serializer\SerializerBuilder;
 use KuCoin\UniversalSDK\Api\DefaultClient;
 use KuCoin\UniversalSDK\Common\Logger;
+use KuCoin\UniversalSDK\Extension\Interceptor\LoggingInterceptor;
 use KuCoin\UniversalSDK\Generate\Spot\Order\AddOrderReq;
 use KuCoin\UniversalSDK\Generate\Spot\Order\CancelOrderByOrderIdReq;
 use KuCoin\UniversalSDK\Generate\Spot\Order\GetOrderByOrderIdReq;
@@ -54,6 +55,7 @@ class FastCheckTest extends TestCase
         $httpTransportOption = (new TransportOptionBuilder())
             ->setKeepAlive(true)
             ->setMaxConnections(10)
+            ->setInterceptors([new LoggingInterceptor()])
             ->build();
 
         // Create a client using the specified options
@@ -170,6 +172,7 @@ class FastCheckTest extends TestCase
             ->setKeepAlive(true)
             ->setMaxConnections(10)
             ->setUseCoroutineHttp(true)
+            ->setInterceptors([new LoggingInterceptor()])
             ->build();
 
         // Create a client using the specified options

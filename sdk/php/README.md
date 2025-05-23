@@ -12,7 +12,7 @@ For an overview of the project and SDKs in other languages, refer to the [Main R
 Install the SDK using `composer`:
 
 ```bash
-composer install kucoin-universal-sdk
+composer require kucoin/kucoin-universal-sdk
 ```
 
 ## 📖 Getting Started
@@ -170,6 +170,7 @@ This section provides details about the configurable parameters for both HTTP an
 | `retryDelay`     | `float` (seconds)     | Delay in seconds between retry attempts.                                                                                       | `2`            |
 | `useCoroutineHttp` | `boolean`           | Use coroutine-based HTTP transport (Saber + Swoole). Requires `ext-swoole` and `swlib/saber`.                                 | `false`        |
 | `extraOptions`   | `array<string, mixed>`| Extra client-specific options for Guzzle or Saber. See official docs for details.                                              | `[]`           |
+| `interceptors`   | `InterceptorInterface[]` | Custom interceptors to hook into HTTP request/response lifecycle (e.g., logging, metrics).                             | `[]`           |
 
 ### WebSocket Parameters
 

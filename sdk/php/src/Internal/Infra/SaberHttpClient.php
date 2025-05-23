@@ -2,6 +2,8 @@
 
 namespace KuCoin\UniversalSDK\Internal\Infra;
 
+use KuCoin\UniversalSDK\Model\HttpRequest;
+use KuCoin\UniversalSDK\Model\HttpResponse;
 use KuCoin\UniversalSDK\Model\TransportOption;
 use Swlib\Saber;
 
@@ -28,18 +30,17 @@ class SaberHttpClient implements HttpClientInterface
         $this->client = Saber::create();
     }
 
-    public function request(string $method, string $url, array $headers = [], ?string $body = null): HttpResponse
+    public function request(HttpRequest &$request): HttpResponse
     {
         if (!$this->client) {
             throw new \RuntimeException("Saber client has been closed.");
         }
 
-
         $config = [
-            'method' => $method,
-            'uri' => $url,
-            'headers' => $headers,
-            'data' => $body ?? '',
+            'method' => $request->method,
+            'uri' => $request->url,
+            'headers' => $request->headers,
+            'data' => $request->body ?? '',
             'use_pool' => $this->option->maxConnections === 0 ? true : $this->option->maxConnections,
             'timeout' => $this->option->totalTimeout,
             'keep_alive' => $this->option->keepAlive,
@@ -53,7 +54,8 @@ class SaberHttpClient implements HttpClientInterface
         return new HttpResponse(
             $res->getStatusCode(),
             $res->getHeaders(),
-            (string)$res->getBody()
+            (string)$res->getBody(),
+            $res
         );
     }
 

@@ -2,12 +2,25 @@
 
 namespace KuCoin\UniversalSDK\Model;
 
+use Exception;
+
 interface InterceptorInterface
 {
     /**
-     * Return a Guzzle middleware callable that can be pushed to the HandlerStack.
+     * Called before the HTTP request is sent.
+     * Allows modifying the request or injecting context.
      *
-     * @return callable
+     * @param HttpRequest $request
+     * @param array $context Shared context between before/after
      */
-    public function middleware(): callable;
+    public function before(HttpRequest &$request, array &$context = []): void;
+
+    /**
+     * Called after the HTTP response is received or an exception occurs.
+     *
+     * @param HttpResponse|null $response
+     * @param Exception|null $exception
+     * @param array $context Shared context between before/after
+     */
+    public function after(?HttpResponse &$response, ?Exception $exception, array &$context = []): void;
 }

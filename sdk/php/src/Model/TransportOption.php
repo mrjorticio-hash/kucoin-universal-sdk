@@ -76,6 +76,13 @@ class TransportOption
      */
     public $extraOptions = [];
 
+
+    /**
+     * List of HTTP interceptors.
+     * @var InterceptorInterface[]
+     */
+    public $interceptors = [];
+
     public function __construct()
     {
     }

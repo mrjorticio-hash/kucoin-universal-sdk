@@ -2,16 +2,16 @@
 
 namespace KuCoin\UniversalSDK\Internal\Infra;
 
+use KuCoin\UniversalSDK\Model\HttpRequest;
+use KuCoin\UniversalSDK\Model\HttpResponse;
+
 interface HttpClientInterface
 {
     /**
-     * @param string $method HTTP method (GET, POST, etc.)
-     * @param string $url Full URL
-     * @param array $headers Request headers
-     * @param string|null $body Raw body content
+     * @param HttpRequest $request
      * @return HttpResponse Custom response object
      */
-    public function request(string $method, string $url, array $headers = [], ?string $body = null): HttpResponse;
+    public function request(HttpRequest &$request): HttpResponse;
 
 
     /**
