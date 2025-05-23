@@ -40,7 +40,7 @@ class SaberHttpClient implements HttpClientInterface
             'uri' => $url,
             'headers' => $headers,
             'data' => $body ?? '',
-            'use_pool' => $this->option->maxConnections,
+            'use_pool' => $this->option->maxConnections === 0 ? true : $this->option->maxConnections,
             'timeout' => $this->option->totalTimeout,
             'keep_alive' => $this->option->keepAlive,
             'retry_time' => $this->option->maxRetries,

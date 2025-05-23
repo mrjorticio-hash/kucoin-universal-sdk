@@ -50,8 +50,7 @@ function example()
     // Set specific options, others will fall back to default values
     $httpTransportOption = (new TransportOptionBuilder())
         ->setKeepAlive(true)
-        ->setMaxPoolSize(10)
-        ->setMaxConnectionPerPool(10)
+        ->setMaxConnections(10)
         ->build();
 
     // Create a client using the specified options
@@ -118,9 +117,10 @@ This section provides specific considerations and recommendations for using the 
 
 #### Client Features
 - **Advanced HTTP Handling**:
-    - Supports retries, keep-alive connections, and configurable concurrency limits for robust request execution.
-- **Extensible Interceptors**:
-    - Provides HTTP interceptors that users can extend to customize request and response processing.
+  - Supports retries, keep-alive connections, and configurable concurrency limits for robust request execution.
+  - Supports both [Guzzle](https://github.com/guzzle/guzzle) and [Saber (Swoole)](https://github.com/swlib/saber) as underlying HTTP clients.
+  - Use `useCoroutineHttp=true` to enable high-performance coroutine HTTP requests (requires `ext-swoole` and `swlib/saber`).
+
 - **Rich Response Details**:
     - Includes rate-limiting information and raw response data in API responses for better debugging and control.
 - **Public API Access**:
@@ -161,26 +161,26 @@ This section provides details about the configurable parameters for both HTTP an
 
 ### HTTP Parameters
 
-| Parameter         | Type                      | Description                                                                 | Default Value       |
-|-------------------|---------------------------|-----------------------------------------------------------------------------|---------------------|
-| `keepAlive`       | `boolean`                 | Whether to enable persistent HTTP connections (`Connection: keep-alive`).  | `true`              |
-| `maxConnections`  | `integer`                 | Maximum number of concurrent HTTP connections across all domains. Use `-1` to disable the limit (Guzzle default). | `-1`                |
-| `connectTimeout`  | `float` (seconds)         | Timeout for establishing the connection.                                   | `10`                |
-| `readTimeout`     | `float` (seconds)         | Timeout for reading the response.                                          | `30`                |
-| `proxy`           | `array|null`              | Optional HTTP proxy settings. Example: `['http' => 'ip:port', 'https' => 'ip:port']` | `null`              |
-| `maxRetries`      | `integer`                 | Maximum number of retry attempts upon failure.                             | `3`                 |
-| `retryDelay`      | `float` (seconds)         | Delay between retry attempts.                                              | `2`                 |
-| `interceptors`    | `InterceptorInterface[]`  | List of user-defined HTTP interceptors (middleware).                       | `[]` (empty array)  |
+| Parameter        | Type                  | Description                                                                                                                    | Default Value |
+|------------------|-----------------------|--------------------------------------------------------------------------------------------------------------------------------|----------------|
+| `keepAlive`      | `boolean`             | Whether to enable persistent HTTP connections (`Connection: keep-alive`).                                                      | `true`         |
+| `maxConnections` | `integer`             | Maximum number of concurrent HTTP connections across all domains. Use `0` to disable the limit| `100`          |
+| `totalTimeout`   | `float` (seconds)     | Total timeout of the request in seconds.                                                                                       | `30`           |
+| `maxRetries`     | `integer`             | Maximum number of retry attempts upon failure.                                                                                 | `3`            |
+| `retryDelay`     | `float` (seconds)     | Delay in seconds between retry attempts.                                                                                       | `2`            |
+| `useCoroutineHttp` | `boolean`           | Use coroutine-based HTTP transport (Saber + Swoole). Requires `ext-swoole` and `swlib/saber`.                                 | `false`        |
+| `extraOptions`   | `array<string, mixed>`| Extra client-specific options for Guzzle or Saber. See official docs for details.                                              | `[]`           |
+
 ### WebSocket Parameters
 
-| Parameter            | Type            | Description                                                                                       | Default Value |
-|----------------------|-----------------|---------------------------------------------------------------------------------------------------|---------------|
-| `reconnect`          | `bool`          | Whether to automatically reconnect when the WebSocket connection is lost.                         | `true`        |
-| `reconnectAttempts`  | `int`           | Maximum number of reconnection attempts. Use `-1` for unlimited retries.                          | `-1`          |
+| Parameter            | Type              | Description                                                                                       | Default Value |
+|----------------------|-------------------|---------------------------------------------------------------------------------------------------|---------------|
+| `reconnect`          | `bool`            | Whether to automatically reconnect when the WebSocket connection is lost.                         | `true`        |
+| `reconnectAttempts`  | `int`             | Maximum number of reconnection attempts. Use `-1` for unlimited retries.                          | `-1`          |
 | `reconnectInterval`  | `float` (seconds) | Time interval between reconnection attempts.                                                     | `5.0`         |
 | `dialTimeout`        | `float` (seconds) | Timeout for establishing the WebSocket connection.                                               | `10.0`        |
 | `writeTimeout`       | `float` (seconds) | Timeout for sending messages over the WebSocket connection.                                      | `5.0`         |
-| `eventCallback`      | `callable|null` | A user-defined callback function to handle WebSocket events.<br>Signature: `function(string $eventType, string $eventData, string $eventMessage): void` | `null`        |
+| `eventCallback`      | `callable\|null`  | A user-defined callback function to handle WebSocket events.<br>Signature: `function(string $eventType, string $eventData, string $eventMessage): void` | `null`        |
 
 ## 📝 License
 

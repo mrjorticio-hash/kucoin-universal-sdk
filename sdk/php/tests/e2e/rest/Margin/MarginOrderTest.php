@@ -6,7 +6,6 @@ use JMS\Serializer\Serializer;
 use JMS\Serializer\SerializerBuilder;
 use KuCoin\UniversalSDK\Api\DefaultClient;
 use KuCoin\UniversalSDK\Common\Logger;
-use KuCoin\UniversalSDK\Extension\Interceptor\Logging;
 use KuCoin\UniversalSDK\Generate\Margin\Order\AddOrderReq;
 use KuCoin\UniversalSDK\Generate\Margin\Order\AddOrderTestReq;
 use KuCoin\UniversalSDK\Generate\Margin\Order\AddOrderTestV1Req;

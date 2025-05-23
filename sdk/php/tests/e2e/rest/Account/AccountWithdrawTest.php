@@ -6,7 +6,6 @@ use JMS\Serializer\Serializer;
 use JMS\Serializer\SerializerBuilder;
 use KuCoin\UniversalSDK\Api\DefaultClient;
 use KuCoin\UniversalSDK\Common\Logger;
-use KuCoin\UniversalSDK\Extension\Interceptor\Logging;
 use KuCoin\UniversalSDK\Generate\Account\Withdrawal\CancelWithdrawalReq;
 use KuCoin\UniversalSDK\Generate\Account\Withdrawal\GetWithdrawalHistoryOldReq;
 use KuCoin\UniversalSDK\Generate\Account\Withdrawal\GetWithdrawalHistoryReq;

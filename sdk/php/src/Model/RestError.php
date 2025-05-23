@@ -32,8 +32,8 @@ class RestError extends Exception
         if ($this->response) {
             return sprintf(
                 'request error, server code: %s, server msg: %s, context msg: %s',
-                $this->response->getCode(),
-                $this->response->getMsg(),
+                $this->response->code,
+                $this->response->message,
                 $this->err ? $this->err->getMessage() : 'unknown'
             );
         }

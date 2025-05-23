@@ -302,13 +302,14 @@ function addSpotOrderWaitFill(SpotService $spotService, string $symbol, string $
  *
  * @return bool True if the order was filled, False if cancelled or failed.
  */
-function addFuturesOrderWaitFill($futuresService, string $symbol, string $side, int $amount, float $price): bool
+function addFuturesOrderWaitFill(FuturesService $futuresService, string $symbol, string $side, int $amount, float $price): bool
 {
     $orderReq = FuturesAddOrderReq::builder()
         ->setClientOid(bin2hex(random_bytes(16)))
         ->setSide($side === MarketSide::BUY ? "buy" : "sell")
         ->setSymbol($symbol)
         ->setType("limit")
+        ->setMarginMode("CROSS")
         ->setRemark("arbitrage")
         ->setPrice(number_format($price, 4, '.', ''))
         ->setLeverage(1)
@@ -334,7 +335,7 @@ function addFuturesOrderWaitFill($futuresService, string $symbol, string $side, 
 
         $orderDetail = $futuresService->getOrderApi()->getOrderByOrderId($detailReq);
 
-        if ($orderDetail->status === $orderDetail::StatusEnum::DONE) {
+        if ($orderDetail->status === "done") {
             Logger::info(sprintf(
                 "[FUTURES ORDER] Order filled successfully: %s %d %s. Order ID: %s",
                 strtoupper($side), $amount, $symbol, $orderResp->orderId
@@ -367,7 +368,7 @@ function addFuturesOrderWaitFill($futuresService, string $symbol, string $side, 
  *
  * @return bool True if the order was filled, False if cancelled or failed.
  */
-function addMarginOrderWaitFill($marginService, string $symbol, float $amount, float $price): bool
+function addMarginOrderWaitFill(MarginService $marginService, string $symbol, float $amount, float $price): bool
 {
     $orderReq = MarginAddOrderReq::builder()
         ->setClientOid(bin2hex(random_bytes(16)))

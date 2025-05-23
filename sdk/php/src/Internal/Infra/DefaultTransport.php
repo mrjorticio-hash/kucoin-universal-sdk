@@ -45,7 +45,6 @@ class DefaultTransport implements Transport
         $this->option = $option;
         $this->version = $version;
         $this->transportOption = $option->transportOption ?: new TransportOption();
-        $this->transportOption->useCoroutineHttp = false;
 
         $this->signer = new KcSigner(
             $option->key,

@@ -30,7 +30,7 @@ class GuzzleHttpClient implements HttpClientInterface
     private function initClient()
     {
         $handlerOptions = [];
-        if ($this->option->maxConnections > 0 && defined('CURLMOPT_MAX_TOTAL_CONNECTIONS')) {
+        if ($this->option->maxConnections > 0) {
             $handlerOptions[CURLMOPT_MAX_TOTAL_CONNECTIONS] = $this->option->maxConnections;
         }
 

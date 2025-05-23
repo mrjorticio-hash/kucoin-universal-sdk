@@ -13,6 +13,7 @@ use KuCoin\UniversalSDK\Internal\Utils\JsonSerializedHandler;
 use KuCoin\UniversalSDK\Internal\Utils\SubInfo;
 use KuCoin\UniversalSDK\Model\ClientOption;
 use KuCoin\UniversalSDK\Model\Constants;
+use KuCoin\UniversalSDK\Model\TransportOption;
 use KuCoin\UniversalSDK\Model\WebSocketClientOption;
 use KuCoin\UniversalSDK\Model\WebSocketEvent;
 use KuCoin\UniversalSDK\Model\WsMessage;
@@ -53,9 +54,23 @@ class DefaultWsService implements WebSocketService
             throw new RuntimeException("websocketClientOption is undefined");
         }
 
-        $this->wsOption = $option->websocketClientOption;
+        $optionCopy = new ClientOption(
+            $option->key,
+            $option->secret,
+            $option->passphrase,
+            $option->spotEndpoint,
+            $option->futuresEndpoint,
+            $option->brokerEndpoint,
+            $option->brokerName,
+            $option->brokerPartner,
+            $option->brokerKey,
+            new TransportOption(),
+            $option->websocketClientOption,
+        );
+
+        $this->wsOption = $optionCopy->websocketClientOption;
         $this->privateChannel = $privateChannel;
-        $this->tokenTransport = new DefaultTransport($option, $versionString);
+        $this->tokenTransport = new DefaultTransport($optionCopy, $versionString);
         $this->topicManager = new TopicManager();
         $this->serializer = SerializerBuilder::create()
             ->addDefaultHandlers()
