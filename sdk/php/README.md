@@ -4,6 +4,11 @@
 
 Welcome to the **PHP** implementation of the KuCoin Universal SDK. This SDK is built based on KuCoin API specifications to provide a comprehensive and optimized interface for interacting with the KuCoin platform.
 
+> **Note**  
+> This PHP SDK is maintained in two repositories:
+> - [`kucoin/kucoin-universal-sdk`](https://github.com/kucoin/kucoin-universal-sdk): the main monorepo with SDKs for multiple languages. The PHP code resides in `/sdk/php`.
+> - [`kucoin/kucoin-universal-php-sdk`](https://github.com/kucoin/kucoin-universal-php-sdk): a standalone mirror for Composer/Packagist publishing. It is synced from the main repo using Git Subtree.
+
 For an overview of the project and SDKs in other languages, refer to the [Main README](https://github.com/kucoin/kucoin-universal-sdk).
 
 ## 📦 Installation
