@@ -3,7 +3,11 @@
 
 use KuCoin\UniversalSDK\Api\DefaultClient;
 use KuCoin\UniversalSDK\Common\Logger;
+use KuCoin\UniversalSDK\Generate\Futures\FuturesPublic\TickerV1Event;
+use KuCoin\UniversalSDK\Generate\Spot\Market\GetAllSymbolsReq;
 use KuCoin\UniversalSDK\Generate\Spot\SpotPublic\AllTickersEvent;
+use KuCoin\UniversalSDK\Generate\Spot\SpotPublic\TickerEvent;
+use KuCoin\UniversalSDK\Generate\Spot\SpotPublic\TradeEvent;
 use KuCoin\UniversalSDK\Model\ClientOptionBuilder;
 use KuCoin\UniversalSDK\Model\Constants;
 use KuCoin\UniversalSDK\Model\TransportOptionBuilder;
@@ -12,6 +16,7 @@ use PHPUnit\Framework\TestCase;
 use React\EventLoop\Loop;
 use React\Promise\Deferred;
 use React\Promise\PromiseInterface;
+use function React\Promise\all;
 
 
 function waitFor(float $seconds, $result): PromiseInterface
@@ -137,17 +142,14 @@ class ReliabilityTest extends TestCase
 
         $loop = Loop::get();
 
-        $client = new DefaultClient($clientOption, $loop);
-        $spotWs = $client->wsService()->newSpotPublicWS();
-
-        return $spotWs;
+        return new DefaultClient($clientOption, $loop);
     }
 
     public function testReconnect()
     {
         $loop = Loop::get();
 
-        $spotWs = self::getClient();
+        $spotWs = self::getClient()->wsService()->newSpotPublicWS();
 
         // Start connection
         $spotWs->start()->then(function () use ($spotWs, $loop) {
@@ -173,5 +175,137 @@ class ReliabilityTest extends TestCase
 
         // Run the event loop to process async tasks
         $loop->run();
+    }
+
+    public function testReconnect2()
+    {
+        $loop = Loop::get();
+
+        $client = self::getClient();
+        $spotWs = $client->wsService()->newSpotPublicWS();
+
+        // Start connection
+        $spotWs->start()->then(function () use ($client, $spotWs, $loop) {
+            Logger::info("WebSocket started");
+
+            // Subscribe to allTickers
+            $symbolsResponse = $client->restService()->getSpotService()->
+            getMarketApi()->getAllSymbols(GetAllSymbolsReq::create(["market" => "USDS"]));
+
+            $symbols = [];
+            foreach ($symbolsResponse->data as $symbol) {
+                $symbols[] = $symbol->symbol;
+            }
+
+            if (count($symbols) > 100) {
+                $symbols = array_slice($symbols, 0, 100);
+            }
+
+            $promise = [];
+
+            foreach ($symbols as $symbol) {
+                $promise[] = $spotWs->ticker([$symbol], function (string $topic, string $subject, TickerEvent $data) {
+                    // pass
+                }, function ($id) {
+                    Logger::info("subscribed with ID: $id");
+                }, null);
+            }
+
+            return all($promise);
+        })->then(function () {
+            return waitFor(3600, []);
+        })->catch(function (Exception $e) {
+            self::fail($e->getMessage());
+        })->finally(function () use ($spotWs, $loop) {
+            $spotWs->stop();
+        });
+
+        // Run the event loop to process async tasks
+        $loop->run();
+    }
+
+
+    public function testReconnect3()
+    {
+        $loop = Loop::get();
+
+        $client = self::getClient();
+        $spotWs = $client->wsService()->newSpotPublicWS();
+
+        // Start connection
+        $spotWs->start()->then(function () use ($client, $spotWs, $loop) {
+            Logger::info("WebSocket started");
+
+            $promise = [];
+
+            $promise[] = $spotWs->ticker(["BTC-USDT"], function (string $topic, string $subject, TickerEvent $data) {
+                // pass
+            }, function ($id) {
+                Logger::info("subscribed with ID: $id");
+            }, null);
+
+            $promise[] = $spotWs->trade(["BTC-USDT"], function (string $topic, string $subject, TradeEvent $data) {
+                // pass
+            }, function ($id) {
+                Logger::info("subscribed with ID: $id");
+            }, null);
+
+            return all($promise);
+        })->then(function () {
+            return waitFor(3600, []);
+        })->catch(function (Exception $e) {
+            self::fail($e->getMessage());
+        })->finally(function () use ($spotWs, $loop) {
+            $spotWs->stop();
+        });
+
+        // Run the event loop to process async tasks
+        $loop->run();
+    }
+
+
+    public function testReconnect4()
+    {
+        $loop = Loop::get();
+
+        $client = self::getClient();
+        $spotWs = $client->wsService()->newSpotPublicWS();
+        $futuresWs = $client->wsService()->newFuturesPublicWS();
+        // Start connection
+        $spotWs->start()->then(function () use ($client, $spotWs, $loop) {
+            Logger::info("WebSocket started");
+
+            return $spotWs->ticker(["BTC-USDT"], function (string $topic, string $subject, TickerEvent $data) {
+                // pass
+            }, function ($id) {
+                Logger::info("subscribed with ID: $id");
+            }, null);
+        })->then(function () {
+            return waitFor(3600, []);
+        })->catch(function (Exception $e) {
+            self::fail($e->getMessage());
+        })->finally(function () use ($spotWs, $loop) {
+            $spotWs->stop();
+        });
+
+        $futuresWs->start()->then(function () use ($client, $futuresWs, $loop) {
+            Logger::info("WebSocket started");
+
+            return $futuresWs->tickerV1("XBTUSDTM", function (string $topic, string $subject, TickerV1Event $data) {
+                // pass
+            }, function ($id) {
+                Logger::info("subscribed with ID: $id");
+            }, null);
+        })->then(function () {
+            return waitFor(3600, []);
+        })->catch(function (Exception $e) {
+            self::fail($e->getMessage());
+        })->finally(function () use ($futuresWs, $loop) {
+            $futuresWs->stop();
+        });
+
+        // Run the event loop to process async tasks
+        $loop->run();
+
     }
 }
