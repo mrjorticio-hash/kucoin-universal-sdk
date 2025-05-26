@@ -4,6 +4,9 @@ API documentation [Changelog](https://www.kucoin.com/docs-new/change-log)
 
 Current synchronized API documentation version [20250313](https://www.kucoin.com/docs-new/change-log#20250313)
 
+## 2025-05-26(PHP 0.1.0-alpha)
+- Release PHP implementation
+
 ## 2025-04-04(Python 1.2.1.post1)
 - Bug Fixes
 

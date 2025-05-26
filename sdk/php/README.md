@@ -9,6 +9,9 @@ For an overview of the project and SDKs in other languages, refer to the [Main R
 ## 📦 Installation
 
 ### Latest Version: `0.1.0-alpha`
+
+**Note**: This SDK is currently in the Alpha phase. We are actively iterating and improving its features, stability, and documentation. Feedback and contributions are highly encouraged to help us refine the SDK.
+
 Install the SDK using `composer`:
 
 ```bash
@@ -181,7 +184,7 @@ This section provides details about the configurable parameters for both HTTP an
 | `reconnectInterval`  | `float` (seconds) | Time interval between reconnection attempts.                                                     | `5.0`         |
 | `dialTimeout`        | `float` (seconds) | Timeout for establishing the WebSocket connection.                                               | `10.0`        |
 | `writeTimeout`       | `float` (seconds) | Timeout for sending messages over the WebSocket connection.                                      | `5.0`         |
-| `eventCallback`      | `callable\|null`  | A user-defined callback function to handle WebSocket events.<br>Signature: `function(string $eventType, string $eventData, string $eventMessage): void` | `null`        |
+| `eventCallback`      | `callable\|null`  | A user-defined callback function to handle WebSocket events.<br>Signature: `function(string $eventType, string $eventMessage): void` | `null`        |
 
 ## 📝 License
 
