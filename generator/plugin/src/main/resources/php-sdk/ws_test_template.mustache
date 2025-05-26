@@ -1,0 +1,31 @@
+
+{{#operations}}
+    {{#operation}}
+    /**
+    * {{vendorExtensions.x-meta.method}}
+    * {{summary}}
+    * {{path}}
+    */
+    public function test{{vendorExtensions.x-meta.methodServiceFmt}}() {
+        {{#vendorExtensions.x-response-model}}
+        {{#vars}}
+            {{#isArray}}
+        foreach($data->{{name}} as $item) {
+                {{#vendorExtensions.x-response-inner-model}}
+                    {{#vars}}
+            self::assertNotNull($item->{{name}});
+                    {{/vars}}
+                {{/vendorExtensions.x-response-inner-model}}
+        }
+
+            {{/isArray}}
+            {{^isArray}}
+        self::assertNotNull($data->{{name}});
+            {{/isArray}}
+        {{/vars}}
+        Logger::info($data->jsonSerialize(self::$serializer));
+        {{/vendorExtensions.x-response-model}}
+    }
+
+    {{/operation}}
+{{/operations}}

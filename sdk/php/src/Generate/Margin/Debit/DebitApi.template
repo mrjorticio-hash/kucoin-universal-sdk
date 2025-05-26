@@ -1,0 +1,128 @@
+
+    /**
+    * borrow
+    * Borrow
+    * /api/v3/margin/borrow
+    */
+    public function testBorrow() {
+        $builder = BorrowReq::builder();
+        $builder->setCurrency(?)->setSize(?)->setTimeInForce(?)->setSymbol(?)->setIsIsolated(?)->setIsHf(?);
+        $req = $builder->build();
+        $resp = $this->api->borrow($req);
+        self::assertNotNull($resp->orderNo);
+        self::assertNotNull($resp->actualSize);
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
+    /**
+    * getBorrowHistory
+    * Get Borrow History
+    * /api/v3/margin/borrow
+    */
+    public function testGetBorrowHistory() {
+        $builder = GetBorrowHistoryReq::builder();
+        $builder->setCurrency(?)->setIsIsolated(?)->setSymbol(?)->setOrderNo(?)->setStartTime(?)->setEndTime(?)->setCurrentPage(?)->setPageSize(?);
+        $req = $builder->build();
+        $resp = $this->api->getBorrowHistory($req);
+        self::assertNotNull($resp->timestamp);
+        self::assertNotNull($resp->currentPage);
+        self::assertNotNull($resp->pageSize);
+        self::assertNotNull($resp->totalNum);
+        self::assertNotNull($resp->totalPage);
+        foreach($resp->items as $item) {
+            self::assertNotNull($item->orderNo);
+            self::assertNotNull($item->symbol);
+            self::assertNotNull($item->currency);
+            self::assertNotNull($item->size);
+            self::assertNotNull($item->actualSize);
+            self::assertNotNull($item->status);
+            self::assertNotNull($item->createdTime);
+        }
+
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
+    /**
+    * repay
+    * Repay
+    * /api/v3/margin/repay
+    */
+    public function testRepay() {
+        $builder = RepayReq::builder();
+        $builder->setCurrency(?)->setSize(?)->setSymbol(?)->setIsIsolated(?)->setIsHf(?);
+        $req = $builder->build();
+        $resp = $this->api->repay($req);
+        self::assertNotNull($resp->timestamp);
+        self::assertNotNull($resp->orderNo);
+        self::assertNotNull($resp->actualSize);
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
+    /**
+    * getRepayHistory
+    * Get Repay History
+    * /api/v3/margin/repay
+    */
+    public function testGetRepayHistory() {
+        $builder = GetRepayHistoryReq::builder();
+        $builder->setCurrency(?)->setIsIsolated(?)->setSymbol(?)->setOrderNo(?)->setStartTime(?)->setEndTime(?)->setCurrentPage(?)->setPageSize(?);
+        $req = $builder->build();
+        $resp = $this->api->getRepayHistory($req);
+        self::assertNotNull($resp->timestamp);
+        self::assertNotNull($resp->currentPage);
+        self::assertNotNull($resp->pageSize);
+        self::assertNotNull($resp->totalNum);
+        self::assertNotNull($resp->totalPage);
+        foreach($resp->items as $item) {
+            self::assertNotNull($item->orderNo);
+            self::assertNotNull($item->symbol);
+            self::assertNotNull($item->currency);
+            self::assertNotNull($item->size);
+            self::assertNotNull($item->principal);
+            self::assertNotNull($item->interest);
+            self::assertNotNull($item->status);
+            self::assertNotNull($item->createdTime);
+        }
+
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
+    /**
+    * getInterestHistory
+    * Get Interest History.
+    * /api/v3/margin/interest
+    */
+    public function testGetInterestHistory() {
+        $builder = GetInterestHistoryReq::builder();
+        $builder->setCurrency(?)->setIsIsolated(?)->setSymbol(?)->setStartTime(?)->setEndTime(?)->setCurrentPage(?)->setPageSize(?);
+        $req = $builder->build();
+        $resp = $this->api->getInterestHistory($req);
+        self::assertNotNull($resp->timestamp);
+        self::assertNotNull($resp->currentPage);
+        self::assertNotNull($resp->pageSize);
+        self::assertNotNull($resp->totalNum);
+        self::assertNotNull($resp->totalPage);
+        foreach($resp->items as $item) {
+            self::assertNotNull($item->currency);
+            self::assertNotNull($item->dayRatio);
+            self::assertNotNull($item->interestAmount);
+            self::assertNotNull($item->createdTime);
+        }
+
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
+    /**
+    * modifyLeverage
+    * Modify Leverage
+    * /api/v3/position/update-user-leverage
+    */
+    public function testModifyLeverage() {
+        $builder = ModifyLeverageReq::builder();
+        $builder->setSymbol(?)->setIsIsolated(?)->setLeverage(?);
+        $req = $builder->build();
+        $resp = $this->api->modifyLeverage($req);
+        self::assertNotNull($resp->data);
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+

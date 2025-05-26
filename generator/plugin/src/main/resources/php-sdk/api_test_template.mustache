@@ -1,0 +1,39 @@
+
+{{#operations}}
+    {{#operation}}
+    /**
+    * {{vendorExtensions.x-meta.method}}
+    * {{summary}}
+    * {{path}}
+    */
+    public function test{{vendorExtensions.x-meta.methodServiceFmt}}() {
+        {{#hasParams}}
+        $builder = {{vendorExtensions.x-meta.methodServiceFmt}}Req::builder();
+        {{#vendorExtensions.x-request-model}}
+        $builder{{#vars}}->set{{nameInPascalCase}}(?){{/vars}};
+        {{/vendorExtensions.x-request-model}}
+        $req = $builder->build();
+        {{/hasParams}}
+        $resp = $this->api->{{vendorExtensions.x-meta.method}}({{#hasParams}}$req{{/hasParams}});
+        {{#vendorExtensions.x-response-model}}
+        {{#vars}}
+            {{#isArray}}
+        foreach($resp->{{name}} as $item) {
+                {{#vendorExtensions.x-response-inner-model}}
+                    {{#vars}}
+            self::assertNotNull($item->{{name}});
+                    {{/vars}}
+                {{/vendorExtensions.x-response-inner-model}}
+        }
+
+            {{/isArray}}
+            {{^isArray}}
+        self::assertNotNull($resp->{{name}});
+            {{/isArray}}
+        {{/vars}}
+        Logger::info($resp->jsonSerialize($this->serializer));
+        {{/vendorExtensions.x-response-model}}
+    }
+
+    {{/operation}}
+{{/operations}}

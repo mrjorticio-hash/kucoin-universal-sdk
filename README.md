@@ -52,6 +52,12 @@ go mod tidy
 npm install kucoin-universal-sdk
 ```
 
+### PHP Installation(0.1.0-alpha)
+**Note**: This SDK is currently in the Alpha phase. We are actively iterating and improving its features, stability, and documentation. Feedback and contributions are highly encouraged to help us refine the SDK.
+```bash
+composer require kucoin/kucoin-universal-sdk
+```
+
 ### Postman Installation  
 Visit the [KuCoin API Collection on Postman](https://www.postman.com/kucoin-api/kucoin-api/overview)
 
@@ -130,6 +136,7 @@ For other languages, refer to the [Examples](#-examples) section.
 - **[Python Documentation](sdk/python/README.md)**
 - **[Go Documentation](sdk/golang/README.md)**
 - **[Node.js Documentation](sdk/node/README.md)**
+- **[PHP Documentation](sdk/php/README.md)**
 - **[Postman Documentation](sdk/postman/README.md)**
 
 ## 📂 Examples
@@ -140,6 +147,7 @@ Find usage examples for your desired language by selecting the corresponding lin
 | Python   | [sdk/python/examples/](sdk/python/example/)|
 | Go       | [sdk/go/examples/](sdk/golang/example/)    |
 | Node.js  | [sdk/node/examples/](sdk/node/example/)    |
+| PHP  | [sdk/php/examples/](sdk/php/example/)    |
 
 ## 📋 Changelog
 
