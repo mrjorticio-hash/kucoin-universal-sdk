@@ -20,7 +20,7 @@ For an overview of the project and SDKs in other languages, refer to the [Main R
 Install the SDK using `composer`:
 
 ```bash
-composer require kucoin/kucoin-universal-sdk
+composer require kucoin/kucoin-universal-sdk=0.1.0-alpha
 ```
 
 ## 📖 Getting Started
