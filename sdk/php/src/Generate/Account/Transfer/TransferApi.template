@@ -1,0 +1,135 @@
+
+    /**
+    * getTransferQuotas
+    * Get Transfer Quotas
+    * /api/v1/accounts/transferable
+    */
+    public function testGetTransferQuotas() {
+        $builder = GetTransferQuotasReq::builder();
+        $builder->setCurrency(?)->setType(?)->setTag(?);
+        $req = $builder->build();
+        $resp = $this->api->getTransferQuotas($req);
+        self::assertNotNull($resp->currency);
+        self::assertNotNull($resp->balance);
+        self::assertNotNull($resp->available);
+        self::assertNotNull($resp->holds);
+        self::assertNotNull($resp->transferable);
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
+    /**
+    * flexTransfer
+    * Flex Transfer
+    * /api/v3/accounts/universal-transfer
+    */
+    public function testFlexTransfer() {
+        $builder = FlexTransferReq::builder();
+        $builder->setClientOid(?)->setCurrency(?)->setAmount(?)->setFromUserId(?)->setFromAccountType(?)->setFromAccountTag(?)->setType(?)->setToUserId(?)->setToAccountType(?)->setToAccountTag(?);
+        $req = $builder->build();
+        $resp = $this->api->flexTransfer($req);
+        self::assertNotNull($resp->orderId);
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
+    /**
+    * subAccountTransfer
+    * Sub-account Transfer
+    * /api/v2/accounts/sub-transfer
+    */
+    public function testSubAccountTransfer() {
+        $builder = SubAccountTransferReq::builder();
+        $builder->setClientOid(?)->setCurrency(?)->setAmount(?)->setDirection(?)->setAccountType(?)->setSubAccountType(?)->setSubUserId(?)->setTag(?)->setSubTag(?);
+        $req = $builder->build();
+        $resp = $this->api->subAccountTransfer($req);
+        self::assertNotNull($resp->orderId);
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
+    /**
+    * innerTransfer
+    * Internal Transfer
+    * /api/v2/accounts/inner-transfer
+    */
+    public function testInnerTransfer() {
+        $builder = InnerTransferReq::builder();
+        $builder->setClientOid(?)->setCurrency(?)->setAmount(?)->setTo(?)->setFromTag(?)->setToTag(?)->setFrom(?);
+        $req = $builder->build();
+        $resp = $this->api->innerTransfer($req);
+        self::assertNotNull($resp->orderId);
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
+    /**
+    * getFuturesAccountTransferOutLedger
+    * Get Futures Account Transfer Out Ledger
+    * /api/v1/transfer-list
+    */
+    public function testGetFuturesAccountTransferOutLedger() {
+        $builder = GetFuturesAccountTransferOutLedgerReq::builder();
+        $builder->setCurrency(?)->setType(?)->setTag(?)->setStartAt(?)->setEndAt(?)->setCurrentPage(?)->setPageSize(?);
+        $req = $builder->build();
+        $resp = $this->api->getFuturesAccountTransferOutLedger($req);
+        self::assertNotNull($resp->currentPage);
+        self::assertNotNull($resp->pageSize);
+        self::assertNotNull($resp->totalNum);
+        self::assertNotNull($resp->totalPage);
+        foreach($resp->items as $item) {
+            self::assertNotNull($item->applyId);
+            self::assertNotNull($item->currency);
+            self::assertNotNull($item->recRemark);
+            self::assertNotNull($item->recSystem);
+            self::assertNotNull($item->status);
+            self::assertNotNull($item->amount);
+            self::assertNotNull($item->reason);
+            self::assertNotNull($item->offset);
+            self::assertNotNull($item->createdAt);
+            self::assertNotNull($item->remark);
+        }
+
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
+    /**
+    * futuresAccountTransferOut
+    * Futures Account Transfer Out
+    * /api/v3/transfer-out
+    */
+    public function testFuturesAccountTransferOut() {
+        $builder = FuturesAccountTransferOutReq::builder();
+        $builder->setCurrency(?)->setAmount(?)->setRecAccountType(?);
+        $req = $builder->build();
+        $resp = $this->api->futuresAccountTransferOut($req);
+        self::assertNotNull($resp->applyId);
+        self::assertNotNull($resp->bizNo);
+        self::assertNotNull($resp->payAccountType);
+        self::assertNotNull($resp->payTag);
+        self::assertNotNull($resp->remark);
+        self::assertNotNull($resp->recAccountType);
+        self::assertNotNull($resp->recTag);
+        self::assertNotNull($resp->recRemark);
+        self::assertNotNull($resp->recSystem);
+        self::assertNotNull($resp->status);
+        self::assertNotNull($resp->currency);
+        self::assertNotNull($resp->amount);
+        self::assertNotNull($resp->fee);
+        self::assertNotNull($resp->sn);
+        self::assertNotNull($resp->reason);
+        self::assertNotNull($resp->createdAt);
+        self::assertNotNull($resp->updatedAt);
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
+    /**
+    * futuresAccountTransferIn
+    * Futures Account Transfer In
+    * /api/v1/transfer-in
+    */
+    public function testFuturesAccountTransferIn() {
+        $builder = FuturesAccountTransferInReq::builder();
+        $builder->setCurrency(?)->setAmount(?)->setPayAccountType(?);
+        $req = $builder->build();
+        $resp = $this->api->futuresAccountTransferIn($req);
+        self::assertNotNull($resp->data);
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+

@@ -1,0 +1,541 @@
+
+    /**
+    * addOrder
+    * Add Order
+    * /api/v1/orders
+    */
+    public function testAddOrder() {
+        $builder = AddOrderReq::builder();
+        $builder->setClientOid(?)->setSide(?)->setSymbol(?)->setLeverage(?)->setType(?)->setRemark(?)->setStop(?)->setStopPriceType(?)->setStopPrice(?)->setReduceOnly(?)->setCloseOrder(?)->setForceHold(?)->setStp(?)->setMarginMode(?)->setPrice(?)->setSize(?)->setTimeInForce(?)->setPostOnly(?)->setHidden(?)->setIceberg(?)->setVisibleSize(?)->setQty(?)->setValueQty(?);
+        $req = $builder->build();
+        $resp = $this->api->addOrder($req);
+        self::assertNotNull($resp->orderId);
+        self::assertNotNull($resp->clientOid);
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
+    /**
+    * addOrderTest
+    * Add Order Test
+    * /api/v1/orders/test
+    */
+    public function testAddOrderTest() {
+        $builder = AddOrderTestReq::builder();
+        $builder->setClientOid(?)->setSide(?)->setSymbol(?)->setLeverage(?)->setType(?)->setRemark(?)->setStop(?)->setStopPriceType(?)->setStopPrice(?)->setReduceOnly(?)->setCloseOrder(?)->setForceHold(?)->setStp(?)->setMarginMode(?)->setPrice(?)->setSize(?)->setTimeInForce(?)->setPostOnly(?)->setHidden(?)->setIceberg(?)->setVisibleSize(?)->setQty(?)->setValueQty(?);
+        $req = $builder->build();
+        $resp = $this->api->addOrderTest($req);
+        self::assertNotNull($resp->orderId);
+        self::assertNotNull($resp->clientOid);
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
+    /**
+    * batchAddOrders
+    * Batch Add Orders
+    * /api/v1/orders/multi
+    */
+    public function testBatchAddOrders() {
+        $builder = BatchAddOrdersReq::builder();
+        $builder->setItems(?);
+        $req = $builder->build();
+        $resp = $this->api->batchAddOrders($req);
+        foreach($resp->data as $item) {
+            self::assertNotNull($item->orderId);
+            self::assertNotNull($item->clientOid);
+            self::assertNotNull($item->symbol);
+            self::assertNotNull($item->code);
+            self::assertNotNull($item->msg);
+        }
+
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
+    /**
+    * addTPSLOrder
+    * Add Take Profit And Stop Loss Order
+    * /api/v1/st-orders
+    */
+    public function testAddTPSLOrder() {
+        $builder = AddTPSLOrderReq::builder();
+        $builder->setClientOid(?)->setSide(?)->setSymbol(?)->setLeverage(?)->setType(?)->setRemark(?)->setStopPriceType(?)->setReduceOnly(?)->setCloseOrder(?)->setForceHold(?)->setStp(?)->setMarginMode(?)->setPrice(?)->setSize(?)->setTimeInForce(?)->setPostOnly(?)->setHidden(?)->setIceberg(?)->setVisibleSize(?)->setTriggerStopUpPrice(?)->setTriggerStopDownPrice(?)->setQty(?)->setValueQty(?);
+        $req = $builder->build();
+        $resp = $this->api->addTPSLOrder($req);
+        self::assertNotNull($resp->orderId);
+        self::assertNotNull($resp->clientOid);
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
+    /**
+    * cancelOrderById
+    * Cancel Order By OrderId
+    * /api/v1/orders/{orderId}
+    */
+    public function testCancelOrderById() {
+        $builder = CancelOrderByIdReq::builder();
+        $builder->setOrderId(?);
+        $req = $builder->build();
+        $resp = $this->api->cancelOrderById($req);
+        foreach($resp->cancelledOrderIds as $item) {
+        }
+
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
+    /**
+    * cancelOrderByClientOid
+    * Cancel Order By ClientOid
+    * /api/v1/orders/client-order/{clientOid}
+    */
+    public function testCancelOrderByClientOid() {
+        $builder = CancelOrderByClientOidReq::builder();
+        $builder->setSymbol(?)->setClientOid(?);
+        $req = $builder->build();
+        $resp = $this->api->cancelOrderByClientOid($req);
+        self::assertNotNull($resp->clientOid);
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
+    /**
+    * batchCancelOrders
+    * Batch Cancel Orders
+    * /api/v1/orders/multi-cancel
+    */
+    public function testBatchCancelOrders() {
+        $builder = BatchCancelOrdersReq::builder();
+        $builder->setOrderIdsList(?)->setClientOidsList(?);
+        $req = $builder->build();
+        $resp = $this->api->batchCancelOrders($req);
+        foreach($resp->data as $item) {
+            self::assertNotNull($item->orderId);
+            self::assertNotNull($item->clientOid);
+            self::assertNotNull($item->code);
+            self::assertNotNull($item->msg);
+        }
+
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
+    /**
+    * cancelAllOrdersV3
+    * Cancel All Orders
+    * /api/v3/orders
+    */
+    public function testCancelAllOrdersV3() {
+        $builder = CancelAllOrdersV3Req::builder();
+        $builder->setSymbol(?);
+        $req = $builder->build();
+        $resp = $this->api->cancelAllOrdersV3($req);
+        foreach($resp->cancelledOrderIds as $item) {
+        }
+
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
+    /**
+    * cancelAllStopOrders
+    * Cancel All Stop orders
+    * /api/v1/stopOrders
+    */
+    public function testCancelAllStopOrders() {
+        $builder = CancelAllStopOrdersReq::builder();
+        $builder->setSymbol(?);
+        $req = $builder->build();
+        $resp = $this->api->cancelAllStopOrders($req);
+        foreach($resp->cancelledOrderIds as $item) {
+        }
+
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
+    /**
+    * getOrderByOrderId
+    * Get Order By OrderId
+    * /api/v1/orders/{order-id}
+    */
+    public function testGetOrderByOrderId() {
+        $builder = GetOrderByOrderIdReq::builder();
+        $builder->setOrderId(?);
+        $req = $builder->build();
+        $resp = $this->api->getOrderByOrderId($req);
+        self::assertNotNull($resp->id);
+        self::assertNotNull($resp->symbol);
+        self::assertNotNull($resp->type);
+        self::assertNotNull($resp->side);
+        self::assertNotNull($resp->price);
+        self::assertNotNull($resp->size);
+        self::assertNotNull($resp->value);
+        self::assertNotNull($resp->dealValue);
+        self::assertNotNull($resp->dealSize);
+        self::assertNotNull($resp->stp);
+        self::assertNotNull($resp->stop);
+        self::assertNotNull($resp->stopPriceType);
+        self::assertNotNull($resp->stopTriggered);
+        self::assertNotNull($resp->stopPrice);
+        self::assertNotNull($resp->timeInForce);
+        self::assertNotNull($resp->postOnly);
+        self::assertNotNull($resp->hidden);
+        self::assertNotNull($resp->iceberg);
+        self::assertNotNull($resp->leverage);
+        self::assertNotNull($resp->forceHold);
+        self::assertNotNull($resp->closeOrder);
+        self::assertNotNull($resp->visibleSize);
+        self::assertNotNull($resp->clientOid);
+        self::assertNotNull($resp->remark);
+        self::assertNotNull($resp->tags);
+        self::assertNotNull($resp->isActive);
+        self::assertNotNull($resp->cancelExist);
+        self::assertNotNull($resp->createdAt);
+        self::assertNotNull($resp->updatedAt);
+        self::assertNotNull($resp->endAt);
+        self::assertNotNull($resp->orderTime);
+        self::assertNotNull($resp->settleCurrency);
+        self::assertNotNull($resp->marginMode);
+        self::assertNotNull($resp->avgDealPrice);
+        self::assertNotNull($resp->filledSize);
+        self::assertNotNull($resp->filledValue);
+        self::assertNotNull($resp->status);
+        self::assertNotNull($resp->reduceOnly);
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
+    /**
+    * getOrderByClientOid
+    * Get Order By ClientOid
+    * /api/v1/orders/byClientOid
+    */
+    public function testGetOrderByClientOid() {
+        $builder = GetOrderByClientOidReq::builder();
+        $builder->setClientOid(?);
+        $req = $builder->build();
+        $resp = $this->api->getOrderByClientOid($req);
+        self::assertNotNull($resp->id);
+        self::assertNotNull($resp->symbol);
+        self::assertNotNull($resp->type);
+        self::assertNotNull($resp->side);
+        self::assertNotNull($resp->price);
+        self::assertNotNull($resp->size);
+        self::assertNotNull($resp->value);
+        self::assertNotNull($resp->dealValue);
+        self::assertNotNull($resp->dealSize);
+        self::assertNotNull($resp->stp);
+        self::assertNotNull($resp->stop);
+        self::assertNotNull($resp->stopPriceType);
+        self::assertNotNull($resp->stopTriggered);
+        self::assertNotNull($resp->stopPrice);
+        self::assertNotNull($resp->timeInForce);
+        self::assertNotNull($resp->postOnly);
+        self::assertNotNull($resp->hidden);
+        self::assertNotNull($resp->iceberg);
+        self::assertNotNull($resp->leverage);
+        self::assertNotNull($resp->forceHold);
+        self::assertNotNull($resp->closeOrder);
+        self::assertNotNull($resp->visibleSize);
+        self::assertNotNull($resp->clientOid);
+        self::assertNotNull($resp->remark);
+        self::assertNotNull($resp->tags);
+        self::assertNotNull($resp->isActive);
+        self::assertNotNull($resp->cancelExist);
+        self::assertNotNull($resp->createdAt);
+        self::assertNotNull($resp->updatedAt);
+        self::assertNotNull($resp->endAt);
+        self::assertNotNull($resp->orderTime);
+        self::assertNotNull($resp->settleCurrency);
+        self::assertNotNull($resp->marginMode);
+        self::assertNotNull($resp->avgDealPrice);
+        self::assertNotNull($resp->filledSize);
+        self::assertNotNull($resp->filledValue);
+        self::assertNotNull($resp->status);
+        self::assertNotNull($resp->reduceOnly);
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
+    /**
+    * getOrderList
+    * Get Order List
+    * /api/v1/orders
+    */
+    public function testGetOrderList() {
+        $builder = GetOrderListReq::builder();
+        $builder->setStatus(?)->setSymbol(?)->setSide(?)->setType(?)->setStartAt(?)->setEndAt(?)->setCurrentPage(?)->setPageSize(?);
+        $req = $builder->build();
+        $resp = $this->api->getOrderList($req);
+        self::assertNotNull($resp->currentPage);
+        self::assertNotNull($resp->pageSize);
+        self::assertNotNull($resp->totalNum);
+        self::assertNotNull($resp->totalPage);
+        foreach($resp->items as $item) {
+            self::assertNotNull($item->id);
+            self::assertNotNull($item->symbol);
+            self::assertNotNull($item->type);
+            self::assertNotNull($item->side);
+            self::assertNotNull($item->price);
+            self::assertNotNull($item->size);
+            self::assertNotNull($item->value);
+            self::assertNotNull($item->dealValue);
+            self::assertNotNull($item->dealSize);
+            self::assertNotNull($item->stp);
+            self::assertNotNull($item->stop);
+            self::assertNotNull($item->stopPriceType);
+            self::assertNotNull($item->stopTriggered);
+            self::assertNotNull($item->stopPrice);
+            self::assertNotNull($item->timeInForce);
+            self::assertNotNull($item->postOnly);
+            self::assertNotNull($item->hidden);
+            self::assertNotNull($item->iceberg);
+            self::assertNotNull($item->leverage);
+            self::assertNotNull($item->forceHold);
+            self::assertNotNull($item->closeOrder);
+            self::assertNotNull($item->visibleSize);
+            self::assertNotNull($item->clientOid);
+            self::assertNotNull($item->remark);
+            self::assertNotNull($item->tags);
+            self::assertNotNull($item->isActive);
+            self::assertNotNull($item->cancelExist);
+            self::assertNotNull($item->createdAt);
+            self::assertNotNull($item->updatedAt);
+            self::assertNotNull($item->endAt);
+            self::assertNotNull($item->orderTime);
+            self::assertNotNull($item->settleCurrency);
+            self::assertNotNull($item->marginMode);
+            self::assertNotNull($item->avgDealPrice);
+            self::assertNotNull($item->status);
+            self::assertNotNull($item->filledSize);
+            self::assertNotNull($item->filledValue);
+            self::assertNotNull($item->reduceOnly);
+        }
+
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
+    /**
+    * getRecentClosedOrders
+    * Get Recent Closed Orders
+    * /api/v1/recentDoneOrders
+    */
+    public function testGetRecentClosedOrders() {
+        $builder = GetRecentClosedOrdersReq::builder();
+        $builder->setSymbol(?);
+        $req = $builder->build();
+        $resp = $this->api->getRecentClosedOrders($req);
+        foreach($resp->data as $item) {
+            self::assertNotNull($item->id);
+            self::assertNotNull($item->symbol);
+            self::assertNotNull($item->type);
+            self::assertNotNull($item->side);
+            self::assertNotNull($item->price);
+            self::assertNotNull($item->size);
+            self::assertNotNull($item->value);
+            self::assertNotNull($item->dealValue);
+            self::assertNotNull($item->dealSize);
+            self::assertNotNull($item->stp);
+            self::assertNotNull($item->stop);
+            self::assertNotNull($item->stopPriceType);
+            self::assertNotNull($item->stopTriggered);
+            self::assertNotNull($item->stopPrice);
+            self::assertNotNull($item->timeInForce);
+            self::assertNotNull($item->postOnly);
+            self::assertNotNull($item->hidden);
+            self::assertNotNull($item->iceberg);
+            self::assertNotNull($item->leverage);
+            self::assertNotNull($item->forceHold);
+            self::assertNotNull($item->closeOrder);
+            self::assertNotNull($item->visibleSize);
+            self::assertNotNull($item->clientOid);
+            self::assertNotNull($item->remark);
+            self::assertNotNull($item->tags);
+            self::assertNotNull($item->isActive);
+            self::assertNotNull($item->cancelExist);
+            self::assertNotNull($item->createdAt);
+            self::assertNotNull($item->updatedAt);
+            self::assertNotNull($item->endAt);
+            self::assertNotNull($item->orderTime);
+            self::assertNotNull($item->settleCurrency);
+            self::assertNotNull($item->marginMode);
+            self::assertNotNull($item->avgDealPrice);
+            self::assertNotNull($item->filledSize);
+            self::assertNotNull($item->filledValue);
+            self::assertNotNull($item->status);
+            self::assertNotNull($item->reduceOnly);
+        }
+
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
+    /**
+    * getStopOrderList
+    * Get Stop Order List
+    * /api/v1/stopOrders
+    */
+    public function testGetStopOrderList() {
+        $builder = GetStopOrderListReq::builder();
+        $builder->setSymbol(?)->setSide(?)->setType(?)->setStartAt(?)->setEndAt(?)->setCurrentPage(?)->setPageSize(?);
+        $req = $builder->build();
+        $resp = $this->api->getStopOrderList($req);
+        self::assertNotNull($resp->currentPage);
+        self::assertNotNull($resp->pageSize);
+        self::assertNotNull($resp->totalNum);
+        self::assertNotNull($resp->totalPage);
+        foreach($resp->items as $item) {
+            self::assertNotNull($item->id);
+            self::assertNotNull($item->symbol);
+            self::assertNotNull($item->type);
+            self::assertNotNull($item->side);
+            self::assertNotNull($item->price);
+            self::assertNotNull($item->size);
+            self::assertNotNull($item->value);
+            self::assertNotNull($item->dealValue);
+            self::assertNotNull($item->dealSize);
+            self::assertNotNull($item->stp);
+            self::assertNotNull($item->stop);
+            self::assertNotNull($item->stopPriceType);
+            self::assertNotNull($item->stopTriggered);
+            self::assertNotNull($item->stopPrice);
+            self::assertNotNull($item->timeInForce);
+            self::assertNotNull($item->postOnly);
+            self::assertNotNull($item->hidden);
+            self::assertNotNull($item->iceberg);
+            self::assertNotNull($item->leverage);
+            self::assertNotNull($item->forceHold);
+            self::assertNotNull($item->closeOrder);
+            self::assertNotNull($item->visibleSize);
+            self::assertNotNull($item->clientOid);
+            self::assertNotNull($item->remark);
+            self::assertNotNull($item->tags);
+            self::assertNotNull($item->isActive);
+            self::assertNotNull($item->cancelExist);
+            self::assertNotNull($item->createdAt);
+            self::assertNotNull($item->updatedAt);
+            self::assertNotNull($item->endAt);
+            self::assertNotNull($item->orderTime);
+            self::assertNotNull($item->settleCurrency);
+            self::assertNotNull($item->marginMode);
+            self::assertNotNull($item->avgDealPrice);
+            self::assertNotNull($item->filledSize);
+            self::assertNotNull($item->filledValue);
+            self::assertNotNull($item->status);
+            self::assertNotNull($item->reduceOnly);
+        }
+
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
+    /**
+    * getOpenOrderValue
+    * Get Open Order Value
+    * /api/v1/openOrderStatistics
+    */
+    public function testGetOpenOrderValue() {
+        $builder = GetOpenOrderValueReq::builder();
+        $builder->setSymbol(?);
+        $req = $builder->build();
+        $resp = $this->api->getOpenOrderValue($req);
+        self::assertNotNull($resp->openOrderBuySize);
+        self::assertNotNull($resp->openOrderSellSize);
+        self::assertNotNull($resp->openOrderBuyCost);
+        self::assertNotNull($resp->openOrderSellCost);
+        self::assertNotNull($resp->settleCurrency);
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
+    /**
+    * getRecentTradeHistory
+    * Get Recent Trade History
+    * /api/v1/recentFills
+    */
+    public function testGetRecentTradeHistory() {
+        $builder = GetRecentTradeHistoryReq::builder();
+        $builder->setSymbol(?);
+        $req = $builder->build();
+        $resp = $this->api->getRecentTradeHistory($req);
+        foreach($resp->data as $item) {
+            self::assertNotNull($item->symbol);
+            self::assertNotNull($item->tradeId);
+            self::assertNotNull($item->orderId);
+            self::assertNotNull($item->side);
+            self::assertNotNull($item->liquidity);
+            self::assertNotNull($item->forceTaker);
+            self::assertNotNull($item->price);
+            self::assertNotNull($item->size);
+            self::assertNotNull($item->value);
+            self::assertNotNull($item->openFeePay);
+            self::assertNotNull($item->closeFeePay);
+            self::assertNotNull($item->stop);
+            self::assertNotNull($item->feeRate);
+            self::assertNotNull($item->fixFee);
+            self::assertNotNull($item->feeCurrency);
+            self::assertNotNull($item->tradeTime);
+            self::assertNotNull($item->subTradeType);
+            self::assertNotNull($item->marginMode);
+            self::assertNotNull($item->displayType);
+            self::assertNotNull($item->fee);
+            self::assertNotNull($item->settleCurrency);
+            self::assertNotNull($item->orderType);
+            self::assertNotNull($item->tradeType);
+            self::assertNotNull($item->createdAt);
+        }
+
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
+    /**
+    * getTradeHistory
+    * Get Trade History
+    * /api/v1/fills
+    */
+    public function testGetTradeHistory() {
+        $builder = GetTradeHistoryReq::builder();
+        $builder->setOrderId(?)->setSymbol(?)->setSide(?)->setType(?)->setTradeTypes(?)->setStartAt(?)->setEndAt(?)->setCurrentPage(?)->setPageSize(?);
+        $req = $builder->build();
+        $resp = $this->api->getTradeHistory($req);
+        self::assertNotNull($resp->currentPage);
+        self::assertNotNull($resp->pageSize);
+        self::assertNotNull($resp->totalNum);
+        self::assertNotNull($resp->totalPage);
+        foreach($resp->items as $item) {
+            self::assertNotNull($item->symbol);
+            self::assertNotNull($item->tradeId);
+            self::assertNotNull($item->orderId);
+            self::assertNotNull($item->side);
+            self::assertNotNull($item->liquidity);
+            self::assertNotNull($item->forceTaker);
+            self::assertNotNull($item->price);
+            self::assertNotNull($item->size);
+            self::assertNotNull($item->value);
+            self::assertNotNull($item->openFeePay);
+            self::assertNotNull($item->closeFeePay);
+            self::assertNotNull($item->stop);
+            self::assertNotNull($item->feeRate);
+            self::assertNotNull($item->fixFee);
+            self::assertNotNull($item->feeCurrency);
+            self::assertNotNull($item->tradeTime);
+            self::assertNotNull($item->subTradeType);
+            self::assertNotNull($item->marginMode);
+            self::assertNotNull($item->settleCurrency);
+            self::assertNotNull($item->displayType);
+            self::assertNotNull($item->fee);
+            self::assertNotNull($item->orderType);
+            self::assertNotNull($item->tradeType);
+            self::assertNotNull($item->createdAt);
+            self::assertNotNull($item->openFeeTaxPay);
+            self::assertNotNull($item->closeFeeTaxPay);
+        }
+
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
+    /**
+    * cancelAllOrdersV1
+    * Cancel All Orders - V1
+    * /api/v1/orders
+    */
+    public function testCancelAllOrdersV1() {
+        $builder = CancelAllOrdersV1Req::builder();
+        $builder->setSymbol(?);
+        $req = $builder->build();
+        $resp = $this->api->cancelAllOrdersV1($req);
+        foreach($resp->cancelledOrderIds as $item) {
+        }
+
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+

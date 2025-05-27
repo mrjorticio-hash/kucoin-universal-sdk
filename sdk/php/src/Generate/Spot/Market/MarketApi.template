@@ -1,0 +1,1371 @@
+
+    /**
+    * getAnnouncements
+    * Get Announcements
+    * /api/v3/announcements
+    */
+    public function testGetAnnouncements() {
+        $builder = GetAnnouncementsReq::builder();
+        $builder->setCurrentPage(?)->setPageSize(?)->setAnnType(?)->setLang(?)->setStartTime(?)->setEndTime(?);
+        $req = $builder->build();
+        $resp = $this->api->getAnnouncements($req);
+        self::assertNotNull($resp->totalNum);
+        foreach($resp->items as $item) {
+            self::assertNotNull($item->annId);
+            self::assertNotNull($item->annTitle);
+            self::assertNotNull($item->annType);
+            self::assertNotNull($item->annDesc);
+            self::assertNotNull($item->cTime);
+            self::assertNotNull($item->language);
+            self::assertNotNull($item->annUrl);
+        }
+
+        self::assertNotNull($resp->currentPage);
+        self::assertNotNull($resp->pageSize);
+        self::assertNotNull($resp->totalPage);
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
+    /**
+    * getCurrency
+    * Get Currency
+    * /api/v3/currencies/{currency}
+    */
+    public function testGetCurrency() {
+        $builder = GetCurrencyReq::builder();
+        $builder->setCurrency(?)->setChain(?);
+        $req = $builder->build();
+        $resp = $this->api->getCurrency($req);
+        self::assertNotNull($resp->currency);
+        self::assertNotNull($resp->name);
+        self::assertNotNull($resp->fullName);
+        self::assertNotNull($resp->precision);
+        self::assertNotNull($resp->confirms);
+        self::assertNotNull($resp->contractAddress);
+        self::assertNotNull($resp->isMarginEnabled);
+        self::assertNotNull($resp->isDebitEnabled);
+        foreach($resp->chains as $item) {
+            self::assertNotNull($item->chainName);
+            self::assertNotNull($item->withdrawalMinSize);
+            self::assertNotNull($item->depositMinSize);
+            self::assertNotNull($item->withdrawFeeRate);
+            self::assertNotNull($item->withdrawalMinFee);
+            self::assertNotNull($item->isWithdrawEnabled);
+            self::assertNotNull($item->isDepositEnabled);
+            self::assertNotNull($item->confirms);
+            self::assertNotNull($item->preConfirms);
+            self::assertNotNull($item->contractAddress);
+            self::assertNotNull($item->withdrawPrecision);
+            self::assertNotNull($item->maxWithdraw);
+            self::assertNotNull($item->maxDeposit);
+            self::assertNotNull($item->needTag);
+            self::assertNotNull($item->chainId);
+        }
+
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
+    /**
+    * getAllCurrencies
+    * Get All Currencies
+    * /api/v3/currencies
+    */
+    public function testGetAllCurrencies() {
+        $resp = $this->api->getAllCurrencies();
+        foreach($resp->data as $item) {
+            self::assertNotNull($item->currency);
+            self::assertNotNull($item->name);
+            self::assertNotNull($item->fullName);
+            self::assertNotNull($item->precision);
+            self::assertNotNull($item->confirms);
+            self::assertNotNull($item->contractAddress);
+            self::assertNotNull($item->isMarginEnabled);
+            self::assertNotNull($item->isDebitEnabled);
+            self::assertNotNull($item->chains);
+        }
+
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
+    /**
+    * getSymbol
+    * Get Symbol
+    * /api/v2/symbols/{symbol}
+    */
+    public function testGetSymbol() {
+        $builder = GetSymbolReq::builder();
+        $builder->setSymbol(?);
+        $req = $builder->build();
+        $resp = $this->api->getSymbol($req);
+        self::assertNotNull($resp->symbol);
+        self::assertNotNull($resp->name);
+        self::assertNotNull($resp->baseCurrency);
+        self::assertNotNull($resp->quoteCurrency);
+        self::assertNotNull($resp->feeCurrency);
+        self::assertNotNull($resp->market);
+        self::assertNotNull($resp->baseMinSize);
+        self::assertNotNull($resp->quoteMinSize);
+        self::assertNotNull($resp->baseMaxSize);
+        self::assertNotNull($resp->quoteMaxSize);
+        self::assertNotNull($resp->baseIncrement);
+        self::assertNotNull($resp->quoteIncrement);
+        self::assertNotNull($resp->priceIncrement);
+        self::assertNotNull($resp->priceLimitRate);
+        self::assertNotNull($resp->minFunds);
+        self::assertNotNull($resp->isMarginEnabled);
+        self::assertNotNull($resp->enableTrading);
+        self::assertNotNull($resp->feeCategory);
+        self::assertNotNull($resp->makerFeeCoefficient);
+        self::assertNotNull($resp->takerFeeCoefficient);
+        self::assertNotNull($resp->st);
+        self::assertNotNull($resp->callauctionIsEnabled);
+        self::assertNotNull($resp->callauctionPriceFloor);
+        self::assertNotNull($resp->callauctionPriceCeiling);
+        self::assertNotNull($resp->callauctionFirstStageStartTime);
+        self::assertNotNull($resp->callauctionSecondStageStartTime);
+        self::assertNotNull($resp->callauctionThirdStageStartTime);
+        self::assertNotNull($resp->tradingStartTime);
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
+    /**
+    * getAllSymbols
+    * Get All Symbols
+    * /api/v2/symbols
+    */
+    public function testGetAllSymbols() {
+        $builder = GetAllSymbolsReq::builder();
+        $builder->setMarket(?);
+        $req = $builder->build();
+        $resp = $this->api->getAllSymbols($req);
+        foreach($resp->data as $item) {
+            self::assertNotNull($item->symbol);
+            self::assertNotNull($item->name);
+            self::assertNotNull($item->baseCurrency);
+            self::assertNotNull($item->quoteCurrency);
+            self::assertNotNull($item->feeCurrency);
+            self::assertNotNull($item->market);
+            self::assertNotNull($item->baseMinSize);
+            self::assertNotNull($item->quoteMinSize);
+            self::assertNotNull($item->baseMaxSize);
+            self::assertNotNull($item->quoteMaxSize);
+            self::assertNotNull($item->baseIncrement);
+            self::assertNotNull($item->quoteIncrement);
+            self::assertNotNull($item->priceIncrement);
+            self::assertNotNull($item->priceLimitRate);
+            self::assertNotNull($item->minFunds);
+            self::assertNotNull($item->isMarginEnabled);
+            self::assertNotNull($item->enableTrading);
+            self::assertNotNull($item->feeCategory);
+            self::assertNotNull($item->makerFeeCoefficient);
+            self::assertNotNull($item->takerFeeCoefficient);
+            self::assertNotNull($item->st);
+            self::assertNotNull($item->callauctionIsEnabled);
+            self::assertNotNull($item->callauctionPriceFloor);
+            self::assertNotNull($item->callauctionPriceCeiling);
+            self::assertNotNull($item->callauctionFirstStageStartTime);
+            self::assertNotNull($item->callauctionSecondStageStartTime);
+            self::assertNotNull($item->callauctionThirdStageStartTime);
+            self::assertNotNull($item->tradingStartTime);
+        }
+
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
+    /**
+    * getTicker
+    * Get Ticker
+    * /api/v1/market/orderbook/level1
+    */
+    public function testGetTicker() {
+        $builder = GetTickerReq::builder();
+        $builder->setSymbol(?);
+        $req = $builder->build();
+        $resp = $this->api->getTicker($req);
+        self::assertNotNull($resp->time);
+        self::assertNotNull($resp->sequence);
+        self::assertNotNull($resp->price);
+        self::assertNotNull($resp->size);
+        self::assertNotNull($resp->bestBid);
+        self::assertNotNull($resp->bestBidSize);
+        self::assertNotNull($resp->bestAsk);
+        self::assertNotNull($resp->bestAskSize);
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
+    /**
+    * getAllTickers
+    * Get All Tickers
+    * /api/v1/market/allTickers
+    */
+    public function testGetAllTickers() {
+        $resp = $this->api->getAllTickers();
+        self::assertNotNull($resp->time);
+        foreach($resp->ticker as $item) {
+            self::assertNotNull($item->symbol);
+            self::assertNotNull($item->symbolName);
+            self::assertNotNull($item->buy);
+            self::assertNotNull($item->bestBidSize);
+            self::assertNotNull($item->sell);
+            self::assertNotNull($item->bestAskSize);
+            self::assertNotNull($item->changeRate);
+            self::assertNotNull($item->changePrice);
+            self::assertNotNull($item->high);
+            self::assertNotNull($item->low);
+            self::assertNotNull($item->vol);
+            self::assertNotNull($item->volValue);
+            self::assertNotNull($item->last);
+            self::assertNotNull($item->averagePrice);
+            self::assertNotNull($item->takerFeeRate);
+            self::assertNotNull($item->makerFeeRate);
+            self::assertNotNull($item->takerCoefficient);
+            self::assertNotNull($item->makerCoefficient);
+        }
+
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
+    /**
+    * getTradeHistory
+    * Get Trade History
+    * /api/v1/market/histories
+    */
+    public function testGetTradeHistory() {
+        $builder = GetTradeHistoryReq::builder();
+        $builder->setSymbol(?);
+        $req = $builder->build();
+        $resp = $this->api->getTradeHistory($req);
+        foreach($resp->data as $item) {
+            self::assertNotNull($item->sequence);
+            self::assertNotNull($item->price);
+            self::assertNotNull($item->size);
+            self::assertNotNull($item->side);
+            self::assertNotNull($item->time);
+        }
+
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
+    /**
+    * getKlines
+    * Get Klines
+    * /api/v1/market/candles
+    */
+    public function testGetKlines() {
+        $builder = GetKlinesReq::builder();
+        $builder->setSymbol(?)->setType(?)->setStartAt(?)->setEndAt(?);
+        $req = $builder->build();
+        $resp = $this->api->getKlines($req);
+        foreach($resp->data as $item) {
+        }
+
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
+    /**
+    * getPartOrderBook
+    * Get Part OrderBook
+    * /api/v1/market/orderbook/level2_{size}
+    */
+    public function testGetPartOrderBook() {
+        $builder = GetPartOrderBookReq::builder();
+        $builder->setSymbol(?)->setSize(?);
+        $req = $builder->build();
+        $resp = $this->api->getPartOrderBook($req);
+        self::assertNotNull($resp->time);
+        self::assertNotNull($resp->sequence);
+        foreach($resp->bids as $item) {
+        }
+
+        foreach($resp->asks as $item) {
+        }
+
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
+    /**
+    * getFullOrderBook
+    * Get Full OrderBook
+    * /api/v3/market/orderbook/level2
+    */
+    public function testGetFullOrderBook() {
+        $builder = GetFullOrderBookReq::builder();
+        $builder->setSymbol(?);
+        $req = $builder->build();
+        $resp = $this->api->getFullOrderBook($req);
+        self::assertNotNull($resp->time);
+        self::assertNotNull($resp->sequence);
+        foreach($resp->bids as $item) {
+        }
+
+        foreach($resp->asks as $item) {
+        }
+
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
+    /**
+    * getCallAuctionPartOrderBook
+    * Get Call Auction Part OrderBook
+    * /api/v1/market/orderbook/callauction/level2_{size}
+    */
+    public function testGetCallAuctionPartOrderBook() {
+        $builder = GetCallAuctionPartOrderBookReq::builder();
+        $builder->setSymbol(?)->setSize(?);
+        $req = $builder->build();
+        $resp = $this->api->getCallAuctionPartOrderBook($req);
+        self::assertNotNull($resp->time);
+        self::assertNotNull($resp->sequence);
+        foreach($resp->bids as $item) {
+        }
+
+        foreach($resp->asks as $item) {
+        }
+
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
+    /**
+    * getCallAuctionInfo
+    * Get Call Auction Info
+    * /api/v1/market/callauctionData
+    */
+    public function testGetCallAuctionInfo() {
+        $builder = GetCallAuctionInfoReq::builder();
+        $builder->setSymbol(?);
+        $req = $builder->build();
+        $resp = $this->api->getCallAuctionInfo($req);
+        self::assertNotNull($resp->symbol);
+        self::assertNotNull($resp->estimatedPrice);
+        self::assertNotNull($resp->estimatedSize);
+        self::assertNotNull($resp->sellOrderRangeLowPrice);
+        self::assertNotNull($resp->sellOrderRangeHighPrice);
+        self::assertNotNull($resp->buyOrderRangeLowPrice);
+        self::assertNotNull($resp->buyOrderRangeHighPrice);
+        self::assertNotNull($resp->time);
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
+    /**
+    * getFiatPrice
+    * Get Fiat Price
+    * /api/v1/prices
+    */
+    public function testGetFiatPrice() {
+        $builder = GetFiatPriceReq::builder();
+        $builder->setBase(?)->setCurrencies(?);
+        $req = $builder->build();
+        $resp = $this->api->getFiatPrice($req);
+        self::assertNotNull($resp->aGLD);
+        self::assertNotNull($resp->dFI);
+        self::assertNotNull($resp->pYTHUP);
+        self::assertNotNull($resp->iSLM);
+        self::assertNotNull($resp->nEAR);
+        self::assertNotNull($resp->aIOZ);
+        self::assertNotNull($resp->aUDIO);
+        self::assertNotNull($resp->bBL);
+        self::assertNotNull($resp->wLD);
+        self::assertNotNull($resp->hNT);
+        self::assertNotNull($resp->eTHFI);
+        self::assertNotNull($resp->dMAIL);
+        self::assertNotNull($resp->oPUP);
+        self::assertNotNull($resp->vET3S);
+        self::assertNotNull($resp->mANA3S);
+        self::assertNotNull($resp->tIDAL);
+        self::assertNotNull($resp->hALO);
+        self::assertNotNull($resp->oPUL);
+        self::assertNotNull($resp->mANA3L);
+        self::assertNotNull($resp->dGB);
+        self::assertNotNull($resp->aA);
+        self::assertNotNull($resp->bCH);
+        self::assertNotNull($resp->gMEE);
+        self::assertNotNull($resp->jST);
+        self::assertNotNull($resp->pBUX);
+        self::assertNotNull($resp->aR);
+        self::assertNotNull($resp->sEI);
+        self::assertNotNull($resp->pSTAKE);
+        self::assertNotNull($resp->lMWR);
+        self::assertNotNull($resp->uNFIDOWN);
+        self::assertNotNull($resp->bB);
+        self::assertNotNull($resp->jTO);
+        self::assertNotNull($resp->wEMIX);
+        self::assertNotNull($resp->g);
+        self::assertNotNull($resp->mARSH);
+        self::assertNotNull($resp->bN);
+        self::assertNotNull($resp->fLIP);
+        self::assertNotNull($resp->fLR);
+        self::assertNotNull($resp->bIGTIME);
+        self::assertNotNull($resp->fLY);
+        self::assertNotNull($resp->t);
+        self::assertNotNull($resp->w);
+        self::assertNotNull($resp->bDX);
+        self::assertNotNull($resp->bABYDOGE);
+        self::assertNotNull($resp->sFP);
+        self::assertNotNull($resp->dIA);
+        self::assertNotNull($resp->iSME);
+        self::assertNotNull($resp->lYM);
+        self::assertNotNull($resp->vET3L);
+        self::assertNotNull($resp->jUP);
+        self::assertNotNull($resp->lYX);
+        self::assertNotNull($resp->aIEPK);
+        self::assertNotNull($resp->sILLY);
+        self::assertNotNull($resp->sCPT);
+        self::assertNotNull($resp->wOO);
+        self::assertNotNull($resp->bLUR);
+        self::assertNotNull($resp->sTRK);
+        self::assertNotNull($resp->bFC);
+        self::assertNotNull($resp->dC);
+        self::assertNotNull($resp->kARATE);
+        self::assertNotNull($resp->sUSHI3L);
+        self::assertNotNull($resp->nETVR);
+        self::assertNotNull($resp->wAVES);
+        self::assertNotNull($resp->lITH);
+        self::assertNotNull($resp->hAPI);
+        self::assertNotNull($resp->sUSHI3S);
+        self::assertNotNull($resp->cEEK);
+        self::assertNotNull($resp->fLOKI);
+        self::assertNotNull($resp->sHR);
+        self::assertNotNull($resp->sAND);
+        self::assertNotNull($resp->tURT);
+        self::assertNotNull($resp->uMA);
+        self::assertNotNull($resp->bEPRO);
+        self::assertNotNull($resp->sCRT);
+        self::assertNotNull($resp->tUSD);
+        self::assertNotNull($resp->cOOKIE);
+        self::assertNotNull($resp->lRDS);
+        self::assertNotNull($resp->sIN);
+        self::assertNotNull($resp->oAS);
+        self::assertNotNull($resp->rOOT);
+        self::assertNotNull($resp->aDA3L);
+        self::assertNotNull($resp->tIAUP);
+        self::assertNotNull($resp->hTR);
+        self::assertNotNull($resp->uNB);
+        self::assertNotNull($resp->uNA);
+        self::assertNotNull($resp->hARD);
+        self::assertNotNull($resp->g3);
+        self::assertNotNull($resp->aDA3S);
+        self::assertNotNull($resp->mYRO);
+        self::assertNotNull($resp->hTX);
+        self::assertNotNull($resp->fT);
+        self::assertNotNull($resp->bTCDOWN);
+        self::assertNotNull($resp->uNI);
+        self::assertNotNull($resp->fX);
+        self::assertNotNull($resp->oBI);
+        self::assertNotNull($resp->uNO);
+        self::assertNotNull($resp->wRX);
+        self::assertNotNull($resp->tIADOWN);
+        self::assertNotNull($resp->eTHDOWN);
+        self::assertNotNull($resp->wELL);
+        self::assertNotNull($resp->sWFTC);
+        self::assertNotNull($resp->sKL);
+        self::assertNotNull($resp->uOS);
+        self::assertNotNull($resp->aIPAD);
+        self::assertNotNull($resp->bRETT);
+        self::assertNotNull($resp->sKY);
+        self::assertNotNull($resp->fRM);
+        self::assertNotNull($resp->vISION);
+        self::assertNotNull($resp->lENDS);
+        self::assertNotNull($resp->sLF);
+        self::assertNotNull($resp->bULL);
+        self::assertNotNull($resp->fLOW);
+        self::assertNotNull($resp->oDDZ);
+        self::assertNotNull($resp->sLN);
+        self::assertNotNull($resp->uPO);
+        self::assertNotNull($resp->sLP);
+        self::assertNotNull($resp->iD);
+        self::assertNotNull($resp->sLIM);
+        self::assertNotNull($resp->sPOT);
+        self::assertNotNull($resp->dOP);
+        self::assertNotNull($resp->iSSP);
+        self::assertNotNull($resp->uQC);
+        self::assertNotNull($resp->iO);
+        self::assertNotNull($resp->dOT);
+        self::assertNotNull($resp->_1iNCH);
+        self::assertNotNull($resp->sMH);
+        self::assertNotNull($resp->mAK);
+        self::assertNotNull($resp->tOKO);
+        self::assertNotNull($resp->tURBO);
+        self::assertNotNull($resp->uNFI);
+        self::assertNotNull($resp->mAN);
+        self::assertNotNull($resp->eVER);
+        self::assertNotNull($resp->fTM);
+        self::assertNotNull($resp->sHRAP);
+        self::assertNotNull($resp->mAV);
+        self::assertNotNull($resp->mAX);
+        self::assertNotNull($resp->dPR);
+        self::assertNotNull($resp->fTT);
+        self::assertNotNull($resp->aRKM);
+        self::assertNotNull($resp->aTOM);
+        self::assertNotNull($resp->pENDLE);
+        self::assertNotNull($resp->qUICK);
+        self::assertNotNull($resp->bLZ);
+        self::assertNotNull($resp->bOBA);
+        self::assertNotNull($resp->mBL);
+        self::assertNotNull($resp->oFN);
+        self::assertNotNull($resp->uNIO);
+        self::assertNotNull($resp->sNS);
+        self::assertNotNull($resp->sNX);
+        self::assertNotNull($resp->nXRA);
+        self::assertNotNull($resp->tAIKO);
+        self::assertNotNull($resp->aVAX3L);
+        self::assertNotNull($resp->l3);
+        self::assertNotNull($resp->aPI3);
+        self::assertNotNull($resp->xRP3S);
+        self::assertNotNull($resp->qKC);
+        self::assertNotNull($resp->aVAX3S);
+        self::assertNotNull($resp->rOSE);
+        self::assertNotNull($resp->sATS);
+        self::assertNotNull($resp->bMX);
+        self::assertNotNull($resp->pORTAL);
+        self::assertNotNull($resp->tOMI);
+        self::assertNotNull($resp->xRP3L);
+        self::assertNotNull($resp->sOL);
+        self::assertNotNull($resp->sON);
+        self::assertNotNull($resp->bNC);
+        self::assertNotNull($resp->sOCIAL);
+        self::assertNotNull($resp->cGPT);
+        self::assertNotNull($resp->cELR);
+        self::assertNotNull($resp->bNB);
+        self::assertNotNull($resp->oGN);
+        self::assertNotNull($resp->cELO);
+        self::assertNotNull($resp->aUCTION);
+        self::assertNotNull($resp->mANTA);
+        self::assertNotNull($resp->lAYER);
+        self::assertNotNull($resp->aERO);
+        self::assertNotNull($resp->cETUS);
+        self::assertNotNull($resp->lL);
+        self::assertNotNull($resp->sPA);
+        self::assertNotNull($resp->pYTHDOWN);
+        self::assertNotNull($resp->nEIROCTO);
+        self::assertNotNull($resp->uTK);
+        self::assertNotNull($resp->gMRX);
+        self::assertNotNull($resp->bOB);
+        self::assertNotNull($resp->hOTCROSS);
+        self::assertNotNull($resp->aERGO);
+        self::assertNotNull($resp->mOCA);
+        self::assertNotNull($resp->sQD);
+        self::assertNotNull($resp->mV);
+        self::assertNotNull($resp->bNB3L);
+        self::assertNotNull($resp->bNB3S);
+        self::assertNotNull($resp->gALAX3L);
+        self::assertNotNull($resp->kAI);
+        self::assertNotNull($resp->sQR);
+        self::assertNotNull($resp->gALAX3S);
+        self::assertNotNull($resp->eGLD);
+        self::assertNotNull($resp->zBCN);
+        self::assertNotNull($resp->kAS);
+        self::assertNotNull($resp->mEW);
+        self::assertNotNull($resp->pUNDIX);
+        self::assertNotNull($resp->lOOKS);
+        self::assertNotNull($resp->fXS);
+        self::assertNotNull($resp->bOSON);
+        self::assertNotNull($resp->bRISE);
+        self::assertNotNull($resp->aEVO);
+        self::assertNotNull($resp->fLUX);
+        self::assertNotNull($resp->pRCL);
+        self::assertNotNull($resp->uNFIUP);
+        self::assertNotNull($resp->sEIDOWN);
+        self::assertNotNull($resp->dOAI);
+        self::assertNotNull($resp->qNT);
+        self::assertNotNull($resp->rEDO);
+        self::assertNotNull($resp->sTRIKE);
+        self::assertNotNull($resp->eTHW);
+        self::assertNotNull($resp->oM);
+        self::assertNotNull($resp->oP);
+        self::assertNotNull($resp->wHALE);
+        self::assertNotNull($resp->_1cAT);
+        self::assertNotNull($resp->nEON);
+        self::assertNotNull($resp->gTAI);
+        self::assertNotNull($resp->sSV);
+        self::assertNotNull($resp->eTH2);
+        self::assertNotNull($resp->kCS);
+        self::assertNotNull($resp->aRPA);
+        self::assertNotNull($resp->aRTFI);
+        self::assertNotNull($resp->bRL);
+        self::assertNotNull($resp->aLEX);
+        self::assertNotNull($resp->sTG);
+        self::assertNotNull($resp->sHIB);
+        self::assertNotNull($resp->iOTX);
+        self::assertNotNull($resp->oLE);
+        self::assertNotNull($resp->kDA);
+        self::assertNotNull($resp->cERE);
+        self::assertNotNull($resp->dOCK);
+        self::assertNotNull($resp->sTX);
+        self::assertNotNull($resp->oLT);
+        self::assertNotNull($resp->qI);
+        self::assertNotNull($resp->sDAO);
+        self::assertNotNull($resp->bLAST);
+        self::assertNotNull($resp->lINK3S);
+        self::assertNotNull($resp->iOST);
+        self::assertNotNull($resp->sUI);
+        self::assertNotNull($resp->cAKE);
+        self::assertNotNull($resp->bSW);
+        self::assertNotNull($resp->oMG);
+        self::assertNotNull($resp->vOLT);
+        self::assertNotNull($resp->lINK3L);
+        self::assertNotNull($resp->gEEQ);
+        self::assertNotNull($resp->pYUSD);
+        self::assertNotNull($resp->sUN);
+        self::assertNotNull($resp->tOWER);
+        self::assertNotNull($resp->bTC);
+        self::assertNotNull($resp->iOTA);
+        self::assertNotNull($resp->rEEF);
+        self::assertNotNull($resp->tRIAS);
+        self::assertNotNull($resp->kEY);
+        self::assertNotNull($resp->eTH3L);
+        self::assertNotNull($resp->bTT);
+        self::assertNotNull($resp->oNE);
+        self::assertNotNull($resp->rENDER);
+        self::assertNotNull($resp->eTH3S);
+        self::assertNotNull($resp->aNKR);
+        self::assertNotNull($resp->aLGO);
+        self::assertNotNull($resp->sYLO);
+        self::assertNotNull($resp->zCX);
+        self::assertNotNull($resp->sD);
+        self::assertNotNull($resp->oNT);
+        self::assertNotNull($resp->mJT);
+        self::assertNotNull($resp->dYM);
+        self::assertNotNull($resp->dYP);
+        self::assertNotNull($resp->bAKEUP);
+        self::assertNotNull($resp->oOE);
+        self::assertNotNull($resp->zELIX);
+        self::assertNotNull($resp->dOGE3L);
+        self::assertNotNull($resp->aRTY);
+        self::assertNotNull($resp->qORPO);
+        self::assertNotNull($resp->iCE);
+        self::assertNotNull($resp->nOTAI);
+        self::assertNotNull($resp->dOGE3S);
+        self::assertNotNull($resp->nAKA);
+        self::assertNotNull($resp->gALAX);
+        self::assertNotNull($resp->mKR);
+        self::assertNotNull($resp->dODO);
+        self::assertNotNull($resp->iCP);
+        self::assertNotNull($resp->zEC);
+        self::assertNotNull($resp->zEE);
+        self::assertNotNull($resp->iCX);
+        self::assertNotNull($resp->kMNO);
+        self::assertNotNull($resp->tT);
+        self::assertNotNull($resp->dOT3L);
+        self::assertNotNull($resp->xAI);
+        self::assertNotNull($resp->zEN);
+        self::assertNotNull($resp->dOGE);
+        self::assertNotNull($resp->aLPHA);
+        self::assertNotNull($resp->dUSK);
+        self::assertNotNull($resp->dOT3S);
+        self::assertNotNull($resp->sXP);
+        self::assertNotNull($resp->hBAR);
+        self::assertNotNull($resp->sYNT);
+        self::assertNotNull($resp->zEX);
+        self::assertNotNull($resp->bONDLY);
+        self::assertNotNull($resp->mLK);
+        self::assertNotNull($resp->kICKS);
+        self::assertNotNull($resp->pEPE);
+        self::assertNotNull($resp->oUSD);
+        self::assertNotNull($resp->lUNCDOWN);
+        self::assertNotNull($resp->dOGS);
+        self::assertNotNull($resp->rEV3L);
+        self::assertNotNull($resp->cTSI);
+        self::assertNotNull($resp->c98);
+        self::assertNotNull($resp->oSMO);
+        self::assertNotNull($resp->nTRN);
+        self::assertNotNull($resp->cFX2S);
+        self::assertNotNull($resp->sYN);
+        self::assertNotNull($resp->vIDT);
+        self::assertNotNull($resp->sYS);
+        self::assertNotNull($resp->gAS);
+        self::assertNotNull($resp->bOME);
+        self::assertNotNull($resp->cOMBO);
+        self::assertNotNull($resp->xCH);
+        self::assertNotNull($resp->vR);
+        self::assertNotNull($resp->cFX2L);
+        self::assertNotNull($resp->vSYS);
+        self::assertNotNull($resp->pANDORA);
+        self::assertNotNull($resp->tHETA);
+        self::assertNotNull($resp->xCN);
+        self::assertNotNull($resp->nEXG);
+        self::assertNotNull($resp->mELOS);
+        self::assertNotNull($resp->xCV);
+        self::assertNotNull($resp->oRN);
+        self::assertNotNull($resp->wLKN);
+        self::assertNotNull($resp->aAVE);
+        self::assertNotNull($resp->mNT);
+        self::assertNotNull($resp->bONK);
+        self::assertNotNull($resp->pERP);
+        self::assertNotNull($resp->xDC);
+        self::assertNotNull($resp->mNW);
+        self::assertNotNull($resp->xDB);
+        self::assertNotNull($resp->bOND);
+        self::assertNotNull($resp->sUIA);
+        self::assertNotNull($resp->mOG);
+        self::assertNotNull($resp->sUTER);
+        self::assertNotNull($resp->tIME);
+        self::assertNotNull($resp->rACA);
+        self::assertNotNull($resp->bICO);
+        self::assertNotNull($resp->mON);
+        self::assertNotNull($resp->sWEAT);
+        self::assertNotNull($resp->mOXIE);
+        self::assertNotNull($resp->bABYBNB);
+        self::assertNotNull($resp->iGU);
+        self::assertNotNull($resp->hMSTR);
+        self::assertNotNull($resp->xEC);
+        self::assertNotNull($resp->mONI);
+        self::assertNotNull($resp->xR);
+        self::assertNotNull($resp->pEOPLE);
+        self::assertNotNull($resp->pUMLX);
+        self::assertNotNull($resp->zIL);
+        self::assertNotNull($resp->wLDDOWN);
+        self::assertNotNull($resp->vAI);
+        self::assertNotNull($resp->xEN);
+        self::assertNotNull($resp->mPC);
+        self::assertNotNull($resp->xEM);
+        self::assertNotNull($resp->jASMY3S);
+        self::assertNotNull($resp->oTK);
+        self::assertNotNull($resp->tRAC);
+        self::assertNotNull($resp->dFYN);
+        self::assertNotNull($resp->bIDP);
+        self::assertNotNull($resp->jASMY3L);
+        self::assertNotNull($resp->iNJDOWN);
+        self::assertNotNull($resp->kLV);
+        self::assertNotNull($resp->wAXL);
+        self::assertNotNull($resp->tRBDOWN);
+        self::assertNotNull($resp->bCH3L);
+        self::assertNotNull($resp->gMT3S);
+        self::assertNotNull($resp->kMD);
+        self::assertNotNull($resp->bCH3S);
+        self::assertNotNull($resp->eCOX);
+        self::assertNotNull($resp->aAVE3S);
+        self::assertNotNull($resp->gMT3L);
+        self::assertNotNull($resp->ePIK);
+        self::assertNotNull($resp->sUIP);
+        self::assertNotNull($resp->aAVE3L);
+        self::assertNotNull($resp->zK);
+        self::assertNotNull($resp->zKF);
+        self::assertNotNull($resp->oMNIA);
+        self::assertNotNull($resp->zKJ);
+        self::assertNotNull($resp->zKL);
+        self::assertNotNull($resp->gAFI);
+        self::assertNotNull($resp->cARV);
+        self::assertNotNull($resp->kNC);
+        self::assertNotNull($resp->cATS);
+        self::assertNotNull($resp->pROM);
+        self::assertNotNull($resp->aLEPH);
+        self::assertNotNull($resp->pONKE);
+        self::assertNotNull($resp->oVR);
+        self::assertNotNull($resp->cATI);
+        self::assertNotNull($resp->oRDER);
+        self::assertNotNull($resp->gFT);
+        self::assertNotNull($resp->bIFI);
+        self::assertNotNull($resp->gGC);
+        self::assertNotNull($resp->gGG);
+        self::assertNotNull($resp->dAPPX);
+        self::assertNotNull($resp->sUKU);
+        self::assertNotNull($resp->uLTI);
+        self::assertNotNull($resp->cREDI);
+        self::assertNotNull($resp->eRTHA);
+        self::assertNotNull($resp->fURY);
+        self::assertNotNull($resp->kARRAT);
+        self::assertNotNull($resp->mOBILE);
+        self::assertNotNull($resp->sIDUS);
+        self::assertNotNull($resp->nAVI);
+        self::assertNotNull($resp->tAO);
+        self::assertNotNull($resp->uSDJ);
+        self::assertNotNull($resp->mTL);
+        self::assertNotNull($resp->vET);
+        self::assertNotNull($resp->fITFI);
+        self::assertNotNull($resp->uSDT);
+        self::assertNotNull($resp->oXT);
+        self::assertNotNull($resp->cANDY);
+        self::assertNotNull($resp->uSDP);
+        self::assertNotNull($resp->mTS);
+        self::assertNotNull($resp->tADA);
+        self::assertNotNull($resp->mTV);
+        self::assertNotNull($resp->nAVX);
+        self::assertNotNull($resp->iLV);
+        self::assertNotNull($resp->vINU);
+        self::assertNotNull($resp->gHX);
+        self::assertNotNull($resp->eDU);
+        self::assertNotNull($resp->hYVE);
+        self::assertNotNull($resp->bTC3L);
+        self::assertNotNull($resp->aNYONE);
+        self::assertNotNull($resp->bEAT);
+        self::assertNotNull($resp->kING);
+        self::assertNotNull($resp->cREAM);
+        self::assertNotNull($resp->cAS);
+        self::assertNotNull($resp->iMX);
+        self::assertNotNull($resp->cAT);
+        self::assertNotNull($resp->bTC3S);
+        self::assertNotNull($resp->uSDE);
+        self::assertNotNull($resp->uSDD);
+        self::assertNotNull($resp->cWAR);
+        self::assertNotNull($resp->uSDC);
+        self::assertNotNull($resp->kRL);
+        self::assertNotNull($resp->iNJ);
+        self::assertNotNull($resp->gAME);
+        self::assertNotNull($resp->tRIBL);
+        self::assertNotNull($resp->xLM);
+        self::assertNotNull($resp->tRBUP);
+        self::assertNotNull($resp->vRADOWN);
+        self::assertNotNull($resp->sUPER);
+        self::assertNotNull($resp->eIGEN);
+        self::assertNotNull($resp->iOI);
+        self::assertNotNull($resp->kSM);
+        self::assertNotNull($resp->cCD);
+        self::assertNotNull($resp->eGO);
+        self::assertNotNull($resp->eGP);
+        self::assertNotNull($resp->mXC);
+        self::assertNotNull($resp->tEL);
+        self::assertNotNull($resp->mOVR);
+        self::assertNotNull($resp->xMR);
+        self::assertNotNull($resp->mXM);
+        self::assertNotNull($resp->oORT);
+        self::assertNotNull($resp->gLM);
+        self::assertNotNull($resp->rAY);
+        self::assertNotNull($resp->xTAG);
+        self::assertNotNull($resp->gLQ);
+        self::assertNotNull($resp->cWEB);
+        self::assertNotNull($resp->rEVU);
+        self::assertNotNull($resp->rEVV);
+        self::assertNotNull($resp->zRO);
+        self::assertNotNull($resp->xNL);
+        self::assertNotNull($resp->xNO);
+        self::assertNotNull($resp->sAROS);
+        self::assertNotNull($resp->kACE);
+        self::assertNotNull($resp->zRX);
+        self::assertNotNull($resp->wLTH);
+        self::assertNotNull($resp->aTOM3L);
+        self::assertNotNull($resp->gMM);
+        self::assertNotNull($resp->bEER);
+        self::assertNotNull($resp->gMT);
+        self::assertNotNull($resp->hEART);
+        self::assertNotNull($resp->gMX);
+        self::assertNotNull($resp->aBBC);
+        self::assertNotNull($resp->oMNI);
+        self::assertNotNull($resp->aTOM3S);
+        self::assertNotNull($resp->iRL);
+        self::assertNotNull($resp->cFG);
+        self::assertNotNull($resp->wSDM);
+        self::assertNotNull($resp->gNS);
+        self::assertNotNull($resp->vANRY);
+        self::assertNotNull($resp->cFX);
+        self::assertNotNull($resp->gRAIL);
+        self::assertNotNull($resp->bEFI);
+        self::assertNotNull($resp->vELO);
+        self::assertNotNull($resp->xPR);
+        self::assertNotNull($resp->dOVI);
+        self::assertNotNull($resp->aCE);
+        self::assertNotNull($resp->aCH);
+        self::assertNotNull($resp->iSP);
+        self::assertNotNull($resp->xCAD);
+        self::assertNotNull($resp->mINA);
+        self::assertNotNull($resp->tIA);
+        self::assertNotNull($resp->dRIFT);
+        self::assertNotNull($resp->aCQ);
+        self::assertNotNull($resp->aCS);
+        self::assertNotNull($resp->mIND);
+        self::assertNotNull($resp->sTORE);
+        self::assertNotNull($resp->rEN);
+        self::assertNotNull($resp->eLA);
+        self::assertNotNull($resp->dREAMS);
+        self::assertNotNull($resp->aDA);
+        self::assertNotNull($resp->eLF);
+        self::assertNotNull($resp->rEQ);
+        self::assertNotNull($resp->sTORJ);
+        self::assertNotNull($resp->lADYS);
+        self::assertNotNull($resp->pAXG);
+        self::assertNotNull($resp->rEZ);
+        self::assertNotNull($resp->xRD);
+        self::assertNotNull($resp->cHO);
+        self::assertNotNull($resp->cHR);
+        self::assertNotNull($resp->aDS);
+        self::assertNotNull($resp->cHZ);
+        self::assertNotNull($resp->aDX);
+        self::assertNotNull($resp->xRP);
+        self::assertNotNull($resp->jASMY);
+        self::assertNotNull($resp->kAGI);
+        self::assertNotNull($resp->fIDA);
+        self::assertNotNull($resp->pBR);
+        self::assertNotNull($resp->aEG);
+        self::assertNotNull($resp->h2O);
+        self::assertNotNull($resp->cHMB);
+        self::assertNotNull($resp->sAND3L);
+        self::assertNotNull($resp->pBX);
+        self::assertNotNull($resp->sOLVE);
+        self::assertNotNull($resp->dECHAT);
+        self::assertNotNull($resp->gARI);
+        self::assertNotNull($resp->sHIB2L);
+        self::assertNotNull($resp->sHIB2S);
+        self::assertNotNull($resp->eNA);
+        self::assertNotNull($resp->vEMP);
+        self::assertNotNull($resp->eNJ);
+        self::assertNotNull($resp->aFG);
+        self::assertNotNull($resp->rATS);
+        self::assertNotNull($resp->gRT);
+        self::assertNotNull($resp->fORWARD);
+        self::assertNotNull($resp->tFUEL);
+        self::assertNotNull($resp->eNS);
+        self::assertNotNull($resp->kASDOWN);
+        self::assertNotNull($resp->xTM);
+        self::assertNotNull($resp->dEGEN);
+        self::assertNotNull($resp->tLM);
+        self::assertNotNull($resp->dYDXDOWN);
+        self::assertNotNull($resp->cKB);
+        self::assertNotNull($resp->lUNC);
+        self::assertNotNull($resp->aURORA);
+        self::assertNotNull($resp->lUNA);
+        self::assertNotNull($resp->xTZ);
+        self::assertNotNull($resp->eLON);
+        self::assertNotNull($resp->dMTR);
+        self::assertNotNull($resp->eOS);
+        self::assertNotNull($resp->gST);
+        self::assertNotNull($resp->fORT);
+        self::assertNotNull($resp->fLAME);
+        self::assertNotNull($resp->pATEX);
+        self::assertNotNull($resp->dEEP);
+        self::assertNotNull($resp->iD3L);
+        self::assertNotNull($resp->gTC);
+        self::assertNotNull($resp->iD3S);
+        self::assertNotNull($resp->rIO);
+        self::assertNotNull($resp->cLH);
+        self::assertNotNull($resp->bURGER);
+        self::assertNotNull($resp->vRA);
+        self::assertNotNull($resp->sUNDOG);
+        self::assertNotNull($resp->gTT);
+        self::assertNotNull($resp->iNJUP);
+        self::assertNotNull($resp->cPOOL);
+        self::assertNotNull($resp->ePX);
+        self::assertNotNull($resp->cLV);
+        self::assertNotNull($resp->fEAR);
+        self::assertNotNull($resp->mEME);
+        self::assertNotNull($resp->rOOBEE);
+        self::assertNotNull($resp->dEFI);
+        self::assertNotNull($resp->tOKEN);
+        self::assertNotNull($resp->gRAPE);
+        self::assertNotNull($resp->kASUP);
+        self::assertNotNull($resp->xWG);
+        self::assertNotNull($resp->sKEY);
+        self::assertNotNull($resp->sFUND);
+        self::assertNotNull($resp->eQX);
+        self::assertNotNull($resp->oRDIUP);
+        self::assertNotNull($resp->tON);
+        self::assertNotNull($resp->dEGO);
+        self::assertNotNull($resp->iZI);
+        self::assertNotNull($resp->eRG);
+        self::assertNotNull($resp->eRN);
+        self::assertNotNull($resp->vENOM);
+        self::assertNotNull($resp->vOXEL);
+        self::assertNotNull($resp->rLC);
+        self::assertNotNull($resp->pHA);
+        self::assertNotNull($resp->dYDXUP);
+        self::assertNotNull($resp->aPE3S);
+        self::assertNotNull($resp->oRBS);
+        self::assertNotNull($resp->oPDOWN);
+        self::assertNotNull($resp->eSE);
+        self::assertNotNull($resp->aPE3L);
+        self::assertNotNull($resp->hMND);
+        self::assertNotNull($resp->cOQ);
+        self::assertNotNull($resp->aURY);
+        self::assertNotNull($resp->cULT);
+        self::assertNotNull($resp->aKT);
+        self::assertNotNull($resp->gLMR);
+        self::assertNotNull($resp->xYM);
+        self::assertNotNull($resp->oRAI);
+        self::assertNotNull($resp->xYO);
+        self::assertNotNull($resp->eTC);
+        self::assertNotNull($resp->lAI);
+        self::assertNotNull($resp->pIP);
+        self::assertNotNull($resp->eTH);
+        self::assertNotNull($resp->nEO);
+        self::assertNotNull($resp->rMV);
+        self::assertNotNull($resp->kLAY);
+        self::assertNotNull($resp->pIT);
+        self::assertNotNull($resp->tARA);
+        self::assertNotNull($resp->kALT);
+        self::assertNotNull($resp->pIX);
+        self::assertNotNull($resp->eTN);
+        self::assertNotNull($resp->cSIX);
+        self::assertNotNull($resp->tRADE);
+        self::assertNotNull($resp->mAVIA);
+        self::assertNotNull($resp->hIGH);
+        self::assertNotNull($resp->tRB);
+        self::assertNotNull($resp->oRDI);
+        self::assertNotNull($resp->tRVL);
+        self::assertNotNull($resp->aMB);
+        self::assertNotNull($resp->tRU);
+        self::assertNotNull($resp->lOGX);
+        self::assertNotNull($resp->fINC);
+        self::assertNotNull($resp->iNFRA);
+        self::assertNotNull($resp->nATIX);
+        self::assertNotNull($resp->nFP);
+        self::assertNotNull($resp->tRY);
+        self::assertNotNull($resp->tRX);
+        self::assertNotNull($resp->lBP);
+        self::assertNotNull($resp->lBR);
+        self::assertNotNull($resp->eUL);
+        self::assertNotNull($resp->nFT);
+        self::assertNotNull($resp->sEIUP);
+        self::assertNotNull($resp->pUFFER);
+        self::assertNotNull($resp->eUR);
+        self::assertNotNull($resp->oRCA);
+        self::assertNotNull($resp->nEAR3L);
+        self::assertNotNull($resp->aMP);
+        self::assertNotNull($resp->xDEFI);
+        self::assertNotNull($resp->hIFI);
+        self::assertNotNull($resp->tRUF);
+        self::assertNotNull($resp->aITECH);
+        self::assertNotNull($resp->aMU);
+        self::assertNotNull($resp->uSTC);
+        self::assertNotNull($resp->kNGL);
+        self::assertNotNull($resp->fOXY);
+        self::assertNotNull($resp->nGC);
+        self::assertNotNull($resp->tENET);
+        self::assertNotNull($resp->nEAR3S);
+        self::assertNotNull($resp->mAHA);
+        self::assertNotNull($resp->nGL);
+        self::assertNotNull($resp->tST);
+        self::assertNotNull($resp->hIPPO);
+        self::assertNotNull($resp->aXS3S);
+        self::assertNotNull($resp->cRO);
+        self::assertNotNull($resp->zPAY);
+        self::assertNotNull($resp->mNDE);
+        self::assertNotNull($resp->cRV);
+        self::assertNotNull($resp->sWASH);
+        self::assertNotNull($resp->aXS3L);
+        self::assertNotNull($resp->vERSE);
+        self::assertNotNull($resp->rPK);
+        self::assertNotNull($resp->rPL);
+        self::assertNotNull($resp->aZERO);
+        self::assertNotNull($resp->sOUL);
+        self::assertNotNull($resp->vXV);
+        self::assertNotNull($resp->lDO);
+        self::assertNotNull($resp->mAGIC);
+        self::assertNotNull($resp->aLICE);
+        self::assertNotNull($resp->sEAM);
+        self::assertNotNull($resp->pLU);
+        self::assertNotNull($resp->aOG);
+        self::assertNotNull($resp->sMOLE);
+        self::assertNotNull($resp->eWT);
+        self::assertNotNull($resp->tSUGT);
+        self::assertNotNull($resp->pMG);
+        self::assertNotNull($resp->oPAI);
+        self::assertNotNull($resp->lOCUS);
+        self::assertNotNull($resp->cTA);
+        self::assertNotNull($resp->nIM);
+        self::assertNotNull($resp->cTC);
+        self::assertNotNull($resp->aPE);
+        self::assertNotNull($resp->mERL);
+        self::assertNotNull($resp->jAM);
+        self::assertNotNull($resp->cTI);
+        self::assertNotNull($resp->aPP);
+        self::assertNotNull($resp->aPT);
+        self::assertNotNull($resp->wLDUP);
+        self::assertNotNull($resp->zEND);
+        self::assertNotNull($resp->fIRE);
+        self::assertNotNull($resp->dENT);
+        self::assertNotNull($resp->pYTH);
+        self::assertNotNull($resp->lFT);
+        self::assertNotNull($resp->dPET);
+        self::assertNotNull($resp->oRDIDOWN);
+        self::assertNotNull($resp->kPOL);
+        self::assertNotNull($resp->eTHUP);
+        self::assertNotNull($resp->bAND);
+        self::assertNotNull($resp->pOL);
+        self::assertNotNull($resp->aSTR);
+        self::assertNotNull($resp->nKN);
+        self::assertNotNull($resp->rSR);
+        self::assertNotNull($resp->dVPN);
+        self::assertNotNull($resp->tWT);
+        self::assertNotNull($resp->aRB);
+        self::assertNotNull($resp->cVC);
+        self::assertNotNull($resp->aRC);
+        self::assertNotNull($resp->xETA);
+        self::assertNotNull($resp->mTRG);
+        self::assertNotNull($resp->lOKA);
+        self::assertNotNull($resp->lPOOL);
+        self::assertNotNull($resp->tURBOS);
+        self::assertNotNull($resp->cVX);
+        self::assertNotNull($resp->aRX);
+        self::assertNotNull($resp->mPLX);
+        self::assertNotNull($resp->sUSHI);
+        self::assertNotNull($resp->nLK);
+        self::assertNotNull($resp->pEPE2);
+        self::assertNotNull($resp->wBTC);
+        self::assertNotNull($resp->sUI3L);
+        self::assertNotNull($resp->cWS);
+        self::assertNotNull($resp->sUI3S);
+        self::assertNotNull($resp->iNSP);
+        self::assertNotNull($resp->mANA);
+        self::assertNotNull($resp->vRTX);
+        self::assertNotNull($resp->cSPR);
+        self::assertNotNull($resp->aTA);
+        self::assertNotNull($resp->oPEN);
+        self::assertNotNull($resp->hAI);
+        self::assertNotNull($resp->nMR);
+        self::assertNotNull($resp->aTH);
+        self::assertNotNull($resp->lIT);
+        self::assertNotNull($resp->tLOS);
+        self::assertNotNull($resp->tNSR);
+        self::assertNotNull($resp->cXT);
+        self::assertNotNull($resp->pOLYX);
+        self::assertNotNull($resp->zERO);
+        self::assertNotNull($resp->rOUTE);
+        self::assertNotNull($resp->lOOM);
+        self::assertNotNull($resp->pRE);
+        self::assertNotNull($resp->vRAUP);
+        self::assertNotNull($resp->hBB);
+        self::assertNotNull($resp->rVN);
+        self::assertNotNull($resp->pRQ);
+        self::assertNotNull($resp->oNDO);
+        self::assertNotNull($resp->pEPEDOWN);
+        self::assertNotNull($resp->wOOP);
+        self::assertNotNull($resp->lUNCUP);
+        self::assertNotNull($resp->kAVA);
+        self::assertNotNull($resp->lKI);
+        self::assertNotNull($resp->aVA);
+        self::assertNotNull($resp->nOM);
+        self::assertNotNull($resp->mAPO);
+        self::assertNotNull($resp->pEPEUP);
+        self::assertNotNull($resp->sTRAX);
+        self::assertNotNull($resp->nOT);
+        self::assertNotNull($resp->zERC);
+        self::assertNotNull($resp->bCUT);
+        self::assertNotNull($resp->mASA);
+        self::assertNotNull($resp->wAN);
+        self::assertNotNull($resp->wAT);
+        self::assertNotNull($resp->wAX);
+        self::assertNotNull($resp->mASK);
+        self::assertNotNull($resp->eOS3L);
+        self::assertNotNull($resp->iDEA);
+        self::assertNotNull($resp->eOS3S);
+        self::assertNotNull($resp->yFI);
+        self::assertNotNull($resp->mOODENG);
+        self::assertNotNull($resp->xCUR);
+        self::assertNotNull($resp->hYDRA);
+        self::assertNotNull($resp->pOPCAT);
+        self::assertNotNull($resp->lQTY);
+        self::assertNotNull($resp->pIXEL);
+        self::assertNotNull($resp->lMR);
+        self::assertNotNull($resp->zETA);
+        self::assertNotNull($resp->yGG);
+        self::assertNotNull($resp->aXS);
+        self::assertNotNull($resp->bCHSV);
+        self::assertNotNull($resp->nRN);
+        self::assertNotNull($resp->fTON);
+        self::assertNotNull($resp->cOMP);
+        self::assertNotNull($resp->xPRT);
+        self::assertNotNull($resp->hFT);
+        self::assertNotNull($resp->uXLINK);
+        self::assertNotNull($resp->sTAMP);
+        self::assertNotNull($resp->rUNE);
+        self::assertNotNull($resp->zEUS);
+        self::assertNotNull($resp->lTC3L);
+        self::assertNotNull($resp->dAPP);
+        self::assertNotNull($resp->fORTH);
+        self::assertNotNull($resp->aLPINE);
+        self::assertNotNull($resp->sENSO);
+        self::assertNotNull($resp->lTC3S);
+        self::assertNotNull($resp->dEXE);
+        self::assertNotNull($resp->gOAL);
+        self::assertNotNull($resp->aVAX);
+        self::assertNotNull($resp->lISTA);
+        self::assertNotNull($resp->aMPL);
+        self::assertNotNull($resp->wORK);
+        self::assertNotNull($resp->bRWL);
+        self::assertNotNull($resp->bANANA);
+        self::assertNotNull($resp->pUSH);
+        self::assertNotNull($resp->wEN);
+        self::assertNotNull($resp->nEIRO);
+        self::assertNotNull($resp->bTCUP);
+        self::assertNotNull($resp->sOL3S);
+        self::assertNotNull($resp->bRAWL);
+        self::assertNotNull($resp->lAY3R);
+        self::assertNotNull($resp->lPT);
+        self::assertNotNull($resp->gODS);
+        self::assertNotNull($resp->sAND3S);
+        self::assertNotNull($resp->rDNT);
+        self::assertNotNull($resp->sOL3L);
+        self::assertNotNull($resp->nIBI);
+        self::assertNotNull($resp->nUM);
+        self::assertNotNull($resp->pYR);
+        self::assertNotNull($resp->dAG);
+        self::assertNotNull($resp->dAI);
+        self::assertNotNull($resp->hIP);
+        self::assertNotNull($resp->dAO);
+        self::assertNotNull($resp->aVAIL);
+        self::assertNotNull($resp->dAR);
+        self::assertNotNull($resp->fET);
+        self::assertNotNull($resp->fCON);
+        self::assertNotNull($resp->xAVA);
+        self::assertNotNull($resp->lRC);
+        self::assertNotNull($resp->uNI3S);
+        self::assertNotNull($resp->pOKT);
+        self::assertNotNull($resp->dASH);
+        self::assertNotNull($resp->bAKEDOWN);
+        self::assertNotNull($resp->pOLC);
+        self::assertNotNull($resp->cIRUS);
+        self::assertNotNull($resp->uNI3L);
+        self::assertNotNull($resp->nWC);
+        self::assertNotNull($resp->pOLK);
+        self::assertNotNull($resp->lSD);
+        self::assertNotNull($resp->mARS4);
+        self::assertNotNull($resp->lSK);
+        self::assertNotNull($resp->bLOCK);
+        self::assertNotNull($resp->aNALOS);
+        self::assertNotNull($resp->sAFE);
+        self::assertNotNull($resp->dCK);
+        self::assertNotNull($resp->lSS);
+        self::assertNotNull($resp->dCR);
+        self::assertNotNull($resp->lIKE);
+        self::assertNotNull($resp->dATA);
+        self::assertNotNull($resp->wIF);
+        self::assertNotNull($resp->bLOK);
+        self::assertNotNull($resp->lTC);
+        self::assertNotNull($resp->mETIS);
+        self::assertNotNull($resp->wIN);
+        self::assertNotNull($resp->hLG);
+        self::assertNotNull($resp->lTO);
+        self::assertNotNull($resp->dYDX);
+        self::assertNotNull($resp->aRB3S);
+        self::assertNotNull($resp->mUBI);
+        self::assertNotNull($resp->aRB3L);
+        self::assertNotNull($resp->rBTC1);
+        self::assertNotNull($resp->pOND);
+        self::assertNotNull($resp->lINA);
+        self::assertNotNull($resp->mYRIA);
+        self::assertNotNull($resp->lINK);
+        self::assertNotNull($resp->qTUM);
+        self::assertNotNull($resp->tUNE);
+        self::assertNotNull($resp->uFO);
+        self::assertNotNull($resp->cYBER);
+        self::assertNotNull($resp->wILD);
+        self::assertNotNull($resp->pOLS);
+        self::assertNotNull($resp->nYM);
+        self::assertNotNull($resp->fIL);
+        self::assertNotNull($resp->bAL);
+        self::assertNotNull($resp->sCA);
+        self::assertNotNull($resp->sTND);
+        self::assertNotNull($resp->wMTX);
+        self::assertNotNull($resp->sCLP);
+        self::assertNotNull($resp->mANEKI);
+        self::assertNotNull($resp->bAT);
+        self::assertNotNull($resp->aKRO);
+        self::assertNotNull($resp->fTM3L);
+        self::assertNotNull($resp->bAX);
+        self::assertNotNull($resp->fTM3S);
+        self::assertNotNull($resp->cOTI);
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
+    /**
+    * get24hrStats
+    * Get 24hr Stats
+    * /api/v1/market/stats
+    */
+    public function testGet24hrStats() {
+        $builder = Get24hrStatsReq::builder();
+        $builder->setSymbol(?);
+        $req = $builder->build();
+        $resp = $this->api->get24hrStats($req);
+        self::assertNotNull($resp->time);
+        self::assertNotNull($resp->symbol);
+        self::assertNotNull($resp->buy);
+        self::assertNotNull($resp->sell);
+        self::assertNotNull($resp->changeRate);
+        self::assertNotNull($resp->changePrice);
+        self::assertNotNull($resp->high);
+        self::assertNotNull($resp->low);
+        self::assertNotNull($resp->vol);
+        self::assertNotNull($resp->volValue);
+        self::assertNotNull($resp->last);
+        self::assertNotNull($resp->averagePrice);
+        self::assertNotNull($resp->takerFeeRate);
+        self::assertNotNull($resp->makerFeeRate);
+        self::assertNotNull($resp->takerCoefficient);
+        self::assertNotNull($resp->makerCoefficient);
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
+    /**
+    * getMarketList
+    * Get Market List
+    * /api/v1/markets
+    */
+    public function testGetMarketList() {
+        $resp = $this->api->getMarketList();
+        foreach($resp->data as $item) {
+        }
+
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
+    /**
+    * getClientIPAddress
+    * Get Client IP Address
+    * /api/v1/my-ip
+    */
+    public function testGetClientIPAddress() {
+        $resp = $this->api->getClientIPAddress();
+        self::assertNotNull($resp->data);
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
+    /**
+    * getServerTime
+    * Get Server Time
+    * /api/v1/timestamp
+    */
+    public function testGetServerTime() {
+        $resp = $this->api->getServerTime();
+        self::assertNotNull($resp->data);
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
+    /**
+    * getServiceStatus
+    * Get Service Status
+    * /api/v1/status
+    */
+    public function testGetServiceStatus() {
+        $resp = $this->api->getServiceStatus();
+        self::assertNotNull($resp->status);
+        self::assertNotNull($resp->msg);
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
+    /**
+    * getPublicToken
+    * Get Public Token - Spot/Margin
+    * /api/v1/bullet-public
+    */
+    public function testGetPublicToken() {
+        $resp = $this->api->getPublicToken();
+        self::assertNotNull($resp->token);
+        foreach($resp->instanceServers as $item) {
+            self::assertNotNull($item->endpoint);
+            self::assertNotNull($item->encrypt);
+            self::assertNotNull($item->protocol);
+            self::assertNotNull($item->pingInterval);
+            self::assertNotNull($item->pingTimeout);
+        }
+
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
+    /**
+    * getPrivateToken
+    * Get Private Token - Spot/Margin
+    * /api/v1/bullet-private
+    */
+    public function testGetPrivateToken() {
+        $resp = $this->api->getPrivateToken();
+        self::assertNotNull($resp->token);
+        foreach($resp->instanceServers as $item) {
+            self::assertNotNull($item->endpoint);
+            self::assertNotNull($item->encrypt);
+            self::assertNotNull($item->protocol);
+            self::assertNotNull($item->pingInterval);
+            self::assertNotNull($item->pingTimeout);
+        }
+
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+

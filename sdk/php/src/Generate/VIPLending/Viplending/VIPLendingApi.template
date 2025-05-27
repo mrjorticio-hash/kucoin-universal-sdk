@@ -1,0 +1,62 @@
+
+    /**
+    * getDiscountRateConfigs
+    * Get Discount Rate Configs
+    * /api/v1/otc-loan/discount-rate-configs
+    */
+    public function testGetDiscountRateConfigs() {
+        $resp = $this->api->getDiscountRateConfigs();
+        foreach($resp->data as $item) {
+            self::assertNotNull($item->currency);
+            self::assertNotNull($item->usdtLevels);
+        }
+
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
+    /**
+    * getLoanInfo
+    * Get Loan Info
+    * /api/v1/otc-loan/loan
+    */
+    public function testGetLoanInfo() {
+        $resp = $this->api->getLoanInfo();
+        self::assertNotNull($resp->parentUid);
+        foreach($resp->orders as $item) {
+            self::assertNotNull($item->orderId);
+            self::assertNotNull($item->principal);
+            self::assertNotNull($item->interest);
+            self::assertNotNull($item->currency);
+        }
+
+        self::assertNotNull($resp->ltv);
+        self::assertNotNull($resp->totalMarginAmount);
+        self::assertNotNull($resp->transferMarginAmount);
+        foreach($resp->margins as $item) {
+            self::assertNotNull($item->marginCcy);
+            self::assertNotNull($item->marginQty);
+            self::assertNotNull($item->marginFactor);
+        }
+
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
+    /**
+    * getAccounts
+    * Get Accounts
+    * /api/v1/otc-loan/accounts
+    */
+    public function testGetAccounts() {
+        $resp = $this->api->getAccounts();
+        foreach($resp->data as $item) {
+            self::assertNotNull($item->uid);
+            self::assertNotNull($item->marginCcy);
+            self::assertNotNull($item->marginQty);
+            self::assertNotNull($item->marginFactor);
+            self::assertNotNull($item->accountType);
+            self::assertNotNull($item->isParent);
+        }
+
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+

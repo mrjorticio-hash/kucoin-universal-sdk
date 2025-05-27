@@ -1,0 +1,166 @@
+
+    /**
+    * addDepositAddressV3
+    * Add Deposit Address (V3)
+    * /api/v3/deposit-address/create
+    */
+    public function testAddDepositAddressV3() {
+        $builder = AddDepositAddressV3Req::builder();
+        $builder->setCurrency(?)->setChain(?)->setTo(?)->setAmount(?);
+        $req = $builder->build();
+        $resp = $this->api->addDepositAddressV3($req);
+        self::assertNotNull($resp->address);
+        self::assertNotNull($resp->memo);
+        self::assertNotNull($resp->chainId);
+        self::assertNotNull($resp->to);
+        self::assertNotNull($resp->expirationDate);
+        self::assertNotNull($resp->currency);
+        self::assertNotNull($resp->chainName);
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
+    /**
+    * getDepositAddressV3
+    * Get Deposit Address (V3)
+    * /api/v3/deposit-addresses
+    */
+    public function testGetDepositAddressV3() {
+        $builder = GetDepositAddressV3Req::builder();
+        $builder->setCurrency(?)->setAmount(?)->setChain(?);
+        $req = $builder->build();
+        $resp = $this->api->getDepositAddressV3($req);
+        foreach($resp->data as $item) {
+            self::assertNotNull($item->address);
+            self::assertNotNull($item->memo);
+            self::assertNotNull($item->chainId);
+            self::assertNotNull($item->to);
+            self::assertNotNull($item->expirationDate);
+            self::assertNotNull($item->currency);
+            self::assertNotNull($item->contractAddress);
+            self::assertNotNull($item->chainName);
+        }
+
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
+    /**
+    * getDepositHistory
+    * Get Deposit History
+    * /api/v1/deposits
+    */
+    public function testGetDepositHistory() {
+        $builder = GetDepositHistoryReq::builder();
+        $builder->setCurrency(?)->setStatus(?)->setStartAt(?)->setEndAt(?)->setCurrentPage(?)->setPageSize(?);
+        $req = $builder->build();
+        $resp = $this->api->getDepositHistory($req);
+        self::assertNotNull($resp->currentPage);
+        self::assertNotNull($resp->pageSize);
+        self::assertNotNull($resp->totalNum);
+        self::assertNotNull($resp->totalPage);
+        foreach($resp->items as $item) {
+            self::assertNotNull($item->currency);
+            self::assertNotNull($item->chain);
+            self::assertNotNull($item->status);
+            self::assertNotNull($item->address);
+            self::assertNotNull($item->memo);
+            self::assertNotNull($item->isInner);
+            self::assertNotNull($item->amount);
+            self::assertNotNull($item->fee);
+            self::assertNotNull($item->walletTxId);
+            self::assertNotNull($item->createdAt);
+            self::assertNotNull($item->updatedAt);
+            self::assertNotNull($item->remark);
+            self::assertNotNull($item->arrears);
+        }
+
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
+    /**
+    * getDepositAddressV2
+    * Get Deposit Addresses (V2)
+    * /api/v2/deposit-addresses
+    */
+    public function testGetDepositAddressV2() {
+        $builder = GetDepositAddressV2Req::builder();
+        $builder->setCurrency(?)->setChain(?);
+        $req = $builder->build();
+        $resp = $this->api->getDepositAddressV2($req);
+        foreach($resp->data as $item) {
+            self::assertNotNull($item->address);
+            self::assertNotNull($item->memo);
+            self::assertNotNull($item->chain);
+            self::assertNotNull($item->chainId);
+            self::assertNotNull($item->to);
+            self::assertNotNull($item->currency);
+            self::assertNotNull($item->contractAddress);
+        }
+
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
+    /**
+    * getDepositAddressV1
+    * Get Deposit Addresses - V1
+    * /api/v1/deposit-addresses
+    */
+    public function testGetDepositAddressV1() {
+        $builder = GetDepositAddressV1Req::builder();
+        $builder->setCurrency(?)->setChain(?);
+        $req = $builder->build();
+        $resp = $this->api->getDepositAddressV1($req);
+        self::assertNotNull($resp->address);
+        self::assertNotNull($resp->memo);
+        self::assertNotNull($resp->chain);
+        self::assertNotNull($resp->chainId);
+        self::assertNotNull($resp->to);
+        self::assertNotNull($resp->currency);
+        self::assertNotNull($resp->contractAddress);
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
+    /**
+    * getDepositHistoryOld
+    * Get Deposit History - Old
+    * /api/v1/hist-deposits
+    */
+    public function testGetDepositHistoryOld() {
+        $builder = GetDepositHistoryOldReq::builder();
+        $builder->setCurrency(?)->setStatus(?)->setStartAt(?)->setEndAt(?);
+        $req = $builder->build();
+        $resp = $this->api->getDepositHistoryOld($req);
+        self::assertNotNull($resp->currentPage);
+        self::assertNotNull($resp->pageSize);
+        self::assertNotNull($resp->totalNum);
+        self::assertNotNull($resp->totalPage);
+        foreach($resp->items as $item) {
+            self::assertNotNull($item->currency);
+            self::assertNotNull($item->createAt);
+            self::assertNotNull($item->amount);
+            self::assertNotNull($item->walletTxId);
+            self::assertNotNull($item->isInner);
+            self::assertNotNull($item->status);
+        }
+
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
+    /**
+    * addDepositAddressV1
+    * Add Deposit Address - V1
+    * /api/v1/deposit-addresses
+    */
+    public function testAddDepositAddressV1() {
+        $builder = AddDepositAddressV1Req::builder();
+        $builder->setCurrency(?)->setChain(?)->setTo(?);
+        $req = $builder->build();
+        $resp = $this->api->addDepositAddressV1($req);
+        self::assertNotNull($resp->address);
+        self::assertNotNull($resp->memo);
+        self::assertNotNull($resp->chain);
+        self::assertNotNull($resp->chainId);
+        self::assertNotNull($resp->to);
+        self::assertNotNull($resp->currency);
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
