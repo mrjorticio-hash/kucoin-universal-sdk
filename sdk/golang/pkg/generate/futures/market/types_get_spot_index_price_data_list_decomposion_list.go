@@ -7,14 +7,14 @@ type GetSpotIndexPriceDataListDecomposionList struct {
 	// Exchange
 	Exchange string `json:"exchange,omitempty"`
 	// Price
-	Price float32 `json:"price,omitempty"`
+	Price float64 `json:"price,omitempty"`
 	// Weight
-	Weight float32 `json:"weight,omitempty"`
+	Weight float64 `json:"weight,omitempty"`
 }
 
 // NewGetSpotIndexPriceDataListDecomposionList instantiates a new GetSpotIndexPriceDataListDecomposionList object
 // This constructor will assign default values to properties that have it defined
-func NewGetSpotIndexPriceDataListDecomposionList(exchange string, price float32, weight float32) *GetSpotIndexPriceDataListDecomposionList {
+func NewGetSpotIndexPriceDataListDecomposionList(exchange string, price float64, weight float64) *GetSpotIndexPriceDataListDecomposionList {
 	this := GetSpotIndexPriceDataListDecomposionList{}
 	this.Exchange = exchange
 	this.Price = price

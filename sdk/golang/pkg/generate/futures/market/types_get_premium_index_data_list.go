@@ -11,12 +11,12 @@ type GetPremiumIndexDataList struct {
 	// Timestamp (milliseconds)
 	TimePoint int64 `json:"timePoint,omitempty"`
 	// Premium index
-	Value float32 `json:"value,omitempty"`
+	Value float64 `json:"value,omitempty"`
 }
 
 // NewGetPremiumIndexDataList instantiates a new GetPremiumIndexDataList object
 // This constructor will assign default values to properties that have it defined
-func NewGetPremiumIndexDataList(symbol string, granularity int32, timePoint int64, value float32) *GetPremiumIndexDataList {
+func NewGetPremiumIndexDataList(symbol string, granularity int32, timePoint int64, value float64) *GetPremiumIndexDataList {
 	this := GetPremiumIndexDataList{}
 	this.Symbol = symbol
 	this.Granularity = granularity

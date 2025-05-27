@@ -13,10 +13,10 @@ type InstrumentEvent struct {
 	CommonResponse *types.WsMessage
 	// Granularity (predicted funding rate: 1-min granularity: 60000; Funding rate: 8-hours granularity: 28800000.)
 	Granularity int32    `json:"granularity,omitempty"`
-	FundingRate *float32 `json:"fundingRate,omitempty"`
+	FundingRate *float64 `json:"fundingRate,omitempty"`
 	Timestamp   int64    `json:"timestamp,omitempty"`
-	MarkPrice   *float32 `json:"markPrice,omitempty"`
-	IndexPrice  *float32 `json:"indexPrice,omitempty"`
+	MarkPrice   *float64 `json:"markPrice,omitempty"`
+	IndexPrice  *float64 `json:"indexPrice,omitempty"`
 }
 
 // NewInstrumentEvent instantiates a new InstrumentEvent object

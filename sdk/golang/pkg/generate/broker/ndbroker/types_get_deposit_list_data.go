@@ -5,7 +5,7 @@ package ndbroker
 // GetDepositListData struct for GetDepositListData
 type GetDepositListData struct {
 	// deposit uid
-	Uid float32 `json:"uid,omitempty"`
+	Uid float64 `json:"uid,omitempty"`
 	// hash
 	Hash string `json:"hash,omitempty"`
 	// Deposit address
@@ -36,7 +36,7 @@ type GetDepositListData struct {
 
 // NewGetDepositListData instantiates a new GetDepositListData object
 // This constructor will assign default values to properties that have it defined
-func NewGetDepositListData(uid float32, hash string, address string, memo string, amount string, fee string, currency string, isInner bool, walletTxId string, status string, remark string, chain string, createdAt int64, updatedAt int64) *GetDepositListData {
+func NewGetDepositListData(uid float64, hash string, address string, memo string, amount string, fee string, currency string, isInner bool, walletTxId string, status string, remark string, chain string, createdAt int64, updatedAt int64) *GetDepositListData {
 	this := GetDepositListData{}
 	this.Uid = uid
 	this.Hash = hash

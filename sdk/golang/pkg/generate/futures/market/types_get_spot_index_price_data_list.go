@@ -11,14 +11,14 @@ type GetSpotIndexPriceDataList struct {
 	// Timestamp (milliseconds)
 	TimePoint int64 `json:"timePoint,omitempty"`
 	// Index Value
-	Value float32 `json:"value,omitempty"`
+	Value float64 `json:"value,omitempty"`
 	// Component List
 	DecomposionList []GetSpotIndexPriceDataListDecomposionList `json:"decomposionList,omitempty"`
 }
 
 // NewGetSpotIndexPriceDataList instantiates a new GetSpotIndexPriceDataList object
 // This constructor will assign default values to properties that have it defined
-func NewGetSpotIndexPriceDataList(symbol string, granularity int32, timePoint int64, value float32, decomposionList []GetSpotIndexPriceDataListDecomposionList) *GetSpotIndexPriceDataList {
+func NewGetSpotIndexPriceDataList(symbol string, granularity int32, timePoint int64, value float64, decomposionList []GetSpotIndexPriceDataListDecomposionList) *GetSpotIndexPriceDataList {
 	this := GetSpotIndexPriceDataList{}
 	this.Symbol = symbol
 	this.Granularity = granularity

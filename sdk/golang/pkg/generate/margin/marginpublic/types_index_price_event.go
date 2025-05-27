@@ -14,12 +14,12 @@ type IndexPriceEvent struct {
 	Symbol         string  `json:"symbol,omitempty"`
 	Granularity    int32   `json:"granularity,omitempty"`
 	Timestamp      int64   `json:"timestamp,omitempty"`
-	Value          float32 `json:"value,omitempty"`
+	Value          float64 `json:"value,omitempty"`
 }
 
 // NewIndexPriceEvent instantiates a new IndexPriceEvent object
 // This constructor will assign default values to properties that have it defined
-func NewIndexPriceEvent(symbol string, granularity int32, timestamp int64, value float32) *IndexPriceEvent {
+func NewIndexPriceEvent(symbol string, granularity int32, timestamp int64, value float64) *IndexPriceEvent {
 	this := IndexPriceEvent{}
 	this.Symbol = symbol
 	this.Granularity = granularity

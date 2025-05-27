@@ -37,7 +37,7 @@ type GetOrderByClientOidResp struct {
 	// Mark to show whether the stop order is triggered
 	StopTriggered bool `json:"stopTriggered,omitempty"`
 	// Trigger price of stop orders
-	StopPrice float32 `json:"stopPrice,omitempty"`
+	StopPrice float64 `json:"stopPrice,omitempty"`
 	// Time in force policy type
 	TimeInForce string `json:"timeInForce,omitempty"`
 	// Mark of post only
@@ -90,7 +90,7 @@ type GetOrderByClientOidResp struct {
 
 // NewGetOrderByClientOidResp instantiates a new GetOrderByClientOidResp object
 // This constructor will assign default values to properties that have it defined
-func NewGetOrderByClientOidResp(id string, symbol string, Type_ string, side string, price string, size int32, value string, dealValue string, dealSize int32, stp string, stop string, stopPriceType string, stopTriggered bool, stopPrice float32, timeInForce string, postOnly bool, hidden bool, iceberg bool, leverage string, forceHold bool, closeOrder bool, visibleSize int32, clientOid string, remark string, tags string, isActive bool, cancelExist bool, createdAt int64, updatedAt int64, endAt int64, orderTime int64, settleCurrency string, marginMode string, avgDealPrice string, filledSize int32, filledValue string, status string, reduceOnly bool) *GetOrderByClientOidResp {
+func NewGetOrderByClientOidResp(id string, symbol string, Type_ string, side string, price string, size int32, value string, dealValue string, dealSize int32, stp string, stop string, stopPriceType string, stopTriggered bool, stopPrice float64, timeInForce string, postOnly bool, hidden bool, iceberg bool, leverage string, forceHold bool, closeOrder bool, visibleSize int32, clientOid string, remark string, tags string, isActive bool, cancelExist bool, createdAt int64, updatedAt int64, endAt int64, orderTime int64, settleCurrency string, marginMode string, avgDealPrice string, filledSize int32, filledValue string, status string, reduceOnly bool) *GetOrderByClientOidResp {
 	this := GetOrderByClientOidResp{}
 	this.Id = id
 	this.Symbol = symbol

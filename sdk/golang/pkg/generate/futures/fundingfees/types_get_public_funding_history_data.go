@@ -7,14 +7,14 @@ type GetPublicFundingHistoryData struct {
 	// Symbol of the contract. Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)
 	Symbol string `json:"symbol,omitempty"`
 	// Funding rate
-	FundingRate float32 `json:"fundingRate,omitempty"`
+	FundingRate float64 `json:"fundingRate,omitempty"`
 	// Time point (milliseconds)
 	Timepoint int64 `json:"timepoint,omitempty"`
 }
 
 // NewGetPublicFundingHistoryData instantiates a new GetPublicFundingHistoryData object
 // This constructor will assign default values to properties that have it defined
-func NewGetPublicFundingHistoryData(symbol string, fundingRate float32, timepoint int64) *GetPublicFundingHistoryData {
+func NewGetPublicFundingHistoryData(symbol string, fundingRate float64, timepoint int64) *GetPublicFundingHistoryData {
 	this := GetPublicFundingHistoryData{}
 	this.Symbol = symbol
 	this.FundingRate = fundingRate

@@ -17,18 +17,18 @@ type GetCurrentFundingRateResp struct {
 	// The funding rate settlement time point of the previous cycle (milliseconds)
 	TimePoint int64 `json:"timePoint,omitempty"`
 	// Current cycle funding rate
-	Value float32 `json:"value,omitempty"`
+	Value float64 `json:"value,omitempty"`
 	// Predicted funding rate
-	PredictedValue float32 `json:"predictedValue,omitempty"`
+	PredictedValue float64 `json:"predictedValue,omitempty"`
 	// Maximum Funding Rate
-	FundingRateCap float32 `json:"fundingRateCap,omitempty"`
+	FundingRateCap float64 `json:"fundingRateCap,omitempty"`
 	// Minimum Funding Rate
-	FundingRateFloor float32 `json:"fundingRateFloor,omitempty"`
+	FundingRateFloor float64 `json:"fundingRateFloor,omitempty"`
 }
 
 // NewGetCurrentFundingRateResp instantiates a new GetCurrentFundingRateResp object
 // This constructor will assign default values to properties that have it defined
-func NewGetCurrentFundingRateResp(symbol string, granularity int32, timePoint int64, value float32, predictedValue float32, fundingRateCap float32, fundingRateFloor float32) *GetCurrentFundingRateResp {
+func NewGetCurrentFundingRateResp(symbol string, granularity int32, timePoint int64, value float64, predictedValue float64, fundingRateCap float64, fundingRateFloor float64) *GetCurrentFundingRateResp {
 	this := GetCurrentFundingRateResp{}
 	this.Symbol = symbol
 	this.Granularity = granularity
