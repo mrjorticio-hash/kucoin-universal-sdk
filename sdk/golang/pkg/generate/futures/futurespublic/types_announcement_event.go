@@ -16,13 +16,13 @@ type AnnouncementEvent struct {
 	// Funding time
 	FundingTime int64 `json:"fundingTime,omitempty"`
 	// Funding rate
-	FundingRate float32 `json:"fundingRate,omitempty"`
+	FundingRate float64 `json:"fundingRate,omitempty"`
 	Timestamp   int64   `json:"timestamp,omitempty"`
 }
 
 // NewAnnouncementEvent instantiates a new AnnouncementEvent object
 // This constructor will assign default values to properties that have it defined
-func NewAnnouncementEvent(symbol string, fundingTime int64, fundingRate float32, timestamp int64) *AnnouncementEvent {
+func NewAnnouncementEvent(symbol string, fundingTime int64, fundingRate float64, timestamp int64) *AnnouncementEvent {
 	this := AnnouncementEvent{}
 	this.Symbol = symbol
 	this.FundingTime = fundingTime

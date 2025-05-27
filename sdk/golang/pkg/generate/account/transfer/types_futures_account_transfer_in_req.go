@@ -7,14 +7,14 @@ type FuturesAccountTransferInReq struct {
 	// Currency, including XBT, USDT...
 	Currency string `json:"currency,omitempty"`
 	// Amount to be transferred in
-	Amount float32 `json:"amount,omitempty"`
+	Amount float64 `json:"amount,omitempty"`
 	// Payment account type, including MAIN, TRADE
 	PayAccountType string `json:"payAccountType,omitempty"`
 }
 
 // NewFuturesAccountTransferInReq instantiates a new FuturesAccountTransferInReq object
 // This constructor will assign default values to properties that have it defined
-func NewFuturesAccountTransferInReq(currency string, amount float32, payAccountType string) *FuturesAccountTransferInReq {
+func NewFuturesAccountTransferInReq(currency string, amount float64, payAccountType string) *FuturesAccountTransferInReq {
 	this := FuturesAccountTransferInReq{}
 	this.Currency = currency
 	this.Amount = amount
@@ -52,7 +52,7 @@ func (builder *FuturesAccountTransferInReqBuilder) SetCurrency(value string) *Fu
 }
 
 // Amount to be transferred in
-func (builder *FuturesAccountTransferInReqBuilder) SetAmount(value float32) *FuturesAccountTransferInReqBuilder {
+func (builder *FuturesAccountTransferInReqBuilder) SetAmount(value float64) *FuturesAccountTransferInReqBuilder {
 	builder.obj.Amount = value
 	return builder
 }

@@ -6,20 +6,20 @@ package subaccount
 type GetFuturesSubAccountListV2Accounts struct {
 	// Account name, main account is main
 	AccountName      string  `json:"accountName,omitempty"`
-	AccountEquity    float32 `json:"accountEquity,omitempty"`
-	UnrealisedPNL    float32 `json:"unrealisedPNL,omitempty"`
-	MarginBalance    float32 `json:"marginBalance,omitempty"`
-	PositionMargin   float32 `json:"positionMargin,omitempty"`
-	OrderMargin      float32 `json:"orderMargin,omitempty"`
-	FrozenFunds      float32 `json:"frozenFunds,omitempty"`
-	AvailableBalance float32 `json:"availableBalance,omitempty"`
+	AccountEquity    float64 `json:"accountEquity,omitempty"`
+	UnrealisedPNL    float64 `json:"unrealisedPNL,omitempty"`
+	MarginBalance    float64 `json:"marginBalance,omitempty"`
+	PositionMargin   float64 `json:"positionMargin,omitempty"`
+	OrderMargin      float64 `json:"orderMargin,omitempty"`
+	FrozenFunds      float64 `json:"frozenFunds,omitempty"`
+	AvailableBalance float64 `json:"availableBalance,omitempty"`
 	// currency
 	Currency string `json:"currency,omitempty"`
 }
 
 // NewGetFuturesSubAccountListV2Accounts instantiates a new GetFuturesSubAccountListV2Accounts object
 // This constructor will assign default values to properties that have it defined
-func NewGetFuturesSubAccountListV2Accounts(accountName string, accountEquity float32, unrealisedPNL float32, marginBalance float32, positionMargin float32, orderMargin float32, frozenFunds float32, availableBalance float32, currency string) *GetFuturesSubAccountListV2Accounts {
+func NewGetFuturesSubAccountListV2Accounts(accountName string, accountEquity float64, unrealisedPNL float64, marginBalance float64, positionMargin float64, orderMargin float64, frozenFunds float64, availableBalance float64, currency string) *GetFuturesSubAccountListV2Accounts {
 	this := GetFuturesSubAccountListV2Accounts{}
 	this.AccountName = accountName
 	this.AccountEquity = accountEquity

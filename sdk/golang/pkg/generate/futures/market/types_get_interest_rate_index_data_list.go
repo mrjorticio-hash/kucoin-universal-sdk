@@ -11,12 +11,12 @@ type GetInterestRateIndexDataList struct {
 	// Timestamp (milliseconds)
 	TimePoint int64 `json:"timePoint,omitempty"`
 	// Interest rate value
-	Value float32 `json:"value,omitempty"`
+	Value float64 `json:"value,omitempty"`
 }
 
 // NewGetInterestRateIndexDataList instantiates a new GetInterestRateIndexDataList object
 // This constructor will assign default values to properties that have it defined
-func NewGetInterestRateIndexDataList(symbol string, granularity int32, timePoint int64, value float32) *GetInterestRateIndexDataList {
+func NewGetInterestRateIndexDataList(symbol string, granularity int32, timePoint int64, value float64) *GetInterestRateIndexDataList {
 	this := GetInterestRateIndexDataList{}
 	this.Symbol = symbol
 	this.Granularity = granularity

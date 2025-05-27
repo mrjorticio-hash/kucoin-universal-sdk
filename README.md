@@ -40,7 +40,7 @@ The  **KuCoin Universal SDK** is the official SDK provided by KuCoin, offering a
 pip install kucoin-universal-sdk
 ```
 
-### Golang Installation
+### Golang Installation(1.2.1)
 
 ```bash
 go get github.com/Kucoin/kucoin-universal-sdk/sdk/golang

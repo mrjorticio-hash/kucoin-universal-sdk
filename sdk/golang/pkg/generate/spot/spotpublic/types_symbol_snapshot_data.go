@@ -4,22 +4,22 @@ package spotpublic
 
 // SymbolSnapshotData struct for SymbolSnapshotData
 type SymbolSnapshotData struct {
-	AskSize      float32 `json:"askSize,omitempty"`
-	AveragePrice float32 `json:"averagePrice,omitempty"`
+	AskSize      float64 `json:"askSize,omitempty"`
+	AveragePrice float64 `json:"averagePrice,omitempty"`
 	BaseCurrency string  `json:"baseCurrency,omitempty"`
-	BidSize      float32 `json:"bidSize,omitempty"`
+	BidSize      float64 `json:"bidSize,omitempty"`
 	// Trading pair partition: 0. Primary partition 1.KuCoin Plus\", example = \"1\"
 	Board            int32   `json:"board,omitempty"`
-	Buy              float32 `json:"buy,omitempty"`
-	ChangePrice      float32 `json:"changePrice,omitempty"`
-	ChangeRate       float32 `json:"changeRate,omitempty"`
-	Close            float32 `json:"close,omitempty"`
+	Buy              float64 `json:"buy,omitempty"`
+	ChangePrice      float64 `json:"changePrice,omitempty"`
+	ChangeRate       float64 `json:"changeRate,omitempty"`
+	Close            float64 `json:"close,omitempty"`
 	Datetime         int64   `json:"datetime,omitempty"`
-	High             float32 `json:"high,omitempty"`
-	LastTradedPrice  float32 `json:"lastTradedPrice,omitempty"`
-	Low              float32 `json:"low,omitempty"`
-	MakerCoefficient float32 `json:"makerCoefficient,omitempty"`
-	MakerFeeRate     float32 `json:"makerFeeRate,omitempty"`
+	High             float64 `json:"high,omitempty"`
+	LastTradedPrice  float64 `json:"lastTradedPrice,omitempty"`
+	Low              float64 `json:"low,omitempty"`
+	MakerCoefficient float64 `json:"makerCoefficient,omitempty"`
+	MakerFeeRate     float64 `json:"makerFeeRate,omitempty"`
 	MarginTrade      bool    `json:"marginTrade,omitempty"`
 	// Trading Pair Mark: 0. Default 1.ST. 2.NEW\", example = \"1\"
 	Mark            int32                             `json:"mark,omitempty"`
@@ -28,25 +28,25 @@ type SymbolSnapshotData struct {
 	MarketChange24h SymbolSnapshotDataMarketChange24h `json:"marketChange24h,omitempty"`
 	MarketChange4h  SymbolSnapshotDataMarketChange4h  `json:"marketChange4h,omitempty"`
 	Markets         []string                          `json:"markets,omitempty"`
-	Open            float32                           `json:"open,omitempty"`
+	Open            float64                           `json:"open,omitempty"`
 	QuoteCurrency   string                            `json:"quoteCurrency,omitempty"`
-	Sell            float32                           `json:"sell,omitempty"`
+	Sell            float64                           `json:"sell,omitempty"`
 	SiteTypes       []string                          `json:"siteTypes,omitempty"`
 	// sorting number(Pointless)
 	Sort             int32   `json:"sort,omitempty"`
 	Symbol           string  `json:"symbol,omitempty"`
 	SymbolCode       string  `json:"symbolCode,omitempty"`
-	TakerCoefficient float32 `json:"takerCoefficient,omitempty"`
-	TakerFeeRate     float32 `json:"takerFeeRate,omitempty"`
+	TakerCoefficient float64 `json:"takerCoefficient,omitempty"`
+	TakerFeeRate     float64 `json:"takerFeeRate,omitempty"`
 	Trading          bool    `json:"trading,omitempty"`
-	Vol              float32 `json:"vol,omitempty"`
+	Vol              float64 `json:"vol,omitempty"`
 	// 24-hour rolling transaction volume, refreshed every 2s
-	VolValue float32 `json:"volValue,omitempty"`
+	VolValue float64 `json:"volValue,omitempty"`
 }
 
 // NewSymbolSnapshotData instantiates a new SymbolSnapshotData object
 // This constructor will assign default values to properties that have it defined
-func NewSymbolSnapshotData(askSize float32, averagePrice float32, baseCurrency string, bidSize float32, board int32, buy float32, changePrice float32, changeRate float32, close float32, datetime int64, high float32, lastTradedPrice float32, low float32, makerCoefficient float32, makerFeeRate float32, marginTrade bool, mark int32, market string, marketChange1h SymbolSnapshotDataMarketChange1h, marketChange24h SymbolSnapshotDataMarketChange24h, marketChange4h SymbolSnapshotDataMarketChange4h, markets []string, open float32, quoteCurrency string, sell float32, siteTypes []string, sort int32, symbol string, symbolCode string, takerCoefficient float32, takerFeeRate float32, trading bool, vol float32, volValue float32) *SymbolSnapshotData {
+func NewSymbolSnapshotData(askSize float64, averagePrice float64, baseCurrency string, bidSize float64, board int32, buy float64, changePrice float64, changeRate float64, close float64, datetime int64, high float64, lastTradedPrice float64, low float64, makerCoefficient float64, makerFeeRate float64, marginTrade bool, mark int32, market string, marketChange1h SymbolSnapshotDataMarketChange1h, marketChange24h SymbolSnapshotDataMarketChange24h, marketChange4h SymbolSnapshotDataMarketChange4h, markets []string, open float64, quoteCurrency string, sell float64, siteTypes []string, sort int32, symbol string, symbolCode string, takerCoefficient float64, takerFeeRate float64, trading bool, vol float64, volValue float64) *SymbolSnapshotData {
 	this := SymbolSnapshotData{}
 	this.AskSize = askSize
 	this.AveragePrice = averagePrice

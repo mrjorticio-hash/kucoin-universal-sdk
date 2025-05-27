@@ -11,12 +11,12 @@ import (
 type GetKlinesResp struct {
 	// common response
 	CommonResponse *types.RestResponse
-	Data           [][]float32 `json:"data,omitempty"`
+	Data           [][]float64 `json:"data,omitempty"`
 }
 
 // NewGetKlinesResp instantiates a new GetKlinesResp object
 // This constructor will assign default values to properties that have it defined
-func NewGetKlinesResp(data [][]float32) *GetKlinesResp {
+func NewGetKlinesResp(data [][]float64) *GetKlinesResp {
 	this := GetKlinesResp{}
 	this.Data = data
 	return &this

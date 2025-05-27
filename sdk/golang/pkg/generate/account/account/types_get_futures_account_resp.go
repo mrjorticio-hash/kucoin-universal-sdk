@@ -11,30 +11,30 @@ type GetFuturesAccountResp struct {
 	// common response
 	CommonResponse *types.RestResponse
 	// Account equity = marginBalance + unrealizedPNL
-	AccountEquity float32 `json:"accountEquity,omitempty"`
+	AccountEquity float64 `json:"accountEquity,omitempty"`
 	// Unrealized profit and loss
-	UnrealisedPNL float32 `json:"unrealisedPNL,omitempty"`
+	UnrealisedPNL float64 `json:"unrealisedPNL,omitempty"`
 	// Margin balance = positionMargin + orderMargin + frozenFunds + availableBalance - unrealizedPNL
-	MarginBalance float32 `json:"marginBalance,omitempty"`
+	MarginBalance float64 `json:"marginBalance,omitempty"`
 	// Position margin
-	PositionMargin float32 `json:"positionMargin,omitempty"`
+	PositionMargin float64 `json:"positionMargin,omitempty"`
 	// Order margin
-	OrderMargin float32 `json:"orderMargin,omitempty"`
+	OrderMargin float64 `json:"orderMargin,omitempty"`
 	// Frozen funds for out-transfer
-	FrozenFunds float32 `json:"frozenFunds,omitempty"`
+	FrozenFunds float64 `json:"frozenFunds,omitempty"`
 	// Available balance
-	AvailableBalance float32 `json:"availableBalance,omitempty"`
+	AvailableBalance float64 `json:"availableBalance,omitempty"`
 	// Currency
 	Currency string `json:"currency,omitempty"`
 	// Cross margin risk rate
-	RiskRatio float32 `json:"riskRatio,omitempty"`
+	RiskRatio float64 `json:"riskRatio,omitempty"`
 	// Maximum amount that can be withdrawn/transferred.
-	MaxWithdrawAmount float32 `json:"maxWithdrawAmount,omitempty"`
+	MaxWithdrawAmount float64 `json:"maxWithdrawAmount,omitempty"`
 }
 
 // NewGetFuturesAccountResp instantiates a new GetFuturesAccountResp object
 // This constructor will assign default values to properties that have it defined
-func NewGetFuturesAccountResp(accountEquity float32, unrealisedPNL float32, marginBalance float32, positionMargin float32, orderMargin float32, frozenFunds float32, availableBalance float32, currency string, riskRatio float32, maxWithdrawAmount float32) *GetFuturesAccountResp {
+func NewGetFuturesAccountResp(accountEquity float64, unrealisedPNL float64, marginBalance float64, positionMargin float64, orderMargin float64, frozenFunds float64, availableBalance float64, currency string, riskRatio float64, maxWithdrawAmount float64) *GetFuturesAccountResp {
 	this := GetFuturesAccountResp{}
 	this.AccountEquity = accountEquity
 	this.UnrealisedPNL = unrealisedPNL

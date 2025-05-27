@@ -15,14 +15,14 @@ type GetIsolatedMarginRiskLimitData struct {
 	// Max. leverage
 	MaxLeverage int32 `json:"maxLeverage,omitempty"`
 	// Initial margin rate
-	InitialMargin float32 `json:"initialMargin,omitempty"`
+	InitialMargin float64 `json:"initialMargin,omitempty"`
 	// Maintenance margin rate
-	MaintainMargin float32 `json:"maintainMargin,omitempty"`
+	MaintainMargin float64 `json:"maintainMargin,omitempty"`
 }
 
 // NewGetIsolatedMarginRiskLimitData instantiates a new GetIsolatedMarginRiskLimitData object
 // This constructor will assign default values to properties that have it defined
-func NewGetIsolatedMarginRiskLimitData(symbol string, level int32, maxRiskLimit int32, minRiskLimit int32, maxLeverage int32, initialMargin float32, maintainMargin float32) *GetIsolatedMarginRiskLimitData {
+func NewGetIsolatedMarginRiskLimitData(symbol string, level int32, maxRiskLimit int32, minRiskLimit int32, maxLeverage int32, initialMargin float64, maintainMargin float64) *GetIsolatedMarginRiskLimitData {
 	this := GetIsolatedMarginRiskLimitData{}
 	this.Symbol = symbol
 	this.Level = level

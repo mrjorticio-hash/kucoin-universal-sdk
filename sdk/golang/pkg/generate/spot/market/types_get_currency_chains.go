@@ -27,7 +27,7 @@ type GetCurrencyChains struct {
 	// Withdrawal precision bit, indicating the maximum supported length after the decimal point of the withdrawal amount
 	WithdrawPrecision int32 `json:"withdrawPrecision,omitempty"`
 	// Maximum amount of single withdrawal
-	MaxWithdraw float32 `json:"maxWithdraw,omitempty"`
+	MaxWithdraw float64 `json:"maxWithdraw,omitempty"`
 	// Maximum amount of single deposit (only applicable to Lightning Network)
 	MaxDeposit string `json:"maxDeposit,omitempty"`
 	// Need for memo/tag or not
@@ -38,7 +38,7 @@ type GetCurrencyChains struct {
 
 // NewGetCurrencyChains instantiates a new GetCurrencyChains object
 // This constructor will assign default values to properties that have it defined
-func NewGetCurrencyChains(chainName string, withdrawalMinSize string, depositMinSize string, withdrawFeeRate string, withdrawalMinFee string, isWithdrawEnabled bool, isDepositEnabled bool, confirms int32, preConfirms int32, contractAddress string, withdrawPrecision int32, maxWithdraw float32, maxDeposit string, needTag bool, chainId string) *GetCurrencyChains {
+func NewGetCurrencyChains(chainName string, withdrawalMinSize string, depositMinSize string, withdrawFeeRate string, withdrawalMinFee string, isWithdrawEnabled bool, isDepositEnabled bool, confirms int32, preConfirms int32, contractAddress string, withdrawPrecision int32, maxWithdraw float64, maxDeposit string, needTag bool, chainId string) *GetCurrencyChains {
 	this := GetCurrencyChains{}
 	this.ChainName = chainName
 	this.WithdrawalMinSize = withdrawalMinSize

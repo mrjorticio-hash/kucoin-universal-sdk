@@ -11,21 +11,21 @@ import (
 type SymbolSnapshotEvent struct {
 	// common response
 	CommonResponse     *types.WsMessage
-	HighPrice          float32 `json:"highPrice,omitempty"`
-	LastPrice          float32 `json:"lastPrice,omitempty"`
-	LowPrice           float32 `json:"lowPrice,omitempty"`
-	Price24HoursBefore float32 `json:"price24HoursBefore,omitempty"`
-	PriceChg           float32 `json:"priceChg,omitempty"`
-	PriceChgPct        float32 `json:"priceChgPct,omitempty"`
+	HighPrice          float64 `json:"highPrice,omitempty"`
+	LastPrice          float64 `json:"lastPrice,omitempty"`
+	LowPrice           float64 `json:"lowPrice,omitempty"`
+	Price24HoursBefore float64 `json:"price24HoursBefore,omitempty"`
+	PriceChg           float64 `json:"priceChg,omitempty"`
+	PriceChgPct        float64 `json:"priceChgPct,omitempty"`
 	Symbol             string  `json:"symbol,omitempty"`
 	Ts                 int64   `json:"ts,omitempty"`
-	Turnover           float32 `json:"turnover,omitempty"`
-	Volume             float32 `json:"volume,omitempty"`
+	Turnover           float64 `json:"turnover,omitempty"`
+	Volume             float64 `json:"volume,omitempty"`
 }
 
 // NewSymbolSnapshotEvent instantiates a new SymbolSnapshotEvent object
 // This constructor will assign default values to properties that have it defined
-func NewSymbolSnapshotEvent(highPrice float32, lastPrice float32, lowPrice float32, price24HoursBefore float32, priceChg float32, priceChgPct float32, symbol string, ts int64, turnover float32, volume float32) *SymbolSnapshotEvent {
+func NewSymbolSnapshotEvent(highPrice float64, lastPrice float64, lowPrice float64, price24HoursBefore float64, priceChg float64, priceChgPct float64, symbol string, ts int64, turnover float64, volume float64) *SymbolSnapshotEvent {
 	this := SymbolSnapshotEvent{}
 	this.HighPrice = highPrice
 	this.LastPrice = lastPrice
