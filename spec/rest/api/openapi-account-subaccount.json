@@ -30,19 +30,19 @@
                                             "properties": {
                                                 "uid": {
                                                     "type": "integer",
-                                                    "description": "Sub-account UID"
+                                                    "description": "Sub account user id"
                                                 },
                                                 "subName": {
                                                     "type": "string",
-                                                    "description": "Sub-account name"
+                                                    "description": "Sub account name"
                                                 },
                                                 "remarks": {
                                                     "type": "string",
-                                                    "description": "Remarks"
+                                                    "description": "Sub account name"
                                                 },
                                                 "access": {
                                                     "type": "string",
-                                                    "description": "Permission"
+                                                    "description": "permission"
                                                 }
                                             },
                                             "required": [
@@ -125,12 +125,12 @@
                                     "access"
                                 ]
                             },
-                            "example": "{\n    \"password\": \"1234567\",\n    \"remarks\": \"TheRemark\",\n    \"subName\": \"Name1234567\",\n    \"access\": \"Spot\"\n}"
+                            "example": "{\n    \"password\": \"q1234567\",\n    \"access\": \"Spot\",\n    \"subName\": \"subNameTest1\",\n    \"remarks\": \"TheRemark\"\n}"
                         }
                     }
                 },
-                "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"currentPage\\\": 1,\\n        \\\"pageSize\\\": 10,\\n        \\\"totalNum\\\": 1,\\n        \\\"totalPage\\\": 1,\\n        \\\"items\\\": [\\n            {\\n                \\\"userId\\\": \\\"63743f07e0c5230001761d08\\\",\\n                \\\"uid\\\": 169579801,\\n                \\\"subName\\\": \\\"testapi6\\\",\\n                \\\"status\\\": 2,\\n                \\\"type\\\": 0,\\n                \\\"access\\\": \\\"All\\\",\\n                \\\"createdAt\\\": 1668562696000,\\n                \\\"remarks\\\": \\\"remarks\\\",\\n                \\\"tradeTypes\\\": [\\n                    \\\"Spot\\\",\\n                    \\\"Futures\\\",\\n                    \\\"Margin\\\"\\n                ],\\n                \\\"openedTradeTypes\\\": [\\n                    \\\"Spot\\\"\\n                ],\\n                \\\"hostedStatus\\\": null\\n            }\\n        ]\\n    }\\n}",
-                "x-request-example": "{\\\"password\\\": \\\"1234567\\\", \\\"remarks\\\": \\\"TheRemark\\\", \\\"subName\\\": \\\"Name1234567\\\", \\\"access\\\": \\\"Spot\\\"}",
+                "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"uid\\\": 245730746,\\n        \\\"subName\\\": \\\"subNameTest1\\\",\\n        \\\"remarks\\\": \\\"TheRemark\\\",\\n        \\\"access\\\": \\\"Spot\\\"\\n    }\\n}",
+                "x-request-example": "{\\\"password\\\": \\\"q1234567\\\", \\\"access\\\": \\\"Spot\\\", \\\"subName\\\": \\\"subNameTest1\\\", \\\"remarks\\\": \\\"TheRemark\\\"}",
                 "operationId": "001"
             }
         },

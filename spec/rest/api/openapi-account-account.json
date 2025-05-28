@@ -580,41 +580,7 @@
                                                 },
                                                 "status": {
                                                     "type": "string",
-                                                    "description": "Position status; EFFECTIVE-effective, BANKRUPTCY-bankruptcy liquidation, LIQUIDATION-closing, REPAY-repayment, BORROW-borrowing",
-                                                    "enum": [
-                                                        "EFFECTIVE",
-                                                        "BANKRUPTCY",
-                                                        "LIQUIDATION",
-                                                        "REPAY",
-                                                        "BORROW"
-                                                    ],
-                                                    "x-api-enum": [
-                                                        {
-                                                            "value": "EFFECTIVE",
-                                                            "name": "EFFECTIVE",
-                                                            "description": "Effective"
-                                                        },
-                                                        {
-                                                            "value": "BANKRUPTCY",
-                                                            "name": "BANKRUPTCY",
-                                                            "description": "Bankruptcy liquidation"
-                                                        },
-                                                        {
-                                                            "value": "LIQUIDATION",
-                                                            "name": "LIQUIDATION",
-                                                            "description": "Closing"
-                                                        },
-                                                        {
-                                                            "value": "REPAY",
-                                                            "name": "REPAY",
-                                                            "description": "Repayment"
-                                                        },
-                                                        {
-                                                            "value": "BORROW",
-                                                            "name": "BORROW",
-                                                            "description": "Borrowing"
-                                                        }
-                                                    ]
+                                                    "description": "Position status; EFFECTIVE-effective, BANKRUPTCY-bankruptcy liquidation, LIQUIDATION-closing, REPAY-repayment, BORROW-borrowing"
                                                 },
                                                 "accounts": {
                                                     "type": "array",
@@ -652,6 +618,14 @@
                                                             "transferInEnabled": {
                                                                 "type": "boolean",
                                                                 "description": "Support transfer or not"
+                                                            },
+                                                            "liabilityPrincipal": {
+                                                                "type": "string",
+                                                                "description": "Outstanding principal – the unpaid loan amount"
+                                                            },
+                                                            "liabilityInterest": {
+                                                                "type": "string",
+                                                                "description": "Accrued interest – the unpaid interest amount"
                                                             }
                                                         },
                                                         "required": [
@@ -660,6 +634,8 @@
                                                             "available",
                                                             "hold",
                                                             "liability",
+                                                            "liabilityPrincipal",
+                                                            "liabilityInterest",
                                                             "maxBorrowSize",
                                                             "borrowEnabled",
                                                             "transferInEnabled"
@@ -697,7 +673,7 @@
                 "x-sdk-method-name": "getCrossMarginAccount",
                 "x-sdk-method-description": "Request cross margin account info via this endpoint.",
                 "x-api-rate-limit-weight": 15,
-                "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"totalAssetOfQuoteCurrency\\\": \\\"0.02\\\",\\n        \\\"totalLiabilityOfQuoteCurrency\\\": \\\"0\\\",\\n        \\\"debtRatio\\\": \\\"0\\\",\\n        \\\"status\\\": \\\"EFFECTIVE\\\",\\n        \\\"accounts\\\": [\\n            {\\n                \\\"currency\\\": \\\"USDT\\\",\\n                \\\"total\\\": \\\"0.02\\\",\\n                \\\"available\\\": \\\"0.02\\\",\\n                \\\"hold\\\": \\\"0\\\",\\n                \\\"liability\\\": \\\"0\\\",\\n                \\\"maxBorrowSize\\\": \\\"0\\\",\\n                \\\"borrowEnabled\\\": true,\\n                \\\"transferInEnabled\\\": true\\n            }\\n        ]\\n    }\\n}",
+                "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"totalAssetOfQuoteCurrency\\\": \\\"40.8648372\\\",\\n        \\\"totalLiabilityOfQuoteCurrency\\\": \\\"0\\\",\\n        \\\"debtRatio\\\": \\\"0\\\",\\n        \\\"status\\\": \\\"EFFECTIVE\\\",\\n        \\\"accounts\\\": [\\n            {\\n                \\\"currency\\\": \\\"USDT\\\",\\n                \\\"total\\\": \\\"38.68855864\\\",\\n                \\\"available\\\": \\\"20.01916691\\\",\\n                \\\"hold\\\": \\\"18.66939173\\\",\\n                \\\"liability\\\": \\\"0\\\",\\n                \\\"liabilityPrincipal\\\": \\\"0\\\",\\n                \\\"liabilityInterest\\\": \\\"0\\\",\\n                \\\"maxBorrowSize\\\": \\\"163\\\",\\n                \\\"borrowEnabled\\\": true,\\n                \\\"transferInEnabled\\\": true\\n            }\\n        ]\\n    }\\n}",
                 "x-request-example": "{\\\"quoteCurrency\\\": \\\"USDT\\\", \\\"queryType\\\": \\\"MARGIN\\\"}",
                 "operationId": "006"
             }
@@ -821,41 +797,7 @@
                                                             },
                                                             "status": {
                                                                 "type": "string",
-                                                                "description": "Position status; EFFECTIVE-effective, BANKRUPTCY-bankruptcy liquidation, LIQUIDATION-closing, REPAY-repayment, BORROW-borrowing",
-                                                                "enum": [
-                                                                    "EFFECTIVE",
-                                                                    "BANKRUPTCY",
-                                                                    "LIQUIDATION",
-                                                                    "REPAY",
-                                                                    "BORROW"
-                                                                ],
-                                                                "x-api-enum": [
-                                                                    {
-                                                                        "value": "EFFECTIVE",
-                                                                        "name": "EFFECTIVE",
-                                                                        "description": "Effective"
-                                                                    },
-                                                                    {
-                                                                        "value": "BANKRUPTCY",
-                                                                        "name": "BANKRUPTCY",
-                                                                        "description": "Bankruptcy liquidation"
-                                                                    },
-                                                                    {
-                                                                        "value": "LIQUIDATION",
-                                                                        "name": "LIQUIDATION",
-                                                                        "description": "Closing"
-                                                                    },
-                                                                    {
-                                                                        "value": "REPAY",
-                                                                        "name": "REPAY",
-                                                                        "description": "Repayment"
-                                                                    },
-                                                                    {
-                                                                        "value": "BORROW",
-                                                                        "name": "BORROW",
-                                                                        "description": "Borrowing"
-                                                                    }
-                                                                ]
+                                                                "description": "Position status; EFFECTIVE-effective, BANKRUPTCY-bankruptcy liquidation, LIQUIDATION-closing, REPAY-repayment, BORROW-borrowing"
                                                             },
                                                             "debtRatio": {
                                                                 "type": "string",
@@ -895,6 +837,14 @@
                                                                     "maxBorrowSize": {
                                                                         "type": "string",
                                                                         "description": "The user's remaining maximum loan amount"
+                                                                    },
+                                                                    "liabilityPrincipal": {
+                                                                        "type": "string",
+                                                                        "description": "Outstanding principal"
+                                                                    },
+                                                                    "liabilityInterest": {
+                                                                        "type": "string",
+                                                                        "description": "Outstanding interest"
                                                                     }
                                                                 },
                                                                 "required": [
@@ -902,6 +852,8 @@
                                                                     "borrowEnabled",
                                                                     "transferInEnabled",
                                                                     "liability",
+                                                                    "liabilityPrincipal",
+                                                                    "liabilityInterest",
                                                                     "total",
                                                                     "available",
                                                                     "hold",
@@ -943,6 +895,12 @@
                                                                     "maxBorrowSize": {
                                                                         "type": "string",
                                                                         "description": "The user's remaining maximum loan amount"
+                                                                    },
+                                                                    "liabilityPrincipal": {
+                                                                        "type": "string"
+                                                                    },
+                                                                    "liabilityInterest": {
+                                                                        "type": "string"
                                                                     }
                                                                 },
                                                                 "required": [
@@ -950,6 +908,8 @@
                                                                     "borrowEnabled",
                                                                     "transferInEnabled",
                                                                     "liability",
+                                                                    "liabilityPrincipal",
+                                                                    "liabilityInterest",
                                                                     "total",
                                                                     "available",
                                                                     "hold",
@@ -957,14 +917,7 @@
                                                                 ],
                                                                 "description": "quote asset"
                                                             }
-                                                        },
-                                                        "required": [
-                                                            "symbol",
-                                                            "status",
-                                                            "debtRatio",
-                                                            "baseAsset",
-                                                            "quoteAsset"
-                                                        ]
+                                                        }
                                                     }
                                                 }
                                             },
@@ -996,8 +949,8 @@
                 "x-sdk-method-name": "getIsolatedMarginAccount",
                 "x-sdk-method-description": "Request isolated margin account info via this endpoint.",
                 "x-api-rate-limit-weight": 15,
-                "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"totalAssetOfQuoteCurrency\\\": \\\"0.01\\\",\\n        \\\"totalLiabilityOfQuoteCurrency\\\": \\\"0\\\",\\n        \\\"timestamp\\\": 1728725465994,\\n        \\\"assets\\\": [\\n            {\\n                \\\"symbol\\\": \\\"BTC-USDT\\\",\\n                \\\"status\\\": \\\"EFFECTIVE\\\",\\n                \\\"debtRatio\\\": \\\"0\\\",\\n                \\\"baseAsset\\\": {\\n                    \\\"currency\\\": \\\"BTC\\\",\\n                    \\\"borrowEnabled\\\": true,\\n                    \\\"transferInEnabled\\\": true,\\n                    \\\"liability\\\": \\\"0\\\",\\n                    \\\"total\\\": \\\"0\\\",\\n                    \\\"available\\\": \\\"0\\\",\\n                    \\\"hold\\\": \\\"0\\\",\\n                    \\\"maxBorrowSize\\\": \\\"0\\\"\\n                },\\n                \\\"quoteAsset\\\": {\\n                    \\\"currency\\\": \\\"USDT\\\",\\n                    \\\"borrowEnabled\\\": true,\\n                    \\\"transferInEnabled\\\": true,\\n                    \\\"liability\\\": \\\"0\\\",\\n                    \\\"total\\\": \\\"0.01\\\",\\n                    \\\"available\\\": \\\"0.01\\\",\\n                    \\\"hold\\\": \\\"0\\\",\\n                    \\\"maxBorrowSize\\\": \\\"0\\\"\\n                }\\n            }\\n        ]\\n    }\\n}",
-                "x-request-example": "{\\\"symbol\\\": \\\"example_string_default_value\\\", \\\"quoteCurrency\\\": \\\"USDT\\\", \\\"queryType\\\": \\\"ISOLATED\\\"}",
+                "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"totalAssetOfQuoteCurrency\\\": \\\"4.97047372\\\",\\n        \\\"totalLiabilityOfQuoteCurrency\\\": \\\"0.00038891\\\",\\n        \\\"timestamp\\\": 1747303659773,\\n        \\\"assets\\\": [\\n            {\\n                \\\"symbol\\\": \\\"BTC-USDT\\\",\\n                \\\"status\\\": \\\"EFFECTIVE\\\",\\n                \\\"debtRatio\\\": \\\"0\\\",\\n                \\\"baseAsset\\\": {\\n                    \\\"currency\\\": \\\"BTC\\\",\\n                    \\\"borrowEnabled\\\": true,\\n                    \\\"transferInEnabled\\\": true,\\n                    \\\"liability\\\": \\\"0\\\",\\n                    \\\"liabilityPrincipal\\\": \\\"0\\\",\\n                    \\\"liabilityInterest\\\": \\\"0\\\",\\n                    \\\"total\\\": \\\"0\\\",\\n                    \\\"available\\\": \\\"0\\\",\\n                    \\\"hold\\\": \\\"0\\\",\\n                    \\\"maxBorrowSize\\\": \\\"0\\\"\\n                },\\n                \\\"quoteAsset\\\": {\\n                    \\\"currency\\\": \\\"USDT\\\",\\n                    \\\"borrowEnabled\\\": true,\\n                    \\\"transferInEnabled\\\": true,\\n                    \\\"liability\\\": \\\"0.00038891\\\",\\n                    \\\"liabilityPrincipal\\\": \\\"0.00038888\\\",\\n                    \\\"liabilityInterest\\\": \\\"0.00000003\\\",\\n                    \\\"total\\\": \\\"4.97047372\\\",\\n                    \\\"available\\\": \\\"4.97047372\\\",\\n                    \\\"hold\\\": \\\"0\\\",\\n                    \\\"maxBorrowSize\\\": \\\"44\\\"\\n                }\\n            }\\n        ]\\n    }\\n}",
+                "x-request-example": "{\\\"symbol\\\": \\\"BTC-USDT\\\", \\\"quoteCurrency\\\": \\\"USDT\\\", \\\"queryType\\\": \\\"ISOLATED\\\"}",
                 "operationId": "007"
             }
         },
@@ -1382,6 +1335,7 @@
                             "enum": [
                                 "TRADE_EXCHANGE",
                                 "TRANSFER",
+                                "SUB_TRANSFER",
                                 "RETURNED_FEES",
                                 "DEDUCTION_FEES",
                                 "OTHER"
@@ -1390,27 +1344,32 @@
                                 {
                                     "value": "TRADE_EXCHANGE",
                                     "name": "TRADE_EXCHANGE",
-                                    "description": "trade exchange"
+                                    "description": "Trade exchange"
                                 },
                                 {
                                     "value": "TRANSFER",
                                     "name": "TRANSFER",
-                                    "description": "transfer"
+                                    "description": "Transfer"
+                                },
+                                {
+                                    "value": "SUB_TRANSFER",
+                                    "name": "SUB_TRANSFER",
+                                    "description": "Sub transfer"
                                 },
                                 {
                                     "value": "RETURNED_FEES",
                                     "name": "RETURNED_FEES",
-                                    "description": "returned fees"
+                                    "description": "Returned fees"
                                 },
                                 {
                                     "value": "DEDUCTION_FEES",
                                     "name": "DEDUCTION_FEES",
-                                    "description": "deduction fees"
+                                    "description": "Deduction fees"
                                 },
                                 {
                                     "value": "OTHER",
                                     "name": "OTHER",
-                                    "description": "other"
+                                    "description": "Other"
                                 }
                             ]
                         }

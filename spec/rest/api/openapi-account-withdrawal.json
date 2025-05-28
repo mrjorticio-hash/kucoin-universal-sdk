@@ -266,8 +266,7 @@
                                         ]
                                     },
                                     "amount": {
-                                        "type": "integer",
-                                        "format": "int64",
+                                        "type": "string",
                                         "description": "Withdrawal amount, a positive number which is a multiple of the amount precision"
                                     },
                                     "memo": {
@@ -401,6 +400,237 @@
                 "x-response-example": "{\\\"code\\\":\\\"200000\\\",\\\"data\\\":null}",
                 "x-request-example": "{\\\"withdrawalId\\\": \\\"670b891f7e0f440007730692\\\"}",
                 "operationId": "003"
+            },
+            "get": {
+                "summary": "Get Withdrawal History By ID",
+                "deprecated": false,
+                "description": "Request a withdrawal history by id via this endpoint.",
+                "tags": [],
+                "parameters": [
+                    {
+                        "name": "withdrawalId",
+                        "in": "path",
+                        "description": "withdrawal ID",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "id": {
+                                                    "type": "string",
+                                                    "description": "Unique ID"
+                                                },
+                                                "uid": {
+                                                    "type": "integer",
+                                                    "description": "User ID"
+                                                },
+                                                "currency": {
+                                                    "type": "string",
+                                                    "description": "A unique currency code that will never change"
+                                                },
+                                                "chainId": {
+                                                    "type": "string",
+                                                    "description": "The chain id of currency",
+                                                    "example": [
+                                                        "eth",
+                                                        "bech32",
+                                                        "btc",
+                                                        "kcc",
+                                                        "trx",
+                                                        "bsc",
+                                                        "arbitrum",
+                                                        "ton",
+                                                        "optimism"
+                                                    ]
+                                                },
+                                                "chainName": {
+                                                    "type": "string",
+                                                    "description": "Chain name of currency"
+                                                },
+                                                "currencyName": {
+                                                    "type": "string",
+                                                    "description": "Currency name; will change after renaming"
+                                                },
+                                                "status": {
+                                                    "type": "string",
+                                                    "description": "Status. Available value: REVIEW, PROCESSING, WALLET_PROCESSING, SUCCESS and FAILURE"
+                                                },
+                                                "failureReason": {
+                                                    "type": "string",
+                                                    "description": "Failure reason code"
+                                                },
+                                                "failureReasonMsg": {
+                                                    "type": "string",
+                                                    "description": "Failure reason message"
+                                                },
+                                                "address": {
+                                                    "type": "string",
+                                                    "description": "Withwrawal address"
+                                                },
+                                                "memo": {
+                                                    "type": "string",
+                                                    "description": "Address remark. If there’s no remark, it is empty. "
+                                                },
+                                                "isInner": {
+                                                    "type": "boolean",
+                                                    "description": "Internal withdrawal or not. "
+                                                },
+                                                "amount": {
+                                                    "type": "string",
+                                                    "description": "Withwrawal amount"
+                                                },
+                                                "fee": {
+                                                    "type": "string",
+                                                    "description": "Fees charged for withwrawal"
+                                                },
+                                                "walletTxId": {
+                                                    "type": "string",
+                                                    "description": "Wallet Transaction ID"
+                                                },
+                                                "addressRemark": {
+                                                    "type": "string",
+                                                    "description": "Address remark"
+                                                },
+                                                "remark": {
+                                                    "type": "string",
+                                                    "description": "Remark"
+                                                },
+                                                "createdAt": {
+                                                    "type": "integer",
+                                                    "format": "int64",
+                                                    "description": "Creation Time (milliseconds)"
+                                                },
+                                                "cancelType": {
+                                                    "type": "string",
+                                                    "enum": [
+                                                        "CANCELABLE",
+                                                        "CANCELING",
+                                                        "NON_CANCELABLE"
+                                                    ],
+                                                    "x-api-enum": [
+                                                        {
+                                                            "value": "CANCELABLE",
+                                                            "name": "CANCELABLE",
+                                                            "description": "Cancellable"
+                                                        },
+                                                        {
+                                                            "value": "CANCELING",
+                                                            "name": "CANCELING",
+                                                            "description": "Cancelling"
+                                                        },
+                                                        {
+                                                            "value": "NON_CANCELABLE",
+                                                            "name": "NON_CANCELABLE",
+                                                            "description": "Non-Cancellable"
+                                                        }
+                                                    ]
+                                                },
+                                                "taxes": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "string"
+                                                    },
+                                                    "description": "Users in some regions need query this field"
+                                                },
+                                                "taxDescription": {
+                                                    "type": "string",
+                                                    "description": "Tax description"
+                                                },
+                                                "returnStatus": {
+                                                    "type": "string",
+                                                    "enum": [
+                                                        "NOT_RETURN",
+                                                        "PROCESSING",
+                                                        "SUCCESS"
+                                                    ],
+                                                    "description": "Return status",
+                                                    "x-api-enum": [
+                                                        {
+                                                            "value": "NOT_RETURN",
+                                                            "name": "NOT_RETURN",
+                                                            "description": "No returned"
+                                                        },
+                                                        {
+                                                            "value": "PROCESSING",
+                                                            "name": "PROCESSING",
+                                                            "description": "To be returned"
+                                                        },
+                                                        {
+                                                            "value": "SUCCESS",
+                                                            "name": "SUCCESS",
+                                                            "description": "Returned"
+                                                        }
+                                                    ]
+                                                },
+                                                "returnAmount": {
+                                                    "type": "string",
+                                                    "description": "Return amount"
+                                                },
+                                                "returnCurrency": {
+                                                    "type": "string",
+                                                    "description": "Return currency"
+                                                }
+                                            },
+                                            "required": [
+                                                "id",
+                                                "uid",
+                                                "currency",
+                                                "chainId",
+                                                "chainName",
+                                                "currencyName",
+                                                "status",
+                                                "failureReason",
+                                                "address",
+                                                "memo",
+                                                "isInner",
+                                                "amount",
+                                                "fee",
+                                                "remark",
+                                                "createdAt",
+                                                "cancelType",
+                                                "returnStatus",
+                                                "returnCurrency"
+                                            ]
+                                        }
+                                    },
+                                    "required": [
+                                        "code",
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                },
+                "x-api-doc": "https://www.kucoin.com/docs-new/api-3471890",
+                "x-abandon": "normal",
+                "x-domain": "Spot",
+                "x-api-channel": "Private",
+                "x-api-permission": "General",
+                "x-api-rate-limit-pool": "Management",
+                "x-sdk-service": "Account",
+                "x-sdk-sub-service": "Withdrawal",
+                "x-sdk-method-name": "getWithdrawalHistoryById",
+                "x-sdk-method-description": "Request a withdrawal history by id via this endpoint.",
+                "x-api-rate-limit-weight": 20,
+                "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"id\\\": \\\"67e6515f7960ba0007b42025\\\",\\n        \\\"uid\\\": 165111215,\\n        \\\"currency\\\": \\\"USDT\\\",\\n        \\\"chainId\\\": \\\"trx\\\",\\n        \\\"chainName\\\": \\\"TRC20\\\",\\n        \\\"currencyName\\\": \\\"USDT\\\",\\n        \\\"status\\\": \\\"SUCCESS\\\",\\n        \\\"failureReason\\\": \\\"\\\",\\n        \\\"failureReasonMsg\\\": null,\\n        \\\"address\\\": \\\"TKFRQXSDcY4kd3QLzw7uK16GmLrjJggwX8\\\",\\n        \\\"memo\\\": \\\"\\\",\\n        \\\"isInner\\\": true,\\n        \\\"amount\\\": \\\"3.00000000\\\",\\n        \\\"fee\\\": \\\"0.00000000\\\",\\n        \\\"walletTxId\\\": null,\\n        \\\"addressRemark\\\": null,\\n        \\\"remark\\\": \\\"this is Remark\\\",\\n        \\\"createdAt\\\": 1743147359000,\\n        \\\"cancelType\\\": \\\"NON_CANCELABLE\\\",\\n        \\\"taxes\\\": null,\\n        \\\"taxDescription\\\": null,\\n        \\\"returnStatus\\\": \\\"NOT_RETURN\\\",\\n        \\\"returnAmount\\\": null,\\n        \\\"returnCurrency\\\": \\\"KCS\\\"\\n    }\\n}",
+                "x-request-example": "{\\\"withdrawalId\\\": \\\"67e6515f7960ba0007b42025\\\"}",
+                "operationId": "005"
             }
         },
         "/api/v1/withdrawals": {
@@ -555,7 +785,7 @@
                                                             },
                                                             "chain": {
                                                                 "type": "string",
-                                                                "description": "The id of currency",
+                                                                "description": "The chain id of currency",
                                                                 "example": [
                                                                     "eth",
                                                                     "bech32",
@@ -570,6 +800,7 @@
                                                             },
                                                             "status": {
                                                                 "type": "string",
+                                                                "description": "Status. Available value: REVIEW, PROCESSING, WALLET_PROCESSING, SUCCESS and FAILURE",
                                                                 "enum": [
                                                                     "REVIEW",
                                                                     "PROCESSING",
@@ -577,38 +808,37 @@
                                                                     "FAILURE",
                                                                     "SUCCESS"
                                                                 ],
-                                                                "description": "Status. Available value: REVIEW, PROCESSING, WALLET_PROCESSING, SUCCESS and FAILURE",
                                                                 "x-api-enum": [
                                                                     {
                                                                         "value": "REVIEW",
                                                                         "name": "REVIEW",
-                                                                        "description": ""
+                                                                        "description": "REVIEW"
                                                                     },
                                                                     {
                                                                         "value": "PROCESSING",
                                                                         "name": "PROCESSING",
-                                                                        "description": ""
+                                                                        "description": "PROCESSING"
                                                                     },
                                                                     {
                                                                         "value": "WALLET_PROCESSING",
                                                                         "name": "WALLET_PROCESSING",
-                                                                        "description": ""
+                                                                        "description": "WALLET_PROCESSING"
                                                                     },
                                                                     {
                                                                         "value": "FAILURE",
                                                                         "name": "FAILURE",
-                                                                        "description": ""
+                                                                        "description": "FAILURE"
                                                                     },
                                                                     {
                                                                         "value": "SUCCESS",
                                                                         "name": "SUCCESS",
-                                                                        "description": ""
+                                                                        "description": "SUCCESS"
                                                                     }
                                                                 ]
                                                             },
                                                             "address": {
                                                                 "type": "string",
-                                                                "description": "Deposit address"
+                                                                "description": "Withwrawal address"
                                                             },
                                                             "memo": {
                                                                 "type": "string",
@@ -620,15 +850,15 @@
                                                             },
                                                             "amount": {
                                                                 "type": "string",
-                                                                "description": "Deposit amount"
+                                                                "description": "Withwrawal amount"
                                                             },
                                                             "fee": {
                                                                 "type": "string",
-                                                                "description": "Fees charged for deposit"
+                                                                "description": "Fees charged for withwrawal"
                                                             },
                                                             "walletTxId": {
                                                                 "type": "string",
-                                                                "description": "Wallet Txid"
+                                                                "description": "Wallet Txid, If this is an internal\nwithdrawal, it is empty. "
                                                             },
                                                             "createdAt": {
                                                                 "type": "integer",
@@ -802,7 +1032,7 @@
                 },
                 "x-response-example": "{\\\"code\\\":\\\"200000\\\",\\\"data\\\":{\\\"withdrawalId\\\":\\\"670a973cf07b3800070e216c\\\"}}",
                 "x-request-example": "{\\\"currency\\\": \\\"USDT\\\", \\\"address\\\": \\\"TKFRQXSDc****16GmLrjJggwX8\\\", \\\"amount\\\": 3, \\\"chain\\\": \\\"trx\\\", \\\"isInner\\\": true}",
-                "operationId": "006"
+                "operationId": "007"
             }
         },
         "/api/v1/hist-withdrawals": {
@@ -1020,7 +1250,7 @@
                 "x-api-rate-limit-weight": 20,
                 "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"currentPage\\\": 1,\\n        \\\"pageSize\\\": 50,\\n        \\\"totalNum\\\": 1,\\n        \\\"totalPage\\\": 1,\\n        \\\"items\\\": [\\n            {\\n                \\\"currency\\\": \\\"BTC\\\",\\n                \\\"createAt\\\": 1526723468,\\n                \\\"amount\\\": \\\"0.534\\\",\\n                \\\"address\\\": \\\"33xW37ZSW4tQvg443Pc7NLCAs167Yc2XUV\\\",\\n                \\\"walletTxId\\\": \\\"aeacea864c020acf58e51606169240e96774838dcd4f7ce48acf38e3651323f4\\\",\\n                \\\"isInner\\\": false,\\n                \\\"status\\\": \\\"SUCCESS\\\"\\n            }\\n        ]\\n    }\\n}",
                 "x-request-example": "{\\\"currency\\\": \\\"BTC\\\", \\\"status\\\": \\\"SUCCESS\\\", \\\"startAt\\\": 1728663338000, \\\"endAt\\\": 1728692138000, \\\"currentPage\\\": 1, \\\"pageSize\\\": 50}",
-                "operationId": "005"
+                "operationId": "006"
             }
         }
     },

@@ -38,6 +38,7 @@ account,withdrawal,/api/v1/withdrawals/quotas,get,Get Withdrawal Quotas
 account,withdrawal,/api/v3/withdrawals,post,Withdraw (V3)
 account,withdrawal,/api/v1/withdrawals/{withdrawalId},delete,Cancel Withdrawal
 account,withdrawal,/api/v1/withdrawals,get,Get Withdrawal History
+account,withdrawal,/api/v1/withdrawals/{withdrawalId},get,Get Withdrawal History By ID
 account,withdrawal,/api/v1/hist-withdrawals,get,Get Withdrawal History - Old
 account,withdrawal,/api/v1/withdrawals,post,Withdraw - V1
 account,transfer,/api/v1/accounts/transferable,get,Get Transfer Quotas
@@ -190,6 +191,7 @@ futures,order,/api/v1/fills,get,Get Trade History
 futures,order,/api/v1/orders,delete,Cancel All Orders - V1
 futures,positions,/api/v2/position/getMarginMode,get,Get Margin Mode
 futures,positions,/api/v2/position/changeMarginMode,post,Switch Margin Mode
+futures,positions,/api/v2/position/batchChangeMarginMode,post,Batch Switch Margin Mode
 futures,positions,/api/v2/getMaxOpenSize,get,Get Max Open Size
 futures,positions,/api/v1/position,get,Get Position Details
 futures,positions,/api/v1/positions,get,Get Position List
@@ -199,6 +201,7 @@ futures,positions,/api/v2/getCrossUserLeverage,get,Get Cross Margin Leverage
 futures,positions,/api/v2/changeCrossUserLeverage,post,Modify Cross Margin Leverage
 futures,positions,/api/v1/position/margin/deposit-margin,post,Add Isolated Margin
 futures,positions,/api/v1/margin/withdrawMargin,post,Remove Isolated Margin
+futures,positions,/api/v2/batchGetCrossOrderLimit,get,Get Cross Margin Risk Limit
 futures,positions,/api/v1/contracts/risk-limit/{symbol},get,Get Isolated Margin Risk Limit
 futures,positions,/api/v1/position/risk-limit-level/change,post,Modify Isolated Margin Risk Limit
 futures,positions,/api/v1/position/margin/auto-deposit-status,post,Modify Isolated Margin Auto-Deposit Status
@@ -219,6 +222,9 @@ viplending,viplending,/api/v1/otc-loan/loan,get,Get Loan Info
 viplending,viplending,/api/v1/otc-loan/accounts,get,Get Accounts
 affiliate,affiliate,/api/v2/affiliate/inviter/statistics,get,Get Account
 broker,apibroker,/api/v1/broker/api/rebase/download,get,Get Broker Rebate
+broker,ndbroker,/api/kyc/ndBroker/proxyClient/submit,post,Submit KYC
+broker,ndbroker,/api/kyc/ndBroker/proxyClient/status/list,get,Get KYC Status
+broker,ndbroker,/api/kyc/ndBroker/proxyClient/status/page,get,Get KYC Status List
 broker,ndbroker,/api/v1/broker/nd/info,get,Get Broker Info
 broker,ndbroker,/api/v1/broker/nd/account,post,Add sub-account
 broker,ndbroker,/api/v1/broker/nd/account,get,Get sub-account

@@ -247,7 +247,7 @@
                                     },
                                     "allowMaxTimeWindow": {
                                         "type": "integer",
-                                        "description": "Order failed after timeout of specified milliseconds, If clientTimestamp + allowMaxTimeWindow < the server reaches time, this order will fail.",
+                                        "description": "Order failed after timeout of specified milliseconds, If clientTimestamp + allowMaxTimeWindow < Gateway received the message time, this order will fail.",
                                         "format": "int64",
                                         "example": [
                                             10,
@@ -257,7 +257,7 @@
                                     },
                                     "clientTimestamp": {
                                         "type": "integer",
-                                        "description": "Equal to KC-API-TIMESTAMP, Need to be defined if iceberg is specified.",
+                                        "description": "Equal to KC-API-TIMESTAMP, Need to be defined if allowMaxTimeWindow is specified.",
                                         "format": "int64",
                                         "example": [
                                             1740711735178
@@ -630,7 +630,7 @@
                                     },
                                     "allowMaxTimeWindow": {
                                         "type": "integer",
-                                        "description": "The order will fail if it times out after the specified duration in milliseconds. Specifically, if clientTimestamp + allowMaxTimeWindow (in milliseconds) is less than the time the server receives the message, the order will fail.",
+                                        "description": "Order failed after timeout of specified milliseconds, If clientTimestamp + allowMaxTimeWindow < Gateway received the message time, this order will fail.",
                                         "format": "int64",
                                         "example": [
                                             10,
@@ -640,7 +640,7 @@
                                     },
                                     "clientTimestamp": {
                                         "type": "integer",
-                                        "description": "Equal to KC-API-TIMESTAMP. Needs to be defined if iceberg is specified.",
+                                        "description": "Equal to KC-API-TIMESTAMP. Needs to be defined if allowMaxTimeWindow is specified.",
                                         "format": "int64",
                                         "example": [
                                             1740711735178
@@ -902,7 +902,7 @@
                                     },
                                     "allowMaxTimeWindow": {
                                         "type": "integer",
-                                        "description": "Order failed after timeout of specified milliseconds, If clientTimestamp + allowMaxTimeWindow < the server reaches time, this order will fail.",
+                                        "description": "Order failed after timeout of specified milliseconds, If clientTimestamp + allowMaxTimeWindow < Gateway received the message time, this order will fail.",
                                         "format": "int64",
                                         "example": [
                                             10,
@@ -912,7 +912,7 @@
                                     },
                                     "clientTimestamp": {
                                         "type": "integer",
-                                        "description": "Equal to KC-API-TIMESTAMP, Need to be defined if iceberg is specified.",
+                                        "description": "Equal to KC-API-TIMESTAMP, Need to be defined if allowMaxTimeWindow is specified.",
                                         "format": "int64",
                                         "example": [
                                             1740711735178
@@ -1174,7 +1174,7 @@
                                                 },
                                                 "clientTimestamp": {
                                                     "type": "integer",
-                                                    "description": "Equal to KC-API-TIMESTAMP. Needs to be defined if iceberg is specified.",
+                                                    "description": "Equal to KC-API-TIMESTAMP. Needs to be defined if allowMaxTimeWindow is specified.",
                                                     "format": "int64",
                                                     "example": [
                                                         1740711735178
@@ -1182,7 +1182,7 @@
                                                 },
                                                 "allowMaxTimeWindow": {
                                                     "type": "integer",
-                                                    "description": "The order will fail if it times out after the specified duration in milliseconds. Specifically, if clientTimestamp + allowMaxTimeWindow (in milliseconds) is less than the time the server receives the message, the order will fail.",
+                                                    "description": "Order failed after timeout of specified milliseconds, If clientTimestamp + allowMaxTimeWindow < Gateway received the message time, this order will fail.",
                                                     "format": "int64",
                                                     "example": [
                                                         10,
@@ -1498,7 +1498,7 @@
                                                 },
                                                 "allowMaxTimeWindow": {
                                                     "type": "integer",
-                                                    "description": "The order will fail if it times out after the specified duration in milliseconds. Specifically, if clientTimestamp + allowMaxTimeWindow (in milliseconds) is less than the time the server receives the message, the order will fail.",
+                                                    "description": "Order failed after timeout of specified milliseconds, If clientTimestamp + allowMaxTimeWindow < Gateway received the message time, this order will fail.",
                                                     "format": "int64",
                                                     "example": [
                                                         10,
@@ -1508,7 +1508,7 @@
                                                 },
                                                 "clientTimestamp": {
                                                     "type": "integer",
-                                                    "description": "Equal to KC-API-TIMESTAMP. Needs to be defined if iceberg is specified.",
+                                                    "description": "Equal to KC-API-TIMESTAMP. Needs to be defined if allowMaxTimeWindow is specified.",
                                                     "format": "int64",
                                                     "example": [
                                                         1740711735178
@@ -2834,7 +2834,7 @@
                 "x-sdk-sub-service": "Order",
                 "x-sdk-method-name": "modifyOrder",
                 "x-sdk-method-description": "This interface can modify the price and quantity of the order according to orderId or clientOid.  The implementation of this interface is: Cancel the order and place a new order on the same trading pair, and return the modification result to the client synchronously. When the quantity of the new order updated by the user is less than the filled quantity of this order, the order will be considered as completed, and the order will be canceled, and no new order will be placed.",
-                "x-api-rate-limit-weight": 3,
+                "x-api-rate-limit-weight": 1,
                 "requestBody": {
                     "content": {
                         "application/json": {

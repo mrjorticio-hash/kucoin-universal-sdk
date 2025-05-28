@@ -384,7 +384,7 @@
                             "orderTime": {
                                 "type": "integer",
                                 "format": "int64",
-                                "description": "Order time (nanoseconds)"
+                                "description": "Gateway received the message time (milliseconds)"
                             },
                             "size": {
                                 "type": "string",
@@ -431,7 +431,7 @@
                             "ts": {
                                 "type": "integer",
                                 "format": "int64",
-                                "description": "Push time (nanoseconds)"
+                                "description": "Match engine received the message time\n (nanoseconds)"
                             },
                             "liquidity": {
                                 "type": "string",
@@ -691,7 +691,7 @@
                             "orderTime": {
                                 "type": "integer",
                                 "format": "int64",
-                                "description": "Order time (nanoseconds)"
+                                "description": "Gateway received the message time (milliseconds)"
                             },
                             "size": {
                                 "type": "string",
@@ -738,7 +738,7 @@
                             "ts": {
                                 "type": "integer",
                                 "format": "int64",
-                                "description": "Push time (nanoseconds)"
+                                "description": "Match engine received the message time\n (nanoseconds)"
                             },
                             "liquidity": {
                                 "type": "string",
@@ -1133,7 +1133,7 @@
                             },
                             "maintMarginReq": {
                                 "type": "number",
-                                "description": "Maintenance margin requirement **Only applicable to Isolated Margin**\n"
+                                "description": "Maintenance margin requirement\n"
                             },
                             "riskLimit": {
                                 "type": "integer",
@@ -1161,7 +1161,7 @@
                             },
                             "posMaint": {
                                 "type": "number",
-                                "description": "Maintenance margin **Only applicable to Isolated Margin**\n"
+                                "description": "Maintenance margin"
                             },
                             "maintMargin": {
                                 "type": "number",
@@ -1417,7 +1417,7 @@
                             },
                             "maintMarginReq": {
                                 "type": "number",
-                                "description": "Maintenance margin requirement **Only applicable to Isolated Margin**\n"
+                                "description": "Maintenance margin requirement\n"
                             },
                             "riskLimit": {
                                 "type": "integer",
@@ -1445,7 +1445,7 @@
                             },
                             "posMaint": {
                                 "type": "number",
-                                "description": "Maintenance margin **Only applicable to Isolated Margin**\n"
+                                "description": "Maintenance margin\n"
                             },
                             "maintMargin": {
                                 "type": "number",

@@ -580,41 +580,7 @@
                                                 },
                                                 "status": {
                                                     "type": "string",
-                                                    "description": "Position status; EFFECTIVE-effective, BANKRUPTCY-bankruptcy liquidation, LIQUIDATION-closing, REPAY-repayment, BORROW-borrowing",
-                                                    "enum": [
-                                                        "EFFECTIVE",
-                                                        "BANKRUPTCY",
-                                                        "LIQUIDATION",
-                                                        "REPAY",
-                                                        "BORROW"
-                                                    ],
-                                                    "x-api-enum": [
-                                                        {
-                                                            "value": "EFFECTIVE",
-                                                            "name": "EFFECTIVE",
-                                                            "description": "Effective"
-                                                        },
-                                                        {
-                                                            "value": "BANKRUPTCY",
-                                                            "name": "BANKRUPTCY",
-                                                            "description": "Bankruptcy liquidation"
-                                                        },
-                                                        {
-                                                            "value": "LIQUIDATION",
-                                                            "name": "LIQUIDATION",
-                                                            "description": "Closing"
-                                                        },
-                                                        {
-                                                            "value": "REPAY",
-                                                            "name": "REPAY",
-                                                            "description": "Repayment"
-                                                        },
-                                                        {
-                                                            "value": "BORROW",
-                                                            "name": "BORROW",
-                                                            "description": "Borrowing"
-                                                        }
-                                                    ]
+                                                    "description": "Position status; EFFECTIVE-effective, BANKRUPTCY-bankruptcy liquidation, LIQUIDATION-closing, REPAY-repayment, BORROW-borrowing"
                                                 },
                                                 "accounts": {
                                                     "type": "array",
@@ -652,6 +618,14 @@
                                                             "transferInEnabled": {
                                                                 "type": "boolean",
                                                                 "description": "Support transfer or not"
+                                                            },
+                                                            "liabilityPrincipal": {
+                                                                "type": "string",
+                                                                "description": "Outstanding principal – the unpaid loan amount"
+                                                            },
+                                                            "liabilityInterest": {
+                                                                "type": "string",
+                                                                "description": "Accrued interest – the unpaid interest amount"
                                                             }
                                                         },
                                                         "required": [
@@ -660,6 +634,8 @@
                                                             "available",
                                                             "hold",
                                                             "liability",
+                                                            "liabilityPrincipal",
+                                                            "liabilityInterest",
                                                             "maxBorrowSize",
                                                             "borrowEnabled",
                                                             "transferInEnabled"
@@ -697,7 +673,7 @@
                 "x-sdk-method-name": "getCrossMarginAccount",
                 "x-sdk-method-description": "Request cross margin account info via this endpoint.",
                 "x-api-rate-limit-weight": 15,
-                "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"totalAssetOfQuoteCurrency\\\": \\\"0.02\\\",\\n        \\\"totalLiabilityOfQuoteCurrency\\\": \\\"0\\\",\\n        \\\"debtRatio\\\": \\\"0\\\",\\n        \\\"status\\\": \\\"EFFECTIVE\\\",\\n        \\\"accounts\\\": [\\n            {\\n                \\\"currency\\\": \\\"USDT\\\",\\n                \\\"total\\\": \\\"0.02\\\",\\n                \\\"available\\\": \\\"0.02\\\",\\n                \\\"hold\\\": \\\"0\\\",\\n                \\\"liability\\\": \\\"0\\\",\\n                \\\"maxBorrowSize\\\": \\\"0\\\",\\n                \\\"borrowEnabled\\\": true,\\n                \\\"transferInEnabled\\\": true\\n            }\\n        ]\\n    }\\n}",
+                "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"totalAssetOfQuoteCurrency\\\": \\\"40.8648372\\\",\\n        \\\"totalLiabilityOfQuoteCurrency\\\": \\\"0\\\",\\n        \\\"debtRatio\\\": \\\"0\\\",\\n        \\\"status\\\": \\\"EFFECTIVE\\\",\\n        \\\"accounts\\\": [\\n            {\\n                \\\"currency\\\": \\\"USDT\\\",\\n                \\\"total\\\": \\\"38.68855864\\\",\\n                \\\"available\\\": \\\"20.01916691\\\",\\n                \\\"hold\\\": \\\"18.66939173\\\",\\n                \\\"liability\\\": \\\"0\\\",\\n                \\\"liabilityPrincipal\\\": \\\"0\\\",\\n                \\\"liabilityInterest\\\": \\\"0\\\",\\n                \\\"maxBorrowSize\\\": \\\"163\\\",\\n                \\\"borrowEnabled\\\": true,\\n                \\\"transferInEnabled\\\": true\\n            }\\n        ]\\n    }\\n}",
                 "x-request-example": "{\\\"quoteCurrency\\\": \\\"USDT\\\", \\\"queryType\\\": \\\"MARGIN\\\"}",
                 "operationId": "006"
             }
@@ -821,41 +797,7 @@
                                                             },
                                                             "status": {
                                                                 "type": "string",
-                                                                "description": "Position status; EFFECTIVE-effective, BANKRUPTCY-bankruptcy liquidation, LIQUIDATION-closing, REPAY-repayment, BORROW-borrowing",
-                                                                "enum": [
-                                                                    "EFFECTIVE",
-                                                                    "BANKRUPTCY",
-                                                                    "LIQUIDATION",
-                                                                    "REPAY",
-                                                                    "BORROW"
-                                                                ],
-                                                                "x-api-enum": [
-                                                                    {
-                                                                        "value": "EFFECTIVE",
-                                                                        "name": "EFFECTIVE",
-                                                                        "description": "Effective"
-                                                                    },
-                                                                    {
-                                                                        "value": "BANKRUPTCY",
-                                                                        "name": "BANKRUPTCY",
-                                                                        "description": "Bankruptcy liquidation"
-                                                                    },
-                                                                    {
-                                                                        "value": "LIQUIDATION",
-                                                                        "name": "LIQUIDATION",
-                                                                        "description": "Closing"
-                                                                    },
-                                                                    {
-                                                                        "value": "REPAY",
-                                                                        "name": "REPAY",
-                                                                        "description": "Repayment"
-                                                                    },
-                                                                    {
-                                                                        "value": "BORROW",
-                                                                        "name": "BORROW",
-                                                                        "description": "Borrowing"
-                                                                    }
-                                                                ]
+                                                                "description": "Position status; EFFECTIVE-effective, BANKRUPTCY-bankruptcy liquidation, LIQUIDATION-closing, REPAY-repayment, BORROW-borrowing"
                                                             },
                                                             "debtRatio": {
                                                                 "type": "string",
@@ -895,6 +837,14 @@
                                                                     "maxBorrowSize": {
                                                                         "type": "string",
                                                                         "description": "The user's remaining maximum loan amount"
+                                                                    },
+                                                                    "liabilityPrincipal": {
+                                                                        "type": "string",
+                                                                        "description": "Outstanding principal"
+                                                                    },
+                                                                    "liabilityInterest": {
+                                                                        "type": "string",
+                                                                        "description": "Outstanding interest"
                                                                     }
                                                                 },
                                                                 "required": [
@@ -902,6 +852,8 @@
                                                                     "borrowEnabled",
                                                                     "transferInEnabled",
                                                                     "liability",
+                                                                    "liabilityPrincipal",
+                                                                    "liabilityInterest",
                                                                     "total",
                                                                     "available",
                                                                     "hold",
@@ -943,6 +895,12 @@
                                                                     "maxBorrowSize": {
                                                                         "type": "string",
                                                                         "description": "The user's remaining maximum loan amount"
+                                                                    },
+                                                                    "liabilityPrincipal": {
+                                                                        "type": "string"
+                                                                    },
+                                                                    "liabilityInterest": {
+                                                                        "type": "string"
                                                                     }
                                                                 },
                                                                 "required": [
@@ -950,6 +908,8 @@
                                                                     "borrowEnabled",
                                                                     "transferInEnabled",
                                                                     "liability",
+                                                                    "liabilityPrincipal",
+                                                                    "liabilityInterest",
                                                                     "total",
                                                                     "available",
                                                                     "hold",
@@ -957,14 +917,7 @@
                                                                 ],
                                                                 "description": "quote asset"
                                                             }
-                                                        },
-                                                        "required": [
-                                                            "symbol",
-                                                            "status",
-                                                            "debtRatio",
-                                                            "baseAsset",
-                                                            "quoteAsset"
-                                                        ]
+                                                        }
                                                     }
                                                 }
                                             },
@@ -996,8 +949,8 @@
                 "x-sdk-method-name": "getIsolatedMarginAccount",
                 "x-sdk-method-description": "Request isolated margin account info via this endpoint.",
                 "x-api-rate-limit-weight": 15,
-                "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"totalAssetOfQuoteCurrency\\\": \\\"0.01\\\",\\n        \\\"totalLiabilityOfQuoteCurrency\\\": \\\"0\\\",\\n        \\\"timestamp\\\": 1728725465994,\\n        \\\"assets\\\": [\\n            {\\n                \\\"symbol\\\": \\\"BTC-USDT\\\",\\n                \\\"status\\\": \\\"EFFECTIVE\\\",\\n                \\\"debtRatio\\\": \\\"0\\\",\\n                \\\"baseAsset\\\": {\\n                    \\\"currency\\\": \\\"BTC\\\",\\n                    \\\"borrowEnabled\\\": true,\\n                    \\\"transferInEnabled\\\": true,\\n                    \\\"liability\\\": \\\"0\\\",\\n                    \\\"total\\\": \\\"0\\\",\\n                    \\\"available\\\": \\\"0\\\",\\n                    \\\"hold\\\": \\\"0\\\",\\n                    \\\"maxBorrowSize\\\": \\\"0\\\"\\n                },\\n                \\\"quoteAsset\\\": {\\n                    \\\"currency\\\": \\\"USDT\\\",\\n                    \\\"borrowEnabled\\\": true,\\n                    \\\"transferInEnabled\\\": true,\\n                    \\\"liability\\\": \\\"0\\\",\\n                    \\\"total\\\": \\\"0.01\\\",\\n                    \\\"available\\\": \\\"0.01\\\",\\n                    \\\"hold\\\": \\\"0\\\",\\n                    \\\"maxBorrowSize\\\": \\\"0\\\"\\n                }\\n            }\\n        ]\\n    }\\n}",
-                "x-request-example": "{\\\"symbol\\\": \\\"example_string_default_value\\\", \\\"quoteCurrency\\\": \\\"USDT\\\", \\\"queryType\\\": \\\"ISOLATED\\\"}",
+                "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"totalAssetOfQuoteCurrency\\\": \\\"4.97047372\\\",\\n        \\\"totalLiabilityOfQuoteCurrency\\\": \\\"0.00038891\\\",\\n        \\\"timestamp\\\": 1747303659773,\\n        \\\"assets\\\": [\\n            {\\n                \\\"symbol\\\": \\\"BTC-USDT\\\",\\n                \\\"status\\\": \\\"EFFECTIVE\\\",\\n                \\\"debtRatio\\\": \\\"0\\\",\\n                \\\"baseAsset\\\": {\\n                    \\\"currency\\\": \\\"BTC\\\",\\n                    \\\"borrowEnabled\\\": true,\\n                    \\\"transferInEnabled\\\": true,\\n                    \\\"liability\\\": \\\"0\\\",\\n                    \\\"liabilityPrincipal\\\": \\\"0\\\",\\n                    \\\"liabilityInterest\\\": \\\"0\\\",\\n                    \\\"total\\\": \\\"0\\\",\\n                    \\\"available\\\": \\\"0\\\",\\n                    \\\"hold\\\": \\\"0\\\",\\n                    \\\"maxBorrowSize\\\": \\\"0\\\"\\n                },\\n                \\\"quoteAsset\\\": {\\n                    \\\"currency\\\": \\\"USDT\\\",\\n                    \\\"borrowEnabled\\\": true,\\n                    \\\"transferInEnabled\\\": true,\\n                    \\\"liability\\\": \\\"0.00038891\\\",\\n                    \\\"liabilityPrincipal\\\": \\\"0.00038888\\\",\\n                    \\\"liabilityInterest\\\": \\\"0.00000003\\\",\\n                    \\\"total\\\": \\\"4.97047372\\\",\\n                    \\\"available\\\": \\\"4.97047372\\\",\\n                    \\\"hold\\\": \\\"0\\\",\\n                    \\\"maxBorrowSize\\\": \\\"44\\\"\\n                }\\n            }\\n        ]\\n    }\\n}",
+                "x-request-example": "{\\\"symbol\\\": \\\"BTC-USDT\\\", \\\"quoteCurrency\\\": \\\"USDT\\\", \\\"queryType\\\": \\\"ISOLATED\\\"}",
                 "operationId": "007"
             }
         },
@@ -1382,6 +1335,7 @@
                             "enum": [
                                 "TRADE_EXCHANGE",
                                 "TRANSFER",
+                                "SUB_TRANSFER",
                                 "RETURNED_FEES",
                                 "DEDUCTION_FEES",
                                 "OTHER"
@@ -1390,27 +1344,32 @@
                                 {
                                     "value": "TRADE_EXCHANGE",
                                     "name": "TRADE_EXCHANGE",
-                                    "description": "trade exchange"
+                                    "description": "Trade exchange"
                                 },
                                 {
                                     "value": "TRANSFER",
                                     "name": "TRANSFER",
-                                    "description": "transfer"
+                                    "description": "Transfer"
+                                },
+                                {
+                                    "value": "SUB_TRANSFER",
+                                    "name": "SUB_TRANSFER",
+                                    "description": "Sub transfer"
                                 },
                                 {
                                     "value": "RETURNED_FEES",
                                     "name": "RETURNED_FEES",
-                                    "description": "returned fees"
+                                    "description": "Returned fees"
                                 },
                                 {
                                     "value": "DEDUCTION_FEES",
                                     "name": "DEDUCTION_FEES",
-                                    "description": "deduction fees"
+                                    "description": "Deduction fees"
                                 },
                                 {
                                     "value": "OTHER",
                                     "name": "OTHER",
-                                    "description": "other"
+                                    "description": "Other"
                                 }
                             ]
                         }
@@ -1967,19 +1926,19 @@
                                             "properties": {
                                                 "uid": {
                                                     "type": "integer",
-                                                    "description": "Sub-account UID"
+                                                    "description": "Sub account user id"
                                                 },
                                                 "subName": {
                                                     "type": "string",
-                                                    "description": "Sub-account name"
+                                                    "description": "Sub account name"
                                                 },
                                                 "remarks": {
                                                     "type": "string",
-                                                    "description": "Remarks"
+                                                    "description": "Sub account name"
                                                 },
                                                 "access": {
                                                     "type": "string",
-                                                    "description": "Permission"
+                                                    "description": "permission"
                                                 }
                                             },
                                             "required": [
@@ -2062,12 +2021,12 @@
                                     "access"
                                 ]
                             },
-                            "example": "{\n    \"password\": \"1234567\",\n    \"remarks\": \"TheRemark\",\n    \"subName\": \"Name1234567\",\n    \"access\": \"Spot\"\n}"
+                            "example": "{\n    \"password\": \"q1234567\",\n    \"access\": \"Spot\",\n    \"subName\": \"subNameTest1\",\n    \"remarks\": \"TheRemark\"\n}"
                         }
                     }
                 },
-                "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"currentPage\\\": 1,\\n        \\\"pageSize\\\": 10,\\n        \\\"totalNum\\\": 1,\\n        \\\"totalPage\\\": 1,\\n        \\\"items\\\": [\\n            {\\n                \\\"userId\\\": \\\"63743f07e0c5230001761d08\\\",\\n                \\\"uid\\\": 169579801,\\n                \\\"subName\\\": \\\"testapi6\\\",\\n                \\\"status\\\": 2,\\n                \\\"type\\\": 0,\\n                \\\"access\\\": \\\"All\\\",\\n                \\\"createdAt\\\": 1668562696000,\\n                \\\"remarks\\\": \\\"remarks\\\",\\n                \\\"tradeTypes\\\": [\\n                    \\\"Spot\\\",\\n                    \\\"Futures\\\",\\n                    \\\"Margin\\\"\\n                ],\\n                \\\"openedTradeTypes\\\": [\\n                    \\\"Spot\\\"\\n                ],\\n                \\\"hostedStatus\\\": null\\n            }\\n        ]\\n    }\\n}",
-                "x-request-example": "{\\\"password\\\": \\\"1234567\\\", \\\"remarks\\\": \\\"TheRemark\\\", \\\"subName\\\": \\\"Name1234567\\\", \\\"access\\\": \\\"Spot\\\"}",
+                "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"uid\\\": 245730746,\\n        \\\"subName\\\": \\\"subNameTest1\\\",\\n        \\\"remarks\\\": \\\"TheRemark\\\",\\n        \\\"access\\\": \\\"Spot\\\"\\n    }\\n}",
+                "x-request-example": "{\\\"password\\\": \\\"q1234567\\\", \\\"access\\\": \\\"Spot\\\", \\\"subName\\\": \\\"subNameTest1\\\", \\\"remarks\\\": \\\"TheRemark\\\"}",
                 "operationId": "013"
             }
         },
@@ -4436,8 +4395,7 @@
                                         ]
                                     },
                                     "amount": {
-                                        "type": "integer",
-                                        "format": "int64",
+                                        "type": "string",
                                         "description": "Withdrawal amount, a positive number which is a multiple of the amount precision"
                                     },
                                     "memo": {
@@ -4571,6 +4529,237 @@
                 "x-response-example": "{\\\"code\\\":\\\"200000\\\",\\\"data\\\":null}",
                 "x-request-example": "{\\\"withdrawalId\\\": \\\"670b891f7e0f440007730692\\\"}",
                 "operationId": "029"
+            },
+            "get": {
+                "summary": "Get Withdrawal History By ID",
+                "deprecated": false,
+                "description": "Request a withdrawal history by id via this endpoint.",
+                "tags": [],
+                "parameters": [
+                    {
+                        "name": "withdrawalId",
+                        "in": "path",
+                        "description": "withdrawal ID",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "id": {
+                                                    "type": "string",
+                                                    "description": "Unique ID"
+                                                },
+                                                "uid": {
+                                                    "type": "integer",
+                                                    "description": "User ID"
+                                                },
+                                                "currency": {
+                                                    "type": "string",
+                                                    "description": "A unique currency code that will never change"
+                                                },
+                                                "chainId": {
+                                                    "type": "string",
+                                                    "description": "The chain id of currency",
+                                                    "example": [
+                                                        "eth",
+                                                        "bech32",
+                                                        "btc",
+                                                        "kcc",
+                                                        "trx",
+                                                        "bsc",
+                                                        "arbitrum",
+                                                        "ton",
+                                                        "optimism"
+                                                    ]
+                                                },
+                                                "chainName": {
+                                                    "type": "string",
+                                                    "description": "Chain name of currency"
+                                                },
+                                                "currencyName": {
+                                                    "type": "string",
+                                                    "description": "Currency name; will change after renaming"
+                                                },
+                                                "status": {
+                                                    "type": "string",
+                                                    "description": "Status. Available value: REVIEW, PROCESSING, WALLET_PROCESSING, SUCCESS and FAILURE"
+                                                },
+                                                "failureReason": {
+                                                    "type": "string",
+                                                    "description": "Failure reason code"
+                                                },
+                                                "failureReasonMsg": {
+                                                    "type": "string",
+                                                    "description": "Failure reason message"
+                                                },
+                                                "address": {
+                                                    "type": "string",
+                                                    "description": "Withwrawal address"
+                                                },
+                                                "memo": {
+                                                    "type": "string",
+                                                    "description": "Address remark. If there’s no remark, it is empty. "
+                                                },
+                                                "isInner": {
+                                                    "type": "boolean",
+                                                    "description": "Internal withdrawal or not. "
+                                                },
+                                                "amount": {
+                                                    "type": "string",
+                                                    "description": "Withwrawal amount"
+                                                },
+                                                "fee": {
+                                                    "type": "string",
+                                                    "description": "Fees charged for withwrawal"
+                                                },
+                                                "walletTxId": {
+                                                    "type": "string",
+                                                    "description": "Wallet Transaction ID"
+                                                },
+                                                "addressRemark": {
+                                                    "type": "string",
+                                                    "description": "Address remark"
+                                                },
+                                                "remark": {
+                                                    "type": "string",
+                                                    "description": "Remark"
+                                                },
+                                                "createdAt": {
+                                                    "type": "integer",
+                                                    "format": "int64",
+                                                    "description": "Creation Time (milliseconds)"
+                                                },
+                                                "cancelType": {
+                                                    "type": "string",
+                                                    "enum": [
+                                                        "CANCELABLE",
+                                                        "CANCELING",
+                                                        "NON_CANCELABLE"
+                                                    ],
+                                                    "x-api-enum": [
+                                                        {
+                                                            "value": "CANCELABLE",
+                                                            "name": "CANCELABLE",
+                                                            "description": "Cancellable"
+                                                        },
+                                                        {
+                                                            "value": "CANCELING",
+                                                            "name": "CANCELING",
+                                                            "description": "Cancelling"
+                                                        },
+                                                        {
+                                                            "value": "NON_CANCELABLE",
+                                                            "name": "NON_CANCELABLE",
+                                                            "description": "Non-Cancellable"
+                                                        }
+                                                    ]
+                                                },
+                                                "taxes": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "string"
+                                                    },
+                                                    "description": "Users in some regions need query this field"
+                                                },
+                                                "taxDescription": {
+                                                    "type": "string",
+                                                    "description": "Tax description"
+                                                },
+                                                "returnStatus": {
+                                                    "type": "string",
+                                                    "enum": [
+                                                        "NOT_RETURN",
+                                                        "PROCESSING",
+                                                        "SUCCESS"
+                                                    ],
+                                                    "description": "Return status",
+                                                    "x-api-enum": [
+                                                        {
+                                                            "value": "NOT_RETURN",
+                                                            "name": "NOT_RETURN",
+                                                            "description": "No returned"
+                                                        },
+                                                        {
+                                                            "value": "PROCESSING",
+                                                            "name": "PROCESSING",
+                                                            "description": "To be returned"
+                                                        },
+                                                        {
+                                                            "value": "SUCCESS",
+                                                            "name": "SUCCESS",
+                                                            "description": "Returned"
+                                                        }
+                                                    ]
+                                                },
+                                                "returnAmount": {
+                                                    "type": "string",
+                                                    "description": "Return amount"
+                                                },
+                                                "returnCurrency": {
+                                                    "type": "string",
+                                                    "description": "Return currency"
+                                                }
+                                            },
+                                            "required": [
+                                                "id",
+                                                "uid",
+                                                "currency",
+                                                "chainId",
+                                                "chainName",
+                                                "currencyName",
+                                                "status",
+                                                "failureReason",
+                                                "address",
+                                                "memo",
+                                                "isInner",
+                                                "amount",
+                                                "fee",
+                                                "remark",
+                                                "createdAt",
+                                                "cancelType",
+                                                "returnStatus",
+                                                "returnCurrency"
+                                            ]
+                                        }
+                                    },
+                                    "required": [
+                                        "code",
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                },
+                "x-api-doc": "https://www.kucoin.com/docs-new/api-3471890",
+                "x-abandon": "normal",
+                "x-domain": "Spot",
+                "x-api-channel": "Private",
+                "x-api-permission": "General",
+                "x-api-rate-limit-pool": "Management",
+                "x-sdk-service": "Account",
+                "x-sdk-sub-service": "Withdrawal",
+                "x-sdk-method-name": "getWithdrawalHistoryById",
+                "x-sdk-method-description": "Request a withdrawal history by id via this endpoint.",
+                "x-api-rate-limit-weight": 20,
+                "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"id\\\": \\\"67e6515f7960ba0007b42025\\\",\\n        \\\"uid\\\": 165111215,\\n        \\\"currency\\\": \\\"USDT\\\",\\n        \\\"chainId\\\": \\\"trx\\\",\\n        \\\"chainName\\\": \\\"TRC20\\\",\\n        \\\"currencyName\\\": \\\"USDT\\\",\\n        \\\"status\\\": \\\"SUCCESS\\\",\\n        \\\"failureReason\\\": \\\"\\\",\\n        \\\"failureReasonMsg\\\": null,\\n        \\\"address\\\": \\\"TKFRQXSDcY4kd3QLzw7uK16GmLrjJggwX8\\\",\\n        \\\"memo\\\": \\\"\\\",\\n        \\\"isInner\\\": true,\\n        \\\"amount\\\": \\\"3.00000000\\\",\\n        \\\"fee\\\": \\\"0.00000000\\\",\\n        \\\"walletTxId\\\": null,\\n        \\\"addressRemark\\\": null,\\n        \\\"remark\\\": \\\"this is Remark\\\",\\n        \\\"createdAt\\\": 1743147359000,\\n        \\\"cancelType\\\": \\\"NON_CANCELABLE\\\",\\n        \\\"taxes\\\": null,\\n        \\\"taxDescription\\\": null,\\n        \\\"returnStatus\\\": \\\"NOT_RETURN\\\",\\n        \\\"returnAmount\\\": null,\\n        \\\"returnCurrency\\\": \\\"KCS\\\"\\n    }\\n}",
+                "x-request-example": "{\\\"withdrawalId\\\": \\\"67e6515f7960ba0007b42025\\\"}",
+                "operationId": "031"
             }
         },
         "/api/v1/withdrawals": {
@@ -4725,7 +4914,7 @@
                                                             },
                                                             "chain": {
                                                                 "type": "string",
-                                                                "description": "The id of currency",
+                                                                "description": "The chain id of currency",
                                                                 "example": [
                                                                     "eth",
                                                                     "bech32",
@@ -4740,6 +4929,7 @@
                                                             },
                                                             "status": {
                                                                 "type": "string",
+                                                                "description": "Status. Available value: REVIEW, PROCESSING, WALLET_PROCESSING, SUCCESS and FAILURE",
                                                                 "enum": [
                                                                     "REVIEW",
                                                                     "PROCESSING",
@@ -4747,38 +4937,37 @@
                                                                     "FAILURE",
                                                                     "SUCCESS"
                                                                 ],
-                                                                "description": "Status. Available value: REVIEW, PROCESSING, WALLET_PROCESSING, SUCCESS and FAILURE",
                                                                 "x-api-enum": [
                                                                     {
                                                                         "value": "REVIEW",
                                                                         "name": "REVIEW",
-                                                                        "description": ""
+                                                                        "description": "REVIEW"
                                                                     },
                                                                     {
                                                                         "value": "PROCESSING",
                                                                         "name": "PROCESSING",
-                                                                        "description": ""
+                                                                        "description": "PROCESSING"
                                                                     },
                                                                     {
                                                                         "value": "WALLET_PROCESSING",
                                                                         "name": "WALLET_PROCESSING",
-                                                                        "description": ""
+                                                                        "description": "WALLET_PROCESSING"
                                                                     },
                                                                     {
                                                                         "value": "FAILURE",
                                                                         "name": "FAILURE",
-                                                                        "description": ""
+                                                                        "description": "FAILURE"
                                                                     },
                                                                     {
                                                                         "value": "SUCCESS",
                                                                         "name": "SUCCESS",
-                                                                        "description": ""
+                                                                        "description": "SUCCESS"
                                                                     }
                                                                 ]
                                                             },
                                                             "address": {
                                                                 "type": "string",
-                                                                "description": "Deposit address"
+                                                                "description": "Withwrawal address"
                                                             },
                                                             "memo": {
                                                                 "type": "string",
@@ -4790,15 +4979,15 @@
                                                             },
                                                             "amount": {
                                                                 "type": "string",
-                                                                "description": "Deposit amount"
+                                                                "description": "Withwrawal amount"
                                                             },
                                                             "fee": {
                                                                 "type": "string",
-                                                                "description": "Fees charged for deposit"
+                                                                "description": "Fees charged for withwrawal"
                                                             },
                                                             "walletTxId": {
                                                                 "type": "string",
-                                                                "description": "Wallet Txid"
+                                                                "description": "Wallet Txid, If this is an internal\nwithdrawal, it is empty. "
                                                             },
                                                             "createdAt": {
                                                                 "type": "integer",
@@ -4972,7 +5161,7 @@
                 },
                 "x-response-example": "{\\\"code\\\":\\\"200000\\\",\\\"data\\\":{\\\"withdrawalId\\\":\\\"670a973cf07b3800070e216c\\\"}}",
                 "x-request-example": "{\\\"currency\\\": \\\"USDT\\\", \\\"address\\\": \\\"TKFRQXSDc****16GmLrjJggwX8\\\", \\\"amount\\\": 3, \\\"chain\\\": \\\"trx\\\", \\\"isInner\\\": true}",
-                "operationId": "048"
+                "operationId": "049"
             }
         },
         "/api/v1/accounts/transferable": {
@@ -5132,7 +5321,7 @@
                 "x-api-rate-limit-weight": 20,
                 "x-response-example": "{\\\"code\\\":\\\"200000\\\",\\\"data\\\":{\\\"currency\\\":\\\"USDT\\\",\\\"balance\\\":\\\"10.5\\\",\\\"available\\\":\\\"10.5\\\",\\\"holds\\\":\\\"0\\\",\\\"transferable\\\":\\\"10.5\\\"}}",
                 "x-request-example": "{\\\"currency\\\": \\\"BTC\\\", \\\"type\\\": \\\"MAIN\\\", \\\"tag\\\": \\\"ETH-USDT\\\"}",
-                "operationId": "031"
+                "operationId": "032"
             }
         },
         "/api/v3/accounts/universal-transfer": {
@@ -5375,7 +5564,7 @@
                 },
                 "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"orderId\\\": \\\"6705f7248c6954000733ecac\\\"\\n    }\\n}",
                 "x-request-example": "{\\\"clientOid\\\": \\\"64ccc0f164781800010d8c09\\\", \\\"type\\\": \\\"PARENT_TO_SUB\\\", \\\"currency\\\": \\\"USDT\\\", \\\"amount\\\": \\\"0.01\\\", \\\"fromAccountType\\\": \\\"TRADE\\\", \\\"toUserId\\\": \\\"63743f07e0c5230001761d08\\\", \\\"toAccountType\\\": \\\"TRADE\\\"}",
-                "operationId": "032"
+                "operationId": "033"
             }
         },
         "/api/v1/base-fee": {
@@ -5466,7 +5655,7 @@
                 "x-api-rate-limit-weight": 3,
                 "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"takerFeeRate\\\": \\\"0.001\\\",\\n        \\\"makerFeeRate\\\": \\\"0.001\\\"\\n    }\\n}",
                 "x-request-example": "{\\\"currencyType\\\": 1}",
-                "operationId": "033"
+                "operationId": "034"
             }
         },
         "/api/v1/trade-fees": {
@@ -5557,7 +5746,7 @@
                 "x-api-rate-limit-weight": 3,
                 "x-response-example": "{\\\"code\\\":\\\"200000\\\",\\\"data\\\":[{\\\"symbol\\\":\\\"BTC-USDT\\\",\\\"takerFeeRate\\\":\\\"0.001\\\",\\\"makerFeeRate\\\":\\\"0.001\\\"},{\\\"symbol\\\":\\\"ETH-USDT\\\",\\\"takerFeeRate\\\":\\\"0.001\\\",\\\"makerFeeRate\\\":\\\"0.001\\\"}]}",
                 "x-request-example": "{\\\"symbols\\\": \\\"BTC-USDT,ETH-USDT\\\"}",
-                "operationId": "034"
+                "operationId": "035"
             },
             "patch": {
                 "summary": "Get Actual Fee - Futures",
@@ -5636,7 +5825,7 @@
                 "x-api-rate-limit-weight": 3,
                 "x-response-example": "{\\\"code\\\":\\\"200000\\\",\\\"data\\\":{\\\"symbol\\\":\\\"XBTUSDTM\\\",\\\"takerFeeRate\\\":\\\"0.0006\\\",\\\"makerFeeRate\\\":\\\"0.0002\\\"}}",
                 "x-request-example": "{\\\"symbol\\\": \\\"XBTUSDTM\\\"}",
-                "operationId": "035",
+                "operationId": "036",
                 "x-original-method": "get"
             }
         },
@@ -5715,7 +5904,7 @@
                 "x-sdk-method-description": "You can get the user info of all sub-account via this interface; it is recommended to use the GET /api/v2/sub/user interface for paging query",
                 "x-api-rate-limit-weight": 20,
                 "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": [\\n        {\\n            \\\"userId\\\": \\\"63743f07e0c5230001761d08\\\",\\n            \\\"uid\\\": 169579801,\\n            \\\"subName\\\": \\\"testapi6\\\",\\n            \\\"type\\\": 0,\\n            \\\"remarks\\\": \\\"remarks\\\",\\n            \\\"access\\\": \\\"All\\\"\\n        },\\n        {\\n            \\\"userId\\\": \\\"670538a31037eb000115b076\\\",\\n            \\\"uid\\\": 225139445,\\n            \\\"subName\\\": \\\"Name1234567\\\",\\n            \\\"type\\\": 0,\\n            \\\"remarks\\\": \\\"TheRemark\\\",\\n            \\\"access\\\": \\\"All\\\"\\n        }\\n    ]\\n}",
-                "operationId": "036"
+                "operationId": "037"
             }
         },
         "/api/v1/sub-accounts": {
@@ -5909,7 +6098,7 @@
                 "x-sdk-method-description": "This endpoint returns the account info of all sub-users.",
                 "x-api-rate-limit-weight": 20,
                 "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": [\\n        {\\n            \\\"subUserId\\\": \\\"63743f07e0c5230001761d08\\\",\\n            \\\"subName\\\": \\\"testapi6\\\",\\n            \\\"mainAccounts\\\": [\\n                {\\n                    \\\"currency\\\": \\\"USDT\\\",\\n                    \\\"balance\\\": \\\"0.01\\\",\\n                    \\\"available\\\": \\\"0.01\\\",\\n                    \\\"holds\\\": \\\"0\\\",\\n                    \\\"baseCurrency\\\": \\\"BTC\\\",\\n                    \\\"baseCurrencyPrice\\\": \\\"62489.8\\\",\\n                    \\\"baseAmount\\\": \\\"0.00000016\\\",\\n                    \\\"tag\\\": \\\"DEFAULT\\\"\\n                }\\n            ],\\n            \\\"tradeAccounts\\\": [\\n                {\\n                    \\\"currency\\\": \\\"USDT\\\",\\n                    \\\"balance\\\": \\\"0.01\\\",\\n                    \\\"available\\\": \\\"0.01\\\",\\n                    \\\"holds\\\": \\\"0\\\",\\n                    \\\"baseCurrency\\\": \\\"BTC\\\",\\n                    \\\"baseCurrencyPrice\\\": \\\"62489.8\\\",\\n                    \\\"baseAmount\\\": \\\"0.00000016\\\",\\n                    \\\"tag\\\": \\\"DEFAULT\\\"\\n                }\\n            ],\\n            \\\"marginAccounts\\\": [\\n                {\\n                    \\\"currency\\\": \\\"USDT\\\",\\n                    \\\"balance\\\": \\\"0.01\\\",\\n                    \\\"available\\\": \\\"0.01\\\",\\n                    \\\"holds\\\": \\\"0\\\",\\n                    \\\"baseCurrency\\\": \\\"BTC\\\",\\n                    \\\"baseCurrencyPrice\\\": \\\"62489.8\\\",\\n                    \\\"baseAmount\\\": \\\"0.00000016\\\",\\n                    \\\"tag\\\": \\\"DEFAULT\\\"\\n                }\\n            ],\\n            \\\"tradeHFAccounts\\\": []\\n        },\\n        {\\n            \\\"subUserId\\\": \\\"670538a31037eb000115b076\\\",\\n            \\\"subName\\\": \\\"Name1234567\\\",\\n            \\\"mainAccounts\\\": [],\\n            \\\"tradeAccounts\\\": [],\\n            \\\"marginAccounts\\\": [],\\n            \\\"tradeHFAccounts\\\": []\\n        },\\n        {\\n            \\\"subUserId\\\": \\\"66b0c0905fc1480001c14c36\\\",\\n            \\\"subName\\\": \\\"LTkucoin1491\\\",\\n            \\\"mainAccounts\\\": [],\\n            \\\"tradeAccounts\\\": [],\\n            \\\"marginAccounts\\\": [],\\n            \\\"tradeHFAccounts\\\": []\\n        }\\n    ]\\n}",
-                "operationId": "037"
+                "operationId": "038"
             }
         },
         "/api/v2/deposit-addresses": {
@@ -6067,7 +6256,7 @@
                 "x-api-rate-limit-weight": 5,
                 "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": [\\n        {\\n            \\\"address\\\": \\\"0x02028456*****87ede7a73d7c\\\",\\n            \\\"memo\\\": \\\"\\\",\\n            \\\"chain\\\": \\\"ERC20\\\",\\n            \\\"chainId\\\": \\\"eth\\\",\\n            \\\"to\\\": \\\"MAIN\\\",\\n            \\\"currency\\\": \\\"ETH\\\",\\n            \\\"contractAddress\\\": \\\"\\\"\\n        }\\n    ]\\n}",
                 "x-request-example": "{\\\"currency\\\": \\\"BTC\\\", \\\"chain\\\": \\\"eth\\\"}",
-                "operationId": "038"
+                "operationId": "039"
             }
         },
         "/api/v1/deposit-addresses": {
@@ -6223,7 +6412,7 @@
                 "x-api-rate-limit-weight": 5,
                 "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"address\\\": \\\"0xea220bf61c3c2b0adc2cfa29fec3d2677745a379\\\",\\n        \\\"memo\\\": \\\"\\\",\\n        \\\"chain\\\": \\\"ERC20\\\",\\n        \\\"chainId\\\": \\\"eth\\\",\\n        \\\"to\\\": \\\"MAIN\\\",\\n        \\\"currency\\\": \\\"USDT\\\"\\n    }\\n}",
                 "x-request-example": "{\\\"currency\\\": \\\"BTC\\\", \\\"chain\\\": \\\"eth\\\"}",
-                "operationId": "039"
+                "operationId": "040"
             },
             "post": {
                 "summary": "Add Deposit Address - V1",
@@ -6379,18 +6568,18 @@
                                         "type": "string",
                                         "description": "Deposit account type: main (funding account), trade (spot trading account); the default is main",
                                         "enum": [
-                                            "main",
-                                            "trade"
+                                            "MAIN",
+                                            "TRADE"
                                         ],
                                         "default": "main",
                                         "x-api-enum": [
                                             {
-                                                "value": "main",
+                                                "value": "MAIN",
                                                 "name": "main",
                                                 "description": "Funding account"
                                             },
                                             {
-                                                "value": "trade",
+                                                "value": "TRADE",
                                                 "name": "trade",
                                                 "description": "Spot account"
                                             }
@@ -6401,13 +6590,13 @@
                                     "currency"
                                 ]
                             },
-                            "example": "{\n    \"currency\": \"ETH\",\n    \"chain\": \"eth\"\n}"
+                            "example": "{\n    \"currency\": \"ETH\",\n    \"chain\": \"eth\",\n    \"to\": \"MAIN\"\n}"
                         }
                     }
                 },
                 "x-response-example": "{\\\"code\\\":\\\"200000\\\",\\\"data\\\":{\\\"address\\\":\\\"0x02028456f38e78609904e8a002c787ede7a73d7c\\\",\\\"memo\\\":null,\\\"chain\\\":\\\"ERC20\\\",\\\"chainId\\\":\\\"eth\\\",\\\"to\\\":\\\"MAIN\\\",\\\"currency\\\":\\\"ETH\\\"}}",
-                "x-request-example": "{\\\"currency\\\": \\\"ETH\\\", \\\"chain\\\": \\\"eth\\\"}",
-                "operationId": "047"
+                "x-request-example": "{\\\"currency\\\": \\\"ETH\\\", \\\"chain\\\": \\\"eth\\\", \\\"to\\\": \\\"MAIN\\\"}",
+                "operationId": "048"
             }
         },
         "/api/v2/accounts/sub-transfer": {
@@ -6607,7 +6796,7 @@
                 },
                 "x-response-example": "{\\\"code\\\":\\\"200000\\\",\\\"data\\\":{\\\"orderId\\\":\\\"670be6b0b1b9080007040a9b\\\"}}",
                 "x-request-example": "{\\\"clientOid\\\": \\\"64ccc0f164781800010d8c09\\\", \\\"currency\\\": \\\"USDT\\\", \\\"amount\\\": \\\"0.01\\\", \\\"direction\\\": \\\"OUT\\\", \\\"accountType\\\": \\\"MAIN\\\", \\\"subAccountType\\\": \\\"MAIN\\\", \\\"subUserId\\\": \\\"63743f07e0c5230001761d08\\\"}",
-                "operationId": "040"
+                "operationId": "041"
             }
         },
         "/api/v1/hist-deposits": {
@@ -6798,7 +6987,7 @@
                 "x-api-rate-limit-weight": 5,
                 "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"currentPage\\\": 1,\\n        \\\"pageSize\\\": 50,\\n        \\\"totalNum\\\": 0,\\n        \\\"totalPage\\\": 0,\\n        \\\"items\\\": [\\n            {\\n                \\\"currency\\\": \\\"BTC\\\",\\n                \\\"createAt\\\": 1528536998,\\n                \\\"amount\\\": \\\"0.03266638\\\",\\n                \\\"walletTxId\\\": \\\"55c643bc2c68d6f17266383ac1be9e454038864b929ae7cee0bc408cc5c869e8@12ffGWmMMD1zA1WbFm7Ho3JZ1w6NYXjpFk@234\\\",\\n                \\\"isInner\\\": false,\\n                \\\"status\\\": \\\"SUCCESS\\\"\\n            }\\n        ]\\n    }\\n}",
                 "x-request-example": "{\\\"currency\\\": \\\"BTC\\\", \\\"status\\\": \\\"SUCCESS\\\", \\\"startAt\\\": 1728663338000, \\\"endAt\\\": 1728692138000}",
-                "operationId": "041"
+                "operationId": "042"
             }
         },
         "/api/v2/accounts/inner-transfer": {
@@ -6994,7 +7183,7 @@
                 },
                 "x-response-example": "{\\\"code\\\":\\\"200000\\\",\\\"data\\\":{\\\"orderId\\\":\\\"670beb3482a1bb0007dec644\\\"}}",
                 "x-request-example": "{\\\"clientOid\\\": \\\"64ccc0f164781800010d8c09\\\", \\\"currency\\\": \\\"USDT\\\", \\\"amount\\\": \\\"0.01\\\", \\\"from\\\": \\\"main\\\", \\\"to\\\": \\\"trade\\\"}",
-                "operationId": "042"
+                "operationId": "043"
             }
         },
         "/api/v1/transfer-list": {
@@ -7244,7 +7433,7 @@
                 "x-api-rate-limit-weight": 20,
                 "x-response-example": "{\\\"code\\\":\\\"200000\\\",\\\"data\\\":{\\\"currentPage\\\":1,\\\"pageSize\\\":50,\\\"totalNum\\\":1,\\\"totalPage\\\":1,\\\"items\\\":[{\\\"applyId\\\":\\\"670bf84c577f6c00017a1c48\\\",\\\"currency\\\":\\\"USDT\\\",\\\"recRemark\\\":\\\"\\\",\\\"recSystem\\\":\\\"KUCOIN\\\",\\\"status\\\":\\\"SUCCESS\\\",\\\"amount\\\":\\\"0.01\\\",\\\"reason\\\":\\\"\\\",\\\"offset\\\":1519769124134806,\\\"createdAt\\\":1728837708000,\\\"remark\\\":\\\"\\\"}]}}",
                 "x-request-example": "{\\\"currency\\\": \\\"XBT\\\", \\\"type\\\": \\\"MAIN\\\", \\\"tag\\\": [\\\"mock_a\\\", \\\"mock_b\\\"], \\\"startAt\\\": 1728663338000, \\\"endAt\\\": 1728692138000, \\\"currentPage\\\": 1, \\\"pageSize\\\": 50}",
-                "operationId": "043"
+                "operationId": "044"
             }
         },
         "/api/v1/hist-withdrawals": {
@@ -7462,7 +7651,7 @@
                 "x-api-rate-limit-weight": 20,
                 "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"currentPage\\\": 1,\\n        \\\"pageSize\\\": 50,\\n        \\\"totalNum\\\": 1,\\n        \\\"totalPage\\\": 1,\\n        \\\"items\\\": [\\n            {\\n                \\\"currency\\\": \\\"BTC\\\",\\n                \\\"createAt\\\": 1526723468,\\n                \\\"amount\\\": \\\"0.534\\\",\\n                \\\"address\\\": \\\"33xW37ZSW4tQvg443Pc7NLCAs167Yc2XUV\\\",\\n                \\\"walletTxId\\\": \\\"aeacea864c020acf58e51606169240e96774838dcd4f7ce48acf38e3651323f4\\\",\\n                \\\"isInner\\\": false,\\n                \\\"status\\\": \\\"SUCCESS\\\"\\n            }\\n        ]\\n    }\\n}",
                 "x-request-example": "{\\\"currency\\\": \\\"BTC\\\", \\\"status\\\": \\\"SUCCESS\\\", \\\"startAt\\\": 1728663338000, \\\"endAt\\\": 1728692138000, \\\"currentPage\\\": 1, \\\"pageSize\\\": 50}",
-                "operationId": "044"
+                "operationId": "045"
             }
         },
         "/api/v3/transfer-out": {
@@ -7653,7 +7842,7 @@
                 },
                 "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"applyId\\\": \\\"670bf84c577f6c00017a1c48\\\",\\n        \\\"bizNo\\\": \\\"670bf84c577f6c00017a1c47\\\",\\n        \\\"payAccountType\\\": \\\"CONTRACT\\\",\\n        \\\"payTag\\\": \\\"DEFAULT\\\",\\n        \\\"remark\\\": \\\"\\\",\\n        \\\"recAccountType\\\": \\\"MAIN\\\",\\n        \\\"recTag\\\": \\\"DEFAULT\\\",\\n        \\\"recRemark\\\": \\\"\\\",\\n        \\\"recSystem\\\": \\\"KUCOIN\\\",\\n        \\\"status\\\": \\\"PROCESSING\\\",\\n        \\\"currency\\\": \\\"USDT\\\",\\n        \\\"amount\\\": \\\"0.01\\\",\\n        \\\"fee\\\": \\\"0\\\",\\n        \\\"sn\\\": 1519769124134806,\\n        \\\"reason\\\": \\\"\\\",\\n        \\\"createdAt\\\": 1728837708000,\\n        \\\"updatedAt\\\": 1728837708000\\n    }\\n}",
                 "x-request-example": "{\\\"currency\\\": \\\"USDT\\\", \\\"amount\\\": 0.01, \\\"recAccountType\\\": \\\"MAIN\\\"}",
-                "operationId": "045"
+                "operationId": "046"
             }
         },
         "/api/v1/transfer-in": {
@@ -7751,7 +7940,7 @@
                 },
                 "x-response-example": "{\\\"code\\\":\\\"200000\\\",\\\"data\\\":null}",
                 "x-request-example": "{\\\"currency\\\": \\\"USDT\\\", \\\"amount\\\": 0.01, \\\"payAccountType\\\": \\\"MAIN\\\"}",
-                "operationId": "046"
+                "operationId": "047"
             }
         },
         "/api/v1/margin/account": {
@@ -7848,7 +8037,7 @@
                 "x-sdk-method-description": "Request margin account info via this endpoint.",
                 "x-api-rate-limit-weight": 40,
                 "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"debtRatio\\\": \\\"0\\\",\\n        \\\"accounts\\\": [\\n            {\\n                \\\"currency\\\": \\\"USDT\\\",\\n                \\\"totalBalance\\\": \\\"0.03\\\",\\n                \\\"availableBalance\\\": \\\"0.02\\\",\\n                \\\"holdBalance\\\": \\\"0.01\\\",\\n                \\\"liability\\\": \\\"0\\\",\\n                \\\"maxBorrowSize\\\": \\\"0\\\"\\n            }\\n        ]\\n    }\\n}",
-                "operationId": "049"
+                "operationId": "050"
             }
         },
         "/api/v1/isolated/accounts": {
@@ -8099,7 +8288,7 @@
                 "x-api-rate-limit-weight": 50,
                 "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"totalConversionBalance\\\": \\\"0.01\\\",\\n        \\\"liabilityConversionBalance\\\": \\\"0\\\",\\n        \\\"assets\\\": [\\n            {\\n                \\\"symbol\\\": \\\"BTC-USDT\\\",\\n                \\\"status\\\": \\\"CLEAR\\\",\\n                \\\"debtRatio\\\": \\\"0\\\",\\n                \\\"baseAsset\\\": {\\n                    \\\"currency\\\": \\\"BTC\\\",\\n                    \\\"totalBalance\\\": \\\"0\\\",\\n                    \\\"holdBalance\\\": \\\"0\\\",\\n                    \\\"availableBalance\\\": \\\"0\\\",\\n                    \\\"liability\\\": \\\"0\\\",\\n                    \\\"interest\\\": \\\"0\\\",\\n                    \\\"borrowableAmount\\\": \\\"0\\\"\\n                },\\n                \\\"quoteAsset\\\": {\\n                    \\\"currency\\\": \\\"USDT\\\",\\n                    \\\"totalBalance\\\": \\\"0.01\\\",\\n                    \\\"holdBalance\\\": \\\"0\\\",\\n                    \\\"availableBalance\\\": \\\"0.01\\\",\\n                    \\\"liability\\\": \\\"0\\\",\\n                    \\\"interest\\\": \\\"0\\\",\\n                    \\\"borrowableAmount\\\": \\\"0\\\"\\n                }\\n            }\\n        ]\\n    }\\n}",
                 "x-request-example": "{\\\"balanceCurrency\\\": \\\"USDT\\\"}",
-                "operationId": "050"
+                "operationId": "051"
             }
         },
         "/api/v1/isolated/account/{symbol}": {
@@ -8305,7 +8494,7 @@
                 "x-api-rate-limit-weight": 50,
                 "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"symbol\\\": \\\"BTC-USDT\\\",\\n        \\\"status\\\": \\\"CLEAR\\\",\\n        \\\"debtRatio\\\": \\\"0\\\",\\n        \\\"baseAsset\\\": {\\n            \\\"currency\\\": \\\"BTC\\\",\\n            \\\"totalBalance\\\": \\\"0\\\",\\n            \\\"holdBalance\\\": \\\"0\\\",\\n            \\\"availableBalance\\\": \\\"0\\\",\\n            \\\"liability\\\": \\\"0\\\",\\n            \\\"interest\\\": \\\"0\\\",\\n            \\\"borrowableAmount\\\": \\\"0\\\"\\n        },\\n        \\\"quoteAsset\\\": {\\n            \\\"currency\\\": \\\"USDT\\\",\\n            \\\"totalBalance\\\": \\\"0.01\\\",\\n            \\\"holdBalance\\\": \\\"0\\\",\\n            \\\"availableBalance\\\": \\\"0.01\\\",\\n            \\\"liability\\\": \\\"0\\\",\\n            \\\"interest\\\": \\\"0\\\",\\n            \\\"borrowableAmount\\\": \\\"0\\\"\\n        }\\n    }\\n}",
                 "x-request-example": "{\\\"symbol\\\": \\\"example_string_default_value\\\"}",
-                "operationId": "051"
+                "operationId": "052"
             }
         }
     },

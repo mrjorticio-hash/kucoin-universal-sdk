@@ -918,7 +918,9 @@
                                                     "mmrLevConstant",
                                                     "supportCross",
                                                     "buyLimit",
-                                                    "sellLimit"
+                                                    "sellLimit",
+                                                    "expireDate",
+                                                    "settleDate"
                                                 ]
                                             },
                                             "description": "List of all contracts"
