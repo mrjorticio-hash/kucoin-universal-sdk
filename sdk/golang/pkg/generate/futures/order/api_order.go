@@ -257,7 +257,7 @@ type OrderAPI interface {
 	// | API-CHANNEL           | PRIVATE |
 	// | API-PERMISSION        | FUTURES |
 	// | API-RATE-LIMIT-POOL   | FUTURES |
-	// | API-RATE-LIMIT-WEIGHT | 200     |
+	// | API-RATE-LIMIT-WEIGHT | 800     |
 	// +-----------------------+---------+
 	// Deprecated
 	CancelAllOrdersV1(req *CancelAllOrdersV1Req, ctx context.Context) (*CancelAllOrdersV1Resp, error)

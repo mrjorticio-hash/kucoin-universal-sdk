@@ -879,15 +879,10 @@
                                                     "takerFeeRate",
                                                     "takerFixFee",
                                                     "makerFixFee",
-                                                    "settlementFee",
                                                     "isDeleverage",
                                                     "isQuanto",
                                                     "isInverse",
                                                     "markMethod",
-                                                    "fairMethod",
-                                                    "fundingBaseSymbol",
-                                                    "fundingQuoteSymbol",
-                                                    "fundingRateSymbol",
                                                     "indexSymbol",
                                                     "settlementSymbol",
                                                     "status",
@@ -918,9 +913,7 @@
                                                     "mmrLevConstant",
                                                     "supportCross",
                                                     "buyLimit",
-                                                    "sellLimit",
-                                                    "expireDate",
-                                                    "settleDate"
+                                                    "sellLimit"
                                                 ]
                                             },
                                             "description": "List of all contracts"

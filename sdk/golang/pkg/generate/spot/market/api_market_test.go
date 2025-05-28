@@ -40,7 +40,7 @@ func TestMarketGetCurrencyReqModel(t *testing.T) {
 	// Get Currency
 	// /api/v3/currencies/{currency}
 
-	data := "{\"currency\": \"BTC\", \"chain\": \"eth\"}"
+	data := "{\"chain\": \"eth\", \"currency\": \"BTC\"}"
 	req := &GetCurrencyReq{}
 	err := json.Unmarshal([]byte(data), req)
 	req.ToMap()

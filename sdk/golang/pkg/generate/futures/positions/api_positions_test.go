@@ -63,6 +63,34 @@ func TestPositionsSwitchMarginModeRespModel(t *testing.T) {
 	assert.Nil(t, err)
 }
 
+func TestPositionsBatchSwitchMarginModeReqModel(t *testing.T) {
+	// BatchSwitchMarginMode
+	// Batch Switch Margin Mode
+	// /api/v2/position/batchChangeMarginMode
+
+	data := "{\"marginMode\": \"ISOLATED\", \"symbols\": [\"XBTUSDTM\", \"ETHUSDTM\"]}"
+	req := &BatchSwitchMarginModeReq{}
+	err := json.Unmarshal([]byte(data), req)
+	req.ToMap()
+	assert.Nil(t, err)
+}
+
+func TestPositionsBatchSwitchMarginModeRespModel(t *testing.T) {
+	// BatchSwitchMarginMode
+	// Batch Switch Margin Mode
+	// /api/v2/position/batchChangeMarginMode
+
+	data := "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"marginMode\": {\n            \"ETHUSDTM\": \"ISOLATED\",\n            \"XBTUSDTM\": \"CROSS\"\n        },\n        \"errors\": [\n            {\n                \"code\": \"50002\",\n                \"msg\": \"exist.order.or.position\",\n                \"symbol\": \"XBTUSDTM\"\n            }\n        ]\n    }\n}"
+	commonResp := &types.RestResponse{}
+	err := json.Unmarshal([]byte(data), commonResp)
+	assert.Nil(t, err)
+	assert.NotNil(t, commonResp.Data)
+	resp := &BatchSwitchMarginModeResp{}
+	err = json.Unmarshal([]byte(commonResp.Data), resp)
+	resp.ToMap()
+	assert.Nil(t, err)
+}
+
 func TestPositionsGetMaxOpenSizeReqModel(t *testing.T) {
 	// GetMaxOpenSize
 	// Get Max Open Size
@@ -310,6 +338,34 @@ func TestPositionsRemoveIsolatedMarginRespModel(t *testing.T) {
 	assert.Nil(t, err)
 	assert.NotNil(t, commonResp.Data)
 	resp := &RemoveIsolatedMarginResp{}
+	err = json.Unmarshal([]byte(commonResp.Data), resp)
+	resp.ToMap()
+	assert.Nil(t, err)
+}
+
+func TestPositionsGetCrossMarginRiskLimitReqModel(t *testing.T) {
+	// GetCrossMarginRiskLimit
+	// Get Cross Margin Risk Limit
+	// /api/v2/batchGetCrossOrderLimit
+
+	data := "{\"symbol\": \"XBTUSDTM\", \"totalMargin\": \"example_string_default_value\", \"leverage\": 123456}"
+	req := &GetCrossMarginRiskLimitReq{}
+	err := json.Unmarshal([]byte(data), req)
+	req.ToMap()
+	assert.Nil(t, err)
+}
+
+func TestPositionsGetCrossMarginRiskLimitRespModel(t *testing.T) {
+	// GetCrossMarginRiskLimit
+	// Get Cross Margin Risk Limit
+	// /api/v2/batchGetCrossOrderLimit
+
+	data := "{\n    \"code\": \"200000\",\n    \"data\": [\n        {\n            \"symbol\": \"XBTUSDTM\",\n            \"maxOpenSize\": 12102,\n            \"maxOpenValue\": \"1234549.2240000000\",\n            \"totalMargin\": \"10000\",\n            \"price\": \"102012\",\n            \"leverage\": \"125.00\",\n            \"mmr\": \"0.00416136\",\n            \"imr\": \"0.008\",\n            \"currency\": \"USDT\"\n        },\n        {\n            \"symbol\": \"ETHUSDTM\",\n            \"maxOpenSize\": 38003,\n            \"maxOpenValue\": \"971508.6920000000\",\n            \"totalMargin\": \"10000\",\n            \"price\": \"2556.4\",\n            \"leverage\": \"100.00\",\n            \"mmr\": \"0.0054623236\",\n            \"imr\": \"0.01\",\n            \"currency\": \"USDT\"\n        }\n    ]\n}"
+	commonResp := &types.RestResponse{}
+	err := json.Unmarshal([]byte(data), commonResp)
+	assert.Nil(t, err)
+	assert.NotNil(t, commonResp.Data)
+	resp := &GetCrossMarginRiskLimitResp{}
 	err = json.Unmarshal([]byte(commonResp.Data), resp)
 	resp.ToMap()
 	assert.Nil(t, err)

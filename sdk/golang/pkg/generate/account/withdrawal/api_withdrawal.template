@@ -93,6 +93,29 @@ func TestWithdrawalGetWithdrawalHistoryReq(t *testing.T) {
 }
 
 
+func TestWithdrawalGetWithdrawalHistoryByIdReq(t *testing.T) {
+    // GetWithdrawalHistoryById
+    // Get Withdrawal History By ID
+    // /api/v1/withdrawals/{withdrawalId}
+
+    builder := withdrawal.NewGetWithdrawalHistoryByIdReqBuilder()
+    builder.SetWithdrawalId(?)
+    req := builder.Build()
+
+    resp, err := withdrawalApi.GetWithdrawalHistoryById(req, context.TODO())
+    if err != nil {
+        panic(err)
+    }
+    data, err := json.Marshal(resp.ToMap())
+    if err != nil {
+        panic(err)
+    }
+    fmt.Println("code:", resp.CommonResponse.Code)
+    fmt.Println("message:", resp.CommonResponse.Message)
+    fmt.Println("data:", string(data))
+}
+
+
 func TestWithdrawalGetWithdrawalHistoryOldReq(t *testing.T) {
     // GetWithdrawalHistoryOld
     // Get Withdrawal History - Old

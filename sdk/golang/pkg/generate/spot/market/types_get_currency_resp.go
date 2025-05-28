@@ -19,9 +19,9 @@ type GetCurrencyResp struct {
 	// Currency precision
 	Precision int32 `json:"precision,omitempty"`
 	// Number of block confirmations
-	Confirms int32 `json:"confirms,omitempty"`
+	Confirms *int32 `json:"confirms,omitempty"`
 	// Contract address
-	ContractAddress string `json:"contractAddress,omitempty"`
+	ContractAddress *string `json:"contractAddress,omitempty"`
 	// Margin support or not
 	IsMarginEnabled bool `json:"isMarginEnabled,omitempty"`
 	// Debit support or not
@@ -32,14 +32,12 @@ type GetCurrencyResp struct {
 
 // NewGetCurrencyResp instantiates a new GetCurrencyResp object
 // This constructor will assign default values to properties that have it defined
-func NewGetCurrencyResp(currency string, name string, fullName string, precision int32, confirms int32, contractAddress string, isMarginEnabled bool, isDebitEnabled bool, chains []GetCurrencyChains) *GetCurrencyResp {
+func NewGetCurrencyResp(currency string, name string, fullName string, precision int32, isMarginEnabled bool, isDebitEnabled bool, chains []GetCurrencyChains) *GetCurrencyResp {
 	this := GetCurrencyResp{}
 	this.Currency = currency
 	this.Name = name
 	this.FullName = fullName
 	this.Precision = precision
-	this.Confirms = confirms
-	this.ContractAddress = contractAddress
 	this.IsMarginEnabled = isMarginEnabled
 	this.IsDebitEnabled = isDebitEnabled
 	this.Chains = chains

@@ -20,11 +20,15 @@ type GetIsolatedMarginAccountAssetsBaseAsset struct {
 	Hold string `json:"hold,omitempty"`
 	// The user's remaining maximum loan amount
 	MaxBorrowSize string `json:"maxBorrowSize,omitempty"`
+	// Outstanding principal
+	LiabilityPrincipal string `json:"liabilityPrincipal,omitempty"`
+	// Outstanding interest
+	LiabilityInterest string `json:"liabilityInterest,omitempty"`
 }
 
 // NewGetIsolatedMarginAccountAssetsBaseAsset instantiates a new GetIsolatedMarginAccountAssetsBaseAsset object
 // This constructor will assign default values to properties that have it defined
-func NewGetIsolatedMarginAccountAssetsBaseAsset(currency string, borrowEnabled bool, transferInEnabled bool, liability string, total string, available string, hold string, maxBorrowSize string) *GetIsolatedMarginAccountAssetsBaseAsset {
+func NewGetIsolatedMarginAccountAssetsBaseAsset(currency string, borrowEnabled bool, transferInEnabled bool, liability string, total string, available string, hold string, maxBorrowSize string, liabilityPrincipal string, liabilityInterest string) *GetIsolatedMarginAccountAssetsBaseAsset {
 	this := GetIsolatedMarginAccountAssetsBaseAsset{}
 	this.Currency = currency
 	this.BorrowEnabled = borrowEnabled
@@ -34,6 +38,8 @@ func NewGetIsolatedMarginAccountAssetsBaseAsset(currency string, borrowEnabled b
 	this.Available = available
 	this.Hold = hold
 	this.MaxBorrowSize = maxBorrowSize
+	this.LiabilityPrincipal = liabilityPrincipal
+	this.LiabilityInterest = liabilityInterest
 	return &this
 }
 
@@ -54,5 +60,7 @@ func (o *GetIsolatedMarginAccountAssetsBaseAsset) ToMap() map[string]interface{}
 	toSerialize["available"] = o.Available
 	toSerialize["hold"] = o.Hold
 	toSerialize["maxBorrowSize"] = o.MaxBorrowSize
+	toSerialize["liabilityPrincipal"] = o.LiabilityPrincipal
+	toSerialize["liabilityInterest"] = o.LiabilityInterest
 	return toSerialize
 }

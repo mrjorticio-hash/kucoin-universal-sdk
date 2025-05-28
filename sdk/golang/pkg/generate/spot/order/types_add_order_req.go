@@ -36,9 +36,9 @@ type AddOrderReq struct {
 	CancelAfter *int64 `json:"cancelAfter,omitempty"`
 	// When **type** is market, select one out of two: size or funds  When placing a market order, the funds field refers to the funds for the priced asset (the asset name written latter) of the trading pair. The funds must be based on the quoteIncrement of the trading pair. The quoteIncrement represents the precision of the trading pair. The funds value for an order must be a multiple of quoteIncrement and must be between quoteMinSize and quoteMaxSize.
 	Funds *string `json:"funds,omitempty"`
-	// Order failed after timeout of specified milliseconds, If clientTimestamp + allowMaxTimeWindow < the server reaches time, this order will fail.
+	// Order failed after timeout of specified milliseconds, If clientTimestamp + allowMaxTimeWindow < Gateway received the message time, this order will fail.
 	AllowMaxTimeWindow *int64 `json:"allowMaxTimeWindow,omitempty"`
-	// Equal to KC-API-TIMESTAMP, Need to be defined if iceberg is specified.
+	// Equal to KC-API-TIMESTAMP, Need to be defined if allowMaxTimeWindow is specified.
 	ClientTimestamp *int64 `json:"clientTimestamp,omitempty"`
 }
 
@@ -206,13 +206,13 @@ func (builder *AddOrderReqBuilder) SetFunds(value string) *AddOrderReqBuilder {
 	return builder
 }
 
-// Order failed after timeout of specified milliseconds, If clientTimestamp + allowMaxTimeWindow < the server reaches time, this order will fail.
+// Order failed after timeout of specified milliseconds, If clientTimestamp + allowMaxTimeWindow < Gateway received the message time, this order will fail.
 func (builder *AddOrderReqBuilder) SetAllowMaxTimeWindow(value int64) *AddOrderReqBuilder {
 	builder.obj.AllowMaxTimeWindow = &value
 	return builder
 }
 
-// Equal to KC-API-TIMESTAMP, Need to be defined if iceberg is specified.
+// Equal to KC-API-TIMESTAMP, Need to be defined if allowMaxTimeWindow is specified.
 func (builder *AddOrderReqBuilder) SetClientTimestamp(value int64) *AddOrderReqBuilder {
 	builder.obj.ClientTimestamp = &value
 	return builder

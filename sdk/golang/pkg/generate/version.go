@@ -1,6 +1,6 @@
 package generate
 
 const (
-	SdkVersion      = "1.2.1"
-	SdkGenerateDate = "2025-05-27"
+	SdkVersion      = "v1.3.0"
+	SdkGenerateDate = "2025-05-28"
 )

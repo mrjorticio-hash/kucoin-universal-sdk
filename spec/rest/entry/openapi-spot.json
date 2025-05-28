@@ -729,7 +729,8 @@
                                                                 "contractAddress",
                                                                 "withdrawPrecision",
                                                                 "needTag",
-                                                                "chainId"
+                                                                "chainId",
+                                                                "withdrawFeeRate"
                                                             ]
                                                         },
                                                         "description": "Chain list"

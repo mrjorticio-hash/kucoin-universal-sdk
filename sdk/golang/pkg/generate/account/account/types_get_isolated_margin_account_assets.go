@@ -5,24 +5,19 @@ package account
 // GetIsolatedMarginAccountAssets struct for GetIsolatedMarginAccountAssets
 type GetIsolatedMarginAccountAssets struct {
 	// Symbol
-	Symbol string `json:"symbol,omitempty"`
+	Symbol *string `json:"symbol,omitempty"`
 	// Position status; EFFECTIVE-effective, BANKRUPTCY-bankruptcy liquidation, LIQUIDATION-closing, REPAY-repayment, BORROW-borrowing
-	Status string `json:"status,omitempty"`
+	Status *string `json:"status,omitempty"`
 	// debt ratio
-	DebtRatio  string                                   `json:"debtRatio,omitempty"`
-	BaseAsset  GetIsolatedMarginAccountAssetsBaseAsset  `json:"baseAsset,omitempty"`
-	QuoteAsset GetIsolatedMarginAccountAssetsQuoteAsset `json:"quoteAsset,omitempty"`
+	DebtRatio  *string                                   `json:"debtRatio,omitempty"`
+	BaseAsset  *GetIsolatedMarginAccountAssetsBaseAsset  `json:"baseAsset,omitempty"`
+	QuoteAsset *GetIsolatedMarginAccountAssetsQuoteAsset `json:"quoteAsset,omitempty"`
 }
 
 // NewGetIsolatedMarginAccountAssets instantiates a new GetIsolatedMarginAccountAssets object
 // This constructor will assign default values to properties that have it defined
-func NewGetIsolatedMarginAccountAssets(symbol string, status string, debtRatio string, baseAsset GetIsolatedMarginAccountAssetsBaseAsset, quoteAsset GetIsolatedMarginAccountAssetsQuoteAsset) *GetIsolatedMarginAccountAssets {
+func NewGetIsolatedMarginAccountAssets() *GetIsolatedMarginAccountAssets {
 	this := GetIsolatedMarginAccountAssets{}
-	this.Symbol = symbol
-	this.Status = status
-	this.DebtRatio = debtRatio
-	this.BaseAsset = baseAsset
-	this.QuoteAsset = quoteAsset
 	return &this
 }
 
