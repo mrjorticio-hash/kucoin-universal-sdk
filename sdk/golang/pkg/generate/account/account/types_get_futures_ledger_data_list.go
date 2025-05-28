@@ -9,11 +9,11 @@ type GetFuturesLedgerDataList struct {
 	// Type: RealisedPNL, Deposit, Withdrawal, TransferIn, TransferOut
 	Type string `json:"type,omitempty"`
 	// Transaction amount
-	Amount float32 `json:"amount,omitempty"`
+	Amount float64 `json:"amount,omitempty"`
 	// Fee
-	Fee float32 `json:"fee,omitempty"`
+	Fee float64 `json:"fee,omitempty"`
 	// Account equity
-	AccountEquity float32 `json:"accountEquity,omitempty"`
+	AccountEquity float64 `json:"accountEquity,omitempty"`
 	// Status: Completed, Pending
 	Status string `json:"status,omitempty"`
 	// Ticker symbol of the contract
@@ -26,7 +26,7 @@ type GetFuturesLedgerDataList struct {
 
 // NewGetFuturesLedgerDataList instantiates a new GetFuturesLedgerDataList object
 // This constructor will assign default values to properties that have it defined
-func NewGetFuturesLedgerDataList(time int64, Type_ string, amount float32, fee float32, accountEquity float32, status string, remark string, offset int32, currency string) *GetFuturesLedgerDataList {
+func NewGetFuturesLedgerDataList(time int64, Type_ string, amount float64, fee float64, accountEquity float64, status string, remark string, offset int32, currency string) *GetFuturesLedgerDataList {
 	this := GetFuturesLedgerDataList{}
 	this.Time = time
 	this.Type = Type_

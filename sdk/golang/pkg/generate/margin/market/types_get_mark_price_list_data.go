@@ -9,12 +9,12 @@ type GetMarkPriceListData struct {
 	// Timestamp (milliseconds)
 	TimePoint int64 `json:"timePoint,omitempty"`
 	// Mark price
-	Value float32 `json:"value,omitempty"`
+	Value float64 `json:"value,omitempty"`
 }
 
 // NewGetMarkPriceListData instantiates a new GetMarkPriceListData object
 // This constructor will assign default values to properties that have it defined
-func NewGetMarkPriceListData(symbol string, timePoint int64, value float32) *GetMarkPriceListData {
+func NewGetMarkPriceListData(symbol string, timePoint int64, value float64) *GetMarkPriceListData {
 	this := GetMarkPriceListData{}
 	this.Symbol = symbol
 	this.TimePoint = timePoint

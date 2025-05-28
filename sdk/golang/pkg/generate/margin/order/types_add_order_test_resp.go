@@ -15,14 +15,14 @@ type AddOrderTestResp struct {
 	// Borrowed amount. The field is returned only after placing the order under the mode of Auto-Borrow.
 	LoanApplyId string `json:"loanApplyId,omitempty"`
 	// ID of the borrowing response. The field is returned only after placing the order under the mode of Auto-Borrow.
-	BorrowSize float32 `json:"borrowSize,omitempty"`
+	BorrowSize float64 `json:"borrowSize,omitempty"`
 	// The user self-defined order ID.
 	ClientOid string `json:"clientOid,omitempty"`
 }
 
 // NewAddOrderTestResp instantiates a new AddOrderTestResp object
 // This constructor will assign default values to properties that have it defined
-func NewAddOrderTestResp(orderId string, loanApplyId string, borrowSize float32, clientOid string) *AddOrderTestResp {
+func NewAddOrderTestResp(orderId string, loanApplyId string, borrowSize float64, clientOid string) *AddOrderTestResp {
 	this := AddOrderTestResp{}
 	this.OrderId = orderId
 	this.LoanApplyId = loanApplyId

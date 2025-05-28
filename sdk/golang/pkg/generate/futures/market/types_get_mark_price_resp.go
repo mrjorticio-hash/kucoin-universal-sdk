@@ -17,14 +17,14 @@ type GetMarkPriceResp struct {
 	// Time point (milliseconds)
 	TimePoint int64 `json:"timePoint,omitempty"`
 	// Mark price
-	Value float32 `json:"value,omitempty"`
+	Value float64 `json:"value,omitempty"`
 	// Index price
-	IndexPrice float32 `json:"indexPrice,omitempty"`
+	IndexPrice float64 `json:"indexPrice,omitempty"`
 }
 
 // NewGetMarkPriceResp instantiates a new GetMarkPriceResp object
 // This constructor will assign default values to properties that have it defined
-func NewGetMarkPriceResp(symbol string, granularity int32, timePoint int64, value float32, indexPrice float32) *GetMarkPriceResp {
+func NewGetMarkPriceResp(symbol string, granularity int32, timePoint int64, value float64, indexPrice float64) *GetMarkPriceResp {
 	this := GetMarkPriceResp{}
 	this.Symbol = symbol
 	this.Granularity = granularity

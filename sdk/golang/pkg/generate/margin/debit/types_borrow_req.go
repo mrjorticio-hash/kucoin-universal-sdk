@@ -7,7 +7,7 @@ type BorrowReq struct {
 	// currency
 	Currency string `json:"currency,omitempty"`
 	// Borrow amount
-	Size float32 `json:"size,omitempty"`
+	Size float64 `json:"size,omitempty"`
 	// timeInForce: IOC, FOK
 	TimeInForce string `json:"timeInForce,omitempty"`
 	// symbol, mandatory for isolated margin account
@@ -20,7 +20,7 @@ type BorrowReq struct {
 
 // NewBorrowReq instantiates a new BorrowReq object
 // This constructor will assign default values to properties that have it defined
-func NewBorrowReq(currency string, size float32, timeInForce string) *BorrowReq {
+func NewBorrowReq(currency string, size float64, timeInForce string) *BorrowReq {
 	this := BorrowReq{}
 	this.Currency = currency
 	this.Size = size
@@ -69,7 +69,7 @@ func (builder *BorrowReqBuilder) SetCurrency(value string) *BorrowReqBuilder {
 }
 
 // Borrow amount
-func (builder *BorrowReqBuilder) SetSize(value float32) *BorrowReqBuilder {
+func (builder *BorrowReqBuilder) SetSize(value float64) *BorrowReqBuilder {
 	builder.obj.Size = value
 	return builder
 }

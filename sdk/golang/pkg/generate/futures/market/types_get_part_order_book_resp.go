@@ -15,16 +15,16 @@ type GetPartOrderBookResp struct {
 	// Symbol of the contract. Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)
 	Symbol string `json:"symbol,omitempty"`
 	// bids, from high to low
-	Bids [][]float32 `json:"bids,omitempty"`
+	Bids [][]float64 `json:"bids,omitempty"`
 	// asks, from low to high
-	Asks [][]float32 `json:"asks,omitempty"`
+	Asks [][]float64 `json:"asks,omitempty"`
 	// Timestamp (nanoseconds)
 	Ts int64 `json:"ts,omitempty"`
 }
 
 // NewGetPartOrderBookResp instantiates a new GetPartOrderBookResp object
 // This constructor will assign default values to properties that have it defined
-func NewGetPartOrderBookResp(sequence int64, symbol string, bids [][]float32, asks [][]float32, ts int64) *GetPartOrderBookResp {
+func NewGetPartOrderBookResp(sequence int64, symbol string, bids [][]float64, asks [][]float64, ts int64) *GetPartOrderBookResp {
 	this := GetPartOrderBookResp{}
 	this.Sequence = sequence
 	this.Symbol = symbol

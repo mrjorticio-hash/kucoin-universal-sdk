@@ -5,24 +5,24 @@ package subaccount
 // GetFuturesSubAccountListV2Summary struct for GetFuturesSubAccountListV2Summary
 type GetFuturesSubAccountListV2Summary struct {
 	// Total Account Equity
-	AccountEquityTotal float32 `json:"accountEquityTotal,omitempty"`
+	AccountEquityTotal float64 `json:"accountEquityTotal,omitempty"`
 	// Total unrealizedPNL
-	UnrealisedPNLTotal float32 `json:"unrealisedPNLTotal,omitempty"`
+	UnrealisedPNLTotal float64 `json:"unrealisedPNLTotal,omitempty"`
 	// Total Margin Balance
-	MarginBalanceTotal float32 `json:"marginBalanceTotal,omitempty"`
+	MarginBalanceTotal float64 `json:"marginBalanceTotal,omitempty"`
 	// Total Position margin
-	PositionMarginTotal float32 `json:"positionMarginTotal,omitempty"`
-	OrderMarginTotal    float32 `json:"orderMarginTotal,omitempty"`
+	PositionMarginTotal float64 `json:"positionMarginTotal,omitempty"`
+	OrderMarginTotal    float64 `json:"orderMarginTotal,omitempty"`
 	// Total frozen funds for withdrawal and out-transfer
-	FrozenFundsTotal float32 `json:"frozenFundsTotal,omitempty"`
+	FrozenFundsTotal float64 `json:"frozenFundsTotal,omitempty"`
 	// Total available balance
-	AvailableBalanceTotal float32 `json:"availableBalanceTotal,omitempty"`
+	AvailableBalanceTotal float64 `json:"availableBalanceTotal,omitempty"`
 	Currency              string  `json:"currency,omitempty"`
 }
 
 // NewGetFuturesSubAccountListV2Summary instantiates a new GetFuturesSubAccountListV2Summary object
 // This constructor will assign default values to properties that have it defined
-func NewGetFuturesSubAccountListV2Summary(accountEquityTotal float32, unrealisedPNLTotal float32, marginBalanceTotal float32, positionMarginTotal float32, orderMarginTotal float32, frozenFundsTotal float32, availableBalanceTotal float32, currency string) *GetFuturesSubAccountListV2Summary {
+func NewGetFuturesSubAccountListV2Summary(accountEquityTotal float64, unrealisedPNLTotal float64, marginBalanceTotal float64, positionMarginTotal float64, orderMarginTotal float64, frozenFundsTotal float64, availableBalanceTotal float64, currency string) *GetFuturesSubAccountListV2Summary {
 	this := GetFuturesSubAccountListV2Summary{}
 	this.AccountEquityTotal = accountEquityTotal
 	this.UnrealisedPNLTotal = unrealisedPNLTotal
