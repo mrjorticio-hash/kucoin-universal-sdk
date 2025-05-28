@@ -25,7 +25,7 @@ type AddIsolatedMarginResp struct {
 	// Cross mode or not
 	CrossMode bool `json:"crossMode,omitempty"`
 	// ADL ranking percentile
-	DelevPercentage float32 `json:"delevPercentage,omitempty"`
+	DelevPercentage float64 `json:"delevPercentage,omitempty"`
 	// Open time
 	OpeningTimestamp int64 `json:"openingTimestamp,omitempty"`
 	// Current timestamp
@@ -86,7 +86,7 @@ type AddIsolatedMarginResp struct {
 
 // NewAddIsolatedMarginResp instantiates a new AddIsolatedMarginResp object
 // This constructor will assign default values to properties that have it defined
-func NewAddIsolatedMarginResp(id string, symbol string, autoDeposit bool, maintMarginReq string, riskLimit int32, realLeverage string, crossMode bool, delevPercentage float32, openingTimestamp int64, currentTimestamp int64, currentQty int32, currentCost string, currentComm string, unrealisedCost string, realisedGrossCost string, realisedCost string, isOpen bool, markPrice string, markValue string, posCost string, posCross string, posInit string, posComm string, posLoss string, posMargin string, posMaint string, maintMargin string, realisedGrossPnl string, realisedPnl string, unrealisedPnl string, unrealisedPnlPcnt string, unrealisedRoePcnt string, avgEntryPrice string, liquidationPrice string, bankruptPrice string, settleCurrency string) *AddIsolatedMarginResp {
+func NewAddIsolatedMarginResp(id string, symbol string, autoDeposit bool, maintMarginReq string, riskLimit int32, realLeverage string, crossMode bool, delevPercentage float64, openingTimestamp int64, currentTimestamp int64, currentQty int32, currentCost string, currentComm string, unrealisedCost string, realisedGrossCost string, realisedCost string, isOpen bool, markPrice string, markValue string, posCost string, posCross string, posInit string, posComm string, posLoss string, posMargin string, posMaint string, maintMargin string, realisedGrossPnl string, realisedPnl string, unrealisedPnl string, unrealisedPnlPcnt string, unrealisedRoePcnt string, avgEntryPrice string, liquidationPrice string, bankruptPrice string, settleCurrency string) *AddIsolatedMarginResp {
 	this := AddIsolatedMarginResp{}
 	this.Id = id
 	this.Symbol = symbol

@@ -17,15 +17,15 @@ type AddIsolatedMarginResp struct {
 	// Auto deposit margin or not
 	AutoDeposit bool `json:"autoDeposit,omitempty"`
 	// Maintenance margin requirement
-	MaintMarginReq float32 `json:"maintMarginReq,omitempty"`
+	MaintMarginReq float64 `json:"maintMarginReq,omitempty"`
 	// Risk limit
 	RiskLimit int32 `json:"riskLimit,omitempty"`
 	// Leverage o the order
-	RealLeverage float32 `json:"realLeverage,omitempty"`
+	RealLeverage float64 `json:"realLeverage,omitempty"`
 	// Cross mode or not
 	CrossMode bool `json:"crossMode,omitempty"`
 	// ADL ranking percentile
-	DelevPercentage float32 `json:"delevPercentage,omitempty"`
+	DelevPercentage float64 `json:"delevPercentage,omitempty"`
 	// Open time
 	OpeningTimestamp int64 `json:"openingTimestamp,omitempty"`
 	// Current timestamp
@@ -33,53 +33,53 @@ type AddIsolatedMarginResp struct {
 	// Current postion quantity
 	CurrentQty int32 `json:"currentQty,omitempty"`
 	// Current postion value
-	CurrentCost float32 `json:"currentCost,omitempty"`
+	CurrentCost float64 `json:"currentCost,omitempty"`
 	// Current commission
-	CurrentComm float32 `json:"currentComm,omitempty"`
+	CurrentComm float64 `json:"currentComm,omitempty"`
 	// Unrealised value
-	UnrealisedCost float32 `json:"unrealisedCost,omitempty"`
+	UnrealisedCost float64 `json:"unrealisedCost,omitempty"`
 	// Accumulated realised gross profit value
-	RealisedGrossCost float32 `json:"realisedGrossCost,omitempty"`
+	RealisedGrossCost float64 `json:"realisedGrossCost,omitempty"`
 	// Current realised position value
-	RealisedCost float32 `json:"realisedCost,omitempty"`
+	RealisedCost float64 `json:"realisedCost,omitempty"`
 	// Opened position or not
 	IsOpen bool `json:"isOpen,omitempty"`
 	// Mark price
-	MarkPrice float32 `json:"markPrice,omitempty"`
+	MarkPrice float64 `json:"markPrice,omitempty"`
 	// Mark value
-	MarkValue float32 `json:"markValue,omitempty"`
+	MarkValue float64 `json:"markValue,omitempty"`
 	// Position value
-	PosCost float32 `json:"posCost,omitempty"`
+	PosCost float64 `json:"posCost,omitempty"`
 	// added margin
-	PosCross float32 `json:"posCross,omitempty"`
+	PosCross float64 `json:"posCross,omitempty"`
 	// Leverage margin
-	PosInit float32 `json:"posInit,omitempty"`
+	PosInit float64 `json:"posInit,omitempty"`
 	// Bankruptcy cost
-	PosComm float32 `json:"posComm,omitempty"`
+	PosComm float64 `json:"posComm,omitempty"`
 	// Funding fees paid out
-	PosLoss float32 `json:"posLoss,omitempty"`
+	PosLoss float64 `json:"posLoss,omitempty"`
 	// Position margin
-	PosMargin float32 `json:"posMargin,omitempty"`
+	PosMargin float64 `json:"posMargin,omitempty"`
 	// Maintenance margin
-	PosMaint float32 `json:"posMaint,omitempty"`
+	PosMaint float64 `json:"posMaint,omitempty"`
 	// Position margin
-	MaintMargin float32 `json:"maintMargin,omitempty"`
+	MaintMargin float64 `json:"maintMargin,omitempty"`
 	// Accumulated realised gross profit value
-	RealisedGrossPnl float32 `json:"realisedGrossPnl,omitempty"`
+	RealisedGrossPnl float64 `json:"realisedGrossPnl,omitempty"`
 	// Realised profit and loss
-	RealisedPnl float32 `json:"realisedPnl,omitempty"`
+	RealisedPnl float64 `json:"realisedPnl,omitempty"`
 	// Unrealised profit and loss
-	UnrealisedPnl float32 `json:"unrealisedPnl,omitempty"`
+	UnrealisedPnl float64 `json:"unrealisedPnl,omitempty"`
 	// Profit-loss ratio of the position
-	UnrealisedPnlPcnt float32 `json:"unrealisedPnlPcnt,omitempty"`
+	UnrealisedPnlPcnt float64 `json:"unrealisedPnlPcnt,omitempty"`
 	// Rate of return on investment
-	UnrealisedRoePcnt float32 `json:"unrealisedRoePcnt,omitempty"`
+	UnrealisedRoePcnt float64 `json:"unrealisedRoePcnt,omitempty"`
 	// Average entry price
-	AvgEntryPrice float32 `json:"avgEntryPrice,omitempty"`
+	AvgEntryPrice float64 `json:"avgEntryPrice,omitempty"`
 	// Liquidation price
-	LiquidationPrice float32 `json:"liquidationPrice,omitempty"`
+	LiquidationPrice float64 `json:"liquidationPrice,omitempty"`
 	// Bankruptcy price
-	BankruptPrice float32 `json:"bankruptPrice,omitempty"`
+	BankruptPrice float64 `json:"bankruptPrice,omitempty"`
 	// userId
 	UserId int32 `json:"userId,omitempty"`
 	// Currency used to clear and settle the trades
@@ -88,7 +88,7 @@ type AddIsolatedMarginResp struct {
 
 // NewAddIsolatedMarginResp instantiates a new AddIsolatedMarginResp object
 // This constructor will assign default values to properties that have it defined
-func NewAddIsolatedMarginResp(id string, symbol string, autoDeposit bool, maintMarginReq float32, riskLimit int32, realLeverage float32, crossMode bool, delevPercentage float32, openingTimestamp int64, currentTimestamp int64, currentQty int32, currentCost float32, currentComm float32, unrealisedCost float32, realisedGrossCost float32, realisedCost float32, isOpen bool, markPrice float32, markValue float32, posCost float32, posCross float32, posInit float32, posComm float32, posLoss float32, posMargin float32, posMaint float32, maintMargin float32, realisedGrossPnl float32, realisedPnl float32, unrealisedPnl float32, unrealisedPnlPcnt float32, unrealisedRoePcnt float32, avgEntryPrice float32, liquidationPrice float32, bankruptPrice float32, userId int32, settleCurrency string) *AddIsolatedMarginResp {
+func NewAddIsolatedMarginResp(id string, symbol string, autoDeposit bool, maintMarginReq float64, riskLimit int32, realLeverage float64, crossMode bool, delevPercentage float64, openingTimestamp int64, currentTimestamp int64, currentQty int32, currentCost float64, currentComm float64, unrealisedCost float64, realisedGrossCost float64, realisedCost float64, isOpen bool, markPrice float64, markValue float64, posCost float64, posCross float64, posInit float64, posComm float64, posLoss float64, posMargin float64, posMaint float64, maintMargin float64, realisedGrossPnl float64, realisedPnl float64, unrealisedPnl float64, unrealisedPnlPcnt float64, unrealisedRoePcnt float64, avgEntryPrice float64, liquidationPrice float64, bankruptPrice float64, userId int32, settleCurrency string) *AddIsolatedMarginResp {
 	this := AddIsolatedMarginResp{}
 	this.Id = id
 	this.Symbol = symbol

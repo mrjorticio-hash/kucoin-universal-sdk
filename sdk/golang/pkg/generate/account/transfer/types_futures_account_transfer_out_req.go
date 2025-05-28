@@ -7,14 +7,14 @@ type FuturesAccountTransferOutReq struct {
 	// Currency, including XBT, USDT...
 	Currency string `json:"currency,omitempty"`
 	// Amount to be transferred out; cannot exceed 1000000000
-	Amount float32 `json:"amount,omitempty"`
+	Amount float64 `json:"amount,omitempty"`
 	// Receive account type, including MAIN, TRADE
 	RecAccountType string `json:"recAccountType,omitempty"`
 }
 
 // NewFuturesAccountTransferOutReq instantiates a new FuturesAccountTransferOutReq object
 // This constructor will assign default values to properties that have it defined
-func NewFuturesAccountTransferOutReq(currency string, amount float32, recAccountType string) *FuturesAccountTransferOutReq {
+func NewFuturesAccountTransferOutReq(currency string, amount float64, recAccountType string) *FuturesAccountTransferOutReq {
 	this := FuturesAccountTransferOutReq{}
 	this.Currency = currency
 	this.Amount = amount
@@ -52,7 +52,7 @@ func (builder *FuturesAccountTransferOutReqBuilder) SetCurrency(value string) *F
 }
 
 // Amount to be transferred out; cannot exceed 1000000000
-func (builder *FuturesAccountTransferOutReqBuilder) SetAmount(value float32) *FuturesAccountTransferOutReqBuilder {
+func (builder *FuturesAccountTransferOutReqBuilder) SetAmount(value float64) *FuturesAccountTransferOutReqBuilder {
 	builder.obj.Amount = value
 	return builder
 }

@@ -4,13 +4,14 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
+	"os"
+	"testing"
+
 	"github.com/Kucoin/kucoin-universal-sdk/sdk/golang/extension/interceptor"
 	"github.com/Kucoin/kucoin-universal-sdk/sdk/golang/pkg/api"
 	"github.com/Kucoin/kucoin-universal-sdk/sdk/golang/pkg/common/logger"
 	"github.com/Kucoin/kucoin-universal-sdk/sdk/golang/pkg/generate/futures/market"
 	"github.com/Kucoin/kucoin-universal-sdk/sdk/golang/pkg/types"
-	"os"
-	"testing"
 )
 
 var marketApi market.MarketAPI
@@ -186,7 +187,7 @@ func TestMarketGetKlinesReq(t *testing.T) {
 	// /api/v1/kline/query
 
 	builder := market.NewGetKlinesReqBuilder()
-	builder.SetSymbol("XBTUSDTM").SetGranularity(1).SetFrom(1732464000000).SetTo(1732521600000)
+	builder.SetSymbol("DOGEUSDTM").SetGranularity(1).SetFrom(1746028800000).SetTo(1747989311786)
 	req := builder.Build()
 
 	resp, err := marketApi.GetKlines(req, context.TODO())

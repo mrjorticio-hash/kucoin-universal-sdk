@@ -249,7 +249,7 @@ func (c *WebSocketClient) readMessages() {
 
 		if err := c.conn.ReadJSON(m); err != nil {
 			logger.GetLogger().Errorf("websocket connection got error: %v", err)
-			if !websocket.IsUnexpectedCloseError(err, websocket.CloseGoingAway, websocket.CloseAbnormalClosure) {
+			if !websocket.IsUnexpectedCloseError(err, websocket.CloseNormalClosure, websocket.CloseGoingAway, websocket.CloseAbnormalClosure) {
 				c.disconnectEvent <- struct{}{}
 				return
 			}

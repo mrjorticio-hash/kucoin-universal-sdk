@@ -12,9 +12,9 @@ type CrossMarginPositionEvent struct {
 	// common response
 	CommonResponse *types.WsMessage
 	// Debt ratio
-	DebtRatio float32 `json:"debtRatio,omitempty"`
+	DebtRatio float64 `json:"debtRatio,omitempty"`
 	// Total assets in BTC (interest included)
-	TotalAsset                  float32 `json:"totalAsset,omitempty"`
+	TotalAsset                  float64 `json:"totalAsset,omitempty"`
 	MarginCoefficientTotalAsset string  `json:"marginCoefficientTotalAsset,omitempty"`
 	// Total debt in BTC (interest included)
 	TotalDebt string `json:"totalDebt,omitempty"`
@@ -29,7 +29,7 @@ type CrossMarginPositionEvent struct {
 
 // NewCrossMarginPositionEvent instantiates a new CrossMarginPositionEvent object
 // This constructor will assign default values to properties that have it defined
-func NewCrossMarginPositionEvent(debtRatio float32, totalAsset float32, marginCoefficientTotalAsset string, totalDebt string, assetList map[string]CrossMarginPositionAssetListValue, debtList map[string]string, timestamp int64, Type_ string) *CrossMarginPositionEvent {
+func NewCrossMarginPositionEvent(debtRatio float64, totalAsset float64, marginCoefficientTotalAsset string, totalDebt string, assetList map[string]CrossMarginPositionAssetListValue, debtList map[string]string, timestamp int64, Type_ string) *CrossMarginPositionEvent {
 	this := CrossMarginPositionEvent{}
 	this.DebtRatio = debtRatio
 	this.TotalAsset = totalAsset

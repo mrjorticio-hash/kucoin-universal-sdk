@@ -7,7 +7,7 @@ type RepayReq struct {
 	// currency
 	Currency string `json:"currency,omitempty"`
 	// Borrow amount
-	Size float32 `json:"size,omitempty"`
+	Size float64 `json:"size,omitempty"`
 	// symbol, mandatory for isolated margin account
 	Symbol *string `json:"symbol,omitempty"`
 	// true-isolated, false-cross; default is false
@@ -18,7 +18,7 @@ type RepayReq struct {
 
 // NewRepayReq instantiates a new RepayReq object
 // This constructor will assign default values to properties that have it defined
-func NewRepayReq(currency string, size float32) *RepayReq {
+func NewRepayReq(currency string, size float64) *RepayReq {
 	this := RepayReq{}
 	this.Currency = currency
 	this.Size = size
@@ -65,7 +65,7 @@ func (builder *RepayReqBuilder) SetCurrency(value string) *RepayReqBuilder {
 }
 
 // Borrow amount
-func (builder *RepayReqBuilder) SetSize(value float32) *RepayReqBuilder {
+func (builder *RepayReqBuilder) SetSize(value float64) *RepayReqBuilder {
 	builder.obj.Size = value
 	return builder
 }

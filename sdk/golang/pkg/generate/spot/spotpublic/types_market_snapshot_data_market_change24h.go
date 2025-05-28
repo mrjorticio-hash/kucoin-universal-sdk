@@ -4,18 +4,18 @@ package spotpublic
 
 // MarketSnapshotDataMarketChange24h struct for MarketSnapshotDataMarketChange24h
 type MarketSnapshotDataMarketChange24h struct {
-	ChangePrice float32 `json:"changePrice,omitempty"`
-	ChangeRate  float32 `json:"changeRate,omitempty"`
-	High        float32 `json:"high,omitempty"`
-	Low         float32 `json:"low,omitempty"`
-	Open        float32 `json:"open,omitempty"`
-	Vol         float32 `json:"vol,omitempty"`
-	VolValue    float32 `json:"volValue,omitempty"`
+	ChangePrice float64 `json:"changePrice,omitempty"`
+	ChangeRate  float64 `json:"changeRate,omitempty"`
+	High        float64 `json:"high,omitempty"`
+	Low         float64 `json:"low,omitempty"`
+	Open        float64 `json:"open,omitempty"`
+	Vol         float64 `json:"vol,omitempty"`
+	VolValue    float64 `json:"volValue,omitempty"`
 }
 
 // NewMarketSnapshotDataMarketChange24h instantiates a new MarketSnapshotDataMarketChange24h object
 // This constructor will assign default values to properties that have it defined
-func NewMarketSnapshotDataMarketChange24h(changePrice float32, changeRate float32, high float32, low float32, open float32, vol float32, volValue float32) *MarketSnapshotDataMarketChange24h {
+func NewMarketSnapshotDataMarketChange24h(changePrice float64, changeRate float64, high float64, low float64, open float64, vol float64, volValue float64) *MarketSnapshotDataMarketChange24h {
 	this := MarketSnapshotDataMarketChange24h{}
 	this.ChangePrice = changePrice
 	this.ChangeRate = changeRate

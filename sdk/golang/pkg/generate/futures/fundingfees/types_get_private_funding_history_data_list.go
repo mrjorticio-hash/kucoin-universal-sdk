@@ -11,15 +11,15 @@ type GetPrivateFundingHistoryDataList struct {
 	// Time point (milliseconds)
 	TimePoint int64 `json:"timePoint,omitempty"`
 	// Funding rate
-	FundingRate float32 `json:"fundingRate,omitempty"`
+	FundingRate float64 `json:"fundingRate,omitempty"`
 	// Mark price
-	MarkPrice float32 `json:"markPrice,omitempty"`
+	MarkPrice float64 `json:"markPrice,omitempty"`
 	// Position size
 	PositionQty int32 `json:"positionQty,omitempty"`
 	// Position value at settlement period
-	PositionCost float32 `json:"positionCost,omitempty"`
+	PositionCost float64 `json:"positionCost,omitempty"`
 	// Settled funding fees A positive number means that the user received the funding fee, and vice versa.
-	Funding float32 `json:"funding,omitempty"`
+	Funding float64 `json:"funding,omitempty"`
 	// Settlement currency
 	SettleCurrency string `json:"settleCurrency,omitempty"`
 	// Context
@@ -30,7 +30,7 @@ type GetPrivateFundingHistoryDataList struct {
 
 // NewGetPrivateFundingHistoryDataList instantiates a new GetPrivateFundingHistoryDataList object
 // This constructor will assign default values to properties that have it defined
-func NewGetPrivateFundingHistoryDataList(id int64, symbol string, timePoint int64, fundingRate float32, markPrice float32, positionQty int32, positionCost float32, funding float32, settleCurrency string, context string, marginMode string) *GetPrivateFundingHistoryDataList {
+func NewGetPrivateFundingHistoryDataList(id int64, symbol string, timePoint int64, fundingRate float64, markPrice float64, positionQty int32, positionCost float64, funding float64, settleCurrency string, context string, marginMode string) *GetPrivateFundingHistoryDataList {
 	this := GetPrivateFundingHistoryDataList{}
 	this.Id = id
 	this.Symbol = symbol

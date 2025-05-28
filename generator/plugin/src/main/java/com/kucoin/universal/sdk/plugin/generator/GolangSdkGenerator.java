@@ -57,6 +57,7 @@ public class GolangSdkGenerator extends AbstractGoCodegen implements NameService
         super();
         cliOptions.add(ModeSwitch.option);
         typeMapping.put("bigint", "int64");
+        typeMapping.put("number", "float64");
     }
 
     @Override

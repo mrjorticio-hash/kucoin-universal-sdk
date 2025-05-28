@@ -11,12 +11,12 @@ type Get24hrStatsResp struct {
 	// common response
 	CommonResponse *types.RestResponse
 	// 24-hour platform Futures trading volume. Unit is USD
-	TurnoverOf24h float32 `json:"turnoverOf24h,omitempty"`
+	TurnoverOf24h float64 `json:"turnoverOf24h,omitempty"`
 }
 
 // NewGet24hrStatsResp instantiates a new Get24hrStatsResp object
 // This constructor will assign default values to properties that have it defined
-func NewGet24hrStatsResp(turnoverOf24h float32) *Get24hrStatsResp {
+func NewGet24hrStatsResp(turnoverOf24h float64) *Get24hrStatsResp {
 	this := Get24hrStatsResp{}
 	this.TurnoverOf24h = turnoverOf24h
 	return &this
