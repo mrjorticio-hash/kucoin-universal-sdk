@@ -53,7 +53,7 @@ type GetAllSymbolsData struct {
 	// Deprecated param
 	MakerFixFee float64 `json:"makerFixFee,omitempty"`
 	// Settlement fee
-	SettlementFee float64 `json:"settlementFee,omitempty"`
+	SettlementFee *float64 `json:"settlementFee,omitempty"`
 	// Enabled ADL or not
 	IsDeleverage bool `json:"isDeleverage,omitempty"`
 	// Deprecated param
@@ -63,13 +63,13 @@ type GetAllSymbolsData struct {
 	// Marking method
 	MarkMethod string `json:"markMethod,omitempty"`
 	// Fair price marking method; the Futures contract is null
-	FairMethod string `json:"fairMethod,omitempty"`
+	FairMethod *string `json:"fairMethod,omitempty"`
 	// Ticker symbol of the base currency
-	FundingBaseSymbol string `json:"fundingBaseSymbol,omitempty"`
+	FundingBaseSymbol *string `json:"fundingBaseSymbol,omitempty"`
 	// Ticker symbol of the quote currency
-	FundingQuoteSymbol string `json:"fundingQuoteSymbol,omitempty"`
+	FundingQuoteSymbol *string `json:"fundingQuoteSymbol,omitempty"`
 	// Funding rate symbol
-	FundingRateSymbol string `json:"fundingRateSymbol,omitempty"`
+	FundingRateSymbol *string `json:"fundingRateSymbol,omitempty"`
 	// Index symbol
 	IndexSymbol string `json:"indexSymbol,omitempty"`
 	// Settlement symbol
@@ -131,7 +131,7 @@ type GetAllSymbolsData struct {
 
 // NewGetAllSymbolsData instantiates a new GetAllSymbolsData object
 // This constructor will assign default values to properties that have it defined
-func NewGetAllSymbolsData(symbol string, rootSymbol string, Type_ string, firstOpenDate int64, baseCurrency string, quoteCurrency string, settleCurrency string, maxOrderQty int32, maxPrice float64, lotSize int32, tickSize float64, indexPriceTickSize float64, multiplier float64, initialMargin float64, maintainMargin float64, maxRiskLimit int32, minRiskLimit int32, riskStep int32, makerFeeRate float64, takerFeeRate float64, takerFixFee float64, makerFixFee float64, settlementFee float64, isDeleverage bool, isQuanto bool, isInverse bool, markMethod string, fairMethod string, fundingBaseSymbol string, fundingQuoteSymbol string, fundingRateSymbol string, indexSymbol string, settlementSymbol string, status string, fundingFeeRate float64, predictedFundingFeeRate float64, fundingRateGranularity int32, openInterest string, turnoverOf24h float64, volumeOf24h float64, markPrice float64, indexPrice float64, lastTradePrice float64, nextFundingRateTime int32, maxLeverage int32, sourceExchanges []string, premiumsSymbol1M string, premiumsSymbol8H string, fundingBaseSymbol1M string, fundingQuoteSymbol1M string, lowPrice float64, highPrice float64, priceChgPct float64, priceChg float64, k float64, m float64, f float64, mmrLimit float64, mmrLevConstant float64, supportCross bool, buyLimit float64, sellLimit float64) *GetAllSymbolsData {
+func NewGetAllSymbolsData(symbol string, rootSymbol string, Type_ string, firstOpenDate int64, baseCurrency string, quoteCurrency string, settleCurrency string, maxOrderQty int32, maxPrice float64, lotSize int32, tickSize float64, indexPriceTickSize float64, multiplier float64, initialMargin float64, maintainMargin float64, maxRiskLimit int32, minRiskLimit int32, riskStep int32, makerFeeRate float64, takerFeeRate float64, takerFixFee float64, makerFixFee float64, isDeleverage bool, isQuanto bool, isInverse bool, markMethod string, indexSymbol string, settlementSymbol string, status string, fundingFeeRate float64, predictedFundingFeeRate float64, fundingRateGranularity int32, openInterest string, turnoverOf24h float64, volumeOf24h float64, markPrice float64, indexPrice float64, lastTradePrice float64, nextFundingRateTime int32, maxLeverage int32, sourceExchanges []string, premiumsSymbol1M string, premiumsSymbol8H string, fundingBaseSymbol1M string, fundingQuoteSymbol1M string, lowPrice float64, highPrice float64, priceChgPct float64, priceChg float64, k float64, m float64, f float64, mmrLimit float64, mmrLevConstant float64, supportCross bool, buyLimit float64, sellLimit float64) *GetAllSymbolsData {
 	this := GetAllSymbolsData{}
 	this.Symbol = symbol
 	this.RootSymbol = rootSymbol
@@ -155,15 +155,10 @@ func NewGetAllSymbolsData(symbol string, rootSymbol string, Type_ string, firstO
 	this.TakerFeeRate = takerFeeRate
 	this.TakerFixFee = takerFixFee
 	this.MakerFixFee = makerFixFee
-	this.SettlementFee = settlementFee
 	this.IsDeleverage = isDeleverage
 	this.IsQuanto = isQuanto
 	this.IsInverse = isInverse
 	this.MarkMethod = markMethod
-	this.FairMethod = fairMethod
-	this.FundingBaseSymbol = fundingBaseSymbol
-	this.FundingQuoteSymbol = fundingQuoteSymbol
-	this.FundingRateSymbol = fundingRateSymbol
 	this.IndexSymbol = indexSymbol
 	this.SettlementSymbol = settlementSymbol
 	this.Status = status

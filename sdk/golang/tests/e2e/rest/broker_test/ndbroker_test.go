@@ -4,14 +4,15 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
+	"os"
+	"testing"
+
 	"github.com/Kucoin/kucoin-universal-sdk/sdk/golang/extension/interceptor"
 	"github.com/Kucoin/kucoin-universal-sdk/sdk/golang/pkg/api"
 	"github.com/Kucoin/kucoin-universal-sdk/sdk/golang/pkg/common/logger"
 	"github.com/Kucoin/kucoin-universal-sdk/sdk/golang/pkg/generate/broker/ndbroker"
 	"github.com/Kucoin/kucoin-universal-sdk/sdk/golang/pkg/types"
 	"github.com/google/uuid"
-	"os"
-	"testing"
 )
 
 var ndbrokerApi ndbroker.NDBrokerAPI
@@ -48,6 +49,77 @@ func init() {
 	client := api.NewClient(option)
 
 	ndbrokerApi = client.RestService().GetBrokerService().GetNDBrokerAPI()
+}
+
+func TestNDBrokerSubmitKYCReq(t *testing.T) {
+	// SubmitKYC
+	// Submit KYC
+	// /api/kyc/ndBroker/proxyClient/submit
+
+	builder := ndbroker.NewSubmitKYCReqBuilder()
+	builder.SetClientUid("226383154").SetFirstName("Kaylah").SetLastName("Padberg").
+		SetIssueCountry("JP").SetBirthDate("2000-01-01").SetIdentityType("passport").
+		SetIdentityNumber("55").SetExpireDate("2030-01-01").
+		SetFrontPhoto("*****").
+		SetBackendPhoto("*****").
+		SetFacePhoto("******")
+	req := builder.Build()
+
+	resp, err := ndbrokerApi.SubmitKYC(req, context.TODO())
+	if err != nil {
+		panic(err)
+	}
+	data, err := json.Marshal(resp.ToMap())
+	if err != nil {
+		panic(err)
+	}
+	fmt.Println("code:", resp.CommonResponse.Code)
+	fmt.Println("message:", resp.CommonResponse.Message)
+	fmt.Println("data:", string(data))
+}
+
+func TestNDBrokerGetKYCStatusReq(t *testing.T) {
+	// GetKYCStatus
+	// Get KYC Status
+	// /api/kyc/ndBroker/proxyClient/status/list
+
+	builder := ndbroker.NewGetKYCStatusReqBuilder()
+	builder.SetClientUids("226383154")
+	req := builder.Build()
+
+	resp, err := ndbrokerApi.GetKYCStatus(req, context.TODO())
+	if err != nil {
+		panic(err)
+	}
+	data, err := json.Marshal(resp.ToMap())
+	if err != nil {
+		panic(err)
+	}
+	fmt.Println("code:", resp.CommonResponse.Code)
+	fmt.Println("message:", resp.CommonResponse.Message)
+	fmt.Println("data:", string(data))
+}
+
+func TestNDBrokerGetKYCStatusListReq(t *testing.T) {
+	// GetKYCStatusList
+	// Get KYC Status List
+	// /api/kyc/ndBroker/proxyClient/status/page
+
+	builder := ndbroker.NewGetKYCStatusListReqBuilder()
+	builder.SetPageNumber(1).SetPageSize(100)
+	req := builder.Build()
+
+	resp, err := ndbrokerApi.GetKYCStatusList(req, context.TODO())
+	if err != nil {
+		panic(err)
+	}
+	data, err := json.Marshal(resp.ToMap())
+	if err != nil {
+		panic(err)
+	}
+	fmt.Println("code:", resp.CommonResponse.Code)
+	fmt.Println("message:", resp.CommonResponse.Message)
+	fmt.Println("data:", string(data))
 }
 
 func TestNDBrokerGetDepositListReq(t *testing.T) {

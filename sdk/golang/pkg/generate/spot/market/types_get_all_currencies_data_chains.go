@@ -11,7 +11,7 @@ type GetAllCurrenciesDataChains struct {
 	// Minimum deposit amount
 	DepositMinSize *string `json:"depositMinSize,omitempty"`
 	// Withdraw fee rate
-	WithdrawFeeRate *string `json:"withdrawFeeRate,omitempty"`
+	WithdrawFeeRate string `json:"withdrawFeeRate,omitempty"`
 	// Minimum fees charged for withdrawal
 	WithdrawalMinFee string `json:"withdrawalMinFee,omitempty"`
 	// Withdrawal support or not
@@ -43,10 +43,11 @@ type GetAllCurrenciesDataChains struct {
 
 // NewGetAllCurrenciesDataChains instantiates a new GetAllCurrenciesDataChains object
 // This constructor will assign default values to properties that have it defined
-func NewGetAllCurrenciesDataChains(chainName string, withdrawalMinSize string, withdrawalMinFee string, isWithdrawEnabled bool, isDepositEnabled bool, confirms int32, preConfirms int32, contractAddress string, withdrawPrecision int32, needTag bool, chainId string) *GetAllCurrenciesDataChains {
+func NewGetAllCurrenciesDataChains(chainName string, withdrawalMinSize string, withdrawFeeRate string, withdrawalMinFee string, isWithdrawEnabled bool, isDepositEnabled bool, confirms int32, preConfirms int32, contractAddress string, withdrawPrecision int32, needTag bool, chainId string) *GetAllCurrenciesDataChains {
 	this := GetAllCurrenciesDataChains{}
 	this.ChainName = chainName
 	this.WithdrawalMinSize = withdrawalMinSize
+	this.WithdrawFeeRate = withdrawFeeRate
 	this.WithdrawalMinFee = withdrawalMinFee
 	this.IsWithdrawEnabled = isWithdrawEnabled
 	this.IsDepositEnabled = isDepositEnabled
