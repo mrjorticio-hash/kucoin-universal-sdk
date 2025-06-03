@@ -32,8 +32,8 @@ class AddOrderReq(BaseModel):
         tags (str): Order tag, length cannot exceed 20 characters (ASCII)
         cancel_after (int): Cancel after n seconds, the order timing strategy is GTT, -1 means it will not be cancelled automatically, the default value is -1 
         funds (str): When **type** is market, select one out of two: size or funds  When placing a market order, the funds field refers to the funds for the priced asset (the asset name written latter) of the trading pair. The funds must be based on the quoteIncrement of the trading pair. The quoteIncrement represents the precision of the trading pair. The funds value for an order must be a multiple of quoteIncrement and must be between quoteMinSize and quoteMaxSize.
-        allow_max_time_window (int): Order failed after timeout of specified milliseconds, If clientTimestamp + allowMaxTimeWindow < the server reaches time, this order will fail.
-        client_timestamp (int): Equal to KC-API-TIMESTAMP, Need to be defined if iceberg is specified.
+        allow_max_time_window (int): Order failed after timeout of specified milliseconds, If clientTimestamp + allowMaxTimeWindow < Gateway received the message time, this order will fail.
+        client_timestamp (int): Equal to KC-API-TIMESTAMP, Need to be defined if allowMaxTimeWindow is specified.
     """
 
     class SideEnum(Enum):
@@ -152,12 +152,12 @@ class AddOrderReq(BaseModel):
     allow_max_time_window: Optional[int] = Field(
         default=None,
         description=
-        "Order failed after timeout of specified milliseconds, If clientTimestamp + allowMaxTimeWindow < the server reaches time, this order will fail.",
+        "Order failed after timeout of specified milliseconds, If clientTimestamp + allowMaxTimeWindow < Gateway received the message time, this order will fail.",
         alias="allowMaxTimeWindow")
     client_timestamp: Optional[int] = Field(
         default=None,
         description=
-        "Equal to KC-API-TIMESTAMP, Need to be defined if iceberg is specified.",
+        "Equal to KC-API-TIMESTAMP, Need to be defined if allowMaxTimeWindow is specified.",
         alias="clientTimestamp")
 
     __properties: ClassVar[List[str]] = [
@@ -360,14 +360,14 @@ class AddOrderReqBuilder:
 
     def set_allow_max_time_window(self, value: int) -> AddOrderReqBuilder:
         """
-        Order failed after timeout of specified milliseconds, If clientTimestamp + allowMaxTimeWindow < the server reaches time, this order will fail.
+        Order failed after timeout of specified milliseconds, If clientTimestamp + allowMaxTimeWindow < Gateway received the message time, this order will fail.
         """
         self.obj['allowMaxTimeWindow'] = value
         return self
 
     def set_client_timestamp(self, value: int) -> AddOrderReqBuilder:
         """
-        Equal to KC-API-TIMESTAMP, Need to be defined if iceberg is specified.
+        Equal to KC-API-TIMESTAMP, Need to be defined if allowMaxTimeWindow is specified.
         """
         self.obj['clientTimestamp'] = value
         return self

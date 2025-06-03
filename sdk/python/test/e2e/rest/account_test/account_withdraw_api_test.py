@@ -3,6 +3,7 @@ import unittest
 
 from kucoin_universal_sdk.api.client import DefaultClient
 from kucoin_universal_sdk.extension.interceptor.logging import LoggingInterceptor
+from kucoin_universal_sdk.generate.account.withdrawal import GetWithdrawalHistoryByIdReqBuilder
 from kucoin_universal_sdk.generate.account.withdrawal.model_cancel_withdrawal_req import CancelWithdrawalReqBuilder
 from kucoin_universal_sdk.generate.account.withdrawal.model_get_withdrawal_history_old_req import \
     GetWithdrawalHistoryOldReqBuilder
@@ -89,6 +90,26 @@ class AccountApiTest(unittest.TestCase):
             print("error: ", e)
             raise e
 
+    def test_get_withdrawal_history_by_id_req(self):
+        """
+            get_withdrawal_history_by_id
+            Get Withdrawal History By ID
+            /api/v1/withdrawals/{withdrawalId}
+        """
+
+        builder = GetWithdrawalHistoryByIdReqBuilder()
+        builder.set_withdrawal_id("674576dc74b2bb000778452c")
+        req = builder.build()
+        try:
+            resp = self.api.get_withdrawal_history_by_id(req)
+            print("code: ", resp.common_response.code)
+            print("msg: ", resp.common_response.message)
+            print("data: ", resp.to_json())
+        except Exception as e:
+            print("error: ", e)
+            raise e
+
+
     def test_withdrawal_v1_req(self):
         """
             withdrawal_v1
@@ -155,7 +176,7 @@ class AccountApiTest(unittest.TestCase):
         """
 
         builder = WithdrawalV3ReqBuilder()
-        builder.set_currency("USDT").set_chain("bsc").set_amount(20).set_is_inner(False).set_to_address(
+        builder.set_currency("USDT").set_chain("bsc").set_amount("20").set_is_inner(False).set_to_address(
             "*************").set_withdraw_type(WithdrawalV3Req.WithdrawTypeEnum.ADDRESS)
         req = builder.build()
         try:

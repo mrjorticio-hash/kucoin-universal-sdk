@@ -7404,15 +7404,11 @@
                                             "properties": {
                                                 "marginMode": {
                                                     "type": "object",
-                                                    "properties": {
-                                                        "ETHUSDTM": {
-                                                            "type": "string"
-                                                        },
-                                                        "XBTUSDTM": {
-                                                            "type": "string"
-                                                        }
-                                                    },
-                                                    "description": "Target Margin Model, Symbols that failed to be modified will also be included"
+                                                    "properties": {},
+                                                    "description": "Target Margin Model, Symbols that failed to be modified will also be included",
+                                                    "additionalProperties": {
+                                                        "type": "string"
+                                                    }
                                                 },
                                                 "errors": {
                                                     "type": "array",

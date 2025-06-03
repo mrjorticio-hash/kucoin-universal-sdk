@@ -5,8 +5,12 @@ from typing import Any
 from kucoin_universal_sdk.internal.interfaces.transport import Transport
 from .model_add_isolated_margin_req import AddIsolatedMarginReq
 from .model_add_isolated_margin_resp import AddIsolatedMarginResp
+from .model_batch_switch_margin_mode_req import BatchSwitchMarginModeReq
+from .model_batch_switch_margin_mode_resp import BatchSwitchMarginModeResp
 from .model_get_cross_margin_leverage_req import GetCrossMarginLeverageReq
 from .model_get_cross_margin_leverage_resp import GetCrossMarginLeverageResp
+from .model_get_cross_margin_risk_limit_req import GetCrossMarginRiskLimitReq
+from .model_get_cross_margin_risk_limit_resp import GetCrossMarginRiskLimitResp
 from .model_get_isolated_margin_risk_limit_req import GetIsolatedMarginRiskLimitReq
 from .model_get_isolated_margin_risk_limit_resp import GetIsolatedMarginRiskLimitResp
 from .model_get_margin_mode_req import GetMarginModeReq
@@ -62,6 +66,25 @@ class PositionsAPI(ABC):
         summary: Switch Margin Mode
         description: This interface can modify the margin mode of the current symbol.
         documentation: https://www.kucoin.com/docs-new/api-3470262
+        +-----------------------+---------+
+        | Extra API Info        | Value   |
+        +-----------------------+---------+
+        | API-DOMAIN            | FUTURES |
+        | API-CHANNEL           | PRIVATE |
+        | API-PERMISSION        | FUTURES |
+        | API-RATE-LIMIT-POOL   | FUTURES |
+        | API-RATE-LIMIT-WEIGHT | 2       |
+        +-----------------------+---------+
+        """
+        pass
+
+    @abstractmethod
+    def batch_switch_margin_mode(self, req: BatchSwitchMarginModeReq,
+                                 **kwargs: Any) -> BatchSwitchMarginModeResp:
+        """
+        summary: Batch Switch Margin Mode
+        description: Batch modify the margin mode of the symbols.
+        documentation: https://www.kucoin.com/docs-new/api-3472403
         +-----------------------+---------+
         | Extra API Info        | Value   |
         +-----------------------+---------+
@@ -246,6 +269,26 @@ class PositionsAPI(ABC):
         pass
 
     @abstractmethod
+    def get_cross_margin_risk_limit(
+            self, req: GetCrossMarginRiskLimitReq,
+            **kwargs: Any) -> GetCrossMarginRiskLimitResp:
+        """
+        summary: Get Cross Margin Risk Limit
+        description: Batch get cross margin risk limit.
+        documentation: https://www.kucoin.com/docs-new/api-3472655
+        +-----------------------+---------+
+        | Extra API Info        | Value   |
+        +-----------------------+---------+
+        | API-DOMAIN            | FUTURES |
+        | API-CHANNEL           | PRIVATE |
+        | API-PERMISSION        | FUTURES |
+        | API-RATE-LIMIT-POOL   | FUTURES |
+        | API-RATE-LIMIT-WEIGHT | 2       |
+        +-----------------------+---------+
+        """
+        pass
+
+    @abstractmethod
     def get_isolated_margin_risk_limit(
             self, req: GetIsolatedMarginRiskLimitReq,
             **kwargs: Any) -> GetIsolatedMarginRiskLimitResp:
@@ -324,6 +367,13 @@ class PositionsAPIImpl(PositionsAPI):
                                    "/api/v2/position/changeMarginMode", req,
                                    SwitchMarginModeResp(), False, **kwargs)
 
+    def batch_switch_margin_mode(self, req: BatchSwitchMarginModeReq,
+                                 **kwargs: Any) -> BatchSwitchMarginModeResp:
+        return self.transport.call("futures", False, "POST",
+                                   "/api/v2/position/batchChangeMarginMode",
+                                   req, BatchSwitchMarginModeResp(), False,
+                                   **kwargs)
+
     def get_max_open_size(self, req: GetMaxOpenSizeReq,
                           **kwargs: Any) -> GetMaxOpenSizeResp:
         return self.transport.call("futures", False, "GET",
@@ -379,6 +429,14 @@ class PositionsAPIImpl(PositionsAPI):
         return self.transport.call("futures", False, "POST",
                                    "/api/v1/margin/withdrawMargin", req,
                                    RemoveIsolatedMarginResp(), False, **kwargs)
+
+    def get_cross_margin_risk_limit(
+            self, req: GetCrossMarginRiskLimitReq,
+            **kwargs: Any) -> GetCrossMarginRiskLimitResp:
+        return self.transport.call("futures", False, "GET",
+                                   "/api/v2/batchGetCrossOrderLimit", req,
+                                   GetCrossMarginRiskLimitResp(), False,
+                                   **kwargs)
 
     def get_isolated_margin_risk_limit(
             self, req: GetIsolatedMarginRiskLimitReq,

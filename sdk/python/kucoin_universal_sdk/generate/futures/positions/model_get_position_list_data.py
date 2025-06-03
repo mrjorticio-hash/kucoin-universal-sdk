@@ -20,7 +20,7 @@ class GetPositionListData(BaseModel):
         symbol (str): Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) 
         cross_mode (bool): Whether it is cross margin.
         delev_percentage (float): ADL ranking percentile 
-        opening_timestamp (int): Open time 
+        opening_timestamp (int): First opening time
         current_timestamp (int): Current timestamp 
         current_qty (int): Current postion quantity 
         current_cost (float): Current postion value 
@@ -48,7 +48,7 @@ class GetPositionListData(BaseModel):
         position_side (PositionSideEnum): Position Side 
         leverage (float): Leverage
         auto_deposit (bool): Auto deposit margin or not **Only applicable to Isolated Margin** 
-        maint_margin_req (float): Maintenance margin requirement **Only applicable to Isolated Margin** 
+        maint_margin_req (float): Maintenance margin requirement 
         risk_limit (float): Risk limit **Only applicable to Isolated Margin** 
         real_leverage (float): Leverage of the order **Only applicable to Isolated Margin** 
         pos_cross (float): added margin **Only applicable to Isolated Margin** 
@@ -57,7 +57,7 @@ class GetPositionListData(BaseModel):
         pos_comm_common (float): Part of bankruptcy cost (positioning, add margin) **Only applicable to Isolated Margin** 
         pos_loss (float): Funding fees paid out **Only applicable to Isolated Margin** 
         pos_funding (float): The current remaining unsettled funding fee for the position **Only applicable to Isolated Margin** 
-        pos_maint (float): Maintenance margin **Only applicable to Isolated Margin** 
+        pos_maint (float): Maintenance margin
         maint_margin (float): Position margin **Only applicable to Isolated Margin** 
         maintain_margin (float): Maintenance margin rate **Only applicable to Isolated Margin** 
     """
@@ -93,7 +93,7 @@ class GetPositionListData(BaseModel):
         description="ADL ranking percentile ",
         alias="delevPercentage")
     opening_timestamp: Optional[int] = Field(default=None,
-                                             description="Open time ",
+                                             description="First opening time",
                                              alias="openingTimestamp")
     current_timestamp: Optional[int] = Field(default=None,
                                              description="Current timestamp ",
@@ -195,8 +195,7 @@ class GetPositionListData(BaseModel):
         alias="autoDeposit")
     maint_margin_req: Optional[float] = Field(
         default=None,
-        description=
-        "Maintenance margin requirement **Only applicable to Isolated Margin** ",
+        description="Maintenance margin requirement ",
         alias="maintMarginReq")
     risk_limit: Optional[float] = Field(
         default=None,
@@ -235,11 +234,9 @@ class GetPositionListData(BaseModel):
         description=
         "The current remaining unsettled funding fee for the position **Only applicable to Isolated Margin** ",
         alias="posFunding")
-    pos_maint: Optional[float] = Field(
-        default=None,
-        description=
-        "Maintenance margin **Only applicable to Isolated Margin** ",
-        alias="posMaint")
+    pos_maint: Optional[float] = Field(default=None,
+                                       description="Maintenance margin",
+                                       alias="posMaint")
     maint_margin: Optional[float] = Field(
         default=None,
         description="Position margin **Only applicable to Isolated Margin** ",
