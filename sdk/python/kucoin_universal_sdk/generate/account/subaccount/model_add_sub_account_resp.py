@@ -17,20 +17,21 @@ class AddSubAccountResp(BaseModel, Response):
     AddSubAccountResp
 
     Attributes:
-        uid (int): Sub-account UID
-        sub_name (str): Sub-account name
-        remarks (str): Remarks
-        access (str): Permission
+        uid (int): Sub account user id
+        sub_name (str): Sub account name
+        remarks (str): Sub account name
+        access (str): permission
     """
 
     common_response: Optional[RestResponse] = Field(
         default=None, description="Common response")
-    uid: Optional[int] = Field(default=None, description="Sub-account UID")
+    uid: Optional[int] = Field(default=None, description="Sub account user id")
     sub_name: Optional[str] = Field(default=None,
-                                    description="Sub-account name",
+                                    description="Sub account name",
                                     alias="subName")
-    remarks: Optional[str] = Field(default=None, description="Remarks")
-    access: Optional[str] = Field(default=None, description="Permission")
+    remarks: Optional[str] = Field(default=None,
+                                   description="Sub account name")
+    access: Optional[str] = Field(default=None, description="permission")
 
     __properties: ClassVar[List[str]] = ["uid", "subName", "remarks", "access"]
 

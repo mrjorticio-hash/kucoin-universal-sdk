@@ -205,7 +205,7 @@ futures,positions,/api/v2/batchGetCrossOrderLimit,get,Get Cross Margin Risk Limi
 futures,positions,/api/v1/contracts/risk-limit/{symbol},get,Get Isolated Margin Risk Limit
 futures,positions,/api/v1/position/risk-limit-level/change,post,Modify Isolated Margin Risk Limit
 futures,positions,/api/v1/position/margin/auto-deposit-status,post,Modify Isolated Margin Auto-Deposit Status
-futures,fundingfees,/api/v1/funding-rate/{symbol}/current,get,Get Current Funding Rate.
+futures,fundingfees,/api/v1/funding-rate/{symbol}/current,get,Get Current Funding Rate
 futures,fundingfees,/api/v1/contract/funding-rates,get,Get Public Funding History
 futures,fundingfees,/api/v1/funding-history,get,Get Private Funding History
 earn,earn,/api/v1/earn/orders,post,Purchase

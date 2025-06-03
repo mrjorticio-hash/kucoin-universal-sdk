@@ -755,7 +755,7 @@
                     {
                         "name": "currency",
                         "in": "query",
-                        "description": "Currency code, Please refer to [rootSymbol](https://www.kucoin.com/docs-new/api-221752070) , such as USDT,XBT. Query all positions when empty",
+                        "description": "Quote currency code, Please refer to [rootSymbol](https://www.kucoin.com/docs-new/api-221752070) , such as USDT,XBT. Query all positions when empty",
                         "required": false,
                         "schema": {
                             "type": "string",

@@ -18,14 +18,14 @@ class GetWithdrawalHistoryItems(BaseModel):
     Attributes:
         id (str): Unique ID
         currency (str): Currency
-        chain (str): The id of currency
+        chain (str): The chain id of currency
         status (StatusEnum): Status. Available value: REVIEW, PROCESSING, WALLET_PROCESSING, SUCCESS and FAILURE
-        address (str): Deposit address
+        address (str): Withwrawal address
         memo (str): Address remark. If there’s no remark, it is empty. 
         is_inner (bool): Internal deposit or not
-        amount (str): Deposit amount
-        fee (str): Fees charged for deposit
-        wallet_tx_id (str): Wallet Txid
+        amount (str): Withwrawal amount
+        fee (str): Fees charged for withwrawal
+        wallet_tx_id (str): Wallet Txid, If this is an internal withdrawal, it is empty. 
         created_at (int): Database record creation time
         updated_at (int): Update time of the database record
         remark (str): Remark
@@ -34,11 +34,11 @@ class GetWithdrawalHistoryItems(BaseModel):
     class StatusEnum(Enum):
         """
         Attributes:
-            REVIEW: 
-            PROCESSING: 
-            WALLET_PROCESSING: 
-            FAILURE: 
-            SUCCESS: 
+            REVIEW: REVIEW
+            PROCESSING: PROCESSING
+            WALLET_PROCESSING: WALLET_PROCESSING
+            FAILURE: FAILURE
+            SUCCESS: SUCCESS
         """
         REVIEW = 'REVIEW'
         PROCESSING = 'PROCESSING'
@@ -49,25 +49,29 @@ class GetWithdrawalHistoryItems(BaseModel):
     id: Optional[str] = Field(default=None, description="Unique ID")
     currency: Optional[str] = Field(default=None, description="Currency")
     chain: Optional[str] = Field(default=None,
-                                 description="The id of currency")
+                                 description="The chain id of currency")
     status: Optional[StatusEnum] = Field(
         default=None,
         description=
         "Status. Available value: REVIEW, PROCESSING, WALLET_PROCESSING, SUCCESS and FAILURE"
     )
-    address: Optional[str] = Field(default=None, description="Deposit address")
+    address: Optional[str] = Field(default=None,
+                                   description="Withwrawal address")
     memo: Optional[str] = Field(
         default=None,
         description="Address remark. If there’s no remark, it is empty. ")
     is_inner: Optional[bool] = Field(default=None,
                                      description="Internal deposit or not",
                                      alias="isInner")
-    amount: Optional[str] = Field(default=None, description="Deposit amount")
+    amount: Optional[str] = Field(default=None,
+                                  description="Withwrawal amount")
     fee: Optional[str] = Field(default=None,
-                               description="Fees charged for deposit")
-    wallet_tx_id: Optional[str] = Field(default=None,
-                                        description="Wallet Txid",
-                                        alias="walletTxId")
+                               description="Fees charged for withwrawal")
+    wallet_tx_id: Optional[str] = Field(
+        default=None,
+        description=
+        "Wallet Txid, If this is an internal withdrawal, it is empty. ",
+        alias="walletTxId")
     created_at: Optional[int] = Field(
         default=None,
         description="Database record creation time",

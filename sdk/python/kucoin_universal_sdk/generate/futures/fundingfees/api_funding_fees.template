@@ -4,7 +4,7 @@
 def test_get_current_funding_rate_req(self):
     """
         get_current_funding_rate
-        Get Current Funding Rate.
+        Get Current Funding Rate
         /api/v1/funding-rate/{symbol}/current
     """
 

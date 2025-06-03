@@ -5,6 +5,8 @@ from typing import Any
 from kucoin_universal_sdk.internal.interfaces.transport import Transport
 from .model_cancel_withdrawal_req import CancelWithdrawalReq
 from .model_cancel_withdrawal_resp import CancelWithdrawalResp
+from .model_get_withdrawal_history_by_id_req import GetWithdrawalHistoryByIdReq
+from .model_get_withdrawal_history_by_id_resp import GetWithdrawalHistoryByIdResp
 from .model_get_withdrawal_history_old_req import GetWithdrawalHistoryOldReq
 from .model_get_withdrawal_history_old_resp import GetWithdrawalHistoryOldResp
 from .model_get_withdrawal_history_req import GetWithdrawalHistoryReq
@@ -97,6 +99,26 @@ class WithdrawalAPI(ABC):
         pass
 
     @abstractmethod
+    def get_withdrawal_history_by_id(
+            self, req: GetWithdrawalHistoryByIdReq,
+            **kwargs: Any) -> GetWithdrawalHistoryByIdResp:
+        """
+        summary: Get Withdrawal History By ID
+        description: Request a withdrawal history by id via this endpoint.
+        documentation: https://www.kucoin.com/docs-new/api-3471890
+        +-----------------------+------------+
+        | Extra API Info        | Value      |
+        +-----------------------+------------+
+        | API-DOMAIN            | SPOT       |
+        | API-CHANNEL           | PRIVATE    |
+        | API-PERMISSION        | GENERAL    |
+        | API-RATE-LIMIT-POOL   | MANAGEMENT |
+        | API-RATE-LIMIT-WEIGHT | 20         |
+        +-----------------------+------------+
+        """
+        pass
+
+    @abstractmethod
     @deprecated('')
     def get_withdrawal_history_old(
             self, req: GetWithdrawalHistoryOldReq,
@@ -166,6 +188,14 @@ class WithdrawalAPIImpl(WithdrawalAPI):
         return self.transport.call("spot", False, "GET",
                                    "/api/v1/withdrawals", req,
                                    GetWithdrawalHistoryResp(), False, **kwargs)
+
+    def get_withdrawal_history_by_id(
+            self, req: GetWithdrawalHistoryByIdReq,
+            **kwargs: Any) -> GetWithdrawalHistoryByIdResp:
+        return self.transport.call("spot", False, "GET",
+                                   "/api/v1/withdrawals/{withdrawalId}", req,
+                                   GetWithdrawalHistoryByIdResp(), False,
+                                   **kwargs)
 
     def get_withdrawal_history_old(
             self, req: GetWithdrawalHistoryOldReq,

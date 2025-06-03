@@ -6,6 +6,7 @@ from __future__ import annotations
 import pprint
 import json
 
+from enum import Enum
 from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
 from kucoin_universal_sdk.internal.interfaces.response import Response
@@ -19,12 +20,23 @@ class GetCurrentFundingRateResp(BaseModel, Response):
     Attributes:
         symbol (str): Funding Rate Symbol 
         granularity (int): Granularity (milliseconds) 
-        time_point (int): The funding rate settlement time point of the previous cycle (milliseconds) 
+        time_point (int): The funding rate settlement time point of the previous cycle (milliseconds) Before going live, the system will pre-generate the first funding rate record to ensure the billing cycle can start immediately after the contract is launched.  The timePoint field represents the time the funding rate data was generated, not the actual time it takes effect or is settled.  The first actual settlement will occur at the designated settlement time (00:00 / 08:00 / 14:00) after the contract goes live.  
         value (float): Current cycle funding rate 
         predicted_value (float): Predicted funding rate 
         funding_rate_cap (float): Maximum Funding Rate
         funding_rate_floor (float): Minimum Funding Rate
+        period (PeriodEnum): Indicates whether the current funding fee is charged within this cycle
+        funding_time (int): Indicates the next funding fee settlement time point, which can be used to synchronize periodic settlement timing.
     """
+
+    class PeriodEnum(Enum):
+        """
+        Attributes:
+            T_1: Indicates that funding will be charged in the current cycle
+            T_0: Indicates a cross-cycle expense record that is not charged in the current cycle.
+        """
+        T_1 = 1
+        T_0 = 0
 
     common_response: Optional[RestResponse] = Field(
         default=None, description="Common response")
@@ -35,7 +47,7 @@ class GetCurrentFundingRateResp(BaseModel, Response):
     time_point: Optional[int] = Field(
         default=None,
         description=
-        "The funding rate settlement time point of the previous cycle (milliseconds) ",
+        "The funding rate settlement time point of the previous cycle (milliseconds) Before going live, the system will pre-generate the first funding rate record to ensure the billing cycle can start immediately after the contract is launched.  The timePoint field represents the time the funding rate data was generated, not the actual time it takes effect or is settled.  The first actual settlement will occur at the designated settlement time (00:00 / 08:00 / 14:00) after the contract goes live.  ",
         alias="timePoint")
     value: Optional[float] = Field(default=None,
                                    description="Current cycle funding rate ")
@@ -51,10 +63,20 @@ class GetCurrentFundingRateResp(BaseModel, Response):
         default=None,
         description="Minimum Funding Rate",
         alias="fundingRateFloor")
+    period: Optional[PeriodEnum] = Field(
+        default=None,
+        description=
+        "Indicates whether the current funding fee is charged within this cycle"
+    )
+    funding_time: Optional[int] = Field(
+        default=None,
+        description=
+        "Indicates the next funding fee settlement time point, which can be used to synchronize periodic settlement timing.",
+        alias="fundingTime")
 
     __properties: ClassVar[List[str]] = [
         "symbol", "granularity", "timePoint", "value", "predictedValue",
-        "fundingRateCap", "fundingRateFloor"
+        "fundingRateCap", "fundingRateFloor", "period", "fundingTime"
     ]
 
     model_config = ConfigDict(
@@ -105,7 +127,11 @@ class GetCurrentFundingRateResp(BaseModel, Response):
             "fundingRateCap":
             obj.get("fundingRateCap"),
             "fundingRateFloor":
-            obj.get("fundingRateFloor")
+            obj.get("fundingRateFloor"),
+            "period":
+            obj.get("period"),
+            "fundingTime":
+            obj.get("fundingTime")
         })
         return _obj
 

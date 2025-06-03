@@ -48,14 +48,14 @@ class PositionEvent(BaseModel):
         position_side (PositionSideEnum): Position Side 
         leverage (float): Leverage
         auto_deposit (bool): Auto deposit margin or not **Only applicable to Isolated Margin** 
-        maint_margin_req (float): Maintenance margin requirement **Only applicable to Isolated Margin** 
+        maint_margin_req (float): Maintenance margin requirement 
         risk_limit (int): Risk limit **Only applicable to Isolated Margin** 
         real_leverage (float): Leverage of the order **Only applicable to Isolated Margin** 
         pos_cross (float): Added margin **Only applicable to Isolated Margin** 
         pos_comm (float): Bankruptcy cost **Only applicable to Isolated Margin** 
         pos_loss (float): Funding fees paid out **Only applicable to Isolated Margin** 
         pos_funding (float): The current remaining unsettled funding fee for the position **Only applicable to Isolated Margin** 
-        pos_maint (float): Maintenance margin **Only applicable to Isolated Margin** 
+        pos_maint (float): Maintenance margin
         maint_margin (float): Position margin **Only applicable to Isolated Margin** 
         funding_time (int): Funding time
         qty (int): Position size
@@ -199,8 +199,7 @@ class PositionEvent(BaseModel):
         alias="autoDeposit")
     maint_margin_req: Optional[float] = Field(
         default=None,
-        description=
-        "Maintenance margin requirement **Only applicable to Isolated Margin** ",
+        description="Maintenance margin requirement ",
         alias="maintMarginReq")
     risk_limit: Optional[int] = Field(
         default=None,
@@ -229,11 +228,9 @@ class PositionEvent(BaseModel):
         description=
         "The current remaining unsettled funding fee for the position **Only applicable to Isolated Margin** ",
         alias="posFunding")
-    pos_maint: Optional[float] = Field(
-        default=None,
-        description=
-        "Maintenance margin **Only applicable to Isolated Margin** ",
-        alias="posMaint")
+    pos_maint: Optional[float] = Field(default=None,
+                                       description="Maintenance margin",
+                                       alias="posMaint")
     maint_margin: Optional[float] = Field(
         default=None,
         description="Position margin **Only applicable to Isolated Margin** ",

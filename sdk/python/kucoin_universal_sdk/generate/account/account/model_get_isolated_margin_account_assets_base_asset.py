@@ -23,6 +23,8 @@ class GetIsolatedMarginAccountAssetsBaseAsset(BaseModel):
         available (str): Account available assets (total assets - frozen)
         hold (str): Account frozen assets
         max_borrow_size (str): The user's remaining maximum loan amount
+        liability_principal (str): Outstanding principal
+        liability_interest (str): Outstanding interest
     """
 
     currency: Optional[str] = Field(default=None, description="currency")
@@ -44,10 +46,19 @@ class GetIsolatedMarginAccountAssetsBaseAsset(BaseModel):
         default=None,
         description="The user's remaining maximum loan amount",
         alias="maxBorrowSize")
+    liability_principal: Optional[str] = Field(
+        default=None,
+        description="Outstanding principal",
+        alias="liabilityPrincipal")
+    liability_interest: Optional[str] = Field(
+        default=None,
+        description="Outstanding interest",
+        alias="liabilityInterest")
 
     __properties: ClassVar[List[str]] = [
         "currency", "borrowEnabled", "transferInEnabled", "liability", "total",
-        "available", "hold", "maxBorrowSize"
+        "available", "hold", "maxBorrowSize", "liabilityPrincipal",
+        "liabilityInterest"
     ]
 
     model_config = ConfigDict(
@@ -101,6 +112,10 @@ class GetIsolatedMarginAccountAssetsBaseAsset(BaseModel):
             "hold":
             obj.get("hold"),
             "maxBorrowSize":
-            obj.get("maxBorrowSize")
+            obj.get("maxBorrowSize"),
+            "liabilityPrincipal":
+            obj.get("liabilityPrincipal"),
+            "liabilityInterest":
+            obj.get("liabilityInterest")
         })
         return _obj
