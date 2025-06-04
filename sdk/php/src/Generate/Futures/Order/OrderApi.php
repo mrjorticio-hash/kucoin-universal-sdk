@@ -349,7 +349,7 @@ interface OrderApi
      * | API-CHANNEL           | PRIVATE |
      * | API-PERMISSION        | FUTURES |
      * | API-RATE-LIMIT-POOL   | FUTURES |
-     * | API-RATE-LIMIT-WEIGHT | 200     |
+     * | API-RATE-LIMIT-WEIGHT | 800     |
      * +-----------------------+---------+
      */
     public function cancelAllOrdersV1(

@@ -95,7 +95,7 @@ class MarketApiTest extends TestCase
      */
     public function testGetCurrencyRequest()
     {
-        $data = "{\"currency\": \"BTC\", \"chain\": \"eth\"}";
+        $data = "{\"chain\": \"eth\", \"currency\": \"BTC\"}";
         $req = GetCurrencyReq::jsonDeserialize($data, $this->serializer);
         $this->assertTrue($this->hasAnyNoneNull($req));
         echo $req->jsonSerialize($this->serializer);

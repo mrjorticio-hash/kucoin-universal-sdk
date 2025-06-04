@@ -99,10 +99,10 @@ $(SUBDIRS):
 .PHONY: generate
 generate: setup-logs
 	$(call generate-postman)
-	$(call generate-code,golang,/pkg/generate,1.2.1)
+	$(call generate-code,golang,/pkg/generate)
 	$(call generate-code,python,/kucoin_universal_sdk/generate)
 	$(call generate-code,node,/src/generate)
-	$(call generate-code,php,/src/Generate,0.1.1-alpha)
+	$(call generate-code,php,/src/Generate,0.1.2-alpha)
 
 .PHONY: gen-postman
 gen-postman: preprocessor

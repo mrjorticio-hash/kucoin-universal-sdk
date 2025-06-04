@@ -90,6 +90,45 @@
     }
 
     /**
+    * getWithdrawalHistoryById
+    * Get Withdrawal History By ID
+    * /api/v1/withdrawals/{withdrawalId}
+    */
+    public function testGetWithdrawalHistoryById() {
+        $builder = GetWithdrawalHistoryByIdReq::builder();
+        $builder->setWithdrawalId(?);
+        $req = $builder->build();
+        $resp = $this->api->getWithdrawalHistoryById($req);
+        self::assertNotNull($resp->id);
+        self::assertNotNull($resp->uid);
+        self::assertNotNull($resp->currency);
+        self::assertNotNull($resp->chainId);
+        self::assertNotNull($resp->chainName);
+        self::assertNotNull($resp->currencyName);
+        self::assertNotNull($resp->status);
+        self::assertNotNull($resp->failureReason);
+        self::assertNotNull($resp->failureReasonMsg);
+        self::assertNotNull($resp->address);
+        self::assertNotNull($resp->memo);
+        self::assertNotNull($resp->isInner);
+        self::assertNotNull($resp->amount);
+        self::assertNotNull($resp->fee);
+        self::assertNotNull($resp->walletTxId);
+        self::assertNotNull($resp->addressRemark);
+        self::assertNotNull($resp->remark);
+        self::assertNotNull($resp->createdAt);
+        self::assertNotNull($resp->cancelType);
+        foreach($resp->taxes as $item) {
+        }
+
+        self::assertNotNull($resp->taxDescription);
+        self::assertNotNull($resp->returnStatus);
+        self::assertNotNull($resp->returnAmount);
+        self::assertNotNull($resp->returnCurrency);
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
+    /**
     * getWithdrawalHistoryOld
     * Get Withdrawal History - Old
     * /api/v1/hist-withdrawals

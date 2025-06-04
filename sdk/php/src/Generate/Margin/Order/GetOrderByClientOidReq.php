@@ -24,6 +24,13 @@ class GetOrderByClientOidReq implements Serializable
         return self::$pathVarMapping;
     }
     /**
+     * symbol
+     * @var string|null $symbol
+     * @Type("string")
+     * @SerializedName("symbol")
+     */
+    public $symbol;
+    /**
      * Client Order Id, unique identifier created by the user
      * @var string|null $clientOid
      * @Type("string")
@@ -31,13 +38,6 @@ class GetOrderByClientOidReq implements Serializable
      * @Exclude()
      */
     public $clientOid;
-    /**
-     * symbol
-     * @var string|null $symbol
-     * @Type("string")
-     * @SerializedName("symbol")
-     */
-    public $symbol;
 
     private function __construct() {}
 
@@ -106,17 +106,6 @@ class GetOrderByClientOidReqBuilder
         $this->obj = $obj;
     }
     /**
-     * Client Order Id, unique identifier created by the user
-     * @param string $value
-     * @return self
-     */
-    public function setClientOid($value)
-    {
-        $this->obj->clientOid = $value;
-        return $this;
-    }
-
-    /**
      * symbol
      * @param string $value
      * @return self
@@ -124,6 +113,17 @@ class GetOrderByClientOidReqBuilder
     public function setSymbol($value)
     {
         $this->obj->symbol = $value;
+        return $this;
+    }
+
+    /**
+     * Client Order Id, unique identifier created by the user
+     * @param string $value
+     * @return self
+     */
+    public function setClientOid($value)
+    {
+        $this->obj->clientOid = $value;
         return $this;
     }
 

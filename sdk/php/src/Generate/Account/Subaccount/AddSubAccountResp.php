@@ -13,28 +13,28 @@ use KuCoin\UniversalSDK\Model\RestResponse;
 class AddSubAccountResp implements Response
 {
     /**
-     * Sub-account UID
+     * Sub account user id
      * @var int $uid
      * @Type("int")
      * @SerializedName("uid")
      */
     public $uid;
     /**
-     * Sub-account name
+     * Sub account name
      * @var string $subName
      * @Type("string")
      * @SerializedName("subName")
      */
     public $subName;
     /**
-     * Remarks
+     * Sub account name
      * @var string $remarks
      * @Type("string")
      * @SerializedName("remarks")
      */
     public $remarks;
     /**
-     * Permission
+     * permission
      * @var string $access
      * @Type("string")
      * @SerializedName("access")

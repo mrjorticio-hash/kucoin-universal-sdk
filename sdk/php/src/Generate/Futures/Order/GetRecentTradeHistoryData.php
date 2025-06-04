@@ -94,6 +94,9 @@ class GetRecentTradeHistoryData implements Serializable
     public $closeFeePay;
     /**
      * A mark to the stop order type
+     * - 'down' : Triggers when the price reaches or goes below the stopPrice.
+     * - 'up' : Triggers when the price reaches or goes above the stopPrice.
+     * - '' : Not a stop order
      * @var string $stop
      * @Type("string")
      * @SerializedName("stop")

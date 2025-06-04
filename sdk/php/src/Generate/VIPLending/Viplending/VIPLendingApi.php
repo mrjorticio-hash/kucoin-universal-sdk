@@ -34,7 +34,7 @@ interface VIPLendingApi
      * +-----------------------+------------+
      * | API-DOMAIN            | SPOT       |
      * | API-CHANNEL           | PRIVATE    |
-     * | API-PERMISSION        | GENERAL    |
+     * | API-PERMISSION        | SPOT       |
      * | API-RATE-LIMIT-POOL   | MANAGEMENT |
      * | API-RATE-LIMIT-WEIGHT | 5          |
      * +-----------------------+------------+
@@ -52,7 +52,7 @@ interface VIPLendingApi
      * +-----------------------+------------+
      * | API-DOMAIN            | SPOT       |
      * | API-CHANNEL           | PRIVATE    |
-     * | API-PERMISSION        | GENERAL    |
+     * | API-PERMISSION        | SPOT       |
      * | API-RATE-LIMIT-POOL   | MANAGEMENT |
      * | API-RATE-LIMIT-WEIGHT | 20         |
      * +-----------------------+------------+

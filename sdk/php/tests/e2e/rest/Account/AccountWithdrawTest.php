@@ -7,6 +7,7 @@ use JMS\Serializer\SerializerBuilder;
 use KuCoin\UniversalSDK\Api\DefaultClient;
 use KuCoin\UniversalSDK\Common\Logger;
 use KuCoin\UniversalSDK\Generate\Account\Withdrawal\CancelWithdrawalReq;
+use KuCoin\UniversalSDK\Generate\Account\Withdrawal\GetWithdrawalHistoryByIdReq;
 use KuCoin\UniversalSDK\Generate\Account\Withdrawal\GetWithdrawalHistoryOldReq;
 use KuCoin\UniversalSDK\Generate\Account\Withdrawal\GetWithdrawalHistoryReq;
 use KuCoin\UniversalSDK\Generate\Account\Withdrawal\GetWithdrawalQuotasReq;
@@ -169,6 +170,41 @@ class AccountWithdrawTest extends TestCase
             self::assertNotNull($item->remark);
         }
 
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
+
+    /**
+     * getWithdrawalHistoryById
+     * Get Withdrawal History By ID
+     * /api/v1/withdrawals/{withdrawalId}
+     */
+    public function testGetWithdrawalHistoryById() {
+        $builder = GetWithdrawalHistoryByIdReq::builder();
+        $builder->setWithdrawalId("674576dc74b2bb000778452c");
+        $req = $builder->build();
+        $resp = $this->api->getWithdrawalHistoryById($req);
+        self::assertNotNull($resp->id);
+        self::assertNotNull($resp->uid);
+        self::assertNotNull($resp->currency);
+        self::assertNotNull($resp->chainId);
+        self::assertNotNull($resp->chainName);
+        self::assertNotNull($resp->currencyName);
+        self::assertNotNull($resp->status);
+        self::assertNotNull($resp->failureReason);
+        self::assertNotNull($resp->failureReasonMsg);
+        self::assertNotNull($resp->address);
+        self::assertNotNull($resp->memo);
+        self::assertNotNull($resp->isInner);
+        self::assertNotNull($resp->amount);
+        self::assertNotNull($resp->fee);
+        self::assertNotNull($resp->walletTxId);
+        self::assertNotNull($resp->addressRemark);
+        self::assertNotNull($resp->remark);
+        self::assertNotNull($resp->createdAt);
+        self::assertNotNull($resp->cancelType);
+        self::assertNotNull($resp->returnStatus);
+        self::assertNotNull($resp->returnCurrency);
         Logger::info($resp->jsonSerialize($this->serializer));
     }
 

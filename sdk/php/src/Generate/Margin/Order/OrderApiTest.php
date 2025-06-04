@@ -126,7 +126,7 @@ class OrderApiTest extends TestCase
     public function testCancelOrderByOrderIdRequest()
     {
         $data =
-            "{\"orderId\": \"671663e02188630007e21c9c\", \"symbol\": \"BTC-USDT\"}";
+            "{\"symbol\": \"BTC-USDT\", \"orderId\": \"671663e02188630007e21c9c\"}";
         $req = CancelOrderByOrderIdReq::jsonDeserialize(
             $data,
             $this->serializer
@@ -165,7 +165,7 @@ class OrderApiTest extends TestCase
     public function testCancelOrderByClientOidRequest()
     {
         $data =
-            "{\"clientOid\": \"5c52e11203aa677f33e1493fb\", \"symbol\": \"BTC-USDT\"}";
+            "{\"symbol\": \"BTC-USDT\", \"clientOid\": \"5c52e11203aa677f33e1493fb\"}";
         $req = CancelOrderByClientOidReq::jsonDeserialize(
             $data,
             $this->serializer
@@ -386,7 +386,7 @@ class OrderApiTest extends TestCase
     public function testGetOrderByOrderIdRequest()
     {
         $data =
-            "{\"orderId\": \"671667306afcdb000723107f\", \"symbol\": \"BTC-USDT\"}";
+            "{\"symbol\": \"BTC-USDT\", \"orderId\": \"671667306afcdb000723107f\"}";
         $req = GetOrderByOrderIdReq::jsonDeserialize($data, $this->serializer);
         $this->assertTrue($this->hasAnyNoneNull($req));
         echo $req->jsonSerialize($this->serializer);
@@ -422,7 +422,7 @@ class OrderApiTest extends TestCase
     public function testGetOrderByClientOidRequest()
     {
         $data =
-            "{\"clientOid\": \"5c52e11203aa677f33e493fb\", \"symbol\": \"BTC-USDT\"}";
+            "{\"symbol\": \"BTC-USDT\", \"clientOid\": \"5c52e11203aa677f33e493fb\"}";
         $req = GetOrderByClientOidReq::jsonDeserialize(
             $data,
             $this->serializer

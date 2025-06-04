@@ -62,7 +62,7 @@ class OrderEvent implements Response
      */
     public $type;
     /**
-     * Order time (nanoseconds)
+     * Gateway received the message time (milliseconds)
      * @var int $orderTime
      * @Type("int")
      * @SerializedName("orderTime")
@@ -104,7 +104,7 @@ class OrderEvent implements Response
      */
     public $status;
     /**
-     * Push time (nanoseconds)
+     * Match engine received the message time  (nanoseconds)
      * @var int $ts
      * @Type("int")
      * @SerializedName("ts")

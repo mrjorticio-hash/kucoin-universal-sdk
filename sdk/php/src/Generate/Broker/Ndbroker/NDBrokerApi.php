@@ -6,6 +6,62 @@ namespace KuCoin\UniversalSDK\Generate\Broker\Ndbroker;
 interface NDBrokerApi
 {
     /**
+     * Submit KYC
+     *
+     * This endpointcan submit kyc information for a sub-account of nd broker
+     * @see: https://www.kucoin.com/docs-new/api-3472406
+     *
+     * +-----------------------+---------+
+     * | Extra API Info        | Value   |
+     * +-----------------------+---------+
+     * | API-DOMAIN            | BROKER  |
+     * | API-CHANNEL           | PRIVATE |
+     * | API-PERMISSION        | GENERAL |
+     * | API-RATE-LIMIT-POOL   | BROKER  |
+     * | API-RATE-LIMIT-WEIGHT | NULL    |
+     * +-----------------------+---------+
+     */
+    public function submitKYC(SubmitKYCReq $req): SubmitKYCResp;
+
+    /**
+     * Get KYC Status
+     *
+     * This endpoint can query the specified Kyc status
+     * @see: https://www.kucoin.com/docs-new/api-3472407
+     *
+     * +-----------------------+---------+
+     * | Extra API Info        | Value   |
+     * +-----------------------+---------+
+     * | API-DOMAIN            | BROKER  |
+     * | API-CHANNEL           | PRIVATE |
+     * | API-PERMISSION        | GENERAL |
+     * | API-RATE-LIMIT-POOL   | BROKER  |
+     * | API-RATE-LIMIT-WEIGHT | NULL    |
+     * +-----------------------+---------+
+     */
+    public function getKYCStatus(GetKYCStatusReq $req): GetKYCStatusResp;
+
+    /**
+     * Get KYC Status List
+     *
+     * This endpoint can query the specified Kyc status list
+     * @see: https://www.kucoin.com/docs-new/api-3472408
+     *
+     * +-----------------------+---------+
+     * | Extra API Info        | Value   |
+     * +-----------------------+---------+
+     * | API-DOMAIN            | BROKER  |
+     * | API-CHANNEL           | PRIVATE |
+     * | API-PERMISSION        | GENERAL |
+     * | API-RATE-LIMIT-POOL   | BROKER  |
+     * | API-RATE-LIMIT-WEIGHT | NULL    |
+     * +-----------------------+---------+
+     */
+    public function getKYCStatusList(
+        GetKYCStatusListReq $req
+    ): GetKYCStatusListResp;
+
+    /**
      * Get Broker Info
      *
      * This endpoint supports querying the basic information of the current Broker.

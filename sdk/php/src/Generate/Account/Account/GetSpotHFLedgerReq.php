@@ -39,11 +39,12 @@ class GetSpotHFLedgerReq implements Serializable
     public $direction;
     /**
      * Transaction type
-     * - 'TRADE_EXCHANGE' : trade exchange
-     * - 'TRANSFER' : transfer
-     * - 'RETURNED_FEES' : returned fees
-     * - 'DEDUCTION_FEES' : deduction fees
-     * - 'OTHER' : other
+     * - 'TRADE_EXCHANGE' : Trade exchange
+     * - 'TRANSFER' : Transfer
+     * - 'SUB_TRANSFER' : Sub transfer
+     * - 'RETURNED_FEES' : Returned fees
+     * - 'DEDUCTION_FEES' : Deduction fees
+     * - 'OTHER' : Other
      * @var string|null $bizType
      * @Type("string")
      * @SerializedName("bizType")
@@ -170,11 +171,12 @@ class GetSpotHFLedgerReqBuilder
 
     /**
      * Transaction type
-     * - 'TRADE_EXCHANGE' : trade exchange
-     * - 'TRANSFER' : transfer
-     * - 'RETURNED_FEES' : returned fees
-     * - 'DEDUCTION_FEES' : deduction fees
-     * - 'OTHER' : other
+     * - 'TRADE_EXCHANGE' : Trade exchange
+     * - 'TRANSFER' : Transfer
+     * - 'SUB_TRANSFER' : Sub transfer
+     * - 'RETURNED_FEES' : Returned fees
+     * - 'DEDUCTION_FEES' : Deduction fees
+     * - 'OTHER' : Other
      * @param string $value
      * @return self
      */

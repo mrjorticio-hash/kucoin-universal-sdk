@@ -113,6 +113,8 @@
             self::assertNotNull($item->maxBorrowSize);
             self::assertNotNull($item->borrowEnabled);
             self::assertNotNull($item->transferInEnabled);
+            self::assertNotNull($item->liabilityPrincipal);
+            self::assertNotNull($item->liabilityInterest);
         }
 
         Logger::info($resp->jsonSerialize($this->serializer));

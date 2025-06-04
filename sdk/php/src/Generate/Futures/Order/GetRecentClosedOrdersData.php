@@ -82,7 +82,10 @@ class GetRecentClosedOrdersData implements Serializable
      */
     public $stp;
     /**
-     * Stop order type (stop limit or stop market)
+     * A mark to the stop order type
+     * - 'down' : Triggers when the price reaches or goes below the stopPrice.
+     * - 'up' : Triggers when the price reaches or goes above the stopPrice.
+     * - '' : Not a stop order
      * @var string $stop
      * @Type("string")
      * @SerializedName("stop")
@@ -90,6 +93,10 @@ class GetRecentClosedOrdersData implements Serializable
     public $stop;
     /**
      * Trigger price type of stop orders
+     * - 'TP' : TP for trade price, The last trade price is the last price at which an order was filled. This price can be found in the latest match message.
+     * - 'MP' : MP for mark price. The mark price can be obtained through relevant OPEN API for index services.
+     * - 'IP' : IP for index price. The index price can be obtained through relevant OPEN API for index services.
+     * - '' : Not a stop order
      * @var string $stopPriceType
      * @Type("string")
      * @SerializedName("stopPriceType")

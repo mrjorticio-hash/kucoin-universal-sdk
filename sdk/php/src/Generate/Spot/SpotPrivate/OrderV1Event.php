@@ -41,7 +41,7 @@ class OrderV1Event implements Response
      */
     public $orderId;
     /**
-     * Order time (milliseconds)
+     * Gateway received the message time (milliseconds)
      * @var int $orderTime
      * @Type("int")
      * @SerializedName("orderTime")
@@ -111,7 +111,7 @@ class OrderV1Event implements Response
      */
     public $symbol;
     /**
-     * Push time (nanoseconds)
+     * Match engine received the message time  (nanoseconds)
      * @var int $ts
      * @Type("int")
      * @SerializedName("ts")

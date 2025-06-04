@@ -27,7 +27,7 @@ class GetAllCurrenciesDataChains implements Serializable
     public $withdrawalMinSize;
     /**
      * Minimum deposit amount
-     * @var string $depositMinSize
+     * @var string|null $depositMinSize
      * @Type("string")
      * @SerializedName("depositMinSize")
      */
@@ -90,14 +90,14 @@ class GetAllCurrenciesDataChains implements Serializable
     public $withdrawPrecision;
     /**
      * Maximum amount of single withdrawal
-     * @var string $maxWithdraw
+     * @var string|null $maxWithdraw
      * @Type("string")
      * @SerializedName("maxWithdraw")
      */
     public $maxWithdraw;
     /**
      * Maximum amount of single deposit (only applicable to Lightning Network)
-     * @var string $maxDeposit
+     * @var string|null $maxDeposit
      * @Type("string")
      * @SerializedName("maxDeposit")
      */
