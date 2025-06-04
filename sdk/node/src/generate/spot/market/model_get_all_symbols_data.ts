@@ -117,32 +117,32 @@ export class GetAllSymbolsData implements Serializable {
     /**
      * The lowest price declared in the call auction
      */
-    callauctionPriceFloor: string;
+    callauctionPriceFloor?: string;
 
     /**
      * The highest bid price in the call auction
      */
-    callauctionPriceCeiling: string;
+    callauctionPriceCeiling?: string;
 
     /**
      * The first phase of the call auction starts at (Allow add orders, allow cancel orders)
      */
-    callauctionFirstStageStartTime: number;
+    callauctionFirstStageStartTime?: number;
 
     /**
      * The second phase of the call auction starts at (Allow add orders, don\'t allow cancel orders)
      */
-    callauctionSecondStageStartTime: number;
+    callauctionSecondStageStartTime?: number;
 
     /**
      * The third phase of the call auction starts at (Don\'t allow add orders, don\'t allow cancel orders)
      */
-    callauctionThirdStageStartTime: number;
+    callauctionThirdStageStartTime?: number;
 
     /**
      * Official opening time (end time of the third phase of call auction)
      */
-    tradingStartTime: number;
+    tradingStartTime?: number;
 
     /**
      * Private constructor, please use the corresponding static methods to construct the object.
@@ -192,18 +192,6 @@ export class GetAllSymbolsData implements Serializable {
         this.st = null;
         // @ts-ignore
         this.callauctionIsEnabled = null;
-        // @ts-ignore
-        this.callauctionPriceFloor = null;
-        // @ts-ignore
-        this.callauctionPriceCeiling = null;
-        // @ts-ignore
-        this.callauctionFirstStageStartTime = null;
-        // @ts-ignore
-        this.callauctionSecondStageStartTime = null;
-        // @ts-ignore
-        this.callauctionThirdStageStartTime = null;
-        // @ts-ignore
-        this.tradingStartTime = null;
     }
     /**
      * Convert the object to a JSON string.

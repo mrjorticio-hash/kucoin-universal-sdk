@@ -62,7 +62,7 @@ export class GetTradeHistoryItems implements Serializable {
     /**
      * A mark to the stop order type
      */
-    stop: string;
+    stop: GetTradeHistoryItems.StopEnum;
 
     /**
      * Fee Rate
@@ -231,6 +231,20 @@ export namespace GetTradeHistoryItems {
          * maker
          */
         MAKER = <any>'maker',
+    }
+    export enum StopEnum {
+        /**
+         * Triggers when the price reaches or goes below the stopPrice.
+         */
+        DOWN = <any>'down',
+        /**
+         * Triggers when the price reaches or goes above the stopPrice.
+         */
+        UP = <any>'up',
+        /**
+         * Not a stop order
+         */
+        NONE = <any>'',
     }
     export enum MarginModeEnum {
         /**

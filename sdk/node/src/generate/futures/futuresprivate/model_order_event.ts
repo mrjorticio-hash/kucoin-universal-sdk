@@ -35,7 +35,7 @@ export class OrderEvent implements Response<WsMessage> {
      */
     type: OrderEvent.TypeEnum;
     /**
-     * Order time (nanoseconds)
+     * Gateway received the message time (milliseconds)
      */
     orderTime: number;
     /**
@@ -59,7 +59,7 @@ export class OrderEvent implements Response<WsMessage> {
      */
     status: OrderEvent.StatusEnum;
     /**
-     * Push time (nanoseconds)
+     * Match engine received the message time  (nanoseconds)
      */
     ts: number;
     /**

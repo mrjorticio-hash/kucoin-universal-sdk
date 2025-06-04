@@ -127,7 +127,7 @@ export class GetAllSymbolsData implements Serializable {
     /**
      * Settlement fee
      */
-    settlementFee: number;
+    settlementFee?: number;
 
     /**
      * Enabled ADL or not
@@ -152,22 +152,22 @@ export class GetAllSymbolsData implements Serializable {
     /**
      * Fair price marking method; the Futures contract is null
      */
-    fairMethod: GetAllSymbolsData.FairMethodEnum;
+    fairMethod?: GetAllSymbolsData.FairMethodEnum;
 
     /**
      * Ticker symbol of the base currency
      */
-    fundingBaseSymbol: string;
+    fundingBaseSymbol?: string;
 
     /**
      * Ticker symbol of the quote currency
      */
-    fundingQuoteSymbol: string;
+    fundingQuoteSymbol?: string;
 
     /**
      * Funding rate symbol
      */
-    fundingRateSymbol: string;
+    fundingRateSymbol?: string;
 
     /**
      * Index symbol
@@ -373,8 +373,6 @@ export class GetAllSymbolsData implements Serializable {
         // @ts-ignore
         this.makerFixFee = null;
         // @ts-ignore
-        this.settlementFee = null;
-        // @ts-ignore
         this.isDeleverage = null;
         // @ts-ignore
         this.isQuanto = null;
@@ -382,14 +380,6 @@ export class GetAllSymbolsData implements Serializable {
         this.isInverse = null;
         // @ts-ignore
         this.markMethod = null;
-        // @ts-ignore
-        this.fairMethod = null;
-        // @ts-ignore
-        this.fundingBaseSymbol = null;
-        // @ts-ignore
-        this.fundingQuoteSymbol = null;
-        // @ts-ignore
-        this.fundingRateSymbol = null;
         // @ts-ignore
         this.indexSymbol = null;
         // @ts-ignore

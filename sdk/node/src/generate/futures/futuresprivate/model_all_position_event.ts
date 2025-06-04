@@ -127,7 +127,7 @@ export class AllPositionEvent implements Response<WsMessage> {
      */
     autoDeposit?: boolean;
     /**
-     * Maintenance margin requirement **Only applicable to Isolated Margin**
+     * Maintenance margin requirement
      */
     maintMarginReq?: number;
     /**
@@ -155,7 +155,7 @@ export class AllPositionEvent implements Response<WsMessage> {
      */
     posFunding?: number;
     /**
-     * Maintenance margin **Only applicable to Isolated Margin**
+     * Maintenance margin
      */
     posMaint?: number;
     /**

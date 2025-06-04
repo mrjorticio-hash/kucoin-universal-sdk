@@ -5,6 +5,58 @@ describe('Auto Test', ()=> {
     beforeAll(()=> {
         api = ??
     });
+    test('submitKYC request test', ()=> {
+    /**
+    * submitKYC
+    * Submit KYC
+    * /api/kyc/ndBroker/proxyClient/submit
+    */
+    let builder = SubmitKYCReq.builder();
+    builder.setClientUid(?).setFirstName(?).setLastName(?).setIssueCountry(?).setBirthDate(?).setIdentityType(?).setIdentityNumber(?).setExpireDate(?).setFrontPhoto(?).setBackendPhoto(?).setFacePhoto(?);
+    let req = builder.build();
+    let resp = api.submitKYC(req);
+    return resp.then(result => {
+        expect(result.data).toEqual(expect.anything());
+        console.log(resp);
+    });
+    })
+
+    test('getKYCStatus request test', ()=> {
+    /**
+    * getKYCStatus
+    * Get KYC Status
+    * /api/kyc/ndBroker/proxyClient/status/list
+    */
+    let builder = GetKYCStatusReq.builder();
+    builder.setClientUids(?);
+    let req = builder.build();
+    let resp = api.getKYCStatus(req);
+    return resp.then(result => {
+        expect(result.data).toEqual(expect.anything());
+        console.log(resp);
+    });
+    })
+
+    test('getKYCStatusList request test', ()=> {
+    /**
+    * getKYCStatusList
+    * Get KYC Status List
+    * /api/kyc/ndBroker/proxyClient/status/page
+    */
+    let builder = GetKYCStatusListReq.builder();
+    builder.setPageNumber(?).setPageSize(?);
+    let req = builder.build();
+    let resp = api.getKYCStatusList(req);
+    return resp.then(result => {
+        expect(result.currentPage).toEqual(expect.anything());
+        expect(result.pageSize).toEqual(expect.anything());
+        expect(result.totalNum).toEqual(expect.anything());
+        expect(result.totalPage).toEqual(expect.anything());
+        expect(result.items).toEqual(expect.anything());
+        console.log(resp);
+    });
+    })
+
     test('getBrokerInfo request test', ()=> {
     /**
     * getBrokerInfo

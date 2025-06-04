@@ -23,7 +23,7 @@ export class OrderV1Event implements Response<WsMessage> {
      */
     orderId: string;
     /**
-     * Order time (milliseconds)
+     * Gateway received the message time (milliseconds)
      */
     orderTime: number;
     /**
@@ -63,7 +63,7 @@ export class OrderV1Event implements Response<WsMessage> {
      */
     symbol: string;
     /**
-     * Push time (nanoseconds)
+     * Match engine received the message time  (nanoseconds)
      */
     ts: number;
     /**

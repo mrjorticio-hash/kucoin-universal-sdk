@@ -29,12 +29,12 @@ export class GetCurrencyResp implements Response<RestResponse> {
     /**
      * Number of block confirmations
      */
-    confirms: number;
+    confirms?: number;
 
     /**
      * Contract address
      */
-    contractAddress: string;
+    contractAddress?: string;
 
     /**
      * Margin support or not
@@ -64,10 +64,6 @@ export class GetCurrencyResp implements Response<RestResponse> {
         this.fullName = null;
         // @ts-ignore
         this.precision = null;
-        // @ts-ignore
-        this.confirms = null;
-        // @ts-ignore
-        this.contractAddress = null;
         // @ts-ignore
         this.isMarginEnabled = null;
         // @ts-ignore

@@ -10,7 +10,7 @@ import { GetCurrentFundingRateReq } from './model_get_current_funding_rate_req';
 
 export interface FundingFeesAPI {
     /**
-     * getCurrentFundingRate Get Current Funding Rate.
+     * getCurrentFundingRate Get Current Funding Rate
      * Description: Get Current Funding Rate.
      * Documentation: https://www.kucoin.com/docs-new/api-3470265
      * +-----------------------+---------+

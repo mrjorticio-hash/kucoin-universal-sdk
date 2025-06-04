@@ -64,6 +64,8 @@ describe('Auto Test', () => {
             expect(result.predictedValue).toEqual(expect.anything());
             expect(result.fundingRateCap).toEqual(expect.anything());
             expect(result.fundingRateFloor).toEqual(expect.anything());
+            expect(result.period).toEqual(expect.anything());
+            expect(result.fundingTime).toEqual(expect.anything());
             console.log(resp);
         });
     });

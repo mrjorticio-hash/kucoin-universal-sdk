@@ -17,7 +17,7 @@ export class GetCurrencyChains implements Serializable {
     /**
      * Minimum deposit amount
      */
-    depositMinSize: string;
+    depositMinSize?: string;
 
     /**
      * Withdraw fee rate
@@ -62,12 +62,12 @@ export class GetCurrencyChains implements Serializable {
     /**
      * Maximum amount of single withdrawal
      */
-    maxWithdraw: number;
+    maxWithdraw?: number;
 
     /**
      * Maximum amount of single deposit (only applicable to Lightning Network)
      */
-    maxDeposit: string;
+    maxDeposit?: string;
 
     /**
      * Need for memo/tag or not
@@ -88,8 +88,6 @@ export class GetCurrencyChains implements Serializable {
         // @ts-ignore
         this.withdrawalMinSize = null;
         // @ts-ignore
-        this.depositMinSize = null;
-        // @ts-ignore
         this.withdrawFeeRate = null;
         // @ts-ignore
         this.withdrawalMinFee = null;
@@ -105,10 +103,6 @@ export class GetCurrencyChains implements Serializable {
         this.contractAddress = null;
         // @ts-ignore
         this.withdrawPrecision = null;
-        // @ts-ignore
-        this.maxWithdraw = null;
-        // @ts-ignore
-        this.maxDeposit = null;
         // @ts-ignore
         this.needTag = null;
         // @ts-ignore

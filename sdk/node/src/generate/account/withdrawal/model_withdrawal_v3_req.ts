@@ -17,7 +17,7 @@ export class WithdrawalV3Req implements Serializable {
     /**
      * Withdrawal amount, a positive number which is a multiple of the amount precision
      */
-    amount: number;
+    amount: string;
 
     /**
      * Address remark. If there’s no remark, it is empty. When you withdraw from other platforms to KuCoin, you need to fill in memo(tag). Be careful: If you do not fill in memo(tag), your deposit may not be available.
@@ -85,7 +85,7 @@ export class WithdrawalV3Req implements Serializable {
         /**
          * Withdrawal amount, a positive number which is a multiple of the amount precision
          */
-        amount: number;
+        amount: string;
         /**
          * Address remark. If there’s no remark, it is empty. When you withdraw from other platforms to KuCoin, you need to fill in memo(tag). Be careful: If you do not fill in memo(tag), your deposit may not be available.
          */
@@ -196,7 +196,7 @@ export class WithdrawalV3ReqBuilder {
     /**
      * Withdrawal amount, a positive number which is a multiple of the amount precision
      */
-    setAmount(value: number): WithdrawalV3ReqBuilder {
+    setAmount(value: string): WithdrawalV3ReqBuilder {
         this.obj.amount = value;
         return this;
     }

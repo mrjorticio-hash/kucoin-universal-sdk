@@ -45,6 +45,16 @@ export class GetCrossMarginAccountAccounts implements Serializable {
     transferInEnabled: boolean;
 
     /**
+     * Outstanding principal – the unpaid loan amount
+     */
+    liabilityPrincipal: string;
+
+    /**
+     * Accrued interest – the unpaid interest amount
+     */
+    liabilityInterest: string;
+
+    /**
      * Private constructor, please use the corresponding static methods to construct the object.
      */
     private constructor() {
@@ -64,6 +74,10 @@ export class GetCrossMarginAccountAccounts implements Serializable {
         this.borrowEnabled = null;
         // @ts-ignore
         this.transferInEnabled = null;
+        // @ts-ignore
+        this.liabilityPrincipal = null;
+        // @ts-ignore
+        this.liabilityInterest = null;
     }
     /**
      * Convert the object to a JSON string.

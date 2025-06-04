@@ -25,7 +25,7 @@ export class GetPositionListData implements Serializable {
     delevPercentage: number;
 
     /**
-     * Open time
+     * First opening time
      */
     openingTimestamp: number;
 
@@ -165,7 +165,7 @@ export class GetPositionListData implements Serializable {
     autoDeposit?: boolean;
 
     /**
-     * Maintenance margin requirement **Only applicable to Isolated Margin**
+     * Maintenance margin requirement
      */
     maintMarginReq?: number;
 
@@ -210,7 +210,7 @@ export class GetPositionListData implements Serializable {
     posFunding?: number;
 
     /**
-     * Maintenance margin **Only applicable to Isolated Margin**
+     * Maintenance margin
      */
     posMaint?: number;
 

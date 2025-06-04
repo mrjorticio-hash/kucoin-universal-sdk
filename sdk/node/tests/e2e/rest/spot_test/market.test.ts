@@ -188,7 +188,6 @@ describe('Auto Test', () => {
                 expect(item.quoteIncrement).toEqual(expect.any(String));
                 expect(item.priceIncrement).toEqual(expect.any(String));
                 expect(item.priceLimitRate).toEqual(expect.any(String));
-                expect(item.minFunds).toEqual(expect.any(String));
                 expect(item.enableTrading).toEqual(expect.any(Boolean));
                 expect(item.makerFeeCoefficient).toEqual(expect.any(String));
                 expect(item.takerFeeCoefficient).toEqual(expect.any(String));

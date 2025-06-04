@@ -132,23 +132,27 @@ export namespace GetSpotHFLedgerReq {
     }
     export enum BizTypeEnum {
         /**
-         * trade exchange
+         * Trade exchange
          */
         TRADE_EXCHANGE = <any>'TRADE_EXCHANGE',
         /**
-         * transfer
+         * Transfer
          */
         TRANSFER = <any>'TRANSFER',
         /**
-         * returned fees
+         * Sub transfer
+         */
+        SUB_TRANSFER = <any>'SUB_TRANSFER',
+        /**
+         * Returned fees
          */
         RETURNED_FEES = <any>'RETURNED_FEES',
         /**
-         * deduction fees
+         * Deduction fees
          */
         DEDUCTION_FEES = <any>'DEDUCTION_FEES',
         /**
-         * other
+         * Other
          */
         OTHER = <any>'OTHER',
     }

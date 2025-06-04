@@ -40,7 +40,7 @@ export interface OrderAPI {
      * | API-CHANNEL           | PRIVATE |
      * | API-PERMISSION        | MARGIN  |
      * | API-RATE-LIMIT-POOL   | SPOT    |
-     * | API-RATE-LIMIT-WEIGHT | 5       |
+     * | API-RATE-LIMIT-WEIGHT | 2       |
      * +-----------------------+---------+
      */
     addOrder(req: AddOrderReq): Promise<AddOrderResp>;
@@ -56,7 +56,7 @@ export interface OrderAPI {
      * | API-CHANNEL           | PRIVATE |
      * | API-PERMISSION        | MARGIN  |
      * | API-RATE-LIMIT-POOL   | SPOT    |
-     * | API-RATE-LIMIT-WEIGHT | 5       |
+     * | API-RATE-LIMIT-WEIGHT | 2       |
      * +-----------------------+---------+
      */
     addOrderTest(req: AddOrderTestReq): Promise<AddOrderTestResp>;
@@ -72,7 +72,7 @@ export interface OrderAPI {
      * | API-CHANNEL           | PRIVATE |
      * | API-PERMISSION        | MARGIN  |
      * | API-RATE-LIMIT-POOL   | SPOT    |
-     * | API-RATE-LIMIT-WEIGHT | 5       |
+     * | API-RATE-LIMIT-WEIGHT | 2       |
      * +-----------------------+---------+
      */
     cancelOrderByOrderId(req: CancelOrderByOrderIdReq): Promise<CancelOrderByOrderIdResp>;
@@ -88,7 +88,7 @@ export interface OrderAPI {
      * | API-CHANNEL           | PRIVATE |
      * | API-PERMISSION        | MARGIN  |
      * | API-RATE-LIMIT-POOL   | SPOT    |
-     * | API-RATE-LIMIT-WEIGHT | 5       |
+     * | API-RATE-LIMIT-WEIGHT | 2       |
      * +-----------------------+---------+
      */
     cancelOrderByClientOid(req: CancelOrderByClientOidReq): Promise<CancelOrderByClientOidResp>;
@@ -104,7 +104,7 @@ export interface OrderAPI {
      * | API-CHANNEL           | PRIVATE |
      * | API-PERMISSION        | MARGIN  |
      * | API-RATE-LIMIT-POOL   | SPOT    |
-     * | API-RATE-LIMIT-WEIGHT | 10      |
+     * | API-RATE-LIMIT-WEIGHT | 5       |
      * +-----------------------+---------+
      */
     cancelAllOrdersBySymbol(req: CancelAllOrdersBySymbolReq): Promise<CancelAllOrdersBySymbolResp>;
@@ -120,7 +120,7 @@ export interface OrderAPI {
      * | API-CHANNEL           | PRIVATE |
      * | API-PERMISSION        | MARGIN  |
      * | API-RATE-LIMIT-POOL   | SPOT    |
-     * | API-RATE-LIMIT-WEIGHT | NULL    |
+     * | API-RATE-LIMIT-WEIGHT | 4       |
      * +-----------------------+---------+
      */
     getSymbolsWithOpenOrder(req: GetSymbolsWithOpenOrderReq): Promise<GetSymbolsWithOpenOrderResp>;

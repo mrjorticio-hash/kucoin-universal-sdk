@@ -8,6 +8,7 @@ import {
 import { DefaultClient } from '@api/index';
 import {
     CancelWithdrawalReq,
+    GetWithdrawalHistoryByIdReq,
     GetWithdrawalHistoryOldReq,
     GetWithdrawalHistoryReq,
     GetWithdrawalQuotasReq,
@@ -15,6 +16,7 @@ import {
     WithdrawalV1Req,
     WithdrawalV3Req,
 } from '@src/generate/account/withdrawal';
+import StatusEnum = GetWithdrawalHistoryReq.StatusEnum;
 
 describe('Auto Test', () => {
     let api: WithdrawalAPI;
@@ -89,7 +91,7 @@ describe('Auto Test', () => {
         builder
             .setCurrency('USDT')
             .setChain('bsc')
-            .setAmount(20)
+            .setAmount('20')
             .setIsInner(false)
             .setRemark('******')
             .setWithdrawType(WithdrawalV3Req.WithdrawTypeEnum.ADDRESS)
@@ -125,7 +127,11 @@ describe('Auto Test', () => {
          * /api/v1/withdrawals
          */
         let builder = GetWithdrawalHistoryReq.builder();
-        builder.setCurrency('USDT').setStartAt(1703001600000).setEndAt(1703260800000);
+        builder
+            .setCurrency('USDT')
+            .setStartAt(1703001600000)
+            .setEndAt(1703260800000)
+            .setStatus(StatusEnum.FAILURE);
         let req = builder.build();
         let resp = api.getWithdrawalHistory(req);
         return resp.then((result) => {
@@ -135,6 +141,42 @@ describe('Auto Test', () => {
             expect(result.totalPage).toEqual(expect.anything());
             expect(result.items).toEqual(expect.anything());
             console.log(result);
+        });
+    });
+
+    test('getWithdrawalHistoryById request test', () => {
+        /**
+         * getWithdrawalHistoryById
+         * Get Withdrawal History By ID
+         * /api/v1/withdrawals/{withdrawalId}
+         */
+        let builder = GetWithdrawalHistoryByIdReq.builder();
+        builder.setWithdrawalId('674576dc74b2bb000778452c');
+        let req = builder.build();
+        let resp = api.getWithdrawalHistoryById(req);
+        return resp.then((result) => {
+            expect(result.id).toEqual(expect.anything());
+            expect(result.uid).toEqual(expect.anything());
+            expect(result.currency).toEqual(expect.anything());
+            expect(result.chainId).toEqual(expect.anything());
+            expect(result.chainName).toEqual(expect.anything());
+            expect(result.currencyName).toEqual(expect.anything());
+            expect(result.status).toEqual(expect.anything());
+            expect(result.failureReason).toEqual(expect.anything());
+            expect(result.failureReasonMsg).toEqual(expect.anything());
+            expect(result.address).toEqual(expect.anything());
+            expect(result.memo).toEqual(expect.anything());
+            expect(result.isInner).toEqual(expect.anything());
+            expect(result.amount).toEqual(expect.anything());
+            expect(result.fee).toEqual(expect.anything());
+            expect(result.walletTxId).toEqual(expect.anything());
+            expect(result.addressRemark).toEqual(expect.anything());
+            expect(result.remark).toEqual(expect.anything());
+            expect(result.createdAt).toEqual(expect.anything());
+            expect(result.cancelType).toEqual(expect.anything());
+            expect(result.returnStatus).toEqual(expect.anything());
+            expect(result.returnCurrency).toEqual(expect.anything());
+            console.log(resp);
         });
     });
 

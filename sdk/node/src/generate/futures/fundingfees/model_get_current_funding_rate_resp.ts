@@ -16,7 +16,7 @@ export class GetCurrentFundingRateResp implements Response<RestResponse> {
     granularity: number;
 
     /**
-     * The funding rate settlement time point of the previous cycle (milliseconds)
+     * The funding rate settlement time point of the previous cycle (milliseconds) Before going live, the system will pre-generate the first funding rate record to ensure the billing cycle can start immediately after the contract is launched.  The timePoint field represents the time the funding rate data was generated, not the actual time it takes effect or is settled.  The first actual settlement will occur at the designated settlement time (00:00 / 08:00 / 14:00) after the contract goes live.
      */
     timePoint: number;
 
@@ -41,6 +41,16 @@ export class GetCurrentFundingRateResp implements Response<RestResponse> {
     fundingRateFloor: number;
 
     /**
+     * Indicates whether the current funding fee is charged within this cycle
+     */
+    period: GetCurrentFundingRateResp.PeriodEnum;
+
+    /**
+     * Indicates the next funding fee settlement time point, which can be used to synchronize periodic settlement timing.
+     */
+    fundingTime: number;
+
+    /**
      * Private constructor, please use the corresponding static methods to construct the object.
      */
     private constructor() {
@@ -58,6 +68,10 @@ export class GetCurrentFundingRateResp implements Response<RestResponse> {
         this.fundingRateCap = null;
         // @ts-ignore
         this.fundingRateFloor = null;
+        // @ts-ignore
+        this.period = null;
+        // @ts-ignore
+        this.fundingTime = null;
     }
     /**
      * common response
@@ -86,5 +100,18 @@ export class GetCurrentFundingRateResp implements Response<RestResponse> {
      */
     static fromObject(jsonObject: Object): GetCurrentFundingRateResp {
         return plainToClassFromExist(new GetCurrentFundingRateResp(), jsonObject);
+    }
+}
+
+export namespace GetCurrentFundingRateResp {
+    export enum PeriodEnum {
+        /**
+         * Indicates that funding will be charged in the current cycle
+         */
+        _1 = <any>1,
+        /**
+         * Indicates a cross-cycle expense record that is not charged in the current cycle.
+         */
+        _0 = <any>0,
     }
 }

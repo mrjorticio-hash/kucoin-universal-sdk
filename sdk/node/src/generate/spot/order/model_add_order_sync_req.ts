@@ -85,12 +85,12 @@ export class AddOrderSyncReq implements Serializable {
     funds?: string;
 
     /**
-     * The order will fail if it times out after the specified duration in milliseconds. Specifically, if clientTimestamp + allowMaxTimeWindow (in milliseconds) is less than the time the server receives the message, the order will fail.
+     * Order failed after timeout of specified milliseconds, If clientTimestamp + allowMaxTimeWindow < Gateway received the message time, this order will fail.
      */
     allowMaxTimeWindow?: number;
 
     /**
-     * Equal to KC-API-TIMESTAMP. Needs to be defined if iceberg is specified.
+     * Equal to KC-API-TIMESTAMP. Needs to be defined if allowMaxTimeWindow is specified.
      */
     clientTimestamp?: number;
 
@@ -182,11 +182,11 @@ export class AddOrderSyncReq implements Serializable {
          */
         funds?: string;
         /**
-         * The order will fail if it times out after the specified duration in milliseconds. Specifically, if clientTimestamp + allowMaxTimeWindow (in milliseconds) is less than the time the server receives the message, the order will fail.
+         * Order failed after timeout of specified milliseconds, If clientTimestamp + allowMaxTimeWindow < Gateway received the message time, this order will fail.
          */
         allowMaxTimeWindow?: number;
         /**
-         * Equal to KC-API-TIMESTAMP. Needs to be defined if iceberg is specified.
+         * Equal to KC-API-TIMESTAMP. Needs to be defined if allowMaxTimeWindow is specified.
          */
         clientTimestamp?: number;
     }): AddOrderSyncReq {
@@ -444,7 +444,7 @@ export class AddOrderSyncReqBuilder {
     }
 
     /**
-     * The order will fail if it times out after the specified duration in milliseconds. Specifically, if clientTimestamp + allowMaxTimeWindow (in milliseconds) is less than the time the server receives the message, the order will fail.
+     * Order failed after timeout of specified milliseconds, If clientTimestamp + allowMaxTimeWindow < Gateway received the message time, this order will fail.
      */
     setAllowMaxTimeWindow(value: number): AddOrderSyncReqBuilder {
         this.obj.allowMaxTimeWindow = value;
@@ -452,7 +452,7 @@ export class AddOrderSyncReqBuilder {
     }
 
     /**
-     * Equal to KC-API-TIMESTAMP. Needs to be defined if iceberg is specified.
+     * Equal to KC-API-TIMESTAMP. Needs to be defined if allowMaxTimeWindow is specified.
      */
     setClientTimestamp(value: number): AddOrderSyncReqBuilder {
         this.obj.clientTimestamp = value;

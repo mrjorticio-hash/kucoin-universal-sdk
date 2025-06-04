@@ -90,8 +90,14 @@ export namespace Futures {
     export namespace Positions {
         export type AddIsolatedMarginReq = POSITIONS.AddIsolatedMarginReq;
         export type AddIsolatedMarginResp = POSITIONS.AddIsolatedMarginResp;
+        export type BatchSwitchMarginModeErrors = POSITIONS.BatchSwitchMarginModeErrors;
+        export type BatchSwitchMarginModeReq = POSITIONS.BatchSwitchMarginModeReq;
+        export type BatchSwitchMarginModeResp = POSITIONS.BatchSwitchMarginModeResp;
         export type GetCrossMarginLeverageReq = POSITIONS.GetCrossMarginLeverageReq;
         export type GetCrossMarginLeverageResp = POSITIONS.GetCrossMarginLeverageResp;
+        export type GetCrossMarginRiskLimitData = POSITIONS.GetCrossMarginRiskLimitData;
+        export type GetCrossMarginRiskLimitReq = POSITIONS.GetCrossMarginRiskLimitReq;
+        export type GetCrossMarginRiskLimitResp = POSITIONS.GetCrossMarginRiskLimitResp;
         export type GetIsolatedMarginRiskLimitData = POSITIONS.GetIsolatedMarginRiskLimitData;
         export type GetIsolatedMarginRiskLimitReq = POSITIONS.GetIsolatedMarginRiskLimitReq;
         export type GetIsolatedMarginRiskLimitResp = POSITIONS.GetIsolatedMarginRiskLimitResp;
