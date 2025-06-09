@@ -9394,7 +9394,8 @@
                                                 },
                                                 "fundingTime": {
                                                     "type": "integer",
-                                                    "description": "Indicates the next funding fee settlement time point, which can be used to synchronize periodic settlement timing."
+                                                    "description": "Indicates the next funding fee settlement time point, which can be used to synchronize periodic settlement timing.",
+                                                    "format": "int64"
                                                 }
                                             },
                                             "required": [
