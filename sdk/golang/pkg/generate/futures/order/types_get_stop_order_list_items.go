@@ -24,7 +24,7 @@ type GetStopOrderListItems struct {
 	DealSize int32 `json:"dealSize,omitempty"`
 	// self trade prevention
 	Stp string `json:"stp,omitempty"`
-	// Either 'down' or 'up'.
+	// A mark to the stop order type
 	Stop string `json:"stop,omitempty"`
 	// Trigger price type of stop orders
 	StopPriceType string `json:"stopPriceType,omitempty"`

@@ -10,14 +10,15 @@ import (
 type BatchSwitchMarginModeResp struct {
 	// common response
 	CommonResponse *types.RestResponse
-	MarginMode     BatchSwitchMarginModeMarginMode `json:"marginMode,omitempty"`
+	// Target Margin Model, Symbols that failed to be modified will also be included
+	MarginMode map[string]string `json:"marginMode,omitempty"`
 	// Symbol which modification failed
 	Errors []BatchSwitchMarginModeErrors `json:"errors,omitempty"`
 }
 
 // NewBatchSwitchMarginModeResp instantiates a new BatchSwitchMarginModeResp object
 // This constructor will assign default values to properties that have it defined
-func NewBatchSwitchMarginModeResp(marginMode BatchSwitchMarginModeMarginMode, errors []BatchSwitchMarginModeErrors) *BatchSwitchMarginModeResp {
+func NewBatchSwitchMarginModeResp(marginMode map[string]string, errors []BatchSwitchMarginModeErrors) *BatchSwitchMarginModeResp {
 	this := BatchSwitchMarginModeResp{}
 	this.MarginMode = marginMode
 	this.Errors = errors

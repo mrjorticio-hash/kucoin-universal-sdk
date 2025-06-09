@@ -12,14 +12,14 @@ type MarginModeEvent struct {
 	// common response
 	CommonResponse *types.WsMessage
 	// The SYMBOL is the key with value  \"CROSS\" or \"ISOLATED\"
-	SYMBOL string `json:"SYMBOL,omitempty"`
+	Data map[string]string `json:"data,omitempty"`
 }
 
 // NewMarginModeEvent instantiates a new MarginModeEvent object
 // This constructor will assign default values to properties that have it defined
-func NewMarginModeEvent(sYMBOL string) *MarginModeEvent {
+func NewMarginModeEvent(data map[string]string) *MarginModeEvent {
 	this := MarginModeEvent{}
-	this.SYMBOL = sYMBOL
+	this.Data = data
 	return &this
 }
 
@@ -32,8 +32,13 @@ func NewMarginModeEventWithDefaults() *MarginModeEvent {
 
 func (o *MarginModeEvent) ToMap() map[string]interface{} {
 	toSerialize := map[string]interface{}{}
-	toSerialize["SYMBOL"] = o.SYMBOL
+	toSerialize["data"] = o.Data
 	return toSerialize
+}
+
+func (o *MarginModeEvent) UnmarshalJSON(b []byte) error {
+	err := json.Unmarshal(b, &o.Data)
+	return err
 }
 
 type MarginModeEventCallback func(topic string, subject string, data *MarginModeEvent) error

@@ -325,7 +325,7 @@ class FuturesPrivateTest extends TestCase
                 }
             )->then(function (string $id) {
                 Logger::info("Subscribed with ID: $id");
-                return waitFor(5.0, $id);
+                return waitFor(30.0, $id);
             })->then(function (string $id) {
                 Logger::info("Unsubscribing...");
                 return self::$futuresPrivate->unSubscribe($id)->catch(function ($e) {

@@ -64,6 +64,8 @@ class CrossLeverageEvent(BaseModel):
         if obj is None:
             return None
 
+        # original response
+        obj = {'data': obj}
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
