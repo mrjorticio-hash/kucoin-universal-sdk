@@ -27,12 +27,12 @@ type GetCurrentFundingRateResp struct {
 	// Indicates whether the current funding fee is charged within this cycle
 	Period int32 `json:"period,omitempty"`
 	// Indicates the next funding fee settlement time point, which can be used to synchronize periodic settlement timing.
-	FundingTime int32 `json:"fundingTime,omitempty"`
+	FundingTime int64 `json:"fundingTime,omitempty"`
 }
 
 // NewGetCurrentFundingRateResp instantiates a new GetCurrentFundingRateResp object
 // This constructor will assign default values to properties that have it defined
-func NewGetCurrentFundingRateResp(symbol string, granularity int32, timePoint int64, value float64, predictedValue float64, fundingRateCap float64, fundingRateFloor float64, period int32, fundingTime int32) *GetCurrentFundingRateResp {
+func NewGetCurrentFundingRateResp(symbol string, granularity int32, timePoint int64, value float64, predictedValue float64, fundingRateCap float64, fundingRateFloor float64, period int32, fundingTime int64) *GetCurrentFundingRateResp {
 	this := GetCurrentFundingRateResp{}
 	this.Symbol = symbol
 	this.Granularity = granularity
