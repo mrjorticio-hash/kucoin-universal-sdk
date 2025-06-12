@@ -5,7 +5,7 @@ import { Serializable } from '@internal/interfaces/serializable';
 
 export class GetPositionListReq implements Serializable {
     /**
-     * Currency code, Please refer to [rootSymbol](https://www.kucoin.com/docs-new/api-221752070) , such as USDT,XBT. Query all positions when empty
+     * Quote currency code, Please refer to [rootSymbol](https://www.kucoin.com/docs-new/api-221752070) , such as USDT,XBT. Query all positions when empty
      */
     currency?: string;
 
@@ -26,7 +26,7 @@ export class GetPositionListReq implements Serializable {
      */
     static create(data: {
         /**
-         * Currency code, Please refer to [rootSymbol](https://www.kucoin.com/docs-new/api-221752070) , such as USDT,XBT. Query all positions when empty
+         * Quote currency code, Please refer to [rootSymbol](https://www.kucoin.com/docs-new/api-221752070) , such as USDT,XBT. Query all positions when empty
          */
         currency?: string;
     }): GetPositionListReq {
@@ -60,7 +60,7 @@ export class GetPositionListReqBuilder {
         this.obj = obj;
     }
     /**
-     * Currency code, Please refer to [rootSymbol](https://www.kucoin.com/docs-new/api-221752070) , such as USDT,XBT. Query all positions when empty
+     * Quote currency code, Please refer to [rootSymbol](https://www.kucoin.com/docs-new/api-221752070) , such as USDT,XBT. Query all positions when empty
      */
     setCurrency(value: string): GetPositionListReqBuilder {
         this.obj.currency = value;

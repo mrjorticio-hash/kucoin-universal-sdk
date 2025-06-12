@@ -37,8 +37,8 @@ class WithdrawalV3Req implements Serializable
     public $chain = "eth";
     /**
      * Withdrawal amount, a positive number which is a multiple of the amount precision
-     * @var int $amount
-     * @Type("int")
+     * @var string $amount
+     * @Type("string")
      * @SerializedName("amount")
      */
     public $amount;
@@ -175,7 +175,7 @@ class WithdrawalV3ReqBuilder
 
     /**
      * Withdrawal amount, a positive number which is a multiple of the amount precision
-     * @param int $value
+     * @param string $value
      * @return self
      */
     public function setAmount($value)

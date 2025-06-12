@@ -19,7 +19,7 @@ func NewAddDepositAddressV1Req(currency string) *AddDepositAddressV1Req {
 	this.Currency = currency
 	var chain string = "eth"
 	this.Chain = &chain
-	var to string = "main"
+	var to string = "MAIN"
 	this.To = &to
 	return &this
 }
@@ -30,7 +30,7 @@ func NewAddDepositAddressV1ReqWithDefaults() *AddDepositAddressV1Req {
 	this := AddDepositAddressV1Req{}
 	var chain string = "eth"
 	this.Chain = &chain
-	var to string = "main"
+	var to string = "MAIN"
 	this.To = &to
 	return &this
 }

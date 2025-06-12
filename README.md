@@ -32,15 +32,15 @@ The  **KuCoin Universal SDK** is the official SDK provided by KuCoin, offering a
 
 ## 🛠️ Installation
 
-### Latest Version: `1.2.0`(Global API version)
+### Latest Version: `1.3.0`(Global API version)
 
-### Python Installation(1.2.1.post1)
+### Python Installation
 
 ```bash
 pip install kucoin-universal-sdk
 ```
 
-### Golang Installation(1.2.1)
+### Golang Installation
 
 ```bash
 go get github.com/Kucoin/kucoin-universal-sdk/sdk/golang
@@ -52,10 +52,10 @@ go mod tidy
 npm install kucoin-universal-sdk
 ```
 
-### PHP Installation(0.1.1-alpha)
+### PHP Installation(0.1.2-alpha)
 **Note**: This SDK is currently in the Alpha phase. We are actively iterating and improving its features, stability, and documentation. Feedback and contributions are highly encouraged to help us refine the SDK.
 ```bash
-composer require kucoin/kucoin-universal-sdk=0.1.1-alpha
+composer require kucoin/kucoin-universal-sdk=0.1.2-alpha
 ```
 
 ### Postman Installation  

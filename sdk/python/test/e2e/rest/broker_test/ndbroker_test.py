@@ -4,6 +4,8 @@ import uuid
 
 from kucoin_universal_sdk.api.client import DefaultClient
 from kucoin_universal_sdk.extension.interceptor.logging import LoggingInterceptor
+from kucoin_universal_sdk.generate.broker.ndbroker import SubmitKycReqBuilder, SubmitKycReq, GetKycStatusReqBuilder, \
+    GetKycStatusListReqBuilder
 from kucoin_universal_sdk.generate.broker.ndbroker.model_add_sub_account_api_req import AddSubAccountApiReqBuilder, \
     AddSubAccountApiReq
 from kucoin_universal_sdk.generate.broker.ndbroker.model_add_sub_account_req import AddSubAccountReqBuilder
@@ -62,6 +64,66 @@ class BrokerApiTest(unittest.TestCase):
         client = DefaultClient(client_option)
         kucoin_rest_api = client.rest_service()
         self.api = kucoin_rest_api.get_broker_service().get_nd_broker_api()
+
+    def test_submit_kyc_req(self):
+        """
+            submit_kyc
+            Submit KYC
+            /api/kyc/ndBroker/proxyClient/submit
+        """
+
+        builder = SubmitKycReqBuilder()
+        builder.set_client_uid("226383154").set_first_name("Kaylah").set_last_name("Padberg").set_issue_country(
+            "JP").set_birth_date(
+            "2000-01-01").set_identity_type(SubmitKycReq.IdentityTypeEnum.PASSPORT).set_identity_number(
+            "55").set_expire_date("2030-01-01").set_front_photo("****").set_backend_photo("***").set_face_photo("***")
+        req = builder.build()
+        try:
+            resp = self.api.submit_kyc(req)
+            print("code: ", resp.common_response.code)
+            print("msg: ", resp.common_response.message)
+            print("data: ", resp.to_json())
+        except Exception as e:
+            print("error: ", e)
+            raise e
+
+    def test_get_kyc_status_req(self):
+        """
+            get_kyc_status
+            Get KYC Status
+            /api/kyc/ndBroker/proxyClient/status/list
+        """
+
+        builder = GetKycStatusReqBuilder()
+        builder.set_client_uids("226383154")
+        req = builder.build()
+        try:
+            resp = self.api.get_kyc_status(req)
+            print("code: ", resp.common_response.code)
+            print("msg: ", resp.common_response.message)
+            print("data: ", resp.to_json())
+        except Exception as e:
+            print("error: ", e)
+            raise e
+
+    def test_get_kyc_status_list_req(self):
+        """
+            get_kyc_status_list
+            Get KYC Status List
+            /api/kyc/ndBroker/proxyClient/status/page
+        """
+
+        builder = GetKycStatusListReqBuilder()
+        builder.set_page_number(1).set_page_size(100)
+        req = builder.build()
+        try:
+            resp = self.api.get_kyc_status_list(req)
+            print("code: ", resp.common_response.code)
+            print("msg: ", resp.common_response.message)
+            print("data: ", resp.to_json())
+        except Exception as e:
+            print("error: ", e)
+            raise e
 
     def test_get_deposit_list_req(self):
         """

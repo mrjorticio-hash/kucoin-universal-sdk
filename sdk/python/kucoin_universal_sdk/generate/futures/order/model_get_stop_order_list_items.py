@@ -6,6 +6,7 @@ from __future__ import annotations
 import pprint
 import json
 
+from enum import Enum
 from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
 
@@ -25,8 +26,8 @@ class GetStopOrderListItems(BaseModel):
         deal_value (str): Executed size of funds 
         deal_size (int): Executed quantity
         stp (str): self trade prevention
-        stop (str): Stop order type (stop limit or stop market)
-        stop_price_type (str): Trigger price type of stop orders
+        stop (StopEnum): A mark to the stop order type
+        stop_price_type (StopPriceTypeEnum): Trigger price type of stop orders
         stop_triggered (bool): Mark to show whether the stop order is triggered
         stop_price (str): Trigger price of stop orders
         time_in_force (str): Time in force policy type
@@ -55,6 +56,30 @@ class GetStopOrderListItems(BaseModel):
         reduce_only (bool): A mark to reduce the position size only
     """
 
+    class StopEnum(Enum):
+        """
+        Attributes:
+            DOWN: Triggers when the price reaches or goes below the stopPrice.
+            UP: Triggers when the price reaches or goes above the stopPrice.
+            NONE_: Not a stop order
+        """
+        DOWN = 'down'
+        UP = 'up'
+        NONE_ = ''
+
+    class StopPriceTypeEnum(Enum):
+        """
+        Attributes:
+            TRADE_PRICE: TP for trade price, The last trade price is the last price at which an order was filled. This price can be found in the latest match message.
+            MARK_PRICE: MP for mark price. The mark price can be obtained through relevant OPEN API for index services.
+            INDEX_PRICE: IP for index price. The index price can be obtained through relevant OPEN API for index services.
+            NONE_: Not a stop order
+        """
+        TRADE_PRICE = 'TP'
+        MARK_PRICE = 'MP'
+        INDEX_PRICE = 'IP'
+        NONE_ = ''
+
     id: Optional[str] = Field(default=None, description="Order ID")
     symbol: Optional[str] = Field(
         default=None,
@@ -75,10 +100,9 @@ class GetStopOrderListItems(BaseModel):
                                      alias="dealSize")
     stp: Optional[str] = Field(default=None,
                                description="self trade prevention")
-    stop: Optional[str] = Field(
-        default=None,
-        description="Stop order type (stop limit or stop market)")
-    stop_price_type: Optional[str] = Field(
+    stop: Optional[StopEnum] = Field(
+        default=None, description="A mark to the stop order type")
+    stop_price_type: Optional[StopPriceTypeEnum] = Field(
         default=None,
         description="Trigger price type of stop orders",
         alias="stopPriceType")

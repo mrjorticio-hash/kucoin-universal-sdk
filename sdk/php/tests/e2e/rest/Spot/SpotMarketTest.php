@@ -232,7 +232,6 @@ class SpotMarketTest extends TestCase
             self::assertNotNull($item->quoteIncrement);
             self::assertNotNull($item->priceIncrement);
             self::assertNotNull($item->priceLimitRate);
-            self::assertNotNull($item->minFunds);
             self::assertNotNull($item->isMarginEnabled);
             self::assertNotNull($item->enableTrading);
             self::assertNotNull($item->feeCategory);

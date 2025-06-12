@@ -139,7 +139,7 @@ class DepositAPITest(unittest.TestCase):
        Add Deposit Address - V1
        /api/v1/deposit-addresses
        """
-        data = "{\"currency\": \"ETH\", \"chain\": \"eth\"}"
+        data = "{\"currency\": \"ETH\", \"chain\": \"eth\", \"to\": \"MAIN\"}"
         req = AddDepositAddressV1Req.from_json(data)
 
     def test_add_deposit_address_v1_resp_model(self):

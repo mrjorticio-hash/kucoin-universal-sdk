@@ -1,0 +1,15 @@
+# build
+FROM python:3.12-slim AS builder
+WORKDIR /src
+COPY . .
+RUN pip install --upgrade pip build && \
+    python -m build --wheel --outdir /wheel_out
+
+FROM python:3.12-slim
+WORKDIR /src
+COPY . /src
+COPY ./script /src
+COPY --from=builder /wheel_out/*.whl /tmp/
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends procps && \
+    rm -rf /var/lib/apt/lists/*

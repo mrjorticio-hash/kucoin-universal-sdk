@@ -31,7 +31,7 @@ export class StopOrderEvent implements Response<WsMessage> {
      */
     size: string;
     /**
-     * Order type: loss: stop loss order, oco: oco order
+     * Order type
      */
     stop: StopOrderEvent.StopEnum;
     /**
@@ -134,9 +134,29 @@ export namespace StopOrderEvent {
          */
         LOSS = <any>'loss',
         /**
-         * oco order
+         * Take profit order
          */
-        OCO = <any>'oco',
+        ENTRY = <any>'entry',
+        /**
+         * Limit stop loss OCO order
+         */
+        L_L_O = <any>'l_l_o',
+        /**
+         * Trigger stop loss OCO order
+         */
+        L_S_O = <any>'l_s_o',
+        /**
+         * Limit stop profit OCO order
+         */
+        E_L_O = <any>'e_l_o',
+        /**
+         * Trigger stop profit OCO order
+         */
+        E_S_O = <any>'e_s_o',
+        /**
+         * Moving stop loss order
+         */
+        TSO = <any>'tso',
     }
     export enum TradeTypeEnum {
         /**

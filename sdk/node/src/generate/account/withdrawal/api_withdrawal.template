@@ -88,6 +88,45 @@ describe('Auto Test', ()=> {
     });
     })
 
+    test('getWithdrawalHistoryById request test', ()=> {
+    /**
+    * getWithdrawalHistoryById
+    * Get Withdrawal History By ID
+    * /api/v1/withdrawals/{withdrawalId}
+    */
+    let builder = GetWithdrawalHistoryByIdReq.builder();
+    builder.setWithdrawalId(?);
+    let req = builder.build();
+    let resp = api.getWithdrawalHistoryById(req);
+    return resp.then(result => {
+        expect(result.id).toEqual(expect.anything());
+        expect(result.uid).toEqual(expect.anything());
+        expect(result.currency).toEqual(expect.anything());
+        expect(result.chainId).toEqual(expect.anything());
+        expect(result.chainName).toEqual(expect.anything());
+        expect(result.currencyName).toEqual(expect.anything());
+        expect(result.status).toEqual(expect.anything());
+        expect(result.failureReason).toEqual(expect.anything());
+        expect(result.failureReasonMsg).toEqual(expect.anything());
+        expect(result.address).toEqual(expect.anything());
+        expect(result.memo).toEqual(expect.anything());
+        expect(result.isInner).toEqual(expect.anything());
+        expect(result.amount).toEqual(expect.anything());
+        expect(result.fee).toEqual(expect.anything());
+        expect(result.walletTxId).toEqual(expect.anything());
+        expect(result.addressRemark).toEqual(expect.anything());
+        expect(result.remark).toEqual(expect.anything());
+        expect(result.createdAt).toEqual(expect.anything());
+        expect(result.cancelType).toEqual(expect.anything());
+        expect(result.taxes).toEqual(expect.anything());
+        expect(result.taxDescription).toEqual(expect.anything());
+        expect(result.returnStatus).toEqual(expect.anything());
+        expect(result.returnAmount).toEqual(expect.anything());
+        expect(result.returnCurrency).toEqual(expect.anything());
+        console.log(resp);
+    });
+    })
+
     test('getWithdrawalHistoryOld request test', ()=> {
     /**
     * getWithdrawalHistoryOld

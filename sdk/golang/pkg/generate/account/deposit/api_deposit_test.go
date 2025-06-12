@@ -180,7 +180,7 @@ func TestDepositAddDepositAddressV1ReqModel(t *testing.T) {
 	// Add Deposit Address - V1
 	// /api/v1/deposit-addresses
 
-	data := "{\"currency\": \"ETH\", \"chain\": \"eth\"}"
+	data := "{\"currency\": \"ETH\", \"chain\": \"eth\", \"to\": \"MAIN\"}"
 	req := &AddDepositAddressV1Req{}
 	err := json.Unmarshal([]byte(data), req)
 	req.ToMap()

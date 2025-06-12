@@ -22,7 +22,7 @@ class GetPositionListReq implements Serializable
         return self::$pathVarMapping;
     }
     /**
-     * Currency code, Please refer to [rootSymbol](https://www.kucoin.com/docs-new/api-221752070) , such as USDT,XBT. Query all positions when empty
+     * Quote currency code, Please refer to [rootSymbol](https://www.kucoin.com/docs-new/api-221752070) , such as USDT,XBT. Query all positions when empty
      * @var string|null $currency
      * @Type("string")
      * @SerializedName("currency")
@@ -96,7 +96,7 @@ class GetPositionListReqBuilder
         $this->obj = $obj;
     }
     /**
-     * Currency code, Please refer to [rootSymbol](https://www.kucoin.com/docs-new/api-221752070) , such as USDT,XBT. Query all positions when empty
+     * Quote currency code, Please refer to [rootSymbol](https://www.kucoin.com/docs-new/api-221752070) , such as USDT,XBT. Query all positions when empty
      * @param string $value
      * @return self
      */

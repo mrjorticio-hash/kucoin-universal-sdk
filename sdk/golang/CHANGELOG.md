@@ -2,7 +2,19 @@
 
 API documentation [Changelog](https://www.kucoin.com/docs-new/change-log)
 
-Current synchronized API documentation version [20250313](https://www.kucoin.com/docs-new/change-log#20250313)
+Current synchronized API documentation version [20250529](https://www.kucoin.com/docs-new/change-log#20250529)
+
+## 2025-06-11(1.3.0)
+- Update the latest APIs, documentation, etc
+- Introduced a new testing framework for all SDKs
+- Expanded regression-test coverage for Python components
+- Updated Node.js dependencies to address security vulnerabilities
+
+## 2025-06-11(PHP 0.1.2-alpha)
+- Update the latest APIs, documentation, etc
+
+## 2025-05-29(PHP 0.1.1-alpha)
+- Fix compatibility issues on non-macOS systems by enforcing case-sensitive PSR-4 autoloading.
 
 ## 2025-05-27(GO 1.2.1)
 - Fix the Golang type mapping: map OpenAPI number type to float64 to prevent overflow

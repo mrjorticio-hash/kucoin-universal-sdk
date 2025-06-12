@@ -25,7 +25,7 @@ type OrderEvent struct {
 	MarginMode string `json:"marginMode,omitempty"`
 	// Order Type
 	Type string `json:"type,omitempty"`
-	// Order time (nanoseconds)
+	// Gateway received the message time (milliseconds)
 	OrderTime int64 `json:"orderTime,omitempty"`
 	// User-specified order size
 	Size string `json:"size,omitempty"`
@@ -37,7 +37,7 @@ type OrderEvent struct {
 	RemainSize string `json:"remainSize,omitempty"`
 	// Order Status
 	Status string `json:"status,omitempty"`
-	// Push time (nanoseconds)
+	// Match engine received the message time  (nanoseconds)
 	Ts int64 `json:"ts,omitempty"`
 	// Actual transaction order type, If the counterparty order is an [Hidden/Iceberg Order](https://www.kucoin.com/docs-new/doc-338146), even if it is a maker order, this param will be displayed as taker. For actual trading fee, please refer to the **feeType**
 	Liquidity *string `json:"liquidity,omitempty"`

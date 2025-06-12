@@ -1,3 +1,4 @@
+import { GetCrossMarginRiskLimitReq } from './model_get_cross_margin_risk_limit_req';
 import { RemoveIsolatedMarginReq } from './model_remove_isolated_margin_req';
 import { AddIsolatedMarginReq } from './model_add_isolated_margin_req';
 import { ModifyAutoDepositStatusReq } from './model_modify_auto_deposit_status_req';
@@ -8,16 +9,19 @@ import { GetCrossMarginLeverageResp } from './model_get_cross_margin_leverage_re
 import { GetMarginModeReq } from './model_get_margin_mode_req';
 import { SwitchMarginModeResp } from './model_switch_margin_mode_resp';
 import { GetPositionsHistoryResp } from './model_get_positions_history_resp';
+import { GetCrossMarginRiskLimitResp } from './model_get_cross_margin_risk_limit_resp';
 import { GetPositionListReq } from './model_get_position_list_req';
 import { GetIsolatedMarginRiskLimitReq } from './model_get_isolated_margin_risk_limit_req';
 import { GetIsolatedMarginRiskLimitResp } from './model_get_isolated_margin_risk_limit_resp';
 import { GetCrossMarginLeverageReq } from './model_get_cross_margin_leverage_req';
 import { GetMarginModeResp } from './model_get_margin_mode_resp';
+import { BatchSwitchMarginModeReq } from './model_batch_switch_margin_mode_req';
 import { ModifyMarginLeverageReq } from './model_modify_margin_leverage_req';
 import { RemoveIsolatedMarginResp } from './model_remove_isolated_margin_resp';
 import { ModifyMarginLeverageResp } from './model_modify_margin_leverage_resp';
 import { GetPositionDetailsReq } from './model_get_position_details_req';
 import { ModifyAutoDepositStatusResp } from './model_modify_auto_deposit_status_resp';
+import { BatchSwitchMarginModeResp } from './model_batch_switch_margin_mode_resp';
 import { SwitchMarginModeReq } from './model_switch_margin_mode_req';
 import { GetPositionListResp } from './model_get_position_list_resp';
 import { GetMaxOpenSizeResp } from './model_get_max_open_size_resp';
@@ -84,6 +88,37 @@ describe('Auto Test', () => {
             '{\n    "code": "200000",\n    "data": {\n        "symbol": "XBTUSDTM",\n        "marginMode": "ISOLATED"\n    }\n}';
         let commonResp = RestResponse.fromJson(data);
         let resp = SwitchMarginModeResp.fromObject(commonResp.data);
+        if (commonResp.data !== null) {
+            expect(
+                Object.values(resp).every((value) => value === null || value === undefined),
+            ).toBe(false);
+            console.log(resp);
+        }
+    });
+    test('batchSwitchMarginMode request test', () => {
+        /**
+         * batchSwitchMarginMode
+         * Batch Switch Margin Mode
+         * /api/v2/position/batchChangeMarginMode
+         */
+        let data = '{"marginMode": "ISOLATED", "symbols": ["XBTUSDTM", "ETHUSDTM"]}';
+        let req = BatchSwitchMarginModeReq.fromJson(data);
+        expect(Object.values(req).every((value) => value === null || value === undefined)).toBe(
+            false,
+        );
+        console.log(req);
+    });
+
+    test('batchSwitchMarginMode response test', () => {
+        /**
+         * batchSwitchMarginMode
+         * Batch Switch Margin Mode
+         * /api/v2/position/batchChangeMarginMode
+         */
+        let data =
+            '{\n    "code": "200000",\n    "data": {\n        "marginMode": {\n            "ETHUSDTM": "ISOLATED",\n            "XBTUSDTM": "CROSS"\n        },\n        "errors": [\n            {\n                "code": "50002",\n                "msg": "exist.order.or.position",\n                "symbol": "XBTUSDTM"\n            }\n        ]\n    }\n}';
+        let commonResp = RestResponse.fromJson(data);
+        let resp = BatchSwitchMarginModeResp.fromObject(commonResp.data);
         if (commonResp.data !== null) {
             expect(
                 Object.values(resp).every((value) => value === null || value === undefined),
@@ -362,6 +397,38 @@ describe('Auto Test', () => {
         let data = '{\n    "code": "200000",\n    "data": "0.1"\n}';
         let commonResp = RestResponse.fromJson(data);
         let resp = RemoveIsolatedMarginResp.fromObject(commonResp.data);
+        if (commonResp.data !== null) {
+            expect(
+                Object.values(resp).every((value) => value === null || value === undefined),
+            ).toBe(false);
+            console.log(resp);
+        }
+    });
+    test('getCrossMarginRiskLimit request test', () => {
+        /**
+         * getCrossMarginRiskLimit
+         * Get Cross Margin Risk Limit
+         * /api/v2/batchGetCrossOrderLimit
+         */
+        let data =
+            '{"symbol": "XBTUSDTM", "totalMargin": "example_string_default_value", "leverage": 123456}';
+        let req = GetCrossMarginRiskLimitReq.fromJson(data);
+        expect(Object.values(req).every((value) => value === null || value === undefined)).toBe(
+            false,
+        );
+        console.log(req);
+    });
+
+    test('getCrossMarginRiskLimit response test', () => {
+        /**
+         * getCrossMarginRiskLimit
+         * Get Cross Margin Risk Limit
+         * /api/v2/batchGetCrossOrderLimit
+         */
+        let data =
+            '{\n    "code": "200000",\n    "data": [\n        {\n            "symbol": "XBTUSDTM",\n            "maxOpenSize": 12102,\n            "maxOpenValue": "1234549.2240000000",\n            "totalMargin": "10000",\n            "price": "102012",\n            "leverage": "125.00",\n            "mmr": "0.00416136",\n            "imr": "0.008",\n            "currency": "USDT"\n        },\n        {\n            "symbol": "ETHUSDTM",\n            "maxOpenSize": 38003,\n            "maxOpenValue": "971508.6920000000",\n            "totalMargin": "10000",\n            "price": "2556.4",\n            "leverage": "100.00",\n            "mmr": "0.0054623236",\n            "imr": "0.01",\n            "currency": "USDT"\n        }\n    ]\n}';
+        let commonResp = RestResponse.fromJson(data);
+        let resp = GetCrossMarginRiskLimitResp.fromObject(commonResp.data);
         if (commonResp.data !== null) {
             expect(
                 Object.values(resp).every((value) => value === null || value === undefined),

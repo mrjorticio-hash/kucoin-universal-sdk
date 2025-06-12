@@ -18,7 +18,7 @@ class WithdrawalV3Req(BaseModel):
     Attributes:
         currency (str): currency
         chain (str): The chainId of currency, For a currency with multiple chains, it is recommended to specify the chain parameter instead of using the default chain; you can query the chainId through the response of the GET /api/v3/currencies/{currency} interface.
-        amount (int): Withdrawal amount, a positive number which is a multiple of the amount precision
+        amount (str): Withdrawal amount, a positive number which is a multiple of the amount precision
         memo (str): Address remark. If there’s no remark, it is empty. When you withdraw from other platforms to KuCoin, you need to fill in memo(tag). Be careful: If you do not fill in memo(tag), your deposit may not be available.
         is_inner (bool): Internal withdrawal or not. Default: False
         remark (str): Remark
@@ -46,7 +46,7 @@ class WithdrawalV3Req(BaseModel):
         description=
         "The chainId of currency, For a currency with multiple chains, it is recommended to specify the chain parameter instead of using the default chain; you can query the chainId through the response of the GET /api/v3/currencies/{currency} interface."
     )
-    amount: Optional[int] = Field(
+    amount: Optional[str] = Field(
         default=None,
         description=
         "Withdrawal amount, a positive number which is a multiple of the amount precision"
@@ -154,7 +154,7 @@ class WithdrawalV3ReqBuilder:
         self.obj['chain'] = value
         return self
 
-    def set_amount(self, value: int) -> WithdrawalV3ReqBuilder:
+    def set_amount(self, value: str) -> WithdrawalV3ReqBuilder:
         """
         Withdrawal amount, a positive number which is a multiple of the amount precision
         """

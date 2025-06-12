@@ -248,7 +248,7 @@ interface OrderApi
      * | API-CHANNEL           | PRIVATE |
      * | API-PERMISSION        | SPOT    |
      * | API-RATE-LIMIT-POOL   | SPOT    |
-     * | API-RATE-LIMIT-WEIGHT | 3       |
+     * | API-RATE-LIMIT-WEIGHT | 1       |
      * +-----------------------+---------+
      */
     public function modifyOrder(ModifyOrderReq $req): ModifyOrderResp;

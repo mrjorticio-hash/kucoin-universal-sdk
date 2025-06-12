@@ -63,7 +63,7 @@ class MarketAPITest(unittest.TestCase):
        Get Currency
        /api/v3/currencies/{currency}
        """
-        data = "{\"currency\": \"BTC\", \"chain\": \"eth\"}"
+        data = "{\"chain\": \"eth\", \"currency\": \"BTC\"}"
         req = GetCurrencyReq.from_json(data)
 
     def test_get_currency_resp_model(self):

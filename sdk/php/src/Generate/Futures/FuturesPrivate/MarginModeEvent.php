@@ -14,11 +14,11 @@ class MarginModeEvent implements Response
 {
     /**
      * The SYMBOL is the key with value  \"CROSS\" or \"ISOLATED\"
-     * @var string $sYMBOL
-     * @Type("string")
-     * @SerializedName("SYMBOL")
+     * @var array<string,string> $data
+     * @Type("array<string, string>")
+     * @SerializedName("data")
      */
-    public $sYMBOL;
+    public $data;
 
     private function __construct() {}
 
@@ -49,7 +49,17 @@ class MarginModeEvent implements Response
      */
     public static function jsonDeserialize($json, $serializer)
     {
-        return $serializer->deserialize($json, MarginModeEvent::class, "json");
+        if ($json === null) {
+            return new self();
+        }
+        $data = $serializer->deserialize(
+            $json,
+            "array<string, string>",
+            "json"
+        );
+        $obj = new self();
+        $obj->data = $data;
+        return $obj;
     }
 
     /**

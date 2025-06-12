@@ -26,7 +26,7 @@ export class GetPositionDetailsResp implements Response<RestResponse> {
     delevPercentage: number;
 
     /**
-     * Open time
+     * First opening time
      */
     openingTimestamp: number;
 
@@ -166,7 +166,7 @@ export class GetPositionDetailsResp implements Response<RestResponse> {
     autoDeposit?: boolean;
 
     /**
-     * Maintenance margin requirement **Only applicable to Isolated Margin**
+     * Maintenance margin requirement
      */
     maintMarginReq?: number;
 
@@ -211,7 +211,7 @@ export class GetPositionDetailsResp implements Response<RestResponse> {
     posFunding?: number;
 
     /**
-     * Maintenance margin **Only applicable to Isolated Margin**
+     * Maintenance margin
      */
     posMaint?: number;
 

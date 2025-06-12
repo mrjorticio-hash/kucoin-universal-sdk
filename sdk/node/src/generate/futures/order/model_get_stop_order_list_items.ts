@@ -55,14 +55,14 @@ export class GetStopOrderListItems implements Serializable {
     stp: string;
 
     /**
-     * Stop order type (stop limit or stop market)
+     * A mark to the stop order type
      */
-    stop: string;
+    stop: GetStopOrderListItems.StopEnum;
 
     /**
      * Trigger price type of stop orders
      */
-    stopPriceType: string;
+    stopPriceType: GetStopOrderListItems.StopPriceTypeEnum;
 
     /**
      * Mark to show whether the stop order is triggered
@@ -292,5 +292,40 @@ export class GetStopOrderListItems implements Serializable {
      */
     static fromObject(jsonObject: Object): GetStopOrderListItems {
         return plainToClassFromExist(new GetStopOrderListItems(), jsonObject);
+    }
+}
+
+export namespace GetStopOrderListItems {
+    export enum StopEnum {
+        /**
+         * Triggers when the price reaches or goes below the stopPrice.
+         */
+        DOWN = <any>'down',
+        /**
+         * Triggers when the price reaches or goes above the stopPrice.
+         */
+        UP = <any>'up',
+        /**
+         * Not a stop order
+         */
+        NONE = <any>'',
+    }
+    export enum StopPriceTypeEnum {
+        /**
+         * TP for trade price, The last trade price is the last price at which an order was filled. This price can be found in the latest match message.
+         */
+        TRADE_PRICE = <any>'TP',
+        /**
+         * MP for mark price. The mark price can be obtained through relevant OPEN API for index services.
+         */
+        MARK_PRICE = <any>'MP',
+        /**
+         * IP for index price. The index price can be obtained through relevant OPEN API for index services.
+         */
+        INDEX_PRICE = <any>'IP',
+        /**
+         * Not a stop order
+         */
+        NONE = <any>'',
     }
 }

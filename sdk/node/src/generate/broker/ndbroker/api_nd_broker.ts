@@ -5,16 +5,20 @@ import { GetSubAccountResp } from './model_get_sub_account_resp';
 import { GetRebaseResp } from './model_get_rebase_resp';
 import { AddSubAccountApiResp } from './model_add_sub_account_api_resp';
 import { AddSubAccountApiReq } from './model_add_sub_account_api_req';
+import { SubmitKYCReq } from './model_submit_kyc_req';
 import { GetSubAccountAPIReq } from './model_get_sub_account_api_req';
 import { GetRebaseReq } from './model_get_rebase_req';
+import { SubmitKYCResp } from './model_submit_kyc_resp';
 import { DeleteSubAccountAPIReq } from './model_delete_sub_account_api_req';
 import { GetWithdrawDetailReq } from './model_get_withdraw_detail_req';
 import { GetDepositDetailResp } from './model_get_deposit_detail_resp';
 import { GetDepositDetailReq } from './model_get_deposit_detail_req';
+import { GetKYCStatusReq } from './model_get_kyc_status_req';
 import { TransferResp } from './model_transfer_resp';
 import { GetWithdrawDetailResp } from './model_get_withdraw_detail_resp';
 import { DeleteSubAccountAPIResp } from './model_delete_sub_account_api_resp';
 import { GetTransferHistoryResp } from './model_get_transfer_history_resp';
+import { GetKYCStatusListResp } from './model_get_kyc_status_list_resp';
 import { GetDepositListResp } from './model_get_deposit_list_resp';
 import { ModifySubAccountApiResp } from './model_modify_sub_account_api_resp';
 import { AddSubAccountReq } from './model_add_sub_account_req';
@@ -22,6 +26,8 @@ import { GetSubAccountReq } from './model_get_sub_account_req';
 import { GetSubAccountAPIResp } from './model_get_sub_account_api_resp';
 import { GetBrokerInfoResp } from './model_get_broker_info_resp';
 import { GetTransferHistoryReq } from './model_get_transfer_history_req';
+import { GetKYCStatusListReq } from './model_get_kyc_status_list_req';
+import { GetKYCStatusResp } from './model_get_kyc_status_resp';
 import { AddSubAccountResp } from './model_add_sub_account_resp';
 import { GetDepositListReq } from './model_get_deposit_list_req';
 import { GetBrokerInfoReq } from './model_get_broker_info_req';
@@ -29,6 +35,54 @@ import { ModifySubAccountApiReq } from './model_modify_sub_account_api_req';
 import { TransferReq } from './model_transfer_req';
 
 export interface NDBrokerAPI {
+    /**
+     * submitKYC Submit KYC
+     * Description: This endpointcan submit kyc information for a sub-account of nd broker
+     * Documentation: https://www.kucoin.com/docs-new/api-3472406
+     * +-----------------------+---------+
+     * | Extra API Info        | Value   |
+     * +-----------------------+---------+
+     * | API-DOMAIN            | BROKER  |
+     * | API-CHANNEL           | PRIVATE |
+     * | API-PERMISSION        | GENERAL |
+     * | API-RATE-LIMIT-POOL   | BROKER  |
+     * | API-RATE-LIMIT-WEIGHT | NULL    |
+     * +-----------------------+---------+
+     */
+    submitKYC(req: SubmitKYCReq): Promise<SubmitKYCResp>;
+
+    /**
+     * getKYCStatus Get KYC Status
+     * Description: This endpoint can query the specified Kyc status
+     * Documentation: https://www.kucoin.com/docs-new/api-3472407
+     * +-----------------------+---------+
+     * | Extra API Info        | Value   |
+     * +-----------------------+---------+
+     * | API-DOMAIN            | BROKER  |
+     * | API-CHANNEL           | PRIVATE |
+     * | API-PERMISSION        | GENERAL |
+     * | API-RATE-LIMIT-POOL   | BROKER  |
+     * | API-RATE-LIMIT-WEIGHT | NULL    |
+     * +-----------------------+---------+
+     */
+    getKYCStatus(req: GetKYCStatusReq): Promise<GetKYCStatusResp>;
+
+    /**
+     * getKYCStatusList Get KYC Status List
+     * Description: This endpoint can query the specified Kyc status list
+     * Documentation: https://www.kucoin.com/docs-new/api-3472408
+     * +-----------------------+---------+
+     * | Extra API Info        | Value   |
+     * +-----------------------+---------+
+     * | API-DOMAIN            | BROKER  |
+     * | API-CHANNEL           | PRIVATE |
+     * | API-PERMISSION        | GENERAL |
+     * | API-RATE-LIMIT-POOL   | BROKER  |
+     * | API-RATE-LIMIT-WEIGHT | NULL    |
+     * +-----------------------+---------+
+     */
+    getKYCStatusList(req: GetKYCStatusListReq): Promise<GetKYCStatusListResp>;
+
     /**
      * getBrokerInfo Get Broker Info
      * Description: This endpoint supports querying the basic information of the current Broker.
@@ -240,6 +294,42 @@ export interface NDBrokerAPI {
 
 export class NDBrokerAPIImpl implements NDBrokerAPI {
     constructor(private transport: Transport) {}
+
+    submitKYC(req: SubmitKYCReq): Promise<SubmitKYCResp> {
+        return this.transport.call(
+            'broker',
+            true,
+            'POST',
+            '/api/kyc/ndBroker/proxyClient/submit',
+            req,
+            SubmitKYCResp,
+            false,
+        );
+    }
+
+    getKYCStatus(req: GetKYCStatusReq): Promise<GetKYCStatusResp> {
+        return this.transport.call(
+            'broker',
+            true,
+            'GET',
+            '/api/kyc/ndBroker/proxyClient/status/list',
+            req,
+            GetKYCStatusResp,
+            false,
+        );
+    }
+
+    getKYCStatusList(req: GetKYCStatusListReq): Promise<GetKYCStatusListResp> {
+        return this.transport.call(
+            'broker',
+            true,
+            'GET',
+            '/api/kyc/ndBroker/proxyClient/status/page',
+            req,
+            GetKYCStatusListResp,
+            false,
+        );
+    }
 
     getBrokerInfo(req: GetBrokerInfoReq): Promise<GetBrokerInfoResp> {
         return this.transport.call(

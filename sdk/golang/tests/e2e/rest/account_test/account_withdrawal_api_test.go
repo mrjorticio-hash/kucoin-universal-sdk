@@ -4,13 +4,14 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
+	"os"
+	"testing"
+
 	"github.com/Kucoin/kucoin-universal-sdk/sdk/golang/extension/interceptor"
 	"github.com/Kucoin/kucoin-universal-sdk/sdk/golang/pkg/api"
 	"github.com/Kucoin/kucoin-universal-sdk/sdk/golang/pkg/common/logger"
 	"github.com/Kucoin/kucoin-universal-sdk/sdk/golang/pkg/generate/account/withdrawal"
 	"github.com/Kucoin/kucoin-universal-sdk/sdk/golang/pkg/types"
-	"os"
-	"testing"
 )
 
 var withdrawalApi withdrawal.WithdrawalAPI
@@ -87,6 +88,29 @@ func TestWithdrawalGetWithdrawalHistoryReq(t *testing.T) {
 	fmt.Println("message:", resp.CommonResponse.Message)
 	fmt.Println("data:", string(data))
 }
+
+func TestWithdrawalGetWithdrawalHistoryByIdReq(t *testing.T) {
+	// GetWithdrawalHistoryById
+	// Get Withdrawal History By ID
+	// /api/v1/withdrawals/{withdrawalId}
+
+	builder := withdrawal.NewGetWithdrawalHistoryByIdReqBuilder()
+	builder.SetWithdrawalId("674576dc74b2bb000778452c")
+	req := builder.Build()
+
+	resp, err := withdrawalApi.GetWithdrawalHistoryById(req, context.TODO())
+	if err != nil {
+		panic(err)
+	}
+	data, err := json.Marshal(resp.ToMap())
+	if err != nil {
+		panic(err)
+	}
+	fmt.Println("code:", resp.CommonResponse.Code)
+	fmt.Println("message:", resp.CommonResponse.Message)
+	fmt.Println("data:", string(data))
+}
+
 func TestWithdrawalWithdrawalV1Req(t *testing.T) {
 	// WithdrawalV1
 	// Withdraw(V1)
@@ -162,7 +186,7 @@ func TestWithdrawalWithdrawalV3Req(t *testing.T) {
 
 	builder := withdrawal.NewWithdrawalV3ReqBuilder()
 	builder.SetCurrency("USDT").SetChain("bsc").SetWithdrawType("ADDRESS").
-		SetToAddress("********").SetAmount(20).
+		SetToAddress("********").SetAmount("20").
 		SetIsInner(false)
 	req := builder.Build()
 

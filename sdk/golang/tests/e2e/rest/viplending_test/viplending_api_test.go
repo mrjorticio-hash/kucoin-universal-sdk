@@ -4,13 +4,14 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
+	"os"
+	"testing"
+
 	"github.com/Kucoin/kucoin-universal-sdk/sdk/golang/extension/interceptor"
 	"github.com/Kucoin/kucoin-universal-sdk/sdk/golang/pkg/api"
 	"github.com/Kucoin/kucoin-universal-sdk/sdk/golang/pkg/common/logger"
 	"github.com/Kucoin/kucoin-universal-sdk/sdk/golang/pkg/generate/viplending/viplending"
 	"github.com/Kucoin/kucoin-universal-sdk/sdk/golang/pkg/types"
-	"os"
-	"testing"
 )
 
 var viplendingApi viplending.VIPLendingAPI
@@ -49,25 +50,6 @@ func TestVIPLendingGetAccountsReq(t *testing.T) {
 	// /api/v1/otc-loan/accounts
 
 	resp, err := viplendingApi.GetAccounts(context.TODO())
-	if err != nil {
-		panic(err)
-	}
-	data, err := json.Marshal(resp.ToMap())
-	if err != nil {
-		panic(err)
-	}
-	fmt.Println("code:", resp.CommonResponse.Code)
-	fmt.Println("message:", resp.CommonResponse.Message)
-	fmt.Println("data:", string(data))
-}
-
-// TODO no permission
-func TestVIPLendingGetAccountDetailReq(t *testing.T) {
-	// GetAccountDetail
-	// Get Account Detail
-	// /api/v1/otc-loan/loan
-
-	resp, err := viplendingApi.GetAccountDetail(context.TODO())
 	if err != nil {
 		panic(err)
 	}

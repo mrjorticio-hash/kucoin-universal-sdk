@@ -27,7 +27,7 @@ class GetCurrentFundingRateResp implements Response
      */
     public $granularity;
     /**
-     * The funding rate settlement time point of the previous cycle (milliseconds)
+     * The funding rate settlement time point of the previous cycle (milliseconds) Before going live, the system will pre-generate the first funding rate record to ensure the billing cycle can start immediately after the contract is launched.  The timePoint field represents the time the funding rate data was generated, not the actual time it takes effect or is settled.  The first actual settlement will occur at the designated settlement time (00:00 / 08:00 / 14:00) after the contract goes live.
      * @var int $timePoint
      * @Type("int")
      * @SerializedName("timePoint")
@@ -61,6 +61,22 @@ class GetCurrentFundingRateResp implements Response
      * @SerializedName("fundingRateFloor")
      */
     public $fundingRateFloor;
+    /**
+     * Indicates whether the current funding fee is charged within this cycle
+     * - 1 : Indicates that funding will be charged in the current cycle
+     * - 0 : Indicates a cross-cycle expense record that is not charged in the current cycle.
+     * @var int $period
+     * @Type("int")
+     * @SerializedName("period")
+     */
+    public $period;
+    /**
+     * Indicates the next funding fee settlement time point, which can be used to synchronize periodic settlement timing.
+     * @var int $fundingTime
+     * @Type("int")
+     * @SerializedName("fundingTime")
+     */
+    public $fundingTime;
 
     /**
      * common response

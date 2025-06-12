@@ -32,7 +32,7 @@ describe('Auto Test', ()=> {
     * /api/v3/currencies/{currency}
     */
     let builder = GetCurrencyReq.builder();
-    builder.setCurrency(?).setChain(?);
+    builder.setChain(?).setCurrency(?);
     let req = builder.build();
     let resp = api.getCurrency(req);
     return resp.then(result => {

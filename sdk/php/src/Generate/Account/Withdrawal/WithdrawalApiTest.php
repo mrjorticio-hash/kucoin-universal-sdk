@@ -98,7 +98,7 @@ class WithdrawalApiTest extends TestCase
     public function testWithdrawalV3Request()
     {
         $data =
-            "{\"currency\": \"USDT\", \"toAddress\": \"TKFRQXSDcY****GmLrjJggwX8\", \"amount\": 3, \"withdrawType\": \"ADDRESS\", \"chain\": \"trx\", \"isInner\": true, \"remark\": \"this is Remark\"}";
+            "{\"currency\": \"USDT\", \"toAddress\": \"TKFRQXSDcY****GmLrjJggwX8\", \"amount\": \"3\", \"withdrawType\": \"ADDRESS\", \"chain\": \"trx\", \"isInner\": true, \"remark\": \"this is Remark\"}";
         $req = WithdrawalV3Req::jsonDeserialize($data, $this->serializer);
         $this->assertTrue($this->hasAnyNoneNull($req));
         echo $req->jsonSerialize($this->serializer);
@@ -188,6 +188,44 @@ class WithdrawalApiTest extends TestCase
             ? $this->serializer->serialize($commonResp->data, "json")
             : null;
         $resp = GetWithdrawalHistoryResp::jsonDeserialize(
+            $respData,
+            $this->serializer
+        );
+        $commonResp->data
+            ? $this->assertTrue($this->hasAnyNoneNull($resp))
+            : $this->assertTrue(true);
+        echo $resp->jsonSerialize($this->serializer);
+    }
+    /**
+     * getWithdrawalHistoryById Request
+     * Get Withdrawal History By ID
+     * /api/v1/withdrawals/{withdrawalId}
+     */
+    public function testGetWithdrawalHistoryByIdRequest()
+    {
+        $data = "{\"withdrawalId\": \"67e6515f7960ba0007b42025\"}";
+        $req = GetWithdrawalHistoryByIdReq::jsonDeserialize(
+            $data,
+            $this->serializer
+        );
+        $this->assertTrue($this->hasAnyNoneNull($req));
+        echo $req->jsonSerialize($this->serializer);
+    }
+
+    /**
+     * getWithdrawalHistoryById Response
+     * Get Withdrawal History By ID
+     * /api/v1/withdrawals/{withdrawalId}
+     */
+    public function testGetWithdrawalHistoryByIdResponse()
+    {
+        $data =
+            "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"id\": \"67e6515f7960ba0007b42025\",\n        \"uid\": 165111215,\n        \"currency\": \"USDT\",\n        \"chainId\": \"trx\",\n        \"chainName\": \"TRC20\",\n        \"currencyName\": \"USDT\",\n        \"status\": \"SUCCESS\",\n        \"failureReason\": \"\",\n        \"failureReasonMsg\": null,\n        \"address\": \"TKFRQXSDcY4kd3QLzw7uK16GmLrjJggwX8\",\n        \"memo\": \"\",\n        \"isInner\": true,\n        \"amount\": \"3.00000000\",\n        \"fee\": \"0.00000000\",\n        \"walletTxId\": null,\n        \"addressRemark\": null,\n        \"remark\": \"this is Remark\",\n        \"createdAt\": 1743147359000,\n        \"cancelType\": \"NON_CANCELABLE\",\n        \"taxes\": null,\n        \"taxDescription\": null,\n        \"returnStatus\": \"NOT_RETURN\",\n        \"returnAmount\": null,\n        \"returnCurrency\": \"KCS\"\n    }\n}";
+        $commonResp = RestResponse::jsonDeserialize($data, $this->serializer);
+        $respData = $commonResp->data
+            ? $this->serializer->serialize($commonResp->data, "json")
+            : null;
+        $resp = GetWithdrawalHistoryByIdResp::jsonDeserialize(
             $respData,
             $this->serializer
         );

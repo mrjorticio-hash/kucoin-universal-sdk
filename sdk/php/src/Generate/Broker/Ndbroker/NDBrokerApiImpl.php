@@ -13,6 +13,46 @@ class NDBrokerApiImpl implements NDBrokerApi
         $this->transport = $transport;
     }
 
+    public function submitKYC(SubmitKYCReq $req): SubmitKYCResp
+    {
+        return $this->transport->call(
+            "broker",
+            true,
+            "POST",
+            "/api/kyc/ndBroker/proxyClient/submit",
+            $req,
+            SubmitKYCResp::class,
+            false
+        );
+    }
+
+    public function getKYCStatus(GetKYCStatusReq $req): GetKYCStatusResp
+    {
+        return $this->transport->call(
+            "broker",
+            true,
+            "GET",
+            "/api/kyc/ndBroker/proxyClient/status/list",
+            $req,
+            GetKYCStatusResp::class,
+            false
+        );
+    }
+
+    public function getKYCStatusList(
+        GetKYCStatusListReq $req
+    ): GetKYCStatusListResp {
+        return $this->transport->call(
+            "broker",
+            true,
+            "GET",
+            "/api/kyc/ndBroker/proxyClient/status/page",
+            $req,
+            GetKYCStatusListResp::class,
+            false
+        );
+    }
+
     public function getBrokerInfo(GetBrokerInfoReq $req): GetBrokerInfoResp
     {
         return $this->transport->call(

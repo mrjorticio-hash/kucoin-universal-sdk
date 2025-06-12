@@ -9,7 +9,7 @@ type GetAllCurrenciesDataChains struct {
 	// Minimum withdrawal amount
 	WithdrawalMinSize string `json:"withdrawalMinSize,omitempty"`
 	// Minimum deposit amount
-	DepositMinSize string `json:"depositMinSize,omitempty"`
+	DepositMinSize *string `json:"depositMinSize,omitempty"`
 	// Withdraw fee rate
 	WithdrawFeeRate string `json:"withdrawFeeRate,omitempty"`
 	// Minimum fees charged for withdrawal
@@ -27,9 +27,9 @@ type GetAllCurrenciesDataChains struct {
 	// Withdrawal precision bit, indicating the maximum supported length after the decimal point of the withdrawal amount
 	WithdrawPrecision int32 `json:"withdrawPrecision,omitempty"`
 	// Maximum amount of single withdrawal
-	MaxWithdraw string `json:"maxWithdraw,omitempty"`
+	MaxWithdraw *string `json:"maxWithdraw,omitempty"`
 	// Maximum amount of single deposit (only applicable to Lightning Network)
-	MaxDeposit string `json:"maxDeposit,omitempty"`
+	MaxDeposit *string `json:"maxDeposit,omitempty"`
 	// Need for memo/tag or not
 	NeedTag bool `json:"needTag,omitempty"`
 	// Chain id of currency
@@ -43,11 +43,10 @@ type GetAllCurrenciesDataChains struct {
 
 // NewGetAllCurrenciesDataChains instantiates a new GetAllCurrenciesDataChains object
 // This constructor will assign default values to properties that have it defined
-func NewGetAllCurrenciesDataChains(chainName string, withdrawalMinSize string, depositMinSize string, withdrawFeeRate string, withdrawalMinFee string, isWithdrawEnabled bool, isDepositEnabled bool, confirms int32, preConfirms int32, contractAddress string, withdrawPrecision int32, maxWithdraw string, maxDeposit string, needTag bool, chainId string) *GetAllCurrenciesDataChains {
+func NewGetAllCurrenciesDataChains(chainName string, withdrawalMinSize string, withdrawFeeRate string, withdrawalMinFee string, isWithdrawEnabled bool, isDepositEnabled bool, confirms int32, preConfirms int32, contractAddress string, withdrawPrecision int32, needTag bool, chainId string) *GetAllCurrenciesDataChains {
 	this := GetAllCurrenciesDataChains{}
 	this.ChainName = chainName
 	this.WithdrawalMinSize = withdrawalMinSize
-	this.DepositMinSize = depositMinSize
 	this.WithdrawFeeRate = withdrawFeeRate
 	this.WithdrawalMinFee = withdrawalMinFee
 	this.IsWithdrawEnabled = isWithdrawEnabled
@@ -56,8 +55,6 @@ func NewGetAllCurrenciesDataChains(chainName string, withdrawalMinSize string, d
 	this.PreConfirms = preConfirms
 	this.ContractAddress = contractAddress
 	this.WithdrawPrecision = withdrawPrecision
-	this.MaxWithdraw = maxWithdraw
-	this.MaxDeposit = maxDeposit
 	this.NeedTag = needTag
 	this.ChainId = chainId
 	return &this

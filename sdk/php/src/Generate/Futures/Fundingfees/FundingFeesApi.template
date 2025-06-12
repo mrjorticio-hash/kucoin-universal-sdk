@@ -1,7 +1,7 @@
 
     /**
     * getCurrentFundingRate
-    * Get Current Funding Rate.
+    * Get Current Funding Rate
     * /api/v1/funding-rate/{symbol}/current
     */
     public function testGetCurrentFundingRate() {
@@ -16,6 +16,8 @@
         self::assertNotNull($resp->predictedValue);
         self::assertNotNull($resp->fundingRateCap);
         self::assertNotNull($resp->fundingRateFloor);
+        self::assertNotNull($resp->period);
+        self::assertNotNull($resp->fundingTime);
         Logger::info($resp->jsonSerialize($this->serializer));
     }
 

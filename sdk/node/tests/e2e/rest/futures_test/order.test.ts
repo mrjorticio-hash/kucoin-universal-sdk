@@ -22,7 +22,7 @@ import {
     GetOrderByClientOidReq,
     GetOrderByOrderIdReq,
     GetOrderListReq,
-    GetRecentClosedOrdersReq,
+    GetRecentClosedOrdersReq, GetRecentTradeHistoryData,
     GetRecentTradeHistoryReq,
     GetStopOrderListReq,
     GetTradeHistoryReq,
@@ -530,7 +530,7 @@ describe('Auto Test', () => {
          * /api/v1/recentFills
          */
         let builder = GetRecentTradeHistoryReq.builder();
-        builder.setSymbol('XBTUSDTM');
+        // builder.setSymbol('XBTUSDTM');
         let req = builder.build();
         let resp = api.getRecentTradeHistory(req);
         return resp.then((result) => {

@@ -16,7 +16,6 @@ import {
     GetDepositHistoryReq,
 } from '@src/generate/account/deposit';
 import { DefaultClient } from '@api/index';
-import ToEnum = AddDepositAddressV1Req.ToEnum;
 
 describe('Auto Test', () => {
     let api: DepositAPI;
@@ -132,7 +131,7 @@ describe('Auto Test', () => {
          * /api/v2/deposit-addresses
          */
         let builder = GetDepositAddressV2Req.builder();
-        builder.setCurrency('USDT').setChain("SOL");
+        builder.setCurrency('USDT').setChain('SOL');
         let req = builder.build();
         let resp = api.getDepositAddressV2(req);
         return resp.then((result) => {
@@ -197,7 +196,7 @@ describe('Auto Test', () => {
          * /api/v1/deposit-addresses
          */
         let builder = AddDepositAddressV1Req.builder();
-        builder.setCurrency('ETH').setChain('kcc').setTo(ToEnum.TRADE);
+        builder.setCurrency('ETH').setChain('kcc').setTo(AddDepositAddressV1Req.ToEnum.TRADE);
         let req = builder.build();
         let resp = api.addDepositAddressV1(req);
         return resp.then((result) => {

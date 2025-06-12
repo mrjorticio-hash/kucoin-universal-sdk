@@ -71,7 +71,7 @@ type AllPositionEvent struct {
 	Leverage float64 `json:"leverage,omitempty"`
 	// Auto deposit margin or not **Only applicable to Isolated Margin**
 	AutoDeposit *bool `json:"autoDeposit,omitempty"`
-	// Maintenance margin requirement **Only applicable to Isolated Margin**
+	// Maintenance margin requirement
 	MaintMarginReq *float64 `json:"maintMarginReq,omitempty"`
 	// Risk limit **Only applicable to Isolated Margin**
 	RiskLimit *int32 `json:"riskLimit,omitempty"`
@@ -85,7 +85,7 @@ type AllPositionEvent struct {
 	PosLoss *float64 `json:"posLoss,omitempty"`
 	// The current remaining unsettled funding fee for the position **Only applicable to Isolated Margin**
 	PosFunding *float64 `json:"posFunding,omitempty"`
-	// Maintenance margin **Only applicable to Isolated Margin**
+	// Maintenance margin
 	PosMaint *float64 `json:"posMaint,omitempty"`
 	// Position margin **Only applicable to Isolated Margin**
 	MaintMargin *float64 `json:"maintMargin,omitempty"`

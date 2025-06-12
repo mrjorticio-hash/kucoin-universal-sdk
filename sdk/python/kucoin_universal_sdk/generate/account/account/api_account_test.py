@@ -135,7 +135,7 @@ class AccountAPITest(unittest.TestCase):
         Get Account - Cross Margin
         /api/v3/margin/accounts
         """
-        data = "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"totalAssetOfQuoteCurrency\": \"0.02\",\n        \"totalLiabilityOfQuoteCurrency\": \"0\",\n        \"debtRatio\": \"0\",\n        \"status\": \"EFFECTIVE\",\n        \"accounts\": [\n            {\n                \"currency\": \"USDT\",\n                \"total\": \"0.02\",\n                \"available\": \"0.02\",\n                \"hold\": \"0\",\n                \"liability\": \"0\",\n                \"maxBorrowSize\": \"0\",\n                \"borrowEnabled\": true,\n                \"transferInEnabled\": true\n            }\n        ]\n    }\n}"
+        data = "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"totalAssetOfQuoteCurrency\": \"40.8648372\",\n        \"totalLiabilityOfQuoteCurrency\": \"0\",\n        \"debtRatio\": \"0\",\n        \"status\": \"EFFECTIVE\",\n        \"accounts\": [\n            {\n                \"currency\": \"USDT\",\n                \"total\": \"38.68855864\",\n                \"available\": \"20.01916691\",\n                \"hold\": \"18.66939173\",\n                \"liability\": \"0\",\n                \"liabilityPrincipal\": \"0\",\n                \"liabilityInterest\": \"0\",\n                \"maxBorrowSize\": \"163\",\n                \"borrowEnabled\": true,\n                \"transferInEnabled\": true\n            }\n        ]\n    }\n}"
         common_response = RestResponse.from_json(data)
         resp = GetCrossMarginAccountResp.from_dict(common_response.data)
 
@@ -145,7 +145,7 @@ class AccountAPITest(unittest.TestCase):
        Get Account - Isolated Margin
        /api/v3/isolated/accounts
        """
-        data = "{\"symbol\": \"example_string_default_value\", \"quoteCurrency\": \"USDT\", \"queryType\": \"ISOLATED\"}"
+        data = "{\"symbol\": \"BTC-USDT\", \"quoteCurrency\": \"USDT\", \"queryType\": \"ISOLATED\"}"
         req = GetIsolatedMarginAccountReq.from_json(data)
 
     def test_get_isolated_margin_account_resp_model(self):
@@ -154,7 +154,7 @@ class AccountAPITest(unittest.TestCase):
         Get Account - Isolated Margin
         /api/v3/isolated/accounts
         """
-        data = "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"totalAssetOfQuoteCurrency\": \"0.01\",\n        \"totalLiabilityOfQuoteCurrency\": \"0\",\n        \"timestamp\": 1728725465994,\n        \"assets\": [\n            {\n                \"symbol\": \"BTC-USDT\",\n                \"status\": \"EFFECTIVE\",\n                \"debtRatio\": \"0\",\n                \"baseAsset\": {\n                    \"currency\": \"BTC\",\n                    \"borrowEnabled\": true,\n                    \"transferInEnabled\": true,\n                    \"liability\": \"0\",\n                    \"total\": \"0\",\n                    \"available\": \"0\",\n                    \"hold\": \"0\",\n                    \"maxBorrowSize\": \"0\"\n                },\n                \"quoteAsset\": {\n                    \"currency\": \"USDT\",\n                    \"borrowEnabled\": true,\n                    \"transferInEnabled\": true,\n                    \"liability\": \"0\",\n                    \"total\": \"0.01\",\n                    \"available\": \"0.01\",\n                    \"hold\": \"0\",\n                    \"maxBorrowSize\": \"0\"\n                }\n            }\n        ]\n    }\n}"
+        data = "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"totalAssetOfQuoteCurrency\": \"4.97047372\",\n        \"totalLiabilityOfQuoteCurrency\": \"0.00038891\",\n        \"timestamp\": 1747303659773,\n        \"assets\": [\n            {\n                \"symbol\": \"BTC-USDT\",\n                \"status\": \"EFFECTIVE\",\n                \"debtRatio\": \"0\",\n                \"baseAsset\": {\n                    \"currency\": \"BTC\",\n                    \"borrowEnabled\": true,\n                    \"transferInEnabled\": true,\n                    \"liability\": \"0\",\n                    \"liabilityPrincipal\": \"0\",\n                    \"liabilityInterest\": \"0\",\n                    \"total\": \"0\",\n                    \"available\": \"0\",\n                    \"hold\": \"0\",\n                    \"maxBorrowSize\": \"0\"\n                },\n                \"quoteAsset\": {\n                    \"currency\": \"USDT\",\n                    \"borrowEnabled\": true,\n                    \"transferInEnabled\": true,\n                    \"liability\": \"0.00038891\",\n                    \"liabilityPrincipal\": \"0.00038888\",\n                    \"liabilityInterest\": \"0.00000003\",\n                    \"total\": \"4.97047372\",\n                    \"available\": \"4.97047372\",\n                    \"hold\": \"0\",\n                    \"maxBorrowSize\": \"44\"\n                }\n            }\n        ]\n    }\n}"
         common_response = RestResponse.from_json(data)
         resp = GetIsolatedMarginAccountResp.from_dict(common_response.data)
 

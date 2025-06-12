@@ -391,15 +391,6 @@
                 "tags": [],
                 "parameters": [
                     {
-                        "name": "currency",
-                        "in": "path",
-                        "description": "Path parameter, Currency",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    {
                         "name": "chain",
                         "in": "query",
                         "description": "Support for querying the chain of currency, e.g. the available values for USDT are OMNI, ERC20, TRC20. This only applies to multi-chain currencies; no need for single-chain currencies.",
@@ -417,6 +408,15 @@
                                 "ton",
                                 "optimism"
                             ]
+                        }
+                    },
+                    {
+                        "name": "currency",
+                        "in": "path",
+                        "description": "Path parameter, Currency",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
                         }
                     }
                 ],
@@ -535,7 +535,6 @@
                                                         "required": [
                                                             "chainName",
                                                             "withdrawalMinSize",
-                                                            "depositMinSize",
                                                             "withdrawFeeRate",
                                                             "withdrawalMinFee",
                                                             "isWithdrawEnabled",
@@ -544,8 +543,6 @@
                                                             "preConfirms",
                                                             "contractAddress",
                                                             "withdrawPrecision",
-                                                            "maxWithdraw",
-                                                            "maxDeposit",
                                                             "needTag",
                                                             "chainId"
                                                         ]
@@ -558,8 +555,6 @@
                                                 "name",
                                                 "fullName",
                                                 "precision",
-                                                "confirms",
-                                                "contractAddress",
                                                 "isMarginEnabled",
                                                 "isDebitEnabled",
                                                 "chains"
@@ -587,7 +582,7 @@
                 "x-sdk-method-description": "Request the currency details of a specified currency via this endpoint.",
                 "x-api-rate-limit-weight": 3,
                 "x-response-example": "{\\\"code\\\":\\\"200000\\\",\\\"data\\\":{\\\"currency\\\":\\\"BTC\\\",\\\"name\\\":\\\"BTC\\\",\\\"fullName\\\":\\\"Bitcoin\\\",\\\"precision\\\":8,\\\"confirms\\\":null,\\\"contractAddress\\\":null,\\\"isMarginEnabled\\\":true,\\\"isDebitEnabled\\\":true,\\\"chains\\\":[{\\\"chainName\\\":\\\"BTC\\\",\\\"withdrawalMinSize\\\":\\\"0.001\\\",\\\"depositMinSize\\\":\\\"0.0002\\\",\\\"withdrawFeeRate\\\":\\\"0\\\",\\\"withdrawalMinFee\\\":\\\"0.0005\\\",\\\"isWithdrawEnabled\\\":true,\\\"isDepositEnabled\\\":true,\\\"confirms\\\":3,\\\"preConfirms\\\":1,\\\"contractAddress\\\":\\\"\\\",\\\"withdrawPrecision\\\":8,\\\"maxWithdraw\\\":null,\\\"maxDeposit\\\":null,\\\"needTag\\\":false,\\\"chainId\\\":\\\"btc\\\"},{\\\"chainName\\\":\\\"Lightning Network\\\",\\\"withdrawalMinSize\\\":\\\"0.00001\\\",\\\"depositMinSize\\\":\\\"0.00001\\\",\\\"withdrawFeeRate\\\":\\\"0\\\",\\\"withdrawalMinFee\\\":\\\"0.000015\\\",\\\"isWithdrawEnabled\\\":true,\\\"isDepositEnabled\\\":true,\\\"confirms\\\":1,\\\"preConfirms\\\":1,\\\"contractAddress\\\":\\\"\\\",\\\"withdrawPrecision\\\":8,\\\"maxWithdraw\\\":null,\\\"maxDeposit\\\":\\\"0.03\\\",\\\"needTag\\\":false,\\\"chainId\\\":\\\"btcln\\\"},{\\\"chainName\\\":\\\"KCC\\\",\\\"withdrawalMinSize\\\":\\\"0.0008\\\",\\\"depositMinSize\\\":null,\\\"withdrawFeeRate\\\":\\\"0\\\",\\\"withdrawalMinFee\\\":\\\"0.00002\\\",\\\"isWithdrawEnabled\\\":true,\\\"isDepositEnabled\\\":true,\\\"confirms\\\":20,\\\"preConfirms\\\":20,\\\"contractAddress\\\":\\\"0xfa93c12cd345c658bc4644d1d4e1b9615952258c\\\",\\\"withdrawPrecision\\\":8,\\\"maxWithdraw\\\":null,\\\"maxDeposit\\\":null,\\\"needTag\\\":false,\\\"chainId\\\":\\\"kcc\\\"},{\\\"chainName\\\":\\\"BTC-Segwit\\\",\\\"withdrawalMinSize\\\":\\\"0.0008\\\",\\\"depositMinSize\\\":\\\"0.0002\\\",\\\"withdrawFeeRate\\\":\\\"0\\\",\\\"withdrawalMinFee\\\":\\\"0.0005\\\",\\\"isWithdrawEnabled\\\":false,\\\"isDepositEnabled\\\":true,\\\"confirms\\\":2,\\\"preConfirms\\\":2,\\\"contractAddress\\\":\\\"\\\",\\\"withdrawPrecision\\\":8,\\\"maxWithdraw\\\":null,\\\"maxDeposit\\\":null,\\\"needTag\\\":false,\\\"chainId\\\":\\\"bech32\\\"}]}}",
-                "x-request-example": "{\\\"currency\\\": \\\"BTC\\\", \\\"chain\\\": \\\"eth\\\"}",
+                "x-request-example": "{\\\"chain\\\": \\\"eth\\\", \\\"currency\\\": \\\"BTC\\\"}",
                 "operationId": "002"
             }
         },
@@ -726,8 +721,6 @@
                                                             "required": [
                                                                 "chainName",
                                                                 "withdrawalMinSize",
-                                                                "depositMinSize",
-                                                                "withdrawFeeRate",
                                                                 "withdrawalMinFee",
                                                                 "isWithdrawEnabled",
                                                                 "isDepositEnabled",
@@ -735,10 +728,9 @@
                                                                 "preConfirms",
                                                                 "contractAddress",
                                                                 "withdrawPrecision",
-                                                                "maxWithdraw",
-                                                                "maxDeposit",
                                                                 "needTag",
-                                                                "chainId"
+                                                                "chainId",
+                                                                "withdrawFeeRate"
                                                             ]
                                                         },
                                                         "description": "Chain list"
@@ -1005,13 +997,7 @@
                                                 "makerFeeCoefficient",
                                                 "takerFeeCoefficient",
                                                 "st",
-                                                "callauctionIsEnabled",
-                                                "callauctionPriceFloor",
-                                                "callauctionPriceCeiling",
-                                                "callauctionFirstStageStartTime",
-                                                "callauctionSecondStageStartTime",
-                                                "callauctionThirdStageStartTime",
-                                                "tradingStartTime"
+                                                "callauctionIsEnabled"
                                             ]
                                         }
                                     },
@@ -1270,13 +1256,7 @@
                                                     "makerFeeCoefficient",
                                                     "takerFeeCoefficient",
                                                     "st",
-                                                    "callauctionIsEnabled",
-                                                    "callauctionPriceFloor",
-                                                    "callauctionPriceCeiling",
-                                                    "callauctionFirstStageStartTime",
-                                                    "callauctionSecondStageStartTime",
-                                                    "callauctionThirdStageStartTime",
-                                                    "tradingStartTime"
+                                                    "callauctionIsEnabled"
                                                 ]
                                             }
                                         }
@@ -2256,19 +2236,19 @@
                                                 },
                                                 "time": {
                                                     "type": "integer",
-                                                    "format": "int64",
-                                                    "description": "Timestamp (ms)"
+                                                    "description": "Timestamp (ms)",
+                                                    "format": "int64"
                                                 }
                                             },
                                             "required": [
-                                                "symbol",
-                                                "estimatedPrice",
-                                                "estimatedSize",
                                                 "sellOrderRangeLowPrice",
                                                 "sellOrderRangeHighPrice",
                                                 "buyOrderRangeLowPrice",
                                                 "buyOrderRangeHighPrice",
-                                                "time"
+                                                "time",
+                                                "symbol",
+                                                "estimatedPrice",
+                                                "estimatedSize"
                                             ]
                                         }
                                     },

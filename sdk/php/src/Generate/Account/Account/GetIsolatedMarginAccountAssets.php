@@ -13,40 +13,35 @@ class GetIsolatedMarginAccountAssets implements Serializable
 {
     /**
      * Symbol
-     * @var string $symbol
+     * @var string|null $symbol
      * @Type("string")
      * @SerializedName("symbol")
      */
     public $symbol;
     /**
      * Position status; EFFECTIVE-effective, BANKRUPTCY-bankruptcy liquidation, LIQUIDATION-closing, REPAY-repayment, BORROW-borrowing
-     * - 'EFFECTIVE' : Effective
-     * - 'BANKRUPTCY' : Bankruptcy liquidation
-     * - 'LIQUIDATION' : Closing
-     * - 'REPAY' : Repayment
-     * - 'BORROW' : Borrowing
-     * @var string $status
+     * @var string|null $status
      * @Type("string")
      * @SerializedName("status")
      */
     public $status;
     /**
      * debt ratio
-     * @var string $debtRatio
+     * @var string|null $debtRatio
      * @Type("string")
      * @SerializedName("debtRatio")
      */
     public $debtRatio;
     /**
      *
-     * @var GetIsolatedMarginAccountAssetsBaseAsset $baseAsset
+     * @var GetIsolatedMarginAccountAssetsBaseAsset|null $baseAsset
      * @Type("KuCoin\UniversalSDK\Generate\Account\Account\GetIsolatedMarginAccountAssetsBaseAsset")
      * @SerializedName("baseAsset")
      */
     public $baseAsset;
     /**
      *
-     * @var GetIsolatedMarginAccountAssetsQuoteAsset $quoteAsset
+     * @var GetIsolatedMarginAccountAssetsQuoteAsset|null $quoteAsset
      * @Type("KuCoin\UniversalSDK\Generate\Account\Account\GetIsolatedMarginAccountAssetsQuoteAsset")
      * @SerializedName("quoteAsset")
      */

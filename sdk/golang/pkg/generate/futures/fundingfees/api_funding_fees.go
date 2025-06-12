@@ -9,7 +9,7 @@ import (
 
 type FundingFeesAPI interface {
 
-	// GetCurrentFundingRate Get Current Funding Rate.
+	// GetCurrentFundingRate Get Current Funding Rate
 	// Description: Get Current Funding Rate.
 	// Documentation: https://www.kucoin.com/docs-new/api-3470265
 	// +-----------------------+---------+

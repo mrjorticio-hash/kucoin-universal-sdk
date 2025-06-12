@@ -27,7 +27,7 @@ class GetRecentTradeHistoryData(BaseModel):
         value (str): Order value 
         open_fee_pay (str): Opening transaction fee 
         close_fee_pay (str): Closing transaction fee 
-        stop (str): A mark to the stop order type 
+        stop (StopEnum): A mark to the stop order type
         fee_rate (str): Fee Rate
         fix_fee (str): Fixed fees (Deprecated field, no actual use of the value field) 
         fee_currency (str): Charging currency 
@@ -59,6 +59,17 @@ class GetRecentTradeHistoryData(BaseModel):
         """
         TAKER = 'taker'
         MAKER = 'maker'
+
+    class StopEnum(Enum):
+        """
+        Attributes:
+            DOWN: Triggers when the price reaches or goes below the stopPrice.
+            UP: Triggers when the price reaches or goes above the stopPrice.
+            NONE_: Not a stop order
+        """
+        DOWN = 'down'
+        UP = 'up'
+        NONE_ = ''
 
     class MarginModeEnum(Enum):
         """
@@ -135,8 +146,8 @@ class GetRecentTradeHistoryData(BaseModel):
         default=None,
         description="Closing transaction fee ",
         alias="closeFeePay")
-    stop: Optional[str] = Field(default=None,
-                                description="A mark to the stop order type ")
+    stop: Optional[StopEnum] = Field(
+        default=None, description="A mark to the stop order type")
     fee_rate: Optional[str] = Field(default=None,
                                     description="Fee Rate",
                                     alias="feeRate")

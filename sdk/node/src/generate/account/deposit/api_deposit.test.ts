@@ -209,7 +209,7 @@ describe('Auto Test', () => {
          * Add Deposit Address - V1
          * /api/v1/deposit-addresses
          */
-        let data = '{"currency": "ETH", "chain": "eth"}';
+        let data = '{"currency": "ETH", "chain": "eth", "to": "MAIN"}';
         let req = AddDepositAddressV1Req.fromJson(data);
         expect(Object.values(req).every((value) => value === null || value === undefined)).toBe(
             false,

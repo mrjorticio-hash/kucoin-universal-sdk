@@ -3,6 +3,8 @@ import unittest
 
 from kucoin_universal_sdk.api.client import DefaultClient
 from kucoin_universal_sdk.extension.interceptor.logging import LoggingInterceptor
+from kucoin_universal_sdk.generate.futures.positions import BatchSwitchMarginModeReqBuilder, BatchSwitchMarginModeReq, \
+    GetCrossMarginRiskLimitReqBuilder
 from kucoin_universal_sdk.generate.futures.positions.model_add_isolated_margin_req import AddIsolatedMarginReqBuilder
 from kucoin_universal_sdk.generate.futures.positions.model_get_cross_margin_leverage_req import \
     GetCrossMarginLeverageReqBuilder
@@ -132,6 +134,25 @@ class FuturesApiTest(unittest.TestCase):
         req = builder.build()
         try:
             resp = self.api.remove_isolated_margin(req)
+            print("code: ", resp.common_response.code)
+            print("msg: ", resp.common_response.message)
+            print("data: ", resp.to_json())
+        except Exception as e:
+            print("error: ", e)
+            raise e
+
+    def test_get_cross_margin_risk_limit_req(self):
+        """
+            get_cross_margin_risk_limit
+            Get Cross Margin Risk Limit
+            /api/v2/batchGetCrossOrderLimit
+        """
+
+        builder = GetCrossMarginRiskLimitReqBuilder()
+        builder.set_symbol("XBTUSDTM").set_total_margin("1000").set_leverage(1)
+        req = builder.build()
+        try:
+            resp = self.api.get_cross_margin_risk_limit(req)
             print("code: ", resp.common_response.code)
             print("msg: ", resp.common_response.message)
             print("data: ", resp.to_json())
@@ -303,6 +324,25 @@ class FuturesApiTest(unittest.TestCase):
         req = builder.build()
         try:
             resp = self.api.switch_margin_mode(req)
+            print("code: ", resp.common_response.code)
+            print("msg: ", resp.common_response.message)
+            print("data: ", resp.to_json())
+        except Exception as e:
+            print("error: ", e)
+            raise e
+
+    def test_batch_switch_margin_mode_req(self):
+        """
+            batch_switch_margin_mode
+            Batch Switch Margin Mode
+            /api/v2/position/batchChangeMarginMode
+        """
+
+        builder = BatchSwitchMarginModeReqBuilder()
+        builder.set_margin_mode(BatchSwitchMarginModeReq.MarginModeEnum.ISOLATED).set_symbols(['XBTUSDTM', 'DOGEUSDTM'])
+        req = builder.build()
+        try:
+            resp = self.api.batch_switch_margin_mode(req)
             print("code: ", resp.common_response.code)
             print("msg: ", resp.common_response.message)
             print("data: ", resp.to_json())

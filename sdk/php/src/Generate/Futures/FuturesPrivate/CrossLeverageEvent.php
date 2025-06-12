@@ -42,15 +42,23 @@ class CrossLeverageEvent implements Response
         return $serializer->serialize($this, "json");
     }
 
+    /**
+     * @param string $json
+     * @param Serializer $serializer
+     * @return self
+     */
     public static function jsonDeserialize($json, $serializer)
     {
-        $item = $serializer->deserialize(
+        if ($json === null) {
+            return new self();
+        }
+        $data = $serializer->deserialize(
             $json,
-            "array<KuCoin\UniversalSDK\Generate\Futures\FuturesPrivate\CrossLeverageDataValue>",
+            "array<string, KuCoin\UniversalSDK\Generate\Futures\FuturesPrivate\CrossLeverageDataValue>",
             "json"
         );
         $obj = new self();
-        $obj->data = $item;
+        $obj->data = $data;
         return $obj;
     }
 

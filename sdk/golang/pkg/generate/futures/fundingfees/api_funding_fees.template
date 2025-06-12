@@ -3,7 +3,7 @@
 
 func TestFundingFeesGetCurrentFundingRateReq(t *testing.T) {
     // GetCurrentFundingRate
-    // Get Current Funding Rate.
+    // Get Current Funding Rate
     // /api/v1/funding-rate/{symbol}/current
 
     builder := fundingfees.NewGetCurrentFundingRateReqBuilder()

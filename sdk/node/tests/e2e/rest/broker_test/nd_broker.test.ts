@@ -11,14 +11,14 @@ import {
     DeleteSubAccountAPIReq,
     GetBrokerInfoReq,
     GetDepositDetailReq,
-    GetDepositListReq,
+    GetDepositListReq, GetKYCStatusListReq, GetKYCStatusReq,
     GetRebaseReq,
     GetSubAccountAPIReq,
     GetSubAccountReq,
     GetTransferHistoryReq,
     GetWithdrawDetailReq,
     ModifySubAccountApiReq,
-    NDBrokerAPI,
+    NDBrokerAPI, SubmitKYCReq,
     TransferReq,
 } from '@src/generate/broker/ndbroker';
 import { DefaultClient } from '@api/index';
@@ -61,6 +61,61 @@ describe('Auto Test', () => {
         // Get the Restful Service
         const kucoinRestService = client.restService();
         api = kucoinRestService.getBrokerService().getNDBrokerApi();
+    });
+
+
+    test('submitKYC request test', () => {
+        /**
+         * submitKYC
+         * Submit KYC
+         * /api/kyc/ndBroker/proxyClient/submit
+         */
+        let builder = SubmitKYCReq.builder();
+        builder.setClientUid('226383154').setFirstName('Kaylah').setLastName('Padberg').setIssueCountry("JP").
+        setBirthDate("2000-01-01").setIdentityType(SubmitKYCReq.IdentityTypeEnum.PASSPORT).setIdentityNumber("55").
+        setExpireDate("2030-01-01").setFrontPhoto("****").setBackendPhoto("***").setFacePhoto("***");
+        let req = builder.build();
+        let resp = api.submitKYC(req);
+        return resp.then(result => {
+            expect(result.data).toEqual(expect.anything());
+            console.log(resp);
+        });
+    });
+
+    test('getKYCStatus request test', () => {
+        /**
+         * getKYCStatus
+         * Get KYC Status
+         * /api/kyc/ndBroker/proxyClient/status/list
+         */
+        let builder = GetKYCStatusReq.builder();
+        builder.setClientUids("226383154");
+        let req = builder.build();
+        let resp = api.getKYCStatus(req);
+        return resp.then(result => {
+            expect(result.data).toEqual(expect.anything());
+            console.log(resp);
+        });
+    });
+
+    test('getKYCStatusList request test', () => {
+        /**
+         * getKYCStatusList
+         * Get KYC Status List
+         * /api/kyc/ndBroker/proxyClient/status/page
+         */
+        let builder = GetKYCStatusListReq.builder();
+        builder.setPageNumber(1).setPageSize(10);
+        let req = builder.build();
+        let resp = api.getKYCStatusList(req);
+        return resp.then(result => {
+            expect(result.currentPage).toEqual(expect.anything());
+            expect(result.pageSize).toEqual(expect.anything());
+            expect(result.totalNum).toEqual(expect.anything());
+            expect(result.totalPage).toEqual(expect.anything());
+            expect(result.items).toEqual(expect.anything());
+            console.log(resp);
+        });
     });
 
     test('getBrokerInfo request test', () => {
@@ -292,7 +347,7 @@ describe('Auto Test', () => {
                 expect(item.chain).toEqual(expect.any(String));
                 expect(item.createdAt).toEqual(expect.any(Number));
                 expect(item.updatedAt).toEqual(expect.any(Number));
-            })
+            });
             console.log(resp);
         });
     });

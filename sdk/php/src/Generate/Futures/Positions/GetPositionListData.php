@@ -40,7 +40,7 @@ class GetPositionListData implements Serializable
      */
     public $delevPercentage;
     /**
-     * Open time
+     * First opening time
      * @var int $openingTimestamp
      * @Type("int")
      * @SerializedName("openingTimestamp")
@@ -239,7 +239,7 @@ class GetPositionListData implements Serializable
      */
     public $autoDeposit;
     /**
-     * Maintenance margin requirement **Only applicable to Isolated Margin**
+     * Maintenance margin requirement
      * @var float|null $maintMarginReq
      * @Type("float")
      * @SerializedName("maintMarginReq")
@@ -302,7 +302,7 @@ class GetPositionListData implements Serializable
      */
     public $posFunding;
     /**
-     * Maintenance margin **Only applicable to Isolated Margin**
+     * Maintenance margin
      * @var float|null $posMaint
      * @Type("float")
      * @SerializedName("posMaint")

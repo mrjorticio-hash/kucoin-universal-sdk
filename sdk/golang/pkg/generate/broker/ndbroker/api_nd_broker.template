@@ -1,6 +1,75 @@
 # API FUNCTION TEMPLATE
 
 
+func TestNDBrokerSubmitKYCReq(t *testing.T) {
+    // SubmitKYC
+    // Submit KYC
+    // /api/kyc/ndBroker/proxyClient/submit
+
+    builder := ndbroker.NewSubmitKYCReqBuilder()
+    builder.SetClientUid(?).SetFirstName(?).SetLastName(?).SetIssueCountry(?).SetBirthDate(?).SetIdentityType(?).SetIdentityNumber(?).SetExpireDate(?).SetFrontPhoto(?).SetBackendPhoto(?).SetFacePhoto(?)
+    req := builder.Build()
+
+    resp, err := ndbrokerApi.SubmitKYC(req, context.TODO())
+    if err != nil {
+        panic(err)
+    }
+    data, err := json.Marshal(resp.ToMap())
+    if err != nil {
+        panic(err)
+    }
+    fmt.Println("code:", resp.CommonResponse.Code)
+    fmt.Println("message:", resp.CommonResponse.Message)
+    fmt.Println("data:", string(data))
+}
+
+
+func TestNDBrokerGetKYCStatusReq(t *testing.T) {
+    // GetKYCStatus
+    // Get KYC Status
+    // /api/kyc/ndBroker/proxyClient/status/list
+
+    builder := ndbroker.NewGetKYCStatusReqBuilder()
+    builder.SetClientUids(?)
+    req := builder.Build()
+
+    resp, err := ndbrokerApi.GetKYCStatus(req, context.TODO())
+    if err != nil {
+        panic(err)
+    }
+    data, err := json.Marshal(resp.ToMap())
+    if err != nil {
+        panic(err)
+    }
+    fmt.Println("code:", resp.CommonResponse.Code)
+    fmt.Println("message:", resp.CommonResponse.Message)
+    fmt.Println("data:", string(data))
+}
+
+
+func TestNDBrokerGetKYCStatusListReq(t *testing.T) {
+    // GetKYCStatusList
+    // Get KYC Status List
+    // /api/kyc/ndBroker/proxyClient/status/page
+
+    builder := ndbroker.NewGetKYCStatusListReqBuilder()
+    builder.SetPageNumber(?).SetPageSize(?)
+    req := builder.Build()
+
+    resp, err := ndbrokerApi.GetKYCStatusList(req, context.TODO())
+    if err != nil {
+        panic(err)
+    }
+    data, err := json.Marshal(resp.ToMap())
+    if err != nil {
+        panic(err)
+    }
+    fmt.Println("code:", resp.CommonResponse.Code)
+    fmt.Println("message:", resp.CommonResponse.Message)
+    fmt.Println("data:", string(data))
+}
+
+
 func TestNDBrokerGetBrokerInfoReq(t *testing.T) {
     // GetBrokerInfo
     // Get Broker Info

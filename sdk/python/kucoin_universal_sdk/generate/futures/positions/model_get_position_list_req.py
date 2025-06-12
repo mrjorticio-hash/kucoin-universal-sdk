@@ -15,13 +15,13 @@ class GetPositionListReq(BaseModel):
     GetPositionListReq
 
     Attributes:
-        currency (str): Currency code, Please refer to [rootSymbol](https://www.kucoin.com/docs-new/api-221752070) , such as USDT,XBT. Query all positions when empty
+        currency (str): Quote currency code, Please refer to [rootSymbol](https://www.kucoin.com/docs-new/api-221752070) , such as USDT,XBT. Query all positions when empty
     """
 
     currency: Optional[str] = Field(
         default=None,
         description=
-        "Currency code, Please refer to [rootSymbol](https://www.kucoin.com/docs-new/api-221752070) , such as USDT,XBT. Query all positions when empty"
+        "Quote currency code, Please refer to [rootSymbol](https://www.kucoin.com/docs-new/api-221752070) , such as USDT,XBT. Query all positions when empty"
     )
 
     __properties: ClassVar[List[str]] = ["currency"]
@@ -70,7 +70,7 @@ class GetPositionListReqBuilder:
 
     def set_currency(self, value: str) -> GetPositionListReqBuilder:
         """
-        Currency code, Please refer to [rootSymbol](https://www.kucoin.com/docs-new/api-221752070) , such as USDT,XBT. Query all positions when empty
+        Quote currency code, Please refer to [rootSymbol](https://www.kucoin.com/docs-new/api-221752070) , such as USDT,XBT. Query all positions when empty
         """
         self.obj['currency'] = value
         return self

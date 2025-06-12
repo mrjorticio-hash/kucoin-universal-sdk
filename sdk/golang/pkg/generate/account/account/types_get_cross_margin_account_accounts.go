@@ -20,11 +20,15 @@ type GetCrossMarginAccountAccounts struct {
 	BorrowEnabled bool `json:"borrowEnabled,omitempty"`
 	// Support transfer or not
 	TransferInEnabled bool `json:"transferInEnabled,omitempty"`
+	// Outstanding principal – the unpaid loan amount
+	LiabilityPrincipal string `json:"liabilityPrincipal,omitempty"`
+	// Accrued interest – the unpaid interest amount
+	LiabilityInterest string `json:"liabilityInterest,omitempty"`
 }
 
 // NewGetCrossMarginAccountAccounts instantiates a new GetCrossMarginAccountAccounts object
 // This constructor will assign default values to properties that have it defined
-func NewGetCrossMarginAccountAccounts(currency string, total string, available string, hold string, liability string, maxBorrowSize string, borrowEnabled bool, transferInEnabled bool) *GetCrossMarginAccountAccounts {
+func NewGetCrossMarginAccountAccounts(currency string, total string, available string, hold string, liability string, maxBorrowSize string, borrowEnabled bool, transferInEnabled bool, liabilityPrincipal string, liabilityInterest string) *GetCrossMarginAccountAccounts {
 	this := GetCrossMarginAccountAccounts{}
 	this.Currency = currency
 	this.Total = total
@@ -34,6 +38,8 @@ func NewGetCrossMarginAccountAccounts(currency string, total string, available s
 	this.MaxBorrowSize = maxBorrowSize
 	this.BorrowEnabled = borrowEnabled
 	this.TransferInEnabled = transferInEnabled
+	this.LiabilityPrincipal = liabilityPrincipal
+	this.LiabilityInterest = liabilityInterest
 	return &this
 }
 
@@ -54,5 +60,7 @@ func (o *GetCrossMarginAccountAccounts) ToMap() map[string]interface{} {
 	toSerialize["maxBorrowSize"] = o.MaxBorrowSize
 	toSerialize["borrowEnabled"] = o.BorrowEnabled
 	toSerialize["transferInEnabled"] = o.TransferInEnabled
+	toSerialize["liabilityPrincipal"] = o.LiabilityPrincipal
+	toSerialize["liabilityInterest"] = o.LiabilityInterest
 	return toSerialize
 }

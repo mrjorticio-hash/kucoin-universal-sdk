@@ -323,7 +323,7 @@ export interface OrderAPI {
      * | API-CHANNEL           | PRIVATE |
      * | API-PERMISSION        | FUTURES |
      * | API-RATE-LIMIT-POOL   | FUTURES |
-     * | API-RATE-LIMIT-WEIGHT | 200     |
+     * | API-RATE-LIMIT-WEIGHT | 800     |
      * +-----------------------+---------+
      */
     cancelAllOrdersV1(req: CancelAllOrdersV1Req): Promise<CancelAllOrdersV1Resp>;

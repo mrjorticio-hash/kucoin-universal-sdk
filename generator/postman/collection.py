@@ -98,12 +98,24 @@ class Collection:
                     index = path.index(path_var_name_ext)
                     path[index] = "{{" + path_var_name + "}}"
 
+
+
+
         # update request
         req_body = {}
         if 'type' in request and request['type'] == 'application/json':
+
+            example_data = None
+            if 'examples' in request:
+                examples = request['examples']
+                if len(examples) > 0:
+                    example = examples[0]
+                    if isinstance(example, dict):
+                        example_data = example['value']
+
             req_body = {
                 "mode": "raw",
-                "raw": request['example'],
+                "raw": example_data,
                 "options": {
                     "raw": {
                         "language": "json"

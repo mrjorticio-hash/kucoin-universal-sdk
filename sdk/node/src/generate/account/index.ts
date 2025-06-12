@@ -51,6 +51,8 @@ export namespace Account {
     export namespace Withdrawal {
         export type CancelWithdrawalReq = WITHDRAWAL.CancelWithdrawalReq;
         export type CancelWithdrawalResp = WITHDRAWAL.CancelWithdrawalResp;
+        export type GetWithdrawalHistoryByIdReq = WITHDRAWAL.GetWithdrawalHistoryByIdReq;
+        export type GetWithdrawalHistoryByIdResp = WITHDRAWAL.GetWithdrawalHistoryByIdResp;
         export type GetWithdrawalHistoryItems = WITHDRAWAL.GetWithdrawalHistoryItems;
         export type GetWithdrawalHistoryOldItems = WITHDRAWAL.GetWithdrawalHistoryOldItems;
         export type GetWithdrawalHistoryOldReq = WITHDRAWAL.GetWithdrawalHistoryOldReq;

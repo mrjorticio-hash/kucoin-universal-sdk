@@ -65,6 +65,20 @@ type WithdrawalAPI interface {
 	// +-----------------------+------------+
 	GetWithdrawalHistory(req *GetWithdrawalHistoryReq, ctx context.Context) (*GetWithdrawalHistoryResp, error)
 
+	// GetWithdrawalHistoryById Get Withdrawal History By ID
+	// Description: Request a withdrawal history by id via this endpoint.
+	// Documentation: https://www.kucoin.com/docs-new/api-3471890
+	// +-----------------------+------------+
+	// | Extra API Info        | Value      |
+	// +-----------------------+------------+
+	// | API-DOMAIN            | SPOT       |
+	// | API-CHANNEL           | PRIVATE    |
+	// | API-PERMISSION        | GENERAL    |
+	// | API-RATE-LIMIT-POOL   | MANAGEMENT |
+	// | API-RATE-LIMIT-WEIGHT | 20         |
+	// +-----------------------+------------+
+	GetWithdrawalHistoryById(req *GetWithdrawalHistoryByIdReq, ctx context.Context) (*GetWithdrawalHistoryByIdResp, error)
+
 	// GetWithdrawalHistoryOld Get Withdrawal History - Old
 	// Description: Request a deposit list via this endpoint. Items are paginated and sorted to show the latest first. See the Pagination section for retrieving additional entries after the first page.
 	// Documentation: https://www.kucoin.com/docs-new/api-3470308
@@ -125,6 +139,12 @@ func (impl *WithdrawalAPIImpl) CancelWithdrawal(req *CancelWithdrawalReq, ctx co
 func (impl *WithdrawalAPIImpl) GetWithdrawalHistory(req *GetWithdrawalHistoryReq, ctx context.Context) (*GetWithdrawalHistoryResp, error) {
 	resp := &GetWithdrawalHistoryResp{}
 	err := impl.transport.Call(ctx, "spot", false, "Get", "/api/v1/withdrawals", req, resp, false)
+	return resp, err
+}
+
+func (impl *WithdrawalAPIImpl) GetWithdrawalHistoryById(req *GetWithdrawalHistoryByIdReq, ctx context.Context) (*GetWithdrawalHistoryByIdResp, error) {
+	resp := &GetWithdrawalHistoryByIdResp{}
+	err := impl.transport.Call(ctx, "spot", false, "Get", "/api/v1/withdrawals/{withdrawalId}", req, resp, false)
 	return resp, err
 }
 

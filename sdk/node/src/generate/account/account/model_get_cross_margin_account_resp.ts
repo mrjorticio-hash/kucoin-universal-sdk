@@ -24,7 +24,7 @@ export class GetCrossMarginAccountResp implements Response<RestResponse> {
     /**
      * Position status; EFFECTIVE-effective, BANKRUPTCY-bankruptcy liquidation, LIQUIDATION-closing, REPAY-repayment, BORROW-borrowing
      */
-    status: GetCrossMarginAccountResp.StatusEnum;
+    status: string;
 
     /**
      * Margin account list
@@ -74,30 +74,5 @@ export class GetCrossMarginAccountResp implements Response<RestResponse> {
      */
     static fromObject(jsonObject: Object): GetCrossMarginAccountResp {
         return plainToClassFromExist(new GetCrossMarginAccountResp(), jsonObject);
-    }
-}
-
-export namespace GetCrossMarginAccountResp {
-    export enum StatusEnum {
-        /**
-         * Effective
-         */
-        EFFECTIVE = <any>'EFFECTIVE',
-        /**
-         * Bankruptcy liquidation
-         */
-        BANKRUPTCY = <any>'BANKRUPTCY',
-        /**
-         * Closing
-         */
-        LIQUIDATION = <any>'LIQUIDATION',
-        /**
-         * Repayment
-         */
-        REPAY = <any>'REPAY',
-        /**
-         * Borrowing
-         */
-        BORROW = <any>'BORROW',
     }
 }

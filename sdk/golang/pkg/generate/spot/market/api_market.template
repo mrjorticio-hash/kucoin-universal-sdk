@@ -30,7 +30,7 @@ func TestMarketGetCurrencyReq(t *testing.T) {
     // /api/v3/currencies/{currency}
 
     builder := market.NewGetCurrencyReqBuilder()
-    builder.SetCurrency(?).SetChain(?)
+    builder.SetChain(?).SetCurrency(?)
     req := builder.Build()
 
     resp, err := marketApi.GetCurrency(req, context.TODO())

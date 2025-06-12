@@ -1,2 +1,2 @@
-export const SdkVersion = 'v1.2.0';
-export const SdkGenerateDate = '2025-03-21';
+export const SdkVersion = 'v1.3.0';
+export const SdkGenerateDate = '2025-06-11';

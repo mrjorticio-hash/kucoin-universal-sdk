@@ -18,7 +18,7 @@ interface OrderApi
      * | API-CHANNEL           | PRIVATE |
      * | API-PERMISSION        | MARGIN  |
      * | API-RATE-LIMIT-POOL   | SPOT    |
-     * | API-RATE-LIMIT-WEIGHT | 5       |
+     * | API-RATE-LIMIT-WEIGHT | 2       |
      * +-----------------------+---------+
      */
     public function addOrder(AddOrderReq $req): AddOrderResp;
@@ -36,7 +36,7 @@ interface OrderApi
      * | API-CHANNEL           | PRIVATE |
      * | API-PERMISSION        | MARGIN  |
      * | API-RATE-LIMIT-POOL   | SPOT    |
-     * | API-RATE-LIMIT-WEIGHT | 5       |
+     * | API-RATE-LIMIT-WEIGHT | 2       |
      * +-----------------------+---------+
      */
     public function addOrderTest(AddOrderTestReq $req): AddOrderTestResp;
@@ -54,7 +54,7 @@ interface OrderApi
      * | API-CHANNEL           | PRIVATE |
      * | API-PERMISSION        | MARGIN  |
      * | API-RATE-LIMIT-POOL   | SPOT    |
-     * | API-RATE-LIMIT-WEIGHT | 5       |
+     * | API-RATE-LIMIT-WEIGHT | 2       |
      * +-----------------------+---------+
      */
     public function cancelOrderByOrderId(
@@ -74,7 +74,7 @@ interface OrderApi
      * | API-CHANNEL           | PRIVATE |
      * | API-PERMISSION        | MARGIN  |
      * | API-RATE-LIMIT-POOL   | SPOT    |
-     * | API-RATE-LIMIT-WEIGHT | 5       |
+     * | API-RATE-LIMIT-WEIGHT | 2       |
      * +-----------------------+---------+
      */
     public function cancelOrderByClientOid(
@@ -94,7 +94,7 @@ interface OrderApi
      * | API-CHANNEL           | PRIVATE |
      * | API-PERMISSION        | MARGIN  |
      * | API-RATE-LIMIT-POOL   | SPOT    |
-     * | API-RATE-LIMIT-WEIGHT | 10      |
+     * | API-RATE-LIMIT-WEIGHT | 5       |
      * +-----------------------+---------+
      */
     public function cancelAllOrdersBySymbol(
@@ -114,7 +114,7 @@ interface OrderApi
      * | API-CHANNEL           | PRIVATE |
      * | API-PERMISSION        | MARGIN  |
      * | API-RATE-LIMIT-POOL   | SPOT    |
-     * | API-RATE-LIMIT-WEIGHT | NULL    |
+     * | API-RATE-LIMIT-WEIGHT | 4       |
      * +-----------------------+---------+
      */
     public function getSymbolsWithOpenOrder(

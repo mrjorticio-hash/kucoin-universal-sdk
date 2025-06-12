@@ -45,6 +45,16 @@ export class GetIsolatedMarginAccountAssetsQuoteAsset implements Serializable {
     maxBorrowSize: string;
 
     /**
+     *
+     */
+    liabilityPrincipal: string;
+
+    /**
+     *
+     */
+    liabilityInterest: string;
+
+    /**
      * Private constructor, please use the corresponding static methods to construct the object.
      */
     private constructor() {
@@ -64,6 +74,10 @@ export class GetIsolatedMarginAccountAssetsQuoteAsset implements Serializable {
         this.hold = null;
         // @ts-ignore
         this.maxBorrowSize = null;
+        // @ts-ignore
+        this.liabilityPrincipal = null;
+        // @ts-ignore
+        this.liabilityInterest = null;
     }
     /**
      * Convert the object to a JSON string.

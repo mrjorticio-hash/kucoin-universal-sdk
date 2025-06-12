@@ -8,7 +8,7 @@ For an overview of the project and SDKs in other languages, refer to the [Main R
 
 ## 📦 Installation
 
-### Latest Version: `1.2.1.post1`
+### Latest Version: `1.3.0`
 Install the Python SDK using `pip`:
 
 ```bash

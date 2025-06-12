@@ -39,6 +39,25 @@ def test_switch_margin_mode_req(self):
         print("error: ", e)
         raise e
 
+def test_batch_switch_margin_mode_req(self):
+    """
+        batch_switch_margin_mode
+        Batch Switch Margin Mode
+        /api/v2/position/batchChangeMarginMode
+    """
+
+    builder = BatchSwitchMarginModeReqBuilder()
+    builder.set_margin_mode(?).set_symbols(?)
+    req = builder.build()
+    try:
+        resp = self.api.batch_switch_margin_mode(req)
+        print("code: ", resp.common_response.code)
+        print("msg: ", resp.common_response.message)
+        print("data: ", resp.to_json())
+    except Exception as e:
+        print("error: ", e)
+        raise e
+
 def test_get_max_open_size_req(self):
     """
         get_max_open_size
@@ -203,6 +222,25 @@ def test_remove_isolated_margin_req(self):
     req = builder.build()
     try:
         resp = self.api.remove_isolated_margin(req)
+        print("code: ", resp.common_response.code)
+        print("msg: ", resp.common_response.message)
+        print("data: ", resp.to_json())
+    except Exception as e:
+        print("error: ", e)
+        raise e
+
+def test_get_cross_margin_risk_limit_req(self):
+    """
+        get_cross_margin_risk_limit
+        Get Cross Margin Risk Limit
+        /api/v2/batchGetCrossOrderLimit
+    """
+
+    builder = GetCrossMarginRiskLimitReqBuilder()
+    builder.set_symbol(?).set_total_margin(?).set_leverage(?)
+    req = builder.build()
+    try:
+        resp = self.api.get_cross_margin_risk_limit(req)
         print("code: ", resp.common_response.code)
         print("msg: ", resp.common_response.message)
         print("data: ", resp.to_json())

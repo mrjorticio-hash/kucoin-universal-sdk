@@ -288,7 +288,7 @@ class DepositApiTest extends TestCase
      */
     public function testAddDepositAddressV1Request()
     {
-        $data = "{\"currency\": \"ETH\", \"chain\": \"eth\"}";
+        $data = "{\"currency\": \"ETH\", \"chain\": \"eth\", \"to\": \"MAIN\"}";
         $req = AddDepositAddressV1Req::jsonDeserialize(
             $data,
             $this->serializer

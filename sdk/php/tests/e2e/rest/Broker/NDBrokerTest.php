@@ -12,6 +12,8 @@ use KuCoin\UniversalSDK\Generate\Broker\Ndbroker\DeleteSubAccountAPIReq;
 use KuCoin\UniversalSDK\Generate\Broker\Ndbroker\GetBrokerInfoReq;
 use KuCoin\UniversalSDK\Generate\Broker\Ndbroker\GetDepositDetailReq;
 use KuCoin\UniversalSDK\Generate\Broker\Ndbroker\GetDepositListReq;
+use KuCoin\UniversalSDK\Generate\Broker\Ndbroker\GetKYCStatusListReq;
+use KuCoin\UniversalSDK\Generate\Broker\Ndbroker\GetKYCStatusReq;
 use KuCoin\UniversalSDK\Generate\Broker\Ndbroker\GetRebaseReq;
 use KuCoin\UniversalSDK\Generate\Broker\Ndbroker\GetSubAccountAPIReq;
 use KuCoin\UniversalSDK\Generate\Broker\Ndbroker\GetSubAccountReq;
@@ -19,6 +21,7 @@ use KuCoin\UniversalSDK\Generate\Broker\Ndbroker\GetTransferHistoryReq;
 use KuCoin\UniversalSDK\Generate\Broker\Ndbroker\GetWithdrawDetailReq;
 use KuCoin\UniversalSDK\Generate\Broker\Ndbroker\ModifySubAccountApiReq;
 use KuCoin\UniversalSDK\Generate\Broker\Ndbroker\NDBrokerApi;
+use KuCoin\UniversalSDK\Generate\Broker\Ndbroker\SubmitKYCReq;
 use KuCoin\UniversalSDK\Generate\Broker\Ndbroker\TransferReq;
 use KuCoin\UniversalSDK\Internal\Utils\JsonSerializedHandler;
 use KuCoin\UniversalSDK\Model\ClientOptionBuilder;
@@ -86,6 +89,65 @@ class NDBrokerTest extends TestCase
         $this->api = $kucoinRestService->getBrokerService()->getNDBrokerApi();
     }
 
+
+    /**
+     * submitKYC
+     * Submit KYC
+     * /api/kyc/ndBroker/proxyClient/submit
+     */
+    public function testSubmitKYC()
+    {
+        $builder = SubmitKYCReq::builder();
+        $builder->setClientUid('226383154')->setFirstName('Kaylah')->setLastName('Padberg')->setIssueCountry("JP")->
+        setBirthDate("2000-01-01")->setIdentityType("passport")->setIdentityNumber("55")->
+        setExpireDate("2030-01-01")->setFrontPhoto("****")->setBackendPhoto("***")->setFacePhoto("***");
+        $req = $builder->build();
+        $resp = $this->api->submitKYC($req);
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
+    /**
+     * getKYCStatus
+     * Get KYC Status
+     * /api/kyc/ndBroker/proxyClient/status/list
+     */
+    public function testGetKYCStatus()
+    {
+        $builder = GetKYCStatusReq::builder();
+        $builder->setClientUids("226383154");
+        $req = $builder->build();
+        $resp = $this->api->getKYCStatus($req);
+        foreach ($resp->data as $item) {
+            self::assertNotNull($item->clientUid);
+            self::assertNotNull($item->status);
+            self::assertNotNull($item->rejectReason);
+        }
+
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
+    /**
+     * getKYCStatusList
+     * Get KYC Status List
+     * /api/kyc/ndBroker/proxyClient/status/page
+     */
+    public function testGetKYCStatusList()
+    {
+        $builder = GetKYCStatusListReq::builder();
+        $builder->setPageNumber(1)->setPageSize(100);
+        $req = $builder->build();
+        $resp = $this->api->getKYCStatusList($req);
+        self::assertNotNull($resp->currentPage);
+        self::assertNotNull($resp->pageSize);
+        self::assertNotNull($resp->totalNum);
+        self::assertNotNull($resp->totalPage);
+        foreach ($resp->items as $item) {
+            self::assertNotNull($item->clientUid);
+            self::assertNotNull($item->status);
+        }
+
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
 
     /**
      * getBrokerInfo

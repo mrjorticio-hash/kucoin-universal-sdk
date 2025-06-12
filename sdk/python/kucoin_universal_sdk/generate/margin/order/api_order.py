@@ -47,7 +47,7 @@ class OrderAPI(ABC):
         | API-CHANNEL           | PRIVATE |
         | API-PERMISSION        | MARGIN  |
         | API-RATE-LIMIT-POOL   | SPOT    |
-        | API-RATE-LIMIT-WEIGHT | 5       |
+        | API-RATE-LIMIT-WEIGHT | 2       |
         +-----------------------+---------+
         """
         pass
@@ -66,7 +66,7 @@ class OrderAPI(ABC):
         | API-CHANNEL           | PRIVATE |
         | API-PERMISSION        | MARGIN  |
         | API-RATE-LIMIT-POOL   | SPOT    |
-        | API-RATE-LIMIT-WEIGHT | 5       |
+        | API-RATE-LIMIT-WEIGHT | 2       |
         +-----------------------+---------+
         """
         pass
@@ -85,7 +85,7 @@ class OrderAPI(ABC):
         | API-CHANNEL           | PRIVATE |
         | API-PERMISSION        | MARGIN  |
         | API-RATE-LIMIT-POOL   | SPOT    |
-        | API-RATE-LIMIT-WEIGHT | 5       |
+        | API-RATE-LIMIT-WEIGHT | 2       |
         +-----------------------+---------+
         """
         pass
@@ -105,7 +105,7 @@ class OrderAPI(ABC):
         | API-CHANNEL           | PRIVATE |
         | API-PERMISSION        | MARGIN  |
         | API-RATE-LIMIT-POOL   | SPOT    |
-        | API-RATE-LIMIT-WEIGHT | 5       |
+        | API-RATE-LIMIT-WEIGHT | 2       |
         +-----------------------+---------+
         """
         pass
@@ -125,7 +125,7 @@ class OrderAPI(ABC):
         | API-CHANNEL           | PRIVATE |
         | API-PERMISSION        | MARGIN  |
         | API-RATE-LIMIT-POOL   | SPOT    |
-        | API-RATE-LIMIT-WEIGHT | 10      |
+        | API-RATE-LIMIT-WEIGHT | 5       |
         +-----------------------+---------+
         """
         pass
@@ -145,7 +145,7 @@ class OrderAPI(ABC):
         | API-CHANNEL           | PRIVATE |
         | API-PERMISSION        | MARGIN  |
         | API-RATE-LIMIT-POOL   | SPOT    |
-        | API-RATE-LIMIT-WEIGHT | NULL    |
+        | API-RATE-LIMIT-WEIGHT | 4       |
         +-----------------------+---------+
         """
         pass
