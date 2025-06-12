@@ -9,7 +9,7 @@ type WithdrawalV3Req struct {
 	// The chainId of currency, For a currency with multiple chains, it is recommended to specify the chain parameter instead of using the default chain; you can query the chainId through the response of the GET /api/v3/currencies/{currency} interface.
 	Chain *string `json:"chain,omitempty"`
 	// Withdrawal amount, a positive number which is a multiple of the amount precision
-	Amount int64 `json:"amount,omitempty"`
+	Amount string `json:"amount,omitempty"`
 	// Address remark. If there’s no remark, it is empty. When you withdraw from other platforms to KuCoin, you need to fill in memo(tag). Be careful: If you do not fill in memo(tag), your deposit may not be available.
 	Memo *string `json:"memo,omitempty"`
 	// Internal withdrawal or not. Default: False
@@ -26,7 +26,7 @@ type WithdrawalV3Req struct {
 
 // NewWithdrawalV3Req instantiates a new WithdrawalV3Req object
 // This constructor will assign default values to properties that have it defined
-func NewWithdrawalV3Req(currency string, amount int64, toAddress string, withdrawType string) *WithdrawalV3Req {
+func NewWithdrawalV3Req(currency string, amount string, toAddress string, withdrawType string) *WithdrawalV3Req {
 	this := WithdrawalV3Req{}
 	this.Currency = currency
 	var chain string = "eth"
@@ -85,7 +85,7 @@ func (builder *WithdrawalV3ReqBuilder) SetChain(value string) *WithdrawalV3ReqBu
 }
 
 // Withdrawal amount, a positive number which is a multiple of the amount precision
-func (builder *WithdrawalV3ReqBuilder) SetAmount(value int64) *WithdrawalV3ReqBuilder {
+func (builder *WithdrawalV3ReqBuilder) SetAmount(value string) *WithdrawalV3ReqBuilder {
 	builder.obj.Amount = value
 	return builder
 }

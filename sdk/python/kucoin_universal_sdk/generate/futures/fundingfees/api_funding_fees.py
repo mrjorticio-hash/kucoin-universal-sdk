@@ -17,7 +17,7 @@ class FundingFeesAPI(ABC):
     def get_current_funding_rate(self, req: GetCurrentFundingRateReq,
                                  **kwargs: Any) -> GetCurrentFundingRateResp:
         """
-        summary: Get Current Funding Rate.
+        summary: Get Current Funding Rate
         description: Get Current Funding Rate.
         documentation: https://www.kucoin.com/docs-new/api-3470265
         +-----------------------+---------+

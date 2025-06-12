@@ -37,6 +37,20 @@ type PositionsAPI interface {
 	// +-----------------------+---------+
 	SwitchMarginMode(req *SwitchMarginModeReq, ctx context.Context) (*SwitchMarginModeResp, error)
 
+	// BatchSwitchMarginMode Batch Switch Margin Mode
+	// Description: Batch modify the margin mode of the symbols.
+	// Documentation: https://www.kucoin.com/docs-new/api-3472403
+	// +-----------------------+---------+
+	// | Extra API Info        | Value   |
+	// +-----------------------+---------+
+	// | API-DOMAIN            | FUTURES |
+	// | API-CHANNEL           | PRIVATE |
+	// | API-PERMISSION        | FUTURES |
+	// | API-RATE-LIMIT-POOL   | FUTURES |
+	// | API-RATE-LIMIT-WEIGHT | 2       |
+	// +-----------------------+---------+
+	BatchSwitchMarginMode(req *BatchSwitchMarginModeReq, ctx context.Context) (*BatchSwitchMarginModeResp, error)
+
 	// GetMaxOpenSize Get Max Open Size
 	// Description: Get Maximum Open Position Size.
 	// Documentation: https://www.kucoin.com/docs-new/api-3470251
@@ -163,6 +177,20 @@ type PositionsAPI interface {
 	// +-----------------------+---------+
 	RemoveIsolatedMargin(req *RemoveIsolatedMarginReq, ctx context.Context) (*RemoveIsolatedMarginResp, error)
 
+	// GetCrossMarginRiskLimit Get Cross Margin Risk Limit
+	// Description: Batch get cross margin risk limit.
+	// Documentation: https://www.kucoin.com/docs-new/api-3472655
+	// +-----------------------+---------+
+	// | Extra API Info        | Value   |
+	// +-----------------------+---------+
+	// | API-DOMAIN            | FUTURES |
+	// | API-CHANNEL           | PRIVATE |
+	// | API-PERMISSION        | FUTURES |
+	// | API-RATE-LIMIT-POOL   | FUTURES |
+	// | API-RATE-LIMIT-WEIGHT | 2       |
+	// +-----------------------+---------+
+	GetCrossMarginRiskLimit(req *GetCrossMarginRiskLimitReq, ctx context.Context) (*GetCrossMarginRiskLimitResp, error)
+
 	// GetIsolatedMarginRiskLimit Get Isolated Margin Risk Limit
 	// Description: This interface can be used to obtain information about risk limit level of a specific contract (only valid for Isolated Margin).
 	// Documentation: https://www.kucoin.com/docs-new/api-3470263
@@ -227,6 +255,12 @@ func (impl *PositionsAPIImpl) SwitchMarginMode(req *SwitchMarginModeReq, ctx con
 	return resp, err
 }
 
+func (impl *PositionsAPIImpl) BatchSwitchMarginMode(req *BatchSwitchMarginModeReq, ctx context.Context) (*BatchSwitchMarginModeResp, error) {
+	resp := &BatchSwitchMarginModeResp{}
+	err := impl.transport.Call(ctx, "futures", false, "Post", "/api/v2/position/batchChangeMarginMode", req, resp, false)
+	return resp, err
+}
+
 func (impl *PositionsAPIImpl) GetMaxOpenSize(req *GetMaxOpenSizeReq, ctx context.Context) (*GetMaxOpenSizeResp, error) {
 	resp := &GetMaxOpenSizeResp{}
 	err := impl.transport.Call(ctx, "futures", false, "Get", "/api/v2/getMaxOpenSize", req, resp, false)
@@ -278,6 +312,12 @@ func (impl *PositionsAPIImpl) AddIsolatedMargin(req *AddIsolatedMarginReq, ctx c
 func (impl *PositionsAPIImpl) RemoveIsolatedMargin(req *RemoveIsolatedMarginReq, ctx context.Context) (*RemoveIsolatedMarginResp, error) {
 	resp := &RemoveIsolatedMarginResp{}
 	err := impl.transport.Call(ctx, "futures", false, "Post", "/api/v1/margin/withdrawMargin", req, resp, false)
+	return resp, err
+}
+
+func (impl *PositionsAPIImpl) GetCrossMarginRiskLimit(req *GetCrossMarginRiskLimitReq, ctx context.Context) (*GetCrossMarginRiskLimitResp, error) {
+	resp := &GetCrossMarginRiskLimitResp{}
+	err := impl.transport.Call(ctx, "futures", false, "Get", "/api/v2/batchGetCrossOrderLimit", req, resp, false)
 	return resp, err
 }
 

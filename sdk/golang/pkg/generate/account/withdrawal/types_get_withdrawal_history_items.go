@@ -8,21 +8,21 @@ type GetWithdrawalHistoryItems struct {
 	Id *string `json:"id,omitempty"`
 	// Currency
 	Currency *string `json:"currency,omitempty"`
-	// The id of currency
+	// The chain id of currency
 	Chain *string `json:"chain,omitempty"`
 	// Status. Available value: REVIEW, PROCESSING, WALLET_PROCESSING, SUCCESS and FAILURE
 	Status *string `json:"status,omitempty"`
-	// Deposit address
+	// Withwrawal address
 	Address *string `json:"address,omitempty"`
 	// Address remark. If there’s no remark, it is empty.
 	Memo *string `json:"memo,omitempty"`
 	// Internal deposit or not
 	IsInner *bool `json:"isInner,omitempty"`
-	// Deposit amount
+	// Withwrawal amount
 	Amount *string `json:"amount,omitempty"`
-	// Fees charged for deposit
+	// Fees charged for withwrawal
 	Fee *string `json:"fee,omitempty"`
-	// Wallet Txid
+	// Wallet Txid, If this is an internal withdrawal, it is empty.
 	WalletTxId *string `json:"walletTxId,omitempty"`
 	// Database record creation time
 	CreatedAt *int64 `json:"createdAt,omitempty"`

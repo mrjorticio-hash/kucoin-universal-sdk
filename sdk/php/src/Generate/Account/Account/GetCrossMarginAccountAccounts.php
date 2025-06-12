@@ -67,6 +67,20 @@ class GetCrossMarginAccountAccounts implements Serializable
      * @SerializedName("transferInEnabled")
      */
     public $transferInEnabled;
+    /**
+     * Outstanding principal – the unpaid loan amount
+     * @var string $liabilityPrincipal
+     * @Type("string")
+     * @SerializedName("liabilityPrincipal")
+     */
+    public $liabilityPrincipal;
+    /**
+     * Accrued interest – the unpaid interest amount
+     * @var string $liabilityInterest
+     * @Type("string")
+     * @SerializedName("liabilityInterest")
+     */
+    public $liabilityInterest;
 
     private function __construct() {}
 

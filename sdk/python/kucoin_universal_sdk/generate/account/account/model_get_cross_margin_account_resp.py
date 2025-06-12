@@ -6,7 +6,6 @@ from __future__ import annotations
 import pprint
 import json
 
-from enum import Enum
 from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
 from .model_get_cross_margin_account_accounts import GetCrossMarginAccountAccounts
@@ -22,24 +21,9 @@ class GetCrossMarginAccountResp(BaseModel, Response):
         total_asset_of_quote_currency (str): Total Assets in Quote Currency
         total_liability_of_quote_currency (str): Total Liability in Quote Currency
         debt_ratio (str): debt ratio
-        status (StatusEnum): Position status; EFFECTIVE-effective, BANKRUPTCY-bankruptcy liquidation, LIQUIDATION-closing, REPAY-repayment, BORROW-borrowing
+        status (str): Position status; EFFECTIVE-effective, BANKRUPTCY-bankruptcy liquidation, LIQUIDATION-closing, REPAY-repayment, BORROW-borrowing
         accounts (list[GetCrossMarginAccountAccounts]): Margin account list
     """
-
-    class StatusEnum(Enum):
-        """
-        Attributes:
-            EFFECTIVE: Effective
-            BANKRUPTCY: Bankruptcy liquidation
-            LIQUIDATION: Closing
-            REPAY: Repayment
-            BORROW: Borrowing
-        """
-        EFFECTIVE = 'EFFECTIVE'
-        BANKRUPTCY = 'BANKRUPTCY'
-        LIQUIDATION = 'LIQUIDATION'
-        REPAY = 'REPAY'
-        BORROW = 'BORROW'
 
     common_response: Optional[RestResponse] = Field(
         default=None, description="Common response")
@@ -54,7 +38,7 @@ class GetCrossMarginAccountResp(BaseModel, Response):
     debt_ratio: Optional[str] = Field(default=None,
                                       description="debt ratio",
                                       alias="debtRatio")
-    status: Optional[StatusEnum] = Field(
+    status: Optional[str] = Field(
         default=None,
         description=
         "Position status; EFFECTIVE-effective, BANKRUPTCY-bankruptcy liquidation, LIQUIDATION-closing, REPAY-repayment, BORROW-borrowing"

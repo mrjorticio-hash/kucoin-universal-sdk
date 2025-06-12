@@ -36,9 +36,9 @@ type AddOrderTestReq struct {
 	CancelAfter *int64 `json:"cancelAfter,omitempty"`
 	// When **type** is market, select one out of two: size or funds
 	Funds *string `json:"funds,omitempty"`
-	// Order failed after timeout of specified milliseconds, If clientTimestamp + allowMaxTimeWindow < the server reaches time, this order will fail.
+	// Order failed after timeout of specified milliseconds, If clientTimestamp + allowMaxTimeWindow < Gateway received the message time, this order will fail.
 	AllowMaxTimeWindow *int64 `json:"allowMaxTimeWindow,omitempty"`
-	// Equal to KC-API-TIMESTAMP, Need to be defined if iceberg is specified.
+	// Equal to KC-API-TIMESTAMP, Need to be defined if allowMaxTimeWindow is specified.
 	ClientTimestamp *int64 `json:"clientTimestamp,omitempty"`
 }
 
@@ -206,13 +206,13 @@ func (builder *AddOrderTestReqBuilder) SetFunds(value string) *AddOrderTestReqBu
 	return builder
 }
 
-// Order failed after timeout of specified milliseconds, If clientTimestamp + allowMaxTimeWindow < the server reaches time, this order will fail.
+// Order failed after timeout of specified milliseconds, If clientTimestamp + allowMaxTimeWindow < Gateway received the message time, this order will fail.
 func (builder *AddOrderTestReqBuilder) SetAllowMaxTimeWindow(value int64) *AddOrderTestReqBuilder {
 	builder.obj.AllowMaxTimeWindow = &value
 	return builder
 }
 
-// Equal to KC-API-TIMESTAMP, Need to be defined if iceberg is specified.
+// Equal to KC-API-TIMESTAMP, Need to be defined if allowMaxTimeWindow is specified.
 func (builder *AddOrderTestReqBuilder) SetClientTimestamp(value int64) *AddOrderTestReqBuilder {
 	builder.obj.ClientTimestamp = &value
 	return builder

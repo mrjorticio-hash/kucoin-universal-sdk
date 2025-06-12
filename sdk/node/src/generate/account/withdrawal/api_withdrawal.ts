@@ -2,16 +2,18 @@
 
 import { Transport } from '@internal/interfaces/transport';
 import { WithdrawalV1Req } from './model_withdrawal_v1_req';
-import { GetWithdrawalHistoryOldResp } from './model_get_withdrawal_history_old_resp';
-import { GetWithdrawalQuotasResp } from './model_get_withdrawal_quotas_resp';
+import { GetWithdrawalHistoryByIdResp } from './model_get_withdrawal_history_by_id_resp';
 import { CancelWithdrawalResp } from './model_cancel_withdrawal_resp';
 import { WithdrawalV3Req } from './model_withdrawal_v3_req';
-import { GetWithdrawalHistoryOldReq } from './model_get_withdrawal_history_old_req';
 import { WithdrawalV3Resp } from './model_withdrawal_v3_resp';
-import { CancelWithdrawalReq } from './model_cancel_withdrawal_req';
-import { GetWithdrawalHistoryReq } from './model_get_withdrawal_history_req';
 import { GetWithdrawalQuotasReq } from './model_get_withdrawal_quotas_req';
 import { WithdrawalV1Resp } from './model_withdrawal_v1_resp';
+import { GetWithdrawalHistoryOldResp } from './model_get_withdrawal_history_old_resp';
+import { GetWithdrawalQuotasResp } from './model_get_withdrawal_quotas_resp';
+import { GetWithdrawalHistoryOldReq } from './model_get_withdrawal_history_old_req';
+import { CancelWithdrawalReq } from './model_cancel_withdrawal_req';
+import { GetWithdrawalHistoryByIdReq } from './model_get_withdrawal_history_by_id_req';
+import { GetWithdrawalHistoryReq } from './model_get_withdrawal_history_req';
 import { GetWithdrawalHistoryResp } from './model_get_withdrawal_history_resp';
 
 export interface WithdrawalAPI {
@@ -78,6 +80,24 @@ export interface WithdrawalAPI {
      * +-----------------------+------------+
      */
     getWithdrawalHistory(req: GetWithdrawalHistoryReq): Promise<GetWithdrawalHistoryResp>;
+
+    /**
+     * getWithdrawalHistoryById Get Withdrawal History By ID
+     * Description: Request a withdrawal history by id via this endpoint.
+     * Documentation: https://www.kucoin.com/docs-new/api-3471890
+     * +-----------------------+------------+
+     * | Extra API Info        | Value      |
+     * +-----------------------+------------+
+     * | API-DOMAIN            | SPOT       |
+     * | API-CHANNEL           | PRIVATE    |
+     * | API-PERMISSION        | GENERAL    |
+     * | API-RATE-LIMIT-POOL   | MANAGEMENT |
+     * | API-RATE-LIMIT-WEIGHT | 20         |
+     * +-----------------------+------------+
+     */
+    getWithdrawalHistoryById(
+        req: GetWithdrawalHistoryByIdReq,
+    ): Promise<GetWithdrawalHistoryByIdResp>;
 
     /**
      * @deprecated
@@ -161,6 +181,20 @@ export class WithdrawalAPIImpl implements WithdrawalAPI {
             '/api/v1/withdrawals',
             req,
             GetWithdrawalHistoryResp,
+            false,
+        );
+    }
+
+    getWithdrawalHistoryById(
+        req: GetWithdrawalHistoryByIdReq,
+    ): Promise<GetWithdrawalHistoryByIdResp> {
+        return this.transport.call(
+            'spot',
+            false,
+            'GET',
+            '/api/v1/withdrawals/{withdrawalId}',
+            req,
+            GetWithdrawalHistoryByIdResp,
             false,
         );
     }

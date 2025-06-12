@@ -27,8 +27,8 @@ class AddDepositAddressV1Req(BaseModel):
             MAIN: Funding account
             TRADE: Spot account
         """
-        MAIN = 'main'
-        TRADE = 'trade'
+        MAIN = 'MAIN'
+        TRADE = 'TRADE'
 
     currency: Optional[str] = Field(default=None, description="currency")
     chain: Optional[str] = Field(

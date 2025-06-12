@@ -67,6 +67,20 @@ class GetIsolatedMarginAccountAssetsQuoteAsset implements Serializable
      * @SerializedName("maxBorrowSize")
      */
     public $maxBorrowSize;
+    /**
+     *
+     * @var string $liabilityPrincipal
+     * @Type("string")
+     * @SerializedName("liabilityPrincipal")
+     */
+    public $liabilityPrincipal;
+    /**
+     *
+     * @var string $liabilityInterest
+     * @Type("string")
+     * @SerializedName("liabilityInterest")
+     */
+    public $liabilityInterest;
 
     private function __construct() {}
 

@@ -37,14 +37,16 @@ class GetSpotHfLedgerReq(BaseModel):
     class BizTypeEnum(Enum):
         """
         Attributes:
-            TRADE_EXCHANGE: trade exchange
-            TRANSFER: transfer
-            RETURNED_FEES: returned fees
-            DEDUCTION_FEES: deduction fees
-            OTHER: other
+            TRADE_EXCHANGE: Trade exchange
+            TRANSFER: Transfer
+            SUB_TRANSFER: Sub transfer
+            RETURNED_FEES: Returned fees
+            DEDUCTION_FEES: Deduction fees
+            OTHER: Other
         """
         TRADE_EXCHANGE = 'TRADE_EXCHANGE'
         TRANSFER = 'TRANSFER'
+        SUB_TRANSFER = 'SUB_TRANSFER'
         RETURNED_FEES = 'RETURNED_FEES'
         DEDUCTION_FEES = 'DEDUCTION_FEES'
         OTHER = 'OTHER'

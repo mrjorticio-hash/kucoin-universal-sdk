@@ -23,6 +23,8 @@ class GetCrossMarginAccountAccounts(BaseModel):
         max_borrow_size (str): The user's remaining maximum loan amount
         borrow_enabled (bool): Support borrow or not
         transfer_in_enabled (bool): Support transfer or not
+        liability_principal (str): Outstanding principal – the unpaid loan amount
+        liability_interest (str): Accrued interest – the unpaid interest amount
     """
 
     currency: Optional[str] = Field(default=None, description="currency")
@@ -44,10 +46,19 @@ class GetCrossMarginAccountAccounts(BaseModel):
         default=None,
         description="Support transfer or not",
         alias="transferInEnabled")
+    liability_principal: Optional[str] = Field(
+        default=None,
+        description="Outstanding principal – the unpaid loan amount",
+        alias="liabilityPrincipal")
+    liability_interest: Optional[str] = Field(
+        default=None,
+        description="Accrued interest – the unpaid interest amount",
+        alias="liabilityInterest")
 
     __properties: ClassVar[List[str]] = [
         "currency", "total", "available", "hold", "liability", "maxBorrowSize",
-        "borrowEnabled", "transferInEnabled"
+        "borrowEnabled", "transferInEnabled", "liabilityPrincipal",
+        "liabilityInterest"
     ]
 
     model_config = ConfigDict(
@@ -101,6 +112,10 @@ class GetCrossMarginAccountAccounts(BaseModel):
             "borrowEnabled":
             obj.get("borrowEnabled"),
             "transferInEnabled":
-            obj.get("transferInEnabled")
+            obj.get("transferInEnabled"),
+            "liabilityPrincipal":
+            obj.get("liabilityPrincipal"),
+            "liabilityInterest":
+            obj.get("liabilityInterest")
         })
         return _obj

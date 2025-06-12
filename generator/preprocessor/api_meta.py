@@ -293,18 +293,28 @@ class ApiMetaUtil:
 
             body_data = api_data['requestBody']
 
+            example_data = None
+            if 'examples' in body_data:
+                examples = body_data['examples']
+                if len(examples) > 0:
+                    example = examples[0]
+                    if isinstance(example, dict):
+                        example_data = example['value']
+
+
+
             ApiMetaUtil.update_schema(body_data['jsonSchema'])
             # ApiMetaUtil.update_response_schema_required(body_data)
             path_operation['requestBody'] = {
                 'content': {
                     'application/json': {
                         'schema': body_data['jsonSchema'],
-                        'example': body_data['example'],
+                        'example': example_data,
                     }
                 }
             }
             try:
-                example_raw = body_data['example']
+                example_raw = example_data
                 filtered_data = "\n".join(
                     line for line in example_raw.splitlines() if not line.strip().startswith("//"))
 

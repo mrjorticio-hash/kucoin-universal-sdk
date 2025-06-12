@@ -1,5 +1,7 @@
 export * from './model_cancel_withdrawal_req';
 export * from './model_cancel_withdrawal_resp';
+export * from './model_get_withdrawal_history_by_id_req';
+export * from './model_get_withdrawal_history_by_id_resp';
 export * from './model_get_withdrawal_history_items';
 export * from './model_get_withdrawal_history_old_items';
 export * from './model_get_withdrawal_history_old_req';

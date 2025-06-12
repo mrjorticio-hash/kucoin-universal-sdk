@@ -60,7 +60,7 @@ class SubAccountApiTest extends TestCase
     public function testAddSubAccountRequest()
     {
         $data =
-            "{\"password\": \"1234567\", \"remarks\": \"TheRemark\", \"subName\": \"Name1234567\", \"access\": \"Spot\"}";
+            "{\"password\": \"q1234567\", \"access\": \"Spot\", \"subName\": \"subNameTest1\", \"remarks\": \"TheRemark\"}";
         $req = AddSubAccountReq::jsonDeserialize($data, $this->serializer);
         $this->assertTrue($this->hasAnyNoneNull($req));
         echo $req->jsonSerialize($this->serializer);
@@ -74,7 +74,7 @@ class SubAccountApiTest extends TestCase
     public function testAddSubAccountResponse()
     {
         $data =
-            "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"currentPage\": 1,\n        \"pageSize\": 10,\n        \"totalNum\": 1,\n        \"totalPage\": 1,\n        \"items\": [\n            {\n                \"userId\": \"63743f07e0c5230001761d08\",\n                \"uid\": 169579801,\n                \"subName\": \"testapi6\",\n                \"status\": 2,\n                \"type\": 0,\n                \"access\": \"All\",\n                \"createdAt\": 1668562696000,\n                \"remarks\": \"remarks\",\n                \"tradeTypes\": [\n                    \"Spot\",\n                    \"Futures\",\n                    \"Margin\"\n                ],\n                \"openedTradeTypes\": [\n                    \"Spot\"\n                ],\n                \"hostedStatus\": null\n            }\n        ]\n    }\n}";
+            "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"uid\": 245730746,\n        \"subName\": \"subNameTest1\",\n        \"remarks\": \"TheRemark\",\n        \"access\": \"Spot\"\n    }\n}";
         $commonResp = RestResponse::jsonDeserialize($data, $this->serializer);
         $respData = $commonResp->data
             ? $this->serializer->serialize($commonResp->data, "json")

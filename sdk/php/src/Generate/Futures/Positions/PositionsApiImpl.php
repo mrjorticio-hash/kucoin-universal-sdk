@@ -40,6 +40,20 @@ class PositionsApiImpl implements PositionsApi
         );
     }
 
+    public function batchSwitchMarginMode(
+        BatchSwitchMarginModeReq $req
+    ): BatchSwitchMarginModeResp {
+        return $this->transport->call(
+            "futures",
+            false,
+            "POST",
+            "/api/v2/position/batchChangeMarginMode",
+            $req,
+            BatchSwitchMarginModeResp::class,
+            false
+        );
+    }
+
     public function getMaxOpenSize(GetMaxOpenSizeReq $req): GetMaxOpenSizeResp
     {
         return $this->transport->call(
@@ -161,6 +175,20 @@ class PositionsApiImpl implements PositionsApi
             "/api/v1/margin/withdrawMargin",
             $req,
             RemoveIsolatedMarginResp::class,
+            false
+        );
+    }
+
+    public function getCrossMarginRiskLimit(
+        GetCrossMarginRiskLimitReq $req
+    ): GetCrossMarginRiskLimitResp {
+        return $this->transport->call(
+            "futures",
+            false,
+            "GET",
+            "/api/v2/batchGetCrossOrderLimit",
+            $req,
+            GetCrossMarginRiskLimitResp::class,
             false
         );
     }

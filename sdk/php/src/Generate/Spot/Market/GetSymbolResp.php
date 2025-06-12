@@ -171,42 +171,42 @@ class GetSymbolResp implements Response
     public $callauctionIsEnabled;
     /**
      * The lowest price declared in the call auction
-     * @var string $callauctionPriceFloor
+     * @var string|null $callauctionPriceFloor
      * @Type("string")
      * @SerializedName("callauctionPriceFloor")
      */
     public $callauctionPriceFloor;
     /**
      * The highest bid price in the call auction
-     * @var string $callauctionPriceCeiling
+     * @var string|null $callauctionPriceCeiling
      * @Type("string")
      * @SerializedName("callauctionPriceCeiling")
      */
     public $callauctionPriceCeiling;
     /**
      * The first phase of the call auction starts at (Allow add orders, allow cancel orders)
-     * @var int $callauctionFirstStageStartTime
+     * @var int|null $callauctionFirstStageStartTime
      * @Type("int")
      * @SerializedName("callauctionFirstStageStartTime")
      */
     public $callauctionFirstStageStartTime;
     /**
      * The second phase of the call auction starts at (Allow add orders, don't allow cancel orders)
-     * @var int $callauctionSecondStageStartTime
+     * @var int|null $callauctionSecondStageStartTime
      * @Type("int")
      * @SerializedName("callauctionSecondStageStartTime")
      */
     public $callauctionSecondStageStartTime;
     /**
      * The third phase of the call auction starts at (Don't allow add orders, don't allow cancel orders)
-     * @var int $callauctionThirdStageStartTime
+     * @var int|null $callauctionThirdStageStartTime
      * @Type("int")
      * @SerializedName("callauctionThirdStageStartTime")
      */
     public $callauctionThirdStageStartTime;
     /**
      * Official opening time (end time of the third phase of call auction)
-     * @var int $tradingStartTime
+     * @var int|null $tradingStartTime
      * @Type("int")
      * @SerializedName("tradingStartTime")
      */

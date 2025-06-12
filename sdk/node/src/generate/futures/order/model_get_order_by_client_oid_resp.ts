@@ -56,9 +56,9 @@ export class GetOrderByClientOidResp implements Response<RestResponse> {
     stp: GetOrderByClientOidResp.StpEnum;
 
     /**
-     * Stop order type (stop limit or stop market)
+     * A mark to the stop order type
      */
-    stop: string;
+    stop: GetOrderByClientOidResp.StopEnum;
 
     /**
      * Trigger price type of stop orders
@@ -345,11 +345,21 @@ export namespace GetOrderByClientOidResp {
          */
         CB = <any>'CB',
     }
-    export enum StopPriceTypeEnum {
+    export enum StopEnum {
         /**
-         * None
+         * Triggers when the price reaches or goes below the stopPrice.
          */
-        NULL = <any>'',
+        DOWN = <any>'down',
+        /**
+         * Triggers when the price reaches or goes above the stopPrice.
+         */
+        UP = <any>'up',
+        /**
+         * Not a stop order
+         */
+        NONE = <any>'',
+    }
+    export enum StopPriceTypeEnum {
         /**
          * TP for trade price, The last trade price is the last price at which an order was filled. This price can be found in the latest match message.
          */
@@ -362,6 +372,10 @@ export namespace GetOrderByClientOidResp {
          * IP for index price. The index price can be obtained through relevant OPEN API for index services.
          */
         INDEX_PRICE = <any>'IP',
+        /**
+         * Not a stop order
+         */
+        NONE = <any>'',
     }
     export enum MarginModeEnum {
         /**

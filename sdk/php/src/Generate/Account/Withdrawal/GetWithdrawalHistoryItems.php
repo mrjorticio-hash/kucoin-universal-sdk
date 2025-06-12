@@ -26,7 +26,7 @@ class GetWithdrawalHistoryItems implements Serializable
      */
     public $currency;
     /**
-     * The id of currency
+     * The chain id of currency
      * @var string|null $chain
      * @Type("string")
      * @SerializedName("chain")
@@ -34,18 +34,18 @@ class GetWithdrawalHistoryItems implements Serializable
     public $chain;
     /**
      * Status. Available value: REVIEW, PROCESSING, WALLET_PROCESSING, SUCCESS and FAILURE
-     * - 'REVIEW' :
-     * - 'PROCESSING' :
-     * - 'WALLET_PROCESSING' :
-     * - 'FAILURE' :
-     * - 'SUCCESS' :
+     * - 'REVIEW' : REVIEW
+     * - 'PROCESSING' : PROCESSING
+     * - 'WALLET_PROCESSING' : WALLET_PROCESSING
+     * - 'FAILURE' : FAILURE
+     * - 'SUCCESS' : SUCCESS
      * @var string|null $status
      * @Type("string")
      * @SerializedName("status")
      */
     public $status;
     /**
-     * Deposit address
+     * Withwrawal address
      * @var string|null $address
      * @Type("string")
      * @SerializedName("address")
@@ -66,21 +66,21 @@ class GetWithdrawalHistoryItems implements Serializable
      */
     public $isInner;
     /**
-     * Deposit amount
+     * Withwrawal amount
      * @var string|null $amount
      * @Type("string")
      * @SerializedName("amount")
      */
     public $amount;
     /**
-     * Fees charged for deposit
+     * Fees charged for withwrawal
      * @var string|null $fee
      * @Type("string")
      * @SerializedName("fee")
      */
     public $fee;
     /**
-     * Wallet Txid
+     * Wallet Txid, If this is an internal withdrawal, it is empty.
      * @var string|null $walletTxId
      * @Type("string")
      * @SerializedName("walletTxId")

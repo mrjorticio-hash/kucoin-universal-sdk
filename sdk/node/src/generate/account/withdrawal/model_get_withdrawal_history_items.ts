@@ -15,7 +15,7 @@ export class GetWithdrawalHistoryItems implements Serializable {
     currency?: string;
 
     /**
-     * The id of currency
+     * The chain id of currency
      */
     chain?: string;
 
@@ -25,7 +25,7 @@ export class GetWithdrawalHistoryItems implements Serializable {
     status?: GetWithdrawalHistoryItems.StatusEnum;
 
     /**
-     * Deposit address
+     * Withwrawal address
      */
     address?: string;
 
@@ -40,17 +40,17 @@ export class GetWithdrawalHistoryItems implements Serializable {
     isInner?: boolean;
 
     /**
-     * Deposit amount
+     * Withwrawal amount
      */
     amount?: string;
 
     /**
-     * Fees charged for deposit
+     * Fees charged for withwrawal
      */
     fee?: string;
 
     /**
-     * Wallet Txid
+     * Wallet Txid, If this is an internal withdrawal, it is empty.
      */
     walletTxId?: string;
 
@@ -96,23 +96,23 @@ export class GetWithdrawalHistoryItems implements Serializable {
 export namespace GetWithdrawalHistoryItems {
     export enum StatusEnum {
         /**
-         *
+         * REVIEW
          */
         REVIEW = <any>'REVIEW',
         /**
-         *
+         * PROCESSING
          */
         PROCESSING = <any>'PROCESSING',
         /**
-         *
+         * WALLET_PROCESSING
          */
         WALLET_PROCESSING = <any>'WALLET_PROCESSING',
         /**
-         *
+         * FAILURE
          */
         FAILURE = <any>'FAILURE',
         /**
-         *
+         * SUCCESS
          */
         SUCCESS = <any>'SUCCESS',
     }

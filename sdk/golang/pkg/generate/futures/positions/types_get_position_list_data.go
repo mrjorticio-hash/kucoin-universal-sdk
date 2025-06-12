@@ -12,7 +12,7 @@ type GetPositionListData struct {
 	CrossMode bool `json:"crossMode,omitempty"`
 	// ADL ranking percentile
 	DelevPercentage float64 `json:"delevPercentage,omitempty"`
-	// Open time
+	// First opening time
 	OpeningTimestamp int64 `json:"openingTimestamp,omitempty"`
 	// Current timestamp
 	CurrentTimestamp int64 `json:"currentTimestamp,omitempty"`
@@ -68,7 +68,7 @@ type GetPositionListData struct {
 	Leverage float64 `json:"leverage,omitempty"`
 	// Auto deposit margin or not **Only applicable to Isolated Margin**
 	AutoDeposit *bool `json:"autoDeposit,omitempty"`
-	// Maintenance margin requirement **Only applicable to Isolated Margin**
+	// Maintenance margin requirement
 	MaintMarginReq *float64 `json:"maintMarginReq,omitempty"`
 	// Risk limit **Only applicable to Isolated Margin**
 	RiskLimit *float64 `json:"riskLimit,omitempty"`
@@ -86,7 +86,7 @@ type GetPositionListData struct {
 	PosLoss *float64 `json:"posLoss,omitempty"`
 	// The current remaining unsettled funding fee for the position **Only applicable to Isolated Margin**
 	PosFunding *float64 `json:"posFunding,omitempty"`
-	// Maintenance margin **Only applicable to Isolated Margin**
+	// Maintenance margin
 	PosMaint *float64 `json:"posMaint,omitempty"`
 	// Position margin **Only applicable to Isolated Margin**
 	MaintMargin *float64 `json:"maintMargin,omitempty"`

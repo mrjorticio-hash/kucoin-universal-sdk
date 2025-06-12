@@ -23,7 +23,7 @@ type StopOrderEvent struct {
 	Side string `json:"side,omitempty"`
 	// User-specified order size
 	Size string `json:"size,omitempty"`
-	// Order type: loss: stop loss order, oco: oco order
+	// Order type
 	Stop string `json:"stop,omitempty"`
 	// Stop Price
 	StopPrice string `json:"stopPrice,omitempty"`

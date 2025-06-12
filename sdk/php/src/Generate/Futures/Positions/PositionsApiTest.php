@@ -123,6 +123,45 @@ class PositionsApiTest extends TestCase
         echo $resp->jsonSerialize($this->serializer);
     }
     /**
+     * batchSwitchMarginMode Request
+     * Batch Switch Margin Mode
+     * /api/v2/position/batchChangeMarginMode
+     */
+    public function testBatchSwitchMarginModeRequest()
+    {
+        $data =
+            "{\"marginMode\": \"ISOLATED\", \"symbols\": [\"XBTUSDTM\", \"ETHUSDTM\"]}";
+        $req = BatchSwitchMarginModeReq::jsonDeserialize(
+            $data,
+            $this->serializer
+        );
+        $this->assertTrue($this->hasAnyNoneNull($req));
+        echo $req->jsonSerialize($this->serializer);
+    }
+
+    /**
+     * batchSwitchMarginMode Response
+     * Batch Switch Margin Mode
+     * /api/v2/position/batchChangeMarginMode
+     */
+    public function testBatchSwitchMarginModeResponse()
+    {
+        $data =
+            "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"marginMode\": {\n            \"ETHUSDTM\": \"ISOLATED\",\n            \"XBTUSDTM\": \"CROSS\"\n        },\n        \"errors\": [\n            {\n                \"code\": \"50002\",\n                \"msg\": \"exist.order.or.position\",\n                \"symbol\": \"XBTUSDTM\"\n            }\n        ]\n    }\n}";
+        $commonResp = RestResponse::jsonDeserialize($data, $this->serializer);
+        $respData = $commonResp->data
+            ? $this->serializer->serialize($commonResp->data, "json")
+            : null;
+        $resp = BatchSwitchMarginModeResp::jsonDeserialize(
+            $respData,
+            $this->serializer
+        );
+        $commonResp->data
+            ? $this->assertTrue($this->hasAnyNoneNull($resp))
+            : $this->assertTrue(true);
+        echo $resp->jsonSerialize($this->serializer);
+    }
+    /**
      * getMaxOpenSize Request
      * Get Max Open Size
      * /api/v2/getMaxOpenSize
@@ -445,6 +484,45 @@ class PositionsApiTest extends TestCase
             ? $this->serializer->serialize($commonResp->data, "json")
             : null;
         $resp = RemoveIsolatedMarginResp::jsonDeserialize(
+            $respData,
+            $this->serializer
+        );
+        $commonResp->data
+            ? $this->assertTrue($this->hasAnyNoneNull($resp))
+            : $this->assertTrue(true);
+        echo $resp->jsonSerialize($this->serializer);
+    }
+    /**
+     * getCrossMarginRiskLimit Request
+     * Get Cross Margin Risk Limit
+     * /api/v2/batchGetCrossOrderLimit
+     */
+    public function testGetCrossMarginRiskLimitRequest()
+    {
+        $data =
+            "{\"symbol\": \"XBTUSDTM\", \"totalMargin\": \"example_string_default_value\", \"leverage\": 123456}";
+        $req = GetCrossMarginRiskLimitReq::jsonDeserialize(
+            $data,
+            $this->serializer
+        );
+        $this->assertTrue($this->hasAnyNoneNull($req));
+        echo $req->jsonSerialize($this->serializer);
+    }
+
+    /**
+     * getCrossMarginRiskLimit Response
+     * Get Cross Margin Risk Limit
+     * /api/v2/batchGetCrossOrderLimit
+     */
+    public function testGetCrossMarginRiskLimitResponse()
+    {
+        $data =
+            "{\n    \"code\": \"200000\",\n    \"data\": [\n        {\n            \"symbol\": \"XBTUSDTM\",\n            \"maxOpenSize\": 12102,\n            \"maxOpenValue\": \"1234549.2240000000\",\n            \"totalMargin\": \"10000\",\n            \"price\": \"102012\",\n            \"leverage\": \"125.00\",\n            \"mmr\": \"0.00416136\",\n            \"imr\": \"0.008\",\n            \"currency\": \"USDT\"\n        },\n        {\n            \"symbol\": \"ETHUSDTM\",\n            \"maxOpenSize\": 38003,\n            \"maxOpenValue\": \"971508.6920000000\",\n            \"totalMargin\": \"10000\",\n            \"price\": \"2556.4\",\n            \"leverage\": \"100.00\",\n            \"mmr\": \"0.0054623236\",\n            \"imr\": \"0.01\",\n            \"currency\": \"USDT\"\n        }\n    ]\n}";
+        $commonResp = RestResponse::jsonDeserialize($data, $this->serializer);
+        $respData = $commonResp->data
+            ? $this->serializer->serialize($commonResp->data, "json")
+            : null;
+        $resp = GetCrossMarginRiskLimitResp::jsonDeserialize(
             $respData,
             $this->serializer
         );

@@ -39,6 +39,23 @@ describe('Auto Test', ()=> {
     });
     })
 
+    test('batchSwitchMarginMode request test', ()=> {
+    /**
+    * batchSwitchMarginMode
+    * Batch Switch Margin Mode
+    * /api/v2/position/batchChangeMarginMode
+    */
+    let builder = BatchSwitchMarginModeReq.builder();
+    builder.setMarginMode(?).setSymbols(?);
+    let req = builder.build();
+    let resp = api.batchSwitchMarginMode(req);
+    return resp.then(result => {
+        expect(result.marginMode).toEqual(expect.anything());
+        expect(result.errors).toEqual(expect.anything());
+        console.log(resp);
+    });
+    })
+
     test('getMaxOpenSize request test', ()=> {
     /**
     * getMaxOpenSize
@@ -263,6 +280,22 @@ describe('Auto Test', ()=> {
     builder.setSymbol(?).setWithdrawAmount(?);
     let req = builder.build();
     let resp = api.removeIsolatedMargin(req);
+    return resp.then(result => {
+        expect(result.data).toEqual(expect.anything());
+        console.log(resp);
+    });
+    })
+
+    test('getCrossMarginRiskLimit request test', ()=> {
+    /**
+    * getCrossMarginRiskLimit
+    * Get Cross Margin Risk Limit
+    * /api/v2/batchGetCrossOrderLimit
+    */
+    let builder = GetCrossMarginRiskLimitReq.builder();
+    builder.setSymbol(?).setTotalMargin(?).setLeverage(?);
+    let req = builder.build();
+    let resp = api.getCrossMarginRiskLimit(req);
     return resp.then(result => {
         expect(result.data).toEqual(expect.anything());
         console.log(resp);

@@ -168,6 +168,10 @@ class {{classname}}(BaseModel):
         if obj is None:
             return None
 
+        {{#vendorExtensions.x-original-response}}
+        # original response
+        obj = {'data':obj}
+        {{/vendorExtensions.x-original-response}}
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 

@@ -10,13 +10,13 @@ import (
 type AddSubAccountResp struct {
 	// common response
 	CommonResponse *types.RestResponse
-	// Sub-account UID
+	// Sub account user id
 	Uid int32 `json:"uid,omitempty"`
-	// Sub-account name
+	// Sub account name
 	SubName string `json:"subName,omitempty"`
-	// Remarks
+	// Sub account name
 	Remarks string `json:"remarks,omitempty"`
-	// Permission
+	// permission
 	Access string `json:"access,omitempty"`
 }
 

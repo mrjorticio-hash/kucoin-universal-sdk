@@ -559,11 +559,61 @@
                                                             },
                                                             "stop": {
                                                                 "type": "string",
-                                                                "description": "Stop order type (stop limit or stop market)"
+                                                                "description": "A mark to the stop order type",
+                                                                "enum": [
+                                                                    "down",
+                                                                    "up",
+                                                                    ""
+                                                                ],
+                                                                "x-api-enum": [
+                                                                    {
+                                                                        "value": "down",
+                                                                        "name": "down",
+                                                                        "description": "Triggers when the price reaches or goes below the stopPrice."
+                                                                    },
+                                                                    {
+                                                                        "value": "up",
+                                                                        "name": "up",
+                                                                        "description": "Triggers when the price reaches or goes above the stopPrice."
+                                                                    },
+                                                                    {
+                                                                        "value": "",
+                                                                        "name": "None",
+                                                                        "description": "Not a stop order"
+                                                                    }
+                                                                ]
                                                             },
                                                             "stopPriceType": {
                                                                 "type": "string",
-                                                                "description": "Trigger price type of stop orders"
+                                                                "description": "Trigger price type of stop orders",
+                                                                "enum": [
+                                                                    "TP",
+                                                                    "MP",
+                                                                    "IP",
+                                                                    ""
+                                                                ],
+                                                                "x-api-enum": [
+                                                                    {
+                                                                        "value": "TP",
+                                                                        "name": "trade price",
+                                                                        "description": "TP for trade price, The last trade price is the last price at which an order was filled. This price can be found in the latest match message."
+                                                                    },
+                                                                    {
+                                                                        "value": "MP",
+                                                                        "name": "mark price",
+                                                                        "description": "MP for mark price. The mark price can be obtained through relevant OPEN API for index services."
+                                                                    },
+                                                                    {
+                                                                        "value": "IP",
+                                                                        "name": "index price",
+                                                                        "description": "IP for index price. The index price can be obtained through relevant OPEN API for index services."
+                                                                    },
+                                                                    {
+                                                                        "value": "",
+                                                                        "name": "None",
+                                                                        "description": "Not a stop order"
+                                                                    }
+                                                                ]
                                                             },
                                                             "stopTriggered": {
                                                                 "type": "boolean",
@@ -812,7 +862,7 @@
                 "x-sdk-sub-service": "Order",
                 "x-sdk-method-name": "cancelAllOrdersV1",
                 "x-sdk-method-description": "Cancel all open orders (excluding stop orders). The response is a list of orderIDs of the canceled orders.",
-                "x-api-rate-limit-weight": 200,
+                "x-api-rate-limit-weight": 800,
                 "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"cancelledOrderIds\\\": [\\n            \\\"235919172150824960\\\",\\n            \\\"235919172150824961\\\"\\n        ]\\n    }\\n}",
                 "x-request-example": "{\\\"symbol\\\": \\\"XBTUSDTM\\\"}",
                 "operationId": "018"
@@ -2364,11 +2414,61 @@
                                                             },
                                                             "stop": {
                                                                 "type": "string",
-                                                                "description": "Stop order type (stop limit or stop market)"
+                                                                "description": "A mark to the stop order type",
+                                                                "enum": [
+                                                                    "down",
+                                                                    "up",
+                                                                    ""
+                                                                ],
+                                                                "x-api-enum": [
+                                                                    {
+                                                                        "value": "down",
+                                                                        "name": "down",
+                                                                        "description": "Triggers when the price reaches or goes below the stopPrice."
+                                                                    },
+                                                                    {
+                                                                        "value": "up",
+                                                                        "name": "up",
+                                                                        "description": "Triggers when the price reaches or goes above the stopPrice."
+                                                                    },
+                                                                    {
+                                                                        "value": "",
+                                                                        "name": "None",
+                                                                        "description": "Not a stop order"
+                                                                    }
+                                                                ]
                                                             },
                                                             "stopPriceType": {
                                                                 "type": "string",
-                                                                "description": "Trigger price type of stop orders"
+                                                                "description": "Trigger price type of stop orders",
+                                                                "enum": [
+                                                                    "TP",
+                                                                    "MP",
+                                                                    "IP",
+                                                                    ""
+                                                                ],
+                                                                "x-api-enum": [
+                                                                    {
+                                                                        "value": "TP",
+                                                                        "name": "trade price",
+                                                                        "description": "TP for trade price, The last trade price is the last price at which an order was filled. This price can be found in the latest match message."
+                                                                    },
+                                                                    {
+                                                                        "value": "MP",
+                                                                        "name": "mark price",
+                                                                        "description": "MP for mark price. The mark price can be obtained through relevant OPEN API for index services."
+                                                                    },
+                                                                    {
+                                                                        "value": "IP",
+                                                                        "name": "index price",
+                                                                        "description": "IP for index price. The index price can be obtained through relevant OPEN API for index services."
+                                                                    },
+                                                                    {
+                                                                        "value": "",
+                                                                        "name": "None",
+                                                                        "description": "Not a stop order"
+                                                                    }
+                                                                ]
                                                             },
                                                             "stopTriggered": {
                                                                 "type": "boolean",
@@ -2689,23 +2789,40 @@
                                                 },
                                                 "stop": {
                                                     "type": "string",
-                                                    "description": "Stop order type (stop limit or stop market)\n"
+                                                    "description": "A mark to the stop order type",
+                                                    "enum": [
+                                                        "down",
+                                                        "up",
+                                                        ""
+                                                    ],
+                                                    "x-api-enum": [
+                                                        {
+                                                            "value": "down",
+                                                            "name": "down",
+                                                            "description": "Triggers when the price reaches or goes below the stopPrice."
+                                                        },
+                                                        {
+                                                            "value": "up",
+                                                            "name": "up",
+                                                            "description": "Triggers when the price reaches or goes above the stopPrice."
+                                                        },
+                                                        {
+                                                            "value": "",
+                                                            "name": "None",
+                                                            "description": "Not a stop order"
+                                                        }
+                                                    ]
                                                 },
                                                 "stopPriceType": {
                                                     "type": "string",
                                                     "description": "Trigger price type of stop orders",
                                                     "enum": [
-                                                        "",
                                                         "TP",
                                                         "MP",
-                                                        "IP"
+                                                        "IP",
+                                                        ""
                                                     ],
                                                     "x-api-enum": [
-                                                        {
-                                                            "value": "",
-                                                            "name": "NULL",
-                                                            "description": ""
-                                                        },
                                                         {
                                                             "value": "TP",
                                                             "name": "trade price",
@@ -2720,6 +2837,11 @@
                                                             "value": "IP",
                                                             "name": "index price",
                                                             "description": "IP for index price, The index price can be obtained through relevant OPEN API for index services"
+                                                        },
+                                                        {
+                                                            "value": "",
+                                                            "name": "None",
+                                                            "description": "Not a stop order"
                                                         }
                                                     ]
                                                 },
@@ -3063,23 +3185,40 @@
                                                 },
                                                 "stop": {
                                                     "type": "string",
-                                                    "description": "Stop order type (stop limit or stop market)\n"
+                                                    "description": "A mark to the stop order type",
+                                                    "enum": [
+                                                        "down",
+                                                        "up",
+                                                        ""
+                                                    ],
+                                                    "x-api-enum": [
+                                                        {
+                                                            "value": "down",
+                                                            "name": "down",
+                                                            "description": "Triggers when the price reaches or goes below the stopPrice."
+                                                        },
+                                                        {
+                                                            "value": "up",
+                                                            "name": "up",
+                                                            "description": "Triggers when the price reaches or goes above the stopPrice."
+                                                        },
+                                                        {
+                                                            "value": "",
+                                                            "name": "None",
+                                                            "description": "Not a stop order"
+                                                        }
+                                                    ]
                                                 },
                                                 "stopPriceType": {
                                                     "type": "string",
                                                     "description": "Trigger price type of stop orders",
                                                     "enum": [
-                                                        "",
                                                         "TP",
                                                         "MP",
-                                                        "IP"
+                                                        "IP",
+                                                        ""
                                                     ],
                                                     "x-api-enum": [
-                                                        {
-                                                            "value": "",
-                                                            "name": "NULL",
-                                                            "description": "None"
-                                                        },
                                                         {
                                                             "value": "TP",
                                                             "name": "trade price",
@@ -3094,6 +3233,11 @@
                                                             "value": "IP",
                                                             "name": "index price",
                                                             "description": "IP for index price. The index price can be obtained through relevant OPEN API for index services."
+                                                        },
+                                                        {
+                                                            "value": "",
+                                                            "name": "None",
+                                                            "description": "Not a stop order"
                                                         }
                                                     ]
                                                 },
@@ -3380,11 +3524,61 @@
                                                     },
                                                     "stop": {
                                                         "type": "string",
-                                                        "description": "Stop order type (stop limit or stop market)\n"
+                                                        "description": "A mark to the stop order type",
+                                                        "enum": [
+                                                            "down",
+                                                            "up",
+                                                            ""
+                                                        ],
+                                                        "x-api-enum": [
+                                                            {
+                                                                "value": "down",
+                                                                "name": "down",
+                                                                "description": "Triggers when the price reaches or goes below the stopPrice."
+                                                            },
+                                                            {
+                                                                "value": "up",
+                                                                "name": "up",
+                                                                "description": "Triggers when the price reaches or goes above the stopPrice."
+                                                            },
+                                                            {
+                                                                "value": "",
+                                                                "name": "None",
+                                                                "description": "Not a stop order"
+                                                            }
+                                                        ]
                                                     },
                                                     "stopPriceType": {
                                                         "type": "string",
-                                                        "description": "Trigger price type of stop orders\n"
+                                                        "description": "Trigger price type of stop orders",
+                                                        "enum": [
+                                                            "TP",
+                                                            "MP",
+                                                            "IP",
+                                                            ""
+                                                        ],
+                                                        "x-api-enum": [
+                                                            {
+                                                                "value": "TP",
+                                                                "name": "trade price",
+                                                                "description": "TP for trade price, The last trade price is the last price at which an order was filled. This price can be found in the latest match message."
+                                                            },
+                                                            {
+                                                                "value": "MP",
+                                                                "name": "mark price",
+                                                                "description": "MP for mark price. The mark price can be obtained through relevant OPEN API for index services."
+                                                            },
+                                                            {
+                                                                "value": "IP",
+                                                                "name": "index price",
+                                                                "description": "IP for index price. The index price can be obtained through relevant OPEN API for index services."
+                                                            },
+                                                            {
+                                                                "value": "",
+                                                                "name": "None",
+                                                                "description": "Not a stop order"
+                                                            }
+                                                        ]
                                                     },
                                                     "stopTriggered": {
                                                         "type": "boolean",
@@ -3760,7 +3954,29 @@
                                                     },
                                                     "stop": {
                                                         "type": "string",
-                                                        "description": "A mark to the stop order type\n"
+                                                        "description": "A mark to the stop order type",
+                                                        "enum": [
+                                                            "down",
+                                                            "up",
+                                                            ""
+                                                        ],
+                                                        "x-api-enum": [
+                                                            {
+                                                                "value": "down",
+                                                                "name": "down",
+                                                                "description": "Triggers when the price reaches or goes below the stopPrice."
+                                                            },
+                                                            {
+                                                                "value": "up",
+                                                                "name": "up",
+                                                                "description": "Triggers when the price reaches or goes above the stopPrice."
+                                                            },
+                                                            {
+                                                                "value": "",
+                                                                "name": "None",
+                                                                "description": "Not a stop order"
+                                                            }
+                                                        ]
                                                     },
                                                     "feeRate": {
                                                         "type": "string",
@@ -4214,7 +4430,29 @@
                                                             },
                                                             "stop": {
                                                                 "type": "string",
-                                                                "description": "A mark to the stop order type"
+                                                                "description": "A mark to the stop order type",
+                                                                "enum": [
+                                                                    "down",
+                                                                    "up",
+                                                                    ""
+                                                                ],
+                                                                "x-api-enum": [
+                                                                    {
+                                                                        "value": "down",
+                                                                        "name": "down",
+                                                                        "description": "Triggers when the price reaches or goes below the stopPrice."
+                                                                    },
+                                                                    {
+                                                                        "value": "up",
+                                                                        "name": "up",
+                                                                        "description": "Triggers when the price reaches or goes above the stopPrice."
+                                                                    },
+                                                                    {
+                                                                        "value": "",
+                                                                        "name": "None",
+                                                                        "description": "Not a stop order"
+                                                                    }
+                                                                ]
                                                             },
                                                             "feeRate": {
                                                                 "type": "string",

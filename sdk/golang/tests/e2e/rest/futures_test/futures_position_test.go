@@ -4,13 +4,14 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
+	"os"
+	"testing"
+
 	"github.com/Kucoin/kucoin-universal-sdk/sdk/golang/extension/interceptor"
 	"github.com/Kucoin/kucoin-universal-sdk/sdk/golang/pkg/api"
 	"github.com/Kucoin/kucoin-universal-sdk/sdk/golang/pkg/common/logger"
 	"github.com/Kucoin/kucoin-universal-sdk/sdk/golang/pkg/generate/futures/positions"
 	"github.com/Kucoin/kucoin-universal-sdk/sdk/golang/pkg/types"
-	"os"
-	"testing"
 )
 
 var positionsApi positions.PositionsAPI
@@ -118,6 +119,28 @@ func TestPositionsRemoveIsolatedMarginReq(t *testing.T) {
 	req := builder.Build()
 
 	resp, err := positionsApi.RemoveIsolatedMargin(req, context.TODO())
+	if err != nil {
+		panic(err)
+	}
+	data, err := json.Marshal(resp.ToMap())
+	if err != nil {
+		panic(err)
+	}
+	fmt.Println("code:", resp.CommonResponse.Code)
+	fmt.Println("message:", resp.CommonResponse.Message)
+	fmt.Println("data:", string(data))
+}
+
+func TestPositionsGetCrossMarginRiskLimitReq(t *testing.T) {
+	// GetCrossMarginRiskLimit
+	// Get Cross Margin Risk Limit
+	// /api/v2/batchGetCrossOrderLimit
+
+	builder := positions.NewGetCrossMarginRiskLimitReqBuilder()
+	builder.SetSymbol("XBTUSDTM").SetTotalMargin("10000").SetLeverage(1)
+	req := builder.Build()
+
+	resp, err := positionsApi.GetCrossMarginRiskLimit(req, context.TODO())
 	if err != nil {
 		panic(err)
 	}
@@ -313,6 +336,28 @@ func TestPositionsSwitchMarginModeReq(t *testing.T) {
 	req := builder.Build()
 
 	resp, err := positionsApi.SwitchMarginMode(req, context.TODO())
+	if err != nil {
+		panic(err)
+	}
+	data, err := json.Marshal(resp.ToMap())
+	if err != nil {
+		panic(err)
+	}
+	fmt.Println("code:", resp.CommonResponse.Code)
+	fmt.Println("message:", resp.CommonResponse.Message)
+	fmt.Println("data:", string(data))
+}
+
+func TestPositionsBatchSwitchMarginModeReq(t *testing.T) {
+	// BatchSwitchMarginMode
+	// Batch Switch Margin Mode
+	// /api/v2/position/batchChangeMarginMode
+
+	builder := positions.NewBatchSwitchMarginModeReqBuilder()
+	builder.SetMarginMode("ISOLATED").SetSymbols([]string{"XBTUSDTM", "DOGEUSDTM"})
+	req := builder.Build()
+
+	resp, err := positionsApi.BatchSwitchMarginMode(req, context.TODO())
 	if err != nil {
 		panic(err)
 	}

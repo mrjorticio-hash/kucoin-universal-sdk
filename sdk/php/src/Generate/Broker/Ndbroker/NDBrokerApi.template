@@ -1,5 +1,61 @@
 
     /**
+    * submitKYC
+    * Submit KYC
+    * /api/kyc/ndBroker/proxyClient/submit
+    */
+    public function testSubmitKYC() {
+        $builder = SubmitKYCReq::builder();
+        $builder->setClientUid(?)->setFirstName(?)->setLastName(?)->setIssueCountry(?)->setBirthDate(?)->setIdentityType(?)->setIdentityNumber(?)->setExpireDate(?)->setFrontPhoto(?)->setBackendPhoto(?)->setFacePhoto(?);
+        $req = $builder->build();
+        $resp = $this->api->submitKYC($req);
+        self::assertNotNull($resp->data);
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
+    /**
+    * getKYCStatus
+    * Get KYC Status
+    * /api/kyc/ndBroker/proxyClient/status/list
+    */
+    public function testGetKYCStatus() {
+        $builder = GetKYCStatusReq::builder();
+        $builder->setClientUids(?);
+        $req = $builder->build();
+        $resp = $this->api->getKYCStatus($req);
+        foreach($resp->data as $item) {
+            self::assertNotNull($item->clientUid);
+            self::assertNotNull($item->status);
+            self::assertNotNull($item->rejectReason);
+        }
+
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
+    /**
+    * getKYCStatusList
+    * Get KYC Status List
+    * /api/kyc/ndBroker/proxyClient/status/page
+    */
+    public function testGetKYCStatusList() {
+        $builder = GetKYCStatusListReq::builder();
+        $builder->setPageNumber(?)->setPageSize(?);
+        $req = $builder->build();
+        $resp = $this->api->getKYCStatusList($req);
+        self::assertNotNull($resp->currentPage);
+        self::assertNotNull($resp->pageSize);
+        self::assertNotNull($resp->totalNum);
+        self::assertNotNull($resp->totalPage);
+        foreach($resp->items as $item) {
+            self::assertNotNull($item->clientUid);
+            self::assertNotNull($item->status);
+            self::assertNotNull($item->rejectReason);
+        }
+
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
+    /**
     * getBrokerInfo
     * Get Broker Info
     * /api/v1/broker/nd/info

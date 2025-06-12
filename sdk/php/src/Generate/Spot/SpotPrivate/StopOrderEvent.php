@@ -55,7 +55,7 @@ class StopOrderEvent implements Response
      */
     public $size;
     /**
-     * Order type: loss: stop loss order, oco: oco order
+     * Order type
      * @var string $stop
      * @Type("string")
      * @SerializedName("stop")

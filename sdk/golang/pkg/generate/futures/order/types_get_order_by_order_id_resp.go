@@ -30,7 +30,7 @@ type GetOrderByOrderIdResp struct {
 	DealSize int32 `json:"dealSize,omitempty"`
 	// [Self Trade Prevention](https://www.kucoin.com/docs-new/doc-338146) is divided into these strategies: CN, CO, CB. Not supported DC at the moment.
 	Stp string `json:"stp,omitempty"`
-	// Stop order type (stop limit or stop market)
+	// A mark to the stop order type
 	Stop string `json:"stop,omitempty"`
 	// Trigger price type of stop orders
 	StopPriceType string `json:"stopPriceType,omitempty"`

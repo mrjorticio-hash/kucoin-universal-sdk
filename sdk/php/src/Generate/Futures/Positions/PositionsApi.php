@@ -44,6 +44,26 @@ interface PositionsApi
     ): SwitchMarginModeResp;
 
     /**
+     * Batch Switch Margin Mode
+     *
+     * Batch modify the margin mode of the symbols.
+     * @see: https://www.kucoin.com/docs-new/api-3472403
+     *
+     * +-----------------------+---------+
+     * | Extra API Info        | Value   |
+     * +-----------------------+---------+
+     * | API-DOMAIN            | FUTURES |
+     * | API-CHANNEL           | PRIVATE |
+     * | API-PERMISSION        | FUTURES |
+     * | API-RATE-LIMIT-POOL   | FUTURES |
+     * | API-RATE-LIMIT-WEIGHT | 2       |
+     * +-----------------------+---------+
+     */
+    public function batchSwitchMarginMode(
+        BatchSwitchMarginModeReq $req
+    ): BatchSwitchMarginModeResp;
+
+    /**
      * Get Max Open Size
      *
      * Get Maximum Open Position Size.
@@ -220,6 +240,26 @@ interface PositionsApi
     public function removeIsolatedMargin(
         RemoveIsolatedMarginReq $req
     ): RemoveIsolatedMarginResp;
+
+    /**
+     * Get Cross Margin Risk Limit
+     *
+     * Batch get cross margin risk limit.
+     * @see: https://www.kucoin.com/docs-new/api-3472655
+     *
+     * +-----------------------+---------+
+     * | Extra API Info        | Value   |
+     * +-----------------------+---------+
+     * | API-DOMAIN            | FUTURES |
+     * | API-CHANNEL           | PRIVATE |
+     * | API-PERMISSION        | FUTURES |
+     * | API-RATE-LIMIT-POOL   | FUTURES |
+     * | API-RATE-LIMIT-WEIGHT | 2       |
+     * +-----------------------+---------+
+     */
+    public function getCrossMarginRiskLimit(
+        GetCrossMarginRiskLimitReq $req
+    ): GetCrossMarginRiskLimitResp;
 
     /**
      * Get Isolated Margin Risk Limit

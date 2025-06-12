@@ -84,6 +84,26 @@ interface WithdrawalApi
     ): GetWithdrawalHistoryResp;
 
     /**
+     * Get Withdrawal History By ID
+     *
+     * Request a withdrawal history by id via this endpoint.
+     * @see: https://www.kucoin.com/docs-new/api-3471890
+     *
+     * +-----------------------+------------+
+     * | Extra API Info        | Value      |
+     * +-----------------------+------------+
+     * | API-DOMAIN            | SPOT       |
+     * | API-CHANNEL           | PRIVATE    |
+     * | API-PERMISSION        | GENERAL    |
+     * | API-RATE-LIMIT-POOL   | MANAGEMENT |
+     * | API-RATE-LIMIT-WEIGHT | 20         |
+     * +-----------------------+------------+
+     */
+    public function getWithdrawalHistoryById(
+        GetWithdrawalHistoryByIdReq $req
+    ): GetWithdrawalHistoryByIdResp;
+
+    /**
      * Get Withdrawal History - Old
      *
      * Request a deposit list via this endpoint. Items are paginated and sorted to show the latest first. See the Pagination section for retrieving additional entries after the first page.

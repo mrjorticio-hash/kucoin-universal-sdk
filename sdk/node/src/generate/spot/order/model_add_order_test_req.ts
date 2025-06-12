@@ -85,12 +85,12 @@ export class AddOrderTestReq implements Serializable {
     funds?: string;
 
     /**
-     * Order failed after timeout of specified milliseconds, If clientTimestamp + allowMaxTimeWindow < the server reaches time, this order will fail.
+     * Order failed after timeout of specified milliseconds, If clientTimestamp + allowMaxTimeWindow < Gateway received the message time, this order will fail.
      */
     allowMaxTimeWindow?: number;
 
     /**
-     * Equal to KC-API-TIMESTAMP, Need to be defined if iceberg is specified.
+     * Equal to KC-API-TIMESTAMP, Need to be defined if allowMaxTimeWindow is specified.
      */
     clientTimestamp?: number;
 
@@ -182,11 +182,11 @@ export class AddOrderTestReq implements Serializable {
          */
         funds?: string;
         /**
-         * Order failed after timeout of specified milliseconds, If clientTimestamp + allowMaxTimeWindow < the server reaches time, this order will fail.
+         * Order failed after timeout of specified milliseconds, If clientTimestamp + allowMaxTimeWindow < Gateway received the message time, this order will fail.
          */
         allowMaxTimeWindow?: number;
         /**
-         * Equal to KC-API-TIMESTAMP, Need to be defined if iceberg is specified.
+         * Equal to KC-API-TIMESTAMP, Need to be defined if allowMaxTimeWindow is specified.
          */
         clientTimestamp?: number;
     }): AddOrderTestReq {
@@ -444,7 +444,7 @@ export class AddOrderTestReqBuilder {
     }
 
     /**
-     * Order failed after timeout of specified milliseconds, If clientTimestamp + allowMaxTimeWindow < the server reaches time, this order will fail.
+     * Order failed after timeout of specified milliseconds, If clientTimestamp + allowMaxTimeWindow < Gateway received the message time, this order will fail.
      */
     setAllowMaxTimeWindow(value: number): AddOrderTestReqBuilder {
         this.obj.allowMaxTimeWindow = value;
@@ -452,7 +452,7 @@ export class AddOrderTestReqBuilder {
     }
 
     /**
-     * Equal to KC-API-TIMESTAMP, Need to be defined if iceberg is specified.
+     * Equal to KC-API-TIMESTAMP, Need to be defined if allowMaxTimeWindow is specified.
      */
     setClientTimestamp(value: number): AddOrderTestReqBuilder {
         this.obj.clientTimestamp = value;

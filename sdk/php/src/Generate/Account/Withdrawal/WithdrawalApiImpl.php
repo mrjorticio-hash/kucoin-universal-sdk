@@ -68,6 +68,20 @@ class WithdrawalApiImpl implements WithdrawalApi
         );
     }
 
+    public function getWithdrawalHistoryById(
+        GetWithdrawalHistoryByIdReq $req
+    ): GetWithdrawalHistoryByIdResp {
+        return $this->transport->call(
+            "spot",
+            false,
+            "GET",
+            "/api/v1/withdrawals/{withdrawalId}",
+            $req,
+            GetWithdrawalHistoryByIdResp::class,
+            false
+        );
+    }
+
     public function getWithdrawalHistoryOld(
         GetWithdrawalHistoryOldReq $req
     ): GetWithdrawalHistoryOldResp {

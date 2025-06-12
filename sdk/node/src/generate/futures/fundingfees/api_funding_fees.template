@@ -8,7 +8,7 @@ describe('Auto Test', ()=> {
     test('getCurrentFundingRate request test', ()=> {
     /**
     * getCurrentFundingRate
-    * Get Current Funding Rate.
+    * Get Current Funding Rate
     * /api/v1/funding-rate/{symbol}/current
     */
     let builder = GetCurrentFundingRateReq.builder();
@@ -23,6 +23,8 @@ describe('Auto Test', ()=> {
         expect(result.predictedValue).toEqual(expect.anything());
         expect(result.fundingRateCap).toEqual(expect.anything());
         expect(result.fundingRateFloor).toEqual(expect.anything());
+        expect(result.period).toEqual(expect.anything());
+        expect(result.fundingTime).toEqual(expect.anything());
         console.log(resp);
     });
     })

@@ -42,14 +42,14 @@ class GetCurrencyResp implements Response
     public $precision;
     /**
      * Number of block confirmations
-     * @var int $confirms
+     * @var int|null $confirms
      * @Type("int")
      * @SerializedName("confirms")
      */
     public $confirms;
     /**
      * Contract address
-     * @var string $contractAddress
+     * @var string|null $contractAddress
      * @Type("string")
      * @SerializedName("contractAddress")
      */

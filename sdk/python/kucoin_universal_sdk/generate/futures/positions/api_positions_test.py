@@ -1,8 +1,12 @@
 import unittest
 from .model_add_isolated_margin_req import AddIsolatedMarginReq
 from .model_add_isolated_margin_resp import AddIsolatedMarginResp
+from .model_batch_switch_margin_mode_req import BatchSwitchMarginModeReq
+from .model_batch_switch_margin_mode_resp import BatchSwitchMarginModeResp
 from .model_get_cross_margin_leverage_req import GetCrossMarginLeverageReq
 from .model_get_cross_margin_leverage_resp import GetCrossMarginLeverageResp
+from .model_get_cross_margin_risk_limit_req import GetCrossMarginRiskLimitReq
+from .model_get_cross_margin_risk_limit_resp import GetCrossMarginRiskLimitResp
 from .model_get_isolated_margin_risk_limit_req import GetIsolatedMarginRiskLimitReq
 from .model_get_isolated_margin_risk_limit_resp import GetIsolatedMarginRiskLimitResp
 from .model_get_margin_mode_req import GetMarginModeReq
@@ -70,6 +74,25 @@ class PositionsAPITest(unittest.TestCase):
         data = "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"symbol\": \"XBTUSDTM\",\n        \"marginMode\": \"ISOLATED\"\n    }\n}"
         common_response = RestResponse.from_json(data)
         resp = SwitchMarginModeResp.from_dict(common_response.data)
+
+    def test_batch_switch_margin_mode_req_model(self):
+        """
+       batch_switch_margin_mode
+       Batch Switch Margin Mode
+       /api/v2/position/batchChangeMarginMode
+       """
+        data = "{\"marginMode\": \"ISOLATED\", \"symbols\": [\"XBTUSDTM\", \"ETHUSDTM\"]}"
+        req = BatchSwitchMarginModeReq.from_json(data)
+
+    def test_batch_switch_margin_mode_resp_model(self):
+        """
+        batch_switch_margin_mode
+        Batch Switch Margin Mode
+        /api/v2/position/batchChangeMarginMode
+        """
+        data = "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"marginMode\": {\n            \"ETHUSDTM\": \"ISOLATED\",\n            \"XBTUSDTM\": \"CROSS\"\n        },\n        \"errors\": [\n            {\n                \"code\": \"50002\",\n                \"msg\": \"exist.order.or.position\",\n                \"symbol\": \"XBTUSDTM\"\n            }\n        ]\n    }\n}"
+        common_response = RestResponse.from_json(data)
+        resp = BatchSwitchMarginModeResp.from_dict(common_response.data)
 
     def test_get_max_open_size_req_model(self):
         """
@@ -241,6 +264,25 @@ class PositionsAPITest(unittest.TestCase):
         data = "{\n    \"code\": \"200000\",\n    \"data\": \"0.1\"\n}"
         common_response = RestResponse.from_json(data)
         resp = RemoveIsolatedMarginResp.from_dict(common_response.data)
+
+    def test_get_cross_margin_risk_limit_req_model(self):
+        """
+       get_cross_margin_risk_limit
+       Get Cross Margin Risk Limit
+       /api/v2/batchGetCrossOrderLimit
+       """
+        data = "{\"symbol\": \"XBTUSDTM\", \"totalMargin\": \"example_string_default_value\", \"leverage\": 123456}"
+        req = GetCrossMarginRiskLimitReq.from_json(data)
+
+    def test_get_cross_margin_risk_limit_resp_model(self):
+        """
+        get_cross_margin_risk_limit
+        Get Cross Margin Risk Limit
+        /api/v2/batchGetCrossOrderLimit
+        """
+        data = "{\n    \"code\": \"200000\",\n    \"data\": [\n        {\n            \"symbol\": \"XBTUSDTM\",\n            \"maxOpenSize\": 12102,\n            \"maxOpenValue\": \"1234549.2240000000\",\n            \"totalMargin\": \"10000\",\n            \"price\": \"102012\",\n            \"leverage\": \"125.00\",\n            \"mmr\": \"0.00416136\",\n            \"imr\": \"0.008\",\n            \"currency\": \"USDT\"\n        },\n        {\n            \"symbol\": \"ETHUSDTM\",\n            \"maxOpenSize\": 38003,\n            \"maxOpenValue\": \"971508.6920000000\",\n            \"totalMargin\": \"10000\",\n            \"price\": \"2556.4\",\n            \"leverage\": \"100.00\",\n            \"mmr\": \"0.0054623236\",\n            \"imr\": \"0.01\",\n            \"currency\": \"USDT\"\n        }\n    ]\n}"
+        common_response = RestResponse.from_json(data)
+        resp = GetCrossMarginRiskLimitResp.from_dict(common_response.data)
 
     def test_get_isolated_margin_risk_limit_req_model(self):
         """

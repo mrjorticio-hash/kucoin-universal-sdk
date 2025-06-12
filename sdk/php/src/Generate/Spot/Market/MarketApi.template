@@ -33,7 +33,7 @@
     */
     public function testGetCurrency() {
         $builder = GetCurrencyReq::builder();
-        $builder->setCurrency(?)->setChain(?);
+        $builder->setChain(?)->setCurrency(?);
         $req = $builder->build();
         $resp = $this->api->getCurrency($req);
         self::assertNotNull($resp->currency);

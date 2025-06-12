@@ -40,7 +40,7 @@
     */
     public function testCancelOrderByOrderId() {
         $builder = CancelOrderByOrderIdReq::builder();
-        $builder->setOrderId(?)->setSymbol(?);
+        $builder->setSymbol(?)->setOrderId(?);
         $req = $builder->build();
         $resp = $this->api->cancelOrderByOrderId($req);
         self::assertNotNull($resp->orderId);
@@ -54,7 +54,7 @@
     */
     public function testCancelOrderByClientOid() {
         $builder = CancelOrderByClientOidReq::builder();
-        $builder->setClientOid(?)->setSymbol(?);
+        $builder->setSymbol(?)->setClientOid(?);
         $req = $builder->build();
         $resp = $this->api->cancelOrderByClientOid($req);
         self::assertNotNull($resp->clientOid);
@@ -243,7 +243,7 @@
     */
     public function testGetOrderByOrderId() {
         $builder = GetOrderByOrderIdReq::builder();
-        $builder->setOrderId(?)->setSymbol(?);
+        $builder->setSymbol(?)->setOrderId(?);
         $req = $builder->build();
         $resp = $this->api->getOrderByOrderId($req);
         self::assertNotNull($resp->id);
@@ -293,7 +293,7 @@
     */
     public function testGetOrderByClientOid() {
         $builder = GetOrderByClientOidReq::builder();
-        $builder->setClientOid(?)->setSymbol(?);
+        $builder->setSymbol(?)->setClientOid(?);
         $req = $builder->build();
         $resp = $this->api->getOrderByClientOid($req);
         self::assertNotNull($resp->id);

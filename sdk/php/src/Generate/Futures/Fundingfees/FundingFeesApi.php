@@ -6,7 +6,7 @@ namespace KuCoin\UniversalSDK\Generate\Futures\Fundingfees;
 interface FundingFeesApi
 {
     /**
-     * Get Current Funding Rate.
+     * Get Current Funding Rate
      *
      * Get Current Funding Rate.
      * @see: https://www.kucoin.com/docs-new/api-3470265

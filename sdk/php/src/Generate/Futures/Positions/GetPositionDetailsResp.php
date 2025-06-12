@@ -41,7 +41,7 @@ class GetPositionDetailsResp implements Response
      */
     public $delevPercentage;
     /**
-     * Open time
+     * First opening time
      * @var int $openingTimestamp
      * @Type("int")
      * @SerializedName("openingTimestamp")
@@ -240,7 +240,7 @@ class GetPositionDetailsResp implements Response
      */
     public $autoDeposit;
     /**
-     * Maintenance margin requirement **Only applicable to Isolated Margin**
+     * Maintenance margin requirement
      * @var float|null $maintMarginReq
      * @Type("float")
      * @SerializedName("maintMarginReq")
@@ -303,7 +303,7 @@ class GetPositionDetailsResp implements Response
      */
     public $posFunding;
     /**
-     * Maintenance margin **Only applicable to Isolated Margin**
+     * Maintenance margin
      * @var float|null $posMaint
      * @Type("float")
      * @SerializedName("posMaint")

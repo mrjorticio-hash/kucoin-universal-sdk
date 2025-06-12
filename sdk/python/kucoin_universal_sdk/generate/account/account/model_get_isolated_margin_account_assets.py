@@ -6,7 +6,6 @@ from __future__ import annotations
 import pprint
 import json
 
-from enum import Enum
 from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
 from .model_get_isolated_margin_account_assets_base_asset import GetIsolatedMarginAccountAssetsBaseAsset
@@ -19,29 +18,14 @@ class GetIsolatedMarginAccountAssets(BaseModel):
 
     Attributes:
         symbol (str): Symbol
-        status (StatusEnum): Position status; EFFECTIVE-effective, BANKRUPTCY-bankruptcy liquidation, LIQUIDATION-closing, REPAY-repayment, BORROW-borrowing
+        status (str): Position status; EFFECTIVE-effective, BANKRUPTCY-bankruptcy liquidation, LIQUIDATION-closing, REPAY-repayment, BORROW-borrowing
         debt_ratio (str): debt ratio
         base_asset (GetIsolatedMarginAccountAssetsBaseAsset): 
         quote_asset (GetIsolatedMarginAccountAssetsQuoteAsset): 
     """
 
-    class StatusEnum(Enum):
-        """
-        Attributes:
-            EFFECTIVE: Effective
-            BANKRUPTCY: Bankruptcy liquidation
-            LIQUIDATION: Closing
-            REPAY: Repayment
-            BORROW: Borrowing
-        """
-        EFFECTIVE = 'EFFECTIVE'
-        BANKRUPTCY = 'BANKRUPTCY'
-        LIQUIDATION = 'LIQUIDATION'
-        REPAY = 'REPAY'
-        BORROW = 'BORROW'
-
     symbol: Optional[str] = Field(default=None, description="Symbol")
-    status: Optional[StatusEnum] = Field(
+    status: Optional[str] = Field(
         default=None,
         description=
         "Position status; EFFECTIVE-effective, BANKRUPTCY-bankruptcy liquidation, LIQUIDATION-closing, REPAY-repayment, BORROW-borrowing"

@@ -15,6 +15,10 @@ from .model_get_deposit_detail_req import GetDepositDetailReq
 from .model_get_deposit_detail_resp import GetDepositDetailResp
 from .model_get_deposit_list_req import GetDepositListReq
 from .model_get_deposit_list_resp import GetDepositListResp
+from .model_get_kyc_status_list_req import GetKycStatusListReq
+from .model_get_kyc_status_list_resp import GetKycStatusListResp
+from .model_get_kyc_status_req import GetKycStatusReq
+from .model_get_kyc_status_resp import GetKycStatusResp
 from .model_get_rebase_req import GetRebaseReq
 from .model_get_rebase_resp import GetRebaseResp
 from .model_get_sub_account_api_req import GetSubAccountApiReq
@@ -27,11 +31,69 @@ from .model_get_withdraw_detail_req import GetWithdrawDetailReq
 from .model_get_withdraw_detail_resp import GetWithdrawDetailResp
 from .model_modify_sub_account_api_req import ModifySubAccountApiReq
 from .model_modify_sub_account_api_resp import ModifySubAccountApiResp
+from .model_submit_kyc_req import SubmitKycReq
+from .model_submit_kyc_resp import SubmitKycResp
 from .model_transfer_req import TransferReq
 from .model_transfer_resp import TransferResp
 
 
 class NDBrokerAPI(ABC):
+
+    @abstractmethod
+    def submit_kyc(self, req: SubmitKycReq, **kwargs: Any) -> SubmitKycResp:
+        """
+        summary: Submit KYC
+        description: This endpointcan submit kyc information for a sub-account of nd broker
+        documentation: https://www.kucoin.com/docs-new/api-3472406
+        +-----------------------+---------+
+        | Extra API Info        | Value   |
+        +-----------------------+---------+
+        | API-DOMAIN            | BROKER  |
+        | API-CHANNEL           | PRIVATE |
+        | API-PERMISSION        | GENERAL |
+        | API-RATE-LIMIT-POOL   | BROKER  |
+        | API-RATE-LIMIT-WEIGHT | NULL    |
+        +-----------------------+---------+
+        """
+        pass
+
+    @abstractmethod
+    def get_kyc_status(self, req: GetKycStatusReq,
+                       **kwargs: Any) -> GetKycStatusResp:
+        """
+        summary: Get KYC Status
+        description: This endpoint can query the specified Kyc status
+        documentation: https://www.kucoin.com/docs-new/api-3472407
+        +-----------------------+---------+
+        | Extra API Info        | Value   |
+        +-----------------------+---------+
+        | API-DOMAIN            | BROKER  |
+        | API-CHANNEL           | PRIVATE |
+        | API-PERMISSION        | GENERAL |
+        | API-RATE-LIMIT-POOL   | BROKER  |
+        | API-RATE-LIMIT-WEIGHT | NULL    |
+        +-----------------------+---------+
+        """
+        pass
+
+    @abstractmethod
+    def get_kyc_status_list(self, req: GetKycStatusListReq,
+                            **kwargs: Any) -> GetKycStatusListResp:
+        """
+        summary: Get KYC Status List
+        description: This endpoint can query the specified Kyc status list
+        documentation: https://www.kucoin.com/docs-new/api-3472408
+        +-----------------------+---------+
+        | Extra API Info        | Value   |
+        +-----------------------+---------+
+        | API-DOMAIN            | BROKER  |
+        | API-CHANNEL           | PRIVATE |
+        | API-PERMISSION        | GENERAL |
+        | API-RATE-LIMIT-POOL   | BROKER  |
+        | API-RATE-LIMIT-WEIGHT | NULL    |
+        +-----------------------+---------+
+        """
+        pass
 
     @abstractmethod
     def get_broker_info(self, req: GetBrokerInfoReq,
@@ -283,6 +345,23 @@ class NDBrokerAPIImpl(NDBrokerAPI):
 
     def __init__(self, transport: Transport):
         self.transport = transport
+
+    def submit_kyc(self, req: SubmitKycReq, **kwargs: Any) -> SubmitKycResp:
+        return self.transport.call("broker", True, "POST",
+                                   "/api/kyc/ndBroker/proxyClient/submit", req,
+                                   SubmitKycResp(), False, **kwargs)
+
+    def get_kyc_status(self, req: GetKycStatusReq,
+                       **kwargs: Any) -> GetKycStatusResp:
+        return self.transport.call(
+            "broker", True, "GET", "/api/kyc/ndBroker/proxyClient/status/list",
+            req, GetKycStatusResp(), False, **kwargs)
+
+    def get_kyc_status_list(self, req: GetKycStatusListReq,
+                            **kwargs: Any) -> GetKycStatusListResp:
+        return self.transport.call(
+            "broker", True, "GET", "/api/kyc/ndBroker/proxyClient/status/page",
+            req, GetKycStatusListResp(), False, **kwargs)
 
     def get_broker_info(self, req: GetBrokerInfoReq,
                         **kwargs: Any) -> GetBrokerInfoResp:

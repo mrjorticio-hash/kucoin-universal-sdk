@@ -37,13 +37,13 @@ class AddDepositAddressV1Req implements Serializable
     public $chain = "eth";
     /**
      * Deposit account type: main (funding account), trade (spot trading account); the default is main
-     * - 'main' : Funding account
-     * - 'trade' : Spot account
+     * - 'MAIN' : Funding account
+     * - 'TRADE' : Spot account
      * @var string|null $to
      * @Type("string")
      * @SerializedName("to")
      */
-    public $to = "main";
+    public $to = "MAIN";
 
     private function __construct() {}
 
@@ -135,8 +135,8 @@ class AddDepositAddressV1ReqBuilder
 
     /**
      * Deposit account type: main (funding account), trade (spot trading account); the default is main
-     * - 'main' : Funding account
-     * - 'trade' : Spot account
+     * - 'MAIN' : Funding account
+     * - 'TRADE' : Spot account
      * @param string $value
      * @return self
      */

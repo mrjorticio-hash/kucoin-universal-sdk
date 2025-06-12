@@ -1,6 +1,63 @@
 # API FUNCTION TEMPLATE
 
 
+def test_submit_kyc_req(self):
+    """
+        submit_kyc
+        Submit KYC
+        /api/kyc/ndBroker/proxyClient/submit
+    """
+
+    builder = SubmitKycReqBuilder()
+    builder.set_client_uid(?).set_first_name(?).set_last_name(?).set_issue_country(?).set_birth_date(?).set_identity_type(?).set_identity_number(?).set_expire_date(?).set_front_photo(?).set_backend_photo(?).set_face_photo(?)
+    req = builder.build()
+    try:
+        resp = self.api.submit_kyc(req)
+        print("code: ", resp.common_response.code)
+        print("msg: ", resp.common_response.message)
+        print("data: ", resp.to_json())
+    except Exception as e:
+        print("error: ", e)
+        raise e
+
+def test_get_kyc_status_req(self):
+    """
+        get_kyc_status
+        Get KYC Status
+        /api/kyc/ndBroker/proxyClient/status/list
+    """
+
+    builder = GetKycStatusReqBuilder()
+    builder.set_client_uids(?)
+    req = builder.build()
+    try:
+        resp = self.api.get_kyc_status(req)
+        print("code: ", resp.common_response.code)
+        print("msg: ", resp.common_response.message)
+        print("data: ", resp.to_json())
+    except Exception as e:
+        print("error: ", e)
+        raise e
+
+def test_get_kyc_status_list_req(self):
+    """
+        get_kyc_status_list
+        Get KYC Status List
+        /api/kyc/ndBroker/proxyClient/status/page
+    """
+
+    builder = GetKycStatusListReqBuilder()
+    builder.set_page_number(?).set_page_size(?)
+    req = builder.build()
+    try:
+        resp = self.api.get_kyc_status_list(req)
+        print("code: ", resp.common_response.code)
+        print("msg: ", resp.common_response.message)
+        print("data: ", resp.to_json())
+    except Exception as e:
+        print("error: ", e)
+        raise e
+
 def test_get_broker_info_req(self):
     """
         get_broker_info

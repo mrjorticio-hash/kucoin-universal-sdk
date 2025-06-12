@@ -17,6 +17,14 @@ from .model_get_deposit_list_data import GetDepositListData
 from .model_get_deposit_list_req import GetDepositListReq
 from .model_get_deposit_list_req import GetDepositListReqBuilder
 from .model_get_deposit_list_resp import GetDepositListResp
+from .model_get_kyc_status_data import GetKycStatusData
+from .model_get_kyc_status_list_items import GetKycStatusListItems
+from .model_get_kyc_status_list_req import GetKycStatusListReq
+from .model_get_kyc_status_list_req import GetKycStatusListReqBuilder
+from .model_get_kyc_status_list_resp import GetKycStatusListResp
+from .model_get_kyc_status_req import GetKycStatusReq
+from .model_get_kyc_status_req import GetKycStatusReqBuilder
+from .model_get_kyc_status_resp import GetKycStatusResp
 from .model_get_rebase_req import GetRebaseReq
 from .model_get_rebase_req import GetRebaseReqBuilder
 from .model_get_rebase_resp import GetRebaseResp
@@ -37,6 +45,9 @@ from .model_get_withdraw_detail_resp import GetWithdrawDetailResp
 from .model_modify_sub_account_api_req import ModifySubAccountApiReq
 from .model_modify_sub_account_api_req import ModifySubAccountApiReqBuilder
 from .model_modify_sub_account_api_resp import ModifySubAccountApiResp
+from .model_submit_kyc_req import SubmitKycReq
+from .model_submit_kyc_req import SubmitKycReqBuilder
+from .model_submit_kyc_resp import SubmitKycResp
 from .model_transfer_req import TransferReq
 from .model_transfer_req import TransferReqBuilder
 from .model_transfer_resp import TransferResp

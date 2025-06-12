@@ -17,18 +17,17 @@ class MarginModeEvent(BaseModel):
     MarginModeEvent
 
     Attributes:
-        symbol (str): The SYMBOL is the key with value  \"CROSS\" or \"ISOLATED\"
+        data (dict[str, str]): The SYMBOL is the key with value  \"CROSS\" or \"ISOLATED\"
     """
 
     common_response: Optional[WsMessage] = Field(default=None,
                                                  description="Common response")
-    symbol: Optional[str] = Field(
+    data: Optional[Dict[str, str]] = Field(
         default=None,
         description=
-        "The SYMBOL is the key with value  \"CROSS\" or \"ISOLATED\"",
-        alias="SYMBOL")
+        "The SYMBOL is the key with value  \"CROSS\" or \"ISOLATED\"")
 
-    __properties: ClassVar[List[str]] = ["SYMBOL"]
+    __properties: ClassVar[List[str]] = ["data"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -59,10 +58,12 @@ class MarginModeEvent(BaseModel):
         if obj is None:
             return None
 
+        # original response
+        obj = {'data': obj}
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({"SYMBOL": obj.get("SYMBOL")})
+        _obj = cls.model_validate({"data": obj.get("data")})
         return _obj
 
 

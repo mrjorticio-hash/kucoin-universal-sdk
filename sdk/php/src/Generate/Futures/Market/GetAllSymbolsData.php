@@ -183,7 +183,7 @@ class GetAllSymbolsData implements Serializable
     public $makerFixFee;
     /**
      * Settlement fee
-     * @var float $settlementFee
+     * @var float|null $settlementFee
      * @Type("float")
      * @SerializedName("settlementFee")
      */
@@ -220,28 +220,28 @@ class GetAllSymbolsData implements Serializable
     /**
      * Fair price marking method; the Futures contract is null
      * - 'FundingRate' : FundingRate
-     * @var string $fairMethod
+     * @var string|null $fairMethod
      * @Type("string")
      * @SerializedName("fairMethod")
      */
     public $fairMethod;
     /**
      * Ticker symbol of the base currency
-     * @var string $fundingBaseSymbol
+     * @var string|null $fundingBaseSymbol
      * @Type("string")
      * @SerializedName("fundingBaseSymbol")
      */
     public $fundingBaseSymbol;
     /**
      * Ticker symbol of the quote currency
-     * @var string $fundingQuoteSymbol
+     * @var string|null $fundingQuoteSymbol
      * @Type("string")
      * @SerializedName("fundingQuoteSymbol")
      */
     public $fundingQuoteSymbol;
     /**
      * Funding rate symbol
-     * @var string $fundingRateSymbol
+     * @var string|null $fundingRateSymbol
      * @Type("string")
      * @SerializedName("fundingRateSymbol")
      */

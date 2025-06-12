@@ -28,7 +28,7 @@ def test_get_currency_req(self):
     """
 
     builder = GetCurrencyReqBuilder()
-    builder.set_currency(?).set_chain(?)
+    builder.set_chain(?).set_currency(?)
     req = builder.build()
     try:
         resp = self.api.get_currency(req)

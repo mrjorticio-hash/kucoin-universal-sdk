@@ -9,45 +9,34 @@ export class GetIsolatedMarginAccountAssets implements Serializable {
     /**
      * Symbol
      */
-    symbol: string;
+    symbol?: string;
 
     /**
      * Position status; EFFECTIVE-effective, BANKRUPTCY-bankruptcy liquidation, LIQUIDATION-closing, REPAY-repayment, BORROW-borrowing
      */
-    status: GetIsolatedMarginAccountAssets.StatusEnum;
+    status?: string;
 
     /**
      * debt ratio
      */
-    debtRatio: string;
+    debtRatio?: string;
 
     /**
      *
      */
     @Type(() => GetIsolatedMarginAccountAssetsBaseAsset)
-    baseAsset: GetIsolatedMarginAccountAssetsBaseAsset;
+    baseAsset?: GetIsolatedMarginAccountAssetsBaseAsset;
 
     /**
      *
      */
     @Type(() => GetIsolatedMarginAccountAssetsQuoteAsset)
-    quoteAsset: GetIsolatedMarginAccountAssetsQuoteAsset;
+    quoteAsset?: GetIsolatedMarginAccountAssetsQuoteAsset;
 
     /**
      * Private constructor, please use the corresponding static methods to construct the object.
      */
-    private constructor() {
-        // @ts-ignore
-        this.symbol = null;
-        // @ts-ignore
-        this.status = null;
-        // @ts-ignore
-        this.debtRatio = null;
-        // @ts-ignore
-        this.baseAsset = null;
-        // @ts-ignore
-        this.quoteAsset = null;
-    }
+    private constructor() {}
     /**
      * Convert the object to a JSON string.
      */
@@ -65,30 +54,5 @@ export class GetIsolatedMarginAccountAssets implements Serializable {
      */
     static fromObject(jsonObject: Object): GetIsolatedMarginAccountAssets {
         return plainToClassFromExist(new GetIsolatedMarginAccountAssets(), jsonObject);
-    }
-}
-
-export namespace GetIsolatedMarginAccountAssets {
-    export enum StatusEnum {
-        /**
-         * Effective
-         */
-        EFFECTIVE = <any>'EFFECTIVE',
-        /**
-         * Bankruptcy liquidation
-         */
-        BANKRUPTCY = <any>'BANKRUPTCY',
-        /**
-         * Closing
-         */
-        LIQUIDATION = <any>'LIQUIDATION',
-        /**
-         * Repayment
-         */
-        REPAY = <any>'REPAY',
-        /**
-         * Borrowing
-         */
-        BORROW = <any>'BORROW',
     }
 }

@@ -4,7 +4,7 @@ package positions
 
 // GetPositionListReq struct for GetPositionListReq
 type GetPositionListReq struct {
-	// Currency code, Please refer to [rootSymbol](https://www.kucoin.com/docs-new/api-221752070) , such as USDT,XBT. Query all positions when empty
+	// Quote currency code, Please refer to [rootSymbol](https://www.kucoin.com/docs-new/api-221752070) , such as USDT,XBT. Query all positions when empty
 	Currency *string `json:"currency,omitempty" url:"currency,omitempty"`
 }
 
@@ -36,7 +36,7 @@ func NewGetPositionListReqBuilder() *GetPositionListReqBuilder {
 	return &GetPositionListReqBuilder{obj: NewGetPositionListReqWithDefaults()}
 }
 
-// Currency code, Please refer to [rootSymbol](https://www.kucoin.com/docs-new/api-221752070) , such as USDT,XBT. Query all positions when empty
+// Quote currency code, Please refer to [rootSymbol](https://www.kucoin.com/docs-new/api-221752070) , such as USDT,XBT. Query all positions when empty
 func (builder *GetPositionListReqBuilder) SetCurrency(value string) *GetPositionListReqBuilder {
 	builder.obj.Currency = &value
 	return builder

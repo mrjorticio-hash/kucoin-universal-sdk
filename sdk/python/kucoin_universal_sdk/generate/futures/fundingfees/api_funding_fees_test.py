@@ -13,7 +13,7 @@ class FundingFeesAPITest(unittest.TestCase):
     def test_get_current_funding_rate_req_model(self):
         """
        get_current_funding_rate
-       Get Current Funding Rate.
+       Get Current Funding Rate
        /api/v1/funding-rate/{symbol}/current
        """
         data = "{\"symbol\": \"XBTUSDTM\"}"
@@ -22,10 +22,10 @@ class FundingFeesAPITest(unittest.TestCase):
     def test_get_current_funding_rate_resp_model(self):
         """
         get_current_funding_rate
-        Get Current Funding Rate.
+        Get Current Funding Rate
         /api/v1/funding-rate/{symbol}/current
         """
-        data = "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"symbol\": \".XBTUSDTMFPI8H\",\n        \"granularity\": 28800000,\n        \"timePoint\": 1731441600000,\n        \"value\": 6.41E-4,\n        \"predictedValue\": 5.2E-5,\n        \"fundingRateCap\": 0.003,\n        \"fundingRateFloor\": -0.003\n    }\n}"
+        data = "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"symbol\": \".XBTUSDTMFPI8H\",\n        \"granularity\": 28800000,\n        \"timePoint\": 1748462400000,\n        \"value\": 6.1E-5,\n        \"predictedValue\": 1.09E-4,\n        \"fundingRateCap\": 0.003,\n        \"fundingRateFloor\": -0.003,\n        \"period\": 0,\n        \"fundingTime\": 1748491200000\n    }\n}"
         common_response = RestResponse.from_json(data)
         resp = GetCurrentFundingRateResp.from_dict(common_response.data)
 

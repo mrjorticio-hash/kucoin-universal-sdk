@@ -9,6 +9,48 @@ import (
 
 type NDBrokerAPI interface {
 
+	// SubmitKYC Submit KYC
+	// Description: This endpointcan submit kyc information for a sub-account of nd broker
+	// Documentation: https://www.kucoin.com/docs-new/api-3472406
+	// +-----------------------+---------+
+	// | Extra API Info        | Value   |
+	// +-----------------------+---------+
+	// | API-DOMAIN            | BROKER  |
+	// | API-CHANNEL           | PRIVATE |
+	// | API-PERMISSION        | GENERAL |
+	// | API-RATE-LIMIT-POOL   | BROKER  |
+	// | API-RATE-LIMIT-WEIGHT | NULL    |
+	// +-----------------------+---------+
+	SubmitKYC(req *SubmitKYCReq, ctx context.Context) (*SubmitKYCResp, error)
+
+	// GetKYCStatus Get KYC Status
+	// Description: This endpoint can query the specified Kyc status
+	// Documentation: https://www.kucoin.com/docs-new/api-3472407
+	// +-----------------------+---------+
+	// | Extra API Info        | Value   |
+	// +-----------------------+---------+
+	// | API-DOMAIN            | BROKER  |
+	// | API-CHANNEL           | PRIVATE |
+	// | API-PERMISSION        | GENERAL |
+	// | API-RATE-LIMIT-POOL   | BROKER  |
+	// | API-RATE-LIMIT-WEIGHT | NULL    |
+	// +-----------------------+---------+
+	GetKYCStatus(req *GetKYCStatusReq, ctx context.Context) (*GetKYCStatusResp, error)
+
+	// GetKYCStatusList Get KYC Status List
+	// Description: This endpoint can query the specified Kyc status list
+	// Documentation: https://www.kucoin.com/docs-new/api-3472408
+	// +-----------------------+---------+
+	// | Extra API Info        | Value   |
+	// +-----------------------+---------+
+	// | API-DOMAIN            | BROKER  |
+	// | API-CHANNEL           | PRIVATE |
+	// | API-PERMISSION        | GENERAL |
+	// | API-RATE-LIMIT-POOL   | BROKER  |
+	// | API-RATE-LIMIT-WEIGHT | NULL    |
+	// +-----------------------+---------+
+	GetKYCStatusList(req *GetKYCStatusListReq, ctx context.Context) (*GetKYCStatusListResp, error)
+
 	// GetBrokerInfo Get Broker Info
 	// Description: This endpoint supports querying the basic information of the current Broker.
 	// Documentation: https://www.kucoin.com/docs-new/api-3470282
@@ -198,6 +240,24 @@ type NDBrokerAPIImpl struct {
 
 func NewNDBrokerAPIImp(transport interfaces.Transport) *NDBrokerAPIImpl {
 	return &NDBrokerAPIImpl{transport: transport}
+}
+
+func (impl *NDBrokerAPIImpl) SubmitKYC(req *SubmitKYCReq, ctx context.Context) (*SubmitKYCResp, error) {
+	resp := &SubmitKYCResp{}
+	err := impl.transport.Call(ctx, "broker", true, "Post", "/api/kyc/ndBroker/proxyClient/submit", req, resp, false)
+	return resp, err
+}
+
+func (impl *NDBrokerAPIImpl) GetKYCStatus(req *GetKYCStatusReq, ctx context.Context) (*GetKYCStatusResp, error) {
+	resp := &GetKYCStatusResp{}
+	err := impl.transport.Call(ctx, "broker", true, "Get", "/api/kyc/ndBroker/proxyClient/status/list", req, resp, false)
+	return resp, err
+}
+
+func (impl *NDBrokerAPIImpl) GetKYCStatusList(req *GetKYCStatusListReq, ctx context.Context) (*GetKYCStatusListResp, error) {
+	resp := &GetKYCStatusListResp{}
+	err := impl.transport.Call(ctx, "broker", true, "Get", "/api/kyc/ndBroker/proxyClient/status/page", req, resp, false)
+	return resp, err
 }
 
 func (impl *NDBrokerAPIImpl) GetBrokerInfo(req *GetBrokerInfoReq, ctx context.Context) (*GetBrokerInfoResp, error) {

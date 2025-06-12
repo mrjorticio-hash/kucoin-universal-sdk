@@ -6,8 +6,8 @@ import {
     TransportOptionBuilder,
 } from '@model/index';
 import {
-    AddIsolatedMarginReq,
-    GetCrossMarginLeverageReq,
+    AddIsolatedMarginReq, BatchSwitchMarginModeReq,
+    GetCrossMarginLeverageReq, GetCrossMarginRiskLimitReq,
     GetIsolatedMarginRiskLimitReq,
     GetMarginModeReq,
     GetMaxOpenSizeReq,
@@ -90,6 +90,23 @@ describe('Auto Test', () => {
             console.log(resp);
         });
     });
+
+    test('batchSwitchMarginMode request test', ()=> {
+        /**
+         * batchSwitchMarginMode
+         * Batch Switch Margin Mode
+         * /api/v2/position/batchChangeMarginMode
+         */
+        let builder = BatchSwitchMarginModeReq.builder();
+        builder.setMarginMode(BatchSwitchMarginModeReq.MarginModeEnum.ISOLATED).setSymbols(['XBTUSDTM', 'DOGEUSDTM']);
+        let req = builder.build();
+        let resp = api.batchSwitchMarginMode(req);
+        return resp.then(result => {
+            expect(result.marginMode).toEqual(expect.anything());
+            expect(result.errors).toEqual(expect.anything());
+            console.log(resp);
+        });
+    })
 
     test('getMaxOpenSize request test', () => {
         /**
@@ -297,7 +314,6 @@ describe('Auto Test', () => {
         });
     });
 
-    // TODO: fix by change schema
     test('modifyMarginLeverage request test', () => {
         /**
          * modifyMarginLeverage
@@ -309,8 +325,7 @@ describe('Auto Test', () => {
         let req = builder.build();
         let resp = api.modifyMarginLeverage(req);
         return resp.then((result) => {
-            expect(result.symbol).toEqual(expect.anything());
-            expect(result.leverage).toEqual(expect.anything());
+            expect(result.data).toEqual(expect.anything());
             console.log(resp);
         });
     });
@@ -381,6 +396,22 @@ describe('Auto Test', () => {
             console.log(resp);
         });
     });
+
+    test('getCrossMarginRiskLimit request test', ()=> {
+        /**
+         * getCrossMarginRiskLimit
+         * Get Cross Margin Risk Limit
+         * /api/v2/batchGetCrossOrderLimit
+         */
+        let builder = GetCrossMarginRiskLimitReq.builder();
+        builder.setSymbol("XBTUSDTM").setTotalMargin("1000").setLeverage(1);
+        let req = builder.build();
+        let resp = api.getCrossMarginRiskLimit(req);
+        return resp.then(result => {
+            expect(result.data).toEqual(expect.anything());
+            console.log(resp);
+        });
+    })
 
     test('getIsolatedMarginRiskLimit request test', () => {
         /**

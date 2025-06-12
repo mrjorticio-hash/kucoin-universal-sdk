@@ -1067,18 +1067,18 @@
                                         "type": "string",
                                         "description": "Deposit account type: main (funding account), trade (spot trading account); the default is main",
                                         "enum": [
-                                            "main",
-                                            "trade"
+                                            "MAIN",
+                                            "TRADE"
                                         ],
-                                        "default": "main",
+                                        "default": "MAIN",
                                         "x-api-enum": [
                                             {
-                                                "value": "main",
+                                                "value": "MAIN",
                                                 "name": "main",
                                                 "description": "Funding account"
                                             },
                                             {
-                                                "value": "trade",
+                                                "value": "TRADE",
                                                 "name": "trade",
                                                 "description": "Spot account"
                                             }
@@ -1089,12 +1089,12 @@
                                     "currency"
                                 ]
                             },
-                            "example": "{\n    \"currency\": \"ETH\",\n    \"chain\": \"eth\"\n}"
+                            "example": "{\n    \"currency\": \"ETH\",\n    \"chain\": \"eth\",\n    \"to\": \"MAIN\"\n}"
                         }
                     }
                 },
                 "x-response-example": "{\\\"code\\\":\\\"200000\\\",\\\"data\\\":{\\\"address\\\":\\\"0x02028456f38e78609904e8a002c787ede7a73d7c\\\",\\\"memo\\\":null,\\\"chain\\\":\\\"ERC20\\\",\\\"chainId\\\":\\\"eth\\\",\\\"to\\\":\\\"MAIN\\\",\\\"currency\\\":\\\"ETH\\\"}}",
-                "x-request-example": "{\\\"currency\\\": \\\"ETH\\\", \\\"chain\\\": \\\"eth\\\"}",
+                "x-request-example": "{\\\"currency\\\": \\\"ETH\\\", \\\"chain\\\": \\\"eth\\\", \\\"to\\\": \\\"MAIN\\\"}",
                 "operationId": "007"
             }
         },

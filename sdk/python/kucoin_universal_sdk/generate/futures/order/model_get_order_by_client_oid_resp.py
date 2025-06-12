@@ -28,7 +28,7 @@ class GetOrderByClientOidResp(BaseModel, Response):
         deal_value (str): Executed size of funds 
         deal_size (int): Executed quantity 
         stp (StpEnum): [Self Trade Prevention](https://www.kucoin.com/docs-new/doc-338146) is divided into these strategies: CN, CO, CB. DC not currently supported.
-        stop (str): Stop order type (stop limit or stop market) 
+        stop (StopEnum): A mark to the stop order type
         stop_price_type (StopPriceTypeEnum): Trigger price type of stop orders
         stop_triggered (bool): Mark to show whether the stop order is triggered
         stop_price (float): Trigger price of stop orders
@@ -89,18 +89,29 @@ class GetOrderByClientOidResp(BaseModel, Response):
         CO = 'CO'
         CB = 'CB'
 
+    class StopEnum(Enum):
+        """
+        Attributes:
+            DOWN: Triggers when the price reaches or goes below the stopPrice.
+            UP: Triggers when the price reaches or goes above the stopPrice.
+            NONE_: Not a stop order
+        """
+        DOWN = 'down'
+        UP = 'up'
+        NONE_ = ''
+
     class StopPriceTypeEnum(Enum):
         """
         Attributes:
-            NULL: None
             TRADE_PRICE: TP for trade price, The last trade price is the last price at which an order was filled. This price can be found in the latest match message.
             MARK_PRICE: MP for mark price. The mark price can be obtained through relevant OPEN API for index services.
             INDEX_PRICE: IP for index price. The index price can be obtained through relevant OPEN API for index services.
+            NONE_: Not a stop order
         """
-        NULL = ''
         TRADE_PRICE = 'TP'
         MARK_PRICE = 'MP'
         INDEX_PRICE = 'IP'
+        NONE_ = ''
 
     class MarginModeEnum(Enum):
         """
@@ -146,9 +157,8 @@ class GetOrderByClientOidResp(BaseModel, Response):
         description=
         "[Self Trade Prevention](https://www.kucoin.com/docs-new/doc-338146) is divided into these strategies: CN, CO, CB. DC not currently supported."
     )
-    stop: Optional[str] = Field(
-        default=None,
-        description="Stop order type (stop limit or stop market) ")
+    stop: Optional[StopEnum] = Field(
+        default=None, description="A mark to the stop order type")
     stop_price_type: Optional[StopPriceTypeEnum] = Field(
         default=None,
         description="Trigger price type of stop orders",

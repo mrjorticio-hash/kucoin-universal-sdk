@@ -91,11 +91,11 @@ export namespace AddDepositAddressV1Req {
         /**
          * Funding account
          */
-        MAIN = <any>'main',
+        MAIN = <any>'MAIN',
         /**
          * Spot account
          */
-        TRADE = <any>'trade',
+        TRADE = <any>'TRADE',
     }
 }
 

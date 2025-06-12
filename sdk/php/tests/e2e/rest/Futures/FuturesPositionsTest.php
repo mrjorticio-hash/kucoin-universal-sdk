@@ -7,7 +7,9 @@ use JMS\Serializer\SerializerBuilder;
 use KuCoin\UniversalSDK\Api\DefaultClient;
 use KuCoin\UniversalSDK\Common\Logger;
 use KuCoin\UniversalSDK\Generate\Futures\Positions\AddIsolatedMarginReq;
+use KuCoin\UniversalSDK\Generate\Futures\Positions\BatchSwitchMarginModeReq;
 use KuCoin\UniversalSDK\Generate\Futures\Positions\GetCrossMarginLeverageReq;
+use KuCoin\UniversalSDK\Generate\Futures\Positions\GetCrossMarginRiskLimitReq;
 use KuCoin\UniversalSDK\Generate\Futures\Positions\GetIsolatedMarginRiskLimitReq;
 use KuCoin\UniversalSDK\Generate\Futures\Positions\GetMarginModeReq;
 use KuCoin\UniversalSDK\Generate\Futures\Positions\GetMaxOpenSizeReq;
@@ -116,6 +118,26 @@ class FuturesPositionsTest extends TestCase
         $resp = $this->api->switchMarginMode($req);
         self::assertNotNull($resp->symbol);
         self::assertNotNull($resp->marginMode);
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
+    /**
+     * batchSwitchMarginMode
+     * Batch Switch Margin Mode
+     * /api/v2/position/batchChangeMarginMode
+     */
+    public function testBatchSwitchMarginMode() {
+        $builder = BatchSwitchMarginModeReq::builder();
+        $builder->setMarginMode("ISOLATED")->setSymbols(['XBTUSDTM', 'DOGEUSDTM']);
+        $req = $builder->build();
+        $resp = $this->api->batchSwitchMarginMode($req);
+        self::assertNotNull($resp->marginMode);
+        foreach($resp->errors as $item) {
+            self::assertNotNull($item->code);
+            self::assertNotNull($item->msg);
+            self::assertNotNull($item->symbol);
+        }
+
         Logger::info($resp->jsonSerialize($this->serializer));
     }
 
@@ -385,6 +407,30 @@ class FuturesPositionsTest extends TestCase
         $resp = $this->api->removeIsolatedMargin($req);
         self::assertNotNull($resp->data);
         Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
+    /**
+     * getCrossMarginRiskLimit
+     * Get Cross Margin Risk Limit
+     * /api/v2/batchGetCrossOrderLimit
+     */
+    public function testGetCrossMarginRiskLimit()
+    {
+        $builder = GetCrossMarginRiskLimitReq::builder();
+        $builder->setSymbol("XBTUSDTM")->setTotalMargin("1000")->setLeverage(1);
+        $req = $builder->build();
+        $resp = $this->api->getCrossMarginRiskLimit($req);
+        foreach ($resp->data as $item) {
+            self::assertNotNull($item->symbol);
+            self::assertNotNull($item->maxOpenSize);
+            self::assertNotNull($item->maxOpenValue);
+            self::assertNotNull($item->totalMargin);
+            self::assertNotNull($item->price);
+            self::assertNotNull($item->leverage);
+            self::assertNotNull($item->mmr);
+            self::assertNotNull($item->imr);
+            self::assertNotNull($item->currency);
+        }
     }
 
     /**

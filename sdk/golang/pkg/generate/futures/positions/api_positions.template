@@ -47,6 +47,29 @@ func TestPositionsSwitchMarginModeReq(t *testing.T) {
 }
 
 
+func TestPositionsBatchSwitchMarginModeReq(t *testing.T) {
+    // BatchSwitchMarginMode
+    // Batch Switch Margin Mode
+    // /api/v2/position/batchChangeMarginMode
+
+    builder := positions.NewBatchSwitchMarginModeReqBuilder()
+    builder.SetMarginMode(?).SetSymbols(?)
+    req := builder.Build()
+
+    resp, err := positionsApi.BatchSwitchMarginMode(req, context.TODO())
+    if err != nil {
+        panic(err)
+    }
+    data, err := json.Marshal(resp.ToMap())
+    if err != nil {
+        panic(err)
+    }
+    fmt.Println("code:", resp.CommonResponse.Code)
+    fmt.Println("message:", resp.CommonResponse.Message)
+    fmt.Println("data:", string(data))
+}
+
+
 func TestPositionsGetMaxOpenSizeReq(t *testing.T) {
     // GetMaxOpenSize
     // Get Max Open Size
@@ -241,6 +264,29 @@ func TestPositionsRemoveIsolatedMarginReq(t *testing.T) {
     req := builder.Build()
 
     resp, err := positionsApi.RemoveIsolatedMargin(req, context.TODO())
+    if err != nil {
+        panic(err)
+    }
+    data, err := json.Marshal(resp.ToMap())
+    if err != nil {
+        panic(err)
+    }
+    fmt.Println("code:", resp.CommonResponse.Code)
+    fmt.Println("message:", resp.CommonResponse.Message)
+    fmt.Println("data:", string(data))
+}
+
+
+func TestPositionsGetCrossMarginRiskLimitReq(t *testing.T) {
+    // GetCrossMarginRiskLimit
+    // Get Cross Margin Risk Limit
+    // /api/v2/batchGetCrossOrderLimit
+
+    builder := positions.NewGetCrossMarginRiskLimitReqBuilder()
+    builder.SetSymbol(?).SetTotalMargin(?).SetLeverage(?)
+    req := builder.Build()
+
+    resp, err := positionsApi.GetCrossMarginRiskLimit(req, context.TODO())
     if err != nil {
         panic(err)
     }

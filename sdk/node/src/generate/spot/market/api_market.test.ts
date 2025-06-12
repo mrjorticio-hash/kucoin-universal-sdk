@@ -73,7 +73,7 @@ describe('Auto Test', () => {
          * Get Currency
          * /api/v3/currencies/{currency}
          */
-        let data = '{"currency": "BTC", "chain": "eth"}';
+        let data = '{"chain": "eth", "currency": "BTC"}';
         let req = GetCurrencyReq.fromJson(data);
         expect(Object.values(req).every((value) => value === null || value === undefined)).toBe(
             false,

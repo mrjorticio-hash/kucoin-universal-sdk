@@ -187,7 +187,7 @@ type OrderAPI interface {
 	// | API-CHANNEL           | PRIVATE |
 	// | API-PERMISSION        | SPOT    |
 	// | API-RATE-LIMIT-POOL   | SPOT    |
-	// | API-RATE-LIMIT-WEIGHT | 3       |
+	// | API-RATE-LIMIT-WEIGHT | 1       |
 	// +-----------------------+---------+
 	ModifyOrder(req *ModifyOrderReq, ctx context.Context) (*ModifyOrderResp, error)
 

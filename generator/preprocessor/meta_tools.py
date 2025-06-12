@@ -29,6 +29,15 @@ class MetaTools:
                 MetaTools.clear_field(o)
 
     @staticmethod
+    def clear_developing(obj):
+        if 'apiCollection' in obj:
+            api_collection = obj['apiCollection']
+            if isinstance(api_collection,list) and 'items' in api_collection[0]:
+                for item in api_collection[0]['items']:
+                    if 'name' in item and item['name'] == 'Developing':
+                        item['items'] = []
+
+    @staticmethod
     def clear_api_collection(data):
         if type(data) is list:
             for d in data:
@@ -99,6 +108,7 @@ class MetaTools:
 
     def clean(self):
         self.clear_garbage()
+        MetaTools.clear_developing(self.data)
         MetaTools.clear_field(self.data)
 
     def write(self):

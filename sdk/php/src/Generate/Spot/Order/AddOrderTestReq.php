@@ -146,14 +146,14 @@ class AddOrderTestReq implements Serializable
      */
     public $funds;
     /**
-     * Order failed after timeout of specified milliseconds, If clientTimestamp + allowMaxTimeWindow < the server reaches time, this order will fail.
+     * Order failed after timeout of specified milliseconds, If clientTimestamp + allowMaxTimeWindow < Gateway received the message time, this order will fail.
      * @var int|null $allowMaxTimeWindow
      * @Type("int")
      * @SerializedName("allowMaxTimeWindow")
      */
     public $allowMaxTimeWindow;
     /**
-     * Equal to KC-API-TIMESTAMP, Need to be defined if iceberg is specified.
+     * Equal to KC-API-TIMESTAMP, Need to be defined if allowMaxTimeWindow is specified.
      * @var int|null $clientTimestamp
      * @Type("int")
      * @SerializedName("clientTimestamp")
@@ -411,7 +411,7 @@ class AddOrderTestReqBuilder
     }
 
     /**
-     * Order failed after timeout of specified milliseconds, If clientTimestamp + allowMaxTimeWindow < the server reaches time, this order will fail.
+     * Order failed after timeout of specified milliseconds, If clientTimestamp + allowMaxTimeWindow < Gateway received the message time, this order will fail.
      * @param int $value
      * @return self
      */
@@ -422,7 +422,7 @@ class AddOrderTestReqBuilder
     }
 
     /**
-     * Equal to KC-API-TIMESTAMP, Need to be defined if iceberg is specified.
+     * Equal to KC-API-TIMESTAMP, Need to be defined if allowMaxTimeWindow is specified.
      * @param int $value
      * @return self
      */

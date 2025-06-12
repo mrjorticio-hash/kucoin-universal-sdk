@@ -9,11 +9,11 @@ export class MarginModeEvent implements Response<WsMessage> {
     /**
      * The SYMBOL is the key with value  \"CROSS\" or \"ISOLATED\"
      */
-    SYMBOL: string;
+    data: { [key: string]: string };
 
     private constructor() {
         // @ts-ignore
-        this.SYMBOL = null;
+        this.data = null;
     }
     /**
      * common response
@@ -29,7 +29,7 @@ export class MarginModeEvent implements Response<WsMessage> {
      * Convert the object to a JSON string.
      */
     toJson(): string {
-        return JSON.stringify(instanceToPlain(this));
+        return JSON.stringify(instanceToPlain(this.data));
     }
     /**
      * Create an object from a JSON string.
@@ -41,7 +41,7 @@ export class MarginModeEvent implements Response<WsMessage> {
      * Create an object from Js Object.
      */
     static fromObject(jsonObject: Object): MarginModeEvent {
-        return plainToClassFromExist(new MarginModeEvent(), jsonObject);
+        return plainToClassFromExist(new MarginModeEvent(), { data: jsonObject });
     }
 }
 

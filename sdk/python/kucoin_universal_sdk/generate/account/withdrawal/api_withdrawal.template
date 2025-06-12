@@ -77,6 +77,25 @@ def test_get_withdrawal_history_req(self):
         print("error: ", e)
         raise e
 
+def test_get_withdrawal_history_by_id_req(self):
+    """
+        get_withdrawal_history_by_id
+        Get Withdrawal History By ID
+        /api/v1/withdrawals/{withdrawalId}
+    """
+
+    builder = GetWithdrawalHistoryByIdReqBuilder()
+    builder.set_withdrawal_id(?)
+    req = builder.build()
+    try:
+        resp = self.api.get_withdrawal_history_by_id(req)
+        print("code: ", resp.common_response.code)
+        print("msg: ", resp.common_response.message)
+        print("data: ", resp.to_json())
+    except Exception as e:
+        print("error: ", e)
+        raise e
+
 def test_get_withdrawal_history_old_req(self):
     """
         get_withdrawal_history_old

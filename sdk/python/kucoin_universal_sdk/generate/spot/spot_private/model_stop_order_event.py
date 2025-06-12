@@ -24,7 +24,7 @@ class StopOrderEvent(BaseModel):
         order_type (OrderTypeEnum): User-specified order type
         side (SideEnum): buy or sell
         size (str): User-specified order size
-        stop (StopEnum): Order type: loss: stop loss order, oco: oco order
+        stop (StopEnum): Order type
         stop_price (str): Stop Price
         symbol (str): symbol
         trade_type (TradeTypeEnum): The type of trading: TRADE (Spot), MARGIN_TRADE (Cross Margin), MARGIN_ISOLATED_TRADE (Isolated Margin).
@@ -52,10 +52,20 @@ class StopOrderEvent(BaseModel):
         """
         Attributes:
             LOSS: stop loss order
-            OCO: oco order
+            ENTRY: Take profit order
+            L_L_O: Limit stop loss OCO order
+            L_S_O: Trigger stop loss OCO order
+            E_L_O: Limit stop profit OCO order
+            E_S_O: Trigger stop profit OCO order
+            TSO: Moving stop loss order
         """
         LOSS = 'loss'
-        OCO = 'oco'
+        ENTRY = 'entry'
+        L_L_O = 'l_l_o'
+        L_S_O = 'l_s_o'
+        E_L_O = 'e_l_o'
+        E_S_O = 'e_s_o'
+        TSO = 'tso'
 
     class TradeTypeEnum(Enum):
         """
@@ -105,9 +115,7 @@ class StopOrderEvent(BaseModel):
     side: Optional[SideEnum] = Field(default=None, description="buy or sell")
     size: Optional[str] = Field(default=None,
                                 description="User-specified order size")
-    stop: Optional[StopEnum] = Field(
-        default=None,
-        description="Order type: loss: stop loss order, oco: oco order")
+    stop: Optional[StopEnum] = Field(default=None, description="Order type")
     stop_price: Optional[str] = Field(default=None,
                                       description="Stop Price",
                                       alias="stopPrice")

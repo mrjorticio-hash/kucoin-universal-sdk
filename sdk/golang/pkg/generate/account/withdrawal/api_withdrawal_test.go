@@ -40,7 +40,7 @@ func TestWithdrawalWithdrawalV3ReqModel(t *testing.T) {
 	// Withdraw (V3)
 	// /api/v3/withdrawals
 
-	data := "{\"currency\": \"USDT\", \"toAddress\": \"TKFRQXSDcY****GmLrjJggwX8\", \"amount\": 3, \"withdrawType\": \"ADDRESS\", \"chain\": \"trx\", \"isInner\": true, \"remark\": \"this is Remark\"}"
+	data := "{\"currency\": \"USDT\", \"toAddress\": \"TKFRQXSDcY****GmLrjJggwX8\", \"amount\": \"3\", \"withdrawType\": \"ADDRESS\", \"chain\": \"trx\", \"isInner\": true, \"remark\": \"this is Remark\"}"
 	req := &WithdrawalV3Req{}
 	err := json.Unmarshal([]byte(data), req)
 	req.ToMap()
@@ -114,6 +114,34 @@ func TestWithdrawalGetWithdrawalHistoryRespModel(t *testing.T) {
 	assert.Nil(t, err)
 	assert.NotNil(t, commonResp.Data)
 	resp := &GetWithdrawalHistoryResp{}
+	err = json.Unmarshal([]byte(commonResp.Data), resp)
+	resp.ToMap()
+	assert.Nil(t, err)
+}
+
+func TestWithdrawalGetWithdrawalHistoryByIdReqModel(t *testing.T) {
+	// GetWithdrawalHistoryById
+	// Get Withdrawal History By ID
+	// /api/v1/withdrawals/{withdrawalId}
+
+	data := "{\"withdrawalId\": \"67e6515f7960ba0007b42025\"}"
+	req := &GetWithdrawalHistoryByIdReq{}
+	err := json.Unmarshal([]byte(data), req)
+	req.ToMap()
+	assert.Nil(t, err)
+}
+
+func TestWithdrawalGetWithdrawalHistoryByIdRespModel(t *testing.T) {
+	// GetWithdrawalHistoryById
+	// Get Withdrawal History By ID
+	// /api/v1/withdrawals/{withdrawalId}
+
+	data := "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"id\": \"67e6515f7960ba0007b42025\",\n        \"uid\": 165111215,\n        \"currency\": \"USDT\",\n        \"chainId\": \"trx\",\n        \"chainName\": \"TRC20\",\n        \"currencyName\": \"USDT\",\n        \"status\": \"SUCCESS\",\n        \"failureReason\": \"\",\n        \"failureReasonMsg\": null,\n        \"address\": \"TKFRQXSDcY4kd3QLzw7uK16GmLrjJggwX8\",\n        \"memo\": \"\",\n        \"isInner\": true,\n        \"amount\": \"3.00000000\",\n        \"fee\": \"0.00000000\",\n        \"walletTxId\": null,\n        \"addressRemark\": null,\n        \"remark\": \"this is Remark\",\n        \"createdAt\": 1743147359000,\n        \"cancelType\": \"NON_CANCELABLE\",\n        \"taxes\": null,\n        \"taxDescription\": null,\n        \"returnStatus\": \"NOT_RETURN\",\n        \"returnAmount\": null,\n        \"returnCurrency\": \"KCS\"\n    }\n}"
+	commonResp := &types.RestResponse{}
+	err := json.Unmarshal([]byte(data), commonResp)
+	assert.Nil(t, err)
+	assert.NotNil(t, commonResp.Data)
+	resp := &GetWithdrawalHistoryByIdResp{}
 	err = json.Unmarshal([]byte(commonResp.Data), resp)
 	resp.ToMap()
 	assert.Nil(t, err)

@@ -19,7 +19,7 @@ type OrderAPI interface {
 	// | API-CHANNEL           | PRIVATE |
 	// | API-PERMISSION        | MARGIN  |
 	// | API-RATE-LIMIT-POOL   | SPOT    |
-	// | API-RATE-LIMIT-WEIGHT | 5       |
+	// | API-RATE-LIMIT-WEIGHT | 2       |
 	// +-----------------------+---------+
 	AddOrder(req *AddOrderReq, ctx context.Context) (*AddOrderResp, error)
 
@@ -33,7 +33,7 @@ type OrderAPI interface {
 	// | API-CHANNEL           | PRIVATE |
 	// | API-PERMISSION        | MARGIN  |
 	// | API-RATE-LIMIT-POOL   | SPOT    |
-	// | API-RATE-LIMIT-WEIGHT | 5       |
+	// | API-RATE-LIMIT-WEIGHT | 2       |
 	// +-----------------------+---------+
 	AddOrderTest(req *AddOrderTestReq, ctx context.Context) (*AddOrderTestResp, error)
 
@@ -47,7 +47,7 @@ type OrderAPI interface {
 	// | API-CHANNEL           | PRIVATE |
 	// | API-PERMISSION        | MARGIN  |
 	// | API-RATE-LIMIT-POOL   | SPOT    |
-	// | API-RATE-LIMIT-WEIGHT | 5       |
+	// | API-RATE-LIMIT-WEIGHT | 2       |
 	// +-----------------------+---------+
 	CancelOrderByOrderId(req *CancelOrderByOrderIdReq, ctx context.Context) (*CancelOrderByOrderIdResp, error)
 
@@ -61,7 +61,7 @@ type OrderAPI interface {
 	// | API-CHANNEL           | PRIVATE |
 	// | API-PERMISSION        | MARGIN  |
 	// | API-RATE-LIMIT-POOL   | SPOT    |
-	// | API-RATE-LIMIT-WEIGHT | 5       |
+	// | API-RATE-LIMIT-WEIGHT | 2       |
 	// +-----------------------+---------+
 	CancelOrderByClientOid(req *CancelOrderByClientOidReq, ctx context.Context) (*CancelOrderByClientOidResp, error)
 
@@ -75,7 +75,7 @@ type OrderAPI interface {
 	// | API-CHANNEL           | PRIVATE |
 	// | API-PERMISSION        | MARGIN  |
 	// | API-RATE-LIMIT-POOL   | SPOT    |
-	// | API-RATE-LIMIT-WEIGHT | 10      |
+	// | API-RATE-LIMIT-WEIGHT | 5       |
 	// +-----------------------+---------+
 	CancelAllOrdersBySymbol(req *CancelAllOrdersBySymbolReq, ctx context.Context) (*CancelAllOrdersBySymbolResp, error)
 
@@ -89,7 +89,7 @@ type OrderAPI interface {
 	// | API-CHANNEL           | PRIVATE |
 	// | API-PERMISSION        | MARGIN  |
 	// | API-RATE-LIMIT-POOL   | SPOT    |
-	// | API-RATE-LIMIT-WEIGHT | NULL    |
+	// | API-RATE-LIMIT-WEIGHT | 4       |
 	// +-----------------------+---------+
 	GetSymbolsWithOpenOrder(req *GetSymbolsWithOpenOrderReq, ctx context.Context) (*GetSymbolsWithOpenOrderResp, error)
 

@@ -24,6 +24,13 @@ class GetCurrencyReq implements Serializable
         return self::$pathVarMapping;
     }
     /**
+     * Support for querying the chain of currency, e.g. the available values for USDT are OMNI, ERC20, TRC20. This only applies to multi-chain currencies; no need for single-chain currencies.
+     * @var string|null $chain
+     * @Type("string")
+     * @SerializedName("chain")
+     */
+    public $chain;
+    /**
      * Path parameter, Currency
      * @var string|null $currency
      * @Type("string")
@@ -31,13 +38,6 @@ class GetCurrencyReq implements Serializable
      * @Exclude()
      */
     public $currency;
-    /**
-     * Support for querying the chain of currency, e.g. the available values for USDT are OMNI, ERC20, TRC20. This only applies to multi-chain currencies; no need for single-chain currencies.
-     * @var string|null $chain
-     * @Type("string")
-     * @SerializedName("chain")
-     */
-    public $chain;
 
     private function __construct() {}
 
@@ -102,17 +102,6 @@ class GetCurrencyReqBuilder
         $this->obj = $obj;
     }
     /**
-     * Path parameter, Currency
-     * @param string $value
-     * @return self
-     */
-    public function setCurrency($value)
-    {
-        $this->obj->currency = $value;
-        return $this;
-    }
-
-    /**
      * Support for querying the chain of currency, e.g. the available values for USDT are OMNI, ERC20, TRC20. This only applies to multi-chain currencies; no need for single-chain currencies.
      * @param string $value
      * @return self
@@ -120,6 +109,17 @@ class GetCurrencyReqBuilder
     public function setChain($value)
     {
         $this->obj->chain = $value;
+        return $this;
+    }
+
+    /**
+     * Path parameter, Currency
+     * @param string $value
+     * @return self
+     */
+    public function setCurrency($value)
+    {
+        $this->obj->currency = $value;
         return $this;
     }
 
