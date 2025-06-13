@@ -1,5 +1,5 @@
 #!/bin/bash
-
+set -e
 VENV_DIR=".venv"
 
 echo "Virtual environment not found. Creating a new one..."
@@ -23,4 +23,8 @@ fi
 pip install pytest
 
 pytest -q test/regression/run_service_test.py
+python example/example_api.py
+python example/example_get_started.py
+python example/example_sign.py
+python example/example_ws.py
 deactivate

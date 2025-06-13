@@ -1,5 +1,5 @@
 #!/bin/bash
-
+set -e
 VENV_DIR=".venv"
 
 echo "Virtual environment not found. Creating a new one..."

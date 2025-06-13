@@ -1,5 +1,5 @@
 #!/bin/bash
-
+set -e
 VENV_DIR=".venv-test"
 
 if [ ! -d "$VENV_DIR" ] || [ -z "$(ls -A "$VENV_DIR" 2>/dev/null)" ]; then
