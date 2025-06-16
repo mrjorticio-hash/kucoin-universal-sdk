@@ -5,7 +5,7 @@ build:
 
 .PHONY: auto-test
 auto-test: build
-	docker run -v venv-test-cache:/src/.venv-test --rm python-sdk-image:latest bash /src/auto_test.sh
+	docker run --rm python-sdk-image:latest bash /app/auto_test.sh
 
 .PHONY: before-release-test
 before-release-test: build
@@ -15,7 +15,7 @@ before-release-test: build
 	  -e API_PASSPHRASE="$$API_PASSPHRASE" \
 	  -e USE_LOCAL="true" \
 	  python-sdk-image:latest \
-	  bash /src/release_test.sh
+	  bash /app/release_test.sh
 
 .PHONY: after-release-test
 after-release-test: build
@@ -24,7 +24,7 @@ after-release-test: build
 	  -e API_SECRET="$$API_SECRET" \
 	  -e API_PASSPHRASE="$$API_PASSPHRASE" \
 	  python-sdk-image:latest \
-	  bash /src/release_test.sh
+	  bash /app/release_test.sh
 
 .PHONY: run-forever-test
 run-forever-test: build
@@ -36,7 +36,7 @@ run-forever-test: build
 	  -e USE_LOCAL="true" \
 	  --name python-run-forever-test \
 	  python-sdk-image:latest \
-	  bash /src/run_forever_test.sh
+	  bash /app/run_forever_test.sh
 
 .PHONY: reconnect-test
 reconnect-test: build
@@ -48,4 +48,4 @@ reconnect-test: build
 	  -e USE_LOCAL="true" \
 	  --name python-reconnect-test --network isolated_net \
 	  python-sdk-image:latest \
-	  bash /src/ws_reconnect_test.sh
+	  bash /app/ws_reconnect_test.sh
