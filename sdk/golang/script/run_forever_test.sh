@@ -12,8 +12,7 @@ else
     echo "Installing kucoin-universal-sdk from remote..."
     go get github.com/Kucoin/kucoin-universal-sdk/sdk/golang
 fi
+
 cp /src/tests/regression/* /app/
-cat go.mod
 go mod tidy
-go run main.go example_api.go example_get_started.go example_sign.go example_ws.go
-go test -v run_service_test.go
+go run run_forever.go

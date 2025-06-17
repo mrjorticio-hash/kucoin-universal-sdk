@@ -32,7 +32,6 @@ run-forever-test: build
 	  -e API_KEY="$$API_KEY" \
 	  -e API_SECRET="$$API_SECRET" \
 	  -e API_PASSPHRASE="$$API_PASSPHRASE" \
-	  -e USE_LOCAL="true" \
 	  --name golang-run-forever-test \
 	  golang-sdk-image:latest \
 	  bash /app/run_forever_test.sh
@@ -44,7 +43,6 @@ reconnect-test: build
 	  -e API_KEY="$$API_KEY" \
 	  -e API_SECRET="$$API_SECRET" \
 	  -e API_PASSPHRASE="$$API_PASSPHRASE" \
-	  -e USE_LOCAL="true" \
 	  --name golang-reconnect-test --network isolated_net \
 	  golang-sdk-image:latest \
 	  bash /app/ws_reconnect_test.sh
