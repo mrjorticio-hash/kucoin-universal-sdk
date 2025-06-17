@@ -27,15 +27,6 @@ fi
 
 cat composer.json
 
-echo "Running service scripts..."
-cp /src/tests/regression/RunServiceTest.php /app
-composer require phpunit/phpunit
-composer require ramsey/uuid
-vendor/bin/phpunit --colors --bootstrap vendor/autoload.php RunServiceTest.php
-
-echo "Running example scripts..."
-cd /app/example
-php ExampleAPI.php
-php ExampleGetStarted.php
-php ExampleSign.php
-php ExampleWs.php
+echo "Running scripts..."
+cp /src/tests/regression/RunReconnectTest.php /app
+php -d memory_limit=512M RunReconnectTest.php

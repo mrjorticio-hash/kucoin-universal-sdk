@@ -33,7 +33,6 @@ run-forever-test: build
 	  -e API_KEY="$$API_KEY" \
 	  -e API_SECRET="$$API_SECRET" \
 	  -e API_PASSPHRASE="$$API_PASSPHRASE" \
-	  -e USE_LOCAL="true" \
 	  --name python-run-forever-test \
 	  php-sdk-image:latest \
 	  bash /app/run_forever_test.sh
@@ -45,7 +44,6 @@ reconnect-test: build
 	  -e API_KEY="$$API_KEY" \
 	  -e API_SECRET="$$API_SECRET" \
 	  -e API_PASSPHRASE="$$API_PASSPHRASE" \
-	  -e USE_LOCAL="true" \
 	  --name python-reconnect-test --network isolated_net \
 	  php-sdk-image:latest \
 	  bash /app/ws_reconnect_test.sh
