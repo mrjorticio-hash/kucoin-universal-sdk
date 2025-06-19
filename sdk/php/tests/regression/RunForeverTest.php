@@ -3,7 +3,7 @@
 require 'vendor/autoload.php';
 
 use KuCoin\UniversalSDK\Api\DefaultClient;
-use KuCoin\UniversalSDK\Generate\Spot\Market\GetFullOrderBookReq;
+use KuCoin\UniversalSDK\Generate\Spot\Market\GetAllSymbolsReq;
 use KuCoin\UniversalSDK\Model\ClientOptionBuilder;
 use KuCoin\UniversalSDK\Model\Constants;
 use KuCoin\UniversalSDK\Model\TransportOptionBuilder;
@@ -62,8 +62,8 @@ final class Runner
         $this->loop->addPeriodicTimer(self::STEP, function () {
             try {
                 $resp = $this->marketApi
-                    ->getFullOrderBook(GetFullOrderBookReq::builder()->setSymbol('BTC-USDT')->build());
-                printf("MARKET API [OK] %d %d\n", count($resp->bids), count($resp->asks));
+                    ->getAllSymbols(GetAllSymbolsReq::builder()->setMarket('USDS')->build());
+                printf("MARKET API [OK] %d \n", count($resp->data));
             } catch (\Throwable $e) {
                 $this->mkErrCnt++;
                 echo "MARKET API [ERROR] {$e->getMessage()}\n";

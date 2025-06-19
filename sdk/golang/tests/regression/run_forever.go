@@ -107,14 +107,14 @@ func (r *Runner) wsForever() {
 func (r *Runner) marketLoop() {
 	for {
 		time.Sleep(sleepSeconds)
-		req := spotmarket.NewGetFullOrderBookReqBuilder().SetSymbol("BTC-USDT").Build()
-		resp, err := r.marketAPI.GetFullOrderBook(req, context.Background())
+		req := spotmarket.NewGetAllSymbolsReqBuilder().SetMarket("USDS").Build()
+		resp, err := r.marketAPI.GetAllSymbols(req, context.Background())
 		if err != nil {
 			log.Println("MARKET API: [ERROR]", err)
 			atomic.AddUint64(&r.marketErr, 1)
 			continue
 		}
-		log.Printf("MARKET API: [OK] %d %d", len(resp.Bids), len(resp.Asks))
+		log.Printf("MARKET API: [OK] %d", len(resp.Data))
 	}
 }
 

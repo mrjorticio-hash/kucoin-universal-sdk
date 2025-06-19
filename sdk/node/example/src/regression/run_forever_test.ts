@@ -90,18 +90,19 @@ class Runner {
         }).catch((e) => {
             console.error('WS [ERROR]', e);
         });
-        await new Promise(()=>{});
+        await new Promise(() => {
+        });
     }
 
     async run_market_api_forever(): Promise<void> {
         while (true) {
             await sleep(SLEEP_SECONDS * 1000);
             try {
-                const req = Spot.Market.GetFullOrderBookReq.builder()
-                    .setSymbol('BTC-USDT')
+                const req = Spot.Market.GetAllSymbolsReq.builder()
+                    .setMarket('USDS')
                     .build();
-                const resp = await this.marketApi.getFullOrderBook(req);
-                console.info('MARKET API: [OK] %d %d', resp.bids.length, resp.asks.length);
+                const resp = await this.marketApi.getAllSymbols(req);
+                console.info('MARKET API: [OK] %d', resp.data.length);
             } catch (e) {
                 console.error('MARKET API: [ERROR]');
                 console.error(e);
