@@ -7,7 +7,7 @@ ARG SDK_VERSION=0.0.1-alpha
 
 RUN cp composer.json composer.json.bak \
     && jq --arg ver "$SDK_VERSION" '. + {version: $ver}' composer.json.bak > composer.json
-RUN rm composer.lock
+RUN rm -f composer.lock
 RUN composer install --no-dev --optimize-autoloader && \
     mkdir -p /build_out && \
     composer archive --format=tar --dir=/build_out
