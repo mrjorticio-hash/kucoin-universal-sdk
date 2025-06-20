@@ -20,7 +20,7 @@ async function getSpotSymbols(restService: any): Promise<string[]> {
         Spot.Market.GetAllSymbolsReq.builder().setMarket('USDS').build(),
     );
     const symbols: string[] = resp.data.map((d: any) => d.symbol);
-    return symbols.length > 100 ? symbols.slice(0, 100) : symbols;
+    return symbols.length > 50 ? symbols.slice(0, 50) : symbols;
 }
 
 async function spotWsExample(ws: any, symbols: string[]): Promise<void> {

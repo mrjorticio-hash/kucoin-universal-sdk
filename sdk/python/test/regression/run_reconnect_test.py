@@ -55,8 +55,8 @@ def get_spot_symbols(rest_service: KucoinRestService):
     symbols = []
     for d in symbols_response.data:
         symbols.append(d.symbol)
-    if len(symbols) > 100:
-        symbols = symbols[:100]
+    if len(symbols) > 50:
+        symbols = symbols[:50]
     return symbols
 
 

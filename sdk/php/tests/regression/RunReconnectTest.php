@@ -37,7 +37,7 @@ function run_reconnect_test(): void
         array_map(fn($d) => $d->symbol,
             $rest->getSpotService()->getMarketApi()
                 ->getAllSymbols(GetAllSymbolsReq::builder()->setMarket('USDS')->build())->data),
-        0, 100
+        0, 50
     );
 
     spot_ws_example($wsSvc->newSpotPublicWs(), $symbols);

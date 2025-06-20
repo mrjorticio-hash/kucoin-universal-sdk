@@ -58,10 +58,10 @@ func getSpotSymbols(rest api.KucoinRestService) ([]string, error) {
 	if err != nil {
 		return nil, err
 	}
-	symbols := make([]string, 0, 100)
+	symbols := make([]string, 0, 50)
 	for _, d := range resp.Data {
 		symbols = append(symbols, d.Symbol)
-		if len(symbols) == 100 {
+		if len(symbols) == 50 {
 			break
 		}
 	}
