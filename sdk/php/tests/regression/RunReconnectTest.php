@@ -43,7 +43,7 @@ function run_reconnect_test(): void
     spot_ws_example($wsSvc->newSpotPublicWs(), $symbols);
     futures_ws_example($wsSvc->newFuturesPublicWs());
 
-    echo "Total subscribe: 103\n";
+    echo "Total subscribe: 53\n";
     $loop->run();
 }
 

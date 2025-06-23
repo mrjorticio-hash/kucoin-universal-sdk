@@ -84,5 +84,5 @@ def futures_ws_example(futures_public_ws: FuturesPublicWS):
 
 if __name__ == "__main__":
     ws_reconnect_test()
-    logging.info("Total subscribe: 103")
+    logging.info("Total subscribe: 53")
     sleep(3600 * 24 * 365)

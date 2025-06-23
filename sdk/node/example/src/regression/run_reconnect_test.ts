@@ -80,5 +80,5 @@ async function wsReconnectTest(): Promise<void> {
 }
 
 wsReconnectTest().then(() => {
-    console.info('Total subscribe: 103');
+    console.info('Total subscribe: 53');
 });
