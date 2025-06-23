@@ -7,11 +7,11 @@ import org.openapitools.codegen.config.CodegenConfigurator;
 
 public class SdkGeneratorTest {
 
-    private static final String SDK_NAME = "php-sdk";
+    private static final String SDK_NAME = "java-sdk";
     private static final String SPEC_NAME = "../../spec/rest/api/openapi-account-subaccount.json";
     private static final String SPEC_ENTRY_NAME = "../../spec/rest/entry/openapi-account.json";
     private static final String WS_SPEC_NAME = "../../spec/ws/openapi-futures-private.json";
-    private static final String OUTPUT_DIR = "./out";
+    private static final String OUTPUT_DIR = "../../sdk/java/src/main/java/com/kucoin/universal/sdk/generate";
     private static final String CSV_PATH = "../../spec";
 
     @Test
@@ -28,32 +28,32 @@ public class SdkGeneratorTest {
             DefaultGenerator generator = new DefaultGenerator();
             generator.opts(clientOptInput).generate();
         }
-        {
-            final CodegenConfigurator configurator = new CodegenConfigurator()
-                    .setGeneratorName(SDK_NAME)
-                    .setInputSpec(SPEC_ENTRY_NAME)
-                    .setValidateSpec(false)
-                    .addAdditionalProperty("GEN_MODE", "ENTRY")
-                    .addAdditionalProperty("CSV_PATH", CSV_PATH)
-                    .setOutputDir(OUTPUT_DIR);
-
-            final ClientOptInput clientOptInput = configurator.toClientOptInput();
-            DefaultGenerator generator = new DefaultGenerator();
-            generator.opts(clientOptInput).generate();
-        }
-
-        {
-            final CodegenConfigurator configurator = new CodegenConfigurator()
-                    .setGeneratorName(SDK_NAME)
-                    .setInputSpec(SPEC_NAME)
-                    .setValidateSpec(false)
-                    .addAdditionalProperty("GEN_MODE", "TEST")
-                    .setOutputDir(OUTPUT_DIR);
-
-            final ClientOptInput clientOptInput = configurator.toClientOptInput();
-            DefaultGenerator generator = new DefaultGenerator();
-            generator.opts(clientOptInput).generate();
-        }
+//        {
+//            final CodegenConfigurator configurator = new CodegenConfigurator()
+//                    .setGeneratorName(SDK_NAME)
+//                    .setInputSpec(SPEC_ENTRY_NAME)
+//                    .setValidateSpec(false)
+//                    .addAdditionalProperty("GEN_MODE", "ENTRY")
+//                    .addAdditionalProperty("CSV_PATH", CSV_PATH)
+//                    .setOutputDir(OUTPUT_DIR);
+//
+//            final ClientOptInput clientOptInput = configurator.toClientOptInput();
+//            DefaultGenerator generator = new DefaultGenerator();
+//            generator.opts(clientOptInput).generate();
+//        }
+//
+//        {
+//            final CodegenConfigurator configurator = new CodegenConfigurator()
+//                    .setGeneratorName(SDK_NAME)
+//                    .setInputSpec(SPEC_NAME)
+//                    .setValidateSpec(false)
+//                    .addAdditionalProperty("GEN_MODE", "TEST")
+//                    .setOutputDir(OUTPUT_DIR);
+//
+//            final ClientOptInput clientOptInput = configurator.toClientOptInput();
+//            DefaultGenerator generator = new DefaultGenerator();
+//            generator.opts(clientOptInput).generate();
+//        }
     }
 
     @Test
