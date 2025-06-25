@@ -11,24 +11,19 @@ package {{package}};
 {{{.}}}
 {{/vendorExtensions.x-annotation}}
 {{#vendorExtensions.x-response-model}}
-class {{classname}} implements Response<{{classname}}> {
+public class {{classname}} implements Response<{{classname}}> {
 {{/vendorExtensions.x-response-model}}
 {{^vendorExtensions.x-response-model}}
 {{#vendorExtensions.x-request-model}}
-class {{classname}} implements Request {
+public class {{classname}} implements Request {
 {{/vendorExtensions.x-request-model}}
 {{^vendorExtensions.x-request-model}}
-class {{classname}} {
+public class {{classname}} {
 {{/vendorExtensions.x-request-model}}
 {{/vendorExtensions.x-response-model}}
 {{#vars}}
     /**
     * {{#description}}{{{.}}}{{/description}}
-    {{#isEnum}}
-        {{#vendorExtensions.x-enums}}
-    * - {{{value}}} : {{description}}
-        {{/vendorExtensions.x-enums}}
-    {{/isEnum}}
     */
     {{#vendorExtensions.x-tag-path}}
     @JsonIgnore
@@ -48,18 +43,22 @@ class {{classname}} {
 {{#vendorExtensions.x-original-response}}
     {{#vars}}
     @JsonCreator
-    public {{classname}}({{{dataType}}} data) {
+    public static {{classname}} fromJson({{{dataType}}} data) {
         // original response
-        this.data = data;
+        {{classname}} obj = new {{classname}}();
+        obj.data = data;
+        return obj;
     }
     {{/vars}}
 {{/vendorExtensions.x-original-response}}
 {{#vendorExtensions.x-request-raw-array}}
     {{#vars}}
     @JsonCreator
-    public {{classname}}({{{dataType}}} data) {
+    public static {{classname}} fromJson({{{dataType}}} data) {
         // raw array
-        this.items = data;
+        {{classname}} obj = new {{classname}}();
+        obj.items = data;
+        return obj;
     }
     {{/vars}}
 {{/vendorExtensions.x-request-raw-array}}

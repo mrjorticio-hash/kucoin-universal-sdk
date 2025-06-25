@@ -2,8 +2,8 @@
 package {{package}};
 import com.kucoin.universal.sdk.internal.interfaces.Transport;
 
-class {{classname}}Impl implements {{classname}} {
-    private Transport transport;
+public class {{classname}}Impl implements {{classname}} {
+    private final Transport transport;
 
     public {{classname}}Impl(Transport transport)
     {

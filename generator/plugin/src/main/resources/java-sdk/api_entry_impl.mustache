@@ -1,7 +1,5 @@
-<?php
 {{>partial_header}}
-
-namespace KuCoin\UniversalSDK\Generate\Service;
+package {{package}};
 
 {{#imports}}
 {{{.}}}
@@ -12,23 +10,23 @@ namespace KuCoin\UniversalSDK\Generate\Service;
 
 {{#api_entry}}
 
-class {{api_entry_name}}Impl implements {{api_entry_name}}{
-    private $transport;
+public class {{api_entry_name}}Impl implements {{api_entry_name}}{
+    private Transport transport;
 {{#api_entry_value}}
-    private ${{method}};
+    private {{target_service}} {{method}};
 {{/api_entry_value}}
 
-    public function __construct($transport) {
-        $this->transport = $transport;
+    public {{api_entry_name}}Impl(Transport transport) {
+        this.transport = transport;
     {{#api_entry_value}}
-        $this->{{method}} = new {{target_service}}Impl($transport);
+        this.{{method}} = new {{target_service}}Impl(transport);
     {{/api_entry_value}}
     }
 
 {{#api_entry_value}}
 
-    public function get{{methodUppercase}}Api() :{{target_service}} {
-        return $this->{{method}};
+    public {{target_service}} get{{methodUppercase}}Api() {
+        return this.{{method}};
     }
 {{/api_entry_value}}
 {{/api_entry}}

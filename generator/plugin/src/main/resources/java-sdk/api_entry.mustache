@@ -1,7 +1,5 @@
-<?php
 {{>partial_header}}
-
-namespace KuCoin\UniversalSDK\Generate\Service;
+package {{package}};
 
 {{#imports}}
 {{{.}}}
@@ -10,10 +8,10 @@ namespace KuCoin\UniversalSDK\Generate\Service;
 {{#api_entry}}
 
 
-interface {{api_entry_name}} {
+public interface {{api_entry_name}} {
 {{#api_entry_value}}
 
-    public function get{{methodUppercase}}Api(): {{target_service}};
+    public {{target_service}} get{{methodUppercase}}Api();
 {{/api_entry_value}}
 }
 
