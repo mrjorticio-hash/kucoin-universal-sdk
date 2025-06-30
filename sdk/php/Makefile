@@ -47,3 +47,18 @@ reconnect-test: build
 	  --name php-reconnect-test --network isolated_net \
 	  php-sdk-image:latest \
 	  bash /app/ws_reconnect_test.sh
+
+
+VERSIONS = 7.4 8.0 8.1 8.2
+.PHONY: php-version-test
+php-version-test:
+	@for v in $(VERSIONS); do \
+    	  echo "---- PHP $$v ----"; \
+    	  docker build --build-arg PHP_RUNTIME=$$v -t php-sdk-image:$$v . ; \
+    	  docker run --rm \
+    	    -e API_KEY="$$API_KEY" \
+    	    -e API_SECRET="$$API_SECRET" \
+    	    -e API_PASSPHRASE="$$API_PASSPHRASE" \
+    	    -e USE_LOCAL="true" \
+    	    php-sdk-image:$$v bash /app/release_test.sh || exit $$? ; \
+    done

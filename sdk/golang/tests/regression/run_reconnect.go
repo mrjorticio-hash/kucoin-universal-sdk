@@ -46,7 +46,7 @@ func main() {
 	spotWsExample(wsSvc.NewSpotPublicWS(), symbols)
 	futuresWsExample(wsSvc.NewFuturesPublicWS())
 
-	log.Println("Total subscribe: 103")
+	log.Println("Total subscribe: 53")
 	select {}
 }
 

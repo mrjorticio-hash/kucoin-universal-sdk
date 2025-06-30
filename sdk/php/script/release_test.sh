@@ -25,7 +25,8 @@ else
     composer require kucoin/kucoin-universal-sdk
 fi
 
-cat composer.json
+echo "Echo depends..."
+composer depends php
 
 echo "Running service scripts..."
 cp /src/tests/regression/RunServiceTest.php /app
