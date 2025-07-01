@@ -1,5 +1,7 @@
 package com.kucoin.universal.sdk.internal.interfaces;
 
+import com.kucoin.universal.sdk.model.RestResponse;
+
 public interface Transport {
 
     /**
@@ -16,7 +18,7 @@ public interface Transport {
      * @param <T>            Type of response expected
      * @return               Parsed response object of type T
      */
-    <T extends Response<T>> T call(
+    <T extends Response<T, RestResponse<T>>> T call(
             String domain,
             boolean broker,
             String method,

@@ -1,129 +1,112 @@
-<?php
-{{>partial_header}}
 {{#models}}
 {{#model}}
-namespace {{modelPackage}};
-use JMS\Serializer\Serializer;
-use JMS\Serializer\Annotation\Exclude;
-use JMS\Serializer\Annotation\SerializedName;
-use JMS\Serializer\Annotation\Type;
-{{#vendorExtensions.x-response-model}}
-use KuCoin\UniversalSDK\Internal\Interfaces\Response;
-use KuCoin\UniversalSDK\Internal\Interfaces\WebSocketMessageCallback;
-use KuCoin\UniversalSDK\Model\WsMessage;
+{{>partial_header}}
+package {{package}};
 
-class {{classname}} implements Response {
+{{#vendorExtensions.x-imports}}
+{{{.}}}
+{{/vendorExtensions.x-imports}}
+
+{{#vendorExtensions.x-annotation}}
+{{{.}}}
+{{/vendorExtensions.x-annotation}}
+@JsonIgnoreProperties(ignoreUnknown = true)
+{{#vendorExtensions.x-response-model}}
+public class {{classname}} implements Response<{{classname}}, WsMessage<{{classname}}>> {
 {{/vendorExtensions.x-response-model}}
 {{^vendorExtensions.x-response-model}}
-use KuCoin\UniversalSDK\Internal\Interfaces\Serializable;
-
-
-class {{classname}} implements Serializable{
+class {{classname}} {
 {{/vendorExtensions.x-response-model}}
-
 {{#vars}}
     /**
     * {{#description}}{{{.}}}{{/description}}
-    * @var {{{dataType}}}{{^required}}|null{{/required}} ${{name}}
-    * @Type("{{{vendorExtensions.annotationType}}}")
-    * @SerializedName("{{baseName}}")
     */
-    public ${{name}}{{#defaultValue}} = {{{.}}}{{/defaultValue}};
+    {{#vendorExtensions.x-tag-path}}
+    @JsonIgnore
+    @PathVar("{{name}}")
+    {{/vendorExtensions.x-tag-path}}
+    @JsonProperty("{{baseName}}")
+    {{#vendorExtensions.x-annotation}}
+    {{{.}}}
+    {{/vendorExtensions.x-annotation}}
+    private {{#isEnum}}{{{datatypeWithEnum}}}{{/isEnum}}{{^isEnum}}{{{dataType}}}{{/isEnum}} {{name}}{{#defaultValue}} = {{{.}}}{{/defaultValue}};
 {{/vars}}
-
-   private function __construct() {
-    }
-
 {{#vendorExtensions.x-response-model}}
     /**
     * common response
-    * @Exclude()
-    * @var WsMessage $commonResponse
     */
-    public $commonResponse;
+    @JsonIgnore
+    private WsMessage<{{classname}}> commonResponse;
 
-    public function setCommonResponse($response): void {
-        $this->commonResponse = $response;
+    @Override
+    public void setCommonResponse(WsMessage<{{classname}}> response) {
+        this.commonResponse = response;
     }
+
 {{/vendorExtensions.x-response-model}}
 {{#vendorExtensions.x-original-response}}
-    /**
-    * @param Serializer $serializer
-    * @return string
-    */
-    public function jsonSerialize($serializer) {
-        return $serializer->serialize($this, 'json');
-    }
-
-    /**
-    * @param string $json
-    * @param Serializer $serializer
-    * @return self
-    */
-    public static function jsonDeserialize($json , $serializer) {
-        if ($json === null) {
-            return new self();
-        }
     {{#vars}}
-        $data = $serializer->deserialize($json, '{{{vendorExtensions.annotationType}}}', 'json');
-        $obj = new self();
-        $obj->data = $data;
-        return $obj;
+    @JsonCreator
+    public static {{classname}} fromJson({{{dataType}}} data) {
+        // original response
+        {{classname}} obj = new {{classname}}();
+        obj.data = data;
+        return obj;
+    }
     {{/vars}}
-    }
-
 {{/vendorExtensions.x-original-response}}
-{{^vendorExtensions.x-original-response}}
-    /**
-    * @param Serializer $serializer
-    * @return string
-    */
-    public function jsonSerialize($serializer) {
-        return $serializer->serialize($this, 'json');
-    }
-
-    /**
-    * @param string $json
-    * @param Serializer $serializer
-    * @return self
-    */
-    public static function jsonDeserialize($json , $serializer) {
-        return $serializer->deserialize($json, {{classname}}::class, 'json');
-    }
-
-{{/vendorExtensions.x-original-response}}
-
 {{#vendorExtensions.x-response-model}}
-    /**
-     * @param callable $callback function(string $topic, string $subject, {{classname}} $data): void
-     */
-    public static function createCallback(callable $callback) : {{classname}}CallbackWrapper{
-        return new {{classname}}CallbackWrapper($callback);
+    @FunctionalInterface
+    public interface Callback {
+        void onEvent(String topic, String subject, {{classname}} data);
+    }
+
+    public static class CallbackAdapters {
+        public static WebSocketMessageCallback<{{classname}}> of(Callback callback) {
+            return msg -> callback.onEvent(msg.getTopic(), msg.getSubject(), msg.getData());
+        }
     }
 {{/vendorExtensions.x-response-model}}
-}
+{{#hasEnums}}
+    {{#vars}}
+        {{#isEnum}}
+    public enum {{enumName}} {
+    {{#vendorExtensions.x-enums}}
+        /**
+        * {{description}}
+        */
+        {{name}}({{{value}}}){{^-last}},{{/-last}}{{#-last}};{{/-last}}
+    {{/vendorExtensions.x-enums}}
 
-{{#vendorExtensions.x-response-model}}
-class {{classname}}CallbackWrapper implements WebSocketMessageCallback {
-    /**
-     * @var callable
-     */
-    private $callback;
+        private final {{{dataType}}} value;
 
-    /**
-     * @param callable $callback function(string $topic, string $subject, {{classname}} $data): void
-     */
-    public function __construct(callable $callback)
-    {
-        $this->callback = $callback;
+        {{{datatypeWithEnum}}}{{^datatypeWithEnum}}{{{classname}}}{{/datatypeWithEnum}}({{{dataType}}} value) {
+            this.value = value;
+        }
+
+        @JsonValue
+        public {{{dataType}}} getValue() {
+          return value;
+        }
+
+        @Override
+        public String toString() {
+          return String.valueOf(value);
+        }
+
+        @JsonCreator
+        public static {{{datatypeWithEnum}}}{{^datatypeWithEnum}}{{{classname}}}{{/datatypeWithEnum}} fromValue({{{dataType}}} value) {
+          for ({{{datatypeWithEnum}}}{{^datatypeWithEnum}}{{{classname}}}{{/datatypeWithEnum}} b : {{{datatypeWithEnum}}}{{^datatypeWithEnum}}{{{classname}}}{{/datatypeWithEnum}}.values()) {
+            if (b.value.{{^isString}}equals{{/isString}}{{#isString}}{{#useEnumCaseInsensitive}}equalsIgnoreCase{{/useEnumCaseInsensitive}}{{^useEnumCaseInsensitive}}equals{{/useEnumCaseInsensitive}}{{/isString}}(value)) {
+              return b;
+            }
+          }
+          {{#isNullable}}return null;{{/isNullable}}{{^isNullable}}{{#enumUnknownDefaultCase}}{{#allowableValues}}{{#enumVars}}{{#-last}}return {{{name}}};{{/-last}}{{/enumVars}}{{/allowableValues}}{{/enumUnknownDefaultCase}}{{^enumUnknownDefaultCase}}throw new IllegalArgumentException("Unexpected value '" + value + "'");{{/enumUnknownDefaultCase}}{{/isNullable}}
+        }
     }
-
-    public function onMessage(WsMessage $msg, Serializer $serializer) {
-        $event = {{classname}}::jsonDeserialize($serializer->serialize($msg->rawData, 'json'), $serializer);
-        $event->setCommonResponse($msg);
-        call_user_func($this->callback, $msg->topic, $msg->subject, $event);
-    }
+        {{/isEnum}}
+    {{/vars}}
+{{/hasEnums}}
 }
-{{/vendorExtensions.x-response-model}}
 {{/model}}
 {{/models}}

@@ -100,9 +100,9 @@ public class JavaSdkGenerator extends AbstractJavaCodegen implements NameService
                 break;
             }
             case WS: {
-                modelTemplateFiles.put("model_ws.mustache", ".php");
-                apiTemplateFiles.put("api_ws.mustache", ".php");
-                apiTemplateFiles.put("api_ws_impl.mustache", "Impl.php");
+                modelTemplateFiles.put("model_ws.mustache", ".java");
+                apiTemplateFiles.put("api_ws.mustache", ".java");
+                apiTemplateFiles.put("api_ws_impl.mustache", "Impl.java");
                 additionalProperties.put("WS_MODE", "true");
                 break;
             }
@@ -331,22 +331,35 @@ public class JavaSdkGenerator extends AbstractJavaCodegen implements NameService
                 }
 
 
-
                 if (vendorExtension.containsKey("x-response-model")) {
                     imports.add("import com.fasterxml.jackson.annotation.JsonIgnore;");
                     imports.add("import com.kucoin.universal.sdk.internal.interfaces.Response;");
-                    imports.add("import com.kucoin.universal.sdk.model.RestResponse;");
+
+                    if (modeSwitch.isWs()) {
+                        imports.add("import com.kucoin.universal.sdk.model.WsMessage;");
+                        imports.add("import com.kucoin.universal.sdk.internal.interfaces.WebSocketMessageCallback;");
+                    }  else {
+                        imports.add("import com.kucoin.universal.sdk.model.RestResponse;");
+                    }
+
                 }
 
-                if (vendorExtension.containsKey("x-original-response") ||vendorExtension.containsKey("x-request-raw-array") ) {
+                if (vendorExtension.containsKey("x-original-response") || vendorExtension.containsKey("x-request-raw-array")) {
                     imports.add("import com.fasterxml.jackson.annotation.JsonCreator;");
                 }
 
-                codegenModel.getVars().forEach(var-> {
+                codegenModel.getVars().forEach(var -> {
 
                     if (var.getVendorExtensions().containsKey("x-tag-path")) {
                         imports.add("import com.fasterxml.jackson.annotation.JsonIgnore;");
                         imports.add("import com.kucoin.universal.sdk.internal.interfaces.PathVar;");
+                    }
+
+                    if (vendorExtension.containsKey("x-request-model")) {
+                        if (var.getDefaultValue() != null) {
+                            List<String> varAnnotation = (List<String>) var.getVendorExtensions().computeIfAbsent("x-annotation", key -> new ArrayList<String>());
+                            varAnnotation.add("@Builder.Default");
+                        }
                     }
 
                     if (var.getIsArray()) {
@@ -355,7 +368,7 @@ public class JavaSdkGenerator extends AbstractJavaCodegen implements NameService
                     } else if (var.getIsMap()) {
                         imports.add(String.format("import %s;", importMapping.get("Map")));
                         imports.add(String.format("import %s;", importMapping.get("HashMap")));
-                    } else if (var.isEnum){
+                    } else if (var.isEnum) {
                         imports.add("import com.fasterxml.jackson.annotation.JsonValue;");
                         imports.add("import com.fasterxml.jackson.annotation.JsonCreator;");
                     } else {
@@ -408,15 +421,15 @@ public class JavaSdkGenerator extends AbstractJavaCodegen implements NameService
                         break;
                     }
 
-//                    case API:
-//                    case TEST: {
-//                        break;
-//                    }
-//                    case WS:
-//                    case WS_TEST: {
-//
-//                        break;
-//                    }
+                    case API:
+                    case TEST: {
+                        break;
+                    }
+                    case WS:
+                    case WS_TEST: {
+
+                        break;
+                    }
 //                    case TEST_TEMPLATE: {
 //                        String reqName = String.format("%s.%s", modelPackage, meta.getMethodServiceFmt() + "Req");
 //                        String responseName = String.format("%s.%s", modelPackage, meta.getMethodServiceFmt() + "Resp");
