@@ -22,7 +22,7 @@ RUN --mount=type=cache,target=/root/.m2,sharing=locked mvn -U clean package -Dsk
 # build tools 
 FROM openapitools/openapi-generator-cli:v7.7.0
 
-RUN apt-get update && apt-get install python3 python3-pip python3.8-venv nodejs jq npm -y
+RUN apt-get update && apt-get install python3 python3-pip python3.8-venv nodejs jq npm clang-format -y
 RUN pip install yapf
 ENV GOLANG_VERSION=1.22.2
 RUN curl -OL https://golang.org/dl/go${GOLANG_VERSION}.linux-amd64.tar.gz && \
@@ -49,6 +49,7 @@ ENV GO_POST_PROCESS_FILE="/usr/local/go/bin/gofmt -w"
 ENV PYTHON_POST_PROCESS_FILE="/usr/local/bin/yapf -i"
 ENV TS_POST_PROCESS_FILE="/usr/bin/prettier --write --semi --single-quote --tab-width 4 --trailing-comma all --bracket-spacing --arrow-parens always --end-of-line lf --print-width 100"
 ENV PHP_POST_PROCESS_FILE="php-prettier --write"
+ENV JAVA_POST_PROCESS_FILE="/usr/bin/clang-format -i"
 
 ENTRYPOINT ["/usr/local/bin/docker-entrypoint.sh"]
 

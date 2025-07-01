@@ -8,52 +8,35 @@ import lombok.ToString;
 @ToString(exclude = "data")
 public class WsMessage<T> {
 
-    /**
-     * Unique message ID
-     */
-    @JsonProperty("id")
-    private String id;
+  /** Unique message ID */
+  @JsonProperty("id")
+  private String id;
 
-    /**
-     * Message type (e.g., "ping", "subscribe", etc.)
-     */
-    @JsonProperty("type")
-    private String type;
+  /** Message type (e.g., "ping", "subscribe", etc.) */
+  @JsonProperty("type")
+  private String type;
 
-    /**
-     * Sequence number
-     */
-    @JsonProperty("sn")
-    private Integer sn;
+  /** Sequence number */
+  @JsonProperty("sn")
+  private Integer sn;
 
-    /**
-     * The topic of the message
-     */
-    @JsonProperty("topic")
-    private String topic;
+  /** The topic of the message */
+  @JsonProperty("topic")
+  private String topic;
 
-    /**
-     * Subject of the message
-     */
-    @JsonProperty("subject")
-    private String subject;
+  /** Subject of the message */
+  @JsonProperty("subject")
+  private String subject;
 
-    /**
-     * Indicates if it is a private channel
-     */
-    @JsonProperty("privateChannel")
-    private Boolean privateChannel;
+  /** Indicates if it is a private channel */
+  @JsonProperty("privateChannel")
+  private Boolean privateChannel;
 
-    /**
-     * Indicates if the message is a response
-     */
-    @JsonProperty("response")
-    private Boolean response;
+  /** Indicates if the message is a response */
+  @JsonProperty("response")
+  private Boolean response;
 
-    /**
-     * Raw message data
-     */
-    @JsonProperty("data")
-    private T data;
-
+  /** Raw message data */
+  @JsonProperty("data")
+  private T data;
 }
