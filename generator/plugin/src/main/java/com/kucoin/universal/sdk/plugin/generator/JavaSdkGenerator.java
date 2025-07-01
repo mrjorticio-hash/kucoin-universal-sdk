@@ -317,6 +317,7 @@ public class JavaSdkGenerator extends AbstractJavaCodegen implements NameService
                 imports.add("import lombok.NoArgsConstructor;");
                 imports.add("import lombok.AllArgsConstructor;");
                 imports.add("import com.fasterxml.jackson.annotation.JsonProperty;");
+                imports.add("import com.fasterxml.jackson.annotation.JsonIgnoreProperties;");
                 annotation.add("@Data");
                 annotation.add("@NoArgsConstructor");
                 annotation.add("@AllArgsConstructor");

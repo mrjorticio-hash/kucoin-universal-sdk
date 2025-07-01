@@ -11,13 +11,16 @@ package {{package}};
 {{{.}}}
 {{/vendorExtensions.x-annotation}}
 {{#vendorExtensions.x-response-model}}
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class {{classname}} implements Response<{{classname}}> {
 {{/vendorExtensions.x-response-model}}
 {{^vendorExtensions.x-response-model}}
 {{#vendorExtensions.x-request-model}}
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class {{classname}} implements Request {
 {{/vendorExtensions.x-request-model}}
 {{^vendorExtensions.x-request-model}}
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class {{classname}} {
 {{/vendorExtensions.x-request-model}}
 {{/vendorExtensions.x-response-model}}
@@ -39,6 +42,12 @@ public class {{classname}} {
     */
     @JsonIgnore
     private RestResponse<{{classname}}> commonResponse;
+
+    @Override
+    public void setCommonResponse(RestResponse<{{classname}}> response) {
+        this.commonResponse = response;
+    }
+
 {{/vendorExtensions.x-response-model}}
 {{#vendorExtensions.x-original-response}}
     {{#vars}}

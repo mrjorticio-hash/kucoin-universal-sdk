@@ -2,9 +2,10 @@ package com.kucoin.universal.sdk.model;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Data;
 import lombok.Getter;
 
-@Getter
+@Data
 public class RestRateLimit {
 
     @JsonProperty("limit")

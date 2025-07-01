@@ -1,9 +1,11 @@
 package com.kucoin.universal.sdk.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.Getter;
+import lombok.Data;
+import lombok.ToString;
 
-@Getter
+@Data
+@ToString(exclude = "data")
 public class RestResponse<T> {
 
     @JsonProperty("code")
