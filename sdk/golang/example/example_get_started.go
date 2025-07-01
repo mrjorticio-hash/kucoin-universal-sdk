@@ -2,14 +2,15 @@ package main
 
 import (
 	"context"
+	"os"
+
 	"github.com/Kucoin/kucoin-universal-sdk/sdk/golang/pkg/api"
 	"github.com/Kucoin/kucoin-universal-sdk/sdk/golang/pkg/common/logger"
 	"github.com/Kucoin/kucoin-universal-sdk/sdk/golang/pkg/generate/spot/market"
 	"github.com/Kucoin/kucoin-universal-sdk/sdk/golang/pkg/types"
-	"os"
 )
 
-func example() {
+func GetStarted() {
 	// Use the default logger or supply your custom logger
 	defaultLogger := logger.NewDefaultLogger()
 	logger.SetLogger(defaultLogger)

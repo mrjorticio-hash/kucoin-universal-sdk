@@ -4,7 +4,7 @@ import threading
 from time import sleep
 
 from kucoin_universal_sdk.api import DefaultClient
-from kucoin_universal_sdk.generate.spot.market import GetFullOrderBookReqBuilder
+from kucoin_universal_sdk.generate.spot.market import GetAllSymbolsReqBuilder
 from kucoin_universal_sdk.model import ClientOptionBuilder, WebSocketClientOptionBuilder
 from kucoin_universal_sdk.model import GLOBAL_API_ENDPOINT, GLOBAL_FUTURES_API_ENDPOINT, \
     GLOBAL_BROKER_API_ENDPOINT
@@ -97,10 +97,9 @@ class Runner():
         while True:
             sleep(SLEEP_SECONDS)
             try:
-                get_full_order_book_req = GetFullOrderBookReqBuilder().set_symbol("BTC-USDT").build()
-                get_full_order_book_resp = self.market_api.get_full_order_book(get_full_order_book_req)
-                logging.info("MARKET API: [OK] %d %d", len(get_full_order_book_resp.bids),
-                             len(get_full_order_book_resp.asks))
+                get_all_symbols_req = GetAllSymbolsReqBuilder().set_market("USDS").build()
+                get_all_symbols_resp = self.market_api.get_all_symbols(get_all_symbols_req)
+                logging.info("MARKET API: [OK] %d ", len(get_all_symbols_resp.data))
             except Exception as e:
                 logging.error("MARKET API: [ERROR]")
                 logging.error(e)

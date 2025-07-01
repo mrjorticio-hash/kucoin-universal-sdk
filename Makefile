@@ -82,20 +82,6 @@ define generate-postman
 	@make -f generate.mk generate-postman
 endef
 
-
-SUBDIRS := $(shell find ./sdk -mindepth 1 -maxdepth 1 -type d)
-.PHONY: test $(SUBDIRS)
-test: $(SUBDIRS)
-$(SUBDIRS):
-	@echo "Running tests in $@"
-	@docker run --rm \
-		-v venv-test-cache:/app/.venv-test \
-		-v go-mod-cache:/go/pkg/mod \
-		-v go-build-cache:/root/.cache/go-build \
-		-v ./$@:/app -w /app $(IMAGE_NAME):$(IMAGE_TAG) \
-		bash run_test.sh
-	@echo "Completed tests in $@"
-
 .PHONY: generate
 generate: setup-logs
 	$(call generate-postman)
@@ -115,3 +101,13 @@ fastgen: build-tools preprocessor
 .PHONY: all
 all: build-tools preprocessor validate
 	@make generate
+
+SUBDIRS := $(shell find ./sdk -mindepth 1 -maxdepth 1 -type d | sort)
+STAGES  := auto-test before-release-test after-release-test run-forever-test reconnect-test
+.PHONY: $(STAGES)
+$(STAGES):
+	@for dir in $(SUBDIRS); do \
+		echo "Running $@ in $$dir"; \
+		$(MAKE) -C $$dir $@; \
+		echo "Completed $@ in $$dir"; \
+	done
