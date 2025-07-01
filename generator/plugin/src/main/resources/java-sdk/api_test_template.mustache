@@ -6,15 +6,15 @@
     * {{summary}}
     * {{path}}
     */
-    public function test{{vendorExtensions.x-meta.methodServiceFmt}}() {
+    public void test{{vendorExtensions.x-meta.methodServiceFmt}}() {
         {{#hasParams}}
-        $builder = {{vendorExtensions.x-meta.methodServiceFmt}}Req::builder();
+        {{vendorExtensions.x-meta.methodServiceFmt}}Req.{{vendorExtensions.x-meta.methodServiceFmt}}ReqBuilder builder = {{vendorExtensions.x-meta.methodServiceFmt}}Req.builder();
         {{#vendorExtensions.x-request-model}}
-        $builder{{#vars}}->set{{nameInPascalCase}}(?){{/vars}};
+        builder{{#vars}}.{{name}}(?){{/vars}};
         {{/vendorExtensions.x-request-model}}
-        $req = $builder->build();
+        {{vendorExtensions.x-meta.methodServiceFmt}}Req req = builder.build();
         {{/hasParams}}
-        $resp = $this->api->{{vendorExtensions.x-meta.method}}({{#hasParams}}$req{{/hasParams}});
+        {{vendorExtensions.x-meta.methodServiceFmt}}Resp resp = this.api.{{vendorExtensions.x-meta.method}}({{#hasParams}}req{{/hasParams}});
         {{#vendorExtensions.x-response-model}}
         {{#vars}}
             {{#isArray}}
