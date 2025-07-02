@@ -1,17 +1,9 @@
 # build plugin
-FROM amazoncorretto:11-alpine AS generator-builder
+FROM maven:3.9.10-amazoncorretto-17-debian-bookworm AS generator-builder
 
 ENV MAVEN_VERSION=3.8.8
 ENV MAVEN_HOME=/usr/share/maven
 ENV PATH=${MAVEN_HOME}/bin:${PATH}
-
-RUN apk add --no-cache curl tar bash \
-    && echo ${MAVEN_HOME} \
-    && curl -fsSL https://downloads.apache.org/maven/maven-3/${MAVEN_VERSION}/binaries/apache-maven-${MAVEN_VERSION}-bin.tar.gz | tar -xzC /usr/share \
-    && mv /usr/share/apache-maven-${MAVEN_VERSION} ${MAVEN_HOME} \
-    && ln -s ${MAVEN_HOME}/bin/mvn /usr/bin/mvn \
-    && apk del curl tar
-
 
 WORKDIR /build
 

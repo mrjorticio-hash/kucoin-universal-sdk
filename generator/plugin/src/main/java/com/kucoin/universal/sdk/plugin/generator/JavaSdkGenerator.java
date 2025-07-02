@@ -174,10 +174,15 @@ public class JavaSdkGenerator extends AbstractJavaCodegen implements NameService
             List<EnumEntry> enums = new ArrayList<>();
 
             List<Map<String, Object>> enumList;
+            String enumDataType = "String";
             if (prop.openApiType.equalsIgnoreCase("array")) {
                 enumList = (List<Map<String, Object>>) prop.mostInnerItems.vendorExtensions.get("x-api-enum");
+                if (prop.mostInnerItems.isNumber) {
+                    enumDataType = "Integer";
+                }
             } else {
                 enumList = (List<Map<String, Object>>) prop.vendorExtensions.get("x-api-enum");
+                enumDataType = prop.dataType;
             }
 
 
@@ -218,6 +223,8 @@ public class JavaSdkGenerator extends AbstractJavaCodegen implements NameService
             prop.vendorExtensions.put("x-enum-varnames", names);
             prop.vendorExtensions.put("x-enum-descriptions", description);
             prop.vendorExtensions.put("x-enums", enums);
+            prop.vendorExtensions.put("x-enums-datatype", enumDataType);
+            prop.vendorExtensions.put("x-enums-isString", enumDataType.equalsIgnoreCase("string"));
         }
 
 
@@ -254,6 +261,7 @@ public class JavaSdkGenerator extends AbstractJavaCodegen implements NameService
     @Override
     public String toApiFilename(String name) {
         String apiName = name.replaceAll("-", "_");
+        apiName = KeywordsUtil.getKeyword(apiName);
         switch (modeSwitch.getMode()) {
             case API:
             case ENTRY:
@@ -368,11 +376,11 @@ public class JavaSdkGenerator extends AbstractJavaCodegen implements NameService
                     } else if (var.getIsMap()) {
                         imports.add(String.format("import %s;", importMapping.get("Map")));
                         imports.add(String.format("import %s;", importMapping.get("HashMap")));
-                    } else if (var.isEnum) {
+                    }
+
+                    if (var.getIsEnum() || var.mostInnerItems != null && var.mostInnerItems.isEnum) {
                         imports.add("import com.fasterxml.jackson.annotation.JsonValue;");
                         imports.add("import com.fasterxml.jackson.annotation.JsonCreator;");
-                    } else {
-                        ;
                     }
 
                 });

@@ -1,0 +1,171 @@
+
+    /**
+    * getWithdrawalQuotas
+    * Get Withdrawal Quotas
+    * /api/v1/withdrawals/quotas
+    */
+    public void testGetWithdrawalQuotas() {
+        GetWithdrawalQuotasReq.GetWithdrawalQuotasReqBuilder builder = GetWithdrawalQuotasReq.builder();
+        builder.currency(?).chain(?);
+        GetWithdrawalQuotasReq req = builder.build();
+        GetWithdrawalQuotasResp resp = this.api.getWithdrawalQuotas(req);
+        self::assertNotNull($resp->currency);
+        self::assertNotNull($resp->limitBTCAmount);
+        self::assertNotNull($resp->usedBTCAmount);
+        self::assertNotNull($resp->quotaCurrency);
+        self::assertNotNull($resp->limitQuotaCurrencyAmount);
+        self::assertNotNull($resp->usedQuotaCurrencyAmount);
+        self::assertNotNull($resp->remainAmount);
+        self::assertNotNull($resp->availableAmount);
+        self::assertNotNull($resp->withdrawMinFee);
+        self::assertNotNull($resp->innerWithdrawMinFee);
+        self::assertNotNull($resp->withdrawMinSize);
+        self::assertNotNull($resp->isWithdrawEnabled);
+        self::assertNotNull($resp->precision);
+        self::assertNotNull($resp->chain);
+        self::assertNotNull($resp->reason);
+        self::assertNotNull($resp->lockedAmount);
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
+    /**
+    * withdrawalV3
+    * Withdraw (V3)
+    * /api/v3/withdrawals
+    */
+    public void testWithdrawalV3() {
+        WithdrawalV3Req.WithdrawalV3ReqBuilder builder = WithdrawalV3Req.builder();
+        builder.currency(?).chain(?).amount(?).memo(?).isInner(?).remark(?).feeDeductType(?).toAddress(?).withdrawType(?);
+        WithdrawalV3Req req = builder.build();
+        WithdrawalV3Resp resp = this.api.withdrawalV3(req);
+        self::assertNotNull($resp->withdrawalId);
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
+    /**
+    * cancelWithdrawal
+    * Cancel Withdrawal
+    * /api/v1/withdrawals/{withdrawalId}
+    */
+    public void testCancelWithdrawal() {
+        CancelWithdrawalReq.CancelWithdrawalReqBuilder builder = CancelWithdrawalReq.builder();
+        builder.withdrawalId(?);
+        CancelWithdrawalReq req = builder.build();
+        CancelWithdrawalResp resp = this.api.cancelWithdrawal(req);
+        self::assertNotNull($resp->data);
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
+    /**
+    * getWithdrawalHistory
+    * Get Withdrawal History
+    * /api/v1/withdrawals
+    */
+    public void testGetWithdrawalHistory() {
+        GetWithdrawalHistoryReq.GetWithdrawalHistoryReqBuilder builder = GetWithdrawalHistoryReq.builder();
+        builder.currency(?).status(?).startAt(?).endAt(?).currentPage(?).pageSize(?);
+        GetWithdrawalHistoryReq req = builder.build();
+        GetWithdrawalHistoryResp resp = this.api.getWithdrawalHistory(req);
+        self::assertNotNull($resp->currentPage);
+        self::assertNotNull($resp->pageSize);
+        self::assertNotNull($resp->totalNum);
+        self::assertNotNull($resp->totalPage);
+        foreach($resp->items as $item) {
+            self::assertNotNull($item->id);
+            self::assertNotNull($item->currency);
+            self::assertNotNull($item->chain);
+            self::assertNotNull($item->status);
+            self::assertNotNull($item->address);
+            self::assertNotNull($item->memo);
+            self::assertNotNull($item->isInner);
+            self::assertNotNull($item->amount);
+            self::assertNotNull($item->fee);
+            self::assertNotNull($item->walletTxId);
+            self::assertNotNull($item->createdAt);
+            self::assertNotNull($item->updatedAt);
+            self::assertNotNull($item->remark);
+        }
+
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
+    /**
+    * getWithdrawalHistoryById
+    * Get Withdrawal History By ID
+    * /api/v1/withdrawals/{withdrawalId}
+    */
+    public void testGetWithdrawalHistoryById() {
+        GetWithdrawalHistoryByIdReq.GetWithdrawalHistoryByIdReqBuilder builder = GetWithdrawalHistoryByIdReq.builder();
+        builder.withdrawalId(?);
+        GetWithdrawalHistoryByIdReq req = builder.build();
+        GetWithdrawalHistoryByIdResp resp = this.api.getWithdrawalHistoryById(req);
+        self::assertNotNull($resp->id);
+        self::assertNotNull($resp->uid);
+        self::assertNotNull($resp->currency);
+        self::assertNotNull($resp->chainId);
+        self::assertNotNull($resp->chainName);
+        self::assertNotNull($resp->currencyName);
+        self::assertNotNull($resp->status);
+        self::assertNotNull($resp->failureReason);
+        self::assertNotNull($resp->failureReasonMsg);
+        self::assertNotNull($resp->address);
+        self::assertNotNull($resp->memo);
+        self::assertNotNull($resp->isInner);
+        self::assertNotNull($resp->amount);
+        self::assertNotNull($resp->fee);
+        self::assertNotNull($resp->walletTxId);
+        self::assertNotNull($resp->addressRemark);
+        self::assertNotNull($resp->remark);
+        self::assertNotNull($resp->createdAt);
+        self::assertNotNull($resp->cancelType);
+        foreach($resp->taxes as $item) {
+        }
+
+        self::assertNotNull($resp->taxDescription);
+        self::assertNotNull($resp->returnStatus);
+        self::assertNotNull($resp->returnAmount);
+        self::assertNotNull($resp->returnCurrency);
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
+    /**
+    * getWithdrawalHistoryOld
+    * Get Withdrawal History - Old
+    * /api/v1/hist-withdrawals
+    */
+    public void testGetWithdrawalHistoryOld() {
+        GetWithdrawalHistoryOldReq.GetWithdrawalHistoryOldReqBuilder builder = GetWithdrawalHistoryOldReq.builder();
+        builder.currency(?).status(?).startAt(?).endAt(?).currentPage(?).pageSize(?);
+        GetWithdrawalHistoryOldReq req = builder.build();
+        GetWithdrawalHistoryOldResp resp = this.api.getWithdrawalHistoryOld(req);
+        self::assertNotNull($resp->currentPage);
+        self::assertNotNull($resp->pageSize);
+        self::assertNotNull($resp->totalNum);
+        self::assertNotNull($resp->totalPage);
+        foreach($resp->items as $item) {
+            self::assertNotNull($item->currency);
+            self::assertNotNull($item->createAt);
+            self::assertNotNull($item->amount);
+            self::assertNotNull($item->address);
+            self::assertNotNull($item->walletTxId);
+            self::assertNotNull($item->isInner);
+            self::assertNotNull($item->status);
+        }
+
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
+    /**
+    * withdrawalV1
+    * Withdraw - V1
+    * /api/v1/withdrawals
+    */
+    public void testWithdrawalV1() {
+        WithdrawalV1Req.WithdrawalV1ReqBuilder builder = WithdrawalV1Req.builder();
+        builder.currency(?).chain(?).address(?).amount(?).memo(?).isInner(?).remark(?).feeDeductType(?);
+        WithdrawalV1Req req = builder.build();
+        WithdrawalV1Resp resp = this.api.withdrawalV1(req);
+        self::assertNotNull($resp->withdrawalId);
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+

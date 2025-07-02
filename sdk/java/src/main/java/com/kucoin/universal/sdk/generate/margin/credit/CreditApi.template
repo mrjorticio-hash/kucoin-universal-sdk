@@ -1,0 +1,143 @@
+
+    /**
+    * getLoanMarket
+    * Get Loan Market
+    * /api/v3/project/list
+    */
+    public void testGetLoanMarket() {
+        GetLoanMarketReq.GetLoanMarketReqBuilder builder = GetLoanMarketReq.builder();
+        builder.currency(?);
+        GetLoanMarketReq req = builder.build();
+        GetLoanMarketResp resp = this.api.getLoanMarket(req);
+        foreach($resp->data as $item) {
+            self::assertNotNull($item->currency);
+            self::assertNotNull($item->purchaseEnable);
+            self::assertNotNull($item->redeemEnable);
+            self::assertNotNull($item->increment);
+            self::assertNotNull($item->minPurchaseSize);
+            self::assertNotNull($item->minInterestRate);
+            self::assertNotNull($item->maxInterestRate);
+            self::assertNotNull($item->interestIncrement);
+            self::assertNotNull($item->maxPurchaseSize);
+            self::assertNotNull($item->marketInterestRate);
+            self::assertNotNull($item->autoPurchaseEnable);
+        }
+
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
+    /**
+    * getLoanMarketInterestRate
+    * Get Loan Market Interest Rate
+    * /api/v3/project/marketInterestRate
+    */
+    public void testGetLoanMarketInterestRate() {
+        GetLoanMarketInterestRateReq.GetLoanMarketInterestRateReqBuilder builder = GetLoanMarketInterestRateReq.builder();
+        builder.currency(?);
+        GetLoanMarketInterestRateReq req = builder.build();
+        GetLoanMarketInterestRateResp resp = this.api.getLoanMarketInterestRate(req);
+        foreach($resp->data as $item) {
+            self::assertNotNull($item->time);
+            self::assertNotNull($item->marketInterestRate);
+        }
+
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
+    /**
+    * purchase
+    * Purchase
+    * /api/v3/purchase
+    */
+    public void testPurchase() {
+        PurchaseReq.PurchaseReqBuilder builder = PurchaseReq.builder();
+        builder.currency(?).size(?).interestRate(?);
+        PurchaseReq req = builder.build();
+        PurchaseResp resp = this.api.purchase(req);
+        self::assertNotNull($resp->orderNo);
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
+    /**
+    * modifyPurchase
+    * Modify Purchase
+    * /api/v3/lend/purchase/update
+    */
+    public void testModifyPurchase() {
+        ModifyPurchaseReq.ModifyPurchaseReqBuilder builder = ModifyPurchaseReq.builder();
+        builder.currency(?).interestRate(?).purchaseOrderNo(?);
+        ModifyPurchaseReq req = builder.build();
+        ModifyPurchaseResp resp = this.api.modifyPurchase(req);
+        self::assertNotNull($resp->data);
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
+    /**
+    * getPurchaseOrders
+    * Get Purchase Orders
+    * /api/v3/purchase/orders
+    */
+    public void testGetPurchaseOrders() {
+        GetPurchaseOrdersReq.GetPurchaseOrdersReqBuilder builder = GetPurchaseOrdersReq.builder();
+        builder.status(?).currency(?).purchaseOrderNo(?).currentPage(?).pageSize(?);
+        GetPurchaseOrdersReq req = builder.build();
+        GetPurchaseOrdersResp resp = this.api.getPurchaseOrders(req);
+        self::assertNotNull($resp->currentPage);
+        self::assertNotNull($resp->pageSize);
+        self::assertNotNull($resp->totalNum);
+        self::assertNotNull($resp->totalPage);
+        foreach($resp->items as $item) {
+            self::assertNotNull($item->currency);
+            self::assertNotNull($item->purchaseOrderNo);
+            self::assertNotNull($item->purchaseSize);
+            self::assertNotNull($item->matchSize);
+            self::assertNotNull($item->interestRate);
+            self::assertNotNull($item->incomeSize);
+            self::assertNotNull($item->applyTime);
+            self::assertNotNull($item->status);
+        }
+
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
+    /**
+    * redeem
+    * Redeem
+    * /api/v3/redeem
+    */
+    public void testRedeem() {
+        RedeemReq.RedeemReqBuilder builder = RedeemReq.builder();
+        builder.currency(?).size(?).purchaseOrderNo(?);
+        RedeemReq req = builder.build();
+        RedeemResp resp = this.api.redeem(req);
+        self::assertNotNull($resp->orderNo);
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
+    /**
+    * getRedeemOrders
+    * Get Redeem Orders
+    * /api/v3/redeem/orders
+    */
+    public void testGetRedeemOrders() {
+        GetRedeemOrdersReq.GetRedeemOrdersReqBuilder builder = GetRedeemOrdersReq.builder();
+        builder.status(?).currency(?).redeemOrderNo(?).currentPage(?).pageSize(?);
+        GetRedeemOrdersReq req = builder.build();
+        GetRedeemOrdersResp resp = this.api.getRedeemOrders(req);
+        self::assertNotNull($resp->currentPage);
+        self::assertNotNull($resp->pageSize);
+        self::assertNotNull($resp->totalNum);
+        self::assertNotNull($resp->totalPage);
+        foreach($resp->items as $item) {
+            self::assertNotNull($item->currency);
+            self::assertNotNull($item->purchaseOrderNo);
+            self::assertNotNull($item->redeemOrderNo);
+            self::assertNotNull($item->redeemSize);
+            self::assertNotNull($item->receiptSize);
+            self::assertNotNull($item->applyTime);
+            self::assertNotNull($item->status);
+        }
+
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+

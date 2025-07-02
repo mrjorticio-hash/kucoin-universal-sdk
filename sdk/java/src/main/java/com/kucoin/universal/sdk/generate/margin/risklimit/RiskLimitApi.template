@@ -1,0 +1,47 @@
+
+    /**
+    * getMarginRiskLimit
+    * Get Margin Risk Limit
+    * /api/v3/margin/currencies
+    */
+    public void testGetMarginRiskLimit() {
+        GetMarginRiskLimitReq.GetMarginRiskLimitReqBuilder builder = GetMarginRiskLimitReq.builder();
+        builder.isIsolated(?).currency(?).symbol(?);
+        GetMarginRiskLimitReq req = builder.build();
+        GetMarginRiskLimitResp resp = this.api.getMarginRiskLimit(req);
+        foreach($resp->data as $item) {
+            self::assertNotNull($item->timestamp);
+            self::assertNotNull($item->currency);
+            self::assertNotNull($item->borrowMaxAmount);
+            self::assertNotNull($item->buyMaxAmount);
+            self::assertNotNull($item->holdMaxAmount);
+            self::assertNotNull($item->borrowCoefficient);
+            self::assertNotNull($item->marginCoefficient);
+            self::assertNotNull($item->precision);
+            self::assertNotNull($item->borrowMinAmount);
+            self::assertNotNull($item->borrowMinUnit);
+            self::assertNotNull($item->borrowEnabled);
+            self::assertNotNull($item->symbol);
+            self::assertNotNull($item->baseMaxBorrowAmount);
+            self::assertNotNull($item->quoteMaxBorrowAmount);
+            self::assertNotNull($item->baseMaxBuyAmount);
+            self::assertNotNull($item->quoteMaxBuyAmount);
+            self::assertNotNull($item->baseMaxHoldAmount);
+            self::assertNotNull($item->quoteMaxHoldAmount);
+            self::assertNotNull($item->basePrecision);
+            self::assertNotNull($item->quotePrecision);
+            self::assertNotNull($item->baseBorrowMinAmount);
+            self::assertNotNull($item->quoteBorrowMinAmount);
+            self::assertNotNull($item->baseBorrowMinUnit);
+            self::assertNotNull($item->quoteBorrowMinUnit);
+            self::assertNotNull($item->baseBorrowEnabled);
+            self::assertNotNull($item->quoteBorrowEnabled);
+            self::assertNotNull($item->baseBorrowCoefficient);
+            self::assertNotNull($item->quoteBorrowCoefficient);
+            self::assertNotNull($item->baseMarginCoefficient);
+            self::assertNotNull($item->quoteMarginCoefficient);
+        }
+
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+

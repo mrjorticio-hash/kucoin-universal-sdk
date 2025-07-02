@@ -1,0 +1,297 @@
+
+    /**
+    * addSubAccount
+    * Add sub-account
+    * /api/v2/sub/user/created
+    */
+    public void testAddSubAccount() {
+        AddSubAccountReq.AddSubAccountReqBuilder builder = AddSubAccountReq.builder();
+        builder.password(?).remarks(?).subName(?).access(?);
+        AddSubAccountReq req = builder.build();
+        AddSubAccountResp resp = this.api.addSubAccount(req);
+        self::assertNotNull($resp->uid);
+        self::assertNotNull($resp->subName);
+        self::assertNotNull($resp->remarks);
+        self::assertNotNull($resp->access);
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
+    /**
+    * addSubAccountMarginPermission
+    * Add sub-account Margin Permission
+    * /api/v3/sub/user/margin/enable
+    */
+    public void testAddSubAccountMarginPermission() {
+        AddSubAccountMarginPermissionReq.AddSubAccountMarginPermissionReqBuilder builder = AddSubAccountMarginPermissionReq.builder();
+        builder.uid(?);
+        AddSubAccountMarginPermissionReq req = builder.build();
+        AddSubAccountMarginPermissionResp resp = this.api.addSubAccountMarginPermission(req);
+        self::assertNotNull($resp->data);
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
+    /**
+    * addSubAccountFuturesPermission
+    * Add sub-account Futures Permission
+    * /api/v3/sub/user/futures/enable
+    */
+    public void testAddSubAccountFuturesPermission() {
+        AddSubAccountFuturesPermissionReq.AddSubAccountFuturesPermissionReqBuilder builder = AddSubAccountFuturesPermissionReq.builder();
+        builder.uid(?);
+        AddSubAccountFuturesPermissionReq req = builder.build();
+        AddSubAccountFuturesPermissionResp resp = this.api.addSubAccountFuturesPermission(req);
+        self::assertNotNull($resp->data);
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
+    /**
+    * getSpotSubAccountsSummaryV2
+    * Get sub-account List - Summary Info
+    * /api/v2/sub/user
+    */
+    public void testGetSpotSubAccountsSummaryV2() {
+        GetSpotSubAccountsSummaryV2Req.GetSpotSubAccountsSummaryV2ReqBuilder builder = GetSpotSubAccountsSummaryV2Req.builder();
+        builder.currentPage(?).pageSize(?);
+        GetSpotSubAccountsSummaryV2Req req = builder.build();
+        GetSpotSubAccountsSummaryV2Resp resp = this.api.getSpotSubAccountsSummaryV2(req);
+        self::assertNotNull($resp->currentPage);
+        self::assertNotNull($resp->pageSize);
+        self::assertNotNull($resp->totalNum);
+        self::assertNotNull($resp->totalPage);
+        foreach($resp->items as $item) {
+            self::assertNotNull($item->userId);
+            self::assertNotNull($item->uid);
+            self::assertNotNull($item->subName);
+            self::assertNotNull($item->status);
+            self::assertNotNull($item->type);
+            self::assertNotNull($item->access);
+            self::assertNotNull($item->createdAt);
+            self::assertNotNull($item->remarks);
+            self::assertNotNull($item->tradeTypes);
+            self::assertNotNull($item->openedTradeTypes);
+            self::assertNotNull($item->hostedStatus);
+        }
+
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
+    /**
+    * getSpotSubAccountDetail
+    * Get sub-account Detail - Balance
+    * /api/v1/sub-accounts/{subUserId}
+    */
+    public void testGetSpotSubAccountDetail() {
+        GetSpotSubAccountDetailReq.GetSpotSubAccountDetailReqBuilder builder = GetSpotSubAccountDetailReq.builder();
+        builder.subUserId(?).includeBaseAmount(?).baseCurrency(?).baseAmount(?);
+        GetSpotSubAccountDetailReq req = builder.build();
+        GetSpotSubAccountDetailResp resp = this.api.getSpotSubAccountDetail(req);
+        self::assertNotNull($resp->subUserId);
+        self::assertNotNull($resp->subName);
+        foreach($resp->mainAccounts as $item) {
+            self::assertNotNull($item->currency);
+            self::assertNotNull($item->balance);
+            self::assertNotNull($item->available);
+            self::assertNotNull($item->holds);
+            self::assertNotNull($item->baseCurrency);
+            self::assertNotNull($item->baseCurrencyPrice);
+            self::assertNotNull($item->baseAmount);
+            self::assertNotNull($item->tag);
+        }
+
+        foreach($resp->tradeAccounts as $item) {
+            self::assertNotNull($item->currency);
+            self::assertNotNull($item->balance);
+            self::assertNotNull($item->available);
+            self::assertNotNull($item->holds);
+            self::assertNotNull($item->baseCurrency);
+            self::assertNotNull($item->baseCurrencyPrice);
+            self::assertNotNull($item->baseAmount);
+            self::assertNotNull($item->tag);
+        }
+
+        foreach($resp->marginAccounts as $item) {
+            self::assertNotNull($item->currency);
+            self::assertNotNull($item->balance);
+            self::assertNotNull($item->available);
+            self::assertNotNull($item->holds);
+            self::assertNotNull($item->baseCurrency);
+            self::assertNotNull($item->baseCurrencyPrice);
+            self::assertNotNull($item->baseAmount);
+            self::assertNotNull($item->tag);
+        }
+
+        foreach($resp->tradeHFAccounts as $item) {
+        }
+
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
+    /**
+    * getSpotSubAccountListV2
+    * Get sub-account List - Spot Balance (V2)
+    * /api/v2/sub-accounts
+    */
+    public void testGetSpotSubAccountListV2() {
+        GetSpotSubAccountListV2Req.GetSpotSubAccountListV2ReqBuilder builder = GetSpotSubAccountListV2Req.builder();
+        builder.currentPage(?).pageSize(?);
+        GetSpotSubAccountListV2Req req = builder.build();
+        GetSpotSubAccountListV2Resp resp = this.api.getSpotSubAccountListV2(req);
+        self::assertNotNull($resp->currentPage);
+        self::assertNotNull($resp->pageSize);
+        self::assertNotNull($resp->totalNum);
+        self::assertNotNull($resp->totalPage);
+        foreach($resp->items as $item) {
+            self::assertNotNull($item->subUserId);
+            self::assertNotNull($item->subName);
+            self::assertNotNull($item->mainAccounts);
+            self::assertNotNull($item->tradeAccounts);
+            self::assertNotNull($item->marginAccounts);
+            self::assertNotNull($item->tradeHFAccounts);
+        }
+
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
+    /**
+    * getFuturesSubAccountListV2
+    * Get sub-account List - Futures Balance (V2)
+    * /api/v1/account-overview-all
+    */
+    public void testGetFuturesSubAccountListV2() {
+        GetFuturesSubAccountListV2Req.GetFuturesSubAccountListV2ReqBuilder builder = GetFuturesSubAccountListV2Req.builder();
+        builder.currency(?);
+        GetFuturesSubAccountListV2Req req = builder.build();
+        GetFuturesSubAccountListV2Resp resp = this.api.getFuturesSubAccountListV2(req);
+        self::assertNotNull($resp->summary);
+        foreach($resp->accounts as $item) {
+            self::assertNotNull($item->accountName);
+            self::assertNotNull($item->accountEquity);
+            self::assertNotNull($item->unrealisedPNL);
+            self::assertNotNull($item->marginBalance);
+            self::assertNotNull($item->positionMargin);
+            self::assertNotNull($item->orderMargin);
+            self::assertNotNull($item->frozenFunds);
+            self::assertNotNull($item->availableBalance);
+            self::assertNotNull($item->currency);
+        }
+
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
+    /**
+    * addSubAccountApi
+    * Add sub-account API
+    * /api/v1/sub/api-key
+    */
+    public void testAddSubAccountApi() {
+        AddSubAccountApiReq.AddSubAccountApiReqBuilder builder = AddSubAccountApiReq.builder();
+        builder.passphrase(?).remark(?).permission(?).ipWhitelist(?).expire(?).subName(?);
+        AddSubAccountApiReq req = builder.build();
+        AddSubAccountApiResp resp = this.api.addSubAccountApi(req);
+        self::assertNotNull($resp->subName);
+        self::assertNotNull($resp->remark);
+        self::assertNotNull($resp->apiKey);
+        self::assertNotNull($resp->apiSecret);
+        self::assertNotNull($resp->apiVersion);
+        self::assertNotNull($resp->passphrase);
+        self::assertNotNull($resp->permission);
+        self::assertNotNull($resp->ipWhitelist);
+        self::assertNotNull($resp->createdAt);
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
+    /**
+    * modifySubAccountApi
+    * Modify sub-account API
+    * /api/v1/sub/api-key/update
+    */
+    public void testModifySubAccountApi() {
+        ModifySubAccountApiReq.ModifySubAccountApiReqBuilder builder = ModifySubAccountApiReq.builder();
+        builder.passphrase(?).permission(?).ipWhitelist(?).expire(?).subName(?).apiKey(?);
+        ModifySubAccountApiReq req = builder.build();
+        ModifySubAccountApiResp resp = this.api.modifySubAccountApi(req);
+        self::assertNotNull($resp->subName);
+        self::assertNotNull($resp->apiKey);
+        self::assertNotNull($resp->permission);
+        self::assertNotNull($resp->ipWhitelist);
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
+    /**
+    * getSubAccountApiList
+    * Get sub-account API List
+    * /api/v1/sub/api-key
+    */
+    public void testGetSubAccountApiList() {
+        GetSubAccountApiListReq.GetSubAccountApiListReqBuilder builder = GetSubAccountApiListReq.builder();
+        builder.apiKey(?).subName(?);
+        GetSubAccountApiListReq req = builder.build();
+        GetSubAccountApiListResp resp = this.api.getSubAccountApiList(req);
+        foreach($resp->data as $item) {
+            self::assertNotNull($item->subName);
+            self::assertNotNull($item->remark);
+            self::assertNotNull($item->apiKey);
+            self::assertNotNull($item->apiVersion);
+            self::assertNotNull($item->permission);
+            self::assertNotNull($item->ipWhitelist);
+            self::assertNotNull($item->createdAt);
+            self::assertNotNull($item->uid);
+            self::assertNotNull($item->isMaster);
+        }
+
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
+    /**
+    * deleteSubAccountApi
+    * Delete sub-account API
+    * /api/v1/sub/api-key
+    */
+    public void testDeleteSubAccountApi() {
+        DeleteSubAccountApiReq.DeleteSubAccountApiReqBuilder builder = DeleteSubAccountApiReq.builder();
+        builder.apiKey(?).subName(?).passphrase(?);
+        DeleteSubAccountApiReq req = builder.build();
+        DeleteSubAccountApiResp resp = this.api.deleteSubAccountApi(req);
+        self::assertNotNull($resp->subName);
+        self::assertNotNull($resp->apiKey);
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
+    /**
+    * getSpotSubAccountsSummaryV1
+    * Get sub-account List - Summary Info (V1)
+    * /api/v1/sub/user
+    */
+    public void testGetSpotSubAccountsSummaryV1() {
+        GetSpotSubAccountsSummaryV1Resp resp = this.api.getSpotSubAccountsSummaryV1();
+        foreach($resp->data as $item) {
+            self::assertNotNull($item->userId);
+            self::assertNotNull($item->uid);
+            self::assertNotNull($item->subName);
+            self::assertNotNull($item->type);
+            self::assertNotNull($item->remarks);
+            self::assertNotNull($item->access);
+        }
+
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
+    /**
+    * getSpotSubAccountListV1
+    * Get sub-account List - Spot Balance (V1)
+    * /api/v1/sub-accounts
+    */
+    public void testGetSpotSubAccountListV1() {
+        GetSpotSubAccountListV1Resp resp = this.api.getSpotSubAccountListV1();
+        foreach($resp->data as $item) {
+            self::assertNotNull($item->subUserId);
+            self::assertNotNull($item->subName);
+            self::assertNotNull($item->mainAccounts);
+            self::assertNotNull($item->tradeAccounts);
+            self::assertNotNull($item->marginAccounts);
+            self::assertNotNull($item->tradeHFAccounts);
+        }
+
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+

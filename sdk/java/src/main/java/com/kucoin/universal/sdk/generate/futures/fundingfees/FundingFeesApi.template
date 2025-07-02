@@ -1,0 +1,70 @@
+
+    /**
+    * getCurrentFundingRate
+    * Get Current Funding Rate
+    * /api/v1/funding-rate/{symbol}/current
+    */
+    public void testGetCurrentFundingRate() {
+        GetCurrentFundingRateReq.GetCurrentFundingRateReqBuilder builder = GetCurrentFundingRateReq.builder();
+        builder.symbol(?);
+        GetCurrentFundingRateReq req = builder.build();
+        GetCurrentFundingRateResp resp = this.api.getCurrentFundingRate(req);
+        self::assertNotNull($resp->symbol);
+        self::assertNotNull($resp->granularity);
+        self::assertNotNull($resp->timePoint);
+        self::assertNotNull($resp->value);
+        self::assertNotNull($resp->predictedValue);
+        self::assertNotNull($resp->fundingRateCap);
+        self::assertNotNull($resp->fundingRateFloor);
+        self::assertNotNull($resp->period);
+        self::assertNotNull($resp->fundingTime);
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
+    /**
+    * getPublicFundingHistory
+    * Get Public Funding History
+    * /api/v1/contract/funding-rates
+    */
+    public void testGetPublicFundingHistory() {
+        GetPublicFundingHistoryReq.GetPublicFundingHistoryReqBuilder builder = GetPublicFundingHistoryReq.builder();
+        builder.symbol(?).from(?).to(?);
+        GetPublicFundingHistoryReq req = builder.build();
+        GetPublicFundingHistoryResp resp = this.api.getPublicFundingHistory(req);
+        foreach($resp->data as $item) {
+            self::assertNotNull($item->symbol);
+            self::assertNotNull($item->fundingRate);
+            self::assertNotNull($item->timepoint);
+        }
+
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
+    /**
+    * getPrivateFundingHistory
+    * Get Private Funding History
+    * /api/v1/funding-history
+    */
+    public void testGetPrivateFundingHistory() {
+        GetPrivateFundingHistoryReq.GetPrivateFundingHistoryReqBuilder builder = GetPrivateFundingHistoryReq.builder();
+        builder.symbol(?).startAt(?).endAt(?).reverse(?).offset(?).forward(?).maxCount(?);
+        GetPrivateFundingHistoryReq req = builder.build();
+        GetPrivateFundingHistoryResp resp = this.api.getPrivateFundingHistory(req);
+        foreach($resp->dataList as $item) {
+            self::assertNotNull($item->id);
+            self::assertNotNull($item->symbol);
+            self::assertNotNull($item->timePoint);
+            self::assertNotNull($item->fundingRate);
+            self::assertNotNull($item->markPrice);
+            self::assertNotNull($item->positionQty);
+            self::assertNotNull($item->positionCost);
+            self::assertNotNull($item->funding);
+            self::assertNotNull($item->settleCurrency);
+            self::assertNotNull($item->context);
+            self::assertNotNull($item->marginMode);
+        }
+
+        self::assertNotNull($resp->hasMore);
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+

@@ -74,6 +74,9 @@ define generate-code
 	docker run --rm -v "${PWD}:/local" $(IMAGE_NAME):$(IMAGE_TAG) rm -rf $(outdir)/.openapi-generator
 	docker run --rm -v "${PWD}:/local" $(IMAGE_NAME):$(IMAGE_TAG) rm -rf $(outdir)/.openapi-generator-ignore
 
+	@echo "$(GREEN)lang: $(lang), format project...$(NC)"
+	sh -c "cd sdk/$(lang) && make format"
+
 	@echo "$(GREEN)lang: $(lang), done!$(NC)"
 endef
 
@@ -89,6 +92,7 @@ generate: setup-logs
 	$(call generate-code,python,/kucoin_universal_sdk/generate)
 	$(call generate-code,node,/src/generate)
 	$(call generate-code,php,/src/Generate,0.1.2-alpha)
+	$(call generate-code,java,/src/main/java/com/kucoin/universal/sdk/generate,0.1.0-alpha)
 
 .PHONY: gen-postman
 gen-postman: preprocessor

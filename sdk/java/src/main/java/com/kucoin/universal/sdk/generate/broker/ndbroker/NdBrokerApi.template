@@ -1,0 +1,337 @@
+
+    /**
+    * submitKYC
+    * Submit KYC
+    * /api/kyc/ndBroker/proxyClient/submit
+    */
+    public void testSubmitKYC() {
+        SubmitKYCReq.SubmitKYCReqBuilder builder = SubmitKYCReq.builder();
+        builder.clientUid(?).firstName(?).lastName(?).issueCountry(?).birthDate(?).identityType(?).identityNumber(?).expireDate(?).frontPhoto(?).backendPhoto(?).facePhoto(?);
+        SubmitKYCReq req = builder.build();
+        SubmitKYCResp resp = this.api.submitKYC(req);
+        self::assertNotNull($resp->data);
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
+    /**
+    * getKYCStatus
+    * Get KYC Status
+    * /api/kyc/ndBroker/proxyClient/status/list
+    */
+    public void testGetKYCStatus() {
+        GetKYCStatusReq.GetKYCStatusReqBuilder builder = GetKYCStatusReq.builder();
+        builder.clientUids(?);
+        GetKYCStatusReq req = builder.build();
+        GetKYCStatusResp resp = this.api.getKYCStatus(req);
+        foreach($resp->data as $item) {
+            self::assertNotNull($item->clientUid);
+            self::assertNotNull($item->status);
+            self::assertNotNull($item->rejectReason);
+        }
+
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
+    /**
+    * getKYCStatusList
+    * Get KYC Status List
+    * /api/kyc/ndBroker/proxyClient/status/page
+    */
+    public void testGetKYCStatusList() {
+        GetKYCStatusListReq.GetKYCStatusListReqBuilder builder = GetKYCStatusListReq.builder();
+        builder.pageNumber(?).pageSize(?);
+        GetKYCStatusListReq req = builder.build();
+        GetKYCStatusListResp resp = this.api.getKYCStatusList(req);
+        self::assertNotNull($resp->currentPage);
+        self::assertNotNull($resp->pageSize);
+        self::assertNotNull($resp->totalNum);
+        self::assertNotNull($resp->totalPage);
+        foreach($resp->items as $item) {
+            self::assertNotNull($item->clientUid);
+            self::assertNotNull($item->status);
+            self::assertNotNull($item->rejectReason);
+        }
+
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
+    /**
+    * getBrokerInfo
+    * Get Broker Info
+    * /api/v1/broker/nd/info
+    */
+    public void testGetBrokerInfo() {
+        GetBrokerInfoReq.GetBrokerInfoReqBuilder builder = GetBrokerInfoReq.builder();
+        builder.begin(?).end(?).tradeType(?);
+        GetBrokerInfoReq req = builder.build();
+        GetBrokerInfoResp resp = this.api.getBrokerInfo(req);
+        self::assertNotNull($resp->accountSize);
+        self::assertNotNull($resp->maxAccountSize);
+        self::assertNotNull($resp->level);
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
+    /**
+    * addSubAccount
+    * Add sub-account
+    * /api/v1/broker/nd/account
+    */
+    public void testAddSubAccount() {
+        AddSubAccountReq.AddSubAccountReqBuilder builder = AddSubAccountReq.builder();
+        builder.accountName(?);
+        AddSubAccountReq req = builder.build();
+        AddSubAccountResp resp = this.api.addSubAccount(req);
+        self::assertNotNull($resp->accountName);
+        self::assertNotNull($resp->uid);
+        self::assertNotNull($resp->createdAt);
+        self::assertNotNull($resp->level);
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
+    /**
+    * getSubAccount
+    * Get sub-account
+    * /api/v1/broker/nd/account
+    */
+    public void testGetSubAccount() {
+        GetSubAccountReq.GetSubAccountReqBuilder builder = GetSubAccountReq.builder();
+        builder.uid(?).currentPage(?).pageSize(?);
+        GetSubAccountReq req = builder.build();
+        GetSubAccountResp resp = this.api.getSubAccount(req);
+        self::assertNotNull($resp->currentPage);
+        self::assertNotNull($resp->pageSize);
+        self::assertNotNull($resp->totalNum);
+        self::assertNotNull($resp->totalPage);
+        foreach($resp->items as $item) {
+            self::assertNotNull($item->accountName);
+            self::assertNotNull($item->uid);
+            self::assertNotNull($item->createdAt);
+            self::assertNotNull($item->level);
+        }
+
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
+    /**
+    * addSubAccountApi
+    * Add sub-account API
+    * /api/v1/broker/nd/account/apikey
+    */
+    public void testAddSubAccountApi() {
+        AddSubAccountApiReq.AddSubAccountApiReqBuilder builder = AddSubAccountApiReq.builder();
+        builder.uid(?).passphrase(?).ipWhitelist(?).permissions(?).label(?);
+        AddSubAccountApiReq req = builder.build();
+        AddSubAccountApiResp resp = this.api.addSubAccountApi(req);
+        self::assertNotNull($resp->uid);
+        self::assertNotNull($resp->label);
+        self::assertNotNull($resp->apiKey);
+        self::assertNotNull($resp->secretKey);
+        self::assertNotNull($resp->apiVersion);
+        foreach($resp->permissions as $item) {
+        }
+
+        foreach($resp->ipWhitelist as $item) {
+        }
+
+        self::assertNotNull($resp->createdAt);
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
+    /**
+    * getSubAccountAPI
+    * Get sub-account API
+    * /api/v1/broker/nd/account/apikey
+    */
+    public void testGetSubAccountAPI() {
+        GetSubAccountAPIReq.GetSubAccountAPIReqBuilder builder = GetSubAccountAPIReq.builder();
+        builder.uid(?).apiKey(?);
+        GetSubAccountAPIReq req = builder.build();
+        GetSubAccountAPIResp resp = this.api.getSubAccountAPI(req);
+        foreach($resp->data as $item) {
+            self::assertNotNull($item->uid);
+            self::assertNotNull($item->label);
+            self::assertNotNull($item->apiKey);
+            self::assertNotNull($item->apiVersion);
+            self::assertNotNull($item->permissions);
+            self::assertNotNull($item->ipWhitelist);
+            self::assertNotNull($item->createdAt);
+        }
+
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
+    /**
+    * modifySubAccountApi
+    * Modify sub-account API
+    * /api/v1/broker/nd/account/update-apikey
+    */
+    public void testModifySubAccountApi() {
+        ModifySubAccountApiReq.ModifySubAccountApiReqBuilder builder = ModifySubAccountApiReq.builder();
+        builder.uid(?).ipWhitelist(?).permissions(?).label(?).apiKey(?);
+        ModifySubAccountApiReq req = builder.build();
+        ModifySubAccountApiResp resp = this.api.modifySubAccountApi(req);
+        self::assertNotNull($resp->uid);
+        self::assertNotNull($resp->label);
+        self::assertNotNull($resp->apiKey);
+        self::assertNotNull($resp->apiVersion);
+        foreach($resp->permissions as $item) {
+        }
+
+        foreach($resp->ipWhitelist as $item) {
+        }
+
+        self::assertNotNull($resp->createdAt);
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
+    /**
+    * deleteSubAccountAPI
+    * Delete sub-account API
+    * /api/v1/broker/nd/account/apikey
+    */
+    public void testDeleteSubAccountAPI() {
+        DeleteSubAccountAPIReq.DeleteSubAccountAPIReqBuilder builder = DeleteSubAccountAPIReq.builder();
+        builder.uid(?).apiKey(?);
+        DeleteSubAccountAPIReq req = builder.build();
+        DeleteSubAccountAPIResp resp = this.api.deleteSubAccountAPI(req);
+        self::assertNotNull($resp->data);
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
+    /**
+    * transfer
+    * Transfer
+    * /api/v1/broker/nd/transfer
+    */
+    public void testTransfer() {
+        TransferReq.TransferReqBuilder builder = TransferReq.builder();
+        builder.currency(?).amount(?).direction(?).accountType(?).specialUid(?).specialAccountType(?).clientOid(?);
+        TransferReq req = builder.build();
+        TransferResp resp = this.api.transfer(req);
+        self::assertNotNull($resp->orderId);
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
+    /**
+    * getTransferHistory
+    * Get Transfer History
+    * /api/v3/broker/nd/transfer/detail
+    */
+    public void testGetTransferHistory() {
+        GetTransferHistoryReq.GetTransferHistoryReqBuilder builder = GetTransferHistoryReq.builder();
+        builder.orderId(?);
+        GetTransferHistoryReq req = builder.build();
+        GetTransferHistoryResp resp = this.api.getTransferHistory(req);
+        self::assertNotNull($resp->orderId);
+        self::assertNotNull($resp->currency);
+        self::assertNotNull($resp->amount);
+        self::assertNotNull($resp->fromUid);
+        self::assertNotNull($resp->fromAccountType);
+        self::assertNotNull($resp->fromAccountTag);
+        self::assertNotNull($resp->toUid);
+        self::assertNotNull($resp->toAccountType);
+        self::assertNotNull($resp->toAccountTag);
+        self::assertNotNull($resp->status);
+        self::assertNotNull($resp->reason);
+        self::assertNotNull($resp->createdAt);
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
+    /**
+    * getDepositList
+    * Get Deposit List
+    * /api/v1/asset/ndbroker/deposit/list
+    */
+    public void testGetDepositList() {
+        GetDepositListReq.GetDepositListReqBuilder builder = GetDepositListReq.builder();
+        builder.currency(?).status(?).hash(?).startTimestamp(?).endTimestamp(?).limit(?);
+        GetDepositListReq req = builder.build();
+        GetDepositListResp resp = this.api.getDepositList(req);
+        foreach($resp->data as $item) {
+            self::assertNotNull($item->uid);
+            self::assertNotNull($item->hash);
+            self::assertNotNull($item->address);
+            self::assertNotNull($item->memo);
+            self::assertNotNull($item->amount);
+            self::assertNotNull($item->fee);
+            self::assertNotNull($item->currency);
+            self::assertNotNull($item->isInner);
+            self::assertNotNull($item->walletTxId);
+            self::assertNotNull($item->status);
+            self::assertNotNull($item->remark);
+            self::assertNotNull($item->chain);
+            self::assertNotNull($item->createdAt);
+            self::assertNotNull($item->updatedAt);
+        }
+
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
+    /**
+    * getDepositDetail
+    * Get Deposit Detail
+    * /api/v3/broker/nd/deposit/detail
+    */
+    public void testGetDepositDetail() {
+        GetDepositDetailReq.GetDepositDetailReqBuilder builder = GetDepositDetailReq.builder();
+        builder.currency(?).hash(?);
+        GetDepositDetailReq req = builder.build();
+        GetDepositDetailResp resp = this.api.getDepositDetail(req);
+        self::assertNotNull($resp->chain);
+        self::assertNotNull($resp->hash);
+        self::assertNotNull($resp->walletTxId);
+        self::assertNotNull($resp->uid);
+        self::assertNotNull($resp->updatedAt);
+        self::assertNotNull($resp->amount);
+        self::assertNotNull($resp->memo);
+        self::assertNotNull($resp->fee);
+        self::assertNotNull($resp->address);
+        self::assertNotNull($resp->remark);
+        self::assertNotNull($resp->isInner);
+        self::assertNotNull($resp->currency);
+        self::assertNotNull($resp->status);
+        self::assertNotNull($resp->createdAt);
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
+    /**
+    * getWithdrawDetail
+    * Get Withdraw Detail
+    * /api/v3/broker/nd/withdraw/detail
+    */
+    public void testGetWithdrawDetail() {
+        GetWithdrawDetailReq.GetWithdrawDetailReqBuilder builder = GetWithdrawDetailReq.builder();
+        builder.withdrawalId(?);
+        GetWithdrawDetailReq req = builder.build();
+        GetWithdrawDetailResp resp = this.api.getWithdrawDetail(req);
+        self::assertNotNull($resp->id);
+        self::assertNotNull($resp->chain);
+        self::assertNotNull($resp->walletTxId);
+        self::assertNotNull($resp->uid);
+        self::assertNotNull($resp->updatedAt);
+        self::assertNotNull($resp->amount);
+        self::assertNotNull($resp->memo);
+        self::assertNotNull($resp->fee);
+        self::assertNotNull($resp->address);
+        self::assertNotNull($resp->remark);
+        self::assertNotNull($resp->isInner);
+        self::assertNotNull($resp->currency);
+        self::assertNotNull($resp->status);
+        self::assertNotNull($resp->createdAt);
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
+    /**
+    * getRebase
+    * Get Broker Rebate
+    * /api/v1/broker/nd/rebase/download
+    */
+    public void testGetRebase() {
+        GetRebaseReq.GetRebaseReqBuilder builder = GetRebaseReq.builder();
+        builder.begin(?).end(?).tradeType(?);
+        GetRebaseReq req = builder.build();
+        GetRebaseResp resp = this.api.getRebase(req);
+        self::assertNotNull($resp->url);
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+

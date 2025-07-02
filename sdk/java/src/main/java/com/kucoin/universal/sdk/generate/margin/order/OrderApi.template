@@ -1,0 +1,372 @@
+
+    /**
+    * addOrder
+    * Add Order
+    * /api/v3/hf/margin/order
+    */
+    public void testAddOrder() {
+        AddOrderReq.AddOrderReqBuilder builder = AddOrderReq.builder();
+        builder.clientOid(?).side(?).symbol(?).type(?).stp(?).price(?).size(?).timeInForce(?).postOnly(?).hidden(?).iceberg(?).visibleSize(?).cancelAfter(?).funds(?).isIsolated(?).autoBorrow(?).autoRepay(?);
+        AddOrderReq req = builder.build();
+        AddOrderResp resp = this.api.addOrder(req);
+        self::assertNotNull($resp->orderId);
+        self::assertNotNull($resp->loanApplyId);
+        self::assertNotNull($resp->borrowSize);
+        self::assertNotNull($resp->clientOid);
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
+    /**
+    * addOrderTest
+    * Add Order Test
+    * /api/v3/hf/margin/order/test
+    */
+    public void testAddOrderTest() {
+        AddOrderTestReq.AddOrderTestReqBuilder builder = AddOrderTestReq.builder();
+        builder.clientOid(?).side(?).symbol(?).type(?).stp(?).price(?).size(?).timeInForce(?).postOnly(?).hidden(?).iceberg(?).visibleSize(?).cancelAfter(?).funds(?).isIsolated(?).autoBorrow(?).autoRepay(?);
+        AddOrderTestReq req = builder.build();
+        AddOrderTestResp resp = this.api.addOrderTest(req);
+        self::assertNotNull($resp->orderId);
+        self::assertNotNull($resp->loanApplyId);
+        self::assertNotNull($resp->borrowSize);
+        self::assertNotNull($resp->clientOid);
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
+    /**
+    * cancelOrderByOrderId
+    * Cancel Order By OrderId
+    * /api/v3/hf/margin/orders/{orderId}
+    */
+    public void testCancelOrderByOrderId() {
+        CancelOrderByOrderIdReq.CancelOrderByOrderIdReqBuilder builder = CancelOrderByOrderIdReq.builder();
+        builder.symbol(?).orderId(?);
+        CancelOrderByOrderIdReq req = builder.build();
+        CancelOrderByOrderIdResp resp = this.api.cancelOrderByOrderId(req);
+        self::assertNotNull($resp->orderId);
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
+    /**
+    * cancelOrderByClientOid
+    * Cancel Order By ClientOid
+    * /api/v3/hf/margin/orders/client-order/{clientOid}
+    */
+    public void testCancelOrderByClientOid() {
+        CancelOrderByClientOidReq.CancelOrderByClientOidReqBuilder builder = CancelOrderByClientOidReq.builder();
+        builder.symbol(?).clientOid(?);
+        CancelOrderByClientOidReq req = builder.build();
+        CancelOrderByClientOidResp resp = this.api.cancelOrderByClientOid(req);
+        self::assertNotNull($resp->clientOid);
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
+    /**
+    * cancelAllOrdersBySymbol
+    * Cancel All Orders By Symbol
+    * /api/v3/hf/margin/orders
+    */
+    public void testCancelAllOrdersBySymbol() {
+        CancelAllOrdersBySymbolReq.CancelAllOrdersBySymbolReqBuilder builder = CancelAllOrdersBySymbolReq.builder();
+        builder.symbol(?).tradeType(?);
+        CancelAllOrdersBySymbolReq req = builder.build();
+        CancelAllOrdersBySymbolResp resp = this.api.cancelAllOrdersBySymbol(req);
+        self::assertNotNull($resp->data);
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
+    /**
+    * getSymbolsWithOpenOrder
+    * Get Symbols With Open Order
+    * /api/v3/hf/margin/order/active/symbols
+    */
+    public void testGetSymbolsWithOpenOrder() {
+        GetSymbolsWithOpenOrderReq.GetSymbolsWithOpenOrderReqBuilder builder = GetSymbolsWithOpenOrderReq.builder();
+        builder.tradeType(?);
+        GetSymbolsWithOpenOrderReq req = builder.build();
+        GetSymbolsWithOpenOrderResp resp = this.api.getSymbolsWithOpenOrder(req);
+        self::assertNotNull($resp->symbolSize);
+        foreach($resp->symbols as $item) {
+        }
+
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
+    /**
+    * getOpenOrders
+    * Get Open Orders
+    * /api/v3/hf/margin/orders/active
+    */
+    public void testGetOpenOrders() {
+        GetOpenOrdersReq.GetOpenOrdersReqBuilder builder = GetOpenOrdersReq.builder();
+        builder.symbol(?).tradeType(?);
+        GetOpenOrdersReq req = builder.build();
+        GetOpenOrdersResp resp = this.api.getOpenOrders(req);
+        foreach($resp->data as $item) {
+            self::assertNotNull($item->id);
+            self::assertNotNull($item->symbol);
+            self::assertNotNull($item->opType);
+            self::assertNotNull($item->type);
+            self::assertNotNull($item->side);
+            self::assertNotNull($item->price);
+            self::assertNotNull($item->size);
+            self::assertNotNull($item->funds);
+            self::assertNotNull($item->dealSize);
+            self::assertNotNull($item->dealFunds);
+            self::assertNotNull($item->fee);
+            self::assertNotNull($item->feeCurrency);
+            self::assertNotNull($item->stp);
+            self::assertNotNull($item->stop);
+            self::assertNotNull($item->stopTriggered);
+            self::assertNotNull($item->stopPrice);
+            self::assertNotNull($item->timeInForce);
+            self::assertNotNull($item->postOnly);
+            self::assertNotNull($item->hidden);
+            self::assertNotNull($item->iceberg);
+            self::assertNotNull($item->visibleSize);
+            self::assertNotNull($item->cancelAfter);
+            self::assertNotNull($item->channel);
+            self::assertNotNull($item->clientOid);
+            self::assertNotNull($item->remark);
+            self::assertNotNull($item->tags);
+            self::assertNotNull($item->cancelExist);
+            self::assertNotNull($item->createdAt);
+            self::assertNotNull($item->lastUpdatedAt);
+            self::assertNotNull($item->tradeType);
+            self::assertNotNull($item->inOrderBook);
+            self::assertNotNull($item->cancelledSize);
+            self::assertNotNull($item->cancelledFunds);
+            self::assertNotNull($item->remainSize);
+            self::assertNotNull($item->remainFunds);
+            self::assertNotNull($item->tax);
+            self::assertNotNull($item->active);
+        }
+
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
+    /**
+    * getClosedOrders
+    * Get Closed Orders
+    * /api/v3/hf/margin/orders/done
+    */
+    public void testGetClosedOrders() {
+        GetClosedOrdersReq.GetClosedOrdersReqBuilder builder = GetClosedOrdersReq.builder();
+        builder.symbol(?).tradeType(?).side(?).type(?).lastId(?).limit(?).startAt(?).endAt(?);
+        GetClosedOrdersReq req = builder.build();
+        GetClosedOrdersResp resp = this.api.getClosedOrders(req);
+        self::assertNotNull($resp->lastId);
+        foreach($resp->items as $item) {
+            self::assertNotNull($item->id);
+            self::assertNotNull($item->symbol);
+            self::assertNotNull($item->opType);
+            self::assertNotNull($item->type);
+            self::assertNotNull($item->side);
+            self::assertNotNull($item->price);
+            self::assertNotNull($item->size);
+            self::assertNotNull($item->funds);
+            self::assertNotNull($item->dealSize);
+            self::assertNotNull($item->dealFunds);
+            self::assertNotNull($item->fee);
+            self::assertNotNull($item->feeCurrency);
+            self::assertNotNull($item->stp);
+            self::assertNotNull($item->stop);
+            self::assertNotNull($item->stopTriggered);
+            self::assertNotNull($item->stopPrice);
+            self::assertNotNull($item->timeInForce);
+            self::assertNotNull($item->postOnly);
+            self::assertNotNull($item->hidden);
+            self::assertNotNull($item->iceberg);
+            self::assertNotNull($item->visibleSize);
+            self::assertNotNull($item->cancelAfter);
+            self::assertNotNull($item->channel);
+            self::assertNotNull($item->clientOid);
+            self::assertNotNull($item->remark);
+            self::assertNotNull($item->tags);
+            self::assertNotNull($item->cancelExist);
+            self::assertNotNull($item->createdAt);
+            self::assertNotNull($item->lastUpdatedAt);
+            self::assertNotNull($item->tradeType);
+            self::assertNotNull($item->inOrderBook);
+            self::assertNotNull($item->cancelledSize);
+            self::assertNotNull($item->cancelledFunds);
+            self::assertNotNull($item->remainSize);
+            self::assertNotNull($item->remainFunds);
+            self::assertNotNull($item->tax);
+            self::assertNotNull($item->active);
+        }
+
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
+    /**
+    * getTradeHistory
+    * Get Trade History
+    * /api/v3/hf/margin/fills
+    */
+    public void testGetTradeHistory() {
+        GetTradeHistoryReq.GetTradeHistoryReqBuilder builder = GetTradeHistoryReq.builder();
+        builder.symbol(?).tradeType(?).orderId(?).side(?).type(?).lastId(?).limit(?).startAt(?).endAt(?);
+        GetTradeHistoryReq req = builder.build();
+        GetTradeHistoryResp resp = this.api.getTradeHistory(req);
+        foreach($resp->items as $item) {
+            self::assertNotNull($item->id);
+            self::assertNotNull($item->symbol);
+            self::assertNotNull($item->tradeId);
+            self::assertNotNull($item->orderId);
+            self::assertNotNull($item->counterOrderId);
+            self::assertNotNull($item->side);
+            self::assertNotNull($item->liquidity);
+            self::assertNotNull($item->forceTaker);
+            self::assertNotNull($item->price);
+            self::assertNotNull($item->size);
+            self::assertNotNull($item->funds);
+            self::assertNotNull($item->fee);
+            self::assertNotNull($item->feeRate);
+            self::assertNotNull($item->feeCurrency);
+            self::assertNotNull($item->stop);
+            self::assertNotNull($item->tradeType);
+            self::assertNotNull($item->tax);
+            self::assertNotNull($item->taxRate);
+            self::assertNotNull($item->type);
+            self::assertNotNull($item->createdAt);
+        }
+
+        self::assertNotNull($resp->lastId);
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
+    /**
+    * getOrderByOrderId
+    * Get Order By OrderId
+    * /api/v3/hf/margin/orders/{orderId}
+    */
+    public void testGetOrderByOrderId() {
+        GetOrderByOrderIdReq.GetOrderByOrderIdReqBuilder builder = GetOrderByOrderIdReq.builder();
+        builder.symbol(?).orderId(?);
+        GetOrderByOrderIdReq req = builder.build();
+        GetOrderByOrderIdResp resp = this.api.getOrderByOrderId(req);
+        self::assertNotNull($resp->id);
+        self::assertNotNull($resp->symbol);
+        self::assertNotNull($resp->opType);
+        self::assertNotNull($resp->type);
+        self::assertNotNull($resp->side);
+        self::assertNotNull($resp->price);
+        self::assertNotNull($resp->size);
+        self::assertNotNull($resp->funds);
+        self::assertNotNull($resp->dealSize);
+        self::assertNotNull($resp->dealFunds);
+        self::assertNotNull($resp->fee);
+        self::assertNotNull($resp->feeCurrency);
+        self::assertNotNull($resp->stp);
+        self::assertNotNull($resp->stop);
+        self::assertNotNull($resp->stopTriggered);
+        self::assertNotNull($resp->stopPrice);
+        self::assertNotNull($resp->timeInForce);
+        self::assertNotNull($resp->postOnly);
+        self::assertNotNull($resp->hidden);
+        self::assertNotNull($resp->iceberg);
+        self::assertNotNull($resp->visibleSize);
+        self::assertNotNull($resp->cancelAfter);
+        self::assertNotNull($resp->channel);
+        self::assertNotNull($resp->clientOid);
+        self::assertNotNull($resp->remark);
+        self::assertNotNull($resp->tags);
+        self::assertNotNull($resp->cancelExist);
+        self::assertNotNull($resp->createdAt);
+        self::assertNotNull($resp->lastUpdatedAt);
+        self::assertNotNull($resp->tradeType);
+        self::assertNotNull($resp->inOrderBook);
+        self::assertNotNull($resp->cancelledSize);
+        self::assertNotNull($resp->cancelledFunds);
+        self::assertNotNull($resp->remainSize);
+        self::assertNotNull($resp->remainFunds);
+        self::assertNotNull($resp->tax);
+        self::assertNotNull($resp->active);
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
+    /**
+    * getOrderByClientOid
+    * Get Order By ClientOid
+    * /api/v3/hf/margin/orders/client-order/{clientOid}
+    */
+    public void testGetOrderByClientOid() {
+        GetOrderByClientOidReq.GetOrderByClientOidReqBuilder builder = GetOrderByClientOidReq.builder();
+        builder.symbol(?).clientOid(?);
+        GetOrderByClientOidReq req = builder.build();
+        GetOrderByClientOidResp resp = this.api.getOrderByClientOid(req);
+        self::assertNotNull($resp->id);
+        self::assertNotNull($resp->symbol);
+        self::assertNotNull($resp->opType);
+        self::assertNotNull($resp->type);
+        self::assertNotNull($resp->side);
+        self::assertNotNull($resp->price);
+        self::assertNotNull($resp->size);
+        self::assertNotNull($resp->funds);
+        self::assertNotNull($resp->dealSize);
+        self::assertNotNull($resp->dealFunds);
+        self::assertNotNull($resp->fee);
+        self::assertNotNull($resp->feeCurrency);
+        self::assertNotNull($resp->stp);
+        self::assertNotNull($resp->stop);
+        self::assertNotNull($resp->stopTriggered);
+        self::assertNotNull($resp->stopPrice);
+        self::assertNotNull($resp->timeInForce);
+        self::assertNotNull($resp->postOnly);
+        self::assertNotNull($resp->hidden);
+        self::assertNotNull($resp->iceberg);
+        self::assertNotNull($resp->visibleSize);
+        self::assertNotNull($resp->cancelAfter);
+        self::assertNotNull($resp->channel);
+        self::assertNotNull($resp->clientOid);
+        self::assertNotNull($resp->remark);
+        self::assertNotNull($resp->tags);
+        self::assertNotNull($resp->cancelExist);
+        self::assertNotNull($resp->createdAt);
+        self::assertNotNull($resp->lastUpdatedAt);
+        self::assertNotNull($resp->tradeType);
+        self::assertNotNull($resp->inOrderBook);
+        self::assertNotNull($resp->cancelledSize);
+        self::assertNotNull($resp->cancelledFunds);
+        self::assertNotNull($resp->remainSize);
+        self::assertNotNull($resp->remainFunds);
+        self::assertNotNull($resp->tax);
+        self::assertNotNull($resp->active);
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
+    /**
+    * addOrderV1
+    * Add Order - V1
+    * /api/v1/margin/order
+    */
+    public void testAddOrderV1() {
+        AddOrderV1Req.AddOrderV1ReqBuilder builder = AddOrderV1Req.builder();
+        builder.clientOid(?).side(?).symbol(?).type(?).stp(?).price(?).size(?).timeInForce(?).postOnly(?).hidden(?).iceberg(?).visibleSize(?).cancelAfter(?).funds(?).autoBorrow(?).autoRepay(?).marginModel(?);
+        AddOrderV1Req req = builder.build();
+        AddOrderV1Resp resp = this.api.addOrderV1(req);
+        self::assertNotNull($resp->orderId);
+        self::assertNotNull($resp->loanApplyId);
+        self::assertNotNull($resp->borrowSize);
+        self::assertNotNull($resp->clientOid);
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
+    /**
+    * addOrderTestV1
+    * Add Order Test - V1
+    * /api/v1/margin/order/test
+    */
+    public void testAddOrderTestV1() {
+        AddOrderTestV1Req.AddOrderTestV1ReqBuilder builder = AddOrderTestV1Req.builder();
+        builder.clientOid(?).side(?).symbol(?).type(?).stp(?).price(?).size(?).timeInForce(?).postOnly(?).hidden(?).iceberg(?).visibleSize(?).cancelAfter(?).funds(?).autoBorrow(?).autoRepay(?).marginModel(?);
+        AddOrderTestV1Req req = builder.build();
+        AddOrderTestV1Resp resp = this.api.addOrderTestV1(req);
+        self::assertNotNull($resp->orderId);
+        self::assertNotNull($resp->loanApplyId);
+        self::assertNotNull($resp->borrowSize);
+        self::assertNotNull($resp->clientOid);
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+

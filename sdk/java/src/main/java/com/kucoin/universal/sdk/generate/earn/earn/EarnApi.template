@@ -1,0 +1,284 @@
+
+    /**
+    * purchase
+    * Purchase
+    * /api/v1/earn/orders
+    */
+    public void testPurchase() {
+        PurchaseReq.PurchaseReqBuilder builder = PurchaseReq.builder();
+        builder.productId(?).amount(?).accountType(?);
+        PurchaseReq req = builder.build();
+        PurchaseResp resp = this.api.purchase(req);
+        self::assertNotNull($resp->orderId);
+        self::assertNotNull($resp->orderTxId);
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
+    /**
+    * getRedeemPreview
+    * Get Redeem Preview
+    * /api/v1/earn/redeem-preview
+    */
+    public void testGetRedeemPreview() {
+        GetRedeemPreviewReq.GetRedeemPreviewReqBuilder builder = GetRedeemPreviewReq.builder();
+        builder.orderId(?).fromAccountType(?);
+        GetRedeemPreviewReq req = builder.build();
+        GetRedeemPreviewResp resp = this.api.getRedeemPreview(req);
+        self::assertNotNull($resp->currency);
+        self::assertNotNull($resp->redeemAmount);
+        self::assertNotNull($resp->penaltyInterestAmount);
+        self::assertNotNull($resp->redeemPeriod);
+        self::assertNotNull($resp->deliverTime);
+        self::assertNotNull($resp->manualRedeemable);
+        self::assertNotNull($resp->redeemAll);
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
+    /**
+    * redeem
+    * Redeem
+    * /api/v1/earn/orders
+    */
+    public void testRedeem() {
+        RedeemReq.RedeemReqBuilder builder = RedeemReq.builder();
+        builder.orderId(?).amount(?).fromAccountType(?).confirmPunishRedeem(?);
+        RedeemReq req = builder.build();
+        RedeemResp resp = this.api.redeem(req);
+        self::assertNotNull($resp->orderTxId);
+        self::assertNotNull($resp->deliverTime);
+        self::assertNotNull($resp->status);
+        self::assertNotNull($resp->amount);
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
+    /**
+    * getSavingsProducts
+    * Get Savings Products
+    * /api/v1/earn/saving/products
+    */
+    public void testGetSavingsProducts() {
+        GetSavingsProductsReq.GetSavingsProductsReqBuilder builder = GetSavingsProductsReq.builder();
+        builder.currency(?);
+        GetSavingsProductsReq req = builder.build();
+        GetSavingsProductsResp resp = this.api.getSavingsProducts(req);
+        foreach($resp->data as $item) {
+            self::assertNotNull($item->id);
+            self::assertNotNull($item->currency);
+            self::assertNotNull($item->category);
+            self::assertNotNull($item->type);
+            self::assertNotNull($item->precision);
+            self::assertNotNull($item->productUpperLimit);
+            self::assertNotNull($item->userUpperLimit);
+            self::assertNotNull($item->userLowerLimit);
+            self::assertNotNull($item->redeemPeriod);
+            self::assertNotNull($item->lockStartTime);
+            self::assertNotNull($item->lockEndTime);
+            self::assertNotNull($item->applyStartTime);
+            self::assertNotNull($item->applyEndTime);
+            self::assertNotNull($item->returnRate);
+            self::assertNotNull($item->incomeCurrency);
+            self::assertNotNull($item->earlyRedeemSupported);
+            self::assertNotNull($item->productRemainAmount);
+            self::assertNotNull($item->status);
+            self::assertNotNull($item->redeemType);
+            self::assertNotNull($item->incomeReleaseType);
+            self::assertNotNull($item->interestDate);
+            self::assertNotNull($item->duration);
+            self::assertNotNull($item->newUserOnly);
+        }
+
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
+    /**
+    * getPromotionProducts
+    * Get Promotion Products
+    * /api/v1/earn/promotion/products
+    */
+    public void testGetPromotionProducts() {
+        GetPromotionProductsReq.GetPromotionProductsReqBuilder builder = GetPromotionProductsReq.builder();
+        builder.currency(?);
+        GetPromotionProductsReq req = builder.build();
+        GetPromotionProductsResp resp = this.api.getPromotionProducts(req);
+        foreach($resp->data as $item) {
+            self::assertNotNull($item->id);
+            self::assertNotNull($item->currency);
+            self::assertNotNull($item->category);
+            self::assertNotNull($item->type);
+            self::assertNotNull($item->precision);
+            self::assertNotNull($item->productUpperLimit);
+            self::assertNotNull($item->userUpperLimit);
+            self::assertNotNull($item->userLowerLimit);
+            self::assertNotNull($item->redeemPeriod);
+            self::assertNotNull($item->lockStartTime);
+            self::assertNotNull($item->lockEndTime);
+            self::assertNotNull($item->applyStartTime);
+            self::assertNotNull($item->applyEndTime);
+            self::assertNotNull($item->returnRate);
+            self::assertNotNull($item->incomeCurrency);
+            self::assertNotNull($item->earlyRedeemSupported);
+            self::assertNotNull($item->productRemainAmount);
+            self::assertNotNull($item->status);
+            self::assertNotNull($item->redeemType);
+            self::assertNotNull($item->incomeReleaseType);
+            self::assertNotNull($item->interestDate);
+            self::assertNotNull($item->duration);
+            self::assertNotNull($item->newUserOnly);
+        }
+
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
+    /**
+    * getStakingProducts
+    * Get Staking Products
+    * /api/v1/earn/staking/products
+    */
+    public void testGetStakingProducts() {
+        GetStakingProductsReq.GetStakingProductsReqBuilder builder = GetStakingProductsReq.builder();
+        builder.currency(?);
+        GetStakingProductsReq req = builder.build();
+        GetStakingProductsResp resp = this.api.getStakingProducts(req);
+        foreach($resp->data as $item) {
+            self::assertNotNull($item->id);
+            self::assertNotNull($item->currency);
+            self::assertNotNull($item->category);
+            self::assertNotNull($item->type);
+            self::assertNotNull($item->precision);
+            self::assertNotNull($item->productUpperLimit);
+            self::assertNotNull($item->userUpperLimit);
+            self::assertNotNull($item->userLowerLimit);
+            self::assertNotNull($item->redeemPeriod);
+            self::assertNotNull($item->lockStartTime);
+            self::assertNotNull($item->lockEndTime);
+            self::assertNotNull($item->applyStartTime);
+            self::assertNotNull($item->applyEndTime);
+            self::assertNotNull($item->returnRate);
+            self::assertNotNull($item->incomeCurrency);
+            self::assertNotNull($item->earlyRedeemSupported);
+            self::assertNotNull($item->productRemainAmount);
+            self::assertNotNull($item->status);
+            self::assertNotNull($item->redeemType);
+            self::assertNotNull($item->incomeReleaseType);
+            self::assertNotNull($item->interestDate);
+            self::assertNotNull($item->duration);
+            self::assertNotNull($item->newUserOnly);
+        }
+
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
+    /**
+    * getKcsStakingProducts
+    * Get KCS Staking Products
+    * /api/v1/earn/kcs-staking/products
+    */
+    public void testGetKcsStakingProducts() {
+        GetKcsStakingProductsReq.GetKcsStakingProductsReqBuilder builder = GetKcsStakingProductsReq.builder();
+        builder.currency(?);
+        GetKcsStakingProductsReq req = builder.build();
+        GetKcsStakingProductsResp resp = this.api.getKcsStakingProducts(req);
+        foreach($resp->data as $item) {
+            self::assertNotNull($item->id);
+            self::assertNotNull($item->currency);
+            self::assertNotNull($item->category);
+            self::assertNotNull($item->type);
+            self::assertNotNull($item->precision);
+            self::assertNotNull($item->productUpperLimit);
+            self::assertNotNull($item->userUpperLimit);
+            self::assertNotNull($item->userLowerLimit);
+            self::assertNotNull($item->redeemPeriod);
+            self::assertNotNull($item->lockStartTime);
+            self::assertNotNull($item->lockEndTime);
+            self::assertNotNull($item->applyStartTime);
+            self::assertNotNull($item->applyEndTime);
+            self::assertNotNull($item->returnRate);
+            self::assertNotNull($item->incomeCurrency);
+            self::assertNotNull($item->earlyRedeemSupported);
+            self::assertNotNull($item->productRemainAmount);
+            self::assertNotNull($item->status);
+            self::assertNotNull($item->redeemType);
+            self::assertNotNull($item->incomeReleaseType);
+            self::assertNotNull($item->interestDate);
+            self::assertNotNull($item->duration);
+            self::assertNotNull($item->newUserOnly);
+        }
+
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
+    /**
+    * getETHStakingProducts
+    * Get ETH Staking Products
+    * /api/v1/earn/eth-staking/products
+    */
+    public void testGetETHStakingProducts() {
+        GetETHStakingProductsReq.GetETHStakingProductsReqBuilder builder = GetETHStakingProductsReq.builder();
+        builder.currency(?);
+        GetETHStakingProductsReq req = builder.build();
+        GetETHStakingProductsResp resp = this.api.getETHStakingProducts(req);
+        foreach($resp->data as $item) {
+            self::assertNotNull($item->id);
+            self::assertNotNull($item->category);
+            self::assertNotNull($item->type);
+            self::assertNotNull($item->precision);
+            self::assertNotNull($item->currency);
+            self::assertNotNull($item->incomeCurrency);
+            self::assertNotNull($item->returnRate);
+            self::assertNotNull($item->userLowerLimit);
+            self::assertNotNull($item->userUpperLimit);
+            self::assertNotNull($item->productUpperLimit);
+            self::assertNotNull($item->productRemainAmount);
+            self::assertNotNull($item->redeemPeriod);
+            self::assertNotNull($item->redeemType);
+            self::assertNotNull($item->incomeReleaseType);
+            self::assertNotNull($item->applyStartTime);
+            self::assertNotNull($item->applyEndTime);
+            self::assertNotNull($item->lockStartTime);
+            self::assertNotNull($item->lockEndTime);
+            self::assertNotNull($item->interestDate);
+            self::assertNotNull($item->newUserOnly);
+            self::assertNotNull($item->earlyRedeemSupported);
+            self::assertNotNull($item->duration);
+            self::assertNotNull($item->status);
+        }
+
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
+    /**
+    * getAccountHolding
+    * Get Account Holding
+    * /api/v1/earn/hold-assets
+    */
+    public void testGetAccountHolding() {
+        GetAccountHoldingReq.GetAccountHoldingReqBuilder builder = GetAccountHoldingReq.builder();
+        builder.currency(?).productId(?).productCategory(?).currentPage(?).pageSize(?);
+        GetAccountHoldingReq req = builder.build();
+        GetAccountHoldingResp resp = this.api.getAccountHolding(req);
+        self::assertNotNull($resp->totalNum);
+        foreach($resp->items as $item) {
+            self::assertNotNull($item->orderId);
+            self::assertNotNull($item->productId);
+            self::assertNotNull($item->productCategory);
+            self::assertNotNull($item->productType);
+            self::assertNotNull($item->currency);
+            self::assertNotNull($item->incomeCurrency);
+            self::assertNotNull($item->returnRate);
+            self::assertNotNull($item->holdAmount);
+            self::assertNotNull($item->redeemedAmount);
+            self::assertNotNull($item->redeemingAmount);
+            self::assertNotNull($item->lockStartTime);
+            self::assertNotNull($item->lockEndTime);
+            self::assertNotNull($item->purchaseTime);
+            self::assertNotNull($item->redeemPeriod);
+            self::assertNotNull($item->status);
+            self::assertNotNull($item->earlyRedeemSupported);
+        }
+
+        self::assertNotNull($resp->currentPage);
+        self::assertNotNull($resp->pageSize);
+        self::assertNotNull($resp->totalPage);
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+

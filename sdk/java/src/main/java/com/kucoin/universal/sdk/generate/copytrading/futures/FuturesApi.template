@@ -1,0 +1,197 @@
+
+    /**
+    * addOrder
+    * Add Order
+    * /api/v1/copy-trade/futures/orders
+    */
+    public void testAddOrder() {
+        AddOrderReq.AddOrderReqBuilder builder = AddOrderReq.builder();
+        builder.clientOid(?).side(?).symbol(?).leverage(?).type(?).stop(?).stopPriceType(?).stopPrice(?).reduceOnly(?).closeOrder(?).marginMode(?).price(?).size(?).timeInForce(?).postOnly(?).hidden(?).iceberg(?).visibleSize(?);
+        AddOrderReq req = builder.build();
+        AddOrderResp resp = this.api.addOrder(req);
+        self::assertNotNull($resp->orderId);
+        self::assertNotNull($resp->clientOid);
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
+    /**
+    * addOrderTest
+    * Add Order Test
+    * /api/v1/copy-trade/futures/orders/test
+    */
+    public void testAddOrderTest() {
+        AddOrderTestReq.AddOrderTestReqBuilder builder = AddOrderTestReq.builder();
+        builder.clientOid(?).side(?).symbol(?).leverage(?).type(?).stop(?).stopPriceType(?).stopPrice(?).reduceOnly(?).closeOrder(?).marginMode(?).price(?).size(?).timeInForce(?).postOnly(?).hidden(?).iceberg(?).visibleSize(?);
+        AddOrderTestReq req = builder.build();
+        AddOrderTestResp resp = this.api.addOrderTest(req);
+        self::assertNotNull($resp->orderId);
+        self::assertNotNull($resp->clientOid);
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
+    /**
+    * addTPSLOrder
+    * Add Take Profit And Stop Loss Order
+    * /api/v1/copy-trade/futures/st-orders
+    */
+    public void testAddTPSLOrder() {
+        AddTPSLOrderReq.AddTPSLOrderReqBuilder builder = AddTPSLOrderReq.builder();
+        builder.clientOid(?).side(?).symbol(?).leverage(?).type(?).stopPriceType(?).reduceOnly(?).closeOrder(?).marginMode(?).price(?).size(?).timeInForce(?).postOnly(?).hidden(?).iceberg(?).visibleSize(?).triggerStopUpPrice(?).triggerStopDownPrice(?);
+        AddTPSLOrderReq req = builder.build();
+        AddTPSLOrderResp resp = this.api.addTPSLOrder(req);
+        self::assertNotNull($resp->orderId);
+        self::assertNotNull($resp->clientOid);
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
+    /**
+    * cancelOrderById
+    * Cancel Order By OrderId
+    * /api/v1/copy-trade/futures/orders
+    */
+    public void testCancelOrderById() {
+        CancelOrderByIdReq.CancelOrderByIdReqBuilder builder = CancelOrderByIdReq.builder();
+        builder.orderId(?);
+        CancelOrderByIdReq req = builder.build();
+        CancelOrderByIdResp resp = this.api.cancelOrderById(req);
+        foreach($resp->cancelledOrderIds as $item) {
+        }
+
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
+    /**
+    * cancelOrderByClientOid
+    * Cancel Order By ClientOid
+    * /api/v1/copy-trade/futures/orders/client-order
+    */
+    public void testCancelOrderByClientOid() {
+        CancelOrderByClientOidReq.CancelOrderByClientOidReqBuilder builder = CancelOrderByClientOidReq.builder();
+        builder.symbol(?).clientOid(?);
+        CancelOrderByClientOidReq req = builder.build();
+        CancelOrderByClientOidResp resp = this.api.cancelOrderByClientOid(req);
+        self::assertNotNull($resp->clientOid);
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
+    /**
+    * getMaxOpenSize
+    * Get Max Open Size
+    * /api/v1/copy-trade/futures/get-max-open-size
+    */
+    public void testGetMaxOpenSize() {
+        GetMaxOpenSizeReq.GetMaxOpenSizeReqBuilder builder = GetMaxOpenSizeReq.builder();
+        builder.symbol(?).price(?).leverage(?);
+        GetMaxOpenSizeReq req = builder.build();
+        GetMaxOpenSizeResp resp = this.api.getMaxOpenSize(req);
+        self::assertNotNull($resp->symbol);
+        self::assertNotNull($resp->maxBuyOpenSize);
+        self::assertNotNull($resp->maxSellOpenSize);
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
+    /**
+    * getMaxWithdrawMargin
+    * Get Max Withdraw Margin
+    * /api/v1/copy-trade/futures/position/margin/max-withdraw-margin
+    */
+    public void testGetMaxWithdrawMargin() {
+        GetMaxWithdrawMarginReq.GetMaxWithdrawMarginReqBuilder builder = GetMaxWithdrawMarginReq.builder();
+        builder.symbol(?);
+        GetMaxWithdrawMarginReq req = builder.build();
+        GetMaxWithdrawMarginResp resp = this.api.getMaxWithdrawMargin(req);
+        self::assertNotNull($resp->data);
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
+    /**
+    * addIsolatedMargin
+    * Add Isolated Margin
+    * /api/v1/copy-trade/futures/position/margin/deposit-margin
+    */
+    public void testAddIsolatedMargin() {
+        AddIsolatedMarginReq.AddIsolatedMarginReqBuilder builder = AddIsolatedMarginReq.builder();
+        builder.symbol(?).margin(?).bizNo(?);
+        AddIsolatedMarginReq req = builder.build();
+        AddIsolatedMarginResp resp = this.api.addIsolatedMargin(req);
+        self::assertNotNull($resp->id);
+        self::assertNotNull($resp->symbol);
+        self::assertNotNull($resp->autoDeposit);
+        self::assertNotNull($resp->maintMarginReq);
+        self::assertNotNull($resp->riskLimit);
+        self::assertNotNull($resp->realLeverage);
+        self::assertNotNull($resp->crossMode);
+        self::assertNotNull($resp->delevPercentage);
+        self::assertNotNull($resp->openingTimestamp);
+        self::assertNotNull($resp->currentTimestamp);
+        self::assertNotNull($resp->currentQty);
+        self::assertNotNull($resp->currentCost);
+        self::assertNotNull($resp->currentComm);
+        self::assertNotNull($resp->unrealisedCost);
+        self::assertNotNull($resp->realisedGrossCost);
+        self::assertNotNull($resp->realisedCost);
+        self::assertNotNull($resp->isOpen);
+        self::assertNotNull($resp->markPrice);
+        self::assertNotNull($resp->markValue);
+        self::assertNotNull($resp->posCost);
+        self::assertNotNull($resp->posCross);
+        self::assertNotNull($resp->posInit);
+        self::assertNotNull($resp->posComm);
+        self::assertNotNull($resp->posLoss);
+        self::assertNotNull($resp->posMargin);
+        self::assertNotNull($resp->posMaint);
+        self::assertNotNull($resp->maintMargin);
+        self::assertNotNull($resp->realisedGrossPnl);
+        self::assertNotNull($resp->realisedPnl);
+        self::assertNotNull($resp->unrealisedPnl);
+        self::assertNotNull($resp->unrealisedPnlPcnt);
+        self::assertNotNull($resp->unrealisedRoePcnt);
+        self::assertNotNull($resp->avgEntryPrice);
+        self::assertNotNull($resp->liquidationPrice);
+        self::assertNotNull($resp->bankruptPrice);
+        self::assertNotNull($resp->settleCurrency);
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
+    /**
+    * removeIsolatedMargin
+    * Remove Isolated Margin
+    * /api/v1/copy-trade/futures/position/margin/withdraw-margin
+    */
+    public void testRemoveIsolatedMargin() {
+        RemoveIsolatedMarginReq.RemoveIsolatedMarginReqBuilder builder = RemoveIsolatedMarginReq.builder();
+        builder.symbol(?).withdrawAmount(?);
+        RemoveIsolatedMarginReq req = builder.build();
+        RemoveIsolatedMarginResp resp = this.api.removeIsolatedMargin(req);
+        self::assertNotNull($resp->data);
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
+    /**
+    * modifyIsolatedMarginRiskLimt
+    * Modify Isolated Margin Risk Limit
+    * /api/v1/copy-trade/futures/position/risk-limit-level/change
+    */
+    public void testModifyIsolatedMarginRiskLimt() {
+        ModifyIsolatedMarginRiskLimtReq.ModifyIsolatedMarginRiskLimtReqBuilder builder = ModifyIsolatedMarginRiskLimtReq.builder();
+        builder.symbol(?).level(?);
+        ModifyIsolatedMarginRiskLimtReq req = builder.build();
+        ModifyIsolatedMarginRiskLimtResp resp = this.api.modifyIsolatedMarginRiskLimt(req);
+        self::assertNotNull($resp->data);
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
+    /**
+    * modifyAutoDepositStatus
+    * Modify Isolated Margin Auto-Deposit Status
+    * /api/v1/copy-trade/futures/position/margin/auto-deposit-status
+    */
+    public void testModifyAutoDepositStatus() {
+        ModifyAutoDepositStatusReq.ModifyAutoDepositStatusReqBuilder builder = ModifyAutoDepositStatusReq.builder();
+        builder.symbol(?).status(?);
+        ModifyAutoDepositStatusReq req = builder.build();
+        ModifyAutoDepositStatusResp resp = this.api.modifyAutoDepositStatus(req);
+        self::assertNotNull($resp->data);
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+

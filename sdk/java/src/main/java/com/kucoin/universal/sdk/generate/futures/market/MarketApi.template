@@ -1,0 +1,444 @@
+
+    /**
+    * getSymbol
+    * Get Symbol
+    * /api/v1/contracts/{symbol}
+    */
+    public void testGetSymbol() {
+        GetSymbolReq.GetSymbolReqBuilder builder = GetSymbolReq.builder();
+        builder.symbol(?);
+        GetSymbolReq req = builder.build();
+        GetSymbolResp resp = this.api.getSymbol(req);
+        self::assertNotNull($resp->symbol);
+        self::assertNotNull($resp->rootSymbol);
+        self::assertNotNull($resp->type);
+        self::assertNotNull($resp->firstOpenDate);
+        self::assertNotNull($resp->expireDate);
+        self::assertNotNull($resp->settleDate);
+        self::assertNotNull($resp->baseCurrency);
+        self::assertNotNull($resp->quoteCurrency);
+        self::assertNotNull($resp->settleCurrency);
+        self::assertNotNull($resp->maxOrderQty);
+        self::assertNotNull($resp->maxPrice);
+        self::assertNotNull($resp->lotSize);
+        self::assertNotNull($resp->tickSize);
+        self::assertNotNull($resp->indexPriceTickSize);
+        self::assertNotNull($resp->multiplier);
+        self::assertNotNull($resp->initialMargin);
+        self::assertNotNull($resp->maintainMargin);
+        self::assertNotNull($resp->maxRiskLimit);
+        self::assertNotNull($resp->minRiskLimit);
+        self::assertNotNull($resp->riskStep);
+        self::assertNotNull($resp->makerFeeRate);
+        self::assertNotNull($resp->takerFeeRate);
+        self::assertNotNull($resp->takerFixFee);
+        self::assertNotNull($resp->makerFixFee);
+        self::assertNotNull($resp->settlementFee);
+        self::assertNotNull($resp->isDeleverage);
+        self::assertNotNull($resp->isQuanto);
+        self::assertNotNull($resp->isInverse);
+        self::assertNotNull($resp->markMethod);
+        self::assertNotNull($resp->fairMethod);
+        self::assertNotNull($resp->fundingBaseSymbol);
+        self::assertNotNull($resp->fundingQuoteSymbol);
+        self::assertNotNull($resp->fundingRateSymbol);
+        self::assertNotNull($resp->indexSymbol);
+        self::assertNotNull($resp->settlementSymbol);
+        self::assertNotNull($resp->status);
+        self::assertNotNull($resp->fundingFeeRate);
+        self::assertNotNull($resp->predictedFundingFeeRate);
+        self::assertNotNull($resp->fundingRateGranularity);
+        self::assertNotNull($resp->openInterest);
+        self::assertNotNull($resp->turnoverOf24h);
+        self::assertNotNull($resp->volumeOf24h);
+        self::assertNotNull($resp->markPrice);
+        self::assertNotNull($resp->indexPrice);
+        self::assertNotNull($resp->lastTradePrice);
+        self::assertNotNull($resp->nextFundingRateTime);
+        self::assertNotNull($resp->maxLeverage);
+        foreach($resp->sourceExchanges as $item) {
+        }
+
+        self::assertNotNull($resp->premiumsSymbol1M);
+        self::assertNotNull($resp->premiumsSymbol8H);
+        self::assertNotNull($resp->fundingBaseSymbol1M);
+        self::assertNotNull($resp->fundingQuoteSymbol1M);
+        self::assertNotNull($resp->lowPrice);
+        self::assertNotNull($resp->highPrice);
+        self::assertNotNull($resp->priceChgPct);
+        self::assertNotNull($resp->priceChg);
+        self::assertNotNull($resp->k);
+        self::assertNotNull($resp->m);
+        self::assertNotNull($resp->f);
+        self::assertNotNull($resp->mmrLimit);
+        self::assertNotNull($resp->mmrLevConstant);
+        self::assertNotNull($resp->supportCross);
+        self::assertNotNull($resp->buyLimit);
+        self::assertNotNull($resp->sellLimit);
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
+    /**
+    * getAllSymbols
+    * Get All Symbols
+    * /api/v1/contracts/active
+    */
+    public void testGetAllSymbols() {
+        GetAllSymbolsResp resp = this.api.getAllSymbols();
+        foreach($resp->data as $item) {
+            self::assertNotNull($item->symbol);
+            self::assertNotNull($item->rootSymbol);
+            self::assertNotNull($item->type);
+            self::assertNotNull($item->firstOpenDate);
+            self::assertNotNull($item->expireDate);
+            self::assertNotNull($item->settleDate);
+            self::assertNotNull($item->baseCurrency);
+            self::assertNotNull($item->quoteCurrency);
+            self::assertNotNull($item->settleCurrency);
+            self::assertNotNull($item->maxOrderQty);
+            self::assertNotNull($item->maxPrice);
+            self::assertNotNull($item->lotSize);
+            self::assertNotNull($item->tickSize);
+            self::assertNotNull($item->indexPriceTickSize);
+            self::assertNotNull($item->multiplier);
+            self::assertNotNull($item->initialMargin);
+            self::assertNotNull($item->maintainMargin);
+            self::assertNotNull($item->maxRiskLimit);
+            self::assertNotNull($item->minRiskLimit);
+            self::assertNotNull($item->riskStep);
+            self::assertNotNull($item->makerFeeRate);
+            self::assertNotNull($item->takerFeeRate);
+            self::assertNotNull($item->takerFixFee);
+            self::assertNotNull($item->makerFixFee);
+            self::assertNotNull($item->settlementFee);
+            self::assertNotNull($item->isDeleverage);
+            self::assertNotNull($item->isQuanto);
+            self::assertNotNull($item->isInverse);
+            self::assertNotNull($item->markMethod);
+            self::assertNotNull($item->fairMethod);
+            self::assertNotNull($item->fundingBaseSymbol);
+            self::assertNotNull($item->fundingQuoteSymbol);
+            self::assertNotNull($item->fundingRateSymbol);
+            self::assertNotNull($item->indexSymbol);
+            self::assertNotNull($item->settlementSymbol);
+            self::assertNotNull($item->status);
+            self::assertNotNull($item->fundingFeeRate);
+            self::assertNotNull($item->predictedFundingFeeRate);
+            self::assertNotNull($item->fundingRateGranularity);
+            self::assertNotNull($item->openInterest);
+            self::assertNotNull($item->turnoverOf24h);
+            self::assertNotNull($item->volumeOf24h);
+            self::assertNotNull($item->markPrice);
+            self::assertNotNull($item->indexPrice);
+            self::assertNotNull($item->lastTradePrice);
+            self::assertNotNull($item->nextFundingRateTime);
+            self::assertNotNull($item->maxLeverage);
+            self::assertNotNull($item->sourceExchanges);
+            self::assertNotNull($item->premiumsSymbol1M);
+            self::assertNotNull($item->premiumsSymbol8H);
+            self::assertNotNull($item->fundingBaseSymbol1M);
+            self::assertNotNull($item->fundingQuoteSymbol1M);
+            self::assertNotNull($item->lowPrice);
+            self::assertNotNull($item->highPrice);
+            self::assertNotNull($item->priceChgPct);
+            self::assertNotNull($item->priceChg);
+            self::assertNotNull($item->k);
+            self::assertNotNull($item->m);
+            self::assertNotNull($item->f);
+            self::assertNotNull($item->mmrLimit);
+            self::assertNotNull($item->mmrLevConstant);
+            self::assertNotNull($item->supportCross);
+            self::assertNotNull($item->buyLimit);
+            self::assertNotNull($item->sellLimit);
+        }
+
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
+    /**
+    * getTicker
+    * Get Ticker
+    * /api/v1/ticker
+    */
+    public void testGetTicker() {
+        GetTickerReq.GetTickerReqBuilder builder = GetTickerReq.builder();
+        builder.symbol(?);
+        GetTickerReq req = builder.build();
+        GetTickerResp resp = this.api.getTicker(req);
+        self::assertNotNull($resp->sequence);
+        self::assertNotNull($resp->symbol);
+        self::assertNotNull($resp->side);
+        self::assertNotNull($resp->size);
+        self::assertNotNull($resp->tradeId);
+        self::assertNotNull($resp->price);
+        self::assertNotNull($resp->bestBidPrice);
+        self::assertNotNull($resp->bestBidSize);
+        self::assertNotNull($resp->bestAskPrice);
+        self::assertNotNull($resp->bestAskSize);
+        self::assertNotNull($resp->ts);
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
+    /**
+    * getAllTickers
+    * Get All Tickers
+    * /api/v1/allTickers
+    */
+    public void testGetAllTickers() {
+        GetAllTickersResp resp = this.api.getAllTickers();
+        foreach($resp->data as $item) {
+            self::assertNotNull($item->sequence);
+            self::assertNotNull($item->symbol);
+            self::assertNotNull($item->side);
+            self::assertNotNull($item->size);
+            self::assertNotNull($item->tradeId);
+            self::assertNotNull($item->price);
+            self::assertNotNull($item->bestBidPrice);
+            self::assertNotNull($item->bestBidSize);
+            self::assertNotNull($item->bestAskPrice);
+            self::assertNotNull($item->bestAskSize);
+            self::assertNotNull($item->ts);
+        }
+
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
+    /**
+    * getFullOrderBook
+    * Get Full OrderBook
+    * /api/v1/level2/snapshot
+    */
+    public void testGetFullOrderBook() {
+        GetFullOrderBookReq.GetFullOrderBookReqBuilder builder = GetFullOrderBookReq.builder();
+        builder.symbol(?);
+        GetFullOrderBookReq req = builder.build();
+        GetFullOrderBookResp resp = this.api.getFullOrderBook(req);
+        self::assertNotNull($resp->sequence);
+        self::assertNotNull($resp->symbol);
+        foreach($resp->bids as $item) {
+        }
+
+        foreach($resp->asks as $item) {
+        }
+
+        self::assertNotNull($resp->ts);
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
+    /**
+    * getPartOrderBook
+    * Get Part OrderBook
+    * /api/v1/level2/depth{size}
+    */
+    public void testGetPartOrderBook() {
+        GetPartOrderBookReq.GetPartOrderBookReqBuilder builder = GetPartOrderBookReq.builder();
+        builder.size(?).symbol(?);
+        GetPartOrderBookReq req = builder.build();
+        GetPartOrderBookResp resp = this.api.getPartOrderBook(req);
+        self::assertNotNull($resp->sequence);
+        self::assertNotNull($resp->symbol);
+        foreach($resp->bids as $item) {
+        }
+
+        foreach($resp->asks as $item) {
+        }
+
+        self::assertNotNull($resp->ts);
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
+    /**
+    * getTradeHistory
+    * Get Trade History
+    * /api/v1/trade/history
+    */
+    public void testGetTradeHistory() {
+        GetTradeHistoryReq.GetTradeHistoryReqBuilder builder = GetTradeHistoryReq.builder();
+        builder.symbol(?);
+        GetTradeHistoryReq req = builder.build();
+        GetTradeHistoryResp resp = this.api.getTradeHistory(req);
+        foreach($resp->data as $item) {
+            self::assertNotNull($item->sequence);
+            self::assertNotNull($item->contractId);
+            self::assertNotNull($item->tradeId);
+            self::assertNotNull($item->makerOrderId);
+            self::assertNotNull($item->takerOrderId);
+            self::assertNotNull($item->ts);
+            self::assertNotNull($item->size);
+            self::assertNotNull($item->price);
+            self::assertNotNull($item->side);
+        }
+
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
+    /**
+    * getKlines
+    * Get Klines
+    * /api/v1/kline/query
+    */
+    public void testGetKlines() {
+        GetKlinesReq.GetKlinesReqBuilder builder = GetKlinesReq.builder();
+        builder.symbol(?).granularity(?).from(?).to(?);
+        GetKlinesReq req = builder.build();
+        GetKlinesResp resp = this.api.getKlines(req);
+        foreach($resp->data as $item) {
+        }
+
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
+    /**
+    * getMarkPrice
+    * Get Mark Price
+    * /api/v1/mark-price/{symbol}/current
+    */
+    public void testGetMarkPrice() {
+        GetMarkPriceReq.GetMarkPriceReqBuilder builder = GetMarkPriceReq.builder();
+        builder.symbol(?);
+        GetMarkPriceReq req = builder.build();
+        GetMarkPriceResp resp = this.api.getMarkPrice(req);
+        self::assertNotNull($resp->symbol);
+        self::assertNotNull($resp->granularity);
+        self::assertNotNull($resp->timePoint);
+        self::assertNotNull($resp->value);
+        self::assertNotNull($resp->indexPrice);
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
+    /**
+    * getSpotIndexPrice
+    * Get Spot Index Price
+    * /api/v1/index/query
+    */
+    public void testGetSpotIndexPrice() {
+        GetSpotIndexPriceReq.GetSpotIndexPriceReqBuilder builder = GetSpotIndexPriceReq.builder();
+        builder.symbol(?).startAt(?).endAt(?).reverse(?).offset(?).forward(?).maxCount(?);
+        GetSpotIndexPriceReq req = builder.build();
+        GetSpotIndexPriceResp resp = this.api.getSpotIndexPrice(req);
+        foreach($resp->dataList as $item) {
+            self::assertNotNull($item->symbol);
+            self::assertNotNull($item->granularity);
+            self::assertNotNull($item->timePoint);
+            self::assertNotNull($item->value);
+            self::assertNotNull($item->decomposionList);
+        }
+
+        self::assertNotNull($resp->hasMore);
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
+    /**
+    * getInterestRateIndex
+    * Get Interest Rate Index
+    * /api/v1/interest/query
+    */
+    public void testGetInterestRateIndex() {
+        GetInterestRateIndexReq.GetInterestRateIndexReqBuilder builder = GetInterestRateIndexReq.builder();
+        builder.symbol(?).startAt(?).endAt(?).reverse(?).offset(?).forward(?).maxCount(?);
+        GetInterestRateIndexReq req = builder.build();
+        GetInterestRateIndexResp resp = this.api.getInterestRateIndex(req);
+        foreach($resp->dataList as $item) {
+            self::assertNotNull($item->symbol);
+            self::assertNotNull($item->granularity);
+            self::assertNotNull($item->timePoint);
+            self::assertNotNull($item->value);
+        }
+
+        self::assertNotNull($resp->hasMore);
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
+    /**
+    * getPremiumIndex
+    * Get Premium Index
+    * /api/v1/premium/query
+    */
+    public void testGetPremiumIndex() {
+        GetPremiumIndexReq.GetPremiumIndexReqBuilder builder = GetPremiumIndexReq.builder();
+        builder.symbol(?).startAt(?).endAt(?).reverse(?).offset(?).forward(?).maxCount(?);
+        GetPremiumIndexReq req = builder.build();
+        GetPremiumIndexResp resp = this.api.getPremiumIndex(req);
+        foreach($resp->dataList as $item) {
+            self::assertNotNull($item->symbol);
+            self::assertNotNull($item->granularity);
+            self::assertNotNull($item->timePoint);
+            self::assertNotNull($item->value);
+        }
+
+        self::assertNotNull($resp->hasMore);
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
+    /**
+    * get24hrStats
+    * Get 24hr stats
+    * /api/v1/trade-statistics
+    */
+    public void testGet24hrStats() {
+        Get24hrStatsResp resp = this.api.get24hrStats();
+        self::assertNotNull($resp->turnoverOf24h);
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
+    /**
+    * getServerTime
+    * Get Server Time
+    * /api/v1/timestamp
+    */
+    public void testGetServerTime() {
+        GetServerTimeResp resp = this.api.getServerTime();
+        self::assertNotNull($resp->data);
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
+    /**
+    * getServiceStatus
+    * Get Service Status
+    * /api/v1/status
+    */
+    public void testGetServiceStatus() {
+        GetServiceStatusResp resp = this.api.getServiceStatus();
+        self::assertNotNull($resp->msg);
+        self::assertNotNull($resp->status);
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
+    /**
+    * getPublicToken
+    * Get Public Token - Futures
+    * /api/v1/bullet-public
+    */
+    public void testGetPublicToken() {
+        GetPublicTokenResp resp = this.api.getPublicToken();
+        self::assertNotNull($resp->token);
+        foreach($resp->instanceServers as $item) {
+            self::assertNotNull($item->endpoint);
+            self::assertNotNull($item->encrypt);
+            self::assertNotNull($item->protocol);
+            self::assertNotNull($item->pingInterval);
+            self::assertNotNull($item->pingTimeout);
+        }
+
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
+    /**
+    * getPrivateToken
+    * Get Private Token - Futures
+    * /api/v1/bullet-private
+    */
+    public void testGetPrivateToken() {
+        GetPrivateTokenResp resp = this.api.getPrivateToken();
+        self::assertNotNull($resp->token);
+        foreach($resp->instanceServers as $item) {
+            self::assertNotNull($item->endpoint);
+            self::assertNotNull($item->encrypt);
+            self::assertNotNull($item->protocol);
+            self::assertNotNull($item->pingInterval);
+            self::assertNotNull($item->pingTimeout);
+        }
+
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+

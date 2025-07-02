@@ -1,0 +1,53 @@
+
+    /**
+    * getBasicFee
+    * Get Basic Fee - Spot/Margin
+    * /api/v1/base-fee
+    */
+    public void testGetBasicFee() {
+        GetBasicFeeReq.GetBasicFeeReqBuilder builder = GetBasicFeeReq.builder();
+        builder.currencyType(?);
+        GetBasicFeeReq req = builder.build();
+        GetBasicFeeResp resp = this.api.getBasicFee(req);
+        self::assertNotNull($resp->takerFeeRate);
+        self::assertNotNull($resp->makerFeeRate);
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
+    /**
+    * getSpotActualFee
+    * Get Actual Fee - Spot/Margin
+    * /api/v1/trade-fees
+    */
+    public void testGetSpotActualFee() {
+        GetSpotActualFeeReq.GetSpotActualFeeReqBuilder builder = GetSpotActualFeeReq.builder();
+        builder.symbols(?);
+        GetSpotActualFeeReq req = builder.build();
+        GetSpotActualFeeResp resp = this.api.getSpotActualFee(req);
+        foreach($resp->data as $item) {
+            self::assertNotNull($item->symbol);
+            self::assertNotNull($item->takerFeeRate);
+            self::assertNotNull($item->makerFeeRate);
+            self::assertNotNull($item->sellTaxRate);
+            self::assertNotNull($item->buyTaxRate);
+        }
+
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
+    /**
+    * getFuturesActualFee
+    * Get Actual Fee - Futures
+    * /api/v1/trade-fees
+    */
+    public void testGetFuturesActualFee() {
+        GetFuturesActualFeeReq.GetFuturesActualFeeReqBuilder builder = GetFuturesActualFeeReq.builder();
+        builder.symbol(?);
+        GetFuturesActualFeeReq req = builder.build();
+        GetFuturesActualFeeResp resp = this.api.getFuturesActualFee(req);
+        self::assertNotNull($resp->symbol);
+        self::assertNotNull($resp->takerFeeRate);
+        self::assertNotNull($resp->makerFeeRate);
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+

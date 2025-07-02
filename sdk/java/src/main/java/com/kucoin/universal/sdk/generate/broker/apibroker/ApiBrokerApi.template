@@ -1,0 +1,15 @@
+
+    /**
+    * getRebase
+    * Get Broker Rebate
+    * /api/v1/broker/api/rebase/download
+    */
+    public void testGetRebase() {
+        GetRebaseReq.GetRebaseReqBuilder builder = GetRebaseReq.builder();
+        builder.begin(?).end(?).tradeType(?);
+        GetRebaseReq req = builder.build();
+        GetRebaseResp resp = this.api.getRebase(req);
+        self::assertNotNull($resp->url);
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+

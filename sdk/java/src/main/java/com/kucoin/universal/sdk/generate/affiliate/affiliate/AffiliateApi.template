@@ -1,0 +1,28 @@
+
+    /**
+    * getAccount
+    * Get Account
+    * /api/v2/affiliate/inviter/statistics
+    */
+    public void testGetAccount() {
+        GetAccountResp resp = this.api.getAccount();
+        self::assertNotNull($resp->parentUid);
+        foreach($resp->orders as $item) {
+            self::assertNotNull($item->orderId);
+            self::assertNotNull($item->currency);
+            self::assertNotNull($item->principal);
+            self::assertNotNull($item->interest);
+        }
+
+        self::assertNotNull($resp->ltv);
+        self::assertNotNull($resp->totalMarginAmount);
+        self::assertNotNull($resp->transferMarginAmount);
+        foreach($resp->margins as $item) {
+            self::assertNotNull($item->marginCcy);
+            self::assertNotNull($item->marginQty);
+            self::assertNotNull($item->marginFactor);
+        }
+
+        Logger::info($resp->jsonSerialize($this->serializer));
+    }
+
