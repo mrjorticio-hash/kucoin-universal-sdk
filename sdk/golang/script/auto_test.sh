@@ -1,11 +1,14 @@
 #!/bin/bash
-
+set -e
 LOG_FILE="${PWD}/test.log"
 if [ -f "$LOG_FILE" ]; then
     rm "$LOG_FILE"
 fi
 
-cd "$(dirname "$0")/pkg/generate" || exit 1
+cd /src
+go mod tidy
+
+cd "/src/pkg/generate" || exit 1
 
 go test -json ./... 2>&1 | tee "$LOG_FILE" >/dev/null
 

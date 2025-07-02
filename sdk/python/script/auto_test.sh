@@ -1,26 +1,9 @@
 #!/bin/bash
+set -e
+cd /src
 
-VENV_DIR=".venv-test"
-
-if [ ! -d "$VENV_DIR" ] || [ -z "$(ls -A "$VENV_DIR" 2>/dev/null)" ]; then
-    echo "Virtual environment not found. Creating a new one..."
-    python3 -m venv "$VENV_DIR" || { echo "Failed to create virtual environment"; exit 1; }
-    echo "Virtual environment created at $VENV_DIR."
-
-    source "$VENV_DIR/bin/activate"
-    echo "Installing dependencies..."
-    pip install --upgrade pip || { echo "Failed to upgrade pip"; exit 1; }
-    if [ -f requirements-test.txt ]; then
-        pip install -r requirements-test.txt || { echo "Failed to install dependencies"; exit 1; }
-    else
-        echo "requirements-test.txt not found. Skipping dependency installation."
-    fi
-else
-    echo "Activating existing virtual environment at $VENV_DIR..."
-    source "$VENV_DIR/bin/activate"
-fi
-
-SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+pip install -r requirements-test.txt
+SCRIPT_DIR="/src"
 PROJECT_ROOT="$SCRIPT_DIR"
 export PYTHONPATH="$PROJECT_ROOT:$PYTHONPATH"
 cd "$PROJECT_ROOT" || exit 1
@@ -62,6 +45,3 @@ done
     printf "%-20s-+-%-10s-+-%-10s-+-%-10s\n" "--------------------" "----------" "----------" "----------"
     printf "%-20s | %-10d | %-10d | %-10d\n" "Overall Summary" "$overall_total" "$overall_success" "$overall_fail"
 } | tee -a "$LOG_FILE"
-
-
-deactivate

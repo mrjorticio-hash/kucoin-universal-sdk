@@ -1,4 +1,7 @@
 #!/bin/bash
+cd /src
+
+npm install
 
 printf "%-20s | %-10s | %-10s | %-10s\n" "Directory" "Total" "Success" "Fail"
 printf "%-20s-+-%-10s-+-%-10s-+-%-10s\n" "--------------------" "----------" "----------" "----------"
