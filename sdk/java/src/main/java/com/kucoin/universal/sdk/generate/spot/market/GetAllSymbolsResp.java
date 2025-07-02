@@ -20,15 +20,11 @@ import lombok.NoArgsConstructor;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class GetAllSymbolsResp
     implements Response<GetAllSymbolsResp, RestResponse<GetAllSymbolsResp>> {
-  /**
-   *
-   */
+  /** */
   @JsonProperty("data")
   private List<GetAllSymbolsData> data = new ArrayList<>();
 
-  /**
-   * common response
-   */
+  /** common response */
   @JsonIgnore private RestResponse<GetAllSymbolsResp> commonResponse;
 
   @Override

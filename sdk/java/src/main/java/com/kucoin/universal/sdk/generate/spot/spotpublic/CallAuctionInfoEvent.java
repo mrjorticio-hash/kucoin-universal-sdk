@@ -18,42 +18,39 @@ import lombok.NoArgsConstructor;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class CallAuctionInfoEvent
     implements Response<CallAuctionInfoEvent, WsMessage<CallAuctionInfoEvent>> {
-  /**
-   * Symbol
-   */
-  @JsonProperty("symbol") private String symbol;
-  /**
-   * Estimated price
-   */
-  @JsonProperty("estimatedPrice") private String estimatedPrice;
-  /**
-   * Estimated size
-   */
-  @JsonProperty("estimatedSize") private String estimatedSize;
-  /**
-   * Sell ​​order minimum price
-   */
-  @JsonProperty("sellOrderRangeLowPrice") private String sellOrderRangeLowPrice;
-  /**
-   * Sell ​​order maximum price
-   */
+  /** Symbol */
+  @JsonProperty("symbol")
+  private String symbol;
+
+  /** Estimated price */
+  @JsonProperty("estimatedPrice")
+  private String estimatedPrice;
+
+  /** Estimated size */
+  @JsonProperty("estimatedSize")
+  private String estimatedSize;
+
+  /** Sell ​​order minimum price */
+  @JsonProperty("sellOrderRangeLowPrice")
+  private String sellOrderRangeLowPrice;
+
+  /** Sell ​​order maximum price */
   @JsonProperty("sellOrderRangeHighPrice")
   private String sellOrderRangeHighPrice;
-  /**
-   * Buy ​​order minimum price
-   */
-  @JsonProperty("buyOrderRangeLowPrice") private String buyOrderRangeLowPrice;
-  /**
-   * Buy ​​order maximum price
-   */
-  @JsonProperty("buyOrderRangeHighPrice") private String buyOrderRangeHighPrice;
-  /**
-   * Timestamp (ms)
-   */
-  @JsonProperty("time") private Long time;
-  /**
-   * common response
-   */
+
+  /** Buy ​​order minimum price */
+  @JsonProperty("buyOrderRangeLowPrice")
+  private String buyOrderRangeLowPrice;
+
+  /** Buy ​​order maximum price */
+  @JsonProperty("buyOrderRangeHighPrice")
+  private String buyOrderRangeHighPrice;
+
+  /** Timestamp (ms) */
+  @JsonProperty("time")
+  private Long time;
+
+  /** common response */
   @JsonIgnore private WsMessage<CallAuctionInfoEvent> commonResponse;
 
   @Override
@@ -67,10 +64,8 @@ public class CallAuctionInfoEvent
   }
 
   public static class CallbackAdapters {
-    public static WebSocketMessageCallback<CallAuctionInfoEvent>
-    of(Callback callback) {
-      return msg
-          -> callback.onEvent(msg.getTopic(), msg.getSubject(), msg.getData());
+    public static WebSocketMessageCallback<CallAuctionInfoEvent> of(Callback callback) {
+      return msg -> callback.onEvent(msg.getTopic(), msg.getSubject(), msg.getData());
     }
   }
 }

@@ -20,14 +20,11 @@ import lombok.NoArgsConstructor;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class GetMarketListResp
     implements Response<GetMarketListResp, RestResponse<GetMarketListResp>> {
-  /**
-   *
-   */
-  @JsonProperty("data") private List<String> data = new ArrayList<>();
+  /** */
+  @JsonProperty("data")
+  private List<String> data = new ArrayList<>();
 
-  /**
-   * common response
-   */
+  /** common response */
   @JsonIgnore private RestResponse<GetMarketListResp> commonResponse;
 
   @Override

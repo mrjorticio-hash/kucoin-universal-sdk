@@ -4,10 +4,10 @@ package com.kucoin.universal.sdk.generate.broker.ndbroker;
 
 import com.kucoin.universal.sdk.internal.interfaces.Transport;
 
-public class NdBrokerApiImpl implements NdBrokerApi {
+public class NDBrokerApiImpl implements NDBrokerApi {
   private final Transport transport;
 
-  public NdBrokerApiImpl(Transport transport) {
+  public NDBrokerApiImpl(Transport transport) {
     this.transport = transport;
   }
 

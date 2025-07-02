@@ -17,57 +17,44 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class GetCurrencyResp
-    implements Response<GetCurrencyResp, RestResponse<GetCurrencyResp>> {
-  /**
-   * A unique currency code that will never change
-   */
-  @JsonProperty("currency") private String currency;
+public class GetCurrencyResp implements Response<GetCurrencyResp, RestResponse<GetCurrencyResp>> {
+  /** A unique currency code that will never change */
+  @JsonProperty("currency")
+  private String currency;
 
-  /**
-   * Currency name; will change after renaming
-   */
-  @JsonProperty("name") private String name;
+  /** Currency name; will change after renaming */
+  @JsonProperty("name")
+  private String name;
 
-  /**
-   * Full currency name; will change after renaming
-   */
-  @JsonProperty("fullName") private String fullName;
+  /** Full currency name; will change after renaming */
+  @JsonProperty("fullName")
+  private String fullName;
 
-  /**
-   * Currency precision
-   */
-  @JsonProperty("precision") private Integer precision;
+  /** Currency precision */
+  @JsonProperty("precision")
+  private Integer precision;
 
-  /**
-   * Number of block confirmations
-   */
-  @JsonProperty("confirms") private Integer confirms;
+  /** Number of block confirmations */
+  @JsonProperty("confirms")
+  private Integer confirms;
 
-  /**
-   * Contract address
-   */
-  @JsonProperty("contractAddress") private String contractAddress;
+  /** Contract address */
+  @JsonProperty("contractAddress")
+  private String contractAddress;
 
-  /**
-   * Margin support or not
-   */
-  @JsonProperty("isMarginEnabled") private Boolean isMarginEnabled;
+  /** Margin support or not */
+  @JsonProperty("isMarginEnabled")
+  private Boolean isMarginEnabled;
 
-  /**
-   * Debit support or not
-   */
-  @JsonProperty("isDebitEnabled") private Boolean isDebitEnabled;
+  /** Debit support or not */
+  @JsonProperty("isDebitEnabled")
+  private Boolean isDebitEnabled;
 
-  /**
-   * Chain list
-   */
+  /** Chain list */
   @JsonProperty("chains")
   private List<GetCurrencyChains> chains = new ArrayList<>();
 
-  /**
-   * common response
-   */
+  /** common response */
   @JsonIgnore private RestResponse<GetCurrencyResp> commonResponse;
 
   @Override

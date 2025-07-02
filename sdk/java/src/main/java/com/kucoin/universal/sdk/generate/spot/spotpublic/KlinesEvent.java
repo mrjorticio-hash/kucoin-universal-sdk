@@ -18,24 +18,23 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class KlinesEvent
-    implements Response<KlinesEvent, WsMessage<KlinesEvent>> {
+public class KlinesEvent implements Response<KlinesEvent, WsMessage<KlinesEvent>> {
+  /** symbol */
+  @JsonProperty("symbol")
+  private String symbol;
+
   /**
-   * symbol
+   * Start time of the candle cycle,open price,close price, high price,low price,Transaction
+   * volume,Transaction amount
    */
-  @JsonProperty("symbol") private String symbol;
-  /**
-   * Start time of the candle cycle,open price,close price, high price,low
-   * price,Transaction volume,Transaction amount
-   */
-  @JsonProperty("candles") private List<String> candles = new ArrayList<>();
-  /**
-   * now（us）
-   */
-  @JsonProperty("time") private Long time;
-  /**
-   * common response
-   */
+  @JsonProperty("candles")
+  private List<String> candles = new ArrayList<>();
+
+  /** now（us） */
+  @JsonProperty("time")
+  private Long time;
+
+  /** common response */
   @JsonIgnore private WsMessage<KlinesEvent> commonResponse;
 
   @Override
@@ -50,8 +49,7 @@ public class KlinesEvent
 
   public static class CallbackAdapters {
     public static WebSocketMessageCallback<KlinesEvent> of(Callback callback) {
-      return msg
-          -> callback.onEvent(msg.getTopic(), msg.getSubject(), msg.getData());
+      return msg -> callback.onEvent(msg.getTopic(), msg.getSubject(), msg.getData());
     }
   }
 }

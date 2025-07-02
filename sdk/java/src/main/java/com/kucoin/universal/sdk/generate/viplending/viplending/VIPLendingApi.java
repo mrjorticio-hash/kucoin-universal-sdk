@@ -2,7 +2,7 @@
 
 package com.kucoin.universal.sdk.generate.viplending.viplending;
 
-public interface VipLendingApi {
+public interface VIPLendingApi {
   /**
    * Get Discount Rate Configs Get the gradient discount rate of each currency <a
    * href="https://www.kucoin.com/docs-new/api-3471463">docs</a> +-----------------------+---------+

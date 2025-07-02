@@ -13,79 +13,66 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class GetCurrencyChains {
-  /**
-   * Chain name of currency
-   */
-  @JsonProperty("chainName") private String chainName;
+  /** Chain name of currency */
+  @JsonProperty("chainName")
+  private String chainName;
+
+  /** Minimum withdrawal amount */
+  @JsonProperty("withdrawalMinSize")
+  private String withdrawalMinSize;
+
+  /** Minimum deposit amount */
+  @JsonProperty("depositMinSize")
+  private String depositMinSize;
+
+  /** Withdraw fee rate */
+  @JsonProperty("withdrawFeeRate")
+  private String withdrawFeeRate;
+
+  /** Minimum fees charged for withdrawal */
+  @JsonProperty("withdrawalMinFee")
+  private String withdrawalMinFee;
+
+  /** Withdrawal support or not */
+  @JsonProperty("isWithdrawEnabled")
+  private Boolean isWithdrawEnabled;
+
+  /** Deposit support or not */
+  @JsonProperty("isDepositEnabled")
+  private Boolean isDepositEnabled;
+
+  /** Number of block confirmations */
+  @JsonProperty("confirms")
+  private Integer confirms;
+
+  /** The number of blocks (confirmations) for advance on-chain verification */
+  @JsonProperty("preConfirms")
+  private Integer preConfirms;
+
+  /** Contract address */
+  @JsonProperty("contractAddress")
+  private String contractAddress;
 
   /**
-   * Minimum withdrawal amount
+   * Withdrawal precision bit, indicating the maximum supported length after the decimal point of
+   * the withdrawal amount
    */
-  @JsonProperty("withdrawalMinSize") private String withdrawalMinSize;
+  @JsonProperty("withdrawPrecision")
+  private Integer withdrawPrecision;
 
-  /**
-   * Minimum deposit amount
-   */
-  @JsonProperty("depositMinSize") private String depositMinSize;
+  /** Maximum amount of single withdrawal */
+  @JsonProperty("maxWithdraw")
+  private Double maxWithdraw;
 
-  /**
-   * Withdraw fee rate
-   */
-  @JsonProperty("withdrawFeeRate") private String withdrawFeeRate;
+  /** Maximum amount of single deposit (only applicable to Lightning Network) */
+  @JsonProperty("maxDeposit")
+  private String maxDeposit;
 
-  /**
-   * Minimum fees charged for withdrawal
-   */
-  @JsonProperty("withdrawalMinFee") private String withdrawalMinFee;
+  /** Need for memo/tag or not */
+  @JsonProperty("needTag")
+  private Boolean needTag;
 
-  /**
-   * Withdrawal support or not
-   */
-  @JsonProperty("isWithdrawEnabled") private Boolean isWithdrawEnabled;
-
-  /**
-   * Deposit support or not
-   */
-  @JsonProperty("isDepositEnabled") private Boolean isDepositEnabled;
-
-  /**
-   * Number of block confirmations
-   */
-  @JsonProperty("confirms") private Integer confirms;
-
-  /**
-   * The number of blocks (confirmations) for advance on-chain verification
-   */
-  @JsonProperty("preConfirms") private Integer preConfirms;
-
-  /**
-   * Contract address
-   */
-  @JsonProperty("contractAddress") private String contractAddress;
-
-  /**
-   * Withdrawal precision bit, indicating the maximum supported length after the
-   * decimal point of the withdrawal amount
-   */
-  @JsonProperty("withdrawPrecision") private Integer withdrawPrecision;
-
-  /**
-   * Maximum amount of single withdrawal
-   */
-  @JsonProperty("maxWithdraw") private Double maxWithdraw;
-
-  /**
-   * Maximum amount of single deposit (only applicable to Lightning Network)
-   */
-  @JsonProperty("maxDeposit") private String maxDeposit;
-
-  /**
-   * Need for memo/tag or not
-   */
-  @JsonProperty("needTag") private Boolean needTag;
-
-  /**
-   * Chain id of currency
-   */
-  @JsonProperty("chainId") private String chainId;
+  /** Chain id of currency */
+  @JsonProperty("chainId")
+  private String chainId;
 }

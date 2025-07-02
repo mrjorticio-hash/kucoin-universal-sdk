@@ -18,84 +18,62 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class GetAnnouncementsReq implements Request {
-  /**
-   * page number
-   */
-  @JsonProperty("currentPage") private Long currentPage;
+  /** page number */
+  @JsonProperty("currentPage")
+  private Long currentPage;
+
+  /** page Size */
+  @JsonProperty("pageSize")
+  private Long pageSize;
 
   /**
-   * page Size
-   */
-  @JsonProperty("pageSize") private Long pageSize;
-
-  /**
-   * Announcement types: latest-announcements , activities (latest activities),
-   * new-listings (new currency online), product-updates (product updates), vip
-   * (institutions and VIPs), maintenance-updates (system maintenance), product
-   * -updates (product news), delistings (currency offline), others,
-   * api-campaigns (API user activities), default : latest-announcements
+   * Announcement types: latest-announcements , activities (latest activities), new-listings (new
+   * currency online), product-updates (product updates), vip (institutions and VIPs),
+   * maintenance-updates (system maintenance), product -updates (product news), delistings (currency
+   * offline), others, api-campaigns (API user activities), default : latest-announcements
    */
   @JsonProperty("annType")
   @Builder.Default
   private AnnTypeEnum annType = AnnTypeEnum.LATEST_ANNOUNCEMENTS;
 
-  /**
-   * Language type, the default is en_US, the specific value parameters are as
-   * follows
-   */
-  @JsonProperty("lang") @Builder.Default private LangEnum lang = LangEnum.EN_US;
+  /** Language type, the default is en_US, the specific value parameters are as follows */
+  @JsonProperty("lang")
+  @Builder.Default
+  private LangEnum lang = LangEnum.EN_US;
 
-  /**
-   * Announcement online start time (milliseconds)
-   */
-  @JsonProperty("startTime") private Long startTime;
+  /** Announcement online start time (milliseconds) */
+  @JsonProperty("startTime")
+  private Long startTime;
 
-  /**
-   * Announcement online end time (milliseconds)
-   */
-  @JsonProperty("endTime") private Long endTime;
+  /** Announcement online end time (milliseconds) */
+  @JsonProperty("endTime")
+  private Long endTime;
 
   public enum AnnTypeEnum {
-    /**
-     * latest-announcements
-     */
+    /** latest-announcements */
     LATEST_ANNOUNCEMENTS("latest-announcements"),
-    /**
-     * latest activities
-     */
+    /** latest activities */
     ACTIVITIES("activities"),
-    /**
-     * product updates
-     */
+    /** product updates */
     PRODUCT_UPDATES("product-updates"),
-    /**
-     * institutions and VIPs
-     */
+    /** institutions and VIPs */
     VIPS("vip"),
-    /**
-     * system maintenance
-     */
+    /** system maintenance */
     MAINTENANCE_UPDATE("maintenance-updates"),
-    /**
-     * currency offline
-     */
+    /** currency offline */
     DELISTINGS("delistings"),
-    /**
-     * others
-     */
+    /** others */
     OTHERS("others"),
-    /**
-     * API user activities
-     */
+    /** API user activities */
     API_CAMPAIGNS("api-campaigns"),
-    /**
-     * new currency online
-     */
+    /** new currency online */
     NEW_LISTINGS("new-listings");
 
     private final String value;
 
-    AnnTypeEnum(String value) { this.value = value; }
+    AnnTypeEnum(String value) {
+      this.value = value;
+    }
 
     @JsonValue
     public String getValue() {
@@ -117,99 +95,58 @@ public class GetAnnouncementsReq implements Request {
       throw new IllegalArgumentException("Unexpected value '" + value + "'");
     }
   }
+
   public enum LangEnum {
-    /**
-     * Chinese (Hong Kong)
-     */
+    /** Chinese (Hong Kong) */
     ZH_HK("zh_HK"),
-    /**
-     * Japanese (Japan)
-     */
+    /** Japanese (Japan) */
     JA_JP("ja_JP"),
-    /**
-     * Korean (Korea)
-     */
+    /** Korean (Korea) */
     KO_KR("ko_KR"),
-    /**
-     * English
-     */
+    /** English */
     EN_US("en_US"),
-    /**
-     * Polish (Poland)
-     */
+    /** Polish (Poland) */
     PL_PL("pl_PL"),
-    /**
-     * Spanish (Spain)
-     */
+    /** Spanish (Spain) */
     ES_ES("es_ES"),
-    /**
-     * French (France)
-     */
+    /** French (France) */
     FR_FR("fr_FR"),
-    /**
-     * Arabic (Egypt)
-     */
+    /** Arabic (Egypt) */
     AR_AE("ar_AE"),
-    /**
-     * Italian (Italy)
-     */
+    /** Italian (Italy) */
     IT_IT("it_IT"),
-    /**
-     * Indonesian (Indonesia)
-     */
+    /** Indonesian (Indonesia) */
     ID_ID("id_ID"),
-    /**
-     * Dutch (Netherlands)
-     */
+    /** Dutch (Netherlands) */
     NL_NL("nl_NL"),
-    /**
-     * Portuguese (Brazil)
-     */
+    /** Portuguese (Brazil) */
     PT_PT("pt_PT"),
-    /**
-     * Vietnamese (Vietnam)
-     */
+    /** Vietnamese (Vietnam) */
     VI_VN("vi_VN"),
-    /**
-     * German (Germany)
-     */
+    /** German (Germany) */
     DE_DE("de_DE"),
-    /**
-     * Turkish (Turkey)
-     */
+    /** Turkish (Turkey) */
     TR_TR("tr_TR"),
-    /**
-     * Malay (Malaysia)
-     */
+    /** Malay (Malaysia) */
     MS_MY("ms_MY"),
-    /**
-     * Russian (Russia)
-     */
+    /** Russian (Russia) */
     RU_RU("ru_RU"),
-    /**
-     * Thai (Thailand)
-     */
+    /** Thai (Thailand) */
     TH_TH("th_TH"),
-    /**
-     * Hindi (India)
-     */
+    /** Hindi (India) */
     HI_IN("hi_IN"),
-    /**
-     * Bengali (Bangladesh)
-     */
+    /** Bengali (Bangladesh) */
     BN_BD("bn_BD"),
-    /**
-     * Filipino (Philippines)
-     */
+    /** Filipino (Philippines) */
     FIL_PH("fil_PH"),
-    /**
-     * Urdu (Pakistan)
-     */
+    /** Urdu (Pakistan) */
     UR_PK("ur_PK");
 
     private final String value;
 
-    LangEnum(String value) { this.value = value; }
+    LangEnum(String value) {
+      this.value = value;
+    }
 
     @JsonValue
     public String getValue() {

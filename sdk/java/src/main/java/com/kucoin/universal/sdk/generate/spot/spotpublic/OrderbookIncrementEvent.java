@@ -17,31 +17,28 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class OrderbookIncrementEvent
-    implements Response<OrderbookIncrementEvent,
-                        WsMessage<OrderbookIncrementEvent>> {
-  /**
-   *
-   */
-  @JsonProperty("changes") private OrderbookIncrementChanges changes;
-  /**
-   *
-   */
-  @JsonProperty("sequenceEnd") private Long sequenceEnd;
-  /**
-   *
-   */
-  @JsonProperty("sequenceStart") private Long sequenceStart;
-  /**
-   *
-   */
-  @JsonProperty("symbol") private String symbol;
-  /**
-   * milliseconds
-   */
-  @JsonProperty("time") private Long time;
-  /**
-   * common response
-   */
+    implements Response<OrderbookIncrementEvent, WsMessage<OrderbookIncrementEvent>> {
+  /** */
+  @JsonProperty("changes")
+  private OrderbookIncrementChanges changes;
+
+  /** */
+  @JsonProperty("sequenceEnd")
+  private Long sequenceEnd;
+
+  /** */
+  @JsonProperty("sequenceStart")
+  private Long sequenceStart;
+
+  /** */
+  @JsonProperty("symbol")
+  private String symbol;
+
+  /** milliseconds */
+  @JsonProperty("time")
+  private Long time;
+
+  /** common response */
   @JsonIgnore private WsMessage<OrderbookIncrementEvent> commonResponse;
 
   @Override
@@ -55,10 +52,8 @@ public class OrderbookIncrementEvent
   }
 
   public static class CallbackAdapters {
-    public static WebSocketMessageCallback<OrderbookIncrementEvent>
-    of(Callback callback) {
-      return msg
-          -> callback.onEvent(msg.getTopic(), msg.getSubject(), msg.getData());
+    public static WebSocketMessageCallback<OrderbookIncrementEvent> of(Callback callback) {
+      return msg -> callback.onEvent(msg.getTopic(), msg.getSubject(), msg.getData());
     }
   }
 }

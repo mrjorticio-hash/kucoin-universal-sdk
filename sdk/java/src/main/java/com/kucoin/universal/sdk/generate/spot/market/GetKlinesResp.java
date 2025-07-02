@@ -18,16 +18,12 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class GetKlinesResp
-    implements Response<GetKlinesResp, RestResponse<GetKlinesResp>> {
-  /**
-   *
-   */
-  @JsonProperty("data") private List<List<String>> data = new ArrayList<>();
+public class GetKlinesResp implements Response<GetKlinesResp, RestResponse<GetKlinesResp>> {
+  /** */
+  @JsonProperty("data")
+  private List<List<String>> data = new ArrayList<>();
 
-  /**
-   * common response
-   */
+  /** common response */
   @JsonIgnore private RestResponse<GetKlinesResp> commonResponse;
 
   @Override

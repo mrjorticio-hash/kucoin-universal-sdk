@@ -19,17 +19,12 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class GetTradeHistoryResp
-    implements Response<GetTradeHistoryResp,
-                        RestResponse<GetTradeHistoryResp>> {
-  /**
-   *
-   */
+    implements Response<GetTradeHistoryResp, RestResponse<GetTradeHistoryResp>> {
+  /** */
   @JsonProperty("data")
   private List<GetTradeHistoryData> data = new ArrayList<>();
 
-  /**
-   * common response
-   */
+  /** common response */
   @JsonIgnore private RestResponse<GetTradeHistoryResp> commonResponse;
 
   @Override

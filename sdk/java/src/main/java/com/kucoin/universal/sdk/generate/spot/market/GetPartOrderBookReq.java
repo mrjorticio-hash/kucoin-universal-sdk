@@ -18,13 +18,13 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class GetPartOrderBookReq implements Request {
-  /**
-   * symbol
-   */
-  @JsonProperty("symbol") private String symbol;
+  /** symbol */
+  @JsonProperty("symbol")
+  private String symbol;
 
-  /**
-   * Get the depth layer, optional value: 20, 100
-   */
-  @JsonIgnore @PathVar("size") @JsonProperty("size") private String size;
+  /** Get the depth layer, optional value: 20, 100 */
+  @JsonIgnore
+  @PathVar("size")
+  @JsonProperty("size")
+  private String size;
 }

@@ -15,51 +15,40 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class GetTickerResp
-    implements Response<GetTickerResp, RestResponse<GetTickerResp>> {
-  /**
-   * timestamp
-   */
-  @JsonProperty("time") private Long time;
+public class GetTickerResp implements Response<GetTickerResp, RestResponse<GetTickerResp>> {
+  /** timestamp */
+  @JsonProperty("time")
+  private Long time;
 
-  /**
-   * Sequence
-   */
-  @JsonProperty("sequence") private String sequence;
+  /** Sequence */
+  @JsonProperty("sequence")
+  private String sequence;
 
-  /**
-   * Last traded price
-   */
-  @JsonProperty("price") private String price;
+  /** Last traded price */
+  @JsonProperty("price")
+  private String price;
 
-  /**
-   * Last traded size
-   */
-  @JsonProperty("size") private String size;
+  /** Last traded size */
+  @JsonProperty("size")
+  private String size;
 
-  /**
-   * Best bid price
-   */
-  @JsonProperty("bestBid") private String bestBid;
+  /** Best bid price */
+  @JsonProperty("bestBid")
+  private String bestBid;
 
-  /**
-   * Best bid size
-   */
-  @JsonProperty("bestBidSize") private String bestBidSize;
+  /** Best bid size */
+  @JsonProperty("bestBidSize")
+  private String bestBidSize;
 
-  /**
-   * Best ask price
-   */
-  @JsonProperty("bestAsk") private String bestAsk;
+  /** Best ask price */
+  @JsonProperty("bestAsk")
+  private String bestAsk;
 
-  /**
-   * Best ask size
-   */
-  @JsonProperty("bestAskSize") private String bestAskSize;
+  /** Best ask size */
+  @JsonProperty("bestAskSize")
+  private String bestAskSize;
 
-  /**
-   * common response
-   */
+  /** common response */
   @JsonIgnore private RestResponse<GetTickerResp> commonResponse;
 
   @Override

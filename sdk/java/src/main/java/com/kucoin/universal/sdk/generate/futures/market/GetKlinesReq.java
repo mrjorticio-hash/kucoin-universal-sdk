@@ -61,14 +61,14 @@ public class GetKlinesReq implements Request {
     /** 1week */
     _10080(10080);
 
-    private final Long value;
+    private final Integer value;
 
-    GranularityEnum(Long value) {
+    GranularityEnum(Integer value) {
       this.value = value;
     }
 
     @JsonValue
-    public Long getValue() {
+    public Integer getValue() {
       return value;
     }
 
@@ -78,7 +78,7 @@ public class GetKlinesReq implements Request {
     }
 
     @JsonCreator
-    public static GranularityEnum fromValue(Long value) {
+    public static GranularityEnum fromValue(Integer value) {
       for (GranularityEnum b : GranularityEnum.values()) {
         if (b.value.equals(value)) {
           return b;

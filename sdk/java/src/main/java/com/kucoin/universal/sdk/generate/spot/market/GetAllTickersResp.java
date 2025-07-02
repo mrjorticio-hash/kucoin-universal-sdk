@@ -19,20 +19,15 @@ import lombok.NoArgsConstructor;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class GetAllTickersResp
     implements Response<GetAllTickersResp, RestResponse<GetAllTickersResp>> {
-  /**
-   * timestamp
-   */
-  @JsonProperty("time") private Long time;
+  /** timestamp */
+  @JsonProperty("time")
+  private Long time;
 
-  /**
-   *
-   */
+  /** */
   @JsonProperty("ticker")
   private List<GetAllTickersTicker> ticker = new ArrayList<>();
 
-  /**
-   * common response
-   */
+  /** common response */
   @JsonIgnore private RestResponse<GetAllTickersResp> commonResponse;
 
   @Override

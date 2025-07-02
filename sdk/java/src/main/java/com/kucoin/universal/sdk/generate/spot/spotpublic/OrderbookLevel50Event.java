@@ -19,23 +19,20 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class OrderbookLevel50Event
-    implements Response<OrderbookLevel50Event,
-                        WsMessage<OrderbookLevel50Event>> {
-  /**
-   * price, size
-   */
-  @JsonProperty("asks") private List<List<String>> asks = new ArrayList<>();
-  /**
-   *
-   */
-  @JsonProperty("bids") private List<List<String>> bids = new ArrayList<>();
-  /**
-   *
-   */
-  @JsonProperty("timestamp") private Long timestamp;
-  /**
-   * common response
-   */
+    implements Response<OrderbookLevel50Event, WsMessage<OrderbookLevel50Event>> {
+  /** price, size */
+  @JsonProperty("asks")
+  private List<List<String>> asks = new ArrayList<>();
+
+  /** */
+  @JsonProperty("bids")
+  private List<List<String>> bids = new ArrayList<>();
+
+  /** */
+  @JsonProperty("timestamp")
+  private Long timestamp;
+
+  /** common response */
   @JsonIgnore private WsMessage<OrderbookLevel50Event> commonResponse;
 
   @Override
@@ -49,10 +46,8 @@ public class OrderbookLevel50Event
   }
 
   public static class CallbackAdapters {
-    public static WebSocketMessageCallback<OrderbookLevel50Event>
-    of(Callback callback) {
-      return msg
-          -> callback.onEvent(msg.getTopic(), msg.getSubject(), msg.getData());
+    public static WebSocketMessageCallback<OrderbookLevel50Event> of(Callback callback) {
+      return msg -> callback.onEvent(msg.getTopic(), msg.getSubject(), msg.getData());
     }
   }
 }

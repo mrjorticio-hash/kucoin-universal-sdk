@@ -18,8 +18,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class GetSymbolReq implements Request {
-  /**
-   * Path parameter, Symbol
-   */
-  @JsonIgnore @PathVar("symbol") @JsonProperty("symbol") private String symbol;
+  /** Path parameter, Symbol */
+  @JsonIgnore
+  @PathVar("symbol")
+  @JsonProperty("symbol")
+  private String symbol;
 }

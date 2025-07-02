@@ -16,52 +16,40 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class GetCallAuctionInfoResp
-    implements Response<GetCallAuctionInfoResp,
-                        RestResponse<GetCallAuctionInfoResp>> {
-  /**
-   * Symbol
-   */
-  @JsonProperty("symbol") private String symbol;
+    implements Response<GetCallAuctionInfoResp, RestResponse<GetCallAuctionInfoResp>> {
+  /** Symbol */
+  @JsonProperty("symbol")
+  private String symbol;
 
-  /**
-   * Estimated price
-   */
-  @JsonProperty("estimatedPrice") private String estimatedPrice;
+  /** Estimated price */
+  @JsonProperty("estimatedPrice")
+  private String estimatedPrice;
 
-  /**
-   * Estimated size
-   */
-  @JsonProperty("estimatedSize") private String estimatedSize;
+  /** Estimated size */
+  @JsonProperty("estimatedSize")
+  private String estimatedSize;
 
-  /**
-   * Sell ​​order minimum price
-   */
-  @JsonProperty("sellOrderRangeLowPrice") private String sellOrderRangeLowPrice;
+  /** Sell ​​order minimum price */
+  @JsonProperty("sellOrderRangeLowPrice")
+  private String sellOrderRangeLowPrice;
 
-  /**
-   * Sell ​​order maximum price
-   */
+  /** Sell ​​order maximum price */
   @JsonProperty("sellOrderRangeHighPrice")
   private String sellOrderRangeHighPrice;
 
-  /**
-   * Buy order minimum price
-   */
-  @JsonProperty("buyOrderRangeLowPrice") private String buyOrderRangeLowPrice;
+  /** Buy order minimum price */
+  @JsonProperty("buyOrderRangeLowPrice")
+  private String buyOrderRangeLowPrice;
 
-  /**
-   * Buy ​​order maximum price
-   */
-  @JsonProperty("buyOrderRangeHighPrice") private String buyOrderRangeHighPrice;
+  /** Buy ​​order maximum price */
+  @JsonProperty("buyOrderRangeHighPrice")
+  private String buyOrderRangeHighPrice;
 
-  /**
-   * Timestamp (ms)
-   */
-  @JsonProperty("time") private Long time;
+  /** Timestamp (ms) */
+  @JsonProperty("time")
+  private Long time;
 
-  /**
-   * common response
-   */
+  /** common response */
   @JsonIgnore private RestResponse<GetCallAuctionInfoResp> commonResponse;
 
   @Override

@@ -19,21 +19,15 @@ import lombok.NoArgsConstructor;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class GetPublicTokenResp
     implements Response<GetPublicTokenResp, RestResponse<GetPublicTokenResp>> {
-  /**
-   * The token required to establish a Websocket connection
-   */
-  @JsonProperty("token") private String token;
+  /** The token required to establish a Websocket connection */
+  @JsonProperty("token")
+  private String token;
 
-  /**
-   *
-   */
+  /** */
   @JsonProperty("instanceServers")
-  private List<GetPublicTokenInstanceServers> instanceServers =
-      new ArrayList<>();
+  private List<GetPublicTokenInstanceServers> instanceServers = new ArrayList<>();
 
-  /**
-   * common response
-   */
+  /** common response */
   @JsonIgnore private RestResponse<GetPublicTokenResp> commonResponse;
 
   @Override

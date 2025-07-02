@@ -16,8 +16,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class GetTradeHistoryReq implements Request {
-  /**
-   * symbol
-   */
-  @JsonProperty("symbol") private String symbol;
+  /** symbol */
+  @JsonProperty("symbol")
+  private String symbol;
 }

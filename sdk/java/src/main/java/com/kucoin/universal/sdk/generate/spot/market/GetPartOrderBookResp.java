@@ -18,31 +18,24 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class GetPartOrderBookResp
-    implements Response<GetPartOrderBookResp,
-                        RestResponse<GetPartOrderBookResp>> {
-  /**
-   * Timestamp(millisecond)
-   */
-  @JsonProperty("time") private Long time;
+    implements Response<GetPartOrderBookResp, RestResponse<GetPartOrderBookResp>> {
+  /** Timestamp(millisecond) */
+  @JsonProperty("time")
+  private Long time;
 
-  /**
-   * Sequence number
-   */
-  @JsonProperty("sequence") private String sequence;
+  /** Sequence number */
+  @JsonProperty("sequence")
+  private String sequence;
 
-  /**
-   * bids, from high to low
-   */
-  @JsonProperty("bids") private List<List<String>> bids = new ArrayList<>();
+  /** bids, from high to low */
+  @JsonProperty("bids")
+  private List<List<String>> bids = new ArrayList<>();
 
-  /**
-   * asks, from low to high
-   */
-  @JsonProperty("asks") private List<List<String>> asks = new ArrayList<>();
+  /** asks, from low to high */
+  @JsonProperty("asks")
+  private List<List<String>> asks = new ArrayList<>();
 
-  /**
-   * common response
-   */
+  /** common response */
   @JsonIgnore private RestResponse<GetPartOrderBookResp> commonResponse;
 
   @Override

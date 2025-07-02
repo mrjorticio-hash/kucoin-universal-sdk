@@ -17,49 +17,47 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class TradeEvent implements Response<TradeEvent, WsMessage<TradeEvent>> {
-  /**
-   *
-   */
-  @JsonProperty("makerOrderId") private String makerOrderId;
-  /**
-   *
-   */
-  @JsonProperty("price") private String price;
-  /**
-   *
-   */
-  @JsonProperty("sequence") private String sequence;
-  /**
-   *
-   */
-  @JsonProperty("side") private String side;
-  /**
-   *
-   */
-  @JsonProperty("size") private String size;
-  /**
-   *
-   */
-  @JsonProperty("symbol") private String symbol;
-  /**
-   *
-   */
-  @JsonProperty("takerOrderId") private String takerOrderId;
-  /**
-   *
-   */
-  @JsonProperty("time") private String time;
-  /**
-   *
-   */
-  @JsonProperty("tradeId") private String tradeId;
-  /**
-   *
-   */
-  @JsonProperty("type") private String type;
-  /**
-   * common response
-   */
+  /** */
+  @JsonProperty("makerOrderId")
+  private String makerOrderId;
+
+  /** */
+  @JsonProperty("price")
+  private String price;
+
+  /** */
+  @JsonProperty("sequence")
+  private String sequence;
+
+  /** */
+  @JsonProperty("side")
+  private String side;
+
+  /** */
+  @JsonProperty("size")
+  private String size;
+
+  /** */
+  @JsonProperty("symbol")
+  private String symbol;
+
+  /** */
+  @JsonProperty("takerOrderId")
+  private String takerOrderId;
+
+  /** */
+  @JsonProperty("time")
+  private String time;
+
+  /** */
+  @JsonProperty("tradeId")
+  private String tradeId;
+
+  /** */
+  @JsonProperty("type")
+  private String type;
+
+  /** common response */
   @JsonIgnore private WsMessage<TradeEvent> commonResponse;
 
   @Override
@@ -74,8 +72,7 @@ public class TradeEvent implements Response<TradeEvent, WsMessage<TradeEvent>> {
 
   public static class CallbackAdapters {
     public static WebSocketMessageCallback<TradeEvent> of(Callback callback) {
-      return msg
-          -> callback.onEvent(msg.getTopic(), msg.getSubject(), msg.getData());
+      return msg -> callback.onEvent(msg.getTopic(), msg.getSubject(), msg.getData());
     }
   }
 }

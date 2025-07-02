@@ -18,37 +18,28 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class GetAnnouncementsResp
-    implements Response<GetAnnouncementsResp,
-                        RestResponse<GetAnnouncementsResp>> {
-  /**
-   * Total Number
-   */
-  @JsonProperty("totalNum") private Integer totalNum;
+    implements Response<GetAnnouncementsResp, RestResponse<GetAnnouncementsResp>> {
+  /** Total Number */
+  @JsonProperty("totalNum")
+  private Integer totalNum;
 
-  /**
-   *
-   */
+  /** */
   @JsonProperty("items")
   private List<GetAnnouncementsItems> items = new ArrayList<>();
 
-  /**
-   * Current page
-   */
-  @JsonProperty("currentPage") private Integer currentPage;
+  /** Current page */
+  @JsonProperty("currentPage")
+  private Integer currentPage;
 
-  /**
-   * Page size
-   */
-  @JsonProperty("pageSize") private Integer pageSize;
+  /** Page size */
+  @JsonProperty("pageSize")
+  private Integer pageSize;
 
-  /**
-   * Total Page
-   */
-  @JsonProperty("totalPage") private Integer totalPage;
+  /** Total Page */
+  @JsonProperty("totalPage")
+  private Integer totalPage;
 
-  /**
-   * common response
-   */
+  /** common response */
   @JsonIgnore private RestResponse<GetAnnouncementsResp> commonResponse;
 
   @Override

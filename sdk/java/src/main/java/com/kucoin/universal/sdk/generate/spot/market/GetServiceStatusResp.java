@@ -18,23 +18,19 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class GetServiceStatusResp
-    implements Response<GetServiceStatusResp,
-                        RestResponse<GetServiceStatusResp>> {
+    implements Response<GetServiceStatusResp, RestResponse<GetServiceStatusResp>> {
   /**
-   * Status of service: open: normal transaction; close: Stop
-   * Trading/Maintenance; cancelonly: can only cancel the order but not place
-   * order
+   * Status of service: open: normal transaction; close: Stop Trading/Maintenance; cancelonly: can
+   * only cancel the order but not place order
    */
-  @JsonProperty("status") private StatusEnum status;
+  @JsonProperty("status")
+  private StatusEnum status;
 
-  /**
-   * Remark for operation
-   */
-  @JsonProperty("msg") private String msg;
+  /** Remark for operation */
+  @JsonProperty("msg")
+  private String msg;
 
-  /**
-   * common response
-   */
+  /** common response */
   @JsonIgnore private RestResponse<GetServiceStatusResp> commonResponse;
 
   @Override
@@ -43,22 +39,18 @@ public class GetServiceStatusResp
   }
 
   public enum StatusEnum {
-    /**
-     * normal transaction
-     */
+    /** normal transaction */
     OPEN("open"),
-    /**
-     * Stop Trading/Maintenance
-     */
+    /** Stop Trading/Maintenance */
     CLOSE("close"),
-    /**
-     * can only cancel the order but not place order
-     */
+    /** can only cancel the order but not place order */
     CANCELONLY("cancelonly");
 
     private final String value;
 
-    StatusEnum(String value) { this.value = value; }
+    StatusEnum(String value) {
+      this.value = value;
+    }
 
     @JsonValue
     public String getValue() {

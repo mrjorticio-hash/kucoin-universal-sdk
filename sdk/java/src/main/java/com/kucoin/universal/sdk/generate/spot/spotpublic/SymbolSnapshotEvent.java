@@ -18,17 +18,15 @@ import lombok.NoArgsConstructor;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class SymbolSnapshotEvent
     implements Response<SymbolSnapshotEvent, WsMessage<SymbolSnapshotEvent>> {
-  /**
-   *
-   */
-  @JsonProperty("sequence") private String sequence;
-  /**
-   *
-   */
-  @JsonProperty("data") private SymbolSnapshotData data;
-  /**
-   * common response
-   */
+  /** */
+  @JsonProperty("sequence")
+  private String sequence;
+
+  /** */
+  @JsonProperty("data")
+  private SymbolSnapshotData data;
+
+  /** common response */
   @JsonIgnore private WsMessage<SymbolSnapshotEvent> commonResponse;
 
   @Override
@@ -42,10 +40,8 @@ public class SymbolSnapshotEvent
   }
 
   public static class CallbackAdapters {
-    public static WebSocketMessageCallback<SymbolSnapshotEvent>
-    of(Callback callback) {
-      return msg
-          -> callback.onEvent(msg.getTopic(), msg.getSubject(), msg.getData());
+    public static WebSocketMessageCallback<SymbolSnapshotEvent> of(Callback callback) {
+      return msg -> callback.onEvent(msg.getTopic(), msg.getSubject(), msg.getData());
     }
   }
 }

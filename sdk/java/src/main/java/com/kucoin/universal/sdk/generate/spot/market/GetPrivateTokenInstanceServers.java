@@ -15,41 +15,35 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class GetPrivateTokenInstanceServers {
-  /**
-   * Websocket domain URL. It is recommended to use a dynamic URL, as the URL
-   * may change.
-   */
-  @JsonProperty("endpoint") private String endpoint;
+  /** Websocket domain URL. It is recommended to use a dynamic URL, as the URL may change. */
+  @JsonProperty("endpoint")
+  private String endpoint;
 
-  /**
-   * Whether to encrypt. Currently only supports wss, not ws
-   */
-  @JsonProperty("encrypt") private Boolean encrypt;
+  /** Whether to encrypt. Currently only supports wss, not ws */
+  @JsonProperty("encrypt")
+  private Boolean encrypt;
 
-  /**
-   * Network Protocol
-   */
-  @JsonProperty("protocol") private ProtocolEnum protocol;
+  /** Network Protocol */
+  @JsonProperty("protocol")
+  private ProtocolEnum protocol;
 
-  /**
-   * Recommended ping interval (milliseconds)
-   */
-  @JsonProperty("pingInterval") private Integer pingInterval;
+  /** Recommended ping interval (milliseconds) */
+  @JsonProperty("pingInterval")
+  private Integer pingInterval;
 
-  /**
-   * Heartbeat timeout (milliseconds)
-   */
-  @JsonProperty("pingTimeout") private Integer pingTimeout;
+  /** Heartbeat timeout (milliseconds) */
+  @JsonProperty("pingTimeout")
+  private Integer pingTimeout;
 
   public enum ProtocolEnum {
-    /**
-     * Websocket
-     */
+    /** Websocket */
     WEBSOCKET("websocket");
 
     private final String value;
 
-    ProtocolEnum(String value) { this.value = value; }
+    ProtocolEnum(String value) {
+      this.value = value;
+    }
 
     @JsonValue
     public String getValue() {

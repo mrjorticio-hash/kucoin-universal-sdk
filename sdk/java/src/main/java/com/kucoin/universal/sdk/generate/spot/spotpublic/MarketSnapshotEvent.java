@@ -18,17 +18,15 @@ import lombok.NoArgsConstructor;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class MarketSnapshotEvent
     implements Response<MarketSnapshotEvent, WsMessage<MarketSnapshotEvent>> {
-  /**
-   *
-   */
-  @JsonProperty("sequence") private String sequence;
-  /**
-   *
-   */
-  @JsonProperty("data") private MarketSnapshotData data;
-  /**
-   * common response
-   */
+  /** */
+  @JsonProperty("sequence")
+  private String sequence;
+
+  /** */
+  @JsonProperty("data")
+  private MarketSnapshotData data;
+
+  /** common response */
   @JsonIgnore private WsMessage<MarketSnapshotEvent> commonResponse;
 
   @Override
@@ -42,10 +40,8 @@ public class MarketSnapshotEvent
   }
 
   public static class CallbackAdapters {
-    public static WebSocketMessageCallback<MarketSnapshotEvent>
-    of(Callback callback) {
-      return msg
-          -> callback.onEvent(msg.getTopic(), msg.getSubject(), msg.getData());
+    public static WebSocketMessageCallback<MarketSnapshotEvent> of(Callback callback) {
+      return msg -> callback.onEvent(msg.getTopic(), msg.getSubject(), msg.getData());
     }
   }
 }

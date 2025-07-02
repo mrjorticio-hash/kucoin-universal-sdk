@@ -15,12 +15,11 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 class OrderbookIncrementChanges {
-  /**
-   * price,size,sequence
-   */
-  @JsonProperty("asks") private List<List<String>> asks = new ArrayList<>();
-  /**
-   *
-   */
-  @JsonProperty("bids") private List<List<String>> bids = new ArrayList<>();
+  /** price,size,sequence */
+  @JsonProperty("asks")
+  private List<List<String>> asks = new ArrayList<>();
+
+  /** */
+  @JsonProperty("bids")
+  private List<List<String>> bids = new ArrayList<>();
 }

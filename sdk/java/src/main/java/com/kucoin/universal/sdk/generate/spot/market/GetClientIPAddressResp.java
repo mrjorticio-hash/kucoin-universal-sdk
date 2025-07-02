@@ -17,16 +17,12 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class GetClientIPAddressResp
-    implements Response<GetClientIPAddressResp,
-                        RestResponse<GetClientIPAddressResp>> {
-  /**
-   *
-   */
-  @JsonProperty("data") private String data;
+    implements Response<GetClientIPAddressResp, RestResponse<GetClientIPAddressResp>> {
+  /** */
+  @JsonProperty("data")
+  private String data;
 
-  /**
-   * common response
-   */
+  /** common response */
   @JsonIgnore private RestResponse<GetClientIPAddressResp> commonResponse;
 
   @Override

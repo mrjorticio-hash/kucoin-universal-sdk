@@ -4,10 +4,10 @@ package com.kucoin.universal.sdk.generate.broker.apibroker;
 
 import com.kucoin.universal.sdk.internal.interfaces.Transport;
 
-public class ApiBrokerApiImpl implements ApiBrokerApi {
+public class APIBrokerApiImpl implements APIBrokerApi {
   private final Transport transport;
 
-  public ApiBrokerApiImpl(Transport transport) {
+  public APIBrokerApiImpl(Transport transport) {
     this.transport = transport;
   }
 

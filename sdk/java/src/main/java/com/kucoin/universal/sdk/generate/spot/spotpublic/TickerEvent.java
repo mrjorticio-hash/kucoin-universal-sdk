@@ -16,43 +16,40 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class TickerEvent
-    implements Response<TickerEvent, WsMessage<TickerEvent>> {
-  /**
-   * Sequence number
-   */
-  @JsonProperty("sequence") private String sequence;
-  /**
-   * Last traded price
-   */
-  @JsonProperty("price") private String price;
-  /**
-   * Last traded amount
-   */
-  @JsonProperty("size") private String size;
-  /**
-   * Best ask price
-   */
-  @JsonProperty("bestAsk") private String bestAsk;
-  /**
-   * Best ask size
-   */
-  @JsonProperty("bestAskSize") private String bestAskSize;
-  /**
-   * Best bid price
-   */
-  @JsonProperty("bestBid") private String bestBid;
-  /**
-   * Best bid size
-   */
-  @JsonProperty("bestBidSize") private String bestBidSize;
-  /**
-   * The matching time of the latest transaction
-   */
-  @JsonProperty("time") private Long time;
-  /**
-   * common response
-   */
+public class TickerEvent implements Response<TickerEvent, WsMessage<TickerEvent>> {
+  /** Sequence number */
+  @JsonProperty("sequence")
+  private String sequence;
+
+  /** Last traded price */
+  @JsonProperty("price")
+  private String price;
+
+  /** Last traded amount */
+  @JsonProperty("size")
+  private String size;
+
+  /** Best ask price */
+  @JsonProperty("bestAsk")
+  private String bestAsk;
+
+  /** Best ask size */
+  @JsonProperty("bestAskSize")
+  private String bestAskSize;
+
+  /** Best bid price */
+  @JsonProperty("bestBid")
+  private String bestBid;
+
+  /** Best bid size */
+  @JsonProperty("bestBidSize")
+  private String bestBidSize;
+
+  /** The matching time of the latest transaction */
+  @JsonProperty("time")
+  private Long time;
+
+  /** common response */
   @JsonIgnore private WsMessage<TickerEvent> commonResponse;
 
   @Override
@@ -67,8 +64,7 @@ public class TickerEvent
 
   public static class CallbackAdapters {
     public static WebSocketMessageCallback<TickerEvent> of(Callback callback) {
-      return msg
-          -> callback.onEvent(msg.getTopic(), msg.getSubject(), msg.getData());
+      return msg -> callback.onEvent(msg.getTopic(), msg.getSubject(), msg.getData());
     }
   }
 }

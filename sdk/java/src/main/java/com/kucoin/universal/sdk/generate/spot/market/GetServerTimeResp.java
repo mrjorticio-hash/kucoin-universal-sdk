@@ -18,14 +18,11 @@ import lombok.NoArgsConstructor;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class GetServerTimeResp
     implements Response<GetServerTimeResp, RestResponse<GetServerTimeResp>> {
-  /**
-   * ServerTime (milliseconds)
-   */
-  @JsonProperty("data") private Long data;
+  /** ServerTime (milliseconds) */
+  @JsonProperty("data")
+  private Long data;
 
-  /**
-   * common response
-   */
+  /** common response */
   @JsonIgnore private RestResponse<GetServerTimeResp> commonResponse;
 
   @Override

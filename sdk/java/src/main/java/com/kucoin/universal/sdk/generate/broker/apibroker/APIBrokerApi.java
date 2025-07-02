@@ -2,7 +2,7 @@
 
 package com.kucoin.universal.sdk.generate.broker.apibroker;
 
-public interface ApiBrokerApi {
+public interface APIBrokerApi {
   /**
    * Get Broker Rebate This interface supports the downloading of Broker rebate orders. <a
    * href="https://www.kucoin.com/docs-new/api-3470280">docs</a>

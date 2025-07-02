@@ -2,7 +2,7 @@
 
 package com.kucoin.universal.sdk.generate.broker.ndbroker;
 
-public interface NdBrokerApi {
+public interface NDBrokerApi {
   /**
    * Submit KYC This endpointcan submit kyc information for a sub-account of nd broker <a
    * href="https://www.kucoin.com/docs-new/api-3472406">docs</a> +-----------------------+---------+

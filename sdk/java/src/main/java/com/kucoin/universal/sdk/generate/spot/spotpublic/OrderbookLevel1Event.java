@@ -20,21 +20,19 @@ import lombok.NoArgsConstructor;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class OrderbookLevel1Event
     implements Response<OrderbookLevel1Event, WsMessage<OrderbookLevel1Event>> {
-  /**
-   * price, size
-   */
-  @JsonProperty("asks") private List<String> asks = new ArrayList<>();
-  /**
-   *
-   */
-  @JsonProperty("bids") private List<String> bids = new ArrayList<>();
-  /**
-   *
-   */
-  @JsonProperty("timestamp") private Long timestamp;
-  /**
-   * common response
-   */
+  /** price, size */
+  @JsonProperty("asks")
+  private List<String> asks = new ArrayList<>();
+
+  /** */
+  @JsonProperty("bids")
+  private List<String> bids = new ArrayList<>();
+
+  /** */
+  @JsonProperty("timestamp")
+  private Long timestamp;
+
+  /** common response */
   @JsonIgnore private WsMessage<OrderbookLevel1Event> commonResponse;
 
   @Override
@@ -48,10 +46,8 @@ public class OrderbookLevel1Event
   }
 
   public static class CallbackAdapters {
-    public static WebSocketMessageCallback<OrderbookLevel1Event>
-    of(Callback callback) {
-      return msg
-          -> callback.onEvent(msg.getTopic(), msg.getSubject(), msg.getData());
+    public static WebSocketMessageCallback<OrderbookLevel1Event> of(Callback callback) {
+      return msg -> callback.onEvent(msg.getTopic(), msg.getSubject(), msg.getData());
     }
   }
 }

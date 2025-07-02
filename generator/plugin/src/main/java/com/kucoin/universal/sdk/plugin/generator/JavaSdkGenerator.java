@@ -15,6 +15,7 @@ import io.swagger.v3.oas.models.Operation;
 import io.swagger.v3.oas.models.media.Schema;
 import io.swagger.v3.oas.models.servers.Server;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringEscapeUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.openapitools.codegen.*;
 import org.openapitools.codegen.languages.AbstractJavaCodegen;
@@ -174,15 +175,20 @@ public class JavaSdkGenerator extends AbstractJavaCodegen implements NameService
             List<EnumEntry> enums = new ArrayList<>();
 
             List<Map<String, Object>> enumList;
-            String enumDataType = "String";
+            CodegenProperty realEnumProp = null;
             if (prop.openApiType.equalsIgnoreCase("array")) {
                 enumList = (List<Map<String, Object>>) prop.mostInnerItems.vendorExtensions.get("x-api-enum");
-                if (prop.mostInnerItems.isNumber) {
-                    enumDataType = "Integer";
-                }
+                realEnumProp = prop.mostInnerItems;
             } else {
                 enumList = (List<Map<String, Object>>) prop.vendorExtensions.get("x-api-enum");
-                enumDataType = prop.dataType;
+                realEnumProp = prop;
+            }
+
+            String enumDataType = "String";
+            if (realEnumProp.isString) {
+                enumDataType= "String";
+            } else {
+                enumDataType = "Integer";
             }
 
 
@@ -238,6 +244,7 @@ public class JavaSdkGenerator extends AbstractJavaCodegen implements NameService
 
     @Override
     public String toApiName(String name) {
+        name = KeywordsUtil.getKeyword(name);
         return camelize(name + "_" + (modeSwitch.isWs() || modeSwitch.isWsTest() ? "Ws" : "Api"));
     }
 
@@ -393,6 +400,8 @@ public class JavaSdkGenerator extends AbstractJavaCodegen implements NameService
         return objs;
     }
 
+
+
     @Override
     public OperationsMap postProcessOperationsWithModels(OperationsMap objs, List<ModelMap> allModels) {
         objs = super.postProcessOperationsWithModels(objs, allModels);
@@ -404,6 +413,16 @@ public class JavaSdkGenerator extends AbstractJavaCodegen implements NameService
         Set<String> implImports = new TreeSet<>();
 
         for (CodegenOperation op : operationMap.getOperation()) {
+
+            if (op.vendorExtensions.containsKey("x-request-example")) {
+                op.vendorExtensions.put("x-request-example", StringEscapeUtils.escapeJava((String)op.vendorExtensions.get("x-request-example")));
+            }
+
+            if (op.vendorExtensions.containsKey("x-response-example")) {
+                op.vendorExtensions.put("x-response-example", StringEscapeUtils.escapeJava((String)op.vendorExtensions.get("x-response-example")));
+            }
+
+
             Meta meta = SpecificationUtil.getMeta(op.vendorExtensions);
             if (meta != null) {
                 switch (modeSwitch.getMode()) {
@@ -413,13 +432,14 @@ public class JavaSdkGenerator extends AbstractJavaCodegen implements NameService
                         operationService.getServiceMeta().forEach((k, v) -> {
                             if (v.getService().equalsIgnoreCase(meta.getService())) {
                                 Map<String, String> kv = new HashMap<>();
+                                k = KeywordsUtil.getKeyword(k);
                                 kv.put("method", formatMethodName(k));
                                 kv.put("methodUppercase", camelize(formatMethodName(k)));
                                 kv.put("target_service", formatService(k + "Api"));
                                 entryValue.add(kv);
-                                imports.add(String.format("import com.kucoin.universal.sdk.generate.%s.%s.%s;", v.getService().toLowerCase(), v.getSubService().toLowerCase(), formatService(k + "Api")));
+                                imports.add(String.format("import com.kucoin.universal.sdk.generate.%s.%s.%s;", v.getService().toLowerCase(), v.getSubService().toLowerCase(), k + "Api"));
                                 imports.add("import com.kucoin.universal.sdk.internal.interfaces.Transport;");
-                                implImports.add(String.format("import com.kucoin.universal.sdk.generate.%s.%s.%s;", v.getService().toLowerCase(), v.getSubService().toLowerCase(), formatService(k + "ApiImpl")));
+                                implImports.add(String.format("import com.kucoin.universal.sdk.generate.%s.%s.%s;", v.getService().toLowerCase(), v.getSubService().toLowerCase(), k + "ApiImpl"));
                             }
                         });
                         Map<String, Object> apiEntryInfo = new HashMap<>();

@@ -15,38 +15,31 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class GetAnnouncementsItems {
-  /**
-   * Announcement ID
-   */
-  @JsonProperty("annId") private Integer annId;
+  /** Announcement ID */
+  @JsonProperty("annId")
+  private Integer annId;
 
-  /**
-   * Announcement title
-   */
-  @JsonProperty("annTitle") private String annTitle;
+  /** Announcement title */
+  @JsonProperty("annTitle")
+  private String annTitle;
 
-  /**
-   * Announcement type
-   */
-  @JsonProperty("annType") private List<String> annType = new ArrayList<>();
+  /** Announcement type */
+  @JsonProperty("annType")
+  private List<String> annType = new ArrayList<>();
 
-  /**
-   * Announcement description
-   */
-  @JsonProperty("annDesc") private String annDesc;
+  /** Announcement description */
+  @JsonProperty("annDesc")
+  private String annDesc;
 
-  /**
-   * Announcement release time, Unix millisecond timestamp format
-   */
-  @JsonProperty("cTime") private Long cTime;
+  /** Announcement release time, Unix millisecond timestamp format */
+  @JsonProperty("cTime")
+  private Long cTime;
 
-  /**
-   * language type
-   */
-  @JsonProperty("language") private String language;
+  /** language type */
+  @JsonProperty("language")
+  private String language;
 
-  /**
-   * Announcement link
-   */
-  @JsonProperty("annUrl") private String annUrl;
+  /** Announcement link */
+  @JsonProperty("annUrl")
+  private String annUrl;
 }

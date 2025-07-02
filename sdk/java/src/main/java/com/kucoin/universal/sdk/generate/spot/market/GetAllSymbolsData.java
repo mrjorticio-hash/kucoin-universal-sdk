@@ -15,188 +15,157 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class GetAllSymbolsData {
-  /**
-   * Unique code of a symbol; it will not change after renaming
-   */
-  @JsonProperty("symbol") private String symbol;
+  /** Unique code of a symbol; it will not change after renaming */
+  @JsonProperty("symbol")
+  private String symbol;
+
+  /** Name of trading pairs, it will change after renaming */
+  @JsonProperty("name")
+  private String name;
+
+  /** Base currency, e.g. BTC. */
+  @JsonProperty("baseCurrency")
+  private String baseCurrency;
+
+  /** Quote currency, e.g. USDT. */
+  @JsonProperty("quoteCurrency")
+  private String quoteCurrency;
+
+  /** The currency of charged fees. */
+  @JsonProperty("feeCurrency")
+  private String feeCurrency;
+
+  /** The trading market. */
+  @JsonProperty("market")
+  private String market;
+
+  /** The minimum order quantity required to place an order. */
+  @JsonProperty("baseMinSize")
+  private String baseMinSize;
+
+  /** The minimum order funds required to place a market order. */
+  @JsonProperty("quoteMinSize")
+  private String quoteMinSize;
+
+  /** The maximum order size required to place an order. */
+  @JsonProperty("baseMaxSize")
+  private String baseMaxSize;
+
+  /** The maximum order funds required to place a market order. */
+  @JsonProperty("quoteMaxSize")
+  private String quoteMaxSize;
 
   /**
-   * Name of trading pairs, it will change after renaming
+   * Quantity increment: The quantity for an order must be a positive integer multiple of this
+   * increment. Here, the size refers to the quantity of the base currency for the order. For
+   * example, for the ETH-USDT trading pair, if the baseIncrement is 0.0000001, the order quantity
+   * can be 1.0000001 but not 1.00000001.
    */
-  @JsonProperty("name") private String name;
+  @JsonProperty("baseIncrement")
+  private String baseIncrement;
 
   /**
-   * Base currency, e.g. BTC.
+   * Quote increment: The funds for a market order must be a positive integer multiple of this
+   * increment. The funds refer to the quote currency amount. For example, for the ETH-USDT trading
+   * pair, if the quoteIncrement is 0.000001, the amount of USDT for the order can be 3000.000001
+   * but not 3000.0000001.
    */
-  @JsonProperty("baseCurrency") private String baseCurrency;
+  @JsonProperty("quoteIncrement")
+  private String quoteIncrement;
 
   /**
-   * Quote currency, e.g. USDT.
+   * Price increment: The price of an order must be a positive integer multiple of this increment.
+   * For example, for the ETH-USDT trading pair, if the priceIncrement is 0.01, the order price can
+   * be 3000.01 but not 3000.001. Specifies the min. order price as well as the price increment.This
+   * also applies to quote currency.
    */
-  @JsonProperty("quoteCurrency") private String quoteCurrency;
+  @JsonProperty("priceIncrement")
+  private String priceIncrement;
+
+  /** Threshold for price protection */
+  @JsonProperty("priceLimitRate")
+  private String priceLimitRate;
+
+  /** The minimum trading amounts */
+  @JsonProperty("minFunds")
+  private String minFunds;
+
+  /** Available for margin or not. */
+  @JsonProperty("isMarginEnabled")
+  private Boolean isMarginEnabled;
+
+  /** Available for transaction or not. */
+  @JsonProperty("enableTrading")
+  private Boolean enableTrading;
+
+  /** [Fee Type](https://www.kucoin.com/vip/privilege) */
+  @JsonProperty("feeCategory")
+  private FeeCategoryEnum feeCategory;
 
   /**
-   * The currency of charged fees.
+   * The maker fee coefficient. The actual fee needs to be multiplied by this coefficient to get the
+   * final fee. Most currencies have a coefficient of 1. If set to 0, it means no fee
    */
-  @JsonProperty("feeCurrency") private String feeCurrency;
+  @JsonProperty("makerFeeCoefficient")
+  private String makerFeeCoefficient;
 
   /**
-   * The trading market.
+   * The taker fee coefficient. The actual fee needs to be multiplied by this coefficient to get the
+   * final fee. Most currencies have a coefficient of 1. If set to 0, it means no fee
    */
-  @JsonProperty("market") private String market;
+  @JsonProperty("takerFeeCoefficient")
+  private String takerFeeCoefficient;
 
-  /**
-   * The minimum order quantity required to place an order.
-   */
-  @JsonProperty("baseMinSize") private String baseMinSize;
+  /** Whether it is a [Special Treatment](https://www.kucoin.com/legal/special-treatment) symbol */
+  @JsonProperty("st")
+  private Boolean st;
 
-  /**
-   * The minimum order funds required to place a market order.
-   */
-  @JsonProperty("quoteMinSize") private String quoteMinSize;
+  /** The [call auction](https://www.kucoin.com/support/40999744334105) status returns true/false */
+  @JsonProperty("callauctionIsEnabled")
+  private Boolean callauctionIsEnabled;
 
-  /**
-   * The maximum order size required to place an order.
-   */
-  @JsonProperty("baseMaxSize") private String baseMaxSize;
+  /** The lowest price declared in the call auction */
+  @JsonProperty("callauctionPriceFloor")
+  private String callauctionPriceFloor;
 
-  /**
-   * The maximum order funds required to place a market order.
-   */
-  @JsonProperty("quoteMaxSize") private String quoteMaxSize;
-
-  /**
-   * Quantity increment: The quantity for an order must be a positive integer
-   * multiple of this increment. Here, the size refers to the quantity of the
-   * base currency for the order. For example, for the ETH-USDT trading pair, if
-   * the baseIncrement is 0.0000001, the order quantity can be 1.0000001 but
-   * not 1.00000001.
-   */
-  @JsonProperty("baseIncrement") private String baseIncrement;
-
-  /**
-   * Quote increment: The funds for a market order must be a positive integer
-   * multiple of this increment. The funds refer to the quote currency amount.
-   * For example, for the ETH-USDT trading pair, if the quoteIncrement is
-   * 0.000001, the amount of USDT for the order can be 3000.000001 but not
-   * 3000.0000001.
-   */
-  @JsonProperty("quoteIncrement") private String quoteIncrement;
-
-  /**
-   * Price increment: The price of an order must be a positive integer multiple
-   * of this increment. For example, for the ETH-USDT trading pair, if the
-   * priceIncrement is 0.01, the order price can be 3000.01 but not 3000.001.
-   * Specifies the min. order price as well as the price increment.This also
-   * applies to quote currency.
-   */
-  @JsonProperty("priceIncrement") private String priceIncrement;
-
-  /**
-   * Threshold for price protection
-   */
-  @JsonProperty("priceLimitRate") private String priceLimitRate;
-
-  /**
-   * The minimum trading amounts
-   */
-  @JsonProperty("minFunds") private String minFunds;
-
-  /**
-   * Available for margin or not.
-   */
-  @JsonProperty("isMarginEnabled") private Boolean isMarginEnabled;
-
-  /**
-   * Available for transaction or not.
-   */
-  @JsonProperty("enableTrading") private Boolean enableTrading;
-
-  /**
-   * [Fee Type](https://www.kucoin.com/vip/privilege)
-   */
-  @JsonProperty("feeCategory") private FeeCategoryEnum feeCategory;
-
-  /**
-   * The maker fee coefficient. The actual fee needs to be multiplied by this
-   * coefficient to get the final fee. Most currencies have a coefficient of 1.
-   * If set to 0, it means no fee
-   */
-  @JsonProperty("makerFeeCoefficient") private String makerFeeCoefficient;
-
-  /**
-   * The taker fee coefficient. The actual fee needs to be multiplied by this
-   * coefficient to get the final fee. Most currencies have a coefficient of 1.
-   * If set to 0, it means no fee
-   */
-  @JsonProperty("takerFeeCoefficient") private String takerFeeCoefficient;
-
-  /**
-   * Whether it is a [Special
-   * Treatment](https://www.kucoin.com/legal/special-treatment) symbol
-   */
-  @JsonProperty("st") private Boolean st;
-
-  /**
-   * The [call auction](https://www.kucoin.com/support/40999744334105) status
-   * returns true/false
-   */
-  @JsonProperty("callauctionIsEnabled") private Boolean callauctionIsEnabled;
-
-  /**
-   * The lowest price declared in the call auction
-   */
-  @JsonProperty("callauctionPriceFloor") private String callauctionPriceFloor;
-
-  /**
-   * The highest bid price in the call auction
-   */
+  /** The highest bid price in the call auction */
   @JsonProperty("callauctionPriceCeiling")
   private String callauctionPriceCeiling;
 
-  /**
-   * The first phase of the call auction starts at (Allow add orders, allow
-   * cancel orders)
-   */
+  /** The first phase of the call auction starts at (Allow add orders, allow cancel orders) */
   @JsonProperty("callauctionFirstStageStartTime")
   private Long callauctionFirstStageStartTime;
 
   /**
-   * The second phase of the call auction starts at (Allow add orders, don't
-   * allow cancel orders)
+   * The second phase of the call auction starts at (Allow add orders, don't allow cancel orders)
    */
   @JsonProperty("callauctionSecondStageStartTime")
   private Long callauctionSecondStageStartTime;
 
   /**
-   * The third phase of the call auction starts at (Don't allow add orders,
-   * don't allow cancel orders)
+   * The third phase of the call auction starts at (Don't allow add orders, don't allow cancel
+   * orders)
    */
   @JsonProperty("callauctionThirdStageStartTime")
   private Long callauctionThirdStageStartTime;
 
-  /**
-   * Official opening time (end time of the third phase of call auction)
-   */
-  @JsonProperty("tradingStartTime") private Long tradingStartTime;
+  /** Official opening time (end time of the third phase of call auction) */
+  @JsonProperty("tradingStartTime")
+  private Long tradingStartTime;
 
   public enum FeeCategoryEnum {
-    /**
-     * classA
-     */
+    /** classA */
     CLASSA(1),
-    /**
-     * classB
-     */
+    /** classB */
     CLASSB(2),
-    /**
-     * classC
-     */
+    /** classC */
     CLASSC(3);
 
     private final Integer value;
 
-    FeeCategoryEnum(Integer value) { this.value = value; }
+    FeeCategoryEnum(Integer value) {
+      this.value = value;
+    }
 
     @JsonValue
     public Integer getValue() {

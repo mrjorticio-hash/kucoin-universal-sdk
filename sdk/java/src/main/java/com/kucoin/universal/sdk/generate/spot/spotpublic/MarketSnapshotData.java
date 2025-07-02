@@ -17,159 +17,153 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 class MarketSnapshotData {
-  /**
-   *
-   */
-  @JsonProperty("askSize") private Double askSize;
-  /**
-   *
-   */
-  @JsonProperty("averagePrice") private Double averagePrice;
-  /**
-   *
-   */
-  @JsonProperty("baseCurrency") private String baseCurrency;
-  /**
-   *
-   */
-  @JsonProperty("bidSize") private Double bidSize;
-  /**
-   * Trading pair partition: 0. Primary partition 1.KuCoin Plus\", example =
-   * \"1\"
-   */
-  @JsonProperty("board") private BoardEnum board;
-  /**
-   *
-   */
-  @JsonProperty("buy") private Double buy;
-  /**
-   *
-   */
-  @JsonProperty("changePrice") private Double changePrice;
-  /**
-   *
-   */
-  @JsonProperty("changeRate") private Double changeRate;
-  /**
-   *
-   */
-  @JsonProperty("close") private Double close;
-  /**
-   *
-   */
-  @JsonProperty("datetime") private Long datetime;
-  /**
-   *
-   */
-  @JsonProperty("high") private Double high;
-  /**
-   *
-   */
-  @JsonProperty("lastTradedPrice") private Double lastTradedPrice;
-  /**
-   *
-   */
-  @JsonProperty("low") private Double low;
-  /**
-   *
-   */
-  @JsonProperty("makerCoefficient") private Double makerCoefficient;
-  /**
-   *
-   */
-  @JsonProperty("makerFeeRate") private Double makerFeeRate;
-  /**
-   *
-   */
-  @JsonProperty("marginTrade") private Boolean marginTrade;
-  /**
-   * Trading Pair Mark: 0. Default 1.ST. 2.NEW\", example = \"1\"
-   */
-  @JsonProperty("mark") private MarkEnum mark;
-  /**
-   *
-   */
-  @JsonProperty("market") private String market;
-  /**
-   *
-   */
+  /** */
+  @JsonProperty("askSize")
+  private Double askSize;
+
+  /** */
+  @JsonProperty("averagePrice")
+  private Double averagePrice;
+
+  /** */
+  @JsonProperty("baseCurrency")
+  private String baseCurrency;
+
+  /** */
+  @JsonProperty("bidSize")
+  private Double bidSize;
+
+  /** Trading pair partition: 0. Primary partition 1.KuCoin Plus\", example = \"1\" */
+  @JsonProperty("board")
+  private BoardEnum board;
+
+  /** */
+  @JsonProperty("buy")
+  private Double buy;
+
+  /** */
+  @JsonProperty("changePrice")
+  private Double changePrice;
+
+  /** */
+  @JsonProperty("changeRate")
+  private Double changeRate;
+
+  /** */
+  @JsonProperty("close")
+  private Double close;
+
+  /** */
+  @JsonProperty("datetime")
+  private Long datetime;
+
+  /** */
+  @JsonProperty("high")
+  private Double high;
+
+  /** */
+  @JsonProperty("lastTradedPrice")
+  private Double lastTradedPrice;
+
+  /** */
+  @JsonProperty("low")
+  private Double low;
+
+  /** */
+  @JsonProperty("makerCoefficient")
+  private Double makerCoefficient;
+
+  /** */
+  @JsonProperty("makerFeeRate")
+  private Double makerFeeRate;
+
+  /** */
+  @JsonProperty("marginTrade")
+  private Boolean marginTrade;
+
+  /** Trading Pair Mark: 0. Default 1.ST. 2.NEW\", example = \"1\" */
+  @JsonProperty("mark")
+  private MarkEnum mark;
+
+  /** */
+  @JsonProperty("market")
+  private String market;
+
+  /** */
   @JsonProperty("marketChange1h")
   private MarketSnapshotDataMarketChange1h marketChange1h;
-  /**
-   *
-   */
+
+  /** */
   @JsonProperty("marketChange24h")
   private MarketSnapshotDataMarketChange24h marketChange24h;
-  /**
-   *
-   */
+
+  /** */
   @JsonProperty("marketChange4h")
   private MarketSnapshotDataMarketChange4h marketChange4h;
-  /**
-   *
-   */
-  @JsonProperty("markets") private List<String> markets = new ArrayList<>();
-  /**
-   *
-   */
-  @JsonProperty("open") private Double open;
-  /**
-   *
-   */
-  @JsonProperty("quoteCurrency") private String quoteCurrency;
-  /**
-   *
-   */
-  @JsonProperty("sell") private Double sell;
-  /**
-   *
-   */
-  @JsonProperty("siteTypes") private List<String> siteTypes = new ArrayList<>();
-  /**
-   * sorting number
-   */
-  @JsonProperty("sort") private Integer sort;
-  /**
-   *
-   */
-  @JsonProperty("symbol") private String symbol;
-  /**
-   *
-   */
-  @JsonProperty("symbolCode") private String symbolCode;
-  /**
-   *
-   */
-  @JsonProperty("takerCoefficient") private Double takerCoefficient;
-  /**
-   *
-   */
-  @JsonProperty("takerFeeRate") private Double takerFeeRate;
-  /**
-   *
-   */
-  @JsonProperty("trading") private Boolean trading;
-  /**
-   *
-   */
-  @JsonProperty("vol") private Double vol;
-  /**
-   *
-   */
-  @JsonProperty("volValue") private Double volValue;
+
+  /** */
+  @JsonProperty("markets")
+  private List<String> markets = new ArrayList<>();
+
+  /** */
+  @JsonProperty("open")
+  private Double open;
+
+  /** */
+  @JsonProperty("quoteCurrency")
+  private String quoteCurrency;
+
+  /** */
+  @JsonProperty("sell")
+  private Double sell;
+
+  /** */
+  @JsonProperty("siteTypes")
+  private List<String> siteTypes = new ArrayList<>();
+
+  /** sorting number */
+  @JsonProperty("sort")
+  private Integer sort;
+
+  /** */
+  @JsonProperty("symbol")
+  private String symbol;
+
+  /** */
+  @JsonProperty("symbolCode")
+  private String symbolCode;
+
+  /** */
+  @JsonProperty("takerCoefficient")
+  private Double takerCoefficient;
+
+  /** */
+  @JsonProperty("takerFeeRate")
+  private Double takerFeeRate;
+
+  /** */
+  @JsonProperty("trading")
+  private Boolean trading;
+
+  /** */
+  @JsonProperty("vol")
+  private Double vol;
+
+  /** */
+  @JsonProperty("volValue")
+  private Double volValue;
+
   public enum BoardEnum {
-    /**
-     * primary partition
-     */
+    /** primary partition */
     _0(0),
-    /**
-     * KuCoin Plus
-     */
+    /** KuCoin Plus */
     _1(1);
 
     private final Integer value;
 
-    BoardEnum(Integer value) { this.value = value; }
+    BoardEnum(Integer value) {
+      this.value = value;
+    }
 
     @JsonValue
     public Integer getValue() {
@@ -191,23 +185,20 @@ class MarketSnapshotData {
       throw new IllegalArgumentException("Unexpected value '" + value + "'");
     }
   }
+
   public enum MarkEnum {
-    /**
-     * default
-     */
+    /** default */
     _0(0),
-    /**
-     * ST
-     */
+    /** ST */
     _1(1),
-    /**
-     * NEW
-     */
+    /** NEW */
     _2(2);
 
     private final Integer value;
 
-    MarkEnum(Integer value) { this.value = value; }
+    MarkEnum(Integer value) {
+      this.value = value;
+    }
 
     @JsonValue
     public Integer getValue() {

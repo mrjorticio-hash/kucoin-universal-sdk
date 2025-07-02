@@ -4,10 +4,10 @@ package com.kucoin.universal.sdk.generate.viplending.viplending;
 
 import com.kucoin.universal.sdk.internal.interfaces.Transport;
 
-public class VipLendingApiImpl implements VipLendingApi {
+public class VIPLendingApiImpl implements VIPLendingApi {
   private final Transport transport;
 
-  public VipLendingApiImpl(Transport transport) {
+  public VIPLendingApiImpl(Transport transport) {
     this.transport = transport;
   }
 

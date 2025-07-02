@@ -13,32 +13,31 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 class SymbolSnapshotDataMarketChange24h {
-  /**
-   *
-   */
-  @JsonProperty("changePrice") private Double changePrice;
-  /**
-   *
-   */
-  @JsonProperty("changeRate") private Double changeRate;
-  /**
-   *
-   */
-  @JsonProperty("high") private Double high;
-  /**
-   *
-   */
-  @JsonProperty("low") private Double low;
-  /**
-   *
-   */
-  @JsonProperty("open") private Double open;
-  /**
-   *
-   */
-  @JsonProperty("vol") private Double vol;
-  /**
-   *
-   */
-  @JsonProperty("volValue") private Double volValue;
+  /** */
+  @JsonProperty("changePrice")
+  private Double changePrice;
+
+  /** */
+  @JsonProperty("changeRate")
+  private Double changeRate;
+
+  /** */
+  @JsonProperty("high")
+  private Double high;
+
+  /** */
+  @JsonProperty("low")
+  private Double low;
+
+  /** */
+  @JsonProperty("open")
+  private Double open;
+
+  /** */
+  @JsonProperty("vol")
+  private Double vol;
+
+  /** */
+  @JsonProperty("volValue")
+  private Double volValue;
 }

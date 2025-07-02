@@ -19,43 +19,36 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class CallAuctionOrderbookLevel50Event
-    implements Response<CallAuctionOrderbookLevel50Event,
-                        WsMessage<CallAuctionOrderbookLevel50Event>> {
-  /**
-   * price, size
-   */
-  @JsonProperty("asks") private List<List<String>> asks = new ArrayList<>();
-  /**
-   *
-   */
-  @JsonProperty("bids") private List<List<String>> bids = new ArrayList<>();
-  /**
-   *
-   */
-  @JsonProperty("timestamp") private Long timestamp;
-  /**
-   * common response
-   */
-  @JsonIgnore
-  private WsMessage<CallAuctionOrderbookLevel50Event> commonResponse;
+    implements Response<
+        CallAuctionOrderbookLevel50Event, WsMessage<CallAuctionOrderbookLevel50Event>> {
+  /** price, size */
+  @JsonProperty("asks")
+  private List<List<String>> asks = new ArrayList<>();
+
+  /** */
+  @JsonProperty("bids")
+  private List<List<String>> bids = new ArrayList<>();
+
+  /** */
+  @JsonProperty("timestamp")
+  private Long timestamp;
+
+  /** common response */
+  @JsonIgnore private WsMessage<CallAuctionOrderbookLevel50Event> commonResponse;
 
   @Override
-  public void
-  setCommonResponse(WsMessage<CallAuctionOrderbookLevel50Event> response) {
+  public void setCommonResponse(WsMessage<CallAuctionOrderbookLevel50Event> response) {
     this.commonResponse = response;
   }
 
   @FunctionalInterface
   public interface Callback {
-    void onEvent(String topic, String subject,
-                 CallAuctionOrderbookLevel50Event data);
+    void onEvent(String topic, String subject, CallAuctionOrderbookLevel50Event data);
   }
 
   public static class CallbackAdapters {
-    public static WebSocketMessageCallback<CallAuctionOrderbookLevel50Event>
-    of(Callback callback) {
-      return msg
-          -> callback.onEvent(msg.getTopic(), msg.getSubject(), msg.getData());
+    public static WebSocketMessageCallback<CallAuctionOrderbookLevel50Event> of(Callback callback) {
+      return msg -> callback.onEvent(msg.getTopic(), msg.getSubject(), msg.getData());
     }
   }
 }
