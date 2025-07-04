@@ -309,7 +309,7 @@ public interface PositionsApi {
    * </ul>
    *
    * @see <a href="https://www.kucoin.com/docs-new/api-3470255">docs</a>
-   * @deprecated
    */
+  @Deprecated
   ModifyAutoDepositStatusResp modifyAutoDepositStatus(ModifyAutoDepositStatusReq req);
 }

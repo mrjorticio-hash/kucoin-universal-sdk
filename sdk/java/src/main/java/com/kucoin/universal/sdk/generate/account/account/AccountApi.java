@@ -256,8 +256,8 @@ public interface AccountApi {
    * </ul>
    *
    * @see <a href="https://www.kucoin.com/docs-new/api-3470311">docs</a>
-   * @deprecated
    */
+  @Deprecated
   GetMarginAccountDetailResp getMarginAccountDetail();
 
   /**
@@ -276,8 +276,8 @@ public interface AccountApi {
    * </ul>
    *
    * @see <a href="https://www.kucoin.com/docs-new/api-3470314">docs</a>
-   * @deprecated
    */
+  @Deprecated
   GetIsolatedMarginAccountListV1Resp getIsolatedMarginAccountListV1(
       GetIsolatedMarginAccountListV1Req req);
 
@@ -297,8 +297,8 @@ public interface AccountApi {
    * </ul>
    *
    * @see <a href="https://www.kucoin.com/docs-new/api-3470315">docs</a>
-   * @deprecated
    */
+  @Deprecated
   GetIsolatedMarginAccountDetailV1Resp getIsolatedMarginAccountDetailV1(
       GetIsolatedMarginAccountDetailV1Req req);
 }

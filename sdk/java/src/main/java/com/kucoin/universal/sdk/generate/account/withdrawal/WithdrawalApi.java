@@ -118,8 +118,8 @@ public interface WithdrawalApi {
    * </ul>
    *
    * @see <a href="https://www.kucoin.com/docs-new/api-3470308">docs</a>
-   * @deprecated
    */
+  @Deprecated
   GetWithdrawalHistoryOldResp getWithdrawalHistoryOld(GetWithdrawalHistoryOldReq req);
 
   /**
@@ -138,7 +138,7 @@ public interface WithdrawalApi {
    * </ul>
    *
    * @see <a href="https://www.kucoin.com/docs-new/api-3470310">docs</a>
-   * @deprecated
    */
+  @Deprecated
   WithdrawalV1Resp withdrawalV1(WithdrawalV1Req req);
 }

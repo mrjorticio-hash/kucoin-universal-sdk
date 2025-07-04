@@ -260,8 +260,8 @@ public interface OrderApi {
    * </ul>
    *
    * @see <a href="https://www.kucoin.com/docs-new/api-3470312">docs</a>
-   * @deprecated
    */
+  @Deprecated
   AddOrderV1Resp addOrderV1(AddOrderV1Req req);
 
   /**
@@ -283,7 +283,7 @@ public interface OrderApi {
    * </ul>
    *
    * @see <a href="https://www.kucoin.com/docs-new/api-3470313">docs</a>
-   * @deprecated
    */
+  @Deprecated
   AddOrderTestV1Resp addOrderTestV1(AddOrderTestV1Req req);
 }

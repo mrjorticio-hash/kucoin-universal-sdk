@@ -237,8 +237,8 @@ public interface SubAccountApi {
    * </ul>
    *
    * @see <a href="https://www.kucoin.com/docs-new/api-3470298">docs</a>
-   * @deprecated
    */
+  @Deprecated
   GetSpotSubAccountsSummaryV1Resp getSpotSubAccountsSummaryV1();
 
   /**
@@ -257,7 +257,7 @@ public interface SubAccountApi {
    * </ul>
    *
    * @see <a href="https://www.kucoin.com/docs-new/api-3470299">docs</a>
-   * @deprecated
    */
+  @Deprecated
   GetSpotSubAccountListV1Resp getSpotSubAccountListV1();
 }

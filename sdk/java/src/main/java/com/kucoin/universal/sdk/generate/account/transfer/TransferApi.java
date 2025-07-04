@@ -61,8 +61,8 @@ public interface TransferApi {
    * </ul>
    *
    * @see <a href="https://www.kucoin.com/docs-new/api-3470301">docs</a>
-   * @deprecated
    */
+  @Deprecated
   SubAccountTransferResp subAccountTransfer(SubAccountTransferReq req);
 
   /**
@@ -82,8 +82,8 @@ public interface TransferApi {
    * </ul>
    *
    * @see <a href="https://www.kucoin.com/docs-new/api-3470302">docs</a>
-   * @deprecated
    */
+  @Deprecated
   InnerTransferResp innerTransfer(InnerTransferReq req);
 
   /**
@@ -102,8 +102,8 @@ public interface TransferApi {
    * </ul>
    *
    * @see <a href="https://www.kucoin.com/docs-new/api-3470307">docs</a>
-   * @deprecated
    */
+  @Deprecated
   GetFuturesAccountTransferOutLedgerResp getFuturesAccountTransferOutLedger(
       GetFuturesAccountTransferOutLedgerReq req);
 
@@ -124,8 +124,8 @@ public interface TransferApi {
    * </ul>
    *
    * @see <a href="https://www.kucoin.com/docs-new/api-3470303">docs</a>
-   * @deprecated
    */
+  @Deprecated
   FuturesAccountTransferOutResp futuresAccountTransferOut(FuturesAccountTransferOutReq req);
 
   /**
@@ -145,7 +145,7 @@ public interface TransferApi {
    * </ul>
    *
    * @see <a href="https://www.kucoin.com/docs-new/api-3470304">docs</a>
-   * @deprecated
    */
+  @Deprecated
   FuturesAccountTransferInResp futuresAccountTransferIn(FuturesAccountTransferInReq req);
 }

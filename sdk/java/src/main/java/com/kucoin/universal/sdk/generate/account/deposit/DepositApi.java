@@ -80,8 +80,8 @@ public interface DepositApi {
    * </ul>
    *
    * @see <a href="https://www.kucoin.com/docs-new/api-3470300">docs</a>
-   * @deprecated
    */
+  @Deprecated
   GetDepositAddressV2Resp getDepositAddressV2(GetDepositAddressV2Req req);
 
   /**
@@ -101,8 +101,8 @@ public interface DepositApi {
    * </ul>
    *
    * @see <a href="https://www.kucoin.com/docs-new/api-3470305">docs</a>
-   * @deprecated
    */
+  @Deprecated
   GetDepositAddressV1Resp getDepositAddressV1(GetDepositAddressV1Req req);
 
   /**
@@ -122,8 +122,8 @@ public interface DepositApi {
    * </ul>
    *
    * @see <a href="https://www.kucoin.com/docs-new/api-3470306">docs</a>
-   * @deprecated
    */
+  @Deprecated
   GetDepositHistoryOldResp getDepositHistoryOld(GetDepositHistoryOldReq req);
 
   /**
@@ -143,7 +143,7 @@ public interface DepositApi {
    * </ul>
    *
    * @see <a href="https://www.kucoin.com/docs-new/api-3470309">docs</a>
-   * @deprecated
    */
+  @Deprecated
   AddDepositAddressV1Resp addDepositAddressV1(AddDepositAddressV1Req req);
 }

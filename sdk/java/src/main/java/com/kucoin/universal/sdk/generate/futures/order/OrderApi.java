@@ -359,7 +359,7 @@ public interface OrderApi {
    * </ul>
    *
    * @see <a href="https://www.kucoin.com/docs-new/api-3470362">docs</a>
-   * @deprecated
    */
+  @Deprecated
   CancelAllOrdersV1Resp cancelAllOrdersV1(CancelAllOrdersV1Req req);
 }

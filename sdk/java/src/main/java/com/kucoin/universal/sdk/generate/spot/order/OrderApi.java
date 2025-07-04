@@ -494,8 +494,8 @@ public interface OrderApi {
    * </ul>
    *
    * @see <a href="https://www.kucoin.com/docs-new/api-3470334">docs</a>
-   * @deprecated
    */
+  @Deprecated
   AddStopOrderResp addStopOrder(AddStopOrderReq req);
 
   /**
@@ -514,8 +514,8 @@ public interface OrderApi {
    * </ul>
    *
    * @see <a href="https://www.kucoin.com/docs-new/api-3470336">docs</a>
-   * @deprecated
    */
+  @Deprecated
   CancelStopOrderByClientOidResp cancelStopOrderByClientOid(CancelStopOrderByClientOidReq req);
 
   /**
@@ -534,8 +534,8 @@ public interface OrderApi {
    * </ul>
    *
    * @see <a href="https://www.kucoin.com/docs-new/api-3470335">docs</a>
-   * @deprecated
    */
+  @Deprecated
   CancelStopOrderByOrderIdResp cancelStopOrderByOrderId(CancelStopOrderByOrderIdReq req);
 
   /**
@@ -630,8 +630,8 @@ public interface OrderApi {
    * </ul>
    *
    * @see <a href="https://www.kucoin.com/docs-new/api-3470353">docs</a>
-   * @deprecated
    */
+  @Deprecated
   AddOcoOrderResp addOcoOrder(AddOcoOrderReq req);
 
   /**
@@ -652,8 +652,8 @@ public interface OrderApi {
    * </ul>
    *
    * @see <a href="https://www.kucoin.com/docs-new/api-3470354">docs</a>
-   * @deprecated
    */
+  @Deprecated
   CancelOcoOrderByOrderIdResp cancelOcoOrderByOrderId(CancelOcoOrderByOrderIdReq req);
 
   /**
@@ -676,8 +676,8 @@ public interface OrderApi {
    * </ul>
    *
    * @see <a href="https://www.kucoin.com/docs-new/api-3470355">docs</a>
-   * @deprecated
    */
+  @Deprecated
   CancelOcoOrderByClientOidResp cancelOcoOrderByClientOid(CancelOcoOrderByClientOidReq req);
 
   /**
@@ -700,8 +700,8 @@ public interface OrderApi {
    * </ul>
    *
    * @see <a href="https://www.kucoin.com/docs-new/api-3470356">docs</a>
-   * @deprecated
    */
+  @Deprecated
   BatchCancelOcoOrdersResp batchCancelOcoOrders(BatchCancelOcoOrdersReq req);
 
   /**
@@ -720,8 +720,8 @@ public interface OrderApi {
    * </ul>
    *
    * @see <a href="https://www.kucoin.com/docs-new/api-3470357">docs</a>
-   * @deprecated
    */
+  @Deprecated
   GetOcoOrderByOrderIdResp getOcoOrderByOrderId(GetOcoOrderByOrderIdReq req);
 
   /**
@@ -740,8 +740,8 @@ public interface OrderApi {
    * </ul>
    *
    * @see <a href="https://www.kucoin.com/docs-new/api-3470358">docs</a>
-   * @deprecated
    */
+  @Deprecated
   GetOcoOrderByClientOidResp getOcoOrderByClientOid(GetOcoOrderByClientOidReq req);
 
   /**
@@ -760,8 +760,8 @@ public interface OrderApi {
    * </ul>
    *
    * @see <a href="https://www.kucoin.com/docs-new/api-3470359">docs</a>
-   * @deprecated
    */
+  @Deprecated
   GetOcoOrderDetailByOrderIdResp getOcoOrderDetailByOrderId(GetOcoOrderDetailByOrderIdReq req);
 
   /**
@@ -782,8 +782,8 @@ public interface OrderApi {
    * </ul>
    *
    * @see <a href="https://www.kucoin.com/docs-new/api-3470360">docs</a>
-   * @deprecated
    */
+  @Deprecated
   GetOcoOrderListResp getOcoOrderList(GetOcoOrderListReq req);
 
   /**
@@ -805,8 +805,8 @@ public interface OrderApi {
    * </ul>
    *
    * @see <a href="https://www.kucoin.com/docs-new/api-3470333">docs</a>
-   * @deprecated
    */
+  @Deprecated
   AddOrderOldResp addOrderOld(AddOrderOldReq req);
 
   /**
@@ -828,8 +828,8 @@ public interface OrderApi {
    * </ul>
    *
    * @see <a href="https://www.kucoin.com/docs-new/api-3470341">docs</a>
-   * @deprecated
    */
+  @Deprecated
   AddOrderTestOldResp addOrderTestOld(AddOrderTestOldReq req);
 
   /**
@@ -849,8 +849,8 @@ public interface OrderApi {
    * </ul>
    *
    * @see <a href="https://www.kucoin.com/docs-new/api-3470342">docs</a>
-   * @deprecated
    */
+  @Deprecated
   BatchAddOrdersOldResp batchAddOrdersOld(BatchAddOrdersOldReq req);
 
   /**
@@ -871,8 +871,8 @@ public interface OrderApi {
    * </ul>
    *
    * @see <a href="https://www.kucoin.com/docs-new/api-3470343">docs</a>
-   * @deprecated
    */
+  @Deprecated
   CancelOrderByOrderIdOldResp cancelOrderByOrderIdOld(CancelOrderByOrderIdOldReq req);
 
   /**
@@ -913,8 +913,8 @@ public interface OrderApi {
    * </ul>
    *
    * @see <a href="https://www.kucoin.com/docs-new/api-3470345">docs</a>
-   * @deprecated
    */
+  @Deprecated
   BatchCancelOrderOldResp batchCancelOrderOld(BatchCancelOrderOldReq req);
 
   /**
@@ -934,8 +934,8 @@ public interface OrderApi {
    * </ul>
    *
    * @see <a href="https://www.kucoin.com/docs-new/api-3470346">docs</a>
-   * @deprecated
    */
+  @Deprecated
   GetOrdersListOldResp getOrdersListOld(GetOrdersListOldReq req);
 
   /**
@@ -955,8 +955,8 @@ public interface OrderApi {
    * </ul>
    *
    * @see <a href="https://www.kucoin.com/docs-new/api-3470347">docs</a>
-   * @deprecated
    */
+  @Deprecated
   GetRecentOrdersListOldResp getRecentOrdersListOld();
 
   /**
@@ -975,8 +975,8 @@ public interface OrderApi {
    * </ul>
    *
    * @see <a href="https://www.kucoin.com/docs-new/api-3470348">docs</a>
-   * @deprecated
    */
+  @Deprecated
   GetOrderByOrderIdOldResp getOrderByOrderIdOld(GetOrderByOrderIdOldReq req);
 
   /**
@@ -997,8 +997,8 @@ public interface OrderApi {
    * </ul>
    *
    * @see <a href="https://www.kucoin.com/docs-new/api-3470349">docs</a>
-   * @deprecated
    */
+  @Deprecated
   GetOrderByClientOidOldResp getOrderByClientOidOld(GetOrderByClientOidOldReq req);
 
   /**
@@ -1018,8 +1018,8 @@ public interface OrderApi {
    * </ul>
    *
    * @see <a href="https://www.kucoin.com/docs-new/api-3470350">docs</a>
-   * @deprecated
    */
+  @Deprecated
   GetTradeHistoryOldResp getTradeHistoryOld(GetTradeHistoryOldReq req);
 
   /**
@@ -1039,7 +1039,7 @@ public interface OrderApi {
    * </ul>
    *
    * @see <a href="https://www.kucoin.com/docs-new/api-3470351">docs</a>
-   * @deprecated
    */
+  @Deprecated
   GetRecentTradeHistoryOldResp getRecentTradeHistoryOld();
 }

@@ -18,9 +18,9 @@ public interface {{classname}} {
     * </ul>
     *
     * @see <a href="{{vendorExtensions.x-api-doc}}">docs</a>
-    * {{#isDeprecated}}
-    * @deprecated{{/isDeprecated}}
     */
+    {{#isDeprecated}}
+    @Deprecated{{/isDeprecated}}
     {{vendorExtensions.x-meta.methodServiceFmt}}Resp {{vendorExtensions.x-meta.method}}({{#hasParams}}{{vendorExtensions.x-meta.methodServiceFmt}}Req req{{/hasParams}});
 
     {{/operation}}
