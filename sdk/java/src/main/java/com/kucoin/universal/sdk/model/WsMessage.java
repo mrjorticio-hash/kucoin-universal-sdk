@@ -1,11 +1,13 @@
 package com.kucoin.universal.sdk.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import lombok.ToString;
 
 @Data
 @ToString(exclude = "data")
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class WsMessage<T> {
 
   /** Unique message ID */
@@ -18,7 +20,7 @@ public class WsMessage<T> {
 
   /** Sequence number */
   @JsonProperty("sn")
-  private Integer sn;
+  private Long sn;
 
   /** The topic of the message */
   @JsonProperty("topic")

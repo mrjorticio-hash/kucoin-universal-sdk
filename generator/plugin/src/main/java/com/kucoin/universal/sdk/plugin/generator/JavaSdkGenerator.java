@@ -186,7 +186,7 @@ public class JavaSdkGenerator extends AbstractJavaCodegen implements NameService
 
             String enumDataType = "String";
             if (realEnumProp.isString) {
-                enumDataType= "String";
+                enumDataType = "String";
             } else {
                 enumDataType = "Integer";
             }
@@ -353,7 +353,7 @@ public class JavaSdkGenerator extends AbstractJavaCodegen implements NameService
                     if (modeSwitch.isWs()) {
                         imports.add("import com.kucoin.universal.sdk.model.WsMessage;");
                         imports.add("import com.kucoin.universal.sdk.internal.interfaces.WebSocketMessageCallback;");
-                    }  else {
+                    } else {
                         imports.add("import com.kucoin.universal.sdk.model.RestResponse;");
                     }
 
@@ -401,7 +401,6 @@ public class JavaSdkGenerator extends AbstractJavaCodegen implements NameService
     }
 
 
-
     @Override
     public OperationsMap postProcessOperationsWithModels(OperationsMap objs, List<ModelMap> allModels) {
         objs = super.postProcessOperationsWithModels(objs, allModels);
@@ -415,13 +414,16 @@ public class JavaSdkGenerator extends AbstractJavaCodegen implements NameService
         for (CodegenOperation op : operationMap.getOperation()) {
 
             if (op.vendorExtensions.containsKey("x-request-example")) {
-                op.vendorExtensions.put("x-request-example", StringEscapeUtils.escapeJava((String)op.vendorExtensions.get("x-request-example")));
+                String example = StringEscapeUtils.unescapeJson((String) op.vendorExtensions.get("x-request-example"));
+                example = StringEscapeUtils.escapeJava(example);
+                op.vendorExtensions.put("x-request-example", example);
             }
 
             if (op.vendorExtensions.containsKey("x-response-example")) {
-                op.vendorExtensions.put("x-response-example", StringEscapeUtils.escapeJava((String)op.vendorExtensions.get("x-response-example")));
+                String example = StringEscapeUtils.unescapeJson((String) op.vendorExtensions.get("x-response-example"));
+                example = StringEscapeUtils.escapeJava(example);
+                op.vendorExtensions.put("x-response-example", example);
             }
-
 
             Meta meta = SpecificationUtil.getMeta(op.vendorExtensions);
             if (meta != null) {
