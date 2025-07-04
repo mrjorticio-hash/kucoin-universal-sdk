@@ -4,187 +4,362 @@ package com.kucoin.universal.sdk.generate.futures.order;
 
 public interface OrderApi {
   /**
-   * Add Order Place order in the futures trading system. You can place two major types of order:
-   * Limit and market. Orders can only be placed if your account has sufficient funds. Once an order
-   * is placed, your funds will be put on hold for the duration of the order. The amount of funds on
-   * hold depends on the order type and parameters specified. <a
-   * href="https://www.kucoin.com/docs-new/api-3470235">docs</a> +-----------------------+---------+
-   * | Extra API Info | Value | +-----------------------+---------+ | API-DOMAIN | FUTURES | |
-   * API-CHANNEL | PRIVATE | | API-PERMISSION | FUTURES | | API-RATE-LIMIT-POOL | FUTURES | |
-   * API-RATE-LIMIT-WEIGHT | 2 | +-----------------------+---------+
+   * Add Order
+   *
+   * <p>Place order in the futures trading system. You can place two major types of order: Limit and
+   * market. Orders can only be placed if your account has sufficient funds. Once an order is
+   * placed, your funds will be put on hold for the duration of the order. The amount of funds on
+   * hold depends on the order type and parameters specified.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : FUTURES
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : FUTURES
+   *   <li>API-RATE-LIMIT-POOL : FUTURES
+   *   <li>API-RATE-LIMIT-WEIGHT : 2
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470235">docs</a>
    */
   AddOrderResp addOrder(AddOrderReq req);
 
   /**
-   * Add Order Test Place order to the futures trading system just for validation <a
-   * href="https://www.kucoin.com/docs-new/api-3470238">docs</a> +-----------------------+---------+
-   * | Extra API Info | Value | +-----------------------+---------+ | API-DOMAIN | FUTURES | |
-   * API-CHANNEL | PRIVATE | | API-PERMISSION | FUTURES | | API-RATE-LIMIT-POOL | FUTURES | |
-   * API-RATE-LIMIT-WEIGHT | 2 | +-----------------------+---------+
+   * Add Order Test
+   *
+   * <p>Place order to the futures trading system just for validation
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : FUTURES
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : FUTURES
+   *   <li>API-RATE-LIMIT-POOL : FUTURES
+   *   <li>API-RATE-LIMIT-WEIGHT : 2
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470238">docs</a>
    */
   AddOrderTestResp addOrderTest(AddOrderTestReq req);
 
   /**
-   * Batch Add Orders Place multiple order to the futures trading system, you can place two major
-   * types of orders: limit and market. Orders can only be placed if your account has sufficient
-   * funds. Once an order is placed, your funds will be put on hold for the duration of the order.
-   * The amount of funds on hold depends on the order type and parameters specified. You can place
-   * up to 20 orders at one time, including limit orders, market orders, and stop orders Please be
-   * noted that the system would hold the fees from the orders entered the orderbook in advance. <a
-   * href="https://www.kucoin.com/docs-new/api-3470236">docs</a> +-----------------------+---------+
-   * | Extra API Info | Value | +-----------------------+---------+ | API-DOMAIN | FUTURES | |
-   * API-CHANNEL | PRIVATE | | API-PERMISSION | FUTURES | | API-RATE-LIMIT-POOL | FUTURES | |
-   * API-RATE-LIMIT-WEIGHT | 20 | +-----------------------+---------+
+   * Batch Add Orders
+   *
+   * <p>Place multiple order to the futures trading system, you can place two major types of orders:
+   * limit and market. Orders can only be placed if your account has sufficient funds. Once an order
+   * is placed, your funds will be put on hold for the duration of the order. The amount of funds on
+   * hold depends on the order type and parameters specified. You can place up to 20 orders at one
+   * time, including limit orders, market orders, and stop orders Please be noted that the system
+   * would hold the fees from the orders entered the orderbook in advance.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : FUTURES
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : FUTURES
+   *   <li>API-RATE-LIMIT-POOL : FUTURES
+   *   <li>API-RATE-LIMIT-WEIGHT : 20
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470236">docs</a>
    */
   BatchAddOrdersResp batchAddOrders(BatchAddOrdersReq req);
 
   /**
-   * Add Take Profit And Stop Loss Order Place take profit and stop loss order supports both
-   * take-profit and stop-loss functions, and other functions are exactly the same as the place
-   * order interface. <a href="https://www.kucoin.com/docs-new/api-3470237">docs</a>
-   * +-----------------------+---------+ | Extra API Info | Value |
-   * +-----------------------+---------+ | API-DOMAIN | FUTURES | | API-CHANNEL | PRIVATE | |
-   * API-PERMISSION | FUTURES | | API-RATE-LIMIT-POOL | FUTURES | | API-RATE-LIMIT-WEIGHT | 2 |
-   * +-----------------------+---------+
+   * Add Take Profit And Stop Loss Order
+   *
+   * <p>Place take profit and stop loss order supports both take-profit and stop-loss functions, and
+   * other functions are exactly the same as the place order interface.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : FUTURES
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : FUTURES
+   *   <li>API-RATE-LIMIT-POOL : FUTURES
+   *   <li>API-RATE-LIMIT-WEIGHT : 2
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470237">docs</a>
    */
   AddTPSLOrderResp addTPSLOrder(AddTPSLOrderReq req);
 
   /**
-   * Cancel Order By OrderId Cancel order by system generated orderId. <a
-   * href="https://www.kucoin.com/docs-new/api-3470239">docs</a> +-----------------------+---------+
-   * | Extra API Info | Value | +-----------------------+---------+ | API-DOMAIN | FUTURES | |
-   * API-CHANNEL | PRIVATE | | API-PERMISSION | FUTURES | | API-RATE-LIMIT-POOL | FUTURES | |
-   * API-RATE-LIMIT-WEIGHT | 1 | +-----------------------+---------+
+   * Cancel Order By OrderId
+   *
+   * <p>Cancel order by system generated orderId.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : FUTURES
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : FUTURES
+   *   <li>API-RATE-LIMIT-POOL : FUTURES
+   *   <li>API-RATE-LIMIT-WEIGHT : 1
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470239">docs</a>
    */
   CancelOrderByIdResp cancelOrderById(CancelOrderByIdReq req);
 
   /**
-   * Cancel Order By ClientOid Cancel order by client defined orderId. <a
-   * href="https://www.kucoin.com/docs-new/api-3470240">docs</a> +-----------------------+---------+
-   * | Extra API Info | Value | +-----------------------+---------+ | API-DOMAIN | FUTURES | |
-   * API-CHANNEL | PRIVATE | | API-PERMISSION | FUTURES | | API-RATE-LIMIT-POOL | FUTURES | |
-   * API-RATE-LIMIT-WEIGHT | 1 | +-----------------------+---------+
+   * Cancel Order By ClientOid
+   *
+   * <p>Cancel order by client defined orderId.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : FUTURES
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : FUTURES
+   *   <li>API-RATE-LIMIT-POOL : FUTURES
+   *   <li>API-RATE-LIMIT-WEIGHT : 1
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470240">docs</a>
    */
   CancelOrderByClientOidResp cancelOrderByClientOid(CancelOrderByClientOidReq req);
 
   /**
-   * Batch Cancel Orders Cancel a bach of orders by client defined orderId or system generated
-   * orderId <a href="https://www.kucoin.com/docs-new/api-3470241">docs</a>
-   * +-----------------------+---------+ | Extra API Info | Value |
-   * +-----------------------+---------+ | API-DOMAIN | FUTURES | | API-CHANNEL | PRIVATE | |
-   * API-PERMISSION | FUTURES | | API-RATE-LIMIT-POOL | FUTURES | | API-RATE-LIMIT-WEIGHT | 20 |
-   * +-----------------------+---------+
+   * Batch Cancel Orders
+   *
+   * <p>Cancel a bach of orders by client defined orderId or system generated orderId
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : FUTURES
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : FUTURES
+   *   <li>API-RATE-LIMIT-POOL : FUTURES
+   *   <li>API-RATE-LIMIT-WEIGHT : 20
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470241">docs</a>
    */
   BatchCancelOrdersResp batchCancelOrders(BatchCancelOrdersReq req);
 
   /**
-   * Cancel All Orders Cancel all open orders (excluding stop orders). The response is a list of
-   * orderIDs of the canceled orders. <a href="https://www.kucoin.com/docs-new/api-3470242">docs</a>
-   * +-----------------------+---------+ | Extra API Info | Value |
-   * +-----------------------+---------+ | API-DOMAIN | FUTURES | | API-CHANNEL | PRIVATE | |
-   * API-PERMISSION | FUTURES | | API-RATE-LIMIT-POOL | FUTURES | | API-RATE-LIMIT-WEIGHT | 10 |
-   * +-----------------------+---------+
+   * Cancel All Orders
+   *
+   * <p>Cancel all open orders (excluding stop orders). The response is a list of orderIDs of the
+   * canceled orders.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : FUTURES
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : FUTURES
+   *   <li>API-RATE-LIMIT-POOL : FUTURES
+   *   <li>API-RATE-LIMIT-WEIGHT : 10
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470242">docs</a>
    */
   CancelAllOrdersV3Resp cancelAllOrdersV3(CancelAllOrdersV3Req req);
 
   /**
-   * Cancel All Stop orders Cancel all untriggered stop orders. The response is a list of orderIDs
-   * of the canceled stop orders. To cancel triggered stop orders, please use &#39;Cancel Multiple
-   * Futures Limit orders&#39;. <a href="https://www.kucoin.com/docs-new/api-3470243">docs</a>
-   * +-----------------------+---------+ | Extra API Info | Value |
-   * +-----------------------+---------+ | API-DOMAIN | FUTURES | | API-CHANNEL | PRIVATE | |
-   * API-PERMISSION | FUTURES | | API-RATE-LIMIT-POOL | FUTURES | | API-RATE-LIMIT-WEIGHT | 15 |
-   * +-----------------------+---------+
+   * Cancel All Stop orders
+   *
+   * <p>Cancel all untriggered stop orders. The response is a list of orderIDs of the canceled stop
+   * orders. To cancel triggered stop orders, please use &#39;Cancel Multiple Futures Limit
+   * orders&#39;.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : FUTURES
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : FUTURES
+   *   <li>API-RATE-LIMIT-POOL : FUTURES
+   *   <li>API-RATE-LIMIT-WEIGHT : 15
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470243">docs</a>
    */
   CancelAllStopOrdersResp cancelAllStopOrders(CancelAllStopOrdersReq req);
 
   /**
-   * Get Order By OrderId Get a single order by order id (including a stop order). <a
-   * href="https://www.kucoin.com/docs-new/api-3470245">docs</a> +-----------------------+---------+
-   * | Extra API Info | Value | +-----------------------+---------+ | API-DOMAIN | FUTURES | |
-   * API-CHANNEL | PRIVATE | | API-PERMISSION | GENERAL | | API-RATE-LIMIT-POOL | FUTURES | |
-   * API-RATE-LIMIT-WEIGHT | 5 | +-----------------------+---------+
+   * Get Order By OrderId
+   *
+   * <p>Get a single order by order id (including a stop order).
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : FUTURES
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : GENERAL
+   *   <li>API-RATE-LIMIT-POOL : FUTURES
+   *   <li>API-RATE-LIMIT-WEIGHT : 5
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470245">docs</a>
    */
   GetOrderByOrderIdResp getOrderByOrderId(GetOrderByOrderIdReq req);
 
   /**
-   * Get Order By ClientOid Get a single order by client order ID (including a stop order). <a
-   * href="https://www.kucoin.com/docs-new/api-3470352">docs</a> +-----------------------+---------+
-   * | Extra API Info | Value | +-----------------------+---------+ | API-DOMAIN | FUTURES | |
-   * API-CHANNEL | PRIVATE | | API-PERMISSION | GENERAL | | API-RATE-LIMIT-POOL | FUTURES | |
-   * API-RATE-LIMIT-WEIGHT | 5 | +-----------------------+---------+
+   * Get Order By ClientOid
+   *
+   * <p>Get a single order by client order ID (including a stop order).
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : FUTURES
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : GENERAL
+   *   <li>API-RATE-LIMIT-POOL : FUTURES
+   *   <li>API-RATE-LIMIT-WEIGHT : 5
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470352">docs</a>
    */
   GetOrderByClientOidResp getOrderByClientOid(GetOrderByClientOidReq req);
 
   /**
-   * Get Order List List your current orders. <a
-   * href="https://www.kucoin.com/docs-new/api-3470244">docs</a> +-----------------------+---------+
-   * | Extra API Info | Value | +-----------------------+---------+ | API-DOMAIN | FUTURES | |
-   * API-CHANNEL | PRIVATE | | API-PERMISSION | GENERAL | | API-RATE-LIMIT-POOL | FUTURES | |
-   * API-RATE-LIMIT-WEIGHT | 2 | +-----------------------+---------+
+   * Get Order List
+   *
+   * <p>List your current orders.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : FUTURES
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : GENERAL
+   *   <li>API-RATE-LIMIT-POOL : FUTURES
+   *   <li>API-RATE-LIMIT-WEIGHT : 2
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470244">docs</a>
    */
   GetOrderListResp getOrderList(GetOrderListReq req);
 
   /**
-   * Get Recent Closed Orders Get a list of recent 1000 closed orders in the last 24 hours. If you
-   * need to get your recent traded order history with low latency, you may query this endpoint. <a
-   * href="https://www.kucoin.com/docs-new/api-3470246">docs</a> +-----------------------+---------+
-   * | Extra API Info | Value | +-----------------------+---------+ | API-DOMAIN | FUTURES | |
-   * API-CHANNEL | PRIVATE | | API-PERMISSION | GENERAL | | API-RATE-LIMIT-POOL | FUTURES | |
-   * API-RATE-LIMIT-WEIGHT | 5 | +-----------------------+---------+
+   * Get Recent Closed Orders
+   *
+   * <p>Get a list of recent 1000 closed orders in the last 24 hours. If you need to get your recent
+   * traded order history with low latency, you may query this endpoint.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : FUTURES
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : GENERAL
+   *   <li>API-RATE-LIMIT-POOL : FUTURES
+   *   <li>API-RATE-LIMIT-WEIGHT : 5
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470246">docs</a>
    */
   GetRecentClosedOrdersResp getRecentClosedOrders(GetRecentClosedOrdersReq req);
 
   /**
-   * Get Stop Order List Get the un-triggered stop orders list. Stop orders that have been triggered
-   * can be queried through the general order interface <a
-   * href="https://www.kucoin.com/docs-new/api-3470247">docs</a> +-----------------------+---------+
-   * | Extra API Info | Value | +-----------------------+---------+ | API-DOMAIN | FUTURES | |
-   * API-CHANNEL | PRIVATE | | API-PERMISSION | GENERAL | | API-RATE-LIMIT-POOL | FUTURES | |
-   * API-RATE-LIMIT-WEIGHT | 6 | +-----------------------+---------+
+   * Get Stop Order List
+   *
+   * <p>Get the un-triggered stop orders list. Stop orders that have been triggered can be queried
+   * through the general order interface
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : FUTURES
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : GENERAL
+   *   <li>API-RATE-LIMIT-POOL : FUTURES
+   *   <li>API-RATE-LIMIT-WEIGHT : 6
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470247">docs</a>
    */
   GetStopOrderListResp getStopOrderList(GetStopOrderListReq req);
 
   /**
-   * Get Open Order Value You can query this endpoint to get the total number and value of all your
-   * active orders. <a href="https://www.kucoin.com/docs-new/api-3470250">docs</a>
-   * +-----------------------+---------+ | Extra API Info | Value |
-   * +-----------------------+---------+ | API-DOMAIN | FUTURES | | API-CHANNEL | PRIVATE | |
-   * API-PERMISSION | GENERAL | | API-RATE-LIMIT-POOL | FUTURES | | API-RATE-LIMIT-WEIGHT | 10 |
-   * +-----------------------+---------+
+   * Get Open Order Value
+   *
+   * <p>You can query this endpoint to get the total number and value of all your active orders.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : FUTURES
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : GENERAL
+   *   <li>API-RATE-LIMIT-POOL : FUTURES
+   *   <li>API-RATE-LIMIT-WEIGHT : 10
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470250">docs</a>
    */
   GetOpenOrderValueResp getOpenOrderValue(GetOpenOrderValueReq req);
 
   /**
-   * Get Recent Trade History Get a list of recent 1000 fills in the last 24 hours. If you need to
-   * get your recently traded order history with low latency, you may query this endpoint. <a
-   * href="https://www.kucoin.com/docs-new/api-3470249">docs</a> +-----------------------+---------+
-   * | Extra API Info | Value | +-----------------------+---------+ | API-DOMAIN | FUTURES | |
-   * API-CHANNEL | PRIVATE | | API-PERMISSION | FUTURES | | API-RATE-LIMIT-POOL | FUTURES | |
-   * API-RATE-LIMIT-WEIGHT | NULL | +-----------------------+---------+
+   * Get Recent Trade History
+   *
+   * <p>Get a list of recent 1000 fills in the last 24 hours. If you need to get your recently
+   * traded order history with low latency, you may query this endpoint.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : FUTURES
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : FUTURES
+   *   <li>API-RATE-LIMIT-POOL : FUTURES
+   *   <li>API-RATE-LIMIT-WEIGHT : NULL
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470249">docs</a>
    */
   GetRecentTradeHistoryResp getRecentTradeHistory(GetRecentTradeHistoryReq req);
 
   /**
-   * Get Trade History Get a list of recent fills. If you need to get your recent trade history with
-   * low latency, please query endpoint Get List of Orders Completed in 24h. The requested data is
-   * not real-time. <a href="https://www.kucoin.com/docs-new/api-3470248">docs</a>
-   * +-----------------------+---------+ | Extra API Info | Value |
-   * +-----------------------+---------+ | API-DOMAIN | FUTURES | | API-CHANNEL | PRIVATE | |
-   * API-PERMISSION | GENERAL | | API-RATE-LIMIT-POOL | FUTURES | | API-RATE-LIMIT-WEIGHT | 5 |
-   * +-----------------------+---------+
+   * Get Trade History
+   *
+   * <p>Get a list of recent fills. If you need to get your recent trade history with low latency,
+   * please query endpoint Get List of Orders Completed in 24h. The requested data is not real-time.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : FUTURES
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : GENERAL
+   *   <li>API-RATE-LIMIT-POOL : FUTURES
+   *   <li>API-RATE-LIMIT-WEIGHT : 5
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470248">docs</a>
    */
   GetTradeHistoryResp getTradeHistory(GetTradeHistoryReq req);
 
   /**
-   * Cancel All Orders - V1 Cancel all open orders (excluding stop orders). The response is a list
-   * of orderIDs of the canceled orders.
+   * Cancel All Orders - V1
    *
-   * @deprecated <a href="https://www.kucoin.com/docs-new/api-3470362">docs</a>
-   *     +-----------------------+---------+ | Extra API Info | Value |
-   *     +-----------------------+---------+ | API-DOMAIN | FUTURES | | API-CHANNEL | PRIVATE | |
-   *     API-PERMISSION | FUTURES | | API-RATE-LIMIT-POOL | FUTURES | | API-RATE-LIMIT-WEIGHT | 800
-   *     | +-----------------------+---------+
+   * <p>Cancel all open orders (excluding stop orders). The response is a list of orderIDs of the
+   * canceled orders.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : FUTURES
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : FUTURES
+   *   <li>API-RATE-LIMIT-POOL : FUTURES
+   *   <li>API-RATE-LIMIT-WEIGHT : 800
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470362">docs</a>
+   * @deprecated
    */
   CancelAllOrdersV1Resp cancelAllOrdersV1(CancelAllOrdersV1Req req);
 }

@@ -4,62 +4,118 @@ package com.kucoin.universal.sdk.generate.margin.debit;
 
 public interface DebitApi {
   /**
-   * Borrow This API endpoint is used to initiate an application for cross or isolated margin
-   * borrowing. <a href="https://www.kucoin.com/docs-new/api-3470206">docs</a>
-   * +-----------------------+---------+ | Extra API Info | Value |
-   * +-----------------------+---------+ | API-DOMAIN | SPOT | | API-CHANNEL | PRIVATE | |
-   * API-PERMISSION | MARGIN | | API-RATE-LIMIT-POOL | SPOT | | API-RATE-LIMIT-WEIGHT | 15 |
-   * +-----------------------+---------+
+   * Borrow
+   *
+   * <p>This API endpoint is used to initiate an application for cross or isolated margin borrowing.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : SPOT
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : MARGIN
+   *   <li>API-RATE-LIMIT-POOL : SPOT
+   *   <li>API-RATE-LIMIT-WEIGHT : 15
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470206">docs</a>
    */
   BorrowResp borrow(BorrowReq req);
 
   /**
-   * Get Borrow History This API endpoint is used to get the borrowing orders for cross and isolated
-   * margin accounts. <a href="https://www.kucoin.com/docs-new/api-3470207">docs</a>
-   * +-----------------------+---------+ | Extra API Info | Value |
-   * +-----------------------+---------+ | API-DOMAIN | SPOT | | API-CHANNEL | PRIVATE | |
-   * API-PERMISSION | MARGIN | | API-RATE-LIMIT-POOL | SPOT | | API-RATE-LIMIT-WEIGHT | 15 |
-   * +-----------------------+---------+
+   * Get Borrow History
+   *
+   * <p>This API endpoint is used to get the borrowing orders for cross and isolated margin
+   * accounts.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : SPOT
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : MARGIN
+   *   <li>API-RATE-LIMIT-POOL : SPOT
+   *   <li>API-RATE-LIMIT-WEIGHT : 15
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470207">docs</a>
    */
   GetBorrowHistoryResp getBorrowHistory(GetBorrowHistoryReq req);
 
   /**
-   * Repay This API endpoint is used to initiate an application for cross or isolated margin
-   * repayment. <a href="https://www.kucoin.com/docs-new/api-3470210">docs</a>
-   * +-----------------------+---------+ | Extra API Info | Value |
-   * +-----------------------+---------+ | API-DOMAIN | SPOT | | API-CHANNEL | PRIVATE | |
-   * API-PERMISSION | MARGIN | | API-RATE-LIMIT-POOL | SPOT | | API-RATE-LIMIT-WEIGHT | 10 |
-   * +-----------------------+---------+
+   * Repay
+   *
+   * <p>This API endpoint is used to initiate an application for cross or isolated margin repayment.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : SPOT
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : MARGIN
+   *   <li>API-RATE-LIMIT-POOL : SPOT
+   *   <li>API-RATE-LIMIT-WEIGHT : 10
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470210">docs</a>
    */
   RepayResp repay(RepayReq req);
 
   /**
-   * Get Repay History This API endpoint is used to get the borrowing orders for cross and isolated
-   * margin accounts. <a href="https://www.kucoin.com/docs-new/api-3470208">docs</a>
-   * +-----------------------+---------+ | Extra API Info | Value |
-   * +-----------------------+---------+ | API-DOMAIN | SPOT | | API-CHANNEL | PRIVATE | |
-   * API-PERMISSION | MARGIN | | API-RATE-LIMIT-POOL | SPOT | | API-RATE-LIMIT-WEIGHT | 15 |
-   * +-----------------------+---------+
+   * Get Repay History
+   *
+   * <p>This API endpoint is used to get the borrowing orders for cross and isolated margin
+   * accounts.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : SPOT
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : MARGIN
+   *   <li>API-RATE-LIMIT-POOL : SPOT
+   *   <li>API-RATE-LIMIT-WEIGHT : 15
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470208">docs</a>
    */
   GetRepayHistoryResp getRepayHistory(GetRepayHistoryReq req);
 
   /**
-   * Get Interest History. Request the interest records of the cross/isolated margin lending via
-   * this endpoint. <a href="https://www.kucoin.com/docs-new/api-3470209">docs</a>
-   * +-----------------------+---------+ | Extra API Info | Value |
-   * +-----------------------+---------+ | API-DOMAIN | SPOT | | API-CHANNEL | PRIVATE | |
-   * API-PERMISSION | MARGIN | | API-RATE-LIMIT-POOL | SPOT | | API-RATE-LIMIT-WEIGHT | 20 |
-   * +-----------------------+---------+
+   * Get Interest History.
+   *
+   * <p>Request the interest records of the cross/isolated margin lending via this endpoint.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : SPOT
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : MARGIN
+   *   <li>API-RATE-LIMIT-POOL : SPOT
+   *   <li>API-RATE-LIMIT-WEIGHT : 20
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470209">docs</a>
    */
   GetInterestHistoryResp getInterestHistory(GetInterestHistoryReq req);
 
   /**
-   * Modify Leverage This endpoint allows modifying the leverage multiplier for cross margin or
-   * isolated margin. <a href="https://www.kucoin.com/docs-new/api-3470211">docs</a>
-   * +-----------------------+---------+ | Extra API Info | Value |
-   * +-----------------------+---------+ | API-DOMAIN | SPOT | | API-CHANNEL | PRIVATE | |
-   * API-PERMISSION | MARGIN | | API-RATE-LIMIT-POOL | SPOT | | API-RATE-LIMIT-WEIGHT | 8 |
-   * +-----------------------+---------+
+   * Modify Leverage
+   *
+   * <p>This endpoint allows modifying the leverage multiplier for cross margin or isolated margin.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : SPOT
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : MARGIN
+   *   <li>API-RATE-LIMIT-POOL : SPOT
+   *   <li>API-RATE-LIMIT-WEIGHT : 8
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470211">docs</a>
    */
   ModifyLeverageResp modifyLeverage(ModifyLeverageReq req);
 }

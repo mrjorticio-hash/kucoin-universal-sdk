@@ -4,219 +4,426 @@ package com.kucoin.universal.sdk.generate.spot.market;
 
 public interface MarketApi {
   /**
-   * Get Announcements This interface can obtain the latest news announcements, and the default page
-   * search is for announcements within a month. <a
-   * href="https://www.kucoin.com/docs-new/api-3470157">docs</a> +-----------------------+--------+
-   * | Extra API Info | Value | +-----------------------+--------+ | API-DOMAIN | SPOT | |
-   * API-CHANNEL | PUBLIC | | API-PERMISSION | NULL | | API-RATE-LIMIT-POOL | PUBLIC | |
-   * API-RATE-LIMIT-WEIGHT | 20 | +-----------------------+--------+
+   * Get Announcements
+   *
+   * <p>This interface can obtain the latest news announcements, and the default page search is for
+   * announcements within a month.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : SPOT
+   *   <li>API-CHANNEL : PUBLIC
+   *   <li>API-PERMISSION : NULL
+   *   <li>API-RATE-LIMIT-POOL : PUBLIC
+   *   <li>API-RATE-LIMIT-WEIGHT : 20
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470157">docs</a>
    */
   GetAnnouncementsResp getAnnouncements(GetAnnouncementsReq req);
 
   /**
-   * Get Currency Request the currency details of a specified currency via this endpoint. <a
-   * href="https://www.kucoin.com/docs-new/api-3470155">docs</a> +-----------------------+--------+
-   * | Extra API Info | Value | +-----------------------+--------+ | API-DOMAIN | SPOT | |
-   * API-CHANNEL | PUBLIC | | API-PERMISSION | NULL | | API-RATE-LIMIT-POOL | PUBLIC | |
-   * API-RATE-LIMIT-WEIGHT | 3 | +-----------------------+--------+
+   * Get Currency
+   *
+   * <p>Request the currency details of a specified currency via this endpoint.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : SPOT
+   *   <li>API-CHANNEL : PUBLIC
+   *   <li>API-PERMISSION : NULL
+   *   <li>API-RATE-LIMIT-POOL : PUBLIC
+   *   <li>API-RATE-LIMIT-WEIGHT : 3
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470155">docs</a>
    */
   GetCurrencyResp getCurrency(GetCurrencyReq req);
 
   /**
-   * Get All Currencies Request a currency list via this endpoint. Not all currencies can currently
-   * be used for trading. <a href="https://www.kucoin.com/docs-new/api-3470152">docs</a>
-   * +-----------------------+--------+ | Extra API Info | Value |
-   * +-----------------------+--------+ | API-DOMAIN | SPOT | | API-CHANNEL | PUBLIC | |
-   * API-PERMISSION | NULL | | API-RATE-LIMIT-POOL | PUBLIC | | API-RATE-LIMIT-WEIGHT | 3 |
-   * +-----------------------+--------+
+   * Get All Currencies
+   *
+   * <p>Request a currency list via this endpoint. Not all currencies can currently be used for
+   * trading.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : SPOT
+   *   <li>API-CHANNEL : PUBLIC
+   *   <li>API-PERMISSION : NULL
+   *   <li>API-RATE-LIMIT-POOL : PUBLIC
+   *   <li>API-RATE-LIMIT-WEIGHT : 3
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470152">docs</a>
    */
   GetAllCurrenciesResp getAllCurrencies();
 
   /**
-   * Get Symbol Request via this endpoint to get detail currency pairs for trading. If you want to
-   * get the market information of the trading symbol, please use Get All Tickers. <a
-   * href="https://www.kucoin.com/docs-new/api-3470159">docs</a> +-----------------------+--------+
-   * | Extra API Info | Value | +-----------------------+--------+ | API-DOMAIN | SPOT | |
-   * API-CHANNEL | PUBLIC | | API-PERMISSION | NULL | | API-RATE-LIMIT-POOL | PUBLIC | |
-   * API-RATE-LIMIT-WEIGHT | 4 | +-----------------------+--------+
+   * Get Symbol
+   *
+   * <p>Request via this endpoint to get detail currency pairs for trading. If you want to get the
+   * market information of the trading symbol, please use Get All Tickers.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : SPOT
+   *   <li>API-CHANNEL : PUBLIC
+   *   <li>API-PERMISSION : NULL
+   *   <li>API-RATE-LIMIT-POOL : PUBLIC
+   *   <li>API-RATE-LIMIT-WEIGHT : 4
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470159">docs</a>
    */
   GetSymbolResp getSymbol(GetSymbolReq req);
 
   /**
-   * Get All Symbols Request a list of available currency pairs for trading via this endpoint. If
-   * you want to get the market information of the trading symbol, please use Get All Tickers. <a
-   * href="https://www.kucoin.com/docs-new/api-3470154">docs</a> +-----------------------+--------+
-   * | Extra API Info | Value | +-----------------------+--------+ | API-DOMAIN | SPOT | |
-   * API-CHANNEL | PUBLIC | | API-PERMISSION | NULL | | API-RATE-LIMIT-POOL | PUBLIC | |
-   * API-RATE-LIMIT-WEIGHT | 4 | +-----------------------+--------+
+   * Get All Symbols
+   *
+   * <p>Request a list of available currency pairs for trading via this endpoint. If you want to get
+   * the market information of the trading symbol, please use Get All Tickers.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : SPOT
+   *   <li>API-CHANNEL : PUBLIC
+   *   <li>API-PERMISSION : NULL
+   *   <li>API-RATE-LIMIT-POOL : PUBLIC
+   *   <li>API-RATE-LIMIT-WEIGHT : 4
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470154">docs</a>
    */
   GetAllSymbolsResp getAllSymbols(GetAllSymbolsReq req);
 
   /**
-   * Get Ticker Request via this endpoint to get Level 1 Market Data. The returned value includes
-   * the best bid price and size, the best ask price and size as well as the last traded price and
-   * the last traded size. <a href="https://www.kucoin.com/docs-new/api-3470160">docs</a>
-   * +-----------------------+--------+ | Extra API Info | Value |
-   * +-----------------------+--------+ | API-DOMAIN | SPOT | | API-CHANNEL | PUBLIC | |
-   * API-PERMISSION | NULL | | API-RATE-LIMIT-POOL | PUBLIC | | API-RATE-LIMIT-WEIGHT | 2 |
-   * +-----------------------+--------+
+   * Get Ticker
+   *
+   * <p>Request via this endpoint to get Level 1 Market Data. The returned value includes the best
+   * bid price and size, the best ask price and size as well as the last traded price and the last
+   * traded size.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : SPOT
+   *   <li>API-CHANNEL : PUBLIC
+   *   <li>API-PERMISSION : NULL
+   *   <li>API-RATE-LIMIT-POOL : PUBLIC
+   *   <li>API-RATE-LIMIT-WEIGHT : 2
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470160">docs</a>
    */
   GetTickerResp getTicker(GetTickerReq req);
 
   /**
-   * Get All Tickers Request market tickers for all the trading pairs in the market (including 24h
-   * volume); takes a snapshot every 2 seconds. On the rare occasion that we change the currency
-   * name, if you still want the changed symbol name, you can use the symbolName field instead of
-   * the symbol field via “Get all tickers” endpoint. <a
-   * href="https://www.kucoin.com/docs-new/api-3470167">docs</a> +-----------------------+--------+
-   * | Extra API Info | Value | +-----------------------+--------+ | API-DOMAIN | SPOT | |
-   * API-CHANNEL | PUBLIC | | API-PERMISSION | NULL | | API-RATE-LIMIT-POOL | PUBLIC | |
-   * API-RATE-LIMIT-WEIGHT | 15 | +-----------------------+--------+
+   * Get All Tickers
+   *
+   * <p>Request market tickers for all the trading pairs in the market (including 24h volume); takes
+   * a snapshot every 2 seconds. On the rare occasion that we change the currency name, if you still
+   * want the changed symbol name, you can use the symbolName field instead of the symbol field via
+   * “Get all tickers” endpoint.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : SPOT
+   *   <li>API-CHANNEL : PUBLIC
+   *   <li>API-PERMISSION : NULL
+   *   <li>API-RATE-LIMIT-POOL : PUBLIC
+   *   <li>API-RATE-LIMIT-WEIGHT : 15
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470167">docs</a>
    */
   GetAllTickersResp getAllTickers();
 
   /**
-   * Get Trade History Request via this endpoint to get the trade history of the specified symbol,
-   * the returned quantity is the last 100 transaction records. <a
-   * href="https://www.kucoin.com/docs-new/api-3470162">docs</a> +-----------------------+--------+
-   * | Extra API Info | Value | +-----------------------+--------+ | API-DOMAIN | SPOT | |
-   * API-CHANNEL | PUBLIC | | API-PERMISSION | NULL | | API-RATE-LIMIT-POOL | PUBLIC | |
-   * API-RATE-LIMIT-WEIGHT | 3 | +-----------------------+--------+
+   * Get Trade History
+   *
+   * <p>Request via this endpoint to get the trade history of the specified symbol, the returned
+   * quantity is the last 100 transaction records.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : SPOT
+   *   <li>API-CHANNEL : PUBLIC
+   *   <li>API-PERMISSION : NULL
+   *   <li>API-RATE-LIMIT-POOL : PUBLIC
+   *   <li>API-RATE-LIMIT-WEIGHT : 3
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470162">docs</a>
    */
   GetTradeHistoryResp getTradeHistory(GetTradeHistoryReq req);
 
   /**
-   * Get Klines Get the Kline of the symbol. Data are returned in grouped buckets based on requested
-   * type. For each query, the system would return at most 1500 pieces of data. To obtain more data,
-   * please page the data by time. <a href="https://www.kucoin.com/docs-new/api-3470163">docs</a>
-   * +-----------------------+--------+ | Extra API Info | Value |
-   * +-----------------------+--------+ | API-DOMAIN | SPOT | | API-CHANNEL | PUBLIC | |
-   * API-PERMISSION | NULL | | API-RATE-LIMIT-POOL | PUBLIC | | API-RATE-LIMIT-WEIGHT | 3 |
-   * +-----------------------+--------+
+   * Get Klines
+   *
+   * <p>Get the Kline of the symbol. Data are returned in grouped buckets based on requested type.
+   * For each query, the system would return at most 1500 pieces of data. To obtain more data,
+   * please page the data by time.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : SPOT
+   *   <li>API-CHANNEL : PUBLIC
+   *   <li>API-PERMISSION : NULL
+   *   <li>API-RATE-LIMIT-POOL : PUBLIC
+   *   <li>API-RATE-LIMIT-WEIGHT : 3
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470163">docs</a>
    */
   GetKlinesResp getKlines(GetKlinesReq req);
 
   /**
-   * Get Part OrderBook Query for part orderbook depth data. (aggregated by price) You are
-   * recommended to request via this endpoint as the system reponse would be faster and cosume less
-   * traffic. <a href="https://www.kucoin.com/docs-new/api-3470165">docs</a>
-   * +-----------------------+--------+ | Extra API Info | Value |
-   * +-----------------------+--------+ | API-DOMAIN | SPOT | | API-CHANNEL | PUBLIC | |
-   * API-PERMISSION | NULL | | API-RATE-LIMIT-POOL | PUBLIC | | API-RATE-LIMIT-WEIGHT | 2 |
-   * +-----------------------+--------+
+   * Get Part OrderBook
+   *
+   * <p>Query for part orderbook depth data. (aggregated by price) You are recommended to request
+   * via this endpoint as the system reponse would be faster and cosume less traffic.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : SPOT
+   *   <li>API-CHANNEL : PUBLIC
+   *   <li>API-PERMISSION : NULL
+   *   <li>API-RATE-LIMIT-POOL : PUBLIC
+   *   <li>API-RATE-LIMIT-WEIGHT : 2
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470165">docs</a>
    */
   GetPartOrderBookResp getPartOrderBook(GetPartOrderBookReq req);
 
   /**
-   * Get Full OrderBook Query for Full orderbook depth data. (aggregated by price) It is generally
-   * used by professional traders because it uses more server resources and traffic, and we have
-   * strict access rate limit control. To maintain up-to-date Order Book, please use Websocket
-   * incremental feed after retrieving the OrderBook. <a
-   * href="https://www.kucoin.com/docs-new/api-3470164">docs</a> +-----------------------+---------+
-   * | Extra API Info | Value | +-----------------------+---------+ | API-DOMAIN | SPOT | |
-   * API-CHANNEL | PRIVATE | | API-PERMISSION | GENERAL | | API-RATE-LIMIT-POOL | SPOT | |
-   * API-RATE-LIMIT-WEIGHT | 3 | +-----------------------+---------+
+   * Get Full OrderBook
+   *
+   * <p>Query for Full orderbook depth data. (aggregated by price) It is generally used by
+   * professional traders because it uses more server resources and traffic, and we have strict
+   * access rate limit control. To maintain up-to-date Order Book, please use Websocket incremental
+   * feed after retrieving the OrderBook.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : SPOT
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : GENERAL
+   *   <li>API-RATE-LIMIT-POOL : SPOT
+   *   <li>API-RATE-LIMIT-WEIGHT : 3
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470164">docs</a>
    */
   GetFullOrderBookResp getFullOrderBook(GetFullOrderBookReq req);
 
   /**
-   * Get Call Auction Part OrderBook Query for call auction part orderbook depth data. (aggregated
-   * by price). It is recommended that you request via this endpoint, as the system response will be
-   * faster and consume less traffic. <a href="https://www.kucoin.com/docs-new/api-3471564">docs</a>
-   * +-----------------------+--------+ | Extra API Info | Value |
-   * +-----------------------+--------+ | API-DOMAIN | SPOT | | API-CHANNEL | PUBLIC | |
-   * API-PERMISSION | NULL | | API-RATE-LIMIT-POOL | PUBLIC | | API-RATE-LIMIT-WEIGHT | 2 |
-   * +-----------------------+--------+
+   * Get Call Auction Part OrderBook
+   *
+   * <p>Query for call auction part orderbook depth data. (aggregated by price). It is recommended
+   * that you request via this endpoint, as the system response will be faster and consume less
+   * traffic.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : SPOT
+   *   <li>API-CHANNEL : PUBLIC
+   *   <li>API-PERMISSION : NULL
+   *   <li>API-RATE-LIMIT-POOL : PUBLIC
+   *   <li>API-RATE-LIMIT-WEIGHT : 2
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3471564">docs</a>
    */
   GetCallAuctionPartOrderBookResp getCallAuctionPartOrderBook(GetCallAuctionPartOrderBookReq req);
 
   /**
-   * Get Call Auction Info Get call auction data. This interface will return the following
-   * information for the specified symbol during the call auction phase: estimated transaction
-   * price, estimated transaction quantity, bid price range, and ask price range. <a
-   * href="https://www.kucoin.com/docs-new/api-3471565">docs</a> +-----------------------+--------+
-   * | Extra API Info | Value | +-----------------------+--------+ | API-DOMAIN | SPOT | |
-   * API-CHANNEL | PUBLIC | | API-PERMISSION | NULL | | API-RATE-LIMIT-POOL | PUBLIC | |
-   * API-RATE-LIMIT-WEIGHT | 2 | +-----------------------+--------+
+   * Get Call Auction Info
+   *
+   * <p>Get call auction data. This interface will return the following information for the
+   * specified symbol during the call auction phase: estimated transaction price, estimated
+   * transaction quantity, bid price range, and ask price range.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : SPOT
+   *   <li>API-CHANNEL : PUBLIC
+   *   <li>API-PERMISSION : NULL
+   *   <li>API-RATE-LIMIT-POOL : PUBLIC
+   *   <li>API-RATE-LIMIT-WEIGHT : 2
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3471565">docs</a>
    */
   GetCallAuctionInfoResp getCallAuctionInfo(GetCallAuctionInfoReq req);
 
   /**
-   * Get Fiat Price Request the fiat price of the currencies for the available trading pairs via
-   * this endpoint. <a href="https://www.kucoin.com/docs-new/api-3470153">docs</a>
-   * +-----------------------+--------+ | Extra API Info | Value |
-   * +-----------------------+--------+ | API-DOMAIN | SPOT | | API-CHANNEL | PUBLIC | |
-   * API-PERMISSION | NULL | | API-RATE-LIMIT-POOL | PUBLIC | | API-RATE-LIMIT-WEIGHT | 3 |
-   * +-----------------------+--------+
+   * Get Fiat Price
+   *
+   * <p>Request the fiat price of the currencies for the available trading pairs via this endpoint.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : SPOT
+   *   <li>API-CHANNEL : PUBLIC
+   *   <li>API-PERMISSION : NULL
+   *   <li>API-RATE-LIMIT-POOL : PUBLIC
+   *   <li>API-RATE-LIMIT-WEIGHT : 3
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470153">docs</a>
    */
   GetFiatPriceResp getFiatPrice(GetFiatPriceReq req);
 
   /**
-   * Get 24hr Stats Request via this endpoint to get the statistics of the specified ticker in the
-   * last 24 hours. <a href="https://www.kucoin.com/docs-new/api-3470161">docs</a>
-   * +-----------------------+--------+ | Extra API Info | Value |
-   * +-----------------------+--------+ | API-DOMAIN | SPOT | | API-CHANNEL | PUBLIC | |
-   * API-PERMISSION | NULL | | API-RATE-LIMIT-POOL | PUBLIC | | API-RATE-LIMIT-WEIGHT | 15 |
-   * +-----------------------+--------+
+   * Get 24hr Stats
+   *
+   * <p>Request via this endpoint to get the statistics of the specified ticker in the last 24
+   * hours.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : SPOT
+   *   <li>API-CHANNEL : PUBLIC
+   *   <li>API-PERMISSION : NULL
+   *   <li>API-RATE-LIMIT-POOL : PUBLIC
+   *   <li>API-RATE-LIMIT-WEIGHT : 15
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470161">docs</a>
    */
   Get24hrStatsResp get24hrStats(Get24hrStatsReq req);
 
   /**
-   * Get Market List Request via this endpoint the transaction currency for the entire trading
-   * market. <a href="https://www.kucoin.com/docs-new/api-3470166">docs</a>
-   * +-----------------------+--------+ | Extra API Info | Value |
-   * +-----------------------+--------+ | API-DOMAIN | SPOT | | API-CHANNEL | PUBLIC | |
-   * API-PERMISSION | NULL | | API-RATE-LIMIT-POOL | PUBLIC | | API-RATE-LIMIT-WEIGHT | 3 |
-   * +-----------------------+--------+
+   * Get Market List
+   *
+   * <p>Request via this endpoint the transaction currency for the entire trading market.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : SPOT
+   *   <li>API-CHANNEL : PUBLIC
+   *   <li>API-PERMISSION : NULL
+   *   <li>API-RATE-LIMIT-POOL : PUBLIC
+   *   <li>API-RATE-LIMIT-WEIGHT : 3
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470166">docs</a>
    */
   GetMarketListResp getMarketList();
 
   /**
-   * Get Client IP Address Get the server time. <a
-   * href="https://www.kucoin.com/docs-new/api-3471123">docs</a> +-----------------------+--------+
-   * | Extra API Info | Value | +-----------------------+--------+ | API-DOMAIN | SPOT | |
-   * API-CHANNEL | PUBLIC | | API-PERMISSION | NULL | | API-RATE-LIMIT-POOL | PUBLIC | |
-   * API-RATE-LIMIT-WEIGHT | 0 | +-----------------------+--------+
+   * Get Client IP Address
+   *
+   * <p>Get the server time.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : SPOT
+   *   <li>API-CHANNEL : PUBLIC
+   *   <li>API-PERMISSION : NULL
+   *   <li>API-RATE-LIMIT-POOL : PUBLIC
+   *   <li>API-RATE-LIMIT-WEIGHT : 0
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3471123">docs</a>
    */
   GetClientIPAddressResp getClientIPAddress();
 
   /**
-   * Get Server Time Get the server time. <a
-   * href="https://www.kucoin.com/docs-new/api-3470156">docs</a> +-----------------------+--------+
-   * | Extra API Info | Value | +-----------------------+--------+ | API-DOMAIN | SPOT | |
-   * API-CHANNEL | PUBLIC | | API-PERMISSION | NULL | | API-RATE-LIMIT-POOL | PUBLIC | |
-   * API-RATE-LIMIT-WEIGHT | 3 | +-----------------------+--------+
+   * Get Server Time
+   *
+   * <p>Get the server time.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : SPOT
+   *   <li>API-CHANNEL : PUBLIC
+   *   <li>API-PERMISSION : NULL
+   *   <li>API-RATE-LIMIT-POOL : PUBLIC
+   *   <li>API-RATE-LIMIT-WEIGHT : 3
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470156">docs</a>
    */
   GetServerTimeResp getServerTime();
 
   /**
-   * Get Service Status Get the service status. <a
-   * href="https://www.kucoin.com/docs-new/api-3470158">docs</a> +-----------------------+--------+
-   * | Extra API Info | Value | +-----------------------+--------+ | API-DOMAIN | SPOT | |
-   * API-CHANNEL | PUBLIC | | API-PERMISSION | NULL | | API-RATE-LIMIT-POOL | PUBLIC | |
-   * API-RATE-LIMIT-WEIGHT | 3 | +-----------------------+--------+
+   * Get Service Status
+   *
+   * <p>Get the service status.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : SPOT
+   *   <li>API-CHANNEL : PUBLIC
+   *   <li>API-PERMISSION : NULL
+   *   <li>API-RATE-LIMIT-POOL : PUBLIC
+   *   <li>API-RATE-LIMIT-WEIGHT : 3
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470158">docs</a>
    */
   GetServiceStatusResp getServiceStatus();
 
   /**
-   * Get Public Token - Spot/Margin This interface can obtain the token required for Websocket to
-   * establish a Spot/Margin connection. If you need use public channels (e.g. all public market
-   * data), please make request as follows to obtain the server list and public token <a
-   * href="https://www.kucoin.com/docs-new/api-3470294">docs</a> +-----------------------+--------+
-   * | Extra API Info | Value | +-----------------------+--------+ | API-DOMAIN | SPOT | |
-   * API-CHANNEL | PUBLIC | | API-PERMISSION | NULL | | API-RATE-LIMIT-POOL | PUBLIC | |
-   * API-RATE-LIMIT-WEIGHT | 10 | +-----------------------+--------+
+   * Get Public Token - Spot/Margin
+   *
+   * <p>This interface can obtain the token required for Websocket to establish a Spot/Margin
+   * connection. If you need use public channels (e.g. all public market data), please make request
+   * as follows to obtain the server list and public token
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : SPOT
+   *   <li>API-CHANNEL : PUBLIC
+   *   <li>API-PERMISSION : NULL
+   *   <li>API-RATE-LIMIT-POOL : PUBLIC
+   *   <li>API-RATE-LIMIT-WEIGHT : 10
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470294">docs</a>
    */
   GetPublicTokenResp getPublicToken();
 
   /**
-   * Get Private Token - Spot/Margin This interface can obtain the token required for Websocket to
-   * establish a Spot/Margin private connection. If you need use private channels (e.g. account
-   * balance notice), please make request as follows to obtain the server list and private token <a
-   * href="https://www.kucoin.com/docs-new/api-3470295">docs</a> +-----------------------+---------+
-   * | Extra API Info | Value | +-----------------------+---------+ | API-DOMAIN | SPOT | |
-   * API-CHANNEL | PRIVATE | | API-PERMISSION | GENERAL | | API-RATE-LIMIT-POOL | SPOT | |
-   * API-RATE-LIMIT-WEIGHT | 10 | +-----------------------+---------+
+   * Get Private Token - Spot/Margin
+   *
+   * <p>This interface can obtain the token required for Websocket to establish a Spot/Margin
+   * private connection. If you need use private channels (e.g. account balance notice), please make
+   * request as follows to obtain the server list and private token
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : SPOT
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : GENERAL
+   *   <li>API-RATE-LIMIT-POOL : SPOT
+   *   <li>API-RATE-LIMIT-WEIGHT : 10
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470295">docs</a>
    */
   GetPrivateTokenResp getPrivateToken();
 }

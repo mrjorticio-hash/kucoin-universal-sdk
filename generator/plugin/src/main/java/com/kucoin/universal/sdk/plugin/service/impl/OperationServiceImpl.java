@@ -15,9 +15,7 @@ import io.swagger.v3.oas.models.Paths;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @author isaac.tang
@@ -31,6 +29,7 @@ public class OperationServiceImpl implements OperationService {
     public static String EXTENSION_WS_PRIVATE = "x-sdk-private";
     public static String EXTENSION_WS_TOPIC = "x-topic";
     public static String EXTENSION_EXTRA_COMMENT = "x-extra-comment";
+    public static String EXTENSION_EXTRA_COMMENT_KV = "x-extra-comment-kv";
     public static String EXTENSION_DEPRECATED = "x-deprecated";
     public static String BROKER_KEY_NAME = "broker";
     public static String EXTENSION_OVERRIDE_METHOD = "x-original-method";
@@ -146,12 +145,23 @@ public class OperationServiceImpl implements OperationService {
                 {"API-RATE-LIMIT-WEIGHT", operation.getExtensions().getOrDefault("x-api-rate-limit-weight", "NULL").toString().toUpperCase()},
         };
 
+
+        int maxKeyLength = Arrays.stream(data)
+                .mapToInt(row -> row[0].length())
+                .max().orElse(0);
+
+        List<String> kvData = new ArrayList<>();
+        for (String[] info : data) {
+           kvData.add(String.format("%-" + (maxKeyLength + 2) + "s: %s", info[0], info[1]));
+        }
+
         String[] extraComment = AsciiTable.getTable(AsciiTable.BASIC_ASCII_NO_DATA_SEPARATORS, new Column[]{
                 new Column().header("Extra API Info").headerAlign(HorizontalAlign.LEFT).dataAlign(HorizontalAlign.LEFT),
                 new Column().header("Value").headerAlign(HorizontalAlign.LEFT).dataAlign(HorizontalAlign.LEFT),
         }, data).split("\n");
 
         operation.getExtensions().put(EXTENSION_EXTRA_COMMENT, extraComment);
+        operation.getExtensions().put(EXTENSION_EXTRA_COMMENT_KV, kvData);
         operation.getExtensions().put(SpecificationUtil.EXTENSION_MODEL_META_KEY, meta);
     }
 

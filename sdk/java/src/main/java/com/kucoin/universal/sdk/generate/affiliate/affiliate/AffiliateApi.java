@@ -4,12 +4,21 @@ package com.kucoin.universal.sdk.generate.affiliate.affiliate;
 
 public interface AffiliateApi {
   /**
-   * Get Account Affiliate user rebate information can be obtained at this endpoint. <a
-   * href="https://www.kucoin.com/docs-new/api-3470279">docs</a>
-   * +-----------------------+------------+ | Extra API Info | Value |
-   * +-----------------------+------------+ | API-DOMAIN | SPOT | | API-CHANNEL | PRIVATE | |
-   * API-PERMISSION | GENERAL | | API-RATE-LIMIT-POOL | MANAGEMENT | | API-RATE-LIMIT-WEIGHT | 30 |
-   * +-----------------------+------------+
+   * Get Account
+   *
+   * <p>Affiliate user rebate information can be obtained at this endpoint.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : SPOT
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : GENERAL
+   *   <li>API-RATE-LIMIT-POOL : MANAGEMENT
+   *   <li>API-RATE-LIMIT-WEIGHT : 30
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470279">docs</a>
    */
   GetAccountResp getAccount();
 }

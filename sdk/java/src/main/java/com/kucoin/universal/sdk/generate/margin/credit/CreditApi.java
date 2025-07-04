@@ -4,69 +4,138 @@ package com.kucoin.universal.sdk.generate.margin.credit;
 
 public interface CreditApi {
   /**
-   * Get Loan Market This API endpoint is used to get the information about the currencies available
-   * for lending. <a href="https://www.kucoin.com/docs-new/api-3470212">docs</a>
-   * +-----------------------+---------+ | Extra API Info | Value |
-   * +-----------------------+---------+ | API-DOMAIN | SPOT | | API-CHANNEL | PRIVATE | |
-   * API-PERMISSION | GENERAL | | API-RATE-LIMIT-POOL | SPOT | | API-RATE-LIMIT-WEIGHT | 10 |
-   * +-----------------------+---------+
+   * Get Loan Market
+   *
+   * <p>This API endpoint is used to get the information about the currencies available for lending.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : SPOT
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : GENERAL
+   *   <li>API-RATE-LIMIT-POOL : SPOT
+   *   <li>API-RATE-LIMIT-WEIGHT : 10
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470212">docs</a>
    */
   GetLoanMarketResp getLoanMarket(GetLoanMarketReq req);
 
   /**
-   * Get Loan Market Interest Rate This API endpoint is used to get the interest rates of the margin
-   * lending market over the past 7 days. <a
-   * href="https://www.kucoin.com/docs-new/api-3470215">docs</a> +-----------------------+--------+
-   * | Extra API Info | Value | +-----------------------+--------+ | API-DOMAIN | SPOT | |
-   * API-CHANNEL | PUBLIC | | API-PERMISSION | NULL | | API-RATE-LIMIT-POOL | PUBLIC | |
-   * API-RATE-LIMIT-WEIGHT | 5 | +-----------------------+--------+
+   * Get Loan Market Interest Rate
+   *
+   * <p>This API endpoint is used to get the interest rates of the margin lending market over the
+   * past 7 days.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : SPOT
+   *   <li>API-CHANNEL : PUBLIC
+   *   <li>API-PERMISSION : NULL
+   *   <li>API-RATE-LIMIT-POOL : PUBLIC
+   *   <li>API-RATE-LIMIT-WEIGHT : 5
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470215">docs</a>
    */
   GetLoanMarketInterestRateResp getLoanMarketInterestRate(GetLoanMarketInterestRateReq req);
 
   /**
-   * Purchase Invest credit in the market and earn interest <a
-   * href="https://www.kucoin.com/docs-new/api-3470216">docs</a> +-----------------------+---------+
-   * | Extra API Info | Value | +-----------------------+---------+ | API-DOMAIN | SPOT | |
-   * API-CHANNEL | PRIVATE | | API-PERMISSION | MARGIN | | API-RATE-LIMIT-POOL | SPOT | |
-   * API-RATE-LIMIT-WEIGHT | 15 | +-----------------------+---------+
+   * Purchase
+   *
+   * <p>Invest credit in the market and earn interest
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : SPOT
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : MARGIN
+   *   <li>API-RATE-LIMIT-POOL : SPOT
+   *   <li>API-RATE-LIMIT-WEIGHT : 15
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470216">docs</a>
    */
   PurchaseResp purchase(PurchaseReq req);
 
   /**
-   * Modify Purchase This API endpoint is used to update the interest rates of subscription orders,
-   * which will take effect at the beginning of the next hour. Please ensure that the funds are in
-   * the main (funding) account. <a href="https://www.kucoin.com/docs-new/api-3470217">docs</a>
-   * +-----------------------+---------+ | Extra API Info | Value |
-   * +-----------------------+---------+ | API-DOMAIN | SPOT | | API-CHANNEL | PRIVATE | |
-   * API-PERMISSION | MARGIN | | API-RATE-LIMIT-POOL | SPOT | | API-RATE-LIMIT-WEIGHT | 10 |
-   * +-----------------------+---------+
+   * Modify Purchase
+   *
+   * <p>This API endpoint is used to update the interest rates of subscription orders, which will
+   * take effect at the beginning of the next hour. Please ensure that the funds are in the main
+   * (funding) account.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : SPOT
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : MARGIN
+   *   <li>API-RATE-LIMIT-POOL : SPOT
+   *   <li>API-RATE-LIMIT-WEIGHT : 10
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470217">docs</a>
    */
   ModifyPurchaseResp modifyPurchase(ModifyPurchaseReq req);
 
   /**
-   * Get Purchase Orders This API endpoint provides a pagination query for the purchase orders. <a
-   * href="https://www.kucoin.com/docs-new/api-3470213">docs</a> +-----------------------+---------+
-   * | Extra API Info | Value | +-----------------------+---------+ | API-DOMAIN | SPOT | |
-   * API-CHANNEL | PRIVATE | | API-PERMISSION | GENERAL | | API-RATE-LIMIT-POOL | SPOT | |
-   * API-RATE-LIMIT-WEIGHT | 10 | +-----------------------+---------+
+   * Get Purchase Orders
+   *
+   * <p>This API endpoint provides a pagination query for the purchase orders.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : SPOT
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : GENERAL
+   *   <li>API-RATE-LIMIT-POOL : SPOT
+   *   <li>API-RATE-LIMIT-WEIGHT : 10
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470213">docs</a>
    */
   GetPurchaseOrdersResp getPurchaseOrders(GetPurchaseOrdersReq req);
 
   /**
-   * Redeem Redeem your loan order. <a href="https://www.kucoin.com/docs-new/api-3470218">docs</a>
-   * +-----------------------+---------+ | Extra API Info | Value |
-   * +-----------------------+---------+ | API-DOMAIN | SPOT | | API-CHANNEL | PRIVATE | |
-   * API-PERMISSION | MARGIN | | API-RATE-LIMIT-POOL | SPOT | | API-RATE-LIMIT-WEIGHT | 15 |
-   * +-----------------------+---------+
+   * Redeem
+   *
+   * <p>Redeem your loan order.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : SPOT
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : MARGIN
+   *   <li>API-RATE-LIMIT-POOL : SPOT
+   *   <li>API-RATE-LIMIT-WEIGHT : 15
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470218">docs</a>
    */
   RedeemResp redeem(RedeemReq req);
 
   /**
-   * Get Redeem Orders This API endpoint provides pagination query for the redeem orders. <a
-   * href="https://www.kucoin.com/docs-new/api-3470214">docs</a> +-----------------------+---------+
-   * | Extra API Info | Value | +-----------------------+---------+ | API-DOMAIN | SPOT | |
-   * API-CHANNEL | PRIVATE | | API-PERMISSION | GENERAL | | API-RATE-LIMIT-POOL | SPOT | |
-   * API-RATE-LIMIT-WEIGHT | 10 | +-----------------------+---------+
+   * Get Redeem Orders
+   *
+   * <p>This API endpoint provides pagination query for the redeem orders.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : SPOT
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : GENERAL
+   *   <li>API-RATE-LIMIT-POOL : SPOT
+   *   <li>API-RATE-LIMIT-WEIGHT : 10
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470214">docs</a>
    */
   GetRedeemOrdersResp getRedeemOrders(GetRedeemOrdersReq req);
 }

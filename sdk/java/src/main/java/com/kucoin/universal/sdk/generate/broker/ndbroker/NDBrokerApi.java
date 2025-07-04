@@ -4,152 +4,312 @@ package com.kucoin.universal.sdk.generate.broker.ndbroker;
 
 public interface NDBrokerApi {
   /**
-   * Submit KYC This endpointcan submit kyc information for a sub-account of nd broker <a
-   * href="https://www.kucoin.com/docs-new/api-3472406">docs</a> +-----------------------+---------+
-   * | Extra API Info | Value | +-----------------------+---------+ | API-DOMAIN | BROKER | |
-   * API-CHANNEL | PRIVATE | | API-PERMISSION | GENERAL | | API-RATE-LIMIT-POOL | BROKER | |
-   * API-RATE-LIMIT-WEIGHT | NULL | +-----------------------+---------+
+   * Submit KYC
+   *
+   * <p>This endpointcan submit kyc information for a sub-account of nd broker
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : BROKER
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : GENERAL
+   *   <li>API-RATE-LIMIT-POOL : BROKER
+   *   <li>API-RATE-LIMIT-WEIGHT : NULL
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3472406">docs</a>
    */
   SubmitKYCResp submitKYC(SubmitKYCReq req);
 
   /**
-   * Get KYC Status This endpoint can query the specified Kyc status <a
-   * href="https://www.kucoin.com/docs-new/api-3472407">docs</a> +-----------------------+---------+
-   * | Extra API Info | Value | +-----------------------+---------+ | API-DOMAIN | BROKER | |
-   * API-CHANNEL | PRIVATE | | API-PERMISSION | GENERAL | | API-RATE-LIMIT-POOL | BROKER | |
-   * API-RATE-LIMIT-WEIGHT | NULL | +-----------------------+---------+
+   * Get KYC Status
+   *
+   * <p>This endpoint can query the specified Kyc status
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : BROKER
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : GENERAL
+   *   <li>API-RATE-LIMIT-POOL : BROKER
+   *   <li>API-RATE-LIMIT-WEIGHT : NULL
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3472407">docs</a>
    */
   GetKYCStatusResp getKYCStatus(GetKYCStatusReq req);
 
   /**
-   * Get KYC Status List This endpoint can query the specified Kyc status list <a
-   * href="https://www.kucoin.com/docs-new/api-3472408">docs</a> +-----------------------+---------+
-   * | Extra API Info | Value | +-----------------------+---------+ | API-DOMAIN | BROKER | |
-   * API-CHANNEL | PRIVATE | | API-PERMISSION | GENERAL | | API-RATE-LIMIT-POOL | BROKER | |
-   * API-RATE-LIMIT-WEIGHT | NULL | +-----------------------+---------+
+   * Get KYC Status List
+   *
+   * <p>This endpoint can query the specified Kyc status list
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : BROKER
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : GENERAL
+   *   <li>API-RATE-LIMIT-POOL : BROKER
+   *   <li>API-RATE-LIMIT-WEIGHT : NULL
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3472408">docs</a>
    */
   GetKYCStatusListResp getKYCStatusList(GetKYCStatusListReq req);
 
   /**
-   * Get Broker Info This endpoint supports querying the basic information of the current Broker. <a
-   * href="https://www.kucoin.com/docs-new/api-3470282">docs</a> +-----------------------+---------+
-   * | Extra API Info | Value | +-----------------------+---------+ | API-DOMAIN | BROKER | |
-   * API-CHANNEL | PRIVATE | | API-PERMISSION | GENERAL | | API-RATE-LIMIT-POOL | BROKER | |
-   * API-RATE-LIMIT-WEIGHT | 2 | +-----------------------+---------+
+   * Get Broker Info
+   *
+   * <p>This endpoint supports querying the basic information of the current Broker.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : BROKER
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : GENERAL
+   *   <li>API-RATE-LIMIT-POOL : BROKER
+   *   <li>API-RATE-LIMIT-WEIGHT : 2
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470282">docs</a>
    */
   GetBrokerInfoResp getBrokerInfo(GetBrokerInfoReq req);
 
   /**
-   * Add sub-account This endpoint supports Broker users creating sub-accounts. <a
-   * href="https://www.kucoin.com/docs-new/api-3470290">docs</a> +-----------------------+---------+
-   * | Extra API Info | Value | +-----------------------+---------+ | API-DOMAIN | BROKER | |
-   * API-CHANNEL | PRIVATE | | API-PERMISSION | GENERAL | | API-RATE-LIMIT-POOL | BROKER | |
-   * API-RATE-LIMIT-WEIGHT | 3 | +-----------------------+---------+
+   * Add sub-account
+   *
+   * <p>This endpoint supports Broker users creating sub-accounts.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : BROKER
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : GENERAL
+   *   <li>API-RATE-LIMIT-POOL : BROKER
+   *   <li>API-RATE-LIMIT-WEIGHT : 3
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470290">docs</a>
    */
   AddSubAccountResp addSubAccount(AddSubAccountReq req);
 
   /**
-   * Get sub-account This interface supports querying sub-accounts created by Broker. <a
-   * href="https://www.kucoin.com/docs-new/api-3470283">docs</a> +-----------------------+---------+
-   * | Extra API Info | Value | +-----------------------+---------+ | API-DOMAIN | BROKER | |
-   * API-CHANNEL | PRIVATE | | API-PERMISSION | GENERAL | | API-RATE-LIMIT-POOL | BROKER | |
-   * API-RATE-LIMIT-WEIGHT | 2 | +-----------------------+---------+
+   * Get sub-account
+   *
+   * <p>This interface supports querying sub-accounts created by Broker.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : BROKER
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : GENERAL
+   *   <li>API-RATE-LIMIT-POOL : BROKER
+   *   <li>API-RATE-LIMIT-WEIGHT : 2
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470283">docs</a>
    */
   GetSubAccountResp getSubAccount(GetSubAccountReq req);
 
   /**
-   * Add sub-account API This interface supports the creation of Broker sub-account APIKEY. <a
-   * href="https://www.kucoin.com/docs-new/api-3470291">docs</a> +-----------------------+---------+
-   * | Extra API Info | Value | +-----------------------+---------+ | API-DOMAIN | BROKER | |
-   * API-CHANNEL | PRIVATE | | API-PERMISSION | GENERAL | | API-RATE-LIMIT-POOL | BROKER | |
-   * API-RATE-LIMIT-WEIGHT | 3 | +-----------------------+---------+
+   * Add sub-account API
+   *
+   * <p>This interface supports the creation of Broker sub-account APIKEY.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : BROKER
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : GENERAL
+   *   <li>API-RATE-LIMIT-POOL : BROKER
+   *   <li>API-RATE-LIMIT-WEIGHT : 3
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470291">docs</a>
    */
   AddSubAccountApiResp addSubAccountApi(AddSubAccountApiReq req);
 
   /**
-   * Get sub-account API This interface supports querying the Broker’s sub-account APIKEY. <a
-   * href="https://www.kucoin.com/docs-new/api-3470284">docs</a> +-----------------------+---------+
-   * | Extra API Info | Value | +-----------------------+---------+ | API-DOMAIN | BROKER | |
-   * API-CHANNEL | PRIVATE | | API-PERMISSION | GENERAL | | API-RATE-LIMIT-POOL | BROKER | |
-   * API-RATE-LIMIT-WEIGHT | 2 | +-----------------------+---------+
+   * Get sub-account API
+   *
+   * <p>This interface supports querying the Broker’s sub-account APIKEY.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : BROKER
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : GENERAL
+   *   <li>API-RATE-LIMIT-POOL : BROKER
+   *   <li>API-RATE-LIMIT-WEIGHT : 2
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470284">docs</a>
    */
   GetSubAccountAPIResp getSubAccountAPI(GetSubAccountAPIReq req);
 
   /**
-   * Modify sub-account API This interface supports modifying the Broker’s sub-account APIKEY. <a
-   * href="https://www.kucoin.com/docs-new/api-3470292">docs</a> +-----------------------+---------+
-   * | Extra API Info | Value | +-----------------------+---------+ | API-DOMAIN | BROKER | |
-   * API-CHANNEL | PRIVATE | | API-PERMISSION | GENERAL | | API-RATE-LIMIT-POOL | BROKER | |
-   * API-RATE-LIMIT-WEIGHT | 3 | +-----------------------+---------+
+   * Modify sub-account API
+   *
+   * <p>This interface supports modifying the Broker’s sub-account APIKEY.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : BROKER
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : GENERAL
+   *   <li>API-RATE-LIMIT-POOL : BROKER
+   *   <li>API-RATE-LIMIT-WEIGHT : 3
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470292">docs</a>
    */
   ModifySubAccountApiResp modifySubAccountApi(ModifySubAccountApiReq req);
 
   /**
-   * Delete sub-account API This interface supports deleting Broker’s sub-account APIKEY. <a
-   * href="https://www.kucoin.com/docs-new/api-3470289">docs</a> +-----------------------+---------+
-   * | Extra API Info | Value | +-----------------------+---------+ | API-DOMAIN | BROKER | |
-   * API-CHANNEL | PRIVATE | | API-PERMISSION | GENERAL | | API-RATE-LIMIT-POOL | BROKER | |
-   * API-RATE-LIMIT-WEIGHT | 3 | +-----------------------+---------+
+   * Delete sub-account API
+   *
+   * <p>This interface supports deleting Broker’s sub-account APIKEY.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : BROKER
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : GENERAL
+   *   <li>API-RATE-LIMIT-POOL : BROKER
+   *   <li>API-RATE-LIMIT-WEIGHT : 3
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470289">docs</a>
    */
   DeleteSubAccountAPIResp deleteSubAccountAPI(DeleteSubAccountAPIReq req);
 
   /**
-   * Transfer This endpoint supports fund transfer between Broker accounts and Broker sub-accounts.
-   * Please be aware that withdrawal from sub-accounts is not directly supported. Broker has to
-   * transfer funds from broker sub-account to broker account to initiate the withdrawals. <a
-   * href="https://www.kucoin.com/docs-new/api-3470293">docs</a> +-----------------------+---------+
-   * | Extra API Info | Value | +-----------------------+---------+ | API-DOMAIN | BROKER | |
-   * API-CHANNEL | PRIVATE | | API-PERMISSION | GENERAL | | API-RATE-LIMIT-POOL | BROKER | |
-   * API-RATE-LIMIT-WEIGHT | 1 | +-----------------------+---------+
+   * Transfer
+   *
+   * <p>This endpoint supports fund transfer between Broker accounts and Broker sub-accounts. Please
+   * be aware that withdrawal from sub-accounts is not directly supported. Broker has to transfer
+   * funds from broker sub-account to broker account to initiate the withdrawals.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : BROKER
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : GENERAL
+   *   <li>API-RATE-LIMIT-POOL : BROKER
+   *   <li>API-RATE-LIMIT-WEIGHT : 1
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470293">docs</a>
    */
   TransferResp transfer(TransferReq req);
 
   /**
-   * Get Transfer History This endpoint supports querying the transfer records of the broker itself
-   * and its created sub-accounts. <a href="https://www.kucoin.com/docs-new/api-3470286">docs</a>
-   * +-----------------------+---------+ | Extra API Info | Value |
-   * +-----------------------+---------+ | API-DOMAIN | BROKER | | API-CHANNEL | PRIVATE | |
-   * API-PERMISSION | GENERAL | | API-RATE-LIMIT-POOL | BROKER | | API-RATE-LIMIT-WEIGHT | 1 |
-   * +-----------------------+---------+
+   * Get Transfer History
+   *
+   * <p>This endpoint supports querying the transfer records of the broker itself and its created
+   * sub-accounts.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : BROKER
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : GENERAL
+   *   <li>API-RATE-LIMIT-POOL : BROKER
+   *   <li>API-RATE-LIMIT-WEIGHT : 1
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470286">docs</a>
    */
   GetTransferHistoryResp getTransferHistory(GetTransferHistoryReq req);
 
   /**
-   * Get Deposit List The deposit records of each sub-account under the ND broker can be obtained at
-   * this endpoint. <a href="https://www.kucoin.com/docs-new/api-3470285">docs</a>
-   * +-----------------------+---------+ | Extra API Info | Value |
-   * +-----------------------+---------+ | API-DOMAIN | BROKER | | API-CHANNEL | PRIVATE | |
-   * API-PERMISSION | GENERAL | | API-RATE-LIMIT-POOL | BROKER | | API-RATE-LIMIT-WEIGHT | 10 |
-   * +-----------------------+---------+
+   * Get Deposit List
+   *
+   * <p>The deposit records of each sub-account under the ND broker can be obtained at this
+   * endpoint.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : BROKER
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : GENERAL
+   *   <li>API-RATE-LIMIT-POOL : BROKER
+   *   <li>API-RATE-LIMIT-WEIGHT : 10
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470285">docs</a>
    */
   GetDepositListResp getDepositList(GetDepositListReq req);
 
   /**
-   * Get Deposit Detail This endpoint supports querying the deposit record of sub-accounts created
-   * by a Broker (excluding main account of ND broker). <a
-   * href="https://www.kucoin.com/docs-new/api-3470288">docs</a> +-----------------------+---------+
-   * | Extra API Info | Value | +-----------------------+---------+ | API-DOMAIN | BROKER | |
-   * API-CHANNEL | PRIVATE | | API-PERMISSION | GENERAL | | API-RATE-LIMIT-POOL | BROKER | |
-   * API-RATE-LIMIT-WEIGHT | 1 | +-----------------------+---------+
+   * Get Deposit Detail
+   *
+   * <p>This endpoint supports querying the deposit record of sub-accounts created by a Broker
+   * (excluding main account of ND broker).
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : BROKER
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : GENERAL
+   *   <li>API-RATE-LIMIT-POOL : BROKER
+   *   <li>API-RATE-LIMIT-WEIGHT : 1
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470288">docs</a>
    */
   GetDepositDetailResp getDepositDetail(GetDepositDetailReq req);
 
   /**
-   * Get Withdraw Detail This endpoint supports querying the withdrawal records of sub-accounts
-   * created by a Broker (excluding main account of ND broker). <a
-   * href="https://www.kucoin.com/docs-new/api-3470287">docs</a> +-----------------------+---------+
-   * | Extra API Info | Value | +-----------------------+---------+ | API-DOMAIN | BROKER | |
-   * API-CHANNEL | PRIVATE | | API-PERMISSION | GENERAL | | API-RATE-LIMIT-POOL | BROKER | |
-   * API-RATE-LIMIT-WEIGHT | 1 | +-----------------------+---------+
+   * Get Withdraw Detail
+   *
+   * <p>This endpoint supports querying the withdrawal records of sub-accounts created by a Broker
+   * (excluding main account of ND broker).
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : BROKER
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : GENERAL
+   *   <li>API-RATE-LIMIT-POOL : BROKER
+   *   <li>API-RATE-LIMIT-WEIGHT : 1
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470287">docs</a>
    */
   GetWithdrawDetailResp getWithdrawDetail(GetWithdrawDetailReq req);
 
   /**
-   * Get Broker Rebate This interface supports the downloading of Broker rebate orders. <a
-   * href="https://www.kucoin.com/docs-new/api-3470281">docs</a> +-----------------------+---------+
-   * | Extra API Info | Value | +-----------------------+---------+ | API-DOMAIN | BROKER | |
-   * API-CHANNEL | PRIVATE | | API-PERMISSION | GENERAL | | API-RATE-LIMIT-POOL | BROKER | |
-   * API-RATE-LIMIT-WEIGHT | 3 | +-----------------------+---------+
+   * Get Broker Rebate
+   *
+   * <p>This interface supports the downloading of Broker rebate orders.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : BROKER
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : GENERAL
+   *   <li>API-RATE-LIMIT-POOL : BROKER
+   *   <li>API-RATE-LIMIT-WEIGHT : 3
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470281">docs</a>
    */
   GetRebaseResp getRebase(GetRebaseReq req);
 }

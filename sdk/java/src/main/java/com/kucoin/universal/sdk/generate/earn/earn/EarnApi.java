@@ -4,91 +4,181 @@ package com.kucoin.universal.sdk.generate.earn.earn;
 
 public interface EarnApi {
   /**
-   * Purchase This endpoint allows you to subscribe Earn products. <a
-   * href="https://www.kucoin.com/docs-new/api-3470268">docs</a> +-----------------------+---------+
-   * | Extra API Info | Value | +-----------------------+---------+ | API-DOMAIN | SPOT | |
-   * API-CHANNEL | PRIVATE | | API-PERMISSION | EARN | | API-RATE-LIMIT-POOL | EARN | |
-   * API-RATE-LIMIT-WEIGHT | 5 | +-----------------------+---------+
+   * Purchase
+   *
+   * <p>This endpoint allows you to subscribe Earn products.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : SPOT
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : EARN
+   *   <li>API-RATE-LIMIT-POOL : EARN
+   *   <li>API-RATE-LIMIT-WEIGHT : 5
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470268">docs</a>
    */
   PurchaseResp purchase(PurchaseReq req);
 
   /**
-   * Get Redeem Preview This endpoint allows you to subscribe Earn products. <a
-   * href="https://www.kucoin.com/docs-new/api-3470269">docs</a> +-----------------------+---------+
-   * | Extra API Info | Value | +-----------------------+---------+ | API-DOMAIN | SPOT | |
-   * API-CHANNEL | PRIVATE | | API-PERMISSION | EARN | | API-RATE-LIMIT-POOL | EARN | |
-   * API-RATE-LIMIT-WEIGHT | 5 | +-----------------------+---------+
+   * Get Redeem Preview
+   *
+   * <p>This endpoint allows you to subscribe Earn products.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : SPOT
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : EARN
+   *   <li>API-RATE-LIMIT-POOL : EARN
+   *   <li>API-RATE-LIMIT-WEIGHT : 5
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470269">docs</a>
    */
   GetRedeemPreviewResp getRedeemPreview(GetRedeemPreviewReq req);
 
   /**
-   * Redeem This endpoint allows you to redeem Earn products by using holding ID. If the current
-   * holding is fully redeemed or in the process of being redeemed, it means that the holding does
-   * not exist. <a href="https://www.kucoin.com/docs-new/api-3470270">docs</a>
-   * +-----------------------+---------+ | Extra API Info | Value |
-   * +-----------------------+---------+ | API-DOMAIN | SPOT | | API-CHANNEL | PRIVATE | |
-   * API-PERMISSION | EARN | | API-RATE-LIMIT-POOL | EARN | | API-RATE-LIMIT-WEIGHT | 5 |
-   * +-----------------------+---------+
+   * Redeem
+   *
+   * <p>This endpoint allows you to redeem Earn products by using holding ID. If the current holding
+   * is fully redeemed or in the process of being redeemed, it means that the holding does not
+   * exist.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : SPOT
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : EARN
+   *   <li>API-RATE-LIMIT-POOL : EARN
+   *   <li>API-RATE-LIMIT-WEIGHT : 5
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470270">docs</a>
    */
   RedeemResp redeem(RedeemReq req);
 
   /**
-   * Get Savings Products Available savings products can be obtained at this endpoint. If no
-   * products are available, an empty list is returned. <a
-   * href="https://www.kucoin.com/docs-new/api-3470271">docs</a> +-----------------------+---------+
-   * | Extra API Info | Value | +-----------------------+---------+ | API-DOMAIN | SPOT | |
-   * API-CHANNEL | PRIVATE | | API-PERMISSION | GENERAL | | API-RATE-LIMIT-POOL | EARN | |
-   * API-RATE-LIMIT-WEIGHT | 5 | +-----------------------+---------+
+   * Get Savings Products
+   *
+   * <p>Available savings products can be obtained at this endpoint. If no products are available,
+   * an empty list is returned.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : SPOT
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : GENERAL
+   *   <li>API-RATE-LIMIT-POOL : EARN
+   *   <li>API-RATE-LIMIT-WEIGHT : 5
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470271">docs</a>
    */
   GetSavingsProductsResp getSavingsProducts(GetSavingsProductsReq req);
 
   /**
-   * Get Promotion Products Available limited-duration products can be obtained at this endpoint. If
-   * no products are available, an empty list is returned. <a
-   * href="https://www.kucoin.com/docs-new/api-3470272">docs</a> +-----------------------+---------+
-   * | Extra API Info | Value | +-----------------------+---------+ | API-DOMAIN | SPOT | |
-   * API-CHANNEL | PRIVATE | | API-PERMISSION | GENERAL | | API-RATE-LIMIT-POOL | EARN | |
-   * API-RATE-LIMIT-WEIGHT | NULL | +-----------------------+---------+
+   * Get Promotion Products
+   *
+   * <p>Available limited-duration products can be obtained at this endpoint. If no products are
+   * available, an empty list is returned.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : SPOT
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : GENERAL
+   *   <li>API-RATE-LIMIT-POOL : EARN
+   *   <li>API-RATE-LIMIT-WEIGHT : NULL
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470272">docs</a>
    */
   GetPromotionProductsResp getPromotionProducts(GetPromotionProductsReq req);
 
   /**
-   * Get Staking Products Available staking products can be obtained at this endpoint. If no
-   * products are available, an empty list is returned. <a
-   * href="https://www.kucoin.com/docs-new/api-3470274">docs</a> +-----------------------+---------+
-   * | Extra API Info | Value | +-----------------------+---------+ | API-DOMAIN | SPOT | |
-   * API-CHANNEL | PRIVATE | | API-PERMISSION | GENERAL | | API-RATE-LIMIT-POOL | EARN | |
-   * API-RATE-LIMIT-WEIGHT | 5 | +-----------------------+---------+
+   * Get Staking Products
+   *
+   * <p>Available staking products can be obtained at this endpoint. If no products are available,
+   * an empty list is returned.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : SPOT
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : GENERAL
+   *   <li>API-RATE-LIMIT-POOL : EARN
+   *   <li>API-RATE-LIMIT-WEIGHT : 5
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470274">docs</a>
    */
   GetStakingProductsResp getStakingProducts(GetStakingProductsReq req);
 
   /**
-   * Get KCS Staking Products Available KCS staking products can be obtained at this endpoint. If no
-   * products are available, an empty list is returned. <a
-   * href="https://www.kucoin.com/docs-new/api-3470275">docs</a> +-----------------------+---------+
-   * | Extra API Info | Value | +-----------------------+---------+ | API-DOMAIN | SPOT | |
-   * API-CHANNEL | PRIVATE | | API-PERMISSION | GENERAL | | API-RATE-LIMIT-POOL | EARN | |
-   * API-RATE-LIMIT-WEIGHT | 5 | +-----------------------+---------+
+   * Get KCS Staking Products
+   *
+   * <p>Available KCS staking products can be obtained at this endpoint. If no products are
+   * available, an empty list is returned.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : SPOT
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : GENERAL
+   *   <li>API-RATE-LIMIT-POOL : EARN
+   *   <li>API-RATE-LIMIT-WEIGHT : 5
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470275">docs</a>
    */
   GetKcsStakingProductsResp getKcsStakingProducts(GetKcsStakingProductsReq req);
 
   /**
-   * Get ETH Staking Products Available ETH staking products can be obtained at this endpoint. If no
-   * products are available, an empty list is returned. <a
-   * href="https://www.kucoin.com/docs-new/api-3470276">docs</a> +-----------------------+---------+
-   * | Extra API Info | Value | +-----------------------+---------+ | API-DOMAIN | SPOT | |
-   * API-CHANNEL | PRIVATE | | API-PERMISSION | GENERAL | | API-RATE-LIMIT-POOL | EARN | |
-   * API-RATE-LIMIT-WEIGHT | 5 | +-----------------------+---------+
+   * Get ETH Staking Products
+   *
+   * <p>Available ETH staking products can be obtained at this endpoint. If no products are
+   * available, an empty list is returned.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : SPOT
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : GENERAL
+   *   <li>API-RATE-LIMIT-POOL : EARN
+   *   <li>API-RATE-LIMIT-WEIGHT : 5
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470276">docs</a>
    */
   GetETHStakingProductsResp getETHStakingProducts(GetETHStakingProductsReq req);
 
   /**
-   * Get Account Holding Information on currently held assets can be obtained at this endpoint. If
-   * no assets are currently held, an empty list is returned. <a
-   * href="https://www.kucoin.com/docs-new/api-3470273">docs</a> +-----------------------+---------+
-   * | Extra API Info | Value | +-----------------------+---------+ | API-DOMAIN | SPOT | |
-   * API-CHANNEL | PRIVATE | | API-PERMISSION | GENERAL | | API-RATE-LIMIT-POOL | EARN | |
-   * API-RATE-LIMIT-WEIGHT | 5 | +-----------------------+---------+
+   * Get Account Holding
+   *
+   * <p>Information on currently held assets can be obtained at this endpoint. If no assets are
+   * currently held, an empty list is returned.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : SPOT
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : GENERAL
+   *   <li>API-RATE-LIMIT-POOL : EARN
+   *   <li>API-RATE-LIMIT-WEIGHT : 5
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470273">docs</a>
    */
   GetAccountHoldingResp getAccountHolding(GetAccountHoldingReq req);
 }

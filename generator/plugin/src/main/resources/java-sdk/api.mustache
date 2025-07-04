@@ -6,12 +6,20 @@ public interface {{classname}} {
     {{#operation}}
     /**
     * {{summary}}
-    * {{notes}}{{#isDeprecated}}
+    *
+    * <p>{{notes}}
+    *
+    * <p>Extra API Info:
+    *
+    * <ul>
+    {{#vendorExtensions.x-extra-comment-kv}}
+    * <li>{{.}}
+    {{/vendorExtensions.x-extra-comment-kv}}
+    * </ul>
+    *
+    * @see <a href="{{vendorExtensions.x-api-doc}}">docs</a>
+    * {{#isDeprecated}}
     * @deprecated{{/isDeprecated}}
-    * <a href="{{vendorExtensions.x-api-doc}}">docs</a>
-    {{#vendorExtensions.x-extra-comment}}
-    * {{.}}
-    {{/vendorExtensions.x-extra-comment}}
     */
     {{vendorExtensions.x-meta.methodServiceFmt}}Resp {{vendorExtensions.x-meta.method}}({{#hasParams}}{{vendorExtensions.x-meta.methodServiceFmt}}Req req{{/hasParams}});
 

@@ -4,78 +4,141 @@ package com.kucoin.universal.sdk.generate.account.withdrawal;
 
 public interface WithdrawalApi {
   /**
-   * Get Withdrawal Quotas This interface can obtain the withdrawal quota information of this
-   * currency. <a href="https://www.kucoin.com/docs-new/api-3470143">docs</a>
-   * +-----------------------+------------+ | Extra API Info | Value |
-   * +-----------------------+------------+ | API-DOMAIN | SPOT | | API-CHANNEL | PRIVATE | |
-   * API-PERMISSION | GENERAL | | API-RATE-LIMIT-POOL | MANAGEMENT | | API-RATE-LIMIT-WEIGHT | 20 |
-   * +-----------------------+------------+
+   * Get Withdrawal Quotas
+   *
+   * <p>This interface can obtain the withdrawal quota information of this currency.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : SPOT
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : GENERAL
+   *   <li>API-RATE-LIMIT-POOL : MANAGEMENT
+   *   <li>API-RATE-LIMIT-WEIGHT : 20
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470143">docs</a>
    */
   GetWithdrawalQuotasResp getWithdrawalQuotas(GetWithdrawalQuotasReq req);
 
   /**
-   * Withdraw (V3) Use this interface to withdraw the specified currency. <a
-   * href="https://www.kucoin.com/docs-new/api-3470146">docs</a>
-   * +-----------------------+------------+ | Extra API Info | Value |
-   * +-----------------------+------------+ | API-DOMAIN | SPOT | | API-CHANNEL | PRIVATE | |
-   * API-PERMISSION | WITHDRAWAL | | API-RATE-LIMIT-POOL | MANAGEMENT | | API-RATE-LIMIT-WEIGHT | 5
-   * | +-----------------------+------------+
+   * Withdraw (V3)
+   *
+   * <p>Use this interface to withdraw the specified currency.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : SPOT
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : WITHDRAWAL
+   *   <li>API-RATE-LIMIT-POOL : MANAGEMENT
+   *   <li>API-RATE-LIMIT-WEIGHT : 5
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470146">docs</a>
    */
   WithdrawalV3Resp withdrawalV3(WithdrawalV3Req req);
 
   /**
-   * Cancel Withdrawal This interface can cancel the withdrawal. Only withdrawal requests with
-   * PROCESSING status can be canceled. <a
-   * href="https://www.kucoin.com/docs-new/api-3470144">docs</a>
-   * +-----------------------+------------+ | Extra API Info | Value |
-   * +-----------------------+------------+ | API-DOMAIN | SPOT | | API-CHANNEL | PRIVATE | |
-   * API-PERMISSION | WITHDRAWAL | | API-RATE-LIMIT-POOL | MANAGEMENT | | API-RATE-LIMIT-WEIGHT | 20
-   * | +-----------------------+------------+
+   * Cancel Withdrawal
+   *
+   * <p>This interface can cancel the withdrawal. Only withdrawal requests with PROCESSING status
+   * can be canceled.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : SPOT
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : WITHDRAWAL
+   *   <li>API-RATE-LIMIT-POOL : MANAGEMENT
+   *   <li>API-RATE-LIMIT-WEIGHT : 20
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470144">docs</a>
    */
   CancelWithdrawalResp cancelWithdrawal(CancelWithdrawalReq req);
 
   /**
-   * Get Withdrawal History Request a withdrawal list via this endpoint. Items are paginated and
-   * sorted to show the latest first. See the Pagination section for retrieving additional entries
-   * after the first page. <a href="https://www.kucoin.com/docs-new/api-3470145">docs</a>
-   * +-----------------------+------------+ | Extra API Info | Value |
-   * +-----------------------+------------+ | API-DOMAIN | SPOT | | API-CHANNEL | PRIVATE | |
-   * API-PERMISSION | GENERAL | | API-RATE-LIMIT-POOL | MANAGEMENT | | API-RATE-LIMIT-WEIGHT | 20 |
-   * +-----------------------+------------+
+   * Get Withdrawal History
+   *
+   * <p>Request a withdrawal list via this endpoint. Items are paginated and sorted to show the
+   * latest first. See the Pagination section for retrieving additional entries after the first
+   * page.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : SPOT
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : GENERAL
+   *   <li>API-RATE-LIMIT-POOL : MANAGEMENT
+   *   <li>API-RATE-LIMIT-WEIGHT : 20
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470145">docs</a>
    */
   GetWithdrawalHistoryResp getWithdrawalHistory(GetWithdrawalHistoryReq req);
 
   /**
-   * Get Withdrawal History By ID Request a withdrawal history by id via this endpoint. <a
-   * href="https://www.kucoin.com/docs-new/api-3471890">docs</a>
-   * +-----------------------+------------+ | Extra API Info | Value |
-   * +-----------------------+------------+ | API-DOMAIN | SPOT | | API-CHANNEL | PRIVATE | |
-   * API-PERMISSION | GENERAL | | API-RATE-LIMIT-POOL | MANAGEMENT | | API-RATE-LIMIT-WEIGHT | 20 |
-   * +-----------------------+------------+
+   * Get Withdrawal History By ID
+   *
+   * <p>Request a withdrawal history by id via this endpoint.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : SPOT
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : GENERAL
+   *   <li>API-RATE-LIMIT-POOL : MANAGEMENT
+   *   <li>API-RATE-LIMIT-WEIGHT : 20
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3471890">docs</a>
    */
   GetWithdrawalHistoryByIdResp getWithdrawalHistoryById(GetWithdrawalHistoryByIdReq req);
 
   /**
-   * Get Withdrawal History - Old Request a deposit list via this endpoint. Items are paginated and
-   * sorted to show the latest first. See the Pagination section for retrieving additional entries
-   * after the first page.
+   * Get Withdrawal History - Old
    *
-   * @deprecated <a href="https://www.kucoin.com/docs-new/api-3470308">docs</a>
-   *     +-----------------------+------------+ | Extra API Info | Value |
-   *     +-----------------------+------------+ | API-DOMAIN | SPOT | | API-CHANNEL | PRIVATE | |
-   *     API-PERMISSION | GENERAL | | API-RATE-LIMIT-POOL | MANAGEMENT | | API-RATE-LIMIT-WEIGHT |
-   *     20 | +-----------------------+------------+
+   * <p>Request a deposit list via this endpoint. Items are paginated and sorted to show the latest
+   * first. See the Pagination section for retrieving additional entries after the first page.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : SPOT
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : GENERAL
+   *   <li>API-RATE-LIMIT-POOL : MANAGEMENT
+   *   <li>API-RATE-LIMIT-WEIGHT : 20
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470308">docs</a>
+   * @deprecated
    */
   GetWithdrawalHistoryOldResp getWithdrawalHistoryOld(GetWithdrawalHistoryOldReq req);
 
   /**
-   * Withdraw - V1 Use this interface to withdraw the specified currency.
+   * Withdraw - V1
    *
-   * @deprecated <a href="https://www.kucoin.com/docs-new/api-3470310">docs</a>
-   *     +-----------------------+------------+ | Extra API Info | Value |
-   *     +-----------------------+------------+ | API-DOMAIN | SPOT | | API-CHANNEL | PRIVATE | |
-   *     API-PERMISSION | WITHDRAWAL | | API-RATE-LIMIT-POOL | MANAGEMENT | | API-RATE-LIMIT-WEIGHT
-   *     | 5 | +-----------------------+------------+
+   * <p>Use this interface to withdraw the specified currency.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : SPOT
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : WITHDRAWAL
+   *   <li>API-RATE-LIMIT-POOL : MANAGEMENT
+   *   <li>API-RATE-LIMIT-WEIGHT : 5
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470310">docs</a>
+   * @deprecated
    */
   WithdrawalV1Resp withdrawalV1(WithdrawalV1Req req);
 }

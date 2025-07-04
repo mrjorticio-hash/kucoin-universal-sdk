@@ -4,60 +4,116 @@ package com.kucoin.universal.sdk.generate.margin.market;
 
 public interface MarketApi {
   /**
-   * Get Symbols - Cross Margin This endpoint allows querying the configuration of cross margin
-   * symbol. <a href="https://www.kucoin.com/docs-new/api-3470189">docs</a>
-   * +-----------------------+--------+ | Extra API Info | Value |
-   * +-----------------------+--------+ | API-DOMAIN | SPOT | | API-CHANNEL | PUBLIC | |
-   * API-PERMISSION | NULL | | API-RATE-LIMIT-POOL | PUBLIC | | API-RATE-LIMIT-WEIGHT | 3 |
-   * +-----------------------+--------+
+   * Get Symbols - Cross Margin
+   *
+   * <p>This endpoint allows querying the configuration of cross margin symbol.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : SPOT
+   *   <li>API-CHANNEL : PUBLIC
+   *   <li>API-PERMISSION : NULL
+   *   <li>API-RATE-LIMIT-POOL : PUBLIC
+   *   <li>API-RATE-LIMIT-WEIGHT : 3
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470189">docs</a>
    */
   GetCrossMarginSymbolsResp getCrossMarginSymbols(GetCrossMarginSymbolsReq req);
 
   /**
-   * Get ETF Info This interface returns leveraged token information. <a
-   * href="https://www.kucoin.com/docs-new/api-3470191">docs</a> +-----------------------+--------+
-   * | Extra API Info | Value | +-----------------------+--------+ | API-DOMAIN | SPOT | |
-   * API-CHANNEL | PUBLIC | | API-PERMISSION | NULL | | API-RATE-LIMIT-POOL | PUBLIC | |
-   * API-RATE-LIMIT-WEIGHT | 3 | +-----------------------+--------+
+   * Get ETF Info
+   *
+   * <p>This interface returns leveraged token information.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : SPOT
+   *   <li>API-CHANNEL : PUBLIC
+   *   <li>API-PERMISSION : NULL
+   *   <li>API-RATE-LIMIT-POOL : PUBLIC
+   *   <li>API-RATE-LIMIT-WEIGHT : 3
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470191">docs</a>
    */
   GetETFInfoResp getETFInfo(GetETFInfoReq req);
 
   /**
-   * Get Mark Price Detail This endpoint returns the current Mark price for specified margin trading
-   * pairs. <a href="https://www.kucoin.com/docs-new/api-3470193">docs</a>
-   * +-----------------------+--------+ | Extra API Info | Value |
-   * +-----------------------+--------+ | API-DOMAIN | SPOT | | API-CHANNEL | PUBLIC | |
-   * API-PERMISSION | NULL | | API-RATE-LIMIT-POOL | PUBLIC | | API-RATE-LIMIT-WEIGHT | 2 |
-   * +-----------------------+--------+
+   * Get Mark Price Detail
+   *
+   * <p>This endpoint returns the current Mark price for specified margin trading pairs.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : SPOT
+   *   <li>API-CHANNEL : PUBLIC
+   *   <li>API-PERMISSION : NULL
+   *   <li>API-RATE-LIMIT-POOL : PUBLIC
+   *   <li>API-RATE-LIMIT-WEIGHT : 2
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470193">docs</a>
    */
   GetMarkPriceDetailResp getMarkPriceDetail(GetMarkPriceDetailReq req);
 
   /**
-   * Get Margin Config Request the configure info of the cross margin via this endpoint. <a
-   * href="https://www.kucoin.com/docs-new/api-3470190">docs</a> +-----------------------+--------+
-   * | Extra API Info | Value | +-----------------------+--------+ | API-DOMAIN | SPOT | |
-   * API-CHANNEL | PUBLIC | | API-PERMISSION | NULL | | API-RATE-LIMIT-POOL | SPOT | |
-   * API-RATE-LIMIT-WEIGHT | 25 | +-----------------------+--------+
+   * Get Margin Config
+   *
+   * <p>Request the configure info of the cross margin via this endpoint.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : SPOT
+   *   <li>API-CHANNEL : PUBLIC
+   *   <li>API-PERMISSION : NULL
+   *   <li>API-RATE-LIMIT-POOL : SPOT
+   *   <li>API-RATE-LIMIT-WEIGHT : 25
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470190">docs</a>
    */
   GetMarginConfigResp getMarginConfig();
 
   /**
-   * Get Mark Price List This endpoint returns the current Mark price for all margin trading pairs.
-   * <a href="https://www.kucoin.com/docs-new/api-3470192">docs</a>
-   * +-----------------------+--------+ | Extra API Info | Value |
-   * +-----------------------+--------+ | API-DOMAIN | SPOT | | API-CHANNEL | PUBLIC | |
-   * API-PERMISSION | NULL | | API-RATE-LIMIT-POOL | PUBLIC | | API-RATE-LIMIT-WEIGHT | 10 |
-   * +-----------------------+--------+
+   * Get Mark Price List
+   *
+   * <p>This endpoint returns the current Mark price for all margin trading pairs.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : SPOT
+   *   <li>API-CHANNEL : PUBLIC
+   *   <li>API-PERMISSION : NULL
+   *   <li>API-RATE-LIMIT-POOL : PUBLIC
+   *   <li>API-RATE-LIMIT-WEIGHT : 10
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470192">docs</a>
    */
   GetMarkPriceListResp getMarkPriceList();
 
   /**
-   * Get Symbols - Isolated Margin This endpoint allows querying the configuration of isolated
-   * margin symbol. <a href="https://www.kucoin.com/docs-new/api-3470194">docs</a>
-   * +-----------------------+--------+ | Extra API Info | Value |
-   * +-----------------------+--------+ | API-DOMAIN | SPOT | | API-CHANNEL | PUBLIC | |
-   * API-PERMISSION | NULL | | API-RATE-LIMIT-POOL | PUBLIC | | API-RATE-LIMIT-WEIGHT | 3 |
-   * +-----------------------+--------+
+   * Get Symbols - Isolated Margin
+   *
+   * <p>This endpoint allows querying the configuration of isolated margin symbol.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : SPOT
+   *   <li>API-CHANNEL : PUBLIC
+   *   <li>API-PERMISSION : NULL
+   *   <li>API-RATE-LIMIT-POOL : PUBLIC
+   *   <li>API-RATE-LIMIT-WEIGHT : 3
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470194">docs</a>
    */
   GetIsolatedMarginSymbolsResp getIsolatedMarginSymbols();
 }

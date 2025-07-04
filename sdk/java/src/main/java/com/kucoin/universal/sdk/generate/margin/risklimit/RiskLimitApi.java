@@ -4,11 +4,21 @@ package com.kucoin.universal.sdk.generate.margin.risklimit;
 
 public interface RiskLimitApi {
   /**
-   * Get Margin Risk Limit Request Configure and Risk limit info of the margin via this endpoint. <a
-   * href="https://www.kucoin.com/docs-new/api-3470219">docs</a> +-----------------------+---------+
-   * | Extra API Info | Value | +-----------------------+---------+ | API-DOMAIN | SPOT | |
-   * API-CHANNEL | PRIVATE | | API-PERMISSION | GENERAL | | API-RATE-LIMIT-POOL | SPOT | |
-   * API-RATE-LIMIT-WEIGHT | 20 | +-----------------------+---------+
+   * Get Margin Risk Limit
+   *
+   * <p>Request Configure and Risk limit info of the margin via this endpoint.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : SPOT
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : GENERAL
+   *   <li>API-RATE-LIMIT-POOL : SPOT
+   *   <li>API-RATE-LIMIT-WEIGHT : 20
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470219">docs</a>
    */
   GetMarginRiskLimitResp getMarginRiskLimit(GetMarginRiskLimitReq req);
 }

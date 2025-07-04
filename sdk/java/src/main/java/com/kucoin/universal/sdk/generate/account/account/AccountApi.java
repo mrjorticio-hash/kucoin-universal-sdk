@@ -4,161 +4,300 @@ package com.kucoin.universal.sdk.generate.account.account;
 
 public interface AccountApi {
   /**
-   * Get Account Summary Info This endpoint can be used to obtain account summary information. <a
-   * href="https://www.kucoin.com/docs-new/api-3470119">docs</a>
-   * +-----------------------+------------+ | Extra API Info | Value |
-   * +-----------------------+------------+ | API-DOMAIN | SPOT | | API-CHANNEL | PRIVATE | |
-   * API-PERMISSION | GENERAL | | API-RATE-LIMIT-POOL | MANAGEMENT | | API-RATE-LIMIT-WEIGHT | 20 |
-   * +-----------------------+------------+
+   * Get Account Summary Info
+   *
+   * <p>This endpoint can be used to obtain account summary information.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : SPOT
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : GENERAL
+   *   <li>API-RATE-LIMIT-POOL : MANAGEMENT
+   *   <li>API-RATE-LIMIT-WEIGHT : 20
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470119">docs</a>
    */
   GetAccountInfoResp getAccountInfo();
 
   /**
-   * Get Apikey Info Get the api key information. Use the api key awaiting checking to call the
-   * endpoint. Both master and sub user&#39;s api key are applicable. <a
-   * href="https://www.kucoin.com/docs-new/api-3470130">docs</a>
-   * +-----------------------+------------+ | Extra API Info | Value |
-   * +-----------------------+------------+ | API-DOMAIN | SPOT | | API-CHANNEL | PRIVATE | |
-   * API-PERMISSION | GENERAL | | API-RATE-LIMIT-POOL | MANAGEMENT | | API-RATE-LIMIT-WEIGHT | 20 |
-   * +-----------------------+------------+
+   * Get Apikey Info
+   *
+   * <p>Get the api key information. Use the api key awaiting checking to call the endpoint. Both
+   * master and sub user&#39;s api key are applicable.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : SPOT
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : GENERAL
+   *   <li>API-RATE-LIMIT-POOL : MANAGEMENT
+   *   <li>API-RATE-LIMIT-WEIGHT : 20
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470130">docs</a>
    */
   GetApikeyInfoResp getApikeyInfo();
 
   /**
-   * Get Account Type - Spot This interface determines whether the current user is a spot
-   * high-frequency user or a spot low-frequency user. <a
-   * href="https://www.kucoin.com/docs-new/api-3470120">docs</a> +-----------------------+---------+
-   * | Extra API Info | Value | +-----------------------+---------+ | API-DOMAIN | SPOT | |
-   * API-CHANNEL | PRIVATE | | API-PERMISSION | GENERAL | | API-RATE-LIMIT-POOL | SPOT | |
-   * API-RATE-LIMIT-WEIGHT | 30 | +-----------------------+---------+
+   * Get Account Type - Spot
+   *
+   * <p>This interface determines whether the current user is a spot high-frequency user or a spot
+   * low-frequency user.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : SPOT
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : GENERAL
+   *   <li>API-RATE-LIMIT-POOL : SPOT
+   *   <li>API-RATE-LIMIT-WEIGHT : 30
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470120">docs</a>
    */
   GetSpotAccountTypeResp getSpotAccountType();
 
   /**
-   * Get Account List - Spot Get a list of accounts. Please deposit funds into the main account
-   * first, then use the Transfer function to move them to the trade account before trading. <a
-   * href="https://www.kucoin.com/docs-new/api-3470125">docs</a>
-   * +-----------------------+------------+ | Extra API Info | Value |
-   * +-----------------------+------------+ | API-DOMAIN | SPOT | | API-CHANNEL | PRIVATE | |
-   * API-PERMISSION | GENERAL | | API-RATE-LIMIT-POOL | MANAGEMENT | | API-RATE-LIMIT-WEIGHT | 5 |
-   * +-----------------------+------------+
+   * Get Account List - Spot
+   *
+   * <p>Get a list of accounts. Please deposit funds into the main account first, then use the
+   * Transfer function to move them to the trade account before trading.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : SPOT
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : GENERAL
+   *   <li>API-RATE-LIMIT-POOL : MANAGEMENT
+   *   <li>API-RATE-LIMIT-WEIGHT : 5
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470125">docs</a>
    */
   GetSpotAccountListResp getSpotAccountList(GetSpotAccountListReq req);
 
   /**
-   * Get Account Detail - Spot Get information for a single spot account. Use this endpoint when you
-   * know the accountId. <a href="https://www.kucoin.com/docs-new/api-3470126">docs</a>
-   * +-----------------------+------------+ | Extra API Info | Value |
-   * +-----------------------+------------+ | API-DOMAIN | SPOT | | API-CHANNEL | PRIVATE | |
-   * API-PERMISSION | GENERAL | | API-RATE-LIMIT-POOL | MANAGEMENT | | API-RATE-LIMIT-WEIGHT | 5 |
-   * +-----------------------+------------+
+   * Get Account Detail - Spot
+   *
+   * <p>Get information for a single spot account. Use this endpoint when you know the accountId.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : SPOT
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : GENERAL
+   *   <li>API-RATE-LIMIT-POOL : MANAGEMENT
+   *   <li>API-RATE-LIMIT-WEIGHT : 5
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470126">docs</a>
    */
   GetSpotAccountDetailResp getSpotAccountDetail(GetSpotAccountDetailReq req);
 
   /**
-   * Get Account - Cross Margin Request cross margin account info via this endpoint. <a
-   * href="https://www.kucoin.com/docs-new/api-3470127">docs</a> +-----------------------+---------+
-   * | Extra API Info | Value | +-----------------------+---------+ | API-DOMAIN | SPOT | |
-   * API-CHANNEL | PRIVATE | | API-PERMISSION | GENERAL | | API-RATE-LIMIT-POOL | SPOT | |
-   * API-RATE-LIMIT-WEIGHT | 15 | +-----------------------+---------+
+   * Get Account - Cross Margin
+   *
+   * <p>Request cross margin account info via this endpoint.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : SPOT
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : GENERAL
+   *   <li>API-RATE-LIMIT-POOL : SPOT
+   *   <li>API-RATE-LIMIT-WEIGHT : 15
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470127">docs</a>
    */
   GetCrossMarginAccountResp getCrossMarginAccount(GetCrossMarginAccountReq req);
 
   /**
-   * Get Account - Isolated Margin Request isolated margin account info via this endpoint. <a
-   * href="https://www.kucoin.com/docs-new/api-3470128">docs</a> +-----------------------+---------+
-   * | Extra API Info | Value | +-----------------------+---------+ | API-DOMAIN | SPOT | |
-   * API-CHANNEL | PRIVATE | | API-PERMISSION | GENERAL | | API-RATE-LIMIT-POOL | SPOT | |
-   * API-RATE-LIMIT-WEIGHT | 15 | +-----------------------+---------+
+   * Get Account - Isolated Margin
+   *
+   * <p>Request isolated margin account info via this endpoint.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : SPOT
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : GENERAL
+   *   <li>API-RATE-LIMIT-POOL : SPOT
+   *   <li>API-RATE-LIMIT-WEIGHT : 15
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470128">docs</a>
    */
   GetIsolatedMarginAccountResp getIsolatedMarginAccount(GetIsolatedMarginAccountReq req);
 
   /**
-   * Get Account - Futures Request futures account info via this endpoint. <a
-   * href="https://www.kucoin.com/docs-new/api-3470129">docs</a> +-----------------------+---------+
-   * | Extra API Info | Value | +-----------------------+---------+ | API-DOMAIN | FUTURES | |
-   * API-CHANNEL | PRIVATE | | API-PERMISSION | FUTURES | | API-RATE-LIMIT-POOL | FUTURES | |
-   * API-RATE-LIMIT-WEIGHT | 5 | +-----------------------+---------+
+   * Get Account - Futures
+   *
+   * <p>Request futures account info via this endpoint.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : FUTURES
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : FUTURES
+   *   <li>API-RATE-LIMIT-POOL : FUTURES
+   *   <li>API-RATE-LIMIT-WEIGHT : 5
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470129">docs</a>
    */
   GetFuturesAccountResp getFuturesAccount(GetFuturesAccountReq req);
 
   /**
-   * Get Account Ledgers - Spot/Margin This interface is for transaction records from all your
-   * account types, supporting various currency inquiries. Items are paginated and sorted to show
-   * the latest first. See the Pagination section for retrieving additional entries after the first
-   * page. <a href="https://www.kucoin.com/docs-new/api-3470121">docs</a>
-   * +-----------------------+------------+ | Extra API Info | Value |
-   * +-----------------------+------------+ | API-DOMAIN | SPOT | | API-CHANNEL | PRIVATE | |
-   * API-PERMISSION | GENERAL | | API-RATE-LIMIT-POOL | MANAGEMENT | | API-RATE-LIMIT-WEIGHT | 2 |
-   * +-----------------------+------------+
+   * Get Account Ledgers - Spot/Margin
+   *
+   * <p>This interface is for transaction records from all your account types, supporting various
+   * currency inquiries. Items are paginated and sorted to show the latest first. See the Pagination
+   * section for retrieving additional entries after the first page.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : SPOT
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : GENERAL
+   *   <li>API-RATE-LIMIT-POOL : MANAGEMENT
+   *   <li>API-RATE-LIMIT-WEIGHT : 2
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470121">docs</a>
    */
   GetSpotLedgerResp getSpotLedger(GetSpotLedgerReq req);
 
   /**
-   * Get Account Ledgers - Trade_hf This API endpoint returns all transfer (in and out) records in
-   * high-frequency trading accounts and supports multi-coin queries. The query results are sorted
-   * in descending order by createdAt and ID. <a
-   * href="https://www.kucoin.com/docs-new/api-3470122">docs</a> +-----------------------+---------+
-   * | Extra API Info | Value | +-----------------------+---------+ | API-DOMAIN | SPOT | |
-   * API-CHANNEL | PRIVATE | | API-PERMISSION | GENERAL | | API-RATE-LIMIT-POOL | SPOT | |
-   * API-RATE-LIMIT-WEIGHT | 2 | +-----------------------+---------+
+   * Get Account Ledgers - Trade_hf
+   *
+   * <p>This API endpoint returns all transfer (in and out) records in high-frequency trading
+   * accounts and supports multi-coin queries. The query results are sorted in descending order by
+   * createdAt and ID.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : SPOT
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : GENERAL
+   *   <li>API-RATE-LIMIT-POOL : SPOT
+   *   <li>API-RATE-LIMIT-WEIGHT : 2
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470122">docs</a>
    */
   GetSpotHFLedgerResp getSpotHFLedger(GetSpotHFLedgerReq req);
 
   /**
-   * Get Account Ledgers - Margin_hf This API endpoint returns all transfer (in and out) records in
-   * high-frequency margin trading accounts and supports multi-coin queries. The query results are
-   * sorted in descending order by createdAt and ID. <a
-   * href="https://www.kucoin.com/docs-new/api-3470123">docs</a> +-----------------------+---------+
-   * | Extra API Info | Value | +-----------------------+---------+ | API-DOMAIN | SPOT | |
-   * API-CHANNEL | PRIVATE | | API-PERMISSION | GENERAL | | API-RATE-LIMIT-POOL | SPOT | |
-   * API-RATE-LIMIT-WEIGHT | 2 | +-----------------------+---------+
+   * Get Account Ledgers - Margin_hf
+   *
+   * <p>This API endpoint returns all transfer (in and out) records in high-frequency margin trading
+   * accounts and supports multi-coin queries. The query results are sorted in descending order by
+   * createdAt and ID.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : SPOT
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : GENERAL
+   *   <li>API-RATE-LIMIT-POOL : SPOT
+   *   <li>API-RATE-LIMIT-WEIGHT : 2
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470123">docs</a>
    */
   GetMarginHFLedgerResp getMarginHFLedger(GetMarginHFLedgerReq req);
 
   /**
-   * Get Account Ledgers - Futures This interface can query the ledger records of the futures
-   * business line. <a href="https://www.kucoin.com/docs-new/api-3470124">docs</a>
-   * +-----------------------+---------+ | Extra API Info | Value |
-   * +-----------------------+---------+ | API-DOMAIN | FUTURES | | API-CHANNEL | PRIVATE | |
-   * API-PERMISSION | GENERAL | | API-RATE-LIMIT-POOL | FUTURES | | API-RATE-LIMIT-WEIGHT | 2 |
-   * +-----------------------+---------+
+   * Get Account Ledgers - Futures
+   *
+   * <p>This interface can query the ledger records of the futures business line.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : FUTURES
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : GENERAL
+   *   <li>API-RATE-LIMIT-POOL : FUTURES
+   *   <li>API-RATE-LIMIT-WEIGHT : 2
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470124">docs</a>
    */
   GetFuturesLedgerResp getFuturesLedger(GetFuturesLedgerReq req);
 
   /**
-   * Get Account Detail - Margin Request margin account info via this endpoint.
+   * Get Account Detail - Margin
    *
-   * @deprecated <a href="https://www.kucoin.com/docs-new/api-3470311">docs</a>
-   *     +-----------------------+---------+ | Extra API Info | Value |
-   *     +-----------------------+---------+ | API-DOMAIN | SPOT | | API-CHANNEL | PRIVATE | |
-   *     API-PERMISSION | GENERAL | | API-RATE-LIMIT-POOL | SPOT | | API-RATE-LIMIT-WEIGHT | 40 |
-   *     +-----------------------+---------+
+   * <p>Request margin account info via this endpoint.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : SPOT
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : GENERAL
+   *   <li>API-RATE-LIMIT-POOL : SPOT
+   *   <li>API-RATE-LIMIT-WEIGHT : 40
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470311">docs</a>
+   * @deprecated
    */
   GetMarginAccountDetailResp getMarginAccountDetail();
 
   /**
-   * Get Account List - Isolated Margin - V1 Request the isolated margin account info list via this
-   * endpoint.
+   * Get Account List - Isolated Margin - V1
    *
-   * @deprecated <a href="https://www.kucoin.com/docs-new/api-3470314">docs</a>
-   *     +-----------------------+---------+ | Extra API Info | Value |
-   *     +-----------------------+---------+ | API-DOMAIN | SPOT | | API-CHANNEL | PRIVATE | |
-   *     API-PERMISSION | GENERAL | | API-RATE-LIMIT-POOL | SPOT | | API-RATE-LIMIT-WEIGHT | 50 |
-   *     +-----------------------+---------+
+   * <p>Request the isolated margin account info list via this endpoint.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : SPOT
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : GENERAL
+   *   <li>API-RATE-LIMIT-POOL : SPOT
+   *   <li>API-RATE-LIMIT-WEIGHT : 50
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470314">docs</a>
+   * @deprecated
    */
   GetIsolatedMarginAccountListV1Resp getIsolatedMarginAccountListV1(
       GetIsolatedMarginAccountListV1Req req);
 
   /**
-   * Get Account Detail - Isolated Margin - V1 Request isolated margin account info via this
-   * endpoint.
+   * Get Account Detail - Isolated Margin - V1
    *
-   * @deprecated <a href="https://www.kucoin.com/docs-new/api-3470315">docs</a>
-   *     +-----------------------+---------+ | Extra API Info | Value |
-   *     +-----------------------+---------+ | API-DOMAIN | SPOT | | API-CHANNEL | PRIVATE | |
-   *     API-PERMISSION | GENERAL | | API-RATE-LIMIT-POOL | SPOT | | API-RATE-LIMIT-WEIGHT | 50 |
-   *     +-----------------------+---------+
+   * <p>Request isolated margin account info via this endpoint.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : SPOT
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : GENERAL
+   *   <li>API-RATE-LIMIT-POOL : SPOT
+   *   <li>API-RATE-LIMIT-WEIGHT : 50
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470315">docs</a>
+   * @deprecated
    */
   GetIsolatedMarginAccountDetailV1Resp getIsolatedMarginAccountDetailV1(
       GetIsolatedMarginAccountDetailV1Req req);

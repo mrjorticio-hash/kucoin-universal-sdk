@@ -4,119 +4,219 @@ package com.kucoin.universal.sdk.generate.copytrading.futures;
 
 public interface FuturesApi {
   /**
-   * Add Order Place order to the futures trading system, you can place two major types of orders:
-   * limit and market. Orders can only be placed if your account has sufficient funds. Once an order
-   * is placed, your funds will be put on hold for the duration of the order. The amount of funds on
-   * hold depends on the order type and parameters specified. <a
-   * href="https://www.kucoin.com/docs-new/api-3470363">docs</a>
-   * +-----------------------+------------------+ | Extra API Info | Value |
-   * +-----------------------+------------------+ | API-DOMAIN | FUTURES | | API-CHANNEL | PRIVATE |
-   * | API-PERMISSION | LEADTRADEFUTURES | | API-RATE-LIMIT-POOL | COPYTRADING | |
-   * API-RATE-LIMIT-WEIGHT | 2 | +-----------------------+------------------+
+   * Add Order
+   *
+   * <p>Place order to the futures trading system, you can place two major types of orders: limit
+   * and market. Orders can only be placed if your account has sufficient funds. Once an order is
+   * placed, your funds will be put on hold for the duration of the order. The amount of funds on
+   * hold depends on the order type and parameters specified.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : FUTURES
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : LEADTRADEFUTURES
+   *   <li>API-RATE-LIMIT-POOL : COPYTRADING
+   *   <li>API-RATE-LIMIT-WEIGHT : 2
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470363">docs</a>
    */
   AddOrderResp addOrder(AddOrderReq req);
 
   /**
-   * Add Order Test Place order the futures trading system just for validation <a
-   * href="https://www.kucoin.com/docs-new/api-3470618">docs</a>
-   * +-----------------------+------------------+ | Extra API Info | Value |
-   * +-----------------------+------------------+ | API-DOMAIN | FUTURES | | API-CHANNEL | PRIVATE |
-   * | API-PERMISSION | LEADTRADEFUTURES | | API-RATE-LIMIT-POOL | COPYTRADING | |
-   * API-RATE-LIMIT-WEIGHT | 2 | +-----------------------+------------------+
+   * Add Order Test
+   *
+   * <p>Place order the futures trading system just for validation
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : FUTURES
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : LEADTRADEFUTURES
+   *   <li>API-RATE-LIMIT-POOL : COPYTRADING
+   *   <li>API-RATE-LIMIT-WEIGHT : 2
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470618">docs</a>
    */
   AddOrderTestResp addOrderTest(AddOrderTestReq req);
 
   /**
-   * Add Take Profit And Stop Loss Order Place take profit and stop loss order supports both
-   * take-profit and stop-loss functions, and other functions are exactly the same as the place
-   * order interface. <a href="https://www.kucoin.com/docs-new/api-3470619">docs</a>
-   * +-----------------------+------------------+ | Extra API Info | Value |
-   * +-----------------------+------------------+ | API-DOMAIN | FUTURES | | API-CHANNEL | PRIVATE |
-   * | API-PERMISSION | LEADTRADEFUTURES | | API-RATE-LIMIT-POOL | COPYTRADING | |
-   * API-RATE-LIMIT-WEIGHT | 2 | +-----------------------+------------------+
+   * Add Take Profit And Stop Loss Order
+   *
+   * <p>Place take profit and stop loss order supports both take-profit and stop-loss functions, and
+   * other functions are exactly the same as the place order interface.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : FUTURES
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : LEADTRADEFUTURES
+   *   <li>API-RATE-LIMIT-POOL : COPYTRADING
+   *   <li>API-RATE-LIMIT-WEIGHT : 2
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470619">docs</a>
    */
   AddTPSLOrderResp addTPSLOrder(AddTPSLOrderReq req);
 
   /**
-   * Cancel Order By OrderId Cancel order by system-generated orderId. <a
-   * href="https://www.kucoin.com/docs-new/api-3470620">docs</a>
-   * +-----------------------+------------------+ | Extra API Info | Value |
-   * +-----------------------+------------------+ | API-DOMAIN | FUTURES | | API-CHANNEL | PRIVATE |
-   * | API-PERMISSION | LEADTRADEFUTURES | | API-RATE-LIMIT-POOL | COPYTRADING | |
-   * API-RATE-LIMIT-WEIGHT | 1 | +-----------------------+------------------+
+   * Cancel Order By OrderId
+   *
+   * <p>Cancel order by system-generated orderId.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : FUTURES
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : LEADTRADEFUTURES
+   *   <li>API-RATE-LIMIT-POOL : COPYTRADING
+   *   <li>API-RATE-LIMIT-WEIGHT : 1
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470620">docs</a>
    */
   CancelOrderByIdResp cancelOrderById(CancelOrderByIdReq req);
 
   /**
-   * Cancel Order By ClientOid Cancel order by client-defined orderId. <a
-   * href="https://www.kucoin.com/docs-new/api-3470621">docs</a>
-   * +-----------------------+------------------+ | Extra API Info | Value |
-   * +-----------------------+------------------+ | API-DOMAIN | FUTURES | | API-CHANNEL | PRIVATE |
-   * | API-PERMISSION | LEADTRADEFUTURES | | API-RATE-LIMIT-POOL | COPYTRADING | |
-   * API-RATE-LIMIT-WEIGHT | 1 | +-----------------------+------------------+
+   * Cancel Order By ClientOid
+   *
+   * <p>Cancel order by client-defined orderId.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : FUTURES
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : LEADTRADEFUTURES
+   *   <li>API-RATE-LIMIT-POOL : COPYTRADING
+   *   <li>API-RATE-LIMIT-WEIGHT : 1
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470621">docs</a>
    */
   CancelOrderByClientOidResp cancelOrderByClientOid(CancelOrderByClientOidReq req);
 
   /**
-   * Get Max Open Size Get Maximum Open Position Size. <a
-   * href="https://www.kucoin.com/docs-new/api-3470612">docs</a>
-   * +-----------------------+------------------+ | Extra API Info | Value |
-   * +-----------------------+------------------+ | API-DOMAIN | FUTURES | | API-CHANNEL | PRIVATE |
-   * | API-PERMISSION | LEADTRADEFUTURES | | API-RATE-LIMIT-POOL | COPYTRADING | |
-   * API-RATE-LIMIT-WEIGHT | 4 | +-----------------------+------------------+
+   * Get Max Open Size
+   *
+   * <p>Get Maximum Open Position Size.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : FUTURES
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : LEADTRADEFUTURES
+   *   <li>API-RATE-LIMIT-POOL : COPYTRADING
+   *   <li>API-RATE-LIMIT-WEIGHT : 4
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470612">docs</a>
    */
   GetMaxOpenSizeResp getMaxOpenSize(GetMaxOpenSizeReq req);
 
   /**
-   * Get Max Withdraw Margin This interface can query the maximum amount of margin that the current
-   * position supports withdrawal. <a href="https://www.kucoin.com/docs-new/api-3470616">docs</a>
-   * +-----------------------+------------------+ | Extra API Info | Value |
-   * +-----------------------+------------------+ | API-DOMAIN | FUTURES | | API-CHANNEL | PRIVATE |
-   * | API-PERMISSION | LEADTRADEFUTURES | | API-RATE-LIMIT-POOL | COPYTRADING | |
-   * API-RATE-LIMIT-WEIGHT | 10 | +-----------------------+------------------+
+   * Get Max Withdraw Margin
+   *
+   * <p>This interface can query the maximum amount of margin that the current position supports
+   * withdrawal.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : FUTURES
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : LEADTRADEFUTURES
+   *   <li>API-RATE-LIMIT-POOL : COPYTRADING
+   *   <li>API-RATE-LIMIT-WEIGHT : 10
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470616">docs</a>
    */
   GetMaxWithdrawMarginResp getMaxWithdrawMargin(GetMaxWithdrawMarginReq req);
 
   /**
-   * Add Isolated Margin Add Isolated Margin Manually. <a
-   * href="https://www.kucoin.com/docs-new/api-3470614">docs</a>
-   * +-----------------------+------------------+ | Extra API Info | Value |
-   * +-----------------------+------------------+ | API-DOMAIN | FUTURES | | API-CHANNEL | PRIVATE |
-   * | API-PERMISSION | LEADTRADEFUTURES | | API-RATE-LIMIT-POOL | COPYTRADING | |
-   * API-RATE-LIMIT-WEIGHT | 4 | +-----------------------+------------------+
+   * Add Isolated Margin
+   *
+   * <p>Add Isolated Margin Manually.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : FUTURES
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : LEADTRADEFUTURES
+   *   <li>API-RATE-LIMIT-POOL : COPYTRADING
+   *   <li>API-RATE-LIMIT-WEIGHT : 4
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470614">docs</a>
    */
   AddIsolatedMarginResp addIsolatedMargin(AddIsolatedMarginReq req);
 
   /**
-   * Remove Isolated Margin Remove Isolated Margin Manually. <a
-   * href="https://www.kucoin.com/docs-new/api-3470615">docs</a>
-   * +-----------------------+------------------+ | Extra API Info | Value |
-   * +-----------------------+------------------+ | API-DOMAIN | FUTURES | | API-CHANNEL | PRIVATE |
-   * | API-PERMISSION | LEADTRADEFUTURES | | API-RATE-LIMIT-POOL | COPYTRADING | |
-   * API-RATE-LIMIT-WEIGHT | 10 | +-----------------------+------------------+
+   * Remove Isolated Margin
+   *
+   * <p>Remove Isolated Margin Manually.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : FUTURES
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : LEADTRADEFUTURES
+   *   <li>API-RATE-LIMIT-POOL : COPYTRADING
+   *   <li>API-RATE-LIMIT-WEIGHT : 10
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470615">docs</a>
    */
   RemoveIsolatedMarginResp removeIsolatedMargin(RemoveIsolatedMarginReq req);
 
   /**
-   * Modify Isolated Margin Risk Limit This interface can be used to obtain information about risk
-   * limit level of a specific contract (only valid for Isolated Margin). <a
-   * href="https://www.kucoin.com/docs-new/api-3470613">docs</a>
-   * +-----------------------+------------------+ | Extra API Info | Value |
-   * +-----------------------+------------------+ | API-DOMAIN | FUTURES | | API-CHANNEL | PRIVATE |
-   * | API-PERMISSION | LEADTRADEFUTURES | | API-RATE-LIMIT-POOL | COPYTRADING | |
-   * API-RATE-LIMIT-WEIGHT | 2 | +-----------------------+------------------+
+   * Modify Isolated Margin Risk Limit
+   *
+   * <p>This interface can be used to obtain information about risk limit level of a specific
+   * contract (only valid for Isolated Margin).
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : FUTURES
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : LEADTRADEFUTURES
+   *   <li>API-RATE-LIMIT-POOL : COPYTRADING
+   *   <li>API-RATE-LIMIT-WEIGHT : 2
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470613">docs</a>
    */
   ModifyIsolatedMarginRiskLimtResp modifyIsolatedMarginRiskLimt(
       ModifyIsolatedMarginRiskLimtReq req);
 
   /**
-   * Modify Isolated Margin Auto-Deposit Status This endpoint is only applicable to isolated margin
-   * and is no longer recommended. It is recommended to use cross margin instead. <a
-   * href="https://www.kucoin.com/docs-new/api-3470617">docs</a>
-   * +-----------------------+------------------+ | Extra API Info | Value |
-   * +-----------------------+------------------+ | API-DOMAIN | FUTURES | | API-CHANNEL | PRIVATE |
-   * | API-PERMISSION | LEADTRADEFUTURES | | API-RATE-LIMIT-POOL | COPYTRADING | |
-   * API-RATE-LIMIT-WEIGHT | 4 | +-----------------------+------------------+
+   * Modify Isolated Margin Auto-Deposit Status
+   *
+   * <p>This endpoint is only applicable to isolated margin and is no longer recommended. It is
+   * recommended to use cross margin instead.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : FUTURES
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : LEADTRADEFUTURES
+   *   <li>API-RATE-LIMIT-POOL : COPYTRADING
+   *   <li>API-RATE-LIMIT-WEIGHT : 4
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470617">docs</a>
    */
   ModifyAutoDepositStatusResp modifyAutoDepositStatus(ModifyAutoDepositStatusReq req);
 }

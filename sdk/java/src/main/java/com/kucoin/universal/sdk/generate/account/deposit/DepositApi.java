@@ -4,82 +4,146 @@ package com.kucoin.universal.sdk.generate.account.deposit;
 
 public interface DepositApi {
   /**
-   * Add Deposit Address (V3) Request via this endpoint the creation of a deposit address for a
-   * currency you intend to deposit. <a href="https://www.kucoin.com/docs-new/api-3470142">docs</a>
-   * +-----------------------+------------+ | Extra API Info | Value |
-   * +-----------------------+------------+ | API-DOMAIN | SPOT | | API-CHANNEL | PRIVATE | |
-   * API-PERMISSION | GENERAL | | API-RATE-LIMIT-POOL | MANAGEMENT | | API-RATE-LIMIT-WEIGHT | 20 |
-   * +-----------------------+------------+
+   * Add Deposit Address (V3)
+   *
+   * <p>Request via this endpoint the creation of a deposit address for a currency you intend to
+   * deposit.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : SPOT
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : GENERAL
+   *   <li>API-RATE-LIMIT-POOL : MANAGEMENT
+   *   <li>API-RATE-LIMIT-WEIGHT : 20
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470142">docs</a>
    */
   AddDepositAddressV3Resp addDepositAddressV3(AddDepositAddressV3Req req);
 
   /**
-   * Get Deposit Address (V3) Get all deposit addresses for the currency you intend to deposit. If
-   * the returned data is empty, you may need to add the deposit address first. <a
-   * href="https://www.kucoin.com/docs-new/api-3470140">docs</a>
-   * +-----------------------+------------+ | Extra API Info | Value |
-   * +-----------------------+------------+ | API-DOMAIN | SPOT | | API-CHANNEL | PRIVATE | |
-   * API-PERMISSION | GENERAL | | API-RATE-LIMIT-POOL | MANAGEMENT | | API-RATE-LIMIT-WEIGHT | 5 |
-   * +-----------------------+------------+
+   * Get Deposit Address (V3)
+   *
+   * <p>Get all deposit addresses for the currency you intend to deposit. If the returned data is
+   * empty, you may need to add the deposit address first.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : SPOT
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : GENERAL
+   *   <li>API-RATE-LIMIT-POOL : MANAGEMENT
+   *   <li>API-RATE-LIMIT-WEIGHT : 5
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470140">docs</a>
    */
   GetDepositAddressV3Resp getDepositAddressV3(GetDepositAddressV3Req req);
 
   /**
-   * Get Deposit History Request a deposit list via this endpoint. Items are paginated and sorted to
-   * show the latest first. See the Pagination section for retrieving additional entries after the
-   * first page. <a href="https://www.kucoin.com/docs-new/api-3470141">docs</a>
-   * +-----------------------+------------+ | Extra API Info | Value |
-   * +-----------------------+------------+ | API-DOMAIN | SPOT | | API-CHANNEL | PRIVATE | |
-   * API-PERMISSION | GENERAL | | API-RATE-LIMIT-POOL | MANAGEMENT | | API-RATE-LIMIT-WEIGHT | 5 |
-   * +-----------------------+------------+
+   * Get Deposit History
+   *
+   * <p>Request a deposit list via this endpoint. Items are paginated and sorted to show the latest
+   * first. See the Pagination section for retrieving additional entries after the first page.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : SPOT
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : GENERAL
+   *   <li>API-RATE-LIMIT-POOL : MANAGEMENT
+   *   <li>API-RATE-LIMIT-WEIGHT : 5
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470141">docs</a>
    */
   GetDepositHistoryResp getDepositHistory(GetDepositHistoryReq req);
 
   /**
-   * Get Deposit Addresses (V2) Get all deposit addresses for the currency you intend to deposit. If
-   * the returned data is empty, you may need to add the deposit address first.
+   * Get Deposit Addresses (V2)
    *
-   * @deprecated <a href="https://www.kucoin.com/docs-new/api-3470300">docs</a>
-   *     +-----------------------+------------+ | Extra API Info | Value |
-   *     +-----------------------+------------+ | API-DOMAIN | SPOT | | API-CHANNEL | PRIVATE | |
-   *     API-PERMISSION | GENERAL | | API-RATE-LIMIT-POOL | MANAGEMENT | | API-RATE-LIMIT-WEIGHT | 5
-   *     | +-----------------------+------------+
+   * <p>Get all deposit addresses for the currency you intend to deposit. If the returned data is
+   * empty, you may need to add the deposit address first.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : SPOT
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : GENERAL
+   *   <li>API-RATE-LIMIT-POOL : MANAGEMENT
+   *   <li>API-RATE-LIMIT-WEIGHT : 5
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470300">docs</a>
+   * @deprecated
    */
   GetDepositAddressV2Resp getDepositAddressV2(GetDepositAddressV2Req req);
 
   /**
-   * Get Deposit Addresses - V1 Get all deposit addresses for the currency you intend to deposit. If
-   * the returned data is empty, you may need to add the deposit address first.
+   * Get Deposit Addresses - V1
    *
-   * @deprecated <a href="https://www.kucoin.com/docs-new/api-3470305">docs</a>
-   *     +-----------------------+------------+ | Extra API Info | Value |
-   *     +-----------------------+------------+ | API-DOMAIN | SPOT | | API-CHANNEL | PRIVATE | |
-   *     API-PERMISSION | GENERAL | | API-RATE-LIMIT-POOL | MANAGEMENT | | API-RATE-LIMIT-WEIGHT | 5
-   *     | +-----------------------+------------+
+   * <p>Get all deposit addresses for the currency you intend to deposit. If the returned data is
+   * empty, you may need to add the deposit address first.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : SPOT
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : GENERAL
+   *   <li>API-RATE-LIMIT-POOL : MANAGEMENT
+   *   <li>API-RATE-LIMIT-WEIGHT : 5
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470305">docs</a>
+   * @deprecated
    */
   GetDepositAddressV1Resp getDepositAddressV1(GetDepositAddressV1Req req);
 
   /**
-   * Get Deposit History - Old Request the V1 historical deposits list on KuCoin via this endpoint.
-   * The return value is the data after Pagination, sorted in descending order according to time.
+   * Get Deposit History - Old
    *
-   * @deprecated <a href="https://www.kucoin.com/docs-new/api-3470306">docs</a>
-   *     +-----------------------+------------+ | Extra API Info | Value |
-   *     +-----------------------+------------+ | API-DOMAIN | SPOT | | API-CHANNEL | PRIVATE | |
-   *     API-PERMISSION | GENERAL | | API-RATE-LIMIT-POOL | MANAGEMENT | | API-RATE-LIMIT-WEIGHT | 5
-   *     | +-----------------------+------------+
+   * <p>Request the V1 historical deposits list on KuCoin via this endpoint. The return value is the
+   * data after Pagination, sorted in descending order according to time.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : SPOT
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : GENERAL
+   *   <li>API-RATE-LIMIT-POOL : MANAGEMENT
+   *   <li>API-RATE-LIMIT-WEIGHT : 5
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470306">docs</a>
+   * @deprecated
    */
   GetDepositHistoryOldResp getDepositHistoryOld(GetDepositHistoryOldReq req);
 
   /**
-   * Add Deposit Address - V1 Request via this endpoint the creation of a deposit address for a
-   * currency you intend to deposit.
+   * Add Deposit Address - V1
    *
-   * @deprecated <a href="https://www.kucoin.com/docs-new/api-3470309">docs</a>
-   *     +-----------------------+------------+ | Extra API Info | Value |
-   *     +-----------------------+------------+ | API-DOMAIN | SPOT | | API-CHANNEL | PRIVATE | |
-   *     API-PERMISSION | GENERAL | | API-RATE-LIMIT-POOL | MANAGEMENT | | API-RATE-LIMIT-WEIGHT |
-   *     20 | +-----------------------+------------+
+   * <p>Request via this endpoint the creation of a deposit address for a currency you intend to
+   * deposit.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : SPOT
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : GENERAL
+   *   <li>API-RATE-LIMIT-POOL : MANAGEMENT
+   *   <li>API-RATE-LIMIT-WEIGHT : 20
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470309">docs</a>
+   * @deprecated
    */
   AddDepositAddressV1Resp addDepositAddressV1(AddDepositAddressV1Req req);
 }

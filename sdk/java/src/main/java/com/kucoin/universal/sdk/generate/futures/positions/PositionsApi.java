@@ -4,155 +4,312 @@ package com.kucoin.universal.sdk.generate.futures.positions;
 
 public interface PositionsApi {
   /**
-   * Get Margin Mode This interface can query the margin mode of the current symbol. <a
-   * href="https://www.kucoin.com/docs-new/api-3470259">docs</a> +-----------------------+---------+
-   * | Extra API Info | Value | +-----------------------+---------+ | API-DOMAIN | FUTURES | |
-   * API-CHANNEL | PRIVATE | | API-PERMISSION | FUTURES | | API-RATE-LIMIT-POOL | FUTURES | |
-   * API-RATE-LIMIT-WEIGHT | 2 | +-----------------------+---------+
+   * Get Margin Mode
+   *
+   * <p>This interface can query the margin mode of the current symbol.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : FUTURES
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : FUTURES
+   *   <li>API-RATE-LIMIT-POOL : FUTURES
+   *   <li>API-RATE-LIMIT-WEIGHT : 2
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470259">docs</a>
    */
   GetMarginModeResp getMarginMode(GetMarginModeReq req);
 
   /**
-   * Switch Margin Mode This interface can modify the margin mode of the current symbol. <a
-   * href="https://www.kucoin.com/docs-new/api-3470262">docs</a> +-----------------------+---------+
-   * | Extra API Info | Value | +-----------------------+---------+ | API-DOMAIN | FUTURES | |
-   * API-CHANNEL | PRIVATE | | API-PERMISSION | FUTURES | | API-RATE-LIMIT-POOL | FUTURES | |
-   * API-RATE-LIMIT-WEIGHT | 2 | +-----------------------+---------+
+   * Switch Margin Mode
+   *
+   * <p>This interface can modify the margin mode of the current symbol.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : FUTURES
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : FUTURES
+   *   <li>API-RATE-LIMIT-POOL : FUTURES
+   *   <li>API-RATE-LIMIT-WEIGHT : 2
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470262">docs</a>
    */
   SwitchMarginModeResp switchMarginMode(SwitchMarginModeReq req);
 
   /**
-   * Batch Switch Margin Mode Batch modify the margin mode of the symbols. <a
-   * href="https://www.kucoin.com/docs-new/api-3472403">docs</a> +-----------------------+---------+
-   * | Extra API Info | Value | +-----------------------+---------+ | API-DOMAIN | FUTURES | |
-   * API-CHANNEL | PRIVATE | | API-PERMISSION | FUTURES | | API-RATE-LIMIT-POOL | FUTURES | |
-   * API-RATE-LIMIT-WEIGHT | 2 | +-----------------------+---------+
+   * Batch Switch Margin Mode
+   *
+   * <p>Batch modify the margin mode of the symbols.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : FUTURES
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : FUTURES
+   *   <li>API-RATE-LIMIT-POOL : FUTURES
+   *   <li>API-RATE-LIMIT-WEIGHT : 2
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3472403">docs</a>
    */
   BatchSwitchMarginModeResp batchSwitchMarginMode(BatchSwitchMarginModeReq req);
 
   /**
-   * Get Max Open Size Get Maximum Open Position Size. <a
-   * href="https://www.kucoin.com/docs-new/api-3470251">docs</a> +-----------------------+---------+
-   * | Extra API Info | Value | +-----------------------+---------+ | API-DOMAIN | FUTURES | |
-   * API-CHANNEL | PRIVATE | | API-PERMISSION | FUTURES | | API-RATE-LIMIT-POOL | FUTURES | |
-   * API-RATE-LIMIT-WEIGHT | 2 | +-----------------------+---------+
+   * Get Max Open Size
+   *
+   * <p>Get Maximum Open Position Size.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : FUTURES
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : FUTURES
+   *   <li>API-RATE-LIMIT-POOL : FUTURES
+   *   <li>API-RATE-LIMIT-WEIGHT : 2
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470251">docs</a>
    */
   GetMaxOpenSizeResp getMaxOpenSize(GetMaxOpenSizeReq req);
 
   /**
-   * Get Position Details Get the position details of a specified position. <a
-   * href="https://www.kucoin.com/docs-new/api-3470252">docs</a> +-----------------------+---------+
-   * | Extra API Info | Value | +-----------------------+---------+ | API-DOMAIN | FUTURES | |
-   * API-CHANNEL | PRIVATE | | API-PERMISSION | FUTURES | | API-RATE-LIMIT-POOL | FUTURES | |
-   * API-RATE-LIMIT-WEIGHT | 2 | +-----------------------+---------+
+   * Get Position Details
+   *
+   * <p>Get the position details of a specified position.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : FUTURES
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : FUTURES
+   *   <li>API-RATE-LIMIT-POOL : FUTURES
+   *   <li>API-RATE-LIMIT-WEIGHT : 2
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470252">docs</a>
    */
   GetPositionDetailsResp getPositionDetails(GetPositionDetailsReq req);
 
   /**
-   * Get Position List Get the position details of a specified position. <a
-   * href="https://www.kucoin.com/docs-new/api-3470253">docs</a> +-----------------------+---------+
-   * | Extra API Info | Value | +-----------------------+---------+ | API-DOMAIN | FUTURES | |
-   * API-CHANNEL | PRIVATE | | API-PERMISSION | FUTURES | | API-RATE-LIMIT-POOL | FUTURES | |
-   * API-RATE-LIMIT-WEIGHT | 2 | +-----------------------+---------+
+   * Get Position List
+   *
+   * <p>Get the position details of a specified position.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : FUTURES
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : FUTURES
+   *   <li>API-RATE-LIMIT-POOL : FUTURES
+   *   <li>API-RATE-LIMIT-WEIGHT : 2
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470253">docs</a>
    */
   GetPositionListResp getPositionList(GetPositionListReq req);
 
   /**
-   * Get Positions History This interface can query position history information records. <a
-   * href="https://www.kucoin.com/docs-new/api-3470254">docs</a> +-----------------------+---------+
-   * | Extra API Info | Value | +-----------------------+---------+ | API-DOMAIN | FUTURES | |
-   * API-CHANNEL | PRIVATE | | API-PERMISSION | FUTURES | | API-RATE-LIMIT-POOL | FUTURES | |
-   * API-RATE-LIMIT-WEIGHT | 2 | +-----------------------+---------+
+   * Get Positions History
+   *
+   * <p>This interface can query position history information records.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : FUTURES
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : FUTURES
+   *   <li>API-RATE-LIMIT-POOL : FUTURES
+   *   <li>API-RATE-LIMIT-WEIGHT : 2
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470254">docs</a>
    */
   GetPositionsHistoryResp getPositionsHistory(GetPositionsHistoryReq req);
 
   /**
-   * Get Max Withdraw Margin This interface can query the maximum amount of margin that the current
-   * position supports withdrawal. <a href="https://www.kucoin.com/docs-new/api-3470258">docs</a>
-   * +-----------------------+---------+ | Extra API Info | Value |
-   * +-----------------------+---------+ | API-DOMAIN | FUTURES | | API-CHANNEL | PRIVATE | |
-   * API-PERMISSION | FUTURES | | API-RATE-LIMIT-POOL | FUTURES | | API-RATE-LIMIT-WEIGHT | 10 |
-   * +-----------------------+---------+
+   * Get Max Withdraw Margin
+   *
+   * <p>This interface can query the maximum amount of margin that the current position supports
+   * withdrawal.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : FUTURES
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : FUTURES
+   *   <li>API-RATE-LIMIT-POOL : FUTURES
+   *   <li>API-RATE-LIMIT-WEIGHT : 10
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470258">docs</a>
    */
   GetMaxWithdrawMarginResp getMaxWithdrawMargin(GetMaxWithdrawMarginReq req);
 
   /**
-   * Get Cross Margin Leverage This interface can query the current symbol’s cross-margin leverage
-   * multiple. <a href="https://www.kucoin.com/docs-new/api-3470260">docs</a>
-   * +-----------------------+---------+ | Extra API Info | Value |
-   * +-----------------------+---------+ | API-DOMAIN | FUTURES | | API-CHANNEL | PRIVATE | |
-   * API-PERMISSION | FUTURES | | API-RATE-LIMIT-POOL | FUTURES | | API-RATE-LIMIT-WEIGHT | 2 |
-   * +-----------------------+---------+
+   * Get Cross Margin Leverage
+   *
+   * <p>This interface can query the current symbol’s cross-margin leverage multiple.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : FUTURES
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : FUTURES
+   *   <li>API-RATE-LIMIT-POOL : FUTURES
+   *   <li>API-RATE-LIMIT-WEIGHT : 2
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470260">docs</a>
    */
   GetCrossMarginLeverageResp getCrossMarginLeverage(GetCrossMarginLeverageReq req);
 
   /**
-   * Modify Cross Margin Leverage This interface can modify the current symbol’s cross-margin
-   * leverage multiple. <a href="https://www.kucoin.com/docs-new/api-3470261">docs</a>
-   * +-----------------------+---------+ | Extra API Info | Value |
-   * +-----------------------+---------+ | API-DOMAIN | FUTURES | | API-CHANNEL | PRIVATE | |
-   * API-PERMISSION | FUTURES | | API-RATE-LIMIT-POOL | FUTURES | | API-RATE-LIMIT-WEIGHT | 2 |
-   * +-----------------------+---------+
+   * Modify Cross Margin Leverage
+   *
+   * <p>This interface can modify the current symbol’s cross-margin leverage multiple.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : FUTURES
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : FUTURES
+   *   <li>API-RATE-LIMIT-POOL : FUTURES
+   *   <li>API-RATE-LIMIT-WEIGHT : 2
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470261">docs</a>
    */
   ModifyMarginLeverageResp modifyMarginLeverage(ModifyMarginLeverageReq req);
 
   /**
-   * Add Isolated Margin Add Isolated Margin Manually. <a
-   * href="https://www.kucoin.com/docs-new/api-3470257">docs</a> +-----------------------+---------+
-   * | Extra API Info | Value | +-----------------------+---------+ | API-DOMAIN | FUTURES | |
-   * API-CHANNEL | PRIVATE | | API-PERMISSION | FUTURES | | API-RATE-LIMIT-POOL | FUTURES | |
-   * API-RATE-LIMIT-WEIGHT | 4 | +-----------------------+---------+
+   * Add Isolated Margin
+   *
+   * <p>Add Isolated Margin Manually.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : FUTURES
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : FUTURES
+   *   <li>API-RATE-LIMIT-POOL : FUTURES
+   *   <li>API-RATE-LIMIT-WEIGHT : 4
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470257">docs</a>
    */
   AddIsolatedMarginResp addIsolatedMargin(AddIsolatedMarginReq req);
 
   /**
-   * Remove Isolated Margin Remove Isolated Margin Manually. <a
-   * href="https://www.kucoin.com/docs-new/api-3470256">docs</a> +-----------------------+---------+
-   * | Extra API Info | Value | +-----------------------+---------+ | API-DOMAIN | FUTURES | |
-   * API-CHANNEL | PRIVATE | | API-PERMISSION | FUTURES | | API-RATE-LIMIT-POOL | FUTURES | |
-   * API-RATE-LIMIT-WEIGHT | 10 | +-----------------------+---------+
+   * Remove Isolated Margin
+   *
+   * <p>Remove Isolated Margin Manually.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : FUTURES
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : FUTURES
+   *   <li>API-RATE-LIMIT-POOL : FUTURES
+   *   <li>API-RATE-LIMIT-WEIGHT : 10
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470256">docs</a>
    */
   RemoveIsolatedMarginResp removeIsolatedMargin(RemoveIsolatedMarginReq req);
 
   /**
-   * Get Cross Margin Risk Limit Batch get cross margin risk limit. <a
-   * href="https://www.kucoin.com/docs-new/api-3472655">docs</a> +-----------------------+---------+
-   * | Extra API Info | Value | +-----------------------+---------+ | API-DOMAIN | FUTURES | |
-   * API-CHANNEL | PRIVATE | | API-PERMISSION | FUTURES | | API-RATE-LIMIT-POOL | FUTURES | |
-   * API-RATE-LIMIT-WEIGHT | 2 | +-----------------------+---------+
+   * Get Cross Margin Risk Limit
+   *
+   * <p>Batch get cross margin risk limit.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : FUTURES
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : FUTURES
+   *   <li>API-RATE-LIMIT-POOL : FUTURES
+   *   <li>API-RATE-LIMIT-WEIGHT : 2
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3472655">docs</a>
    */
   GetCrossMarginRiskLimitResp getCrossMarginRiskLimit(GetCrossMarginRiskLimitReq req);
 
   /**
-   * Get Isolated Margin Risk Limit This interface can be used to obtain information about risk
-   * limit level of a specific contract (only valid for Isolated Margin). <a
-   * href="https://www.kucoin.com/docs-new/api-3470263">docs</a> +-----------------------+---------+
-   * | Extra API Info | Value | +-----------------------+---------+ | API-DOMAIN | FUTURES | |
-   * API-CHANNEL | PRIVATE | | API-PERMISSION | NULL | | API-RATE-LIMIT-POOL | PUBLIC | |
-   * API-RATE-LIMIT-WEIGHT | 5 | +-----------------------+---------+
+   * Get Isolated Margin Risk Limit
+   *
+   * <p>This interface can be used to obtain information about risk limit level of a specific
+   * contract (only valid for Isolated Margin).
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : FUTURES
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : NULL
+   *   <li>API-RATE-LIMIT-POOL : PUBLIC
+   *   <li>API-RATE-LIMIT-WEIGHT : 5
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470263">docs</a>
    */
   GetIsolatedMarginRiskLimitResp getIsolatedMarginRiskLimit(GetIsolatedMarginRiskLimitReq req);
 
   /**
-   * Modify Isolated Margin Risk Limit This interface can be used to obtain information about risk
-   * limit level of a specific contract (only valid for Isolated Margin). <a
-   * href="https://www.kucoin.com/docs-new/api-3470264">docs</a> +-----------------------+---------+
-   * | Extra API Info | Value | +-----------------------+---------+ | API-DOMAIN | FUTURES | |
-   * API-CHANNEL | PRIVATE | | API-PERMISSION | FUTURES | | API-RATE-LIMIT-POOL | FUTURES | |
-   * API-RATE-LIMIT-WEIGHT | 5 | +-----------------------+---------+
+   * Modify Isolated Margin Risk Limit
+   *
+   * <p>This interface can be used to obtain information about risk limit level of a specific
+   * contract (only valid for Isolated Margin).
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : FUTURES
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : FUTURES
+   *   <li>API-RATE-LIMIT-POOL : FUTURES
+   *   <li>API-RATE-LIMIT-WEIGHT : 5
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470264">docs</a>
    */
   ModifyIsolatedMarginRiskLimtResp modifyIsolatedMarginRiskLimt(
       ModifyIsolatedMarginRiskLimtReq req);
 
   /**
-   * Modify Isolated Margin Auto-Deposit Status This endpoint is only applicable to isolated margin
-   * and is no longer recommended. It is recommended to use cross margin instead.
+   * Modify Isolated Margin Auto-Deposit Status
    *
-   * @deprecated <a href="https://www.kucoin.com/docs-new/api-3470255">docs</a>
-   *     +-----------------------+---------+ | Extra API Info | Value |
-   *     +-----------------------+---------+ | API-DOMAIN | FUTURES | | API-CHANNEL | PRIVATE | |
-   *     API-PERMISSION | FUTURES | | API-RATE-LIMIT-POOL | FUTURES | | API-RATE-LIMIT-WEIGHT | 4 |
-   *     +-----------------------+---------+
+   * <p>This endpoint is only applicable to isolated margin and is no longer recommended. It is
+   * recommended to use cross margin instead.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : FUTURES
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : FUTURES
+   *   <li>API-RATE-LIMIT-POOL : FUTURES
+   *   <li>API-RATE-LIMIT-WEIGHT : 4
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470255">docs</a>
+   * @deprecated
    */
   ModifyAutoDepositStatusResp modifyAutoDepositStatus(ModifyAutoDepositStatusReq req);
 }

@@ -4,30 +4,60 @@ package com.kucoin.universal.sdk.generate.futures.fundingfees;
 
 public interface FundingFeesApi {
   /**
-   * Get Current Funding Rate Get Current Funding Rate. <a
-   * href="https://www.kucoin.com/docs-new/api-3470265">docs</a> +-----------------------+---------+
-   * | Extra API Info | Value | +-----------------------+---------+ | API-DOMAIN | FUTURES | |
-   * API-CHANNEL | PUBLIC | | API-PERMISSION | FUTURES | | API-RATE-LIMIT-POOL | PUBLIC | |
-   * API-RATE-LIMIT-WEIGHT | 2 | +-----------------------+---------+
+   * Get Current Funding Rate
+   *
+   * <p>Get Current Funding Rate.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : FUTURES
+   *   <li>API-CHANNEL : PUBLIC
+   *   <li>API-PERMISSION : FUTURES
+   *   <li>API-RATE-LIMIT-POOL : PUBLIC
+   *   <li>API-RATE-LIMIT-WEIGHT : 2
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470265">docs</a>
    */
   GetCurrentFundingRateResp getCurrentFundingRate(GetCurrentFundingRateReq req);
 
   /**
-   * Get Public Funding History Query the funding rate at each settlement time point within a
-   * certain time range of the corresponding contract. <a
-   * href="https://www.kucoin.com/docs-new/api-3470266">docs</a> +-----------------------+---------+
-   * | Extra API Info | Value | +-----------------------+---------+ | API-DOMAIN | FUTURES | |
-   * API-CHANNEL | PUBLIC | | API-PERMISSION | FUTURES | | API-RATE-LIMIT-POOL | PUBLIC | |
-   * API-RATE-LIMIT-WEIGHT | 5 | +-----------------------+---------+
+   * Get Public Funding History
+   *
+   * <p>Query the funding rate at each settlement time point within a certain time range of the
+   * corresponding contract.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : FUTURES
+   *   <li>API-CHANNEL : PUBLIC
+   *   <li>API-PERMISSION : FUTURES
+   *   <li>API-RATE-LIMIT-POOL : PUBLIC
+   *   <li>API-RATE-LIMIT-WEIGHT : 5
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470266">docs</a>
    */
   GetPublicFundingHistoryResp getPublicFundingHistory(GetPublicFundingHistoryReq req);
 
   /**
-   * Get Private Funding History Submit request to get the funding history. <a
-   * href="https://www.kucoin.com/docs-new/api-3470267">docs</a> +-----------------------+---------+
-   * | Extra API Info | Value | +-----------------------+---------+ | API-DOMAIN | FUTURES | |
-   * API-CHANNEL | PRIVATE | | API-PERMISSION | FUTURES | | API-RATE-LIMIT-POOL | FUTURES | |
-   * API-RATE-LIMIT-WEIGHT | 5 | +-----------------------+---------+
+   * Get Private Funding History
+   *
+   * <p>Submit request to get the funding history.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : FUTURES
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : FUTURES
+   *   <li>API-RATE-LIMIT-POOL : FUTURES
+   *   <li>API-RATE-LIMIT-WEIGHT : 5
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470267">docs</a>
    */
   GetPrivateFundingHistoryResp getPrivateFundingHistory(GetPrivateFundingHistoryReq req);
 }

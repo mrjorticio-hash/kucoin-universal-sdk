@@ -4,579 +4,1042 @@ package com.kucoin.universal.sdk.generate.spot.order;
 
 public interface OrderApi {
   /**
-   * Add Order Place order to the Spot trading system, you can place two major types of orders:
-   * limit and market. Orders can only be placed if your account has sufficient funds. Once an order
-   * is placed, your funds will be put on hold for the duration of the order. The amount of funds on
-   * hold depends on the order type and parameters specified. <a
-   * href="https://www.kucoin.com/docs-new/api-3470188">docs</a> +-----------------------+---------+
-   * | Extra API Info | Value | +-----------------------+---------+ | API-DOMAIN | SPOT | |
-   * API-CHANNEL | PRIVATE | | API-PERMISSION | SPOT | | API-RATE-LIMIT-POOL | SPOT | |
-   * API-RATE-LIMIT-WEIGHT | 1 | +-----------------------+---------+
+   * Add Order
+   *
+   * <p>Place order to the Spot trading system, you can place two major types of orders: limit and
+   * market. Orders can only be placed if your account has sufficient funds. Once an order is
+   * placed, your funds will be put on hold for the duration of the order. The amount of funds on
+   * hold depends on the order type and parameters specified.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : SPOT
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : SPOT
+   *   <li>API-RATE-LIMIT-POOL : SPOT
+   *   <li>API-RATE-LIMIT-WEIGHT : 1
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470188">docs</a>
    */
   AddOrderResp addOrder(AddOrderReq req);
 
   /**
-   * Add Order Sync Place order in the spot trading system. The difference between this interface
-   * and \&quot;Add order\&quot; is that this interface will synchronously return the order
-   * information after the order matching is completed. For higher latency requirements, please
-   * select the \&quot;Add order\&quot; interface. If there is a requirement for returning data
-   * integrity, please select this interface. <a
-   * href="https://www.kucoin.com/docs-new/api-3470170">docs</a> +-----------------------+---------+
-   * | Extra API Info | Value | +-----------------------+---------+ | API-DOMAIN | SPOT | |
-   * API-CHANNEL | PRIVATE | | API-PERMISSION | SPOT | | API-RATE-LIMIT-POOL | SPOT | |
-   * API-RATE-LIMIT-WEIGHT | 1 | +-----------------------+---------+
+   * Add Order Sync
+   *
+   * <p>Place order in the spot trading system. The difference between this interface and \&quot;Add
+   * order\&quot; is that this interface will synchronously return the order information after the
+   * order matching is completed. For higher latency requirements, please select the \&quot;Add
+   * order\&quot; interface. If there is a requirement for returning data integrity, please select
+   * this interface.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : SPOT
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : SPOT
+   *   <li>API-RATE-LIMIT-POOL : SPOT
+   *   <li>API-RATE-LIMIT-WEIGHT : 1
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470170">docs</a>
    */
   AddOrderSyncResp addOrderSync(AddOrderSyncReq req);
 
   /**
-   * Add Order Test Order test endpoint, the request parameters and return parameters of this
-   * endpoint are exactly the same as the order endpoint, and can be used to verify whether the
-   * signature is correct and other operations. After placing an order, the order will not enter the
-   * matching system, and the order cannot be queried. <a
-   * href="https://www.kucoin.com/docs-new/api-3470187">docs</a> +-----------------------+---------+
-   * | Extra API Info | Value | +-----------------------+---------+ | API-DOMAIN | SPOT | |
-   * API-CHANNEL | PRIVATE | | API-PERMISSION | SPOT | | API-RATE-LIMIT-POOL | SPOT | |
-   * API-RATE-LIMIT-WEIGHT | 1 | +-----------------------+---------+
+   * Add Order Test
+   *
+   * <p>Order test endpoint, the request parameters and return parameters of this endpoint are
+   * exactly the same as the order endpoint, and can be used to verify whether the signature is
+   * correct and other operations. After placing an order, the order will not enter the matching
+   * system, and the order cannot be queried.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : SPOT
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : SPOT
+   *   <li>API-RATE-LIMIT-POOL : SPOT
+   *   <li>API-RATE-LIMIT-WEIGHT : 1
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470187">docs</a>
    */
   AddOrderTestResp addOrderTest(AddOrderTestReq req);
 
   /**
-   * Batch Add Orders This endpoint supports sequential batch order placement from a single
-   * endpoint. A maximum of 5 orders can be placed simultaneously. The order types must be limit
-   * orders of the same trading pair <a href="https://www.kucoin.com/docs-new/api-3470168">docs</a>
-   * +-----------------------+---------+ | Extra API Info | Value |
-   * +-----------------------+---------+ | API-DOMAIN | SPOT | | API-CHANNEL | PRIVATE | |
-   * API-PERMISSION | SPOT | | API-RATE-LIMIT-POOL | SPOT | | API-RATE-LIMIT-WEIGHT | 1 |
-   * +-----------------------+---------+
+   * Batch Add Orders
+   *
+   * <p>This endpoint supports sequential batch order placement from a single endpoint. A maximum of
+   * 5 orders can be placed simultaneously. The order types must be limit orders of the same trading
+   * pair
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : SPOT
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : SPOT
+   *   <li>API-RATE-LIMIT-POOL : SPOT
+   *   <li>API-RATE-LIMIT-WEIGHT : 1
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470168">docs</a>
    */
   BatchAddOrdersResp batchAddOrders(BatchAddOrdersReq req);
 
   /**
-   * Batch Add Orders Sync This endpoint supports sequential batch order placement from a single
-   * endpoint. A maximum of 5 orders can be placed simultaneously. The order types must be limit
-   * orders of the same trading pair <a href="https://www.kucoin.com/docs-new/api-3470169">docs</a>
-   * +-----------------------+---------+ | Extra API Info | Value |
-   * +-----------------------+---------+ | API-DOMAIN | SPOT | | API-CHANNEL | PRIVATE | |
-   * API-PERMISSION | SPOT | | API-RATE-LIMIT-POOL | SPOT | | API-RATE-LIMIT-WEIGHT | 1 |
-   * +-----------------------+---------+
+   * Batch Add Orders Sync
+   *
+   * <p>This endpoint supports sequential batch order placement from a single endpoint. A maximum of
+   * 5 orders can be placed simultaneously. The order types must be limit orders of the same trading
+   * pair
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : SPOT
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : SPOT
+   *   <li>API-RATE-LIMIT-POOL : SPOT
+   *   <li>API-RATE-LIMIT-WEIGHT : 1
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470169">docs</a>
    */
   BatchAddOrdersSyncResp batchAddOrdersSync(BatchAddOrdersSyncReq req);
 
   /**
-   * Cancel Order By OrderId This endpoint can be used to cancel a spot order by orderId. This
-   * endpoint only sends cancellation requests. The results of the requests must be obtained by
-   * checking the order status or subscribing to Websocket. <a
-   * href="https://www.kucoin.com/docs-new/api-3470174">docs</a> +-----------------------+---------+
-   * | Extra API Info | Value | +-----------------------+---------+ | API-DOMAIN | SPOT | |
-   * API-CHANNEL | PRIVATE | | API-PERMISSION | SPOT | | API-RATE-LIMIT-POOL | SPOT | |
-   * API-RATE-LIMIT-WEIGHT | 1 | +-----------------------+---------+
+   * Cancel Order By OrderId
+   *
+   * <p>This endpoint can be used to cancel a spot order by orderId. This endpoint only sends
+   * cancellation requests. The results of the requests must be obtained by checking the order
+   * status or subscribing to Websocket.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : SPOT
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : SPOT
+   *   <li>API-RATE-LIMIT-POOL : SPOT
+   *   <li>API-RATE-LIMIT-WEIGHT : 1
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470174">docs</a>
    */
   CancelOrderByOrderIdResp cancelOrderByOrderId(CancelOrderByOrderIdReq req);
 
   /**
-   * Cancel Order By OrderId Sync This endpoint can be used to cancel a spot order by orderId. <a
-   * href="https://www.kucoin.com/docs-new/api-3470185">docs</a> +-----------------------+---------+
-   * | Extra API Info | Value | +-----------------------+---------+ | API-DOMAIN | SPOT | |
-   * API-CHANNEL | PRIVATE | | API-PERMISSION | SPOT | | API-RATE-LIMIT-POOL | SPOT | |
-   * API-RATE-LIMIT-WEIGHT | 1 | +-----------------------+---------+
+   * Cancel Order By OrderId Sync
+   *
+   * <p>This endpoint can be used to cancel a spot order by orderId.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : SPOT
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : SPOT
+   *   <li>API-RATE-LIMIT-POOL : SPOT
+   *   <li>API-RATE-LIMIT-WEIGHT : 1
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470185">docs</a>
    */
   CancelOrderByOrderIdSyncResp cancelOrderByOrderIdSync(CancelOrderByOrderIdSyncReq req);
 
   /**
-   * Cancel Order By ClientOid This endpoint can be used to cancel a spot order by clientOid. This
-   * endpoint only sends cancellation requests. The results of the requests must be obtained by
-   * checking the order status or subscribing to websocket. <a
-   * href="https://www.kucoin.com/docs-new/api-3470184">docs</a> +-----------------------+---------+
-   * | Extra API Info | Value | +-----------------------+---------+ | API-DOMAIN | SPOT | |
-   * API-CHANNEL | PRIVATE | | API-PERMISSION | SPOT | | API-RATE-LIMIT-POOL | SPOT | |
-   * API-RATE-LIMIT-WEIGHT | 1 | +-----------------------+---------+
+   * Cancel Order By ClientOid
+   *
+   * <p>This endpoint can be used to cancel a spot order by clientOid. This endpoint only sends
+   * cancellation requests. The results of the requests must be obtained by checking the order
+   * status or subscribing to websocket.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : SPOT
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : SPOT
+   *   <li>API-RATE-LIMIT-POOL : SPOT
+   *   <li>API-RATE-LIMIT-WEIGHT : 1
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470184">docs</a>
    */
   CancelOrderByClientOidResp cancelOrderByClientOid(CancelOrderByClientOidReq req);
 
   /**
-   * Cancel Order By ClientOid Sync This endpoint can be used to cancel a spot order by orderId. <a
-   * href="https://www.kucoin.com/docs-new/api-3470186">docs</a> +-----------------------+---------+
-   * | Extra API Info | Value | +-----------------------+---------+ | API-DOMAIN | SPOT | |
-   * API-CHANNEL | PRIVATE | | API-PERMISSION | SPOT | | API-RATE-LIMIT-POOL | SPOT | |
-   * API-RATE-LIMIT-WEIGHT | 1 | +-----------------------+---------+
+   * Cancel Order By ClientOid Sync
+   *
+   * <p>This endpoint can be used to cancel a spot order by orderId.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : SPOT
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : SPOT
+   *   <li>API-RATE-LIMIT-POOL : SPOT
+   *   <li>API-RATE-LIMIT-WEIGHT : 1
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470186">docs</a>
    */
   CancelOrderByClientOidSyncResp cancelOrderByClientOidSync(CancelOrderByClientOidSyncReq req);
 
   /**
-   * Cancel Partial Order This interface can cancel the specified quantity of the order according to
-   * the orderId. The order execution order is: price first, time first, this interface will not
-   * change the queue order <a href="https://www.kucoin.com/docs-new/api-3470183">docs</a>
-   * +-----------------------+---------+ | Extra API Info | Value |
-   * +-----------------------+---------+ | API-DOMAIN | SPOT | | API-CHANNEL | PRIVATE | |
-   * API-PERMISSION | SPOT | | API-RATE-LIMIT-POOL | SPOT | | API-RATE-LIMIT-WEIGHT | 2 |
-   * +-----------------------+---------+
+   * Cancel Partial Order
+   *
+   * <p>This interface can cancel the specified quantity of the order according to the orderId. The
+   * order execution order is: price first, time first, this interface will not change the queue
+   * order
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : SPOT
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : SPOT
+   *   <li>API-RATE-LIMIT-POOL : SPOT
+   *   <li>API-RATE-LIMIT-WEIGHT : 2
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470183">docs</a>
    */
   CancelPartialOrderResp cancelPartialOrder(CancelPartialOrderReq req);
 
   /**
-   * Cancel All Orders By Symbol This endpoint can cancel all spot orders for specific symbol. This
-   * endpoint only sends cancellation requests. The results of the requests must be obtained by
-   * checking the order status or subscribing to websocket. <a
-   * href="https://www.kucoin.com/docs-new/api-3470175">docs</a> +-----------------------+---------+
-   * | Extra API Info | Value | +-----------------------+---------+ | API-DOMAIN | SPOT | |
-   * API-CHANNEL | PRIVATE | | API-PERMISSION | SPOT | | API-RATE-LIMIT-POOL | SPOT | |
-   * API-RATE-LIMIT-WEIGHT | 2 | +-----------------------+---------+
+   * Cancel All Orders By Symbol
+   *
+   * <p>This endpoint can cancel all spot orders for specific symbol. This endpoint only sends
+   * cancellation requests. The results of the requests must be obtained by checking the order
+   * status or subscribing to websocket.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : SPOT
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : SPOT
+   *   <li>API-RATE-LIMIT-POOL : SPOT
+   *   <li>API-RATE-LIMIT-WEIGHT : 2
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470175">docs</a>
    */
   CancelAllOrdersBySymbolResp cancelAllOrdersBySymbol(CancelAllOrdersBySymbolReq req);
 
   /**
-   * Cancel All Orders This endpoint can cancel all spot orders for all symbol. This endpoint only
-   * sends cancellation requests. The results of the requests must be obtained by checking the order
-   * status or subscribing to websocket. <a
-   * href="https://www.kucoin.com/docs-new/api-3470176">docs</a> +-----------------------+---------+
-   * | Extra API Info | Value | +-----------------------+---------+ | API-DOMAIN | SPOT | |
-   * API-CHANNEL | PRIVATE | | API-PERMISSION | SPOT | | API-RATE-LIMIT-POOL | SPOT | |
-   * API-RATE-LIMIT-WEIGHT | 30 | +-----------------------+---------+
+   * Cancel All Orders
+   *
+   * <p>This endpoint can cancel all spot orders for all symbol. This endpoint only sends
+   * cancellation requests. The results of the requests must be obtained by checking the order
+   * status or subscribing to websocket.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : SPOT
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : SPOT
+   *   <li>API-RATE-LIMIT-POOL : SPOT
+   *   <li>API-RATE-LIMIT-WEIGHT : 30
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470176">docs</a>
    */
   CancelAllOrdersResp cancelAllOrders();
 
   /**
-   * Modify Order This interface can modify the price and quantity of the order according to orderId
-   * or clientOid. The implementation of this interface is: Cancel the order and place a new order
-   * on the same trading pair, and return the modification result to the client synchronously. When
-   * the quantity of the new order updated by the user is less than the filled quantity of this
-   * order, the order will be considered as completed, and the order will be canceled, and no new
-   * order will be placed. <a href="https://www.kucoin.com/docs-new/api-3470171">docs</a>
-   * +-----------------------+---------+ | Extra API Info | Value |
-   * +-----------------------+---------+ | API-DOMAIN | SPOT | | API-CHANNEL | PRIVATE | |
-   * API-PERMISSION | SPOT | | API-RATE-LIMIT-POOL | SPOT | | API-RATE-LIMIT-WEIGHT | 1 |
-   * +-----------------------+---------+
+   * Modify Order
+   *
+   * <p>This interface can modify the price and quantity of the order according to orderId or
+   * clientOid. The implementation of this interface is: Cancel the order and place a new order on
+   * the same trading pair, and return the modification result to the client synchronously. When the
+   * quantity of the new order updated by the user is less than the filled quantity of this order,
+   * the order will be considered as completed, and the order will be canceled, and no new order
+   * will be placed.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : SPOT
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : SPOT
+   *   <li>API-RATE-LIMIT-POOL : SPOT
+   *   <li>API-RATE-LIMIT-WEIGHT : 1
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470171">docs</a>
    */
   ModifyOrderResp modifyOrder(ModifyOrderReq req);
 
   /**
-   * Get Order By OrderId This endpoint can be used to obtain information for a single Spot order
-   * using the order id. After the user successfully places an order, the order is in Active state,
-   * and the user can use inOrderBook to determine whether the order has entered the order. Canceled
-   * or fully filled orders are marked as completed Done status. <a
-   * href="https://www.kucoin.com/docs-new/api-3470181">docs</a> +-----------------------+---------+
-   * | Extra API Info | Value | +-----------------------+---------+ | API-DOMAIN | SPOT | |
-   * API-CHANNEL | PRIVATE | | API-PERMISSION | GENERAL | | API-RATE-LIMIT-POOL | SPOT | |
-   * API-RATE-LIMIT-WEIGHT | 2 | +-----------------------+---------+
+   * Get Order By OrderId
+   *
+   * <p>This endpoint can be used to obtain information for a single Spot order using the order id.
+   * After the user successfully places an order, the order is in Active state, and the user can use
+   * inOrderBook to determine whether the order has entered the order. Canceled or fully filled
+   * orders are marked as completed Done status.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : SPOT
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : GENERAL
+   *   <li>API-RATE-LIMIT-POOL : SPOT
+   *   <li>API-RATE-LIMIT-WEIGHT : 2
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470181">docs</a>
    */
   GetOrderByOrderIdResp getOrderByOrderId(GetOrderByOrderIdReq req);
 
   /**
-   * Get Order By ClientOid This endpoint can be used to obtain information for a single Spot order
-   * using the client order id. After the user successfully places an order, the order is in Active
-   * state, and the user can use inOrderBook to determine whether the order has entered the order.
-   * Canceled or fully filled orders are marked as completed Done status. <a
-   * href="https://www.kucoin.com/docs-new/api-3470182">docs</a> +-----------------------+---------+
-   * | Extra API Info | Value | +-----------------------+---------+ | API-DOMAIN | SPOT | |
-   * API-CHANNEL | PRIVATE | | API-PERMISSION | GENERAL | | API-RATE-LIMIT-POOL | SPOT | |
-   * API-RATE-LIMIT-WEIGHT | 2 | +-----------------------+---------+
+   * Get Order By ClientOid
+   *
+   * <p>This endpoint can be used to obtain information for a single Spot order using the client
+   * order id. After the user successfully places an order, the order is in Active state, and the
+   * user can use inOrderBook to determine whether the order has entered the order. Canceled or
+   * fully filled orders are marked as completed Done status.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : SPOT
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : GENERAL
+   *   <li>API-RATE-LIMIT-POOL : SPOT
+   *   <li>API-RATE-LIMIT-WEIGHT : 2
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470182">docs</a>
    */
   GetOrderByClientOidResp getOrderByClientOid(GetOrderByClientOidReq req);
 
   /**
-   * Get Symbols With Open Order This interface can query all spot symbol that has active orders <a
-   * href="https://www.kucoin.com/docs-new/api-3470177">docs</a> +-----------------------+---------+
-   * | Extra API Info | Value | +-----------------------+---------+ | API-DOMAIN | SPOT | |
-   * API-CHANNEL | PRIVATE | | API-PERMISSION | SPOT | | API-RATE-LIMIT-POOL | SPOT | |
-   * API-RATE-LIMIT-WEIGHT | 2 | +-----------------------+---------+
+   * Get Symbols With Open Order
+   *
+   * <p>This interface can query all spot symbol that has active orders
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : SPOT
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : SPOT
+   *   <li>API-RATE-LIMIT-POOL : SPOT
+   *   <li>API-RATE-LIMIT-WEIGHT : 2
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470177">docs</a>
    */
   GetSymbolsWithOpenOrderResp getSymbolsWithOpenOrder();
 
   /**
-   * Get Open Orders This interface is to obtain all Spot active order lists, and the return value
-   * of the active order interface is the paged data of all uncompleted order lists. The returned
-   * data is sorted in descending order according to the latest update time of the order. After the
-   * user successfully places an order, the order is in Active state, and the user can use
-   * inOrderBook to determine whether the order has entered the order. Canceled or fully filled
-   * orders are marked as completed Done status. <a
-   * href="https://www.kucoin.com/docs-new/api-3470178">docs</a> +-----------------------+---------+
-   * | Extra API Info | Value | +-----------------------+---------+ | API-DOMAIN | SPOT | |
-   * API-CHANNEL | PRIVATE | | API-PERMISSION | GENERAL | | API-RATE-LIMIT-POOL | SPOT | |
-   * API-RATE-LIMIT-WEIGHT | 2 | +-----------------------+---------+
+   * Get Open Orders
+   *
+   * <p>This interface is to obtain all Spot active order lists, and the return value of the active
+   * order interface is the paged data of all uncompleted order lists. The returned data is sorted
+   * in descending order according to the latest update time of the order. After the user
+   * successfully places an order, the order is in Active state, and the user can use inOrderBook to
+   * determine whether the order has entered the order. Canceled or fully filled orders are marked
+   * as completed Done status.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : SPOT
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : GENERAL
+   *   <li>API-RATE-LIMIT-POOL : SPOT
+   *   <li>API-RATE-LIMIT-WEIGHT : 2
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470178">docs</a>
    */
   GetOpenOrdersResp getOpenOrders(GetOpenOrdersReq req);
 
   /**
-   * Get Open Orders By Page This interface is to obtain Spot active order (uncompleted order) lists
-   * by page. The returned data is sorted in descending order according to the create time of the
-   * order. After the user successfully places an order, the order is in Active state, and the user
-   * can use inOrderBook to determine whether the order has entered the order. Canceled or fully
-   * filled orders are marked as completed Done status. <a
-   * href="https://www.kucoin.com/docs-new/api-3471591">docs</a> +-----------------------+---------+
-   * | Extra API Info | Value | +-----------------------+---------+ | API-DOMAIN | SPOT | |
-   * API-CHANNEL | PRIVATE | | API-PERMISSION | GENERAL | | API-RATE-LIMIT-POOL | SPOT | |
-   * API-RATE-LIMIT-WEIGHT | 2 | +-----------------------+---------+
+   * Get Open Orders By Page
+   *
+   * <p>This interface is to obtain Spot active order (uncompleted order) lists by page. The
+   * returned data is sorted in descending order according to the create time of the order. After
+   * the user successfully places an order, the order is in Active state, and the user can use
+   * inOrderBook to determine whether the order has entered the order. Canceled or fully filled
+   * orders are marked as completed Done status.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : SPOT
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : GENERAL
+   *   <li>API-RATE-LIMIT-POOL : SPOT
+   *   <li>API-RATE-LIMIT-WEIGHT : 2
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3471591">docs</a>
    */
   GetOpenOrdersByPageResp getOpenOrdersByPage(GetOpenOrdersByPageReq req);
 
   /**
-   * Get Closed Orders This interface is to obtain all Spot closed order lists, and the return value
-   * of the active order interface is the paged data of all uncompleted order lists. The returned
-   * data is sorted in descending order according to the latest update time of the order. After the
-   * user successfully places an order, the order is in Active state, and the user can use
-   * inOrderBook to determine whether the order has entered the order. Canceled or fully filled
-   * orders are marked as completed Done status. <a
-   * href="https://www.kucoin.com/docs-new/api-3470179">docs</a> +-----------------------+---------+
-   * | Extra API Info | Value | +-----------------------+---------+ | API-DOMAIN | SPOT | |
-   * API-CHANNEL | PRIVATE | | API-PERMISSION | GENERAL | | API-RATE-LIMIT-POOL | SPOT | |
-   * API-RATE-LIMIT-WEIGHT | 2 | +-----------------------+---------+
+   * Get Closed Orders
+   *
+   * <p>This interface is to obtain all Spot closed order lists, and the return value of the active
+   * order interface is the paged data of all uncompleted order lists. The returned data is sorted
+   * in descending order according to the latest update time of the order. After the user
+   * successfully places an order, the order is in Active state, and the user can use inOrderBook to
+   * determine whether the order has entered the order. Canceled or fully filled orders are marked
+   * as completed Done status.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : SPOT
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : GENERAL
+   *   <li>API-RATE-LIMIT-POOL : SPOT
+   *   <li>API-RATE-LIMIT-WEIGHT : 2
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470179">docs</a>
    */
   GetClosedOrdersResp getClosedOrders(GetClosedOrdersReq req);
 
   /**
-   * Get Trade History This endpoint can be used to obtain a list of the latest Spot transaction
-   * details. The returned data is sorted in descending order according to the latest update time of
-   * the order. <a href="https://www.kucoin.com/docs-new/api-3470180">docs</a>
-   * +-----------------------+---------+ | Extra API Info | Value |
-   * +-----------------------+---------+ | API-DOMAIN | SPOT | | API-CHANNEL | PRIVATE | |
-   * API-PERMISSION | GENERAL | | API-RATE-LIMIT-POOL | SPOT | | API-RATE-LIMIT-WEIGHT | 2 |
-   * +-----------------------+---------+
+   * Get Trade History
+   *
+   * <p>This endpoint can be used to obtain a list of the latest Spot transaction details. The
+   * returned data is sorted in descending order according to the latest update time of the order.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : SPOT
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : GENERAL
+   *   <li>API-RATE-LIMIT-POOL : SPOT
+   *   <li>API-RATE-LIMIT-WEIGHT : 2
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470180">docs</a>
    */
   GetTradeHistoryResp getTradeHistory(GetTradeHistoryReq req);
 
   /**
-   * Get DCP Get Disconnection Protect (Deadman Switch). Through this interface, you can query the
-   * settings of automatic order cancellation. <a
-   * href="https://www.kucoin.com/docs-new/api-3470172">docs</a> +-----------------------+---------+
-   * | Extra API Info | Value | +-----------------------+---------+ | API-DOMAIN | SPOT | |
-   * API-CHANNEL | PRIVATE | | API-PERMISSION | SPOT | | API-RATE-LIMIT-POOL | SPOT | |
-   * API-RATE-LIMIT-WEIGHT | 2 | +-----------------------+---------+
+   * Get DCP
+   *
+   * <p>Get Disconnection Protect (Deadman Switch). Through this interface, you can query the
+   * settings of automatic order cancellation.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : SPOT
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : SPOT
+   *   <li>API-RATE-LIMIT-POOL : SPOT
+   *   <li>API-RATE-LIMIT-WEIGHT : 2
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470172">docs</a>
    */
   GetDCPResp getDCP();
 
   /**
-   * Set DCP Set Disconnection Protect (Deadman Switch). Through this interface, call this interface
-   * to automatically cancel all orders of the set trading pair after the specified time. If this
+   * Set DCP
+   *
+   * <p>Set Disconnection Protect (Deadman Switch). Through this interface, call this interface to
+   * automatically cancel all orders of the set trading pair after the specified time. If this
    * interface is not called again for renewal or cancellation before the set time, the system will
-   * help the user to cancel the order of the corresponding trading pair. Otherwise it will not. <a
-   * href="https://www.kucoin.com/docs-new/api-3470173">docs</a> +-----------------------+---------+
-   * | Extra API Info | Value | +-----------------------+---------+ | API-DOMAIN | SPOT | |
-   * API-CHANNEL | PRIVATE | | API-PERMISSION | SPOT | | API-RATE-LIMIT-POOL | SPOT | |
-   * API-RATE-LIMIT-WEIGHT | 2 | +-----------------------+---------+
+   * help the user to cancel the order of the corresponding trading pair. Otherwise it will not.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : SPOT
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : SPOT
+   *   <li>API-RATE-LIMIT-POOL : SPOT
+   *   <li>API-RATE-LIMIT-WEIGHT : 2
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470173">docs</a>
    */
   SetDCPResp setDCP(SetDCPReq req);
 
   /**
-   * Add Stop Order Place stop order to the Spot trading system, you can place two major types of
-   * orders: limit and market. Orders can only be placed if your account has sufficient funds. Once
-   * an order is placed, your funds will be put on hold for the duration of the order. The amount of
-   * funds on hold depends on the order type and parameters specified.
+   * Add Stop Order
    *
-   * @deprecated <a href="https://www.kucoin.com/docs-new/api-3470334">docs</a>
-   *     +-----------------------+---------+ | Extra API Info | Value |
-   *     +-----------------------+---------+ | API-DOMAIN | SPOT | | API-CHANNEL | PRIVATE | |
-   *     API-PERMISSION | SPOT | | API-RATE-LIMIT-POOL | SPOT | | API-RATE-LIMIT-WEIGHT | 1 |
-   *     +-----------------------+---------+
+   * <p>Place stop order to the Spot trading system, you can place two major types of orders: limit
+   * and market. Orders can only be placed if your account has sufficient funds. Once an order is
+   * placed, your funds will be put on hold for the duration of the order. The amount of funds on
+   * hold depends on the order type and parameters specified.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : SPOT
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : SPOT
+   *   <li>API-RATE-LIMIT-POOL : SPOT
+   *   <li>API-RATE-LIMIT-WEIGHT : 1
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470334">docs</a>
+   * @deprecated
    */
   AddStopOrderResp addStopOrder(AddStopOrderReq req);
 
   /**
-   * Cancel Stop Order By ClientOid This endpoint can be used to cancel a spot stop order by
-   * clientOid.
+   * Cancel Stop Order By ClientOid
    *
-   * @deprecated <a href="https://www.kucoin.com/docs-new/api-3470336">docs</a>
-   *     +-----------------------+---------+ | Extra API Info | Value |
-   *     +-----------------------+---------+ | API-DOMAIN | SPOT | | API-CHANNEL | PRIVATE | |
-   *     API-PERMISSION | SPOT | | API-RATE-LIMIT-POOL | SPOT | | API-RATE-LIMIT-WEIGHT | 5 |
-   *     +-----------------------+---------+
+   * <p>This endpoint can be used to cancel a spot stop order by clientOid.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : SPOT
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : SPOT
+   *   <li>API-RATE-LIMIT-POOL : SPOT
+   *   <li>API-RATE-LIMIT-WEIGHT : 5
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470336">docs</a>
+   * @deprecated
    */
   CancelStopOrderByClientOidResp cancelStopOrderByClientOid(CancelStopOrderByClientOidReq req);
 
   /**
-   * Cancel Stop Order By OrderId This endpoint can be used to cancel a spot stop order by orderId.
+   * Cancel Stop Order By OrderId
    *
-   * @deprecated <a href="https://www.kucoin.com/docs-new/api-3470335">docs</a>
-   *     +-----------------------+---------+ | Extra API Info | Value |
-   *     +-----------------------+---------+ | API-DOMAIN | SPOT | | API-CHANNEL | PRIVATE | |
-   *     API-PERMISSION | SPOT | | API-RATE-LIMIT-POOL | SPOT | | API-RATE-LIMIT-WEIGHT | 3 |
-   *     +-----------------------+---------+
+   * <p>This endpoint can be used to cancel a spot stop order by orderId.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : SPOT
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : SPOT
+   *   <li>API-RATE-LIMIT-POOL : SPOT
+   *   <li>API-RATE-LIMIT-WEIGHT : 3
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470335">docs</a>
+   * @deprecated
    */
   CancelStopOrderByOrderIdResp cancelStopOrderByOrderId(CancelStopOrderByOrderIdReq req);
 
   /**
-   * Batch Cancel Stop Orders This endpoint can be used to cancel a spot stop orders by batch. <a
-   * href="https://www.kucoin.com/docs-new/api-3470337">docs</a> +-----------------------+---------+
-   * | Extra API Info | Value | +-----------------------+---------+ | API-DOMAIN | SPOT | |
-   * API-CHANNEL | PRIVATE | | API-PERMISSION | SPOT | | API-RATE-LIMIT-POOL | SPOT | |
-   * API-RATE-LIMIT-WEIGHT | 3 | +-----------------------+---------+
+   * Batch Cancel Stop Orders
+   *
+   * <p>This endpoint can be used to cancel a spot stop orders by batch.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : SPOT
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : SPOT
+   *   <li>API-RATE-LIMIT-POOL : SPOT
+   *   <li>API-RATE-LIMIT-WEIGHT : 3
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470337">docs</a>
    */
   BatchCancelStopOrderResp batchCancelStopOrder(BatchCancelStopOrderReq req);
 
   /**
-   * Get Stop Orders List This interface is to obtain all Spot active stop order lists <a
-   * href="https://www.kucoin.com/docs-new/api-3470338">docs</a> +-----------------------+---------+
-   * | Extra API Info | Value | +-----------------------+---------+ | API-DOMAIN | SPOT | |
-   * API-CHANNEL | PRIVATE | | API-PERMISSION | GENERAL | | API-RATE-LIMIT-POOL | SPOT | |
-   * API-RATE-LIMIT-WEIGHT | 8 | +-----------------------+---------+
+   * Get Stop Orders List
+   *
+   * <p>This interface is to obtain all Spot active stop order lists
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : SPOT
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : GENERAL
+   *   <li>API-RATE-LIMIT-POOL : SPOT
+   *   <li>API-RATE-LIMIT-WEIGHT : 8
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470338">docs</a>
    */
   GetStopOrdersListResp getStopOrdersList(GetStopOrdersListReq req);
 
   /**
-   * Get Stop Order By OrderId This interface is to obtain Spot stop order details by orderId <a
-   * href="https://www.kucoin.com/docs-new/api-3470339">docs</a> +-----------------------+---------+
-   * | Extra API Info | Value | +-----------------------+---------+ | API-DOMAIN | SPOT | |
-   * API-CHANNEL | PRIVATE | | API-PERMISSION | GENERAL | | API-RATE-LIMIT-POOL | SPOT | |
-   * API-RATE-LIMIT-WEIGHT | 3 | +-----------------------+---------+
+   * Get Stop Order By OrderId
+   *
+   * <p>This interface is to obtain Spot stop order details by orderId
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : SPOT
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : GENERAL
+   *   <li>API-RATE-LIMIT-POOL : SPOT
+   *   <li>API-RATE-LIMIT-WEIGHT : 3
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470339">docs</a>
    */
   GetStopOrderByOrderIdResp getStopOrderByOrderId(GetStopOrderByOrderIdReq req);
 
   /**
-   * Get Stop Order By ClientOid This interface is to obtain Spot stop order details by orderId <a
-   * href="https://www.kucoin.com/docs-new/api-3470340">docs</a> +-----------------------+---------+
-   * | Extra API Info | Value | +-----------------------+---------+ | API-DOMAIN | SPOT | |
-   * API-CHANNEL | PRIVATE | | API-PERMISSION | GENERAL | | API-RATE-LIMIT-POOL | SPOT | |
-   * API-RATE-LIMIT-WEIGHT | 3 | +-----------------------+---------+
+   * Get Stop Order By ClientOid
+   *
+   * <p>This interface is to obtain Spot stop order details by orderId
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : SPOT
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : GENERAL
+   *   <li>API-RATE-LIMIT-POOL : SPOT
+   *   <li>API-RATE-LIMIT-WEIGHT : 3
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470340">docs</a>
    */
   GetStopOrderByClientOidResp getStopOrderByClientOid(GetStopOrderByClientOidReq req);
 
   /**
-   * Add OCO Order Place OCO order to the Spot trading system
+   * Add OCO Order
    *
-   * @deprecated <a href="https://www.kucoin.com/docs-new/api-3470353">docs</a>
-   *     +-----------------------+---------+ | Extra API Info | Value |
-   *     +-----------------------+---------+ | API-DOMAIN | SPOT | | API-CHANNEL | PRIVATE | |
-   *     API-PERMISSION | SPOT | | API-RATE-LIMIT-POOL | SPOT | | API-RATE-LIMIT-WEIGHT | 2 |
-   *     +-----------------------+---------+
+   * <p>Place OCO order to the Spot trading system
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : SPOT
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : SPOT
+   *   <li>API-RATE-LIMIT-POOL : SPOT
+   *   <li>API-RATE-LIMIT-WEIGHT : 2
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470353">docs</a>
+   * @deprecated
    */
   AddOcoOrderResp addOcoOrder(AddOcoOrderReq req);
 
   /**
-   * Cancel OCO Order By OrderId This endpoint can be used to cancel a spot order by orderId. This
-   * endpoint only sends cancellation requests. The results of the requests must be obtained by
-   * checking the order status or subscribing to Websocket.
+   * Cancel OCO Order By OrderId
    *
-   * @deprecated <a href="https://www.kucoin.com/docs-new/api-3470354">docs</a>
-   *     +-----------------------+---------+ | Extra API Info | Value |
-   *     +-----------------------+---------+ | API-DOMAIN | SPOT | | API-CHANNEL | PRIVATE | |
-   *     API-PERMISSION | SPOT | | API-RATE-LIMIT-POOL | SPOT | | API-RATE-LIMIT-WEIGHT | 3 |
-   *     +-----------------------+---------+
+   * <p>This endpoint can be used to cancel a spot order by orderId. This endpoint only sends
+   * cancellation requests. The results of the requests must be obtained by checking the order
+   * status or subscribing to Websocket.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : SPOT
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : SPOT
+   *   <li>API-RATE-LIMIT-POOL : SPOT
+   *   <li>API-RATE-LIMIT-WEIGHT : 3
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470354">docs</a>
+   * @deprecated
    */
   CancelOcoOrderByOrderIdResp cancelOcoOrderByOrderId(CancelOcoOrderByOrderIdReq req);
 
   /**
-   * Cancel OCO Order By ClientOid Request via this interface to cancel a stop order via the
-   * clientOid. You will receive cancelledOrderIds field once the system has received the
-   * cancellation request. The cancellation request will be processed by the matching engine in
-   * sequence. To know if the request is processed (successfully or not), you may check the order
-   * status or the update message from the pushes.
+   * Cancel OCO Order By ClientOid
    *
-   * @deprecated <a href="https://www.kucoin.com/docs-new/api-3470355">docs</a>
-   *     +-----------------------+---------+ | Extra API Info | Value |
-   *     +-----------------------+---------+ | API-DOMAIN | SPOT | | API-CHANNEL | PRIVATE | |
-   *     API-PERMISSION | SPOT | | API-RATE-LIMIT-POOL | SPOT | | API-RATE-LIMIT-WEIGHT | 3 |
-   *     +-----------------------+---------+
+   * <p>Request via this interface to cancel a stop order via the clientOid. You will receive
+   * cancelledOrderIds field once the system has received the cancellation request. The cancellation
+   * request will be processed by the matching engine in sequence. To know if the request is
+   * processed (successfully or not), you may check the order status or the update message from the
+   * pushes.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : SPOT
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : SPOT
+   *   <li>API-RATE-LIMIT-POOL : SPOT
+   *   <li>API-RATE-LIMIT-WEIGHT : 3
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470355">docs</a>
+   * @deprecated
    */
   CancelOcoOrderByClientOidResp cancelOcoOrderByClientOid(CancelOcoOrderByClientOidReq req);
 
   /**
-   * Batch Cancel OCO Order This interface can batch cancel OCO orders through orderIds. You will
-   * receive canceledOrderIds field once the system has received the cancellation request. The
-   * cancellation request will be processed by the matching engine in sequence. To know if the
-   * request is processed (successfully or not), you may check the order status or the update
-   * message from the pushes.
+   * Batch Cancel OCO Order
    *
-   * @deprecated <a href="https://www.kucoin.com/docs-new/api-3470356">docs</a>
-   *     +-----------------------+---------+ | Extra API Info | Value |
-   *     +-----------------------+---------+ | API-DOMAIN | SPOT | | API-CHANNEL | PRIVATE | |
-   *     API-PERMISSION | SPOT | | API-RATE-LIMIT-POOL | SPOT | | API-RATE-LIMIT-WEIGHT | 3 |
-   *     +-----------------------+---------+
+   * <p>This interface can batch cancel OCO orders through orderIds. You will receive
+   * canceledOrderIds field once the system has received the cancellation request. The cancellation
+   * request will be processed by the matching engine in sequence. To know if the request is
+   * processed (successfully or not), you may check the order status or the update message from the
+   * pushes.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : SPOT
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : SPOT
+   *   <li>API-RATE-LIMIT-POOL : SPOT
+   *   <li>API-RATE-LIMIT-WEIGHT : 3
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470356">docs</a>
+   * @deprecated
    */
   BatchCancelOcoOrdersResp batchCancelOcoOrders(BatchCancelOcoOrdersReq req);
 
   /**
-   * Get OCO Order By OrderId Request via this interface an OCO order information via the order ID.
+   * Get OCO Order By OrderId
    *
-   * @deprecated <a href="https://www.kucoin.com/docs-new/api-3470357">docs</a>
-   *     +-----------------------+---------+ | Extra API Info | Value |
-   *     +-----------------------+---------+ | API-DOMAIN | SPOT | | API-CHANNEL | PRIVATE | |
-   *     API-PERMISSION | GENERAL | | API-RATE-LIMIT-POOL | SPOT | | API-RATE-LIMIT-WEIGHT | 2 |
-   *     +-----------------------+---------+
+   * <p>Request via this interface an OCO order information via the order ID.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : SPOT
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : GENERAL
+   *   <li>API-RATE-LIMIT-POOL : SPOT
+   *   <li>API-RATE-LIMIT-WEIGHT : 2
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470357">docs</a>
+   * @deprecated
    */
   GetOcoOrderByOrderIdResp getOcoOrderByOrderId(GetOcoOrderByOrderIdReq req);
 
   /**
-   * Get OCO Order By ClientOid Request via this interface to get a oco order information via the
-   * client order ID.
+   * Get OCO Order By ClientOid
    *
-   * @deprecated <a href="https://www.kucoin.com/docs-new/api-3470358">docs</a>
-   *     +-----------------------+---------+ | Extra API Info | Value |
-   *     +-----------------------+---------+ | API-DOMAIN | SPOT | | API-CHANNEL | PRIVATE | |
-   *     API-PERMISSION | GENERAL | | API-RATE-LIMIT-POOL | SPOT | | API-RATE-LIMIT-WEIGHT | 2 |
-   *     +-----------------------+---------+
+   * <p>Request via this interface to get a oco order information via the client order ID.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : SPOT
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : GENERAL
+   *   <li>API-RATE-LIMIT-POOL : SPOT
+   *   <li>API-RATE-LIMIT-WEIGHT : 2
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470358">docs</a>
+   * @deprecated
    */
   GetOcoOrderByClientOidResp getOcoOrderByClientOid(GetOcoOrderByClientOidReq req);
 
   /**
-   * Get OCO Order Detail By OrderId Request via this interface to get a oco order detail via the
-   * order ID.
+   * Get OCO Order Detail By OrderId
    *
-   * @deprecated <a href="https://www.kucoin.com/docs-new/api-3470359">docs</a>
-   *     +-----------------------+---------+ | Extra API Info | Value |
-   *     +-----------------------+---------+ | API-DOMAIN | SPOT | | API-CHANNEL | PRIVATE | |
-   *     API-PERMISSION | GENERAL | | API-RATE-LIMIT-POOL | SPOT | | API-RATE-LIMIT-WEIGHT | 2 |
-   *     +-----------------------+---------+
+   * <p>Request via this interface to get a oco order detail via the order ID.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : SPOT
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : GENERAL
+   *   <li>API-RATE-LIMIT-POOL : SPOT
+   *   <li>API-RATE-LIMIT-WEIGHT : 2
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470359">docs</a>
+   * @deprecated
    */
   GetOcoOrderDetailByOrderIdResp getOcoOrderDetailByOrderId(GetOcoOrderDetailByOrderIdReq req);
 
   /**
-   * Get OCO Order List Request your current OCO order list via this endpoint. Items are paginated
-   * and sorted to show the latest first. See the Pagination section for retrieving additional
-   * entries after the first page.
+   * Get OCO Order List
    *
-   * @deprecated <a href="https://www.kucoin.com/docs-new/api-3470360">docs</a>
-   *     +-----------------------+---------+ | Extra API Info | Value |
-   *     +-----------------------+---------+ | API-DOMAIN | SPOT | | API-CHANNEL | PRIVATE | |
-   *     API-PERMISSION | GENERAL | | API-RATE-LIMIT-POOL | SPOT | | API-RATE-LIMIT-WEIGHT | 2 |
-   *     +-----------------------+---------+
+   * <p>Request your current OCO order list via this endpoint. Items are paginated and sorted to
+   * show the latest first. See the Pagination section for retrieving additional entries after the
+   * first page.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : SPOT
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : GENERAL
+   *   <li>API-RATE-LIMIT-POOL : SPOT
+   *   <li>API-RATE-LIMIT-WEIGHT : 2
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470360">docs</a>
+   * @deprecated
    */
   GetOcoOrderListResp getOcoOrderList(GetOcoOrderListReq req);
 
   /**
-   * Add Order - Old Place order to the Spot trading system, you can place two major types of
-   * orders: limit and market. Orders can only be placed if your account has sufficient funds. Once
-   * an order is placed, your funds will be put on hold for the duration of the order. The amount of
-   * funds on hold depends on the order type and parameters specified.
+   * Add Order - Old
    *
-   * @deprecated <a href="https://www.kucoin.com/docs-new/api-3470333">docs</a>
-   *     +-----------------------+---------+ | Extra API Info | Value |
-   *     +-----------------------+---------+ | API-DOMAIN | SPOT | | API-CHANNEL | PRIVATE | |
-   *     API-PERMISSION | SPOT | | API-RATE-LIMIT-POOL | SPOT | | API-RATE-LIMIT-WEIGHT | 2 |
-   *     +-----------------------+---------+
+   * <p>Place order to the Spot trading system, you can place two major types of orders: limit and
+   * market. Orders can only be placed if your account has sufficient funds. Once an order is
+   * placed, your funds will be put on hold for the duration of the order. The amount of funds on
+   * hold depends on the order type and parameters specified.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : SPOT
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : SPOT
+   *   <li>API-RATE-LIMIT-POOL : SPOT
+   *   <li>API-RATE-LIMIT-WEIGHT : 2
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470333">docs</a>
+   * @deprecated
    */
   AddOrderOldResp addOrderOld(AddOrderOldReq req);
 
   /**
-   * Add Order Test - Old Order test endpoint, the request parameters and return parameters of this
-   * endpoint are exactly the same as the order endpoint, and can be used to verify whether the
-   * signature is correct and other operations. After placing an order, the order will not enter the
-   * matching system, and the order cannot be queried.
+   * Add Order Test - Old
    *
-   * @deprecated <a href="https://www.kucoin.com/docs-new/api-3470341">docs</a>
-   *     +-----------------------+---------+ | Extra API Info | Value |
-   *     +-----------------------+---------+ | API-DOMAIN | SPOT | | API-CHANNEL | PRIVATE | |
-   *     API-PERMISSION | SPOT | | API-RATE-LIMIT-POOL | SPOT | | API-RATE-LIMIT-WEIGHT | 2 |
-   *     +-----------------------+---------+
+   * <p>Order test endpoint, the request parameters and return parameters of this endpoint are
+   * exactly the same as the order endpoint, and can be used to verify whether the signature is
+   * correct and other operations. After placing an order, the order will not enter the matching
+   * system, and the order cannot be queried.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : SPOT
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : SPOT
+   *   <li>API-RATE-LIMIT-POOL : SPOT
+   *   <li>API-RATE-LIMIT-WEIGHT : 2
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470341">docs</a>
+   * @deprecated
    */
   AddOrderTestOldResp addOrderTestOld(AddOrderTestOldReq req);
 
   /**
-   * Batch Add Orders - Old Request via this endpoint to place 5 orders at the same time. The order
-   * type must be a limit order of the same symbol.
+   * Batch Add Orders - Old
    *
-   * @deprecated <a href="https://www.kucoin.com/docs-new/api-3470342">docs</a>
-   *     +-----------------------+---------+ | Extra API Info | Value |
-   *     +-----------------------+---------+ | API-DOMAIN | SPOT | | API-CHANNEL | PRIVATE | |
-   *     API-PERMISSION | SPOT | | API-RATE-LIMIT-POOL | SPOT | | API-RATE-LIMIT-WEIGHT | 3 |
-   *     +-----------------------+---------+
+   * <p>Request via this endpoint to place 5 orders at the same time. The order type must be a limit
+   * order of the same symbol.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : SPOT
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : SPOT
+   *   <li>API-RATE-LIMIT-POOL : SPOT
+   *   <li>API-RATE-LIMIT-WEIGHT : 3
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470342">docs</a>
+   * @deprecated
    */
   BatchAddOrdersOldResp batchAddOrdersOld(BatchAddOrdersOldReq req);
 
   /**
-   * Cancel Order By OrderId - Old This endpoint can be used to cancel a spot order by orderId. This
-   * endpoint only sends cancellation requests. The results of the requests must be obtained by
-   * checking the order status or subscribing to Websocket.
+   * Cancel Order By OrderId - Old
    *
-   * @deprecated <a href="https://www.kucoin.com/docs-new/api-3470343">docs</a>
-   *     +-----------------------+---------+ | Extra API Info | Value |
-   *     +-----------------------+---------+ | API-DOMAIN | SPOT | | API-CHANNEL | PRIVATE | |
-   *     API-PERMISSION | SPOT | | API-RATE-LIMIT-POOL | SPOT | | API-RATE-LIMIT-WEIGHT | 3 |
-   *     +-----------------------+---------+
+   * <p>This endpoint can be used to cancel a spot order by orderId. This endpoint only sends
+   * cancellation requests. The results of the requests must be obtained by checking the order
+   * status or subscribing to Websocket.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : SPOT
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : SPOT
+   *   <li>API-RATE-LIMIT-POOL : SPOT
+   *   <li>API-RATE-LIMIT-WEIGHT : 3
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470343">docs</a>
+   * @deprecated
    */
   CancelOrderByOrderIdOldResp cancelOrderByOrderIdOld(CancelOrderByOrderIdOldReq req);
 
   /**
-   * Cancel Order By ClientOid - Old This endpoint can be used to cancel a spot order by clientOid.
-   * This endpoint only sends cancellation requests. The results of the requests must be obtained by
-   * checking the order status or subscribing to websocket. <a
-   * href="https://www.kucoin.com/docs-new/api-3470344">docs</a> +-----------------------+---------+
-   * | Extra API Info | Value | +-----------------------+---------+ | API-DOMAIN | SPOT | |
-   * API-CHANNEL | PRIVATE | | API-PERMISSION | SPOT | | API-RATE-LIMIT-POOL | SPOT | |
-   * API-RATE-LIMIT-WEIGHT | 3 | +-----------------------+---------+
+   * Cancel Order By ClientOid - Old
+   *
+   * <p>This endpoint can be used to cancel a spot order by clientOid. This endpoint only sends
+   * cancellation requests. The results of the requests must be obtained by checking the order
+   * status or subscribing to websocket.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : SPOT
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : SPOT
+   *   <li>API-RATE-LIMIT-POOL : SPOT
+   *   <li>API-RATE-LIMIT-WEIGHT : 3
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470344">docs</a>
    */
   CancelOrderByClientOidOldResp cancelOrderByClientOidOld(CancelOrderByClientOidOldReq req);
 
   /**
-   * Batch Cancel Order - Old Request via this endpoint to cancel all open orders. The response is a
-   * list of ids of the canceled orders.
+   * Batch Cancel Order - Old
    *
-   * @deprecated <a href="https://www.kucoin.com/docs-new/api-3470345">docs</a>
-   *     +-----------------------+---------+ | Extra API Info | Value |
-   *     +-----------------------+---------+ | API-DOMAIN | SPOT | | API-CHANNEL | PRIVATE | |
-   *     API-PERMISSION | SPOT | | API-RATE-LIMIT-POOL | SPOT | | API-RATE-LIMIT-WEIGHT | 20 |
-   *     +-----------------------+---------+
+   * <p>Request via this endpoint to cancel all open orders. The response is a list of ids of the
+   * canceled orders.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : SPOT
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : SPOT
+   *   <li>API-RATE-LIMIT-POOL : SPOT
+   *   <li>API-RATE-LIMIT-WEIGHT : 20
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470345">docs</a>
+   * @deprecated
    */
   BatchCancelOrderOldResp batchCancelOrderOld(BatchCancelOrderOldReq req);
 
   /**
-   * Get Orders List - Old Request your current order list via this endpoint. The return value is
-   * the data after Pagination, sorted in descending order according to time.
+   * Get Orders List - Old
    *
-   * @deprecated <a href="https://www.kucoin.com/docs-new/api-3470346">docs</a>
-   *     +-----------------------+---------+ | Extra API Info | Value |
-   *     +-----------------------+---------+ | API-DOMAIN | SPOT | | API-CHANNEL | PRIVATE | |
-   *     API-PERMISSION | GENERAL | | API-RATE-LIMIT-POOL | SPOT | | API-RATE-LIMIT-WEIGHT | 2 |
-   *     +-----------------------+---------+
+   * <p>Request your current order list via this endpoint. The return value is the data after
+   * Pagination, sorted in descending order according to time.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : SPOT
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : GENERAL
+   *   <li>API-RATE-LIMIT-POOL : SPOT
+   *   <li>API-RATE-LIMIT-WEIGHT : 2
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470346">docs</a>
+   * @deprecated
    */
   GetOrdersListOldResp getOrdersListOld(GetOrdersListOldReq req);
 
   /**
-   * Get Recent Orders List - Old Request your current order list via this endpoint. The return
-   * value is the data after Pagination, sorted in descending order according to time.
+   * Get Recent Orders List - Old
    *
-   * @deprecated <a href="https://www.kucoin.com/docs-new/api-3470347">docs</a>
-   *     +-----------------------+---------+ | Extra API Info | Value |
-   *     +-----------------------+---------+ | API-DOMAIN | SPOT | | API-CHANNEL | PRIVATE | |
-   *     API-PERMISSION | GENERAL | | API-RATE-LIMIT-POOL | SPOT | | API-RATE-LIMIT-WEIGHT | 3 |
-   *     +-----------------------+---------+
+   * <p>Request your current order list via this endpoint. The return value is the data after
+   * Pagination, sorted in descending order according to time.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : SPOT
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : GENERAL
+   *   <li>API-RATE-LIMIT-POOL : SPOT
+   *   <li>API-RATE-LIMIT-WEIGHT : 3
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470347">docs</a>
+   * @deprecated
    */
   GetRecentOrdersListOldResp getRecentOrdersListOld();
 
   /**
-   * Get Order By OrderId - Old Request a single order info by order ID via this endpoint.
+   * Get Order By OrderId - Old
    *
-   * @deprecated <a href="https://www.kucoin.com/docs-new/api-3470348">docs</a>
-   *     +-----------------------+---------+ | Extra API Info | Value |
-   *     +-----------------------+---------+ | API-DOMAIN | SPOT | | API-CHANNEL | PRIVATE | |
-   *     API-PERMISSION | GENERAL | | API-RATE-LIMIT-POOL | SPOT | | API-RATE-LIMIT-WEIGHT | 2 |
-   *     +-----------------------+---------+
+   * <p>Request a single order info by order ID via this endpoint.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : SPOT
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : GENERAL
+   *   <li>API-RATE-LIMIT-POOL : SPOT
+   *   <li>API-RATE-LIMIT-WEIGHT : 2
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470348">docs</a>
+   * @deprecated
    */
   GetOrderByOrderIdOldResp getOrderByOrderIdOld(GetOrderByOrderIdOldReq req);
 
   /**
-   * Get Order By ClientOid - Old Request via this interface to check the information of a single
-   * active order via clientOid. The system will send a prompt that the order does not exist if the
-   * order does not exist or has been settled.
+   * Get Order By ClientOid - Old
    *
-   * @deprecated <a href="https://www.kucoin.com/docs-new/api-3470349">docs</a>
-   *     +-----------------------+---------+ | Extra API Info | Value |
-   *     +-----------------------+---------+ | API-DOMAIN | SPOT | | API-CHANNEL | PRIVATE | |
-   *     API-PERMISSION | GENERAL | | API-RATE-LIMIT-POOL | SPOT | | API-RATE-LIMIT-WEIGHT | 3 |
-   *     +-----------------------+---------+
+   * <p>Request via this interface to check the information of a single active order via clientOid.
+   * The system will send a prompt that the order does not exist if the order does not exist or has
+   * been settled.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : SPOT
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : GENERAL
+   *   <li>API-RATE-LIMIT-POOL : SPOT
+   *   <li>API-RATE-LIMIT-WEIGHT : 3
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470349">docs</a>
+   * @deprecated
    */
   GetOrderByClientOidOldResp getOrderByClientOidOld(GetOrderByClientOidOldReq req);
 
   /**
-   * Get Trade History - Old Request recent fills via this endpoint. The return value is the data
-   * after Pagination, sorted in descending order according to time.
+   * Get Trade History - Old
    *
-   * @deprecated <a href="https://www.kucoin.com/docs-new/api-3470350">docs</a>
-   *     +-----------------------+---------+ | Extra API Info | Value |
-   *     +-----------------------+---------+ | API-DOMAIN | SPOT | | API-CHANNEL | PRIVATE | |
-   *     API-PERMISSION | GENERAL | | API-RATE-LIMIT-POOL | SPOT | | API-RATE-LIMIT-WEIGHT | 10 |
-   *     +-----------------------+---------+
+   * <p>Request recent fills via this endpoint. The return value is the data after Pagination,
+   * sorted in descending order according to time.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : SPOT
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : GENERAL
+   *   <li>API-RATE-LIMIT-POOL : SPOT
+   *   <li>API-RATE-LIMIT-WEIGHT : 10
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470350">docs</a>
+   * @deprecated
    */
   GetTradeHistoryOldResp getTradeHistoryOld(GetTradeHistoryOldReq req);
 
   /**
-   * Get Recent Trade History - Old Request a list of 1000 fills in the last 24 hours via this
-   * endpoint. The return value is the data after Pagination, sorted in descending order according
-   * to time.
+   * Get Recent Trade History - Old
    *
-   * @deprecated <a href="https://www.kucoin.com/docs-new/api-3470351">docs</a>
-   *     +-----------------------+---------+ | Extra API Info | Value |
-   *     +-----------------------+---------+ | API-DOMAIN | SPOT | | API-CHANNEL | PRIVATE | |
-   *     API-PERMISSION | GENERAL | | API-RATE-LIMIT-POOL | SPOT | | API-RATE-LIMIT-WEIGHT | 20 |
-   *     +-----------------------+---------+
+   * <p>Request a list of 1000 fills in the last 24 hours via this endpoint. The return value is the
+   * data after Pagination, sorted in descending order according to time.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : SPOT
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : GENERAL
+   *   <li>API-RATE-LIMIT-POOL : SPOT
+   *   <li>API-RATE-LIMIT-WEIGHT : 20
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470351">docs</a>
+   * @deprecated
    */
   GetRecentTradeHistoryOldResp getRecentTradeHistoryOld();
 }

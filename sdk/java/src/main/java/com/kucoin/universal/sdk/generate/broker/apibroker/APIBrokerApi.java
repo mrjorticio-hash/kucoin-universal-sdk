@@ -4,12 +4,21 @@ package com.kucoin.universal.sdk.generate.broker.apibroker;
 
 public interface APIBrokerApi {
   /**
-   * Get Broker Rebate This interface supports the downloading of Broker rebate orders. <a
-   * href="https://www.kucoin.com/docs-new/api-3470280">docs</a>
-   * +-----------------------+------------+ | Extra API Info | Value |
-   * +-----------------------+------------+ | API-DOMAIN | SPOT | | API-CHANNEL | PRIVATE | |
-   * API-PERMISSION | GENERAL | | API-RATE-LIMIT-POOL | MANAGEMENT | | API-RATE-LIMIT-WEIGHT | 3 |
-   * +-----------------------+------------+
+   * Get Broker Rebate
+   *
+   * <p>This interface supports the downloading of Broker rebate orders.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : SPOT
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : GENERAL
+   *   <li>API-RATE-LIMIT-POOL : MANAGEMENT
+   *   <li>API-RATE-LIMIT-WEIGHT : 3
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470280">docs</a>
    */
   GetRebaseResp getRebase(GetRebaseReq req);
 }

@@ -4,32 +4,62 @@ package com.kucoin.universal.sdk.generate.account.fee;
 
 public interface FeeApi {
   /**
-   * Get Basic Fee - Spot/Margin This interface is for the user’s spot/margin basic fee rate. <a
-   * href="https://www.kucoin.com/docs-new/api-3470149">docs</a> +-----------------------+---------+
-   * | Extra API Info | Value | +-----------------------+---------+ | API-DOMAIN | SPOT | |
-   * API-CHANNEL | PRIVATE | | API-PERMISSION | GENERAL | | API-RATE-LIMIT-POOL | SPOT | |
-   * API-RATE-LIMIT-WEIGHT | 3 | +-----------------------+---------+
+   * Get Basic Fee - Spot/Margin
+   *
+   * <p>This interface is for the user’s spot/margin basic fee rate.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : SPOT
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : GENERAL
+   *   <li>API-RATE-LIMIT-POOL : SPOT
+   *   <li>API-RATE-LIMIT-WEIGHT : 3
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470149">docs</a>
    */
   GetBasicFeeResp getBasicFee(GetBasicFeeReq req);
 
   /**
-   * Get Actual Fee - Spot/Margin This interface is for the trading pair’s actual fee rate. You can
-   * inquire about fee rates of 10 trading pairs each time at most. The fee rate of your sub-account
-   * is the same as that of the master account. <a
-   * href="https://www.kucoin.com/docs-new/api-3470150">docs</a> +-----------------------+---------+
-   * | Extra API Info | Value | +-----------------------+---------+ | API-DOMAIN | SPOT | |
-   * API-CHANNEL | PRIVATE | | API-PERMISSION | GENERAL | | API-RATE-LIMIT-POOL | SPOT | |
-   * API-RATE-LIMIT-WEIGHT | 3 | +-----------------------+---------+
+   * Get Actual Fee - Spot/Margin
+   *
+   * <p>This interface is for the trading pair’s actual fee rate. You can inquire about fee rates of
+   * 10 trading pairs each time at most. The fee rate of your sub-account is the same as that of the
+   * master account.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : SPOT
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : GENERAL
+   *   <li>API-RATE-LIMIT-POOL : SPOT
+   *   <li>API-RATE-LIMIT-WEIGHT : 3
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470150">docs</a>
    */
   GetSpotActualFeeResp getSpotActualFee(GetSpotActualFeeReq req);
 
   /**
-   * Get Actual Fee - Futures This interface is for the trading pair’s actual futures fee rate. The
-   * fee rate of your sub-account is the same as that of the master account. <a
-   * href="https://www.kucoin.com/docs-new/api-3470151">docs</a> +-----------------------+---------+
-   * | Extra API Info | Value | +-----------------------+---------+ | API-DOMAIN | FUTURES | |
-   * API-CHANNEL | PRIVATE | | API-PERMISSION | GENERAL | | API-RATE-LIMIT-POOL | FUTURES | |
-   * API-RATE-LIMIT-WEIGHT | 3 | +-----------------------+---------+
+   * Get Actual Fee - Futures
+   *
+   * <p>This interface is for the trading pair’s actual futures fee rate. The fee rate of your
+   * sub-account is the same as that of the master account.
+   *
+   * <p>Extra API Info:
+   *
+   * <ul>
+   *   <li>API-DOMAIN : FUTURES
+   *   <li>API-CHANNEL : PRIVATE
+   *   <li>API-PERMISSION : GENERAL
+   *   <li>API-RATE-LIMIT-POOL : FUTURES
+   *   <li>API-RATE-LIMIT-WEIGHT : 3
+   * </ul>
+   *
+   * @see <a href="https://www.kucoin.com/docs-new/api-3470151">docs</a>
    */
   GetFuturesActualFeeResp getFuturesActualFee(GetFuturesActualFeeReq req);
 }
