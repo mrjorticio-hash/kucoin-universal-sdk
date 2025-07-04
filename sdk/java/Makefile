@@ -6,7 +6,7 @@ build:
 
 .PHONY: format
 format:
-	docker run --rm -v "${PWD}:/local" -v m2-cache:/root/.m2 maven:3.9.10-amazoncorretto-17-debian-bookworm sh -c "cd /local && mvn spotless:apply"
+	docker run --rm -v ".:/local" -v m2-cache:/root/.m2 maven:3.9.10-amazoncorretto-17-debian-bookworm sh -c "cd /local && mvn spotless:apply -Dspotless.drop=true"
 
 .PHONY: auto-test
 auto-test: build
