@@ -10,7 +10,7 @@ format:
 
 .PHONY: auto-test
 auto-test: build
-	docker run --rm java-sdk-image:latest bash /app/auto_test.sh
+	docker run --rm -v m2-cache:/root/.m2 java-sdk-image:latest bash /app/auto_test.sh
 
 .PHONY: before-release-test
 before-release-test: build

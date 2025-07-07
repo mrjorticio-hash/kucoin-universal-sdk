@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-cd ..
+cd /src
 
 LOG_FILE="auto-tests.detail.log"
 : > "$LOG_FILE"
