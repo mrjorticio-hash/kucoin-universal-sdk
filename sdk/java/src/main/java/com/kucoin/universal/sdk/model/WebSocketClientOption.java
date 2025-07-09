@@ -13,10 +13,9 @@ public final class WebSocketClientOption {
   public interface WebSocketCallback {
     /**
      * @param event event type
-     * @param data primary data (e.g. message payload)
      * @param message additional description / error detail
      */
-    void onEvent(WebSocketEvent event, String data, String message);
+    void onEvent(WebSocketEvent event, String message);
   }
 
   /** auto reconnect after disconnect */
@@ -30,12 +29,6 @@ public final class WebSocketClientOption {
 
   /** dial (hand-shake) timeout */
   @Builder.Default private final Duration dialTimeout = Duration.ofSeconds(10);
-
-  /** inbound queue size (frames) */
-  @Builder.Default private final int readMessageBuffer = 1024;
-
-  /** outbound queue size (frames) */
-  @Builder.Default private final int writeMessageBuffer = 256;
 
   /** single send timeout */
   @Builder.Default private final Duration writeTimeout = Duration.ofSeconds(5);

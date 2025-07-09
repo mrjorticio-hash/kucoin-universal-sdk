@@ -8,10 +8,6 @@ import com.kucoin.universal.sdk.internal.interfaces.Request;
 import com.kucoin.universal.sdk.internal.interfaces.Response;
 import com.kucoin.universal.sdk.internal.interfaces.Transport;
 import com.kucoin.universal.sdk.model.*;
-import kotlin.Pair;
-import lombok.NonNull;
-import okhttp3.*;
-
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.util.*;
@@ -19,6 +15,9 @@ import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
+import kotlin.Pair;
+import lombok.NonNull;
+import okhttp3.*;
 
 /** OkHttp-based implementation of {@link Transport}. */
 public final class DefaultTransport implements Transport {
