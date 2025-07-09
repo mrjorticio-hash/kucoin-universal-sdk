@@ -53,7 +53,7 @@ public class OrderbookLevel5Event implements Response<OrderbookLevel5Event, WsMe
   }
 
   public static class CallbackAdapters {
-    public static WebSocketMessageCallback<OrderbookLevel5Event> of(Callback callback) {
+    public static WebSocketMessageCallback of(Callback callback) {
       return (msg, objectMapper) ->
           callback.onEvent(
               msg.getTopic(),

@@ -40,7 +40,7 @@ public final class DefaultWsService implements WebSocketService, WebsocketTransp
   }
 
   @Override
-  public String subscribe(String prefix, String[] args, WebSocketMessageCallback<?> callback) {
+  public String subscribe(String prefix, String[] args, WebSocketMessageCallback callback) {
 
     SubInfo sub = new SubInfo(prefix, Arrays.asList(args), callback);
     CallbackManager cm = topicManager.getCallbackManager(prefix);
@@ -108,7 +108,7 @@ public final class DefaultWsService implements WebSocketService, WebsocketTransp
   @Override
   public void onMessage(WsMessage wsMessage) {
     CallbackManager cm = topicManager.getCallbackManager(wsMessage.getTopic());
-    WebSocketMessageCallback<?> cb = cm.get(wsMessage.getTopic());
+    WebSocketMessageCallback cb = cm.get(wsMessage.getTopic());
     if (cb == null) {
       log.warn("can not find callback manager, topic:{}", wsMessage.getTopic());
       return;

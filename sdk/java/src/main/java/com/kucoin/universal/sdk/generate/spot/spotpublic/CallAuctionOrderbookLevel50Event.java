@@ -46,7 +46,7 @@ public class CallAuctionOrderbookLevel50Event
   }
 
   public static class CallbackAdapters {
-    public static WebSocketMessageCallback<CallAuctionOrderbookLevel50Event> of(Callback callback) {
+    public static WebSocketMessageCallback of(Callback callback) {
       return (msg, objectMapper) ->
           callback.onEvent(
               msg.getTopic(),

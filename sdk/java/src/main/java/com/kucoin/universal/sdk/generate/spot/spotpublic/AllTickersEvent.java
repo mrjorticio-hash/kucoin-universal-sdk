@@ -63,7 +63,7 @@ public class AllTickersEvent implements Response<AllTickersEvent, WsMessage> {
   }
 
   public static class CallbackAdapters {
-    public static WebSocketMessageCallback<AllTickersEvent> of(Callback callback) {
+    public static WebSocketMessageCallback of(Callback callback) {
       return (msg, objectMapper) ->
           callback.onEvent(
               msg.getTopic(),

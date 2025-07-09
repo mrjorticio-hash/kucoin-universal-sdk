@@ -39,7 +39,7 @@ public class SymbolSnapshotEvent implements Response<SymbolSnapshotEvent, WsMess
   }
 
   public static class CallbackAdapters {
-    public static WebSocketMessageCallback<SymbolSnapshotEvent> of(Callback callback) {
+    public static WebSocketMessageCallback of(Callback callback) {
       return (msg, objectMapper) ->
           callback.onEvent(
               msg.getTopic(),

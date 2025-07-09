@@ -84,7 +84,7 @@ public class StopOrderEvent implements Response<StopOrderEvent, WsMessage> {
   }
 
   public static class CallbackAdapters {
-    public static WebSocketMessageCallback<StopOrderEvent> of(Callback callback) {
+    public static WebSocketMessageCallback of(Callback callback) {
       return (msg, objectMapper) ->
           callback.onEvent(
               msg.getTopic(),

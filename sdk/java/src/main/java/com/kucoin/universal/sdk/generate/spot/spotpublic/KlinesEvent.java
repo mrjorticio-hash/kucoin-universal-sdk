@@ -48,7 +48,7 @@ public class KlinesEvent implements Response<KlinesEvent, WsMessage> {
   }
 
   public static class CallbackAdapters {
-    public static WebSocketMessageCallback<KlinesEvent> of(Callback callback) {
+    public static WebSocketMessageCallback of(Callback callback) {
       return (msg, objectMapper) ->
           callback.onEvent(
               msg.getTopic(),

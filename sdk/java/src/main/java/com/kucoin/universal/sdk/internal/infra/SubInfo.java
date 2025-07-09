@@ -15,7 +15,7 @@ public final class SubInfo {
 
   private final String prefix;
   private final List<String> args;
-  private final WebSocketMessageCallback<?> callback;
+  private final WebSocketMessageCallback callback;
 
   public String toId() {
     if (args == null || args.isEmpty()) {

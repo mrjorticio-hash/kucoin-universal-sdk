@@ -51,7 +51,7 @@ public class OrderbookIncrementEvent implements Response<OrderbookIncrementEvent
   }
 
   public static class CallbackAdapters {
-    public static WebSocketMessageCallback<OrderbookIncrementEvent> of(Callback callback) {
+    public static WebSocketMessageCallback of(Callback callback) {
       return (msg, objectMapper) ->
           callback.onEvent(
               msg.getTopic(),

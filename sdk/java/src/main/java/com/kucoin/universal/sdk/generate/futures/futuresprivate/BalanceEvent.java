@@ -95,7 +95,7 @@ public class BalanceEvent implements Response<BalanceEvent, WsMessage> {
   }
 
   public static class CallbackAdapters {
-    public static WebSocketMessageCallback<BalanceEvent> of(Callback callback) {
+    public static WebSocketMessageCallback of(Callback callback) {
       return (msg, objectMapper) ->
           callback.onEvent(
               msg.getTopic(),

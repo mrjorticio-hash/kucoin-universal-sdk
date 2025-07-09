@@ -54,7 +54,7 @@ public class InstrumentEvent implements Response<InstrumentEvent, WsMessage> {
   }
 
   public static class CallbackAdapters {
-    public static WebSocketMessageCallback<InstrumentEvent> of(Callback callback) {
+    public static WebSocketMessageCallback of(Callback callback) {
       return (msg, objectMapper) ->
           callback.onEvent(
               msg.getTopic(),

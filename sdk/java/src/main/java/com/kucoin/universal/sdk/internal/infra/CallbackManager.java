@@ -47,7 +47,7 @@ final class CallbackManager {
     topics.forEach(topicCbs::remove);
   }
 
-  WebSocketMessageCallback<?> get(String topic) {
+  WebSocketMessageCallback get(String topic) {
     Callback cb = topicCbs.get(topic);
     return cb == null ? null : cb.callback;
   }
@@ -59,7 +59,7 @@ final class CallbackManager {
     idTopics.forEach(
         (id, topics) -> {
           List<String> args = new ArrayList<>();
-          WebSocketMessageCallback<?> cb = null;
+          WebSocketMessageCallback cb = null;
 
           for (String topic : topics) {
             int idx = topic.indexOf(':');
@@ -84,7 +84,7 @@ final class CallbackManager {
 
   @Value
   private static class Callback {
-    WebSocketMessageCallback<?> callback;
+    WebSocketMessageCallback callback;
     String id;
     String topic;
   }

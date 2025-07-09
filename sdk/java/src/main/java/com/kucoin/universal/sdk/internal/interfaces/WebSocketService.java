@@ -9,7 +9,7 @@ public interface WebSocketService {
   void stop();
 
   /** Subscribes to a topic with a callback handler. */
-  String subscribe(String prefix, String[] args, WebSocketMessageCallback<?> callback);
+  String subscribe(String prefix, String[] args, WebSocketMessageCallback callback);
 
   /** Unsubscribes from a topic. */
   void unsubscribe(String id);

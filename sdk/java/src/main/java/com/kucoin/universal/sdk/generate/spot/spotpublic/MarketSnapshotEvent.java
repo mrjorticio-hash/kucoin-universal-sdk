@@ -39,7 +39,7 @@ public class MarketSnapshotEvent implements Response<MarketSnapshotEvent, WsMess
   }
 
   public static class CallbackAdapters {
-    public static WebSocketMessageCallback<MarketSnapshotEvent> of(Callback callback) {
+    public static WebSocketMessageCallback of(Callback callback) {
       return (msg, objectMapper) ->
           callback.onEvent(
               msg.getTopic(),

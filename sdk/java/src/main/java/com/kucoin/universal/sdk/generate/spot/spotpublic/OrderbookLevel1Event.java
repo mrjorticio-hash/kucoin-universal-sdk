@@ -45,7 +45,7 @@ public class OrderbookLevel1Event implements Response<OrderbookLevel1Event, WsMe
   }
 
   public static class CallbackAdapters {
-    public static WebSocketMessageCallback<OrderbookLevel1Event> of(Callback callback) {
+    public static WebSocketMessageCallback of(Callback callback) {
       return (msg, objectMapper) ->
           callback.onEvent(
               msg.getTopic(),

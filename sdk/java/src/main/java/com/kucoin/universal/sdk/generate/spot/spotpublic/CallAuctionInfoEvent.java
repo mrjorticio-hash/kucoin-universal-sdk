@@ -63,7 +63,7 @@ public class CallAuctionInfoEvent implements Response<CallAuctionInfoEvent, WsMe
   }
 
   public static class CallbackAdapters {
-    public static WebSocketMessageCallback<CallAuctionInfoEvent> of(Callback callback) {
+    public static WebSocketMessageCallback of(Callback callback) {
       return (msg, objectMapper) ->
           callback.onEvent(
               msg.getTopic(),

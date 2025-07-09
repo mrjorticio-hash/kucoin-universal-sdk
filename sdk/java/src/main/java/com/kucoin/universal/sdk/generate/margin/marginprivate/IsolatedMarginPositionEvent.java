@@ -60,7 +60,7 @@ public class IsolatedMarginPositionEvent
   }
 
   public static class CallbackAdapters {
-    public static WebSocketMessageCallback<IsolatedMarginPositionEvent> of(Callback callback) {
+    public static WebSocketMessageCallback of(Callback callback) {
       return (msg, objectMapper) ->
           callback.onEvent(
               msg.getTopic(),

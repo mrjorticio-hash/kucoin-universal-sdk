@@ -125,7 +125,7 @@ public class OrderV1Event implements Response<OrderV1Event, WsMessage> {
   }
 
   public static class CallbackAdapters {
-    public static WebSocketMessageCallback<OrderV1Event> of(Callback callback) {
+    public static WebSocketMessageCallback of(Callback callback) {
       return (msg, objectMapper) ->
           callback.onEvent(
               msg.getTopic(),

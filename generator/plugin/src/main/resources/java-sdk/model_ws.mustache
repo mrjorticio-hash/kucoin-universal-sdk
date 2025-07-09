@@ -62,7 +62,7 @@ class {{classname}} {
     }
 
     public static class CallbackAdapters {
-        public static WebSocketMessageCallback<{{classname}}> of(Callback callback) {
+        public static WebSocketMessageCallback of(Callback callback) {
             return (msg, objectMapper) -> callback.onEvent(msg.getTopic(), msg.getSubject(), objectMapper.convertValue(msg.getData(), {{classname}}.class));
     }
     }
