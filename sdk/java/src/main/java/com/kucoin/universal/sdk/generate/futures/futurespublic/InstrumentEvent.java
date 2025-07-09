@@ -16,7 +16,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class InstrumentEvent implements Response<InstrumentEvent, WsMessage<InstrumentEvent>> {
+public class InstrumentEvent implements Response<InstrumentEvent, WsMessage> {
   /**
    * Granularity (predicted funding rate: 1-min granularity: 60000; Funding rate: 8-hours
    * granularity: 28800000.)
@@ -41,10 +41,10 @@ public class InstrumentEvent implements Response<InstrumentEvent, WsMessage<Inst
   private Double indexPrice;
 
   /** common response */
-  @JsonIgnore private WsMessage<InstrumentEvent> commonResponse;
+  @JsonIgnore private WsMessage commonResponse;
 
   @Override
-  public void setCommonResponse(WsMessage<InstrumentEvent> response) {
+  public void setCommonResponse(WsMessage response) {
     this.commonResponse = response;
   }
 
@@ -55,7 +55,11 @@ public class InstrumentEvent implements Response<InstrumentEvent, WsMessage<Inst
 
   public static class CallbackAdapters {
     public static WebSocketMessageCallback<InstrumentEvent> of(Callback callback) {
-      return msg -> callback.onEvent(msg.getTopic(), msg.getSubject(), msg.getData());
+      return (msg, objectMapper) ->
+          callback.onEvent(
+              msg.getTopic(),
+              msg.getSubject(),
+              objectMapper.convertValue(msg.getData(), InstrumentEvent.class));
     }
   }
 }

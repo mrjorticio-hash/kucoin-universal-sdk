@@ -18,7 +18,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class StopOrdersEvent implements Response<StopOrdersEvent, WsMessage<StopOrdersEvent>> {
+public class StopOrdersEvent implements Response<StopOrdersEvent, WsMessage> {
   /** */
   @JsonProperty("createdAt")
   private Long createdAt;
@@ -75,10 +75,10 @@ public class StopOrdersEvent implements Response<StopOrdersEvent, WsMessage<Stop
   private TypeEnum type;
 
   /** common response */
-  @JsonIgnore private WsMessage<StopOrdersEvent> commonResponse;
+  @JsonIgnore private WsMessage commonResponse;
 
   @Override
-  public void setCommonResponse(WsMessage<StopOrdersEvent> response) {
+  public void setCommonResponse(WsMessage response) {
     this.commonResponse = response;
   }
 
@@ -89,7 +89,11 @@ public class StopOrdersEvent implements Response<StopOrdersEvent, WsMessage<Stop
 
   public static class CallbackAdapters {
     public static WebSocketMessageCallback<StopOrdersEvent> of(Callback callback) {
-      return msg -> callback.onEvent(msg.getTopic(), msg.getSubject(), msg.getData());
+      return (msg, objectMapper) ->
+          callback.onEvent(
+              msg.getTopic(),
+              msg.getSubject(),
+              objectMapper.convertValue(msg.getData(), StopOrdersEvent.class));
     }
   }
 

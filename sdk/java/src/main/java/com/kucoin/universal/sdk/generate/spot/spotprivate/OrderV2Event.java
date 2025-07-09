@@ -18,7 +18,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class OrderV2Event implements Response<OrderV2Event, WsMessage<OrderV2Event>> {
+public class OrderV2Event implements Response<OrderV2Event, WsMessage> {
   /** Cumulative number of cancellations */
   @JsonProperty("canceledSize")
   private String canceledSize;
@@ -112,10 +112,10 @@ public class OrderV2Event implements Response<OrderV2Event, WsMessage<OrderV2Eve
   private String tradeId;
 
   /** common response */
-  @JsonIgnore private WsMessage<OrderV2Event> commonResponse;
+  @JsonIgnore private WsMessage commonResponse;
 
   @Override
-  public void setCommonResponse(WsMessage<OrderV2Event> response) {
+  public void setCommonResponse(WsMessage response) {
     this.commonResponse = response;
   }
 
@@ -126,7 +126,11 @@ public class OrderV2Event implements Response<OrderV2Event, WsMessage<OrderV2Eve
 
   public static class CallbackAdapters {
     public static WebSocketMessageCallback<OrderV2Event> of(Callback callback) {
-      return msg -> callback.onEvent(msg.getTopic(), msg.getSubject(), msg.getData());
+      return (msg, objectMapper) ->
+          callback.onEvent(
+              msg.getTopic(),
+              msg.getSubject(),
+              objectMapper.convertValue(msg.getData(), OrderV2Event.class));
     }
   }
 

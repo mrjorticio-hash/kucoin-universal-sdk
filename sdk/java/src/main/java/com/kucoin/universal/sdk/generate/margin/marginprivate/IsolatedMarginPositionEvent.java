@@ -21,7 +21,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class IsolatedMarginPositionEvent
-    implements Response<IsolatedMarginPositionEvent, WsMessage<IsolatedMarginPositionEvent>> {
+    implements Response<IsolatedMarginPositionEvent, WsMessage> {
   /** Isolated margin symbol */
   @JsonProperty("tag")
   private String tag;
@@ -47,10 +47,10 @@ public class IsolatedMarginPositionEvent
   private Long timestamp;
 
   /** common response */
-  @JsonIgnore private WsMessage<IsolatedMarginPositionEvent> commonResponse;
+  @JsonIgnore private WsMessage commonResponse;
 
   @Override
-  public void setCommonResponse(WsMessage<IsolatedMarginPositionEvent> response) {
+  public void setCommonResponse(WsMessage response) {
     this.commonResponse = response;
   }
 
@@ -61,7 +61,11 @@ public class IsolatedMarginPositionEvent
 
   public static class CallbackAdapters {
     public static WebSocketMessageCallback<IsolatedMarginPositionEvent> of(Callback callback) {
-      return msg -> callback.onEvent(msg.getTopic(), msg.getSubject(), msg.getData());
+      return (msg, objectMapper) ->
+          callback.onEvent(
+              msg.getTopic(),
+              msg.getSubject(),
+              objectMapper.convertValue(msg.getData(), IsolatedMarginPositionEvent.class));
     }
   }
 

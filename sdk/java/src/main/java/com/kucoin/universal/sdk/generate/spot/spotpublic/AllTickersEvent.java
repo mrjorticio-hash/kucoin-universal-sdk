@@ -16,7 +16,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class AllTickersEvent implements Response<AllTickersEvent, WsMessage<AllTickersEvent>> {
+public class AllTickersEvent implements Response<AllTickersEvent, WsMessage> {
   /** */
   @JsonProperty("bestAsk")
   private String bestAsk;
@@ -50,10 +50,10 @@ public class AllTickersEvent implements Response<AllTickersEvent, WsMessage<AllT
   private Long time;
 
   /** common response */
-  @JsonIgnore private WsMessage<AllTickersEvent> commonResponse;
+  @JsonIgnore private WsMessage commonResponse;
 
   @Override
-  public void setCommonResponse(WsMessage<AllTickersEvent> response) {
+  public void setCommonResponse(WsMessage response) {
     this.commonResponse = response;
   }
 
@@ -64,7 +64,11 @@ public class AllTickersEvent implements Response<AllTickersEvent, WsMessage<AllT
 
   public static class CallbackAdapters {
     public static WebSocketMessageCallback<AllTickersEvent> of(Callback callback) {
-      return msg -> callback.onEvent(msg.getTopic(), msg.getSubject(), msg.getData());
+      return (msg, objectMapper) ->
+          callback.onEvent(
+              msg.getTopic(),
+              msg.getSubject(),
+              objectMapper.convertValue(msg.getData(), AllTickersEvent.class));
     }
   }
 }

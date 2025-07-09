@@ -16,7 +16,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class AccountEvent implements Response<AccountEvent, WsMessage<AccountEvent>> {
+public class AccountEvent implements Response<AccountEvent, WsMessage> {
   /** Account ID */
   @JsonProperty("accountId")
   private String accountId;
@@ -62,10 +62,10 @@ public class AccountEvent implements Response<AccountEvent, WsMessage<AccountEve
   private String total;
 
   /** common response */
-  @JsonIgnore private WsMessage<AccountEvent> commonResponse;
+  @JsonIgnore private WsMessage commonResponse;
 
   @Override
-  public void setCommonResponse(WsMessage<AccountEvent> response) {
+  public void setCommonResponse(WsMessage response) {
     this.commonResponse = response;
   }
 
@@ -76,7 +76,11 @@ public class AccountEvent implements Response<AccountEvent, WsMessage<AccountEve
 
   public static class CallbackAdapters {
     public static WebSocketMessageCallback<AccountEvent> of(Callback callback) {
-      return msg -> callback.onEvent(msg.getTopic(), msg.getSubject(), msg.getData());
+      return (msg, objectMapper) ->
+          callback.onEvent(
+              msg.getTopic(),
+              msg.getSubject(),
+              objectMapper.convertValue(msg.getData(), AccountEvent.class));
     }
   }
 }

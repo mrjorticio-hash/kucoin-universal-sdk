@@ -16,7 +16,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class ExecutionEvent implements Response<ExecutionEvent, WsMessage<ExecutionEvent>> {
+public class ExecutionEvent implements Response<ExecutionEvent, WsMessage> {
   /** */
   @JsonProperty("symbol")
   private String symbol;
@@ -54,10 +54,10 @@ public class ExecutionEvent implements Response<ExecutionEvent, WsMessage<Execut
   private Long ts;
 
   /** common response */
-  @JsonIgnore private WsMessage<ExecutionEvent> commonResponse;
+  @JsonIgnore private WsMessage commonResponse;
 
   @Override
-  public void setCommonResponse(WsMessage<ExecutionEvent> response) {
+  public void setCommonResponse(WsMessage response) {
     this.commonResponse = response;
   }
 
@@ -68,7 +68,11 @@ public class ExecutionEvent implements Response<ExecutionEvent, WsMessage<Execut
 
   public static class CallbackAdapters {
     public static WebSocketMessageCallback<ExecutionEvent> of(Callback callback) {
-      return msg -> callback.onEvent(msg.getTopic(), msg.getSubject(), msg.getData());
+      return (msg, objectMapper) ->
+          callback.onEvent(
+              msg.getTopic(),
+              msg.getSubject(),
+              objectMapper.convertValue(msg.getData(), ExecutionEvent.class));
     }
   }
 }

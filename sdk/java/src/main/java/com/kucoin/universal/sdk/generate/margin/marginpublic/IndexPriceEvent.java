@@ -16,7 +16,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class IndexPriceEvent implements Response<IndexPriceEvent, WsMessage<IndexPriceEvent>> {
+public class IndexPriceEvent implements Response<IndexPriceEvent, WsMessage> {
   /** */
   @JsonProperty("symbol")
   private String symbol;
@@ -34,10 +34,10 @@ public class IndexPriceEvent implements Response<IndexPriceEvent, WsMessage<Inde
   private Double value;
 
   /** common response */
-  @JsonIgnore private WsMessage<IndexPriceEvent> commonResponse;
+  @JsonIgnore private WsMessage commonResponse;
 
   @Override
-  public void setCommonResponse(WsMessage<IndexPriceEvent> response) {
+  public void setCommonResponse(WsMessage response) {
     this.commonResponse = response;
   }
 
@@ -48,7 +48,11 @@ public class IndexPriceEvent implements Response<IndexPriceEvent, WsMessage<Inde
 
   public static class CallbackAdapters {
     public static WebSocketMessageCallback<IndexPriceEvent> of(Callback callback) {
-      return msg -> callback.onEvent(msg.getTopic(), msg.getSubject(), msg.getData());
+      return (msg, objectMapper) ->
+          callback.onEvent(
+              msg.getTopic(),
+              msg.getSubject(),
+              objectMapper.convertValue(msg.getData(), IndexPriceEvent.class));
     }
   }
 }

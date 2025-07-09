@@ -12,7 +12,7 @@ package {{package}};
 {{/vendorExtensions.x-annotation}}
 @JsonIgnoreProperties(ignoreUnknown = true)
 {{#vendorExtensions.x-response-model}}
-public class {{classname}} implements Response<{{classname}}, WsMessage<{{classname}}>> {
+public class {{classname}} implements Response<{{classname}}, WsMessage> {
 {{/vendorExtensions.x-response-model}}
 {{^vendorExtensions.x-response-model}}
 class {{classname}} {
@@ -36,10 +36,10 @@ class {{classname}} {
     * common response
     */
     @JsonIgnore
-    private WsMessage<{{classname}}> commonResponse;
+    private WsMessage commonResponse;
 
     @Override
-    public void setCommonResponse(WsMessage<{{classname}}> response) {
+    public void setCommonResponse(WsMessage response) {
         this.commonResponse = response;
     }
 
@@ -63,8 +63,8 @@ class {{classname}} {
 
     public static class CallbackAdapters {
         public static WebSocketMessageCallback<{{classname}}> of(Callback callback) {
-            return msg -> callback.onEvent(msg.getTopic(), msg.getSubject(), msg.getData());
-        }
+            return (msg, objectMapper) -> callback.onEvent(msg.getTopic(), msg.getSubject(), objectMapper.convertValue(msg.getData(), {{classname}}.class));
+    }
     }
 {{/vendorExtensions.x-response-model}}
 {{#hasEnums}}

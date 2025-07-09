@@ -19,17 +19,16 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class CrossLeverageEvent
-    implements Response<CrossLeverageEvent, WsMessage<CrossLeverageEvent>> {
+public class CrossLeverageEvent implements Response<CrossLeverageEvent, WsMessage> {
   /** */
   @JsonProperty("data")
   private Map<String, CrossLeverageDataValue> data = new HashMap<>();
 
   /** common response */
-  @JsonIgnore private WsMessage<CrossLeverageEvent> commonResponse;
+  @JsonIgnore private WsMessage commonResponse;
 
   @Override
-  public void setCommonResponse(WsMessage<CrossLeverageEvent> response) {
+  public void setCommonResponse(WsMessage response) {
     this.commonResponse = response;
   }
 
@@ -48,7 +47,11 @@ public class CrossLeverageEvent
 
   public static class CallbackAdapters {
     public static WebSocketMessageCallback<CrossLeverageEvent> of(Callback callback) {
-      return msg -> callback.onEvent(msg.getTopic(), msg.getSubject(), msg.getData());
+      return (msg, objectMapper) ->
+          callback.onEvent(
+              msg.getTopic(),
+              msg.getSubject(),
+              objectMapper.convertValue(msg.getData(), CrossLeverageEvent.class));
     }
   }
 }

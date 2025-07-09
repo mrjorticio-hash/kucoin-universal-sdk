@@ -16,7 +16,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class BalanceEvent implements Response<BalanceEvent, WsMessage<BalanceEvent>> {
+public class BalanceEvent implements Response<BalanceEvent, WsMessage> {
   /** Margin of the cross margin position */
   @JsonProperty("crossPosMargin")
   private String crossPosMargin;
@@ -82,10 +82,10 @@ public class BalanceEvent implements Response<BalanceEvent, WsMessage<BalanceEve
   private String timestamp;
 
   /** common response */
-  @JsonIgnore private WsMessage<BalanceEvent> commonResponse;
+  @JsonIgnore private WsMessage commonResponse;
 
   @Override
-  public void setCommonResponse(WsMessage<BalanceEvent> response) {
+  public void setCommonResponse(WsMessage response) {
     this.commonResponse = response;
   }
 
@@ -96,7 +96,11 @@ public class BalanceEvent implements Response<BalanceEvent, WsMessage<BalanceEve
 
   public static class CallbackAdapters {
     public static WebSocketMessageCallback<BalanceEvent> of(Callback callback) {
-      return msg -> callback.onEvent(msg.getTopic(), msg.getSubject(), msg.getData());
+      return (msg, objectMapper) ->
+          callback.onEvent(
+              msg.getTopic(),
+              msg.getSubject(),
+              objectMapper.convertValue(msg.getData(), BalanceEvent.class));
     }
   }
 }

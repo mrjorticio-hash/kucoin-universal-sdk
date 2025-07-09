@@ -16,8 +16,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class OrderbookIncrementEvent
-    implements Response<OrderbookIncrementEvent, WsMessage<OrderbookIncrementEvent>> {
+public class OrderbookIncrementEvent implements Response<OrderbookIncrementEvent, WsMessage> {
   /** */
   @JsonProperty("changes")
   private OrderbookIncrementChanges changes;
@@ -39,10 +38,10 @@ public class OrderbookIncrementEvent
   private Long time;
 
   /** common response */
-  @JsonIgnore private WsMessage<OrderbookIncrementEvent> commonResponse;
+  @JsonIgnore private WsMessage commonResponse;
 
   @Override
-  public void setCommonResponse(WsMessage<OrderbookIncrementEvent> response) {
+  public void setCommonResponse(WsMessage response) {
     this.commonResponse = response;
   }
 
@@ -53,7 +52,11 @@ public class OrderbookIncrementEvent
 
   public static class CallbackAdapters {
     public static WebSocketMessageCallback<OrderbookIncrementEvent> of(Callback callback) {
-      return msg -> callback.onEvent(msg.getTopic(), msg.getSubject(), msg.getData());
+      return (msg, objectMapper) ->
+          callback.onEvent(
+              msg.getTopic(),
+              msg.getSubject(),
+              objectMapper.convertValue(msg.getData(), OrderbookIncrementEvent.class));
     }
   }
 }

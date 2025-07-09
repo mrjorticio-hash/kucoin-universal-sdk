@@ -19,16 +19,16 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class MarginModeEvent implements Response<MarginModeEvent, WsMessage<MarginModeEvent>> {
+public class MarginModeEvent implements Response<MarginModeEvent, WsMessage> {
   /** The SYMBOL is the key with value \"CROSS\" or \"ISOLATED\" */
   @JsonProperty("data")
   private Map<String, String> data = new HashMap<>();
 
   /** common response */
-  @JsonIgnore private WsMessage<MarginModeEvent> commonResponse;
+  @JsonIgnore private WsMessage commonResponse;
 
   @Override
-  public void setCommonResponse(WsMessage<MarginModeEvent> response) {
+  public void setCommonResponse(WsMessage response) {
     this.commonResponse = response;
   }
 
@@ -47,7 +47,11 @@ public class MarginModeEvent implements Response<MarginModeEvent, WsMessage<Marg
 
   public static class CallbackAdapters {
     public static WebSocketMessageCallback<MarginModeEvent> of(Callback callback) {
-      return msg -> callback.onEvent(msg.getTopic(), msg.getSubject(), msg.getData());
+      return (msg, objectMapper) ->
+          callback.onEvent(
+              msg.getTopic(),
+              msg.getSubject(),
+              objectMapper.convertValue(msg.getData(), MarginModeEvent.class));
     }
   }
 }

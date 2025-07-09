@@ -2,13 +2,14 @@ package com.kucoin.universal.sdk.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.JsonNode;
 import lombok.Data;
 import lombok.ToString;
 
 @Data
 @ToString(exclude = "data")
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class WsMessage<T> {
+public class WsMessage {
 
   /** Unique message ID */
   @JsonProperty("id")
@@ -40,5 +41,5 @@ public class WsMessage<T> {
 
   /** Raw message data */
   @JsonProperty("data")
-  private T data;
+  private JsonNode data;
 }

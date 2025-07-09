@@ -20,8 +20,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class CrossMarginPositionEvent
-    implements Response<CrossMarginPositionEvent, WsMessage<CrossMarginPositionEvent>> {
+public class CrossMarginPositionEvent implements Response<CrossMarginPositionEvent, WsMessage> {
   /** Debt ratio */
   @JsonProperty("debtRatio")
   private Double debtRatio;
@@ -55,10 +54,10 @@ public class CrossMarginPositionEvent
   private TypeEnum type;
 
   /** common response */
-  @JsonIgnore private WsMessage<CrossMarginPositionEvent> commonResponse;
+  @JsonIgnore private WsMessage commonResponse;
 
   @Override
-  public void setCommonResponse(WsMessage<CrossMarginPositionEvent> response) {
+  public void setCommonResponse(WsMessage response) {
     this.commonResponse = response;
   }
 
@@ -69,7 +68,11 @@ public class CrossMarginPositionEvent
 
   public static class CallbackAdapters {
     public static WebSocketMessageCallback<CrossMarginPositionEvent> of(Callback callback) {
-      return msg -> callback.onEvent(msg.getTopic(), msg.getSubject(), msg.getData());
+      return (msg, objectMapper) ->
+          callback.onEvent(
+              msg.getTopic(),
+              msg.getSubject(),
+              objectMapper.convertValue(msg.getData(), CrossMarginPositionEvent.class));
     }
   }
 

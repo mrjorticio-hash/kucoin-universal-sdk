@@ -16,7 +16,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class TradeEvent implements Response<TradeEvent, WsMessage<TradeEvent>> {
+public class TradeEvent implements Response<TradeEvent, WsMessage> {
   /** */
   @JsonProperty("makerOrderId")
   private String makerOrderId;
@@ -58,10 +58,10 @@ public class TradeEvent implements Response<TradeEvent, WsMessage<TradeEvent>> {
   private String type;
 
   /** common response */
-  @JsonIgnore private WsMessage<TradeEvent> commonResponse;
+  @JsonIgnore private WsMessage commonResponse;
 
   @Override
-  public void setCommonResponse(WsMessage<TradeEvent> response) {
+  public void setCommonResponse(WsMessage response) {
     this.commonResponse = response;
   }
 
@@ -72,7 +72,11 @@ public class TradeEvent implements Response<TradeEvent, WsMessage<TradeEvent>> {
 
   public static class CallbackAdapters {
     public static WebSocketMessageCallback<TradeEvent> of(Callback callback) {
-      return msg -> callback.onEvent(msg.getTopic(), msg.getSubject(), msg.getData());
+      return (msg, objectMapper) ->
+          callback.onEvent(
+              msg.getTopic(),
+              msg.getSubject(),
+              objectMapper.convertValue(msg.getData(), TradeEvent.class));
     }
   }
 }

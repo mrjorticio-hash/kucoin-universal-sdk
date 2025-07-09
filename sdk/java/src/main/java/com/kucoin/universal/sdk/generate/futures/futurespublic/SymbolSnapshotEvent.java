@@ -16,8 +16,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class SymbolSnapshotEvent
-    implements Response<SymbolSnapshotEvent, WsMessage<SymbolSnapshotEvent>> {
+public class SymbolSnapshotEvent implements Response<SymbolSnapshotEvent, WsMessage> {
   /** */
   @JsonProperty("highPrice")
   private Double highPrice;
@@ -59,10 +58,10 @@ public class SymbolSnapshotEvent
   private Double volume;
 
   /** common response */
-  @JsonIgnore private WsMessage<SymbolSnapshotEvent> commonResponse;
+  @JsonIgnore private WsMessage commonResponse;
 
   @Override
-  public void setCommonResponse(WsMessage<SymbolSnapshotEvent> response) {
+  public void setCommonResponse(WsMessage response) {
     this.commonResponse = response;
   }
 
@@ -73,7 +72,11 @@ public class SymbolSnapshotEvent
 
   public static class CallbackAdapters {
     public static WebSocketMessageCallback<SymbolSnapshotEvent> of(Callback callback) {
-      return msg -> callback.onEvent(msg.getTopic(), msg.getSubject(), msg.getData());
+      return (msg, objectMapper) ->
+          callback.onEvent(
+              msg.getTopic(),
+              msg.getSubject(),
+              objectMapper.convertValue(msg.getData(), SymbolSnapshotEvent.class));
     }
   }
 }

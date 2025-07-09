@@ -19,8 +19,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class CallAuctionOrderbookLevel50Event
-    implements Response<
-        CallAuctionOrderbookLevel50Event, WsMessage<CallAuctionOrderbookLevel50Event>> {
+    implements Response<CallAuctionOrderbookLevel50Event, WsMessage> {
   /** price, size */
   @JsonProperty("asks")
   private List<List<String>> asks = new ArrayList<>();
@@ -34,10 +33,10 @@ public class CallAuctionOrderbookLevel50Event
   private Long timestamp;
 
   /** common response */
-  @JsonIgnore private WsMessage<CallAuctionOrderbookLevel50Event> commonResponse;
+  @JsonIgnore private WsMessage commonResponse;
 
   @Override
-  public void setCommonResponse(WsMessage<CallAuctionOrderbookLevel50Event> response) {
+  public void setCommonResponse(WsMessage response) {
     this.commonResponse = response;
   }
 
@@ -48,7 +47,11 @@ public class CallAuctionOrderbookLevel50Event
 
   public static class CallbackAdapters {
     public static WebSocketMessageCallback<CallAuctionOrderbookLevel50Event> of(Callback callback) {
-      return msg -> callback.onEvent(msg.getTopic(), msg.getSubject(), msg.getData());
+      return (msg, objectMapper) ->
+          callback.onEvent(
+              msg.getTopic(),
+              msg.getSubject(),
+              objectMapper.convertValue(msg.getData(), CallAuctionOrderbookLevel50Event.class));
     }
   }
 }

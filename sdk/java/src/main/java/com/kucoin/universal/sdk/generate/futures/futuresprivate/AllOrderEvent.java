@@ -18,7 +18,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class AllOrderEvent implements Response<AllOrderEvent, WsMessage<AllOrderEvent>> {
+public class AllOrderEvent implements Response<AllOrderEvent, WsMessage> {
   /**
    * Symbol of the contract. Please refer to [Get Symbol endpoint:
    * symbol](https://www.kucoin.com/docs-new/api-221752070)
@@ -115,10 +115,10 @@ public class AllOrderEvent implements Response<AllOrderEvent, WsMessage<AllOrder
   private TradeTypeEnum tradeType;
 
   /** common response */
-  @JsonIgnore private WsMessage<AllOrderEvent> commonResponse;
+  @JsonIgnore private WsMessage commonResponse;
 
   @Override
-  public void setCommonResponse(WsMessage<AllOrderEvent> response) {
+  public void setCommonResponse(WsMessage response) {
     this.commonResponse = response;
   }
 
@@ -129,7 +129,11 @@ public class AllOrderEvent implements Response<AllOrderEvent, WsMessage<AllOrder
 
   public static class CallbackAdapters {
     public static WebSocketMessageCallback<AllOrderEvent> of(Callback callback) {
-      return msg -> callback.onEvent(msg.getTopic(), msg.getSubject(), msg.getData());
+      return (msg, objectMapper) ->
+          callback.onEvent(
+              msg.getTopic(),
+              msg.getSubject(),
+              objectMapper.convertValue(msg.getData(), AllOrderEvent.class));
     }
   }
 

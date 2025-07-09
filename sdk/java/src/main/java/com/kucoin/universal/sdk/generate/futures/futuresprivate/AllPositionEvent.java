@@ -18,7 +18,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class AllPositionEvent implements Response<AllPositionEvent, WsMessage<AllPositionEvent>> {
+public class AllPositionEvent implements Response<AllPositionEvent, WsMessage> {
   /**
    * Symbol of the contract. Please refer to [Get Symbol endpoint:
    * symbol](https://www.kucoin.com/docs-new/api-221752070)
@@ -222,10 +222,10 @@ public class AllPositionEvent implements Response<AllPositionEvent, WsMessage<Al
   private String msg;
 
   /** common response */
-  @JsonIgnore private WsMessage<AllPositionEvent> commonResponse;
+  @JsonIgnore private WsMessage commonResponse;
 
   @Override
-  public void setCommonResponse(WsMessage<AllPositionEvent> response) {
+  public void setCommonResponse(WsMessage response) {
     this.commonResponse = response;
   }
 
@@ -236,7 +236,11 @@ public class AllPositionEvent implements Response<AllPositionEvent, WsMessage<Al
 
   public static class CallbackAdapters {
     public static WebSocketMessageCallback<AllPositionEvent> of(Callback callback) {
-      return msg -> callback.onEvent(msg.getTopic(), msg.getSubject(), msg.getData());
+      return (msg, objectMapper) ->
+          callback.onEvent(
+              msg.getTopic(),
+              msg.getSubject(),
+              objectMapper.convertValue(msg.getData(), AllPositionEvent.class));
     }
   }
 

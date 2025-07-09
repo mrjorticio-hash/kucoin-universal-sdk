@@ -16,8 +16,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class CallAuctionInfoEvent
-    implements Response<CallAuctionInfoEvent, WsMessage<CallAuctionInfoEvent>> {
+public class CallAuctionInfoEvent implements Response<CallAuctionInfoEvent, WsMessage> {
   /** Symbol */
   @JsonProperty("symbol")
   private String symbol;
@@ -51,10 +50,10 @@ public class CallAuctionInfoEvent
   private Long time;
 
   /** common response */
-  @JsonIgnore private WsMessage<CallAuctionInfoEvent> commonResponse;
+  @JsonIgnore private WsMessage commonResponse;
 
   @Override
-  public void setCommonResponse(WsMessage<CallAuctionInfoEvent> response) {
+  public void setCommonResponse(WsMessage response) {
     this.commonResponse = response;
   }
 
@@ -65,7 +64,11 @@ public class CallAuctionInfoEvent
 
   public static class CallbackAdapters {
     public static WebSocketMessageCallback<CallAuctionInfoEvent> of(Callback callback) {
-      return msg -> callback.onEvent(msg.getTopic(), msg.getSubject(), msg.getData());
+      return (msg, objectMapper) ->
+          callback.onEvent(
+              msg.getTopic(),
+              msg.getSubject(),
+              objectMapper.convertValue(msg.getData(), CallAuctionInfoEvent.class));
     }
   }
 }

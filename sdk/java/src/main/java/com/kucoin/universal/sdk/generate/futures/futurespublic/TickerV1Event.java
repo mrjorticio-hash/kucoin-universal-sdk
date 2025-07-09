@@ -16,7 +16,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class TickerV1Event implements Response<TickerV1Event, WsMessage<TickerV1Event>> {
+public class TickerV1Event implements Response<TickerV1Event, WsMessage> {
   /** */
   @JsonProperty("symbol")
   private String symbol;
@@ -62,10 +62,10 @@ public class TickerV1Event implements Response<TickerV1Event, WsMessage<TickerV1
   private Long ts;
 
   /** common response */
-  @JsonIgnore private WsMessage<TickerV1Event> commonResponse;
+  @JsonIgnore private WsMessage commonResponse;
 
   @Override
-  public void setCommonResponse(WsMessage<TickerV1Event> response) {
+  public void setCommonResponse(WsMessage response) {
     this.commonResponse = response;
   }
 
@@ -76,7 +76,11 @@ public class TickerV1Event implements Response<TickerV1Event, WsMessage<TickerV1
 
   public static class CallbackAdapters {
     public static WebSocketMessageCallback<TickerV1Event> of(Callback callback) {
-      return msg -> callback.onEvent(msg.getTopic(), msg.getSubject(), msg.getData());
+      return (msg, objectMapper) ->
+          callback.onEvent(
+              msg.getTopic(),
+              msg.getSubject(),
+              objectMapper.convertValue(msg.getData(), TickerV1Event.class));
     }
   }
 }

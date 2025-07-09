@@ -18,7 +18,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class KlinesEvent implements Response<KlinesEvent, WsMessage<KlinesEvent>> {
+public class KlinesEvent implements Response<KlinesEvent, WsMessage> {
   /**
    * Symbol of the contract, Please refer to [Get Symbol endpoint:
    * symbol](https://www.kucoin.com/docs-new/api-3470220)
@@ -38,10 +38,10 @@ public class KlinesEvent implements Response<KlinesEvent, WsMessage<KlinesEvent>
   private Long time;
 
   /** common response */
-  @JsonIgnore private WsMessage<KlinesEvent> commonResponse;
+  @JsonIgnore private WsMessage commonResponse;
 
   @Override
-  public void setCommonResponse(WsMessage<KlinesEvent> response) {
+  public void setCommonResponse(WsMessage response) {
     this.commonResponse = response;
   }
 
@@ -52,7 +52,11 @@ public class KlinesEvent implements Response<KlinesEvent, WsMessage<KlinesEvent>
 
   public static class CallbackAdapters {
     public static WebSocketMessageCallback<KlinesEvent> of(Callback callback) {
-      return msg -> callback.onEvent(msg.getTopic(), msg.getSubject(), msg.getData());
+      return (msg, objectMapper) ->
+          callback.onEvent(
+              msg.getTopic(),
+              msg.getSubject(),
+              objectMapper.convertValue(msg.getData(), KlinesEvent.class));
     }
   }
 }

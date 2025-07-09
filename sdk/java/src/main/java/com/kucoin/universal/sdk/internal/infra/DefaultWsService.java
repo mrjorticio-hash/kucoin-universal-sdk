@@ -1,5 +1,6 @@
 package com.kucoin.universal.sdk.internal.infra;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.kucoin.universal.sdk.internal.interfaces.*;
 import com.kucoin.universal.sdk.model.*;
 import java.util.Arrays;
@@ -8,7 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public final class DefaultWsService implements WebSocketService, WebsocketTransportListener {
-
+  private final ObjectMapper mapper = new ObjectMapper();
   private final WebsocketTransport client;
   private final WebSocketClientOption option;
   private final boolean privateChannel;
@@ -114,7 +115,7 @@ public final class DefaultWsService implements WebSocketService, WebsocketTransp
     }
 
     try {
-      cb.onMessage(wsMessage);
+      cb.onMessage(wsMessage, mapper);
     } catch (Throwable t) {
       notifyEvent(WebSocketEvent.CALLBACK_ERROR, t.getMessage());
     }
