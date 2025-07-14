@@ -4,7 +4,7 @@ import lombok.Getter;
 
 /** Exception representing a REST API error. */
 @Getter
-public class RestError extends Exception {
+public class RestError extends RuntimeException {
 
   private final RestResponse<?> response;
   private final Throwable cause;

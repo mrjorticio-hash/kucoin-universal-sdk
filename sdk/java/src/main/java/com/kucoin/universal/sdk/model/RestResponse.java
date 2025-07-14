@@ -23,6 +23,11 @@ public class RestResponse<T> {
   private RestRateLimit rateLimit;
 
   public void checkError() throws RestError {
-    // TODO
+    if (!code.equalsIgnoreCase(Constants.RESULT_CODE_SUCCESS)) {
+      throw new RestError(
+          this,
+          new Exception(
+              String.format("Server returned an error, code: %s, msg: %s", code, message)));
+    }
   }
 }

@@ -1,6 +1,5 @@
 package com.kucoin.universal.sdk.internal.infra;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.kucoin.universal.sdk.internal.interfaces.PathVar;
@@ -9,7 +8,6 @@ import com.kucoin.universal.sdk.internal.interfaces.Response;
 import com.kucoin.universal.sdk.internal.interfaces.Transport;
 import com.kucoin.universal.sdk.model.*;
 import java.lang.reflect.Field;
-import java.lang.reflect.Modifier;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
@@ -134,47 +132,6 @@ public final class DefaultTransport implements Transport {
 
     pr.path = sb.toString();
     return pr;
-  }
-
-  private static class QueryRes {
-    HttpUrl url; // encoded url
-    String raw; // raw query for signing
-  }
-
-  /** Build encoded URL and raw query string simultaneously. */
-  private QueryRes buildUrl(String base, String path, Request req, Set<String> skip) {
-    HttpUrl.Builder ub =
-        Objects.requireNonNull(HttpUrl.parse(base + path), "invalid base").newBuilder();
-    List<String> rawParts = new ArrayList<>();
-
-    if (req != null) {
-      for (Field f : req.getClass().getDeclaredFields()) {
-        if (Modifier.isStatic(f.getModifiers()) || skip.contains(f.getName())) continue;
-        f.setAccessible(true);
-        Object v;
-        try {
-          v = f.get(req);
-        } catch (IllegalAccessException e) {
-          continue;
-        }
-        if (v == null) continue;
-
-        String key =
-            Optional.ofNullable(f.getAnnotation(JsonProperty.class))
-                .map(JsonProperty::value)
-                .filter(s -> !s.isEmpty())
-                .orElse(f.getName());
-
-        String val = v instanceof Boolean ? ((Boolean) v ? "true" : "false") : String.valueOf(v);
-
-        ub.addQueryParameter(key, val);
-        rawParts.add(key + "=" + val);
-      }
-    }
-    QueryRes qr = new QueryRes();
-    qr.url = ub.build();
-    qr.raw = String.join("&", rawParts);
-    return qr;
   }
 
   private String endpoint(String domain) {
@@ -315,7 +272,13 @@ public final class DefaultTransport implements Transport {
 
       return doRequest(request, respClazz);
     } catch (Exception e) {
-      throw new RuntimeException(e);
+      RestError restError = null;
+      if (e instanceof RestError) {
+        restError = (RestError) e;
+      } else {
+        restError = new RestError(null, e);
+      }
+      throw restError;
     }
   }
 
