@@ -24,12 +24,12 @@ public final class DefaultClient implements Client {
   }
 
   @Override
-  public KucoinRestService restService() {
+  public KucoinRestService getRestService() {
     return restImpl;
   }
 
   @Override
-  public KucoinWSService wsService() {
+  public KucoinWSService getWsService() {
     return wsImpl;
   }
 }

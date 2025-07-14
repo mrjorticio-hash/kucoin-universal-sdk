@@ -4,26 +4,27 @@
     * Get Loan Market
     * /api/v3/project/list
     */
-    public void testGetLoanMarket() {
+    @Test
+    public void testGetLoanMarket() throws Exception {
         GetLoanMarketReq.GetLoanMarketReqBuilder builder = GetLoanMarketReq.builder();
         builder.currency(?);
         GetLoanMarketReq req = builder.build();
-        GetLoanMarketResp resp = this.api.getLoanMarket(req);
-        foreach($resp->data as $item) {
-            self::assertNotNull($item->currency);
-            self::assertNotNull($item->purchaseEnable);
-            self::assertNotNull($item->redeemEnable);
-            self::assertNotNull($item->increment);
-            self::assertNotNull($item->minPurchaseSize);
-            self::assertNotNull($item->minInterestRate);
-            self::assertNotNull($item->maxInterestRate);
-            self::assertNotNull($item->interestIncrement);
-            self::assertNotNull($item->maxPurchaseSize);
-            self::assertNotNull($item->marketInterestRate);
-            self::assertNotNull($item->autoPurchaseEnable);
-        }
+        GetLoanMarketResp resp = api.getLoanMarket(req);
+        resp.getData().forEach( item -> {
+            Assertions.assertNotNull(item.getCurrency());
+            Assertions.assertNotNull(item.getPurchaseEnable());
+            Assertions.assertNotNull(item.getRedeemEnable());
+            Assertions.assertNotNull(item.getIncrement());
+            Assertions.assertNotNull(item.getMinPurchaseSize());
+            Assertions.assertNotNull(item.getMinInterestRate());
+            Assertions.assertNotNull(item.getMaxInterestRate());
+            Assertions.assertNotNull(item.getInterestIncrement());
+            Assertions.assertNotNull(item.getMaxPurchaseSize());
+            Assertions.assertNotNull(item.getMarketInterestRate());
+            Assertions.assertNotNull(item.getAutoPurchaseEnable());
+        });
 
-        Logger::info($resp->jsonSerialize($this->serializer));
+        log.info("resp: {}", mapper.writeValueAsString(resp));
     }
 
     /**
@@ -31,17 +32,18 @@
     * Get Loan Market Interest Rate
     * /api/v3/project/marketInterestRate
     */
-    public void testGetLoanMarketInterestRate() {
+    @Test
+    public void testGetLoanMarketInterestRate() throws Exception {
         GetLoanMarketInterestRateReq.GetLoanMarketInterestRateReqBuilder builder = GetLoanMarketInterestRateReq.builder();
         builder.currency(?);
         GetLoanMarketInterestRateReq req = builder.build();
-        GetLoanMarketInterestRateResp resp = this.api.getLoanMarketInterestRate(req);
-        foreach($resp->data as $item) {
-            self::assertNotNull($item->time);
-            self::assertNotNull($item->marketInterestRate);
-        }
+        GetLoanMarketInterestRateResp resp = api.getLoanMarketInterestRate(req);
+        resp.getData().forEach( item -> {
+            Assertions.assertNotNull(item.getTime());
+            Assertions.assertNotNull(item.getMarketInterestRate());
+        });
 
-        Logger::info($resp->jsonSerialize($this->serializer));
+        log.info("resp: {}", mapper.writeValueAsString(resp));
     }
 
     /**
@@ -49,13 +51,14 @@
     * Purchase
     * /api/v3/purchase
     */
-    public void testPurchase() {
+    @Test
+    public void testPurchase() throws Exception {
         PurchaseReq.PurchaseReqBuilder builder = PurchaseReq.builder();
         builder.currency(?).size(?).interestRate(?);
         PurchaseReq req = builder.build();
-        PurchaseResp resp = this.api.purchase(req);
-        self::assertNotNull($resp->orderNo);
-        Logger::info($resp->jsonSerialize($this->serializer));
+        PurchaseResp resp = api.purchase(req);
+        Assertions.assertNotNull(resp.getOrderNo());
+        log.info("resp: {}", mapper.writeValueAsString(resp));
     }
 
     /**
@@ -63,13 +66,14 @@
     * Modify Purchase
     * /api/v3/lend/purchase/update
     */
-    public void testModifyPurchase() {
+    @Test
+    public void testModifyPurchase() throws Exception {
         ModifyPurchaseReq.ModifyPurchaseReqBuilder builder = ModifyPurchaseReq.builder();
         builder.currency(?).interestRate(?).purchaseOrderNo(?);
         ModifyPurchaseReq req = builder.build();
-        ModifyPurchaseResp resp = this.api.modifyPurchase(req);
-        self::assertNotNull($resp->data);
-        Logger::info($resp->jsonSerialize($this->serializer));
+        ModifyPurchaseResp resp = api.modifyPurchase(req);
+        Assertions.assertNotNull(resp.getData());
+        log.info("resp: {}", mapper.writeValueAsString(resp));
     }
 
     /**
@@ -77,27 +81,28 @@
     * Get Purchase Orders
     * /api/v3/purchase/orders
     */
-    public void testGetPurchaseOrders() {
+    @Test
+    public void testGetPurchaseOrders() throws Exception {
         GetPurchaseOrdersReq.GetPurchaseOrdersReqBuilder builder = GetPurchaseOrdersReq.builder();
         builder.status(?).currency(?).purchaseOrderNo(?).currentPage(?).pageSize(?);
         GetPurchaseOrdersReq req = builder.build();
-        GetPurchaseOrdersResp resp = this.api.getPurchaseOrders(req);
-        self::assertNotNull($resp->currentPage);
-        self::assertNotNull($resp->pageSize);
-        self::assertNotNull($resp->totalNum);
-        self::assertNotNull($resp->totalPage);
-        foreach($resp->items as $item) {
-            self::assertNotNull($item->currency);
-            self::assertNotNull($item->purchaseOrderNo);
-            self::assertNotNull($item->purchaseSize);
-            self::assertNotNull($item->matchSize);
-            self::assertNotNull($item->interestRate);
-            self::assertNotNull($item->incomeSize);
-            self::assertNotNull($item->applyTime);
-            self::assertNotNull($item->status);
-        }
+        GetPurchaseOrdersResp resp = api.getPurchaseOrders(req);
+        Assertions.assertNotNull(resp.getCurrentPage());
+        Assertions.assertNotNull(resp.getPageSize());
+        Assertions.assertNotNull(resp.getTotalNum());
+        Assertions.assertNotNull(resp.getTotalPage());
+        resp.getItems().forEach( item -> {
+            Assertions.assertNotNull(item.getCurrency());
+            Assertions.assertNotNull(item.getPurchaseOrderNo());
+            Assertions.assertNotNull(item.getPurchaseSize());
+            Assertions.assertNotNull(item.getMatchSize());
+            Assertions.assertNotNull(item.getInterestRate());
+            Assertions.assertNotNull(item.getIncomeSize());
+            Assertions.assertNotNull(item.getApplyTime());
+            Assertions.assertNotNull(item.getStatus());
+        });
 
-        Logger::info($resp->jsonSerialize($this->serializer));
+        log.info("resp: {}", mapper.writeValueAsString(resp));
     }
 
     /**
@@ -105,13 +110,14 @@
     * Redeem
     * /api/v3/redeem
     */
-    public void testRedeem() {
+    @Test
+    public void testRedeem() throws Exception {
         RedeemReq.RedeemReqBuilder builder = RedeemReq.builder();
         builder.currency(?).size(?).purchaseOrderNo(?);
         RedeemReq req = builder.build();
-        RedeemResp resp = this.api.redeem(req);
-        self::assertNotNull($resp->orderNo);
-        Logger::info($resp->jsonSerialize($this->serializer));
+        RedeemResp resp = api.redeem(req);
+        Assertions.assertNotNull(resp.getOrderNo());
+        log.info("resp: {}", mapper.writeValueAsString(resp));
     }
 
     /**
@@ -119,25 +125,26 @@
     * Get Redeem Orders
     * /api/v3/redeem/orders
     */
-    public void testGetRedeemOrders() {
+    @Test
+    public void testGetRedeemOrders() throws Exception {
         GetRedeemOrdersReq.GetRedeemOrdersReqBuilder builder = GetRedeemOrdersReq.builder();
         builder.status(?).currency(?).redeemOrderNo(?).currentPage(?).pageSize(?);
         GetRedeemOrdersReq req = builder.build();
-        GetRedeemOrdersResp resp = this.api.getRedeemOrders(req);
-        self::assertNotNull($resp->currentPage);
-        self::assertNotNull($resp->pageSize);
-        self::assertNotNull($resp->totalNum);
-        self::assertNotNull($resp->totalPage);
-        foreach($resp->items as $item) {
-            self::assertNotNull($item->currency);
-            self::assertNotNull($item->purchaseOrderNo);
-            self::assertNotNull($item->redeemOrderNo);
-            self::assertNotNull($item->redeemSize);
-            self::assertNotNull($item->receiptSize);
-            self::assertNotNull($item->applyTime);
-            self::assertNotNull($item->status);
-        }
+        GetRedeemOrdersResp resp = api.getRedeemOrders(req);
+        Assertions.assertNotNull(resp.getCurrentPage());
+        Assertions.assertNotNull(resp.getPageSize());
+        Assertions.assertNotNull(resp.getTotalNum());
+        Assertions.assertNotNull(resp.getTotalPage());
+        resp.getItems().forEach( item -> {
+            Assertions.assertNotNull(item.getCurrency());
+            Assertions.assertNotNull(item.getPurchaseOrderNo());
+            Assertions.assertNotNull(item.getRedeemOrderNo());
+            Assertions.assertNotNull(item.getRedeemSize());
+            Assertions.assertNotNull(item.getReceiptSize());
+            Assertions.assertNotNull(item.getApplyTime());
+            Assertions.assertNotNull(item.getStatus());
+        });
 
-        Logger::info($resp->jsonSerialize($this->serializer));
+        log.info("resp: {}", mapper.writeValueAsString(resp));
     }
 

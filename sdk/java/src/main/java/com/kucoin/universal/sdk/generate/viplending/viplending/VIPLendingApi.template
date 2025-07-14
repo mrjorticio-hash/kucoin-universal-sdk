@@ -4,14 +4,15 @@
     * Get Discount Rate Configs
     * /api/v1/otc-loan/discount-rate-configs
     */
-    public void testGetDiscountRateConfigs() {
-        GetDiscountRateConfigsResp resp = this.api.getDiscountRateConfigs();
-        foreach($resp->data as $item) {
-            self::assertNotNull($item->currency);
-            self::assertNotNull($item->usdtLevels);
-        }
+    @Test
+    public void testGetDiscountRateConfigs() throws Exception {
+        GetDiscountRateConfigsResp resp = api.getDiscountRateConfigs();
+        resp.getData().forEach( item -> {
+            Assertions.assertNotNull(item.getCurrency());
+            Assertions.assertNotNull(item.getUsdtLevels());
+        });
 
-        Logger::info($resp->jsonSerialize($this->serializer));
+        log.info("resp: {}", mapper.writeValueAsString(resp));
     }
 
     /**
@@ -19,26 +20,27 @@
     * Get Loan Info
     * /api/v1/otc-loan/loan
     */
-    public void testGetLoanInfo() {
-        GetLoanInfoResp resp = this.api.getLoanInfo();
-        self::assertNotNull($resp->parentUid);
-        foreach($resp->orders as $item) {
-            self::assertNotNull($item->orderId);
-            self::assertNotNull($item->principal);
-            self::assertNotNull($item->interest);
-            self::assertNotNull($item->currency);
-        }
+    @Test
+    public void testGetLoanInfo() throws Exception {
+        GetLoanInfoResp resp = api.getLoanInfo();
+        Assertions.assertNotNull(resp.getParentUid());
+        resp.getOrders().forEach( item -> {
+            Assertions.assertNotNull(item.getOrderId());
+            Assertions.assertNotNull(item.getPrincipal());
+            Assertions.assertNotNull(item.getInterest());
+            Assertions.assertNotNull(item.getCurrency());
+        });
 
-        self::assertNotNull($resp->ltv);
-        self::assertNotNull($resp->totalMarginAmount);
-        self::assertNotNull($resp->transferMarginAmount);
-        foreach($resp->margins as $item) {
-            self::assertNotNull($item->marginCcy);
-            self::assertNotNull($item->marginQty);
-            self::assertNotNull($item->marginFactor);
-        }
+        Assertions.assertNotNull(resp.getLtv());
+        Assertions.assertNotNull(resp.getTotalMarginAmount());
+        Assertions.assertNotNull(resp.getTransferMarginAmount());
+        resp.getMargins().forEach( item -> {
+            Assertions.assertNotNull(item.getMarginCcy());
+            Assertions.assertNotNull(item.getMarginQty());
+            Assertions.assertNotNull(item.getMarginFactor());
+        });
 
-        Logger::info($resp->jsonSerialize($this->serializer));
+        log.info("resp: {}", mapper.writeValueAsString(resp));
     }
 
     /**
@@ -46,17 +48,18 @@
     * Get Accounts
     * /api/v1/otc-loan/accounts
     */
-    public void testGetAccounts() {
-        GetAccountsResp resp = this.api.getAccounts();
-        foreach($resp->data as $item) {
-            self::assertNotNull($item->uid);
-            self::assertNotNull($item->marginCcy);
-            self::assertNotNull($item->marginQty);
-            self::assertNotNull($item->marginFactor);
-            self::assertNotNull($item->accountType);
-            self::assertNotNull($item->isParent);
-        }
+    @Test
+    public void testGetAccounts() throws Exception {
+        GetAccountsResp resp = api.getAccounts();
+        resp.getData().forEach( item -> {
+            Assertions.assertNotNull(item.getUid());
+            Assertions.assertNotNull(item.getMarginCcy());
+            Assertions.assertNotNull(item.getMarginQty());
+            Assertions.assertNotNull(item.getMarginFactor());
+            Assertions.assertNotNull(item.getAccountType());
+            Assertions.assertNotNull(item.getIsParent());
+        });
 
-        Logger::info($resp->jsonSerialize($this->serializer));
+        log.info("resp: {}", mapper.writeValueAsString(resp));
     }
 

@@ -4,13 +4,14 @@
     * Submit KYC
     * /api/kyc/ndBroker/proxyClient/submit
     */
-    public void testSubmitKYC() {
+    @Test
+    public void testSubmitKYC() throws Exception {
         SubmitKYCReq.SubmitKYCReqBuilder builder = SubmitKYCReq.builder();
         builder.clientUid(?).firstName(?).lastName(?).issueCountry(?).birthDate(?).identityType(?).identityNumber(?).expireDate(?).frontPhoto(?).backendPhoto(?).facePhoto(?);
         SubmitKYCReq req = builder.build();
-        SubmitKYCResp resp = this.api.submitKYC(req);
-        self::assertNotNull($resp->data);
-        Logger::info($resp->jsonSerialize($this->serializer));
+        SubmitKYCResp resp = api.submitKYC(req);
+        Assertions.assertNotNull(resp.getData());
+        log.info("resp: {}", mapper.writeValueAsString(resp));
     }
 
     /**
@@ -18,18 +19,19 @@
     * Get KYC Status
     * /api/kyc/ndBroker/proxyClient/status/list
     */
-    public void testGetKYCStatus() {
+    @Test
+    public void testGetKYCStatus() throws Exception {
         GetKYCStatusReq.GetKYCStatusReqBuilder builder = GetKYCStatusReq.builder();
         builder.clientUids(?);
         GetKYCStatusReq req = builder.build();
-        GetKYCStatusResp resp = this.api.getKYCStatus(req);
-        foreach($resp->data as $item) {
-            self::assertNotNull($item->clientUid);
-            self::assertNotNull($item->status);
-            self::assertNotNull($item->rejectReason);
-        }
+        GetKYCStatusResp resp = api.getKYCStatus(req);
+        resp.getData().forEach( item -> {
+            Assertions.assertNotNull(item.getClientUid());
+            Assertions.assertNotNull(item.getStatus());
+            Assertions.assertNotNull(item.getRejectReason());
+        });
 
-        Logger::info($resp->jsonSerialize($this->serializer));
+        log.info("resp: {}", mapper.writeValueAsString(resp));
     }
 
     /**
@@ -37,22 +39,23 @@
     * Get KYC Status List
     * /api/kyc/ndBroker/proxyClient/status/page
     */
-    public void testGetKYCStatusList() {
+    @Test
+    public void testGetKYCStatusList() throws Exception {
         GetKYCStatusListReq.GetKYCStatusListReqBuilder builder = GetKYCStatusListReq.builder();
         builder.pageNumber(?).pageSize(?);
         GetKYCStatusListReq req = builder.build();
-        GetKYCStatusListResp resp = this.api.getKYCStatusList(req);
-        self::assertNotNull($resp->currentPage);
-        self::assertNotNull($resp->pageSize);
-        self::assertNotNull($resp->totalNum);
-        self::assertNotNull($resp->totalPage);
-        foreach($resp->items as $item) {
-            self::assertNotNull($item->clientUid);
-            self::assertNotNull($item->status);
-            self::assertNotNull($item->rejectReason);
-        }
+        GetKYCStatusListResp resp = api.getKYCStatusList(req);
+        Assertions.assertNotNull(resp.getCurrentPage());
+        Assertions.assertNotNull(resp.getPageSize());
+        Assertions.assertNotNull(resp.getTotalNum());
+        Assertions.assertNotNull(resp.getTotalPage());
+        resp.getItems().forEach( item -> {
+            Assertions.assertNotNull(item.getClientUid());
+            Assertions.assertNotNull(item.getStatus());
+            Assertions.assertNotNull(item.getRejectReason());
+        });
 
-        Logger::info($resp->jsonSerialize($this->serializer));
+        log.info("resp: {}", mapper.writeValueAsString(resp));
     }
 
     /**
@@ -60,15 +63,16 @@
     * Get Broker Info
     * /api/v1/broker/nd/info
     */
-    public void testGetBrokerInfo() {
+    @Test
+    public void testGetBrokerInfo() throws Exception {
         GetBrokerInfoReq.GetBrokerInfoReqBuilder builder = GetBrokerInfoReq.builder();
         builder.begin(?).end(?).tradeType(?);
         GetBrokerInfoReq req = builder.build();
-        GetBrokerInfoResp resp = this.api.getBrokerInfo(req);
-        self::assertNotNull($resp->accountSize);
-        self::assertNotNull($resp->maxAccountSize);
-        self::assertNotNull($resp->level);
-        Logger::info($resp->jsonSerialize($this->serializer));
+        GetBrokerInfoResp resp = api.getBrokerInfo(req);
+        Assertions.assertNotNull(resp.getAccountSize());
+        Assertions.assertNotNull(resp.getMaxAccountSize());
+        Assertions.assertNotNull(resp.getLevel());
+        log.info("resp: {}", mapper.writeValueAsString(resp));
     }
 
     /**
@@ -76,16 +80,17 @@
     * Add sub-account
     * /api/v1/broker/nd/account
     */
-    public void testAddSubAccount() {
+    @Test
+    public void testAddSubAccount() throws Exception {
         AddSubAccountReq.AddSubAccountReqBuilder builder = AddSubAccountReq.builder();
         builder.accountName(?);
         AddSubAccountReq req = builder.build();
-        AddSubAccountResp resp = this.api.addSubAccount(req);
-        self::assertNotNull($resp->accountName);
-        self::assertNotNull($resp->uid);
-        self::assertNotNull($resp->createdAt);
-        self::assertNotNull($resp->level);
-        Logger::info($resp->jsonSerialize($this->serializer));
+        AddSubAccountResp resp = api.addSubAccount(req);
+        Assertions.assertNotNull(resp.getAccountName());
+        Assertions.assertNotNull(resp.getUid());
+        Assertions.assertNotNull(resp.getCreatedAt());
+        Assertions.assertNotNull(resp.getLevel());
+        log.info("resp: {}", mapper.writeValueAsString(resp));
     }
 
     /**
@@ -93,23 +98,24 @@
     * Get sub-account
     * /api/v1/broker/nd/account
     */
-    public void testGetSubAccount() {
+    @Test
+    public void testGetSubAccount() throws Exception {
         GetSubAccountReq.GetSubAccountReqBuilder builder = GetSubAccountReq.builder();
         builder.uid(?).currentPage(?).pageSize(?);
         GetSubAccountReq req = builder.build();
-        GetSubAccountResp resp = this.api.getSubAccount(req);
-        self::assertNotNull($resp->currentPage);
-        self::assertNotNull($resp->pageSize);
-        self::assertNotNull($resp->totalNum);
-        self::assertNotNull($resp->totalPage);
-        foreach($resp->items as $item) {
-            self::assertNotNull($item->accountName);
-            self::assertNotNull($item->uid);
-            self::assertNotNull($item->createdAt);
-            self::assertNotNull($item->level);
-        }
+        GetSubAccountResp resp = api.getSubAccount(req);
+        Assertions.assertNotNull(resp.getCurrentPage());
+        Assertions.assertNotNull(resp.getPageSize());
+        Assertions.assertNotNull(resp.getTotalNum());
+        Assertions.assertNotNull(resp.getTotalPage());
+        resp.getItems().forEach( item -> {
+            Assertions.assertNotNull(item.getAccountName());
+            Assertions.assertNotNull(item.getUid());
+            Assertions.assertNotNull(item.getCreatedAt());
+            Assertions.assertNotNull(item.getLevel());
+        });
 
-        Logger::info($resp->jsonSerialize($this->serializer));
+        log.info("resp: {}", mapper.writeValueAsString(resp));
     }
 
     /**
@@ -117,24 +123,25 @@
     * Add sub-account API
     * /api/v1/broker/nd/account/apikey
     */
-    public void testAddSubAccountApi() {
+    @Test
+    public void testAddSubAccountApi() throws Exception {
         AddSubAccountApiReq.AddSubAccountApiReqBuilder builder = AddSubAccountApiReq.builder();
         builder.uid(?).passphrase(?).ipWhitelist(?).permissions(?).label(?);
         AddSubAccountApiReq req = builder.build();
-        AddSubAccountApiResp resp = this.api.addSubAccountApi(req);
-        self::assertNotNull($resp->uid);
-        self::assertNotNull($resp->label);
-        self::assertNotNull($resp->apiKey);
-        self::assertNotNull($resp->secretKey);
-        self::assertNotNull($resp->apiVersion);
-        foreach($resp->permissions as $item) {
-        }
+        AddSubAccountApiResp resp = api.addSubAccountApi(req);
+        Assertions.assertNotNull(resp.getUid());
+        Assertions.assertNotNull(resp.getLabel());
+        Assertions.assertNotNull(resp.getApiKey());
+        Assertions.assertNotNull(resp.getSecretKey());
+        Assertions.assertNotNull(resp.getApiVersion());
+        resp.getPermissions().forEach( item -> {
+        });
 
-        foreach($resp->ipWhitelist as $item) {
-        }
+        resp.getIpWhitelist().forEach( item -> {
+        });
 
-        self::assertNotNull($resp->createdAt);
-        Logger::info($resp->jsonSerialize($this->serializer));
+        Assertions.assertNotNull(resp.getCreatedAt());
+        log.info("resp: {}", mapper.writeValueAsString(resp));
     }
 
     /**
@@ -142,22 +149,23 @@
     * Get sub-account API
     * /api/v1/broker/nd/account/apikey
     */
-    public void testGetSubAccountAPI() {
+    @Test
+    public void testGetSubAccountAPI() throws Exception {
         GetSubAccountAPIReq.GetSubAccountAPIReqBuilder builder = GetSubAccountAPIReq.builder();
         builder.uid(?).apiKey(?);
         GetSubAccountAPIReq req = builder.build();
-        GetSubAccountAPIResp resp = this.api.getSubAccountAPI(req);
-        foreach($resp->data as $item) {
-            self::assertNotNull($item->uid);
-            self::assertNotNull($item->label);
-            self::assertNotNull($item->apiKey);
-            self::assertNotNull($item->apiVersion);
-            self::assertNotNull($item->permissions);
-            self::assertNotNull($item->ipWhitelist);
-            self::assertNotNull($item->createdAt);
-        }
+        GetSubAccountAPIResp resp = api.getSubAccountAPI(req);
+        resp.getData().forEach( item -> {
+            Assertions.assertNotNull(item.getUid());
+            Assertions.assertNotNull(item.getLabel());
+            Assertions.assertNotNull(item.getApiKey());
+            Assertions.assertNotNull(item.getApiVersion());
+            Assertions.assertNotNull(item.getPermissions());
+            Assertions.assertNotNull(item.getIpWhitelist());
+            Assertions.assertNotNull(item.getCreatedAt());
+        });
 
-        Logger::info($resp->jsonSerialize($this->serializer));
+        log.info("resp: {}", mapper.writeValueAsString(resp));
     }
 
     /**
@@ -165,23 +173,24 @@
     * Modify sub-account API
     * /api/v1/broker/nd/account/update-apikey
     */
-    public void testModifySubAccountApi() {
+    @Test
+    public void testModifySubAccountApi() throws Exception {
         ModifySubAccountApiReq.ModifySubAccountApiReqBuilder builder = ModifySubAccountApiReq.builder();
         builder.uid(?).ipWhitelist(?).permissions(?).label(?).apiKey(?);
         ModifySubAccountApiReq req = builder.build();
-        ModifySubAccountApiResp resp = this.api.modifySubAccountApi(req);
-        self::assertNotNull($resp->uid);
-        self::assertNotNull($resp->label);
-        self::assertNotNull($resp->apiKey);
-        self::assertNotNull($resp->apiVersion);
-        foreach($resp->permissions as $item) {
-        }
+        ModifySubAccountApiResp resp = api.modifySubAccountApi(req);
+        Assertions.assertNotNull(resp.getUid());
+        Assertions.assertNotNull(resp.getLabel());
+        Assertions.assertNotNull(resp.getApiKey());
+        Assertions.assertNotNull(resp.getApiVersion());
+        resp.getPermissions().forEach( item -> {
+        });
 
-        foreach($resp->ipWhitelist as $item) {
-        }
+        resp.getIpWhitelist().forEach( item -> {
+        });
 
-        self::assertNotNull($resp->createdAt);
-        Logger::info($resp->jsonSerialize($this->serializer));
+        Assertions.assertNotNull(resp.getCreatedAt());
+        log.info("resp: {}", mapper.writeValueAsString(resp));
     }
 
     /**
@@ -189,13 +198,14 @@
     * Delete sub-account API
     * /api/v1/broker/nd/account/apikey
     */
-    public void testDeleteSubAccountAPI() {
+    @Test
+    public void testDeleteSubAccountAPI() throws Exception {
         DeleteSubAccountAPIReq.DeleteSubAccountAPIReqBuilder builder = DeleteSubAccountAPIReq.builder();
         builder.uid(?).apiKey(?);
         DeleteSubAccountAPIReq req = builder.build();
-        DeleteSubAccountAPIResp resp = this.api.deleteSubAccountAPI(req);
-        self::assertNotNull($resp->data);
-        Logger::info($resp->jsonSerialize($this->serializer));
+        DeleteSubAccountAPIResp resp = api.deleteSubAccountAPI(req);
+        Assertions.assertNotNull(resp.getData());
+        log.info("resp: {}", mapper.writeValueAsString(resp));
     }
 
     /**
@@ -203,13 +213,14 @@
     * Transfer
     * /api/v1/broker/nd/transfer
     */
-    public void testTransfer() {
+    @Test
+    public void testTransfer() throws Exception {
         TransferReq.TransferReqBuilder builder = TransferReq.builder();
         builder.currency(?).amount(?).direction(?).accountType(?).specialUid(?).specialAccountType(?).clientOid(?);
         TransferReq req = builder.build();
-        TransferResp resp = this.api.transfer(req);
-        self::assertNotNull($resp->orderId);
-        Logger::info($resp->jsonSerialize($this->serializer));
+        TransferResp resp = api.transfer(req);
+        Assertions.assertNotNull(resp.getOrderId());
+        log.info("resp: {}", mapper.writeValueAsString(resp));
     }
 
     /**
@@ -217,24 +228,25 @@
     * Get Transfer History
     * /api/v3/broker/nd/transfer/detail
     */
-    public void testGetTransferHistory() {
+    @Test
+    public void testGetTransferHistory() throws Exception {
         GetTransferHistoryReq.GetTransferHistoryReqBuilder builder = GetTransferHistoryReq.builder();
         builder.orderId(?);
         GetTransferHistoryReq req = builder.build();
-        GetTransferHistoryResp resp = this.api.getTransferHistory(req);
-        self::assertNotNull($resp->orderId);
-        self::assertNotNull($resp->currency);
-        self::assertNotNull($resp->amount);
-        self::assertNotNull($resp->fromUid);
-        self::assertNotNull($resp->fromAccountType);
-        self::assertNotNull($resp->fromAccountTag);
-        self::assertNotNull($resp->toUid);
-        self::assertNotNull($resp->toAccountType);
-        self::assertNotNull($resp->toAccountTag);
-        self::assertNotNull($resp->status);
-        self::assertNotNull($resp->reason);
-        self::assertNotNull($resp->createdAt);
-        Logger::info($resp->jsonSerialize($this->serializer));
+        GetTransferHistoryResp resp = api.getTransferHistory(req);
+        Assertions.assertNotNull(resp.getOrderId());
+        Assertions.assertNotNull(resp.getCurrency());
+        Assertions.assertNotNull(resp.getAmount());
+        Assertions.assertNotNull(resp.getFromUid());
+        Assertions.assertNotNull(resp.getFromAccountType());
+        Assertions.assertNotNull(resp.getFromAccountTag());
+        Assertions.assertNotNull(resp.getToUid());
+        Assertions.assertNotNull(resp.getToAccountType());
+        Assertions.assertNotNull(resp.getToAccountTag());
+        Assertions.assertNotNull(resp.getStatus());
+        Assertions.assertNotNull(resp.getReason());
+        Assertions.assertNotNull(resp.getCreatedAt());
+        log.info("resp: {}", mapper.writeValueAsString(resp));
     }
 
     /**
@@ -242,29 +254,30 @@
     * Get Deposit List
     * /api/v1/asset/ndbroker/deposit/list
     */
-    public void testGetDepositList() {
+    @Test
+    public void testGetDepositList() throws Exception {
         GetDepositListReq.GetDepositListReqBuilder builder = GetDepositListReq.builder();
         builder.currency(?).status(?).hash(?).startTimestamp(?).endTimestamp(?).limit(?);
         GetDepositListReq req = builder.build();
-        GetDepositListResp resp = this.api.getDepositList(req);
-        foreach($resp->data as $item) {
-            self::assertNotNull($item->uid);
-            self::assertNotNull($item->hash);
-            self::assertNotNull($item->address);
-            self::assertNotNull($item->memo);
-            self::assertNotNull($item->amount);
-            self::assertNotNull($item->fee);
-            self::assertNotNull($item->currency);
-            self::assertNotNull($item->isInner);
-            self::assertNotNull($item->walletTxId);
-            self::assertNotNull($item->status);
-            self::assertNotNull($item->remark);
-            self::assertNotNull($item->chain);
-            self::assertNotNull($item->createdAt);
-            self::assertNotNull($item->updatedAt);
-        }
+        GetDepositListResp resp = api.getDepositList(req);
+        resp.getData().forEach( item -> {
+            Assertions.assertNotNull(item.getUid());
+            Assertions.assertNotNull(item.getHash());
+            Assertions.assertNotNull(item.getAddress());
+            Assertions.assertNotNull(item.getMemo());
+            Assertions.assertNotNull(item.getAmount());
+            Assertions.assertNotNull(item.getFee());
+            Assertions.assertNotNull(item.getCurrency());
+            Assertions.assertNotNull(item.getIsInner());
+            Assertions.assertNotNull(item.getWalletTxId());
+            Assertions.assertNotNull(item.getStatus());
+            Assertions.assertNotNull(item.getRemark());
+            Assertions.assertNotNull(item.getChain());
+            Assertions.assertNotNull(item.getCreatedAt());
+            Assertions.assertNotNull(item.getUpdatedAt());
+        });
 
-        Logger::info($resp->jsonSerialize($this->serializer));
+        log.info("resp: {}", mapper.writeValueAsString(resp));
     }
 
     /**
@@ -272,26 +285,27 @@
     * Get Deposit Detail
     * /api/v3/broker/nd/deposit/detail
     */
-    public void testGetDepositDetail() {
+    @Test
+    public void testGetDepositDetail() throws Exception {
         GetDepositDetailReq.GetDepositDetailReqBuilder builder = GetDepositDetailReq.builder();
         builder.currency(?).hash(?);
         GetDepositDetailReq req = builder.build();
-        GetDepositDetailResp resp = this.api.getDepositDetail(req);
-        self::assertNotNull($resp->chain);
-        self::assertNotNull($resp->hash);
-        self::assertNotNull($resp->walletTxId);
-        self::assertNotNull($resp->uid);
-        self::assertNotNull($resp->updatedAt);
-        self::assertNotNull($resp->amount);
-        self::assertNotNull($resp->memo);
-        self::assertNotNull($resp->fee);
-        self::assertNotNull($resp->address);
-        self::assertNotNull($resp->remark);
-        self::assertNotNull($resp->isInner);
-        self::assertNotNull($resp->currency);
-        self::assertNotNull($resp->status);
-        self::assertNotNull($resp->createdAt);
-        Logger::info($resp->jsonSerialize($this->serializer));
+        GetDepositDetailResp resp = api.getDepositDetail(req);
+        Assertions.assertNotNull(resp.getChain());
+        Assertions.assertNotNull(resp.getHash());
+        Assertions.assertNotNull(resp.getWalletTxId());
+        Assertions.assertNotNull(resp.getUid());
+        Assertions.assertNotNull(resp.getUpdatedAt());
+        Assertions.assertNotNull(resp.getAmount());
+        Assertions.assertNotNull(resp.getMemo());
+        Assertions.assertNotNull(resp.getFee());
+        Assertions.assertNotNull(resp.getAddress());
+        Assertions.assertNotNull(resp.getRemark());
+        Assertions.assertNotNull(resp.getIsInner());
+        Assertions.assertNotNull(resp.getCurrency());
+        Assertions.assertNotNull(resp.getStatus());
+        Assertions.assertNotNull(resp.getCreatedAt());
+        log.info("resp: {}", mapper.writeValueAsString(resp));
     }
 
     /**
@@ -299,26 +313,27 @@
     * Get Withdraw Detail
     * /api/v3/broker/nd/withdraw/detail
     */
-    public void testGetWithdrawDetail() {
+    @Test
+    public void testGetWithdrawDetail() throws Exception {
         GetWithdrawDetailReq.GetWithdrawDetailReqBuilder builder = GetWithdrawDetailReq.builder();
         builder.withdrawalId(?);
         GetWithdrawDetailReq req = builder.build();
-        GetWithdrawDetailResp resp = this.api.getWithdrawDetail(req);
-        self::assertNotNull($resp->id);
-        self::assertNotNull($resp->chain);
-        self::assertNotNull($resp->walletTxId);
-        self::assertNotNull($resp->uid);
-        self::assertNotNull($resp->updatedAt);
-        self::assertNotNull($resp->amount);
-        self::assertNotNull($resp->memo);
-        self::assertNotNull($resp->fee);
-        self::assertNotNull($resp->address);
-        self::assertNotNull($resp->remark);
-        self::assertNotNull($resp->isInner);
-        self::assertNotNull($resp->currency);
-        self::assertNotNull($resp->status);
-        self::assertNotNull($resp->createdAt);
-        Logger::info($resp->jsonSerialize($this->serializer));
+        GetWithdrawDetailResp resp = api.getWithdrawDetail(req);
+        Assertions.assertNotNull(resp.getId());
+        Assertions.assertNotNull(resp.getChain());
+        Assertions.assertNotNull(resp.getWalletTxId());
+        Assertions.assertNotNull(resp.getUid());
+        Assertions.assertNotNull(resp.getUpdatedAt());
+        Assertions.assertNotNull(resp.getAmount());
+        Assertions.assertNotNull(resp.getMemo());
+        Assertions.assertNotNull(resp.getFee());
+        Assertions.assertNotNull(resp.getAddress());
+        Assertions.assertNotNull(resp.getRemark());
+        Assertions.assertNotNull(resp.getIsInner());
+        Assertions.assertNotNull(resp.getCurrency());
+        Assertions.assertNotNull(resp.getStatus());
+        Assertions.assertNotNull(resp.getCreatedAt());
+        log.info("resp: {}", mapper.writeValueAsString(resp));
     }
 
     /**
@@ -326,12 +341,13 @@
     * Get Broker Rebate
     * /api/v1/broker/nd/rebase/download
     */
-    public void testGetRebase() {
+    @Test
+    public void testGetRebase() throws Exception {
         GetRebaseReq.GetRebaseReqBuilder builder = GetRebaseReq.builder();
         builder.begin(?).end(?).tradeType(?);
         GetRebaseReq req = builder.build();
-        GetRebaseResp resp = this.api.getRebase(req);
-        self::assertNotNull($resp->url);
-        Logger::info($resp->jsonSerialize($this->serializer));
+        GetRebaseResp resp = api.getRebase(req);
+        Assertions.assertNotNull(resp.getUrl());
+        log.info("resp: {}", mapper.writeValueAsString(resp));
     }
 

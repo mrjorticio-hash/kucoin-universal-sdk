@@ -4,19 +4,20 @@
     * Add Deposit Address (V3)
     * /api/v3/deposit-address/create
     */
-    public void testAddDepositAddressV3() {
+    @Test
+    public void testAddDepositAddressV3() throws Exception {
         AddDepositAddressV3Req.AddDepositAddressV3ReqBuilder builder = AddDepositAddressV3Req.builder();
         builder.currency(?).chain(?).to(?).amount(?);
         AddDepositAddressV3Req req = builder.build();
-        AddDepositAddressV3Resp resp = this.api.addDepositAddressV3(req);
-        self::assertNotNull($resp->address);
-        self::assertNotNull($resp->memo);
-        self::assertNotNull($resp->chainId);
-        self::assertNotNull($resp->to);
-        self::assertNotNull($resp->expirationDate);
-        self::assertNotNull($resp->currency);
-        self::assertNotNull($resp->chainName);
-        Logger::info($resp->jsonSerialize($this->serializer));
+        AddDepositAddressV3Resp resp = api.addDepositAddressV3(req);
+        Assertions.assertNotNull(resp.getAddress());
+        Assertions.assertNotNull(resp.getMemo());
+        Assertions.assertNotNull(resp.getChainId());
+        Assertions.assertNotNull(resp.getTo());
+        Assertions.assertNotNull(resp.getExpirationDate());
+        Assertions.assertNotNull(resp.getCurrency());
+        Assertions.assertNotNull(resp.getChainName());
+        log.info("resp: {}", mapper.writeValueAsString(resp));
     }
 
     /**
@@ -24,23 +25,24 @@
     * Get Deposit Address (V3)
     * /api/v3/deposit-addresses
     */
-    public void testGetDepositAddressV3() {
+    @Test
+    public void testGetDepositAddressV3() throws Exception {
         GetDepositAddressV3Req.GetDepositAddressV3ReqBuilder builder = GetDepositAddressV3Req.builder();
         builder.currency(?).amount(?).chain(?);
         GetDepositAddressV3Req req = builder.build();
-        GetDepositAddressV3Resp resp = this.api.getDepositAddressV3(req);
-        foreach($resp->data as $item) {
-            self::assertNotNull($item->address);
-            self::assertNotNull($item->memo);
-            self::assertNotNull($item->chainId);
-            self::assertNotNull($item->to);
-            self::assertNotNull($item->expirationDate);
-            self::assertNotNull($item->currency);
-            self::assertNotNull($item->contractAddress);
-            self::assertNotNull($item->chainName);
-        }
+        GetDepositAddressV3Resp resp = api.getDepositAddressV3(req);
+        resp.getData().forEach( item -> {
+            Assertions.assertNotNull(item.getAddress());
+            Assertions.assertNotNull(item.getMemo());
+            Assertions.assertNotNull(item.getChainId());
+            Assertions.assertNotNull(item.getTo());
+            Assertions.assertNotNull(item.getExpirationDate());
+            Assertions.assertNotNull(item.getCurrency());
+            Assertions.assertNotNull(item.getContractAddress());
+            Assertions.assertNotNull(item.getChainName());
+        });
 
-        Logger::info($resp->jsonSerialize($this->serializer));
+        log.info("resp: {}", mapper.writeValueAsString(resp));
     }
 
     /**
@@ -48,32 +50,33 @@
     * Get Deposit History
     * /api/v1/deposits
     */
-    public void testGetDepositHistory() {
+    @Test
+    public void testGetDepositHistory() throws Exception {
         GetDepositHistoryReq.GetDepositHistoryReqBuilder builder = GetDepositHistoryReq.builder();
         builder.currency(?).status(?).startAt(?).endAt(?).currentPage(?).pageSize(?);
         GetDepositHistoryReq req = builder.build();
-        GetDepositHistoryResp resp = this.api.getDepositHistory(req);
-        self::assertNotNull($resp->currentPage);
-        self::assertNotNull($resp->pageSize);
-        self::assertNotNull($resp->totalNum);
-        self::assertNotNull($resp->totalPage);
-        foreach($resp->items as $item) {
-            self::assertNotNull($item->currency);
-            self::assertNotNull($item->chain);
-            self::assertNotNull($item->status);
-            self::assertNotNull($item->address);
-            self::assertNotNull($item->memo);
-            self::assertNotNull($item->isInner);
-            self::assertNotNull($item->amount);
-            self::assertNotNull($item->fee);
-            self::assertNotNull($item->walletTxId);
-            self::assertNotNull($item->createdAt);
-            self::assertNotNull($item->updatedAt);
-            self::assertNotNull($item->remark);
-            self::assertNotNull($item->arrears);
-        }
+        GetDepositHistoryResp resp = api.getDepositHistory(req);
+        Assertions.assertNotNull(resp.getCurrentPage());
+        Assertions.assertNotNull(resp.getPageSize());
+        Assertions.assertNotNull(resp.getTotalNum());
+        Assertions.assertNotNull(resp.getTotalPage());
+        resp.getItems().forEach( item -> {
+            Assertions.assertNotNull(item.getCurrency());
+            Assertions.assertNotNull(item.getChain());
+            Assertions.assertNotNull(item.getStatus());
+            Assertions.assertNotNull(item.getAddress());
+            Assertions.assertNotNull(item.getMemo());
+            Assertions.assertNotNull(item.getIsInner());
+            Assertions.assertNotNull(item.getAmount());
+            Assertions.assertNotNull(item.getFee());
+            Assertions.assertNotNull(item.getWalletTxId());
+            Assertions.assertNotNull(item.getCreatedAt());
+            Assertions.assertNotNull(item.getUpdatedAt());
+            Assertions.assertNotNull(item.getRemark());
+            Assertions.assertNotNull(item.getArrears());
+        });
 
-        Logger::info($resp->jsonSerialize($this->serializer));
+        log.info("resp: {}", mapper.writeValueAsString(resp));
     }
 
     /**
@@ -81,22 +84,23 @@
     * Get Deposit Addresses (V2)
     * /api/v2/deposit-addresses
     */
-    public void testGetDepositAddressV2() {
+    @Test
+    public void testGetDepositAddressV2() throws Exception {
         GetDepositAddressV2Req.GetDepositAddressV2ReqBuilder builder = GetDepositAddressV2Req.builder();
         builder.currency(?).chain(?);
         GetDepositAddressV2Req req = builder.build();
-        GetDepositAddressV2Resp resp = this.api.getDepositAddressV2(req);
-        foreach($resp->data as $item) {
-            self::assertNotNull($item->address);
-            self::assertNotNull($item->memo);
-            self::assertNotNull($item->chain);
-            self::assertNotNull($item->chainId);
-            self::assertNotNull($item->to);
-            self::assertNotNull($item->currency);
-            self::assertNotNull($item->contractAddress);
-        }
+        GetDepositAddressV2Resp resp = api.getDepositAddressV2(req);
+        resp.getData().forEach( item -> {
+            Assertions.assertNotNull(item.getAddress());
+            Assertions.assertNotNull(item.getMemo());
+            Assertions.assertNotNull(item.getChain());
+            Assertions.assertNotNull(item.getChainId());
+            Assertions.assertNotNull(item.getTo());
+            Assertions.assertNotNull(item.getCurrency());
+            Assertions.assertNotNull(item.getContractAddress());
+        });
 
-        Logger::info($resp->jsonSerialize($this->serializer));
+        log.info("resp: {}", mapper.writeValueAsString(resp));
     }
 
     /**
@@ -104,19 +108,20 @@
     * Get Deposit Addresses - V1
     * /api/v1/deposit-addresses
     */
-    public void testGetDepositAddressV1() {
+    @Test
+    public void testGetDepositAddressV1() throws Exception {
         GetDepositAddressV1Req.GetDepositAddressV1ReqBuilder builder = GetDepositAddressV1Req.builder();
         builder.currency(?).chain(?);
         GetDepositAddressV1Req req = builder.build();
-        GetDepositAddressV1Resp resp = this.api.getDepositAddressV1(req);
-        self::assertNotNull($resp->address);
-        self::assertNotNull($resp->memo);
-        self::assertNotNull($resp->chain);
-        self::assertNotNull($resp->chainId);
-        self::assertNotNull($resp->to);
-        self::assertNotNull($resp->currency);
-        self::assertNotNull($resp->contractAddress);
-        Logger::info($resp->jsonSerialize($this->serializer));
+        GetDepositAddressV1Resp resp = api.getDepositAddressV1(req);
+        Assertions.assertNotNull(resp.getAddress());
+        Assertions.assertNotNull(resp.getMemo());
+        Assertions.assertNotNull(resp.getChain());
+        Assertions.assertNotNull(resp.getChainId());
+        Assertions.assertNotNull(resp.getTo());
+        Assertions.assertNotNull(resp.getCurrency());
+        Assertions.assertNotNull(resp.getContractAddress());
+        log.info("resp: {}", mapper.writeValueAsString(resp));
     }
 
     /**
@@ -124,25 +129,26 @@
     * Get Deposit History - Old
     * /api/v1/hist-deposits
     */
-    public void testGetDepositHistoryOld() {
+    @Test
+    public void testGetDepositHistoryOld() throws Exception {
         GetDepositHistoryOldReq.GetDepositHistoryOldReqBuilder builder = GetDepositHistoryOldReq.builder();
         builder.currency(?).status(?).startAt(?).endAt(?);
         GetDepositHistoryOldReq req = builder.build();
-        GetDepositHistoryOldResp resp = this.api.getDepositHistoryOld(req);
-        self::assertNotNull($resp->currentPage);
-        self::assertNotNull($resp->pageSize);
-        self::assertNotNull($resp->totalNum);
-        self::assertNotNull($resp->totalPage);
-        foreach($resp->items as $item) {
-            self::assertNotNull($item->currency);
-            self::assertNotNull($item->createAt);
-            self::assertNotNull($item->amount);
-            self::assertNotNull($item->walletTxId);
-            self::assertNotNull($item->isInner);
-            self::assertNotNull($item->status);
-        }
+        GetDepositHistoryOldResp resp = api.getDepositHistoryOld(req);
+        Assertions.assertNotNull(resp.getCurrentPage());
+        Assertions.assertNotNull(resp.getPageSize());
+        Assertions.assertNotNull(resp.getTotalNum());
+        Assertions.assertNotNull(resp.getTotalPage());
+        resp.getItems().forEach( item -> {
+            Assertions.assertNotNull(item.getCurrency());
+            Assertions.assertNotNull(item.getCreateAt());
+            Assertions.assertNotNull(item.getAmount());
+            Assertions.assertNotNull(item.getWalletTxId());
+            Assertions.assertNotNull(item.getIsInner());
+            Assertions.assertNotNull(item.getStatus());
+        });
 
-        Logger::info($resp->jsonSerialize($this->serializer));
+        log.info("resp: {}", mapper.writeValueAsString(resp));
     }
 
     /**
@@ -150,17 +156,18 @@
     * Add Deposit Address - V1
     * /api/v1/deposit-addresses
     */
-    public void testAddDepositAddressV1() {
+    @Test
+    public void testAddDepositAddressV1() throws Exception {
         AddDepositAddressV1Req.AddDepositAddressV1ReqBuilder builder = AddDepositAddressV1Req.builder();
         builder.currency(?).chain(?).to(?);
         AddDepositAddressV1Req req = builder.build();
-        AddDepositAddressV1Resp resp = this.api.addDepositAddressV1(req);
-        self::assertNotNull($resp->address);
-        self::assertNotNull($resp->memo);
-        self::assertNotNull($resp->chain);
-        self::assertNotNull($resp->chainId);
-        self::assertNotNull($resp->to);
-        self::assertNotNull($resp->currency);
-        Logger::info($resp->jsonSerialize($this->serializer));
+        AddDepositAddressV1Resp resp = api.addDepositAddressV1(req);
+        Assertions.assertNotNull(resp.getAddress());
+        Assertions.assertNotNull(resp.getMemo());
+        Assertions.assertNotNull(resp.getChain());
+        Assertions.assertNotNull(resp.getChainId());
+        Assertions.assertNotNull(resp.getTo());
+        Assertions.assertNotNull(resp.getCurrency());
+        log.info("resp: {}", mapper.writeValueAsString(resp));
     }
 

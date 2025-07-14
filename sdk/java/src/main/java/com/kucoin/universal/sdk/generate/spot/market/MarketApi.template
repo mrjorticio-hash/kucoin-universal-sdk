@@ -4,26 +4,27 @@
     * Get Announcements
     * /api/v3/announcements
     */
-    public void testGetAnnouncements() {
+    @Test
+    public void testGetAnnouncements() throws Exception {
         GetAnnouncementsReq.GetAnnouncementsReqBuilder builder = GetAnnouncementsReq.builder();
         builder.currentPage(?).pageSize(?).annType(?).lang(?).startTime(?).endTime(?);
         GetAnnouncementsReq req = builder.build();
-        GetAnnouncementsResp resp = this.api.getAnnouncements(req);
-        self::assertNotNull($resp->totalNum);
-        foreach($resp->items as $item) {
-            self::assertNotNull($item->annId);
-            self::assertNotNull($item->annTitle);
-            self::assertNotNull($item->annType);
-            self::assertNotNull($item->annDesc);
-            self::assertNotNull($item->cTime);
-            self::assertNotNull($item->language);
-            self::assertNotNull($item->annUrl);
-        }
+        GetAnnouncementsResp resp = api.getAnnouncements(req);
+        Assertions.assertNotNull(resp.getTotalNum());
+        resp.getItems().forEach( item -> {
+            Assertions.assertNotNull(item.getAnnId());
+            Assertions.assertNotNull(item.getAnnTitle());
+            Assertions.assertNotNull(item.getAnnType());
+            Assertions.assertNotNull(item.getAnnDesc());
+            Assertions.assertNotNull(item.getcTime());
+            Assertions.assertNotNull(item.getLanguage());
+            Assertions.assertNotNull(item.getAnnUrl());
+        });
 
-        self::assertNotNull($resp->currentPage);
-        self::assertNotNull($resp->pageSize);
-        self::assertNotNull($resp->totalPage);
-        Logger::info($resp->jsonSerialize($this->serializer));
+        Assertions.assertNotNull(resp.getCurrentPage());
+        Assertions.assertNotNull(resp.getPageSize());
+        Assertions.assertNotNull(resp.getTotalPage());
+        log.info("resp: {}", mapper.writeValueAsString(resp));
     }
 
     /**
@@ -31,38 +32,39 @@
     * Get Currency
     * /api/v3/currencies/{currency}
     */
-    public void testGetCurrency() {
+    @Test
+    public void testGetCurrency() throws Exception {
         GetCurrencyReq.GetCurrencyReqBuilder builder = GetCurrencyReq.builder();
         builder.chain(?).currency(?);
         GetCurrencyReq req = builder.build();
-        GetCurrencyResp resp = this.api.getCurrency(req);
-        self::assertNotNull($resp->currency);
-        self::assertNotNull($resp->name);
-        self::assertNotNull($resp->fullName);
-        self::assertNotNull($resp->precision);
-        self::assertNotNull($resp->confirms);
-        self::assertNotNull($resp->contractAddress);
-        self::assertNotNull($resp->isMarginEnabled);
-        self::assertNotNull($resp->isDebitEnabled);
-        foreach($resp->chains as $item) {
-            self::assertNotNull($item->chainName);
-            self::assertNotNull($item->withdrawalMinSize);
-            self::assertNotNull($item->depositMinSize);
-            self::assertNotNull($item->withdrawFeeRate);
-            self::assertNotNull($item->withdrawalMinFee);
-            self::assertNotNull($item->isWithdrawEnabled);
-            self::assertNotNull($item->isDepositEnabled);
-            self::assertNotNull($item->confirms);
-            self::assertNotNull($item->preConfirms);
-            self::assertNotNull($item->contractAddress);
-            self::assertNotNull($item->withdrawPrecision);
-            self::assertNotNull($item->maxWithdraw);
-            self::assertNotNull($item->maxDeposit);
-            self::assertNotNull($item->needTag);
-            self::assertNotNull($item->chainId);
-        }
+        GetCurrencyResp resp = api.getCurrency(req);
+        Assertions.assertNotNull(resp.getCurrency());
+        Assertions.assertNotNull(resp.getName());
+        Assertions.assertNotNull(resp.getFullName());
+        Assertions.assertNotNull(resp.getPrecision());
+        Assertions.assertNotNull(resp.getConfirms());
+        Assertions.assertNotNull(resp.getContractAddress());
+        Assertions.assertNotNull(resp.getIsMarginEnabled());
+        Assertions.assertNotNull(resp.getIsDebitEnabled());
+        resp.getChains().forEach( item -> {
+            Assertions.assertNotNull(item.getChainName());
+            Assertions.assertNotNull(item.getWithdrawalMinSize());
+            Assertions.assertNotNull(item.getDepositMinSize());
+            Assertions.assertNotNull(item.getWithdrawFeeRate());
+            Assertions.assertNotNull(item.getWithdrawalMinFee());
+            Assertions.assertNotNull(item.getIsWithdrawEnabled());
+            Assertions.assertNotNull(item.getIsDepositEnabled());
+            Assertions.assertNotNull(item.getConfirms());
+            Assertions.assertNotNull(item.getPreConfirms());
+            Assertions.assertNotNull(item.getContractAddress());
+            Assertions.assertNotNull(item.getWithdrawPrecision());
+            Assertions.assertNotNull(item.getMaxWithdraw());
+            Assertions.assertNotNull(item.getMaxDeposit());
+            Assertions.assertNotNull(item.getNeedTag());
+            Assertions.assertNotNull(item.getChainId());
+        });
 
-        Logger::info($resp->jsonSerialize($this->serializer));
+        log.info("resp: {}", mapper.writeValueAsString(resp));
     }
 
     /**
@@ -70,21 +72,22 @@
     * Get All Currencies
     * /api/v3/currencies
     */
-    public void testGetAllCurrencies() {
-        GetAllCurrenciesResp resp = this.api.getAllCurrencies();
-        foreach($resp->data as $item) {
-            self::assertNotNull($item->currency);
-            self::assertNotNull($item->name);
-            self::assertNotNull($item->fullName);
-            self::assertNotNull($item->precision);
-            self::assertNotNull($item->confirms);
-            self::assertNotNull($item->contractAddress);
-            self::assertNotNull($item->isMarginEnabled);
-            self::assertNotNull($item->isDebitEnabled);
-            self::assertNotNull($item->chains);
-        }
+    @Test
+    public void testGetAllCurrencies() throws Exception {
+        GetAllCurrenciesResp resp = api.getAllCurrencies();
+        resp.getData().forEach( item -> {
+            Assertions.assertNotNull(item.getCurrency());
+            Assertions.assertNotNull(item.getName());
+            Assertions.assertNotNull(item.getFullName());
+            Assertions.assertNotNull(item.getPrecision());
+            Assertions.assertNotNull(item.getConfirms());
+            Assertions.assertNotNull(item.getContractAddress());
+            Assertions.assertNotNull(item.getIsMarginEnabled());
+            Assertions.assertNotNull(item.getIsDebitEnabled());
+            Assertions.assertNotNull(item.getChains());
+        });
 
-        Logger::info($resp->jsonSerialize($this->serializer));
+        log.info("resp: {}", mapper.writeValueAsString(resp));
     }
 
     /**
@@ -92,40 +95,41 @@
     * Get Symbol 
     * /api/v2/symbols/{symbol}
     */
-    public void testGetSymbol() {
+    @Test
+    public void testGetSymbol() throws Exception {
         GetSymbolReq.GetSymbolReqBuilder builder = GetSymbolReq.builder();
         builder.symbol(?);
         GetSymbolReq req = builder.build();
-        GetSymbolResp resp = this.api.getSymbol(req);
-        self::assertNotNull($resp->symbol);
-        self::assertNotNull($resp->name);
-        self::assertNotNull($resp->baseCurrency);
-        self::assertNotNull($resp->quoteCurrency);
-        self::assertNotNull($resp->feeCurrency);
-        self::assertNotNull($resp->market);
-        self::assertNotNull($resp->baseMinSize);
-        self::assertNotNull($resp->quoteMinSize);
-        self::assertNotNull($resp->baseMaxSize);
-        self::assertNotNull($resp->quoteMaxSize);
-        self::assertNotNull($resp->baseIncrement);
-        self::assertNotNull($resp->quoteIncrement);
-        self::assertNotNull($resp->priceIncrement);
-        self::assertNotNull($resp->priceLimitRate);
-        self::assertNotNull($resp->minFunds);
-        self::assertNotNull($resp->isMarginEnabled);
-        self::assertNotNull($resp->enableTrading);
-        self::assertNotNull($resp->feeCategory);
-        self::assertNotNull($resp->makerFeeCoefficient);
-        self::assertNotNull($resp->takerFeeCoefficient);
-        self::assertNotNull($resp->st);
-        self::assertNotNull($resp->callauctionIsEnabled);
-        self::assertNotNull($resp->callauctionPriceFloor);
-        self::assertNotNull($resp->callauctionPriceCeiling);
-        self::assertNotNull($resp->callauctionFirstStageStartTime);
-        self::assertNotNull($resp->callauctionSecondStageStartTime);
-        self::assertNotNull($resp->callauctionThirdStageStartTime);
-        self::assertNotNull($resp->tradingStartTime);
-        Logger::info($resp->jsonSerialize($this->serializer));
+        GetSymbolResp resp = api.getSymbol(req);
+        Assertions.assertNotNull(resp.getSymbol());
+        Assertions.assertNotNull(resp.getName());
+        Assertions.assertNotNull(resp.getBaseCurrency());
+        Assertions.assertNotNull(resp.getQuoteCurrency());
+        Assertions.assertNotNull(resp.getFeeCurrency());
+        Assertions.assertNotNull(resp.getMarket());
+        Assertions.assertNotNull(resp.getBaseMinSize());
+        Assertions.assertNotNull(resp.getQuoteMinSize());
+        Assertions.assertNotNull(resp.getBaseMaxSize());
+        Assertions.assertNotNull(resp.getQuoteMaxSize());
+        Assertions.assertNotNull(resp.getBaseIncrement());
+        Assertions.assertNotNull(resp.getQuoteIncrement());
+        Assertions.assertNotNull(resp.getPriceIncrement());
+        Assertions.assertNotNull(resp.getPriceLimitRate());
+        Assertions.assertNotNull(resp.getMinFunds());
+        Assertions.assertNotNull(resp.getIsMarginEnabled());
+        Assertions.assertNotNull(resp.getEnableTrading());
+        Assertions.assertNotNull(resp.getFeeCategory());
+        Assertions.assertNotNull(resp.getMakerFeeCoefficient());
+        Assertions.assertNotNull(resp.getTakerFeeCoefficient());
+        Assertions.assertNotNull(resp.getSt());
+        Assertions.assertNotNull(resp.getCallauctionIsEnabled());
+        Assertions.assertNotNull(resp.getCallauctionPriceFloor());
+        Assertions.assertNotNull(resp.getCallauctionPriceCeiling());
+        Assertions.assertNotNull(resp.getCallauctionFirstStageStartTime());
+        Assertions.assertNotNull(resp.getCallauctionSecondStageStartTime());
+        Assertions.assertNotNull(resp.getCallauctionThirdStageStartTime());
+        Assertions.assertNotNull(resp.getTradingStartTime());
+        log.info("resp: {}", mapper.writeValueAsString(resp));
     }
 
     /**
@@ -133,43 +137,44 @@
     * Get All Symbols
     * /api/v2/symbols
     */
-    public void testGetAllSymbols() {
+    @Test
+    public void testGetAllSymbols() throws Exception {
         GetAllSymbolsReq.GetAllSymbolsReqBuilder builder = GetAllSymbolsReq.builder();
         builder.market(?);
         GetAllSymbolsReq req = builder.build();
-        GetAllSymbolsResp resp = this.api.getAllSymbols(req);
-        foreach($resp->data as $item) {
-            self::assertNotNull($item->symbol);
-            self::assertNotNull($item->name);
-            self::assertNotNull($item->baseCurrency);
-            self::assertNotNull($item->quoteCurrency);
-            self::assertNotNull($item->feeCurrency);
-            self::assertNotNull($item->market);
-            self::assertNotNull($item->baseMinSize);
-            self::assertNotNull($item->quoteMinSize);
-            self::assertNotNull($item->baseMaxSize);
-            self::assertNotNull($item->quoteMaxSize);
-            self::assertNotNull($item->baseIncrement);
-            self::assertNotNull($item->quoteIncrement);
-            self::assertNotNull($item->priceIncrement);
-            self::assertNotNull($item->priceLimitRate);
-            self::assertNotNull($item->minFunds);
-            self::assertNotNull($item->isMarginEnabled);
-            self::assertNotNull($item->enableTrading);
-            self::assertNotNull($item->feeCategory);
-            self::assertNotNull($item->makerFeeCoefficient);
-            self::assertNotNull($item->takerFeeCoefficient);
-            self::assertNotNull($item->st);
-            self::assertNotNull($item->callauctionIsEnabled);
-            self::assertNotNull($item->callauctionPriceFloor);
-            self::assertNotNull($item->callauctionPriceCeiling);
-            self::assertNotNull($item->callauctionFirstStageStartTime);
-            self::assertNotNull($item->callauctionSecondStageStartTime);
-            self::assertNotNull($item->callauctionThirdStageStartTime);
-            self::assertNotNull($item->tradingStartTime);
-        }
+        GetAllSymbolsResp resp = api.getAllSymbols(req);
+        resp.getData().forEach( item -> {
+            Assertions.assertNotNull(item.getSymbol());
+            Assertions.assertNotNull(item.getName());
+            Assertions.assertNotNull(item.getBaseCurrency());
+            Assertions.assertNotNull(item.getQuoteCurrency());
+            Assertions.assertNotNull(item.getFeeCurrency());
+            Assertions.assertNotNull(item.getMarket());
+            Assertions.assertNotNull(item.getBaseMinSize());
+            Assertions.assertNotNull(item.getQuoteMinSize());
+            Assertions.assertNotNull(item.getBaseMaxSize());
+            Assertions.assertNotNull(item.getQuoteMaxSize());
+            Assertions.assertNotNull(item.getBaseIncrement());
+            Assertions.assertNotNull(item.getQuoteIncrement());
+            Assertions.assertNotNull(item.getPriceIncrement());
+            Assertions.assertNotNull(item.getPriceLimitRate());
+            Assertions.assertNotNull(item.getMinFunds());
+            Assertions.assertNotNull(item.getIsMarginEnabled());
+            Assertions.assertNotNull(item.getEnableTrading());
+            Assertions.assertNotNull(item.getFeeCategory());
+            Assertions.assertNotNull(item.getMakerFeeCoefficient());
+            Assertions.assertNotNull(item.getTakerFeeCoefficient());
+            Assertions.assertNotNull(item.getSt());
+            Assertions.assertNotNull(item.getCallauctionIsEnabled());
+            Assertions.assertNotNull(item.getCallauctionPriceFloor());
+            Assertions.assertNotNull(item.getCallauctionPriceCeiling());
+            Assertions.assertNotNull(item.getCallauctionFirstStageStartTime());
+            Assertions.assertNotNull(item.getCallauctionSecondStageStartTime());
+            Assertions.assertNotNull(item.getCallauctionThirdStageStartTime());
+            Assertions.assertNotNull(item.getTradingStartTime());
+        });
 
-        Logger::info($resp->jsonSerialize($this->serializer));
+        log.info("resp: {}", mapper.writeValueAsString(resp));
     }
 
     /**
@@ -177,20 +182,21 @@
     * Get Ticker
     * /api/v1/market/orderbook/level1
     */
-    public void testGetTicker() {
+    @Test
+    public void testGetTicker() throws Exception {
         GetTickerReq.GetTickerReqBuilder builder = GetTickerReq.builder();
         builder.symbol(?);
         GetTickerReq req = builder.build();
-        GetTickerResp resp = this.api.getTicker(req);
-        self::assertNotNull($resp->time);
-        self::assertNotNull($resp->sequence);
-        self::assertNotNull($resp->price);
-        self::assertNotNull($resp->size);
-        self::assertNotNull($resp->bestBid);
-        self::assertNotNull($resp->bestBidSize);
-        self::assertNotNull($resp->bestAsk);
-        self::assertNotNull($resp->bestAskSize);
-        Logger::info($resp->jsonSerialize($this->serializer));
+        GetTickerResp resp = api.getTicker(req);
+        Assertions.assertNotNull(resp.getTime());
+        Assertions.assertNotNull(resp.getSequence());
+        Assertions.assertNotNull(resp.getPrice());
+        Assertions.assertNotNull(resp.getSize());
+        Assertions.assertNotNull(resp.getBestBid());
+        Assertions.assertNotNull(resp.getBestBidSize());
+        Assertions.assertNotNull(resp.getBestAsk());
+        Assertions.assertNotNull(resp.getBestAskSize());
+        log.info("resp: {}", mapper.writeValueAsString(resp));
     }
 
     /**
@@ -198,31 +204,32 @@
     * Get All Tickers
     * /api/v1/market/allTickers
     */
-    public void testGetAllTickers() {
-        GetAllTickersResp resp = this.api.getAllTickers();
-        self::assertNotNull($resp->time);
-        foreach($resp->ticker as $item) {
-            self::assertNotNull($item->symbol);
-            self::assertNotNull($item->symbolName);
-            self::assertNotNull($item->buy);
-            self::assertNotNull($item->bestBidSize);
-            self::assertNotNull($item->sell);
-            self::assertNotNull($item->bestAskSize);
-            self::assertNotNull($item->changeRate);
-            self::assertNotNull($item->changePrice);
-            self::assertNotNull($item->high);
-            self::assertNotNull($item->low);
-            self::assertNotNull($item->vol);
-            self::assertNotNull($item->volValue);
-            self::assertNotNull($item->last);
-            self::assertNotNull($item->averagePrice);
-            self::assertNotNull($item->takerFeeRate);
-            self::assertNotNull($item->makerFeeRate);
-            self::assertNotNull($item->takerCoefficient);
-            self::assertNotNull($item->makerCoefficient);
-        }
+    @Test
+    public void testGetAllTickers() throws Exception {
+        GetAllTickersResp resp = api.getAllTickers();
+        Assertions.assertNotNull(resp.getTime());
+        resp.getTicker().forEach( item -> {
+            Assertions.assertNotNull(item.getSymbol());
+            Assertions.assertNotNull(item.getSymbolName());
+            Assertions.assertNotNull(item.getBuy());
+            Assertions.assertNotNull(item.getBestBidSize());
+            Assertions.assertNotNull(item.getSell());
+            Assertions.assertNotNull(item.getBestAskSize());
+            Assertions.assertNotNull(item.getChangeRate());
+            Assertions.assertNotNull(item.getChangePrice());
+            Assertions.assertNotNull(item.getHigh());
+            Assertions.assertNotNull(item.getLow());
+            Assertions.assertNotNull(item.getVol());
+            Assertions.assertNotNull(item.getVolValue());
+            Assertions.assertNotNull(item.getLast());
+            Assertions.assertNotNull(item.getAveragePrice());
+            Assertions.assertNotNull(item.getTakerFeeRate());
+            Assertions.assertNotNull(item.getMakerFeeRate());
+            Assertions.assertNotNull(item.getTakerCoefficient());
+            Assertions.assertNotNull(item.getMakerCoefficient());
+        });
 
-        Logger::info($resp->jsonSerialize($this->serializer));
+        log.info("resp: {}", mapper.writeValueAsString(resp));
     }
 
     /**
@@ -230,20 +237,21 @@
     * Get Trade History
     * /api/v1/market/histories
     */
-    public void testGetTradeHistory() {
+    @Test
+    public void testGetTradeHistory() throws Exception {
         GetTradeHistoryReq.GetTradeHistoryReqBuilder builder = GetTradeHistoryReq.builder();
         builder.symbol(?);
         GetTradeHistoryReq req = builder.build();
-        GetTradeHistoryResp resp = this.api.getTradeHistory(req);
-        foreach($resp->data as $item) {
-            self::assertNotNull($item->sequence);
-            self::assertNotNull($item->price);
-            self::assertNotNull($item->size);
-            self::assertNotNull($item->side);
-            self::assertNotNull($item->time);
-        }
+        GetTradeHistoryResp resp = api.getTradeHistory(req);
+        resp.getData().forEach( item -> {
+            Assertions.assertNotNull(item.getSequence());
+            Assertions.assertNotNull(item.getPrice());
+            Assertions.assertNotNull(item.getSize());
+            Assertions.assertNotNull(item.getSide());
+            Assertions.assertNotNull(item.getTime());
+        });
 
-        Logger::info($resp->jsonSerialize($this->serializer));
+        log.info("resp: {}", mapper.writeValueAsString(resp));
     }
 
     /**
@@ -251,15 +259,16 @@
     * Get Klines
     * /api/v1/market/candles
     */
-    public void testGetKlines() {
+    @Test
+    public void testGetKlines() throws Exception {
         GetKlinesReq.GetKlinesReqBuilder builder = GetKlinesReq.builder();
         builder.symbol(?).type(?).startAt(?).endAt(?);
         GetKlinesReq req = builder.build();
-        GetKlinesResp resp = this.api.getKlines(req);
-        foreach($resp->data as $item) {
-        }
+        GetKlinesResp resp = api.getKlines(req);
+        resp.getData().forEach( item -> {
+        });
 
-        Logger::info($resp->jsonSerialize($this->serializer));
+        log.info("resp: {}", mapper.writeValueAsString(resp));
     }
 
     /**
@@ -267,20 +276,21 @@
     * Get Part OrderBook
     * /api/v1/market/orderbook/level2_{size}
     */
-    public void testGetPartOrderBook() {
+    @Test
+    public void testGetPartOrderBook() throws Exception {
         GetPartOrderBookReq.GetPartOrderBookReqBuilder builder = GetPartOrderBookReq.builder();
         builder.symbol(?).size(?);
         GetPartOrderBookReq req = builder.build();
-        GetPartOrderBookResp resp = this.api.getPartOrderBook(req);
-        self::assertNotNull($resp->time);
-        self::assertNotNull($resp->sequence);
-        foreach($resp->bids as $item) {
-        }
+        GetPartOrderBookResp resp = api.getPartOrderBook(req);
+        Assertions.assertNotNull(resp.getTime());
+        Assertions.assertNotNull(resp.getSequence());
+        resp.getBids().forEach( item -> {
+        });
 
-        foreach($resp->asks as $item) {
-        }
+        resp.getAsks().forEach( item -> {
+        });
 
-        Logger::info($resp->jsonSerialize($this->serializer));
+        log.info("resp: {}", mapper.writeValueAsString(resp));
     }
 
     /**
@@ -288,20 +298,21 @@
     * Get Full OrderBook
     * /api/v3/market/orderbook/level2
     */
-    public void testGetFullOrderBook() {
+    @Test
+    public void testGetFullOrderBook() throws Exception {
         GetFullOrderBookReq.GetFullOrderBookReqBuilder builder = GetFullOrderBookReq.builder();
         builder.symbol(?);
         GetFullOrderBookReq req = builder.build();
-        GetFullOrderBookResp resp = this.api.getFullOrderBook(req);
-        self::assertNotNull($resp->time);
-        self::assertNotNull($resp->sequence);
-        foreach($resp->bids as $item) {
-        }
+        GetFullOrderBookResp resp = api.getFullOrderBook(req);
+        Assertions.assertNotNull(resp.getTime());
+        Assertions.assertNotNull(resp.getSequence());
+        resp.getBids().forEach( item -> {
+        });
 
-        foreach($resp->asks as $item) {
-        }
+        resp.getAsks().forEach( item -> {
+        });
 
-        Logger::info($resp->jsonSerialize($this->serializer));
+        log.info("resp: {}", mapper.writeValueAsString(resp));
     }
 
     /**
@@ -309,20 +320,21 @@
     * Get Call Auction Part OrderBook
     * /api/v1/market/orderbook/callauction/level2_{size}
     */
-    public void testGetCallAuctionPartOrderBook() {
+    @Test
+    public void testGetCallAuctionPartOrderBook() throws Exception {
         GetCallAuctionPartOrderBookReq.GetCallAuctionPartOrderBookReqBuilder builder = GetCallAuctionPartOrderBookReq.builder();
         builder.symbol(?).size(?);
         GetCallAuctionPartOrderBookReq req = builder.build();
-        GetCallAuctionPartOrderBookResp resp = this.api.getCallAuctionPartOrderBook(req);
-        self::assertNotNull($resp->time);
-        self::assertNotNull($resp->sequence);
-        foreach($resp->bids as $item) {
-        }
+        GetCallAuctionPartOrderBookResp resp = api.getCallAuctionPartOrderBook(req);
+        Assertions.assertNotNull(resp.getTime());
+        Assertions.assertNotNull(resp.getSequence());
+        resp.getBids().forEach( item -> {
+        });
 
-        foreach($resp->asks as $item) {
-        }
+        resp.getAsks().forEach( item -> {
+        });
 
-        Logger::info($resp->jsonSerialize($this->serializer));
+        log.info("resp: {}", mapper.writeValueAsString(resp));
     }
 
     /**
@@ -330,20 +342,21 @@
     * Get Call Auction Info
     * /api/v1/market/callauctionData
     */
-    public void testGetCallAuctionInfo() {
+    @Test
+    public void testGetCallAuctionInfo() throws Exception {
         GetCallAuctionInfoReq.GetCallAuctionInfoReqBuilder builder = GetCallAuctionInfoReq.builder();
         builder.symbol(?);
         GetCallAuctionInfoReq req = builder.build();
-        GetCallAuctionInfoResp resp = this.api.getCallAuctionInfo(req);
-        self::assertNotNull($resp->symbol);
-        self::assertNotNull($resp->estimatedPrice);
-        self::assertNotNull($resp->estimatedSize);
-        self::assertNotNull($resp->sellOrderRangeLowPrice);
-        self::assertNotNull($resp->sellOrderRangeHighPrice);
-        self::assertNotNull($resp->buyOrderRangeLowPrice);
-        self::assertNotNull($resp->buyOrderRangeHighPrice);
-        self::assertNotNull($resp->time);
-        Logger::info($resp->jsonSerialize($this->serializer));
+        GetCallAuctionInfoResp resp = api.getCallAuctionInfo(req);
+        Assertions.assertNotNull(resp.getSymbol());
+        Assertions.assertNotNull(resp.getEstimatedPrice());
+        Assertions.assertNotNull(resp.getEstimatedSize());
+        Assertions.assertNotNull(resp.getSellOrderRangeLowPrice());
+        Assertions.assertNotNull(resp.getSellOrderRangeHighPrice());
+        Assertions.assertNotNull(resp.getBuyOrderRangeLowPrice());
+        Assertions.assertNotNull(resp.getBuyOrderRangeHighPrice());
+        Assertions.assertNotNull(resp.getTime());
+        log.info("resp: {}", mapper.writeValueAsString(resp));
     }
 
     /**
@@ -351,13 +364,14 @@
     * Get Fiat Price
     * /api/v1/prices
     */
-    public void testGetFiatPrice() {
+    @Test
+    public void testGetFiatPrice() throws Exception {
         GetFiatPriceReq.GetFiatPriceReqBuilder builder = GetFiatPriceReq.builder();
         builder.base(?).currencies(?);
         GetFiatPriceReq req = builder.build();
-        GetFiatPriceResp resp = this.api.getFiatPrice(req);
-        self::assertNotNull($resp->data);
-        Logger::info($resp->jsonSerialize($this->serializer));
+        GetFiatPriceResp resp = api.getFiatPrice(req);
+        Assertions.assertNotNull(resp.getData());
+        log.info("resp: {}", mapper.writeValueAsString(resp));
     }
 
     /**
@@ -365,28 +379,29 @@
     * Get 24hr Stats
     * /api/v1/market/stats
     */
-    public void testGet24hrStats() {
+    @Test
+    public void testGet24hrStats() throws Exception {
         Get24hrStatsReq.Get24hrStatsReqBuilder builder = Get24hrStatsReq.builder();
         builder.symbol(?);
         Get24hrStatsReq req = builder.build();
-        Get24hrStatsResp resp = this.api.get24hrStats(req);
-        self::assertNotNull($resp->time);
-        self::assertNotNull($resp->symbol);
-        self::assertNotNull($resp->buy);
-        self::assertNotNull($resp->sell);
-        self::assertNotNull($resp->changeRate);
-        self::assertNotNull($resp->changePrice);
-        self::assertNotNull($resp->high);
-        self::assertNotNull($resp->low);
-        self::assertNotNull($resp->vol);
-        self::assertNotNull($resp->volValue);
-        self::assertNotNull($resp->last);
-        self::assertNotNull($resp->averagePrice);
-        self::assertNotNull($resp->takerFeeRate);
-        self::assertNotNull($resp->makerFeeRate);
-        self::assertNotNull($resp->takerCoefficient);
-        self::assertNotNull($resp->makerCoefficient);
-        Logger::info($resp->jsonSerialize($this->serializer));
+        Get24hrStatsResp resp = api.get24hrStats(req);
+        Assertions.assertNotNull(resp.getTime());
+        Assertions.assertNotNull(resp.getSymbol());
+        Assertions.assertNotNull(resp.getBuy());
+        Assertions.assertNotNull(resp.getSell());
+        Assertions.assertNotNull(resp.getChangeRate());
+        Assertions.assertNotNull(resp.getChangePrice());
+        Assertions.assertNotNull(resp.getHigh());
+        Assertions.assertNotNull(resp.getLow());
+        Assertions.assertNotNull(resp.getVol());
+        Assertions.assertNotNull(resp.getVolValue());
+        Assertions.assertNotNull(resp.getLast());
+        Assertions.assertNotNull(resp.getAveragePrice());
+        Assertions.assertNotNull(resp.getTakerFeeRate());
+        Assertions.assertNotNull(resp.getMakerFeeRate());
+        Assertions.assertNotNull(resp.getTakerCoefficient());
+        Assertions.assertNotNull(resp.getMakerCoefficient());
+        log.info("resp: {}", mapper.writeValueAsString(resp));
     }
 
     /**
@@ -394,12 +409,13 @@
     * Get Market List
     * /api/v1/markets
     */
-    public void testGetMarketList() {
-        GetMarketListResp resp = this.api.getMarketList();
-        foreach($resp->data as $item) {
-        }
+    @Test
+    public void testGetMarketList() throws Exception {
+        GetMarketListResp resp = api.getMarketList();
+        resp.getData().forEach( item -> {
+        });
 
-        Logger::info($resp->jsonSerialize($this->serializer));
+        log.info("resp: {}", mapper.writeValueAsString(resp));
     }
 
     /**
@@ -407,10 +423,11 @@
     * Get Client IP Address
     * /api/v1/my-ip
     */
-    public void testGetClientIPAddress() {
-        GetClientIPAddressResp resp = this.api.getClientIPAddress();
-        self::assertNotNull($resp->data);
-        Logger::info($resp->jsonSerialize($this->serializer));
+    @Test
+    public void testGetClientIPAddress() throws Exception {
+        GetClientIPAddressResp resp = api.getClientIPAddress();
+        Assertions.assertNotNull(resp.getData());
+        log.info("resp: {}", mapper.writeValueAsString(resp));
     }
 
     /**
@@ -418,10 +435,11 @@
     * Get Server Time
     * /api/v1/timestamp
     */
-    public void testGetServerTime() {
-        GetServerTimeResp resp = this.api.getServerTime();
-        self::assertNotNull($resp->data);
-        Logger::info($resp->jsonSerialize($this->serializer));
+    @Test
+    public void testGetServerTime() throws Exception {
+        GetServerTimeResp resp = api.getServerTime();
+        Assertions.assertNotNull(resp.getData());
+        log.info("resp: {}", mapper.writeValueAsString(resp));
     }
 
     /**
@@ -429,11 +447,12 @@
     * Get Service Status
     * /api/v1/status
     */
-    public void testGetServiceStatus() {
-        GetServiceStatusResp resp = this.api.getServiceStatus();
-        self::assertNotNull($resp->status);
-        self::assertNotNull($resp->msg);
-        Logger::info($resp->jsonSerialize($this->serializer));
+    @Test
+    public void testGetServiceStatus() throws Exception {
+        GetServiceStatusResp resp = api.getServiceStatus();
+        Assertions.assertNotNull(resp.getStatus());
+        Assertions.assertNotNull(resp.getMsg());
+        log.info("resp: {}", mapper.writeValueAsString(resp));
     }
 
     /**
@@ -441,18 +460,19 @@
     * Get Public Token - Spot/Margin
     * /api/v1/bullet-public
     */
-    public void testGetPublicToken() {
-        GetPublicTokenResp resp = this.api.getPublicToken();
-        self::assertNotNull($resp->token);
-        foreach($resp->instanceServers as $item) {
-            self::assertNotNull($item->endpoint);
-            self::assertNotNull($item->encrypt);
-            self::assertNotNull($item->protocol);
-            self::assertNotNull($item->pingInterval);
-            self::assertNotNull($item->pingTimeout);
-        }
+    @Test
+    public void testGetPublicToken() throws Exception {
+        GetPublicTokenResp resp = api.getPublicToken();
+        Assertions.assertNotNull(resp.getToken());
+        resp.getInstanceServers().forEach( item -> {
+            Assertions.assertNotNull(item.getEndpoint());
+            Assertions.assertNotNull(item.getEncrypt());
+            Assertions.assertNotNull(item.getProtocol());
+            Assertions.assertNotNull(item.getPingInterval());
+            Assertions.assertNotNull(item.getPingTimeout());
+        });
 
-        Logger::info($resp->jsonSerialize($this->serializer));
+        log.info("resp: {}", mapper.writeValueAsString(resp));
     }
 
     /**
@@ -460,17 +480,18 @@
     * Get Private Token - Spot/Margin
     * /api/v1/bullet-private
     */
-    public void testGetPrivateToken() {
-        GetPrivateTokenResp resp = this.api.getPrivateToken();
-        self::assertNotNull($resp->token);
-        foreach($resp->instanceServers as $item) {
-            self::assertNotNull($item->endpoint);
-            self::assertNotNull($item->encrypt);
-            self::assertNotNull($item->protocol);
-            self::assertNotNull($item->pingInterval);
-            self::assertNotNull($item->pingTimeout);
-        }
+    @Test
+    public void testGetPrivateToken() throws Exception {
+        GetPrivateTokenResp resp = api.getPrivateToken();
+        Assertions.assertNotNull(resp.getToken());
+        resp.getInstanceServers().forEach( item -> {
+            Assertions.assertNotNull(item.getEndpoint());
+            Assertions.assertNotNull(item.getEncrypt());
+            Assertions.assertNotNull(item.getProtocol());
+            Assertions.assertNotNull(item.getPingInterval());
+            Assertions.assertNotNull(item.getPingTimeout());
+        });
 
-        Logger::info($resp->jsonSerialize($this->serializer));
+        log.info("resp: {}", mapper.writeValueAsString(resp));
     }
 

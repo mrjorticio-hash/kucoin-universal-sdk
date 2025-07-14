@@ -8,12 +8,12 @@ public interface Client {
    *
    * @return KucoinRestService
    */
-  KucoinRestService restService();
+  KucoinRestService getRestService();
 
   /**
    * Get WebSocket service.
    *
    * @return KucoinWSService
    */
-  KucoinWSService wsService();
+  KucoinWSService getWsService();
 }

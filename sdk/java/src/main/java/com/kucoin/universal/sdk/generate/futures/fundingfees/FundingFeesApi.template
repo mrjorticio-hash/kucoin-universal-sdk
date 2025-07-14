@@ -4,21 +4,22 @@
     * Get Current Funding Rate
     * /api/v1/funding-rate/{symbol}/current
     */
-    public void testGetCurrentFundingRate() {
+    @Test
+    public void testGetCurrentFundingRate() throws Exception {
         GetCurrentFundingRateReq.GetCurrentFundingRateReqBuilder builder = GetCurrentFundingRateReq.builder();
         builder.symbol(?);
         GetCurrentFundingRateReq req = builder.build();
-        GetCurrentFundingRateResp resp = this.api.getCurrentFundingRate(req);
-        self::assertNotNull($resp->symbol);
-        self::assertNotNull($resp->granularity);
-        self::assertNotNull($resp->timePoint);
-        self::assertNotNull($resp->value);
-        self::assertNotNull($resp->predictedValue);
-        self::assertNotNull($resp->fundingRateCap);
-        self::assertNotNull($resp->fundingRateFloor);
-        self::assertNotNull($resp->period);
-        self::assertNotNull($resp->fundingTime);
-        Logger::info($resp->jsonSerialize($this->serializer));
+        GetCurrentFundingRateResp resp = api.getCurrentFundingRate(req);
+        Assertions.assertNotNull(resp.getSymbol());
+        Assertions.assertNotNull(resp.getGranularity());
+        Assertions.assertNotNull(resp.getTimePoint());
+        Assertions.assertNotNull(resp.getValue());
+        Assertions.assertNotNull(resp.getPredictedValue());
+        Assertions.assertNotNull(resp.getFundingRateCap());
+        Assertions.assertNotNull(resp.getFundingRateFloor());
+        Assertions.assertNotNull(resp.getPeriod());
+        Assertions.assertNotNull(resp.getFundingTime());
+        log.info("resp: {}", mapper.writeValueAsString(resp));
     }
 
     /**
@@ -26,18 +27,19 @@
     * Get Public Funding History
     * /api/v1/contract/funding-rates
     */
-    public void testGetPublicFundingHistory() {
+    @Test
+    public void testGetPublicFundingHistory() throws Exception {
         GetPublicFundingHistoryReq.GetPublicFundingHistoryReqBuilder builder = GetPublicFundingHistoryReq.builder();
         builder.symbol(?).from(?).to(?);
         GetPublicFundingHistoryReq req = builder.build();
-        GetPublicFundingHistoryResp resp = this.api.getPublicFundingHistory(req);
-        foreach($resp->data as $item) {
-            self::assertNotNull($item->symbol);
-            self::assertNotNull($item->fundingRate);
-            self::assertNotNull($item->timepoint);
-        }
+        GetPublicFundingHistoryResp resp = api.getPublicFundingHistory(req);
+        resp.getData().forEach( item -> {
+            Assertions.assertNotNull(item.getSymbol());
+            Assertions.assertNotNull(item.getFundingRate());
+            Assertions.assertNotNull(item.getTimepoint());
+        });
 
-        Logger::info($resp->jsonSerialize($this->serializer));
+        log.info("resp: {}", mapper.writeValueAsString(resp));
     }
 
     /**
@@ -45,26 +47,27 @@
     * Get Private Funding History
     * /api/v1/funding-history
     */
-    public void testGetPrivateFundingHistory() {
+    @Test
+    public void testGetPrivateFundingHistory() throws Exception {
         GetPrivateFundingHistoryReq.GetPrivateFundingHistoryReqBuilder builder = GetPrivateFundingHistoryReq.builder();
         builder.symbol(?).startAt(?).endAt(?).reverse(?).offset(?).forward(?).maxCount(?);
         GetPrivateFundingHistoryReq req = builder.build();
-        GetPrivateFundingHistoryResp resp = this.api.getPrivateFundingHistory(req);
-        foreach($resp->dataList as $item) {
-            self::assertNotNull($item->id);
-            self::assertNotNull($item->symbol);
-            self::assertNotNull($item->timePoint);
-            self::assertNotNull($item->fundingRate);
-            self::assertNotNull($item->markPrice);
-            self::assertNotNull($item->positionQty);
-            self::assertNotNull($item->positionCost);
-            self::assertNotNull($item->funding);
-            self::assertNotNull($item->settleCurrency);
-            self::assertNotNull($item->context);
-            self::assertNotNull($item->marginMode);
-        }
+        GetPrivateFundingHistoryResp resp = api.getPrivateFundingHistory(req);
+        resp.getDataList().forEach( item -> {
+            Assertions.assertNotNull(item.getId());
+            Assertions.assertNotNull(item.getSymbol());
+            Assertions.assertNotNull(item.getTimePoint());
+            Assertions.assertNotNull(item.getFundingRate());
+            Assertions.assertNotNull(item.getMarkPrice());
+            Assertions.assertNotNull(item.getPositionQty());
+            Assertions.assertNotNull(item.getPositionCost());
+            Assertions.assertNotNull(item.getFunding());
+            Assertions.assertNotNull(item.getSettleCurrency());
+            Assertions.assertNotNull(item.getContext());
+            Assertions.assertNotNull(item.getMarginMode());
+        });
 
-        self::assertNotNull($resp->hasMore);
-        Logger::info($resp->jsonSerialize($this->serializer));
+        Assertions.assertNotNull(resp.getHasMore());
+        log.info("resp: {}", mapper.writeValueAsString(resp));
     }
 

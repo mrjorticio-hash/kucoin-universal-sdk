@@ -6,7 +6,8 @@
     * {{summary}}
     * {{path}}
     */
-    public void test{{vendorExtensions.x-meta.methodServiceFmt}}() {
+    @Test
+    public void test{{vendorExtensions.x-meta.methodServiceFmt}}() throws Exception {
         {{#hasParams}}
         {{vendorExtensions.x-meta.methodServiceFmt}}Req.{{vendorExtensions.x-meta.methodServiceFmt}}ReqBuilder builder = {{vendorExtensions.x-meta.methodServiceFmt}}Req.builder();
         {{#vendorExtensions.x-request-model}}
@@ -14,24 +15,24 @@
         {{/vendorExtensions.x-request-model}}
         {{vendorExtensions.x-meta.methodServiceFmt}}Req req = builder.build();
         {{/hasParams}}
-        {{vendorExtensions.x-meta.methodServiceFmt}}Resp resp = this.api.{{vendorExtensions.x-meta.method}}({{#hasParams}}req{{/hasParams}});
+        {{vendorExtensions.x-meta.methodServiceFmt}}Resp resp = api.{{vendorExtensions.x-meta.method}}({{#hasParams}}req{{/hasParams}});
         {{#vendorExtensions.x-response-model}}
         {{#vars}}
             {{#isArray}}
-        foreach($resp->{{name}} as $item) {
+        resp.{{getter}}().forEach( item -> {
                 {{#vendorExtensions.x-response-inner-model}}
                     {{#vars}}
-            self::assertNotNull($item->{{name}});
+            Assertions.assertNotNull(item.{{getter}}());
                     {{/vars}}
                 {{/vendorExtensions.x-response-inner-model}}
-        }
+        });
 
             {{/isArray}}
             {{^isArray}}
-        self::assertNotNull($resp->{{name}});
+        Assertions.assertNotNull(resp.{{getter}}());
             {{/isArray}}
         {{/vars}}
-        Logger::info($resp->jsonSerialize($this->serializer));
+        log.info("resp: {}", mapper.writeValueAsString(resp));
         {{/vendorExtensions.x-response-model}}
     }
 

@@ -4,44 +4,45 @@
     * Get Margin Risk Limit
     * /api/v3/margin/currencies
     */
-    public void testGetMarginRiskLimit() {
+    @Test
+    public void testGetMarginRiskLimit() throws Exception {
         GetMarginRiskLimitReq.GetMarginRiskLimitReqBuilder builder = GetMarginRiskLimitReq.builder();
         builder.isIsolated(?).currency(?).symbol(?);
         GetMarginRiskLimitReq req = builder.build();
-        GetMarginRiskLimitResp resp = this.api.getMarginRiskLimit(req);
-        foreach($resp->data as $item) {
-            self::assertNotNull($item->timestamp);
-            self::assertNotNull($item->currency);
-            self::assertNotNull($item->borrowMaxAmount);
-            self::assertNotNull($item->buyMaxAmount);
-            self::assertNotNull($item->holdMaxAmount);
-            self::assertNotNull($item->borrowCoefficient);
-            self::assertNotNull($item->marginCoefficient);
-            self::assertNotNull($item->precision);
-            self::assertNotNull($item->borrowMinAmount);
-            self::assertNotNull($item->borrowMinUnit);
-            self::assertNotNull($item->borrowEnabled);
-            self::assertNotNull($item->symbol);
-            self::assertNotNull($item->baseMaxBorrowAmount);
-            self::assertNotNull($item->quoteMaxBorrowAmount);
-            self::assertNotNull($item->baseMaxBuyAmount);
-            self::assertNotNull($item->quoteMaxBuyAmount);
-            self::assertNotNull($item->baseMaxHoldAmount);
-            self::assertNotNull($item->quoteMaxHoldAmount);
-            self::assertNotNull($item->basePrecision);
-            self::assertNotNull($item->quotePrecision);
-            self::assertNotNull($item->baseBorrowMinAmount);
-            self::assertNotNull($item->quoteBorrowMinAmount);
-            self::assertNotNull($item->baseBorrowMinUnit);
-            self::assertNotNull($item->quoteBorrowMinUnit);
-            self::assertNotNull($item->baseBorrowEnabled);
-            self::assertNotNull($item->quoteBorrowEnabled);
-            self::assertNotNull($item->baseBorrowCoefficient);
-            self::assertNotNull($item->quoteBorrowCoefficient);
-            self::assertNotNull($item->baseMarginCoefficient);
-            self::assertNotNull($item->quoteMarginCoefficient);
-        }
+        GetMarginRiskLimitResp resp = api.getMarginRiskLimit(req);
+        resp.getData().forEach( item -> {
+            Assertions.assertNotNull(item.getTimestamp());
+            Assertions.assertNotNull(item.getCurrency());
+            Assertions.assertNotNull(item.getBorrowMaxAmount());
+            Assertions.assertNotNull(item.getBuyMaxAmount());
+            Assertions.assertNotNull(item.getHoldMaxAmount());
+            Assertions.assertNotNull(item.getBorrowCoefficient());
+            Assertions.assertNotNull(item.getMarginCoefficient());
+            Assertions.assertNotNull(item.getPrecision());
+            Assertions.assertNotNull(item.getBorrowMinAmount());
+            Assertions.assertNotNull(item.getBorrowMinUnit());
+            Assertions.assertNotNull(item.getBorrowEnabled());
+            Assertions.assertNotNull(item.getSymbol());
+            Assertions.assertNotNull(item.getBaseMaxBorrowAmount());
+            Assertions.assertNotNull(item.getQuoteMaxBorrowAmount());
+            Assertions.assertNotNull(item.getBaseMaxBuyAmount());
+            Assertions.assertNotNull(item.getQuoteMaxBuyAmount());
+            Assertions.assertNotNull(item.getBaseMaxHoldAmount());
+            Assertions.assertNotNull(item.getQuoteMaxHoldAmount());
+            Assertions.assertNotNull(item.getBasePrecision());
+            Assertions.assertNotNull(item.getQuotePrecision());
+            Assertions.assertNotNull(item.getBaseBorrowMinAmount());
+            Assertions.assertNotNull(item.getQuoteBorrowMinAmount());
+            Assertions.assertNotNull(item.getBaseBorrowMinUnit());
+            Assertions.assertNotNull(item.getQuoteBorrowMinUnit());
+            Assertions.assertNotNull(item.getBaseBorrowEnabled());
+            Assertions.assertNotNull(item.getQuoteBorrowEnabled());
+            Assertions.assertNotNull(item.getBaseBorrowCoefficient());
+            Assertions.assertNotNull(item.getQuoteBorrowCoefficient());
+            Assertions.assertNotNull(item.getBaseMarginCoefficient());
+            Assertions.assertNotNull(item.getQuoteMarginCoefficient());
+        });
 
-        Logger::info($resp->jsonSerialize($this->serializer));
+        log.info("resp: {}", mapper.writeValueAsString(resp));
     }
 

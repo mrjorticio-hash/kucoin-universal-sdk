@@ -4,14 +4,15 @@
     * Add Order
     * /api/v1/hf/orders
     */
-    public void testAddOrder() {
+    @Test
+    public void testAddOrder() throws Exception {
         AddOrderReq.AddOrderReqBuilder builder = AddOrderReq.builder();
         builder.clientOid(?).side(?).symbol(?).type(?).remark(?).stp(?).price(?).size(?).timeInForce(?).postOnly(?).hidden(?).iceberg(?).visibleSize(?).tags(?).cancelAfter(?).funds(?).allowMaxTimeWindow(?).clientTimestamp(?);
         AddOrderReq req = builder.build();
-        AddOrderResp resp = this.api.addOrder(req);
-        self::assertNotNull($resp->orderId);
-        self::assertNotNull($resp->clientOid);
-        Logger::info($resp->jsonSerialize($this->serializer));
+        AddOrderResp resp = api.addOrder(req);
+        Assertions.assertNotNull(resp.getOrderId());
+        Assertions.assertNotNull(resp.getClientOid());
+        log.info("resp: {}", mapper.writeValueAsString(resp));
     }
 
     /**
@@ -19,21 +20,22 @@
     * Add Order Sync
     * /api/v1/hf/orders/sync
     */
-    public void testAddOrderSync() {
+    @Test
+    public void testAddOrderSync() throws Exception {
         AddOrderSyncReq.AddOrderSyncReqBuilder builder = AddOrderSyncReq.builder();
         builder.clientOid(?).side(?).symbol(?).type(?).remark(?).stp(?).price(?).size(?).timeInForce(?).postOnly(?).hidden(?).iceberg(?).visibleSize(?).tags(?).cancelAfter(?).funds(?).allowMaxTimeWindow(?).clientTimestamp(?);
         AddOrderSyncReq req = builder.build();
-        AddOrderSyncResp resp = this.api.addOrderSync(req);
-        self::assertNotNull($resp->orderId);
-        self::assertNotNull($resp->clientOid);
-        self::assertNotNull($resp->orderTime);
-        self::assertNotNull($resp->originSize);
-        self::assertNotNull($resp->dealSize);
-        self::assertNotNull($resp->remainSize);
-        self::assertNotNull($resp->canceledSize);
-        self::assertNotNull($resp->status);
-        self::assertNotNull($resp->matchTime);
-        Logger::info($resp->jsonSerialize($this->serializer));
+        AddOrderSyncResp resp = api.addOrderSync(req);
+        Assertions.assertNotNull(resp.getOrderId());
+        Assertions.assertNotNull(resp.getClientOid());
+        Assertions.assertNotNull(resp.getOrderTime());
+        Assertions.assertNotNull(resp.getOriginSize());
+        Assertions.assertNotNull(resp.getDealSize());
+        Assertions.assertNotNull(resp.getRemainSize());
+        Assertions.assertNotNull(resp.getCanceledSize());
+        Assertions.assertNotNull(resp.getStatus());
+        Assertions.assertNotNull(resp.getMatchTime());
+        log.info("resp: {}", mapper.writeValueAsString(resp));
     }
 
     /**
@@ -41,14 +43,15 @@
     * Add Order Test
     * /api/v1/hf/orders/test
     */
-    public void testAddOrderTest() {
+    @Test
+    public void testAddOrderTest() throws Exception {
         AddOrderTestReq.AddOrderTestReqBuilder builder = AddOrderTestReq.builder();
         builder.clientOid(?).side(?).symbol(?).type(?).remark(?).stp(?).price(?).size(?).timeInForce(?).postOnly(?).hidden(?).iceberg(?).visibleSize(?).tags(?).cancelAfter(?).funds(?).allowMaxTimeWindow(?).clientTimestamp(?);
         AddOrderTestReq req = builder.build();
-        AddOrderTestResp resp = this.api.addOrderTest(req);
-        self::assertNotNull($resp->orderId);
-        self::assertNotNull($resp->clientOid);
-        Logger::info($resp->jsonSerialize($this->serializer));
+        AddOrderTestResp resp = api.addOrderTest(req);
+        Assertions.assertNotNull(resp.getOrderId());
+        Assertions.assertNotNull(resp.getClientOid());
+        log.info("resp: {}", mapper.writeValueAsString(resp));
     }
 
     /**
@@ -56,19 +59,20 @@
     * Batch Add Orders
     * /api/v1/hf/orders/multi
     */
-    public void testBatchAddOrders() {
+    @Test
+    public void testBatchAddOrders() throws Exception {
         BatchAddOrdersReq.BatchAddOrdersReqBuilder builder = BatchAddOrdersReq.builder();
         builder.orderList(?);
         BatchAddOrdersReq req = builder.build();
-        BatchAddOrdersResp resp = this.api.batchAddOrders(req);
-        foreach($resp->data as $item) {
-            self::assertNotNull($item->orderId);
-            self::assertNotNull($item->clientOid);
-            self::assertNotNull($item->success);
-            self::assertNotNull($item->failMsg);
-        }
+        BatchAddOrdersResp resp = api.batchAddOrders(req);
+        resp.getData().forEach( item -> {
+            Assertions.assertNotNull(item.getOrderId());
+            Assertions.assertNotNull(item.getClientOid());
+            Assertions.assertNotNull(item.getSuccess());
+            Assertions.assertNotNull(item.getFailMsg());
+        });
 
-        Logger::info($resp->jsonSerialize($this->serializer));
+        log.info("resp: {}", mapper.writeValueAsString(resp));
     }
 
     /**
@@ -76,26 +80,27 @@
     * Batch Add Orders Sync
     * /api/v1/hf/orders/multi/sync
     */
-    public void testBatchAddOrdersSync() {
+    @Test
+    public void testBatchAddOrdersSync() throws Exception {
         BatchAddOrdersSyncReq.BatchAddOrdersSyncReqBuilder builder = BatchAddOrdersSyncReq.builder();
         builder.orderList(?);
         BatchAddOrdersSyncReq req = builder.build();
-        BatchAddOrdersSyncResp resp = this.api.batchAddOrdersSync(req);
-        foreach($resp->data as $item) {
-            self::assertNotNull($item->orderId);
-            self::assertNotNull($item->clientOid);
-            self::assertNotNull($item->orderTime);
-            self::assertNotNull($item->originSize);
-            self::assertNotNull($item->dealSize);
-            self::assertNotNull($item->remainSize);
-            self::assertNotNull($item->canceledSize);
-            self::assertNotNull($item->status);
-            self::assertNotNull($item->matchTime);
-            self::assertNotNull($item->success);
-            self::assertNotNull($item->failMsg);
-        }
+        BatchAddOrdersSyncResp resp = api.batchAddOrdersSync(req);
+        resp.getData().forEach( item -> {
+            Assertions.assertNotNull(item.getOrderId());
+            Assertions.assertNotNull(item.getClientOid());
+            Assertions.assertNotNull(item.getOrderTime());
+            Assertions.assertNotNull(item.getOriginSize());
+            Assertions.assertNotNull(item.getDealSize());
+            Assertions.assertNotNull(item.getRemainSize());
+            Assertions.assertNotNull(item.getCanceledSize());
+            Assertions.assertNotNull(item.getStatus());
+            Assertions.assertNotNull(item.getMatchTime());
+            Assertions.assertNotNull(item.getSuccess());
+            Assertions.assertNotNull(item.getFailMsg());
+        });
 
-        Logger::info($resp->jsonSerialize($this->serializer));
+        log.info("resp: {}", mapper.writeValueAsString(resp));
     }
 
     /**
@@ -103,13 +108,14 @@
     * Cancel Order By OrderId
     * /api/v1/hf/orders/{orderId}
     */
-    public void testCancelOrderByOrderId() {
+    @Test
+    public void testCancelOrderByOrderId() throws Exception {
         CancelOrderByOrderIdReq.CancelOrderByOrderIdReqBuilder builder = CancelOrderByOrderIdReq.builder();
         builder.orderId(?).symbol(?);
         CancelOrderByOrderIdReq req = builder.build();
-        CancelOrderByOrderIdResp resp = this.api.cancelOrderByOrderId(req);
-        self::assertNotNull($resp->orderId);
-        Logger::info($resp->jsonSerialize($this->serializer));
+        CancelOrderByOrderIdResp resp = api.cancelOrderByOrderId(req);
+        Assertions.assertNotNull(resp.getOrderId());
+        log.info("resp: {}", mapper.writeValueAsString(resp));
     }
 
     /**
@@ -117,18 +123,19 @@
     * Cancel Order By OrderId Sync
     * /api/v1/hf/orders/sync/{orderId}
     */
-    public void testCancelOrderByOrderIdSync() {
+    @Test
+    public void testCancelOrderByOrderIdSync() throws Exception {
         CancelOrderByOrderIdSyncReq.CancelOrderByOrderIdSyncReqBuilder builder = CancelOrderByOrderIdSyncReq.builder();
         builder.symbol(?).orderId(?);
         CancelOrderByOrderIdSyncReq req = builder.build();
-        CancelOrderByOrderIdSyncResp resp = this.api.cancelOrderByOrderIdSync(req);
-        self::assertNotNull($resp->orderId);
-        self::assertNotNull($resp->originSize);
-        self::assertNotNull($resp->dealSize);
-        self::assertNotNull($resp->remainSize);
-        self::assertNotNull($resp->canceledSize);
-        self::assertNotNull($resp->status);
-        Logger::info($resp->jsonSerialize($this->serializer));
+        CancelOrderByOrderIdSyncResp resp = api.cancelOrderByOrderIdSync(req);
+        Assertions.assertNotNull(resp.getOrderId());
+        Assertions.assertNotNull(resp.getOriginSize());
+        Assertions.assertNotNull(resp.getDealSize());
+        Assertions.assertNotNull(resp.getRemainSize());
+        Assertions.assertNotNull(resp.getCanceledSize());
+        Assertions.assertNotNull(resp.getStatus());
+        log.info("resp: {}", mapper.writeValueAsString(resp));
     }
 
     /**
@@ -136,13 +143,14 @@
     * Cancel Order By ClientOid
     * /api/v1/hf/orders/client-order/{clientOid}
     */
-    public void testCancelOrderByClientOid() {
+    @Test
+    public void testCancelOrderByClientOid() throws Exception {
         CancelOrderByClientOidReq.CancelOrderByClientOidReqBuilder builder = CancelOrderByClientOidReq.builder();
         builder.clientOid(?).symbol(?);
         CancelOrderByClientOidReq req = builder.build();
-        CancelOrderByClientOidResp resp = this.api.cancelOrderByClientOid(req);
-        self::assertNotNull($resp->clientOid);
-        Logger::info($resp->jsonSerialize($this->serializer));
+        CancelOrderByClientOidResp resp = api.cancelOrderByClientOid(req);
+        Assertions.assertNotNull(resp.getClientOid());
+        log.info("resp: {}", mapper.writeValueAsString(resp));
     }
 
     /**
@@ -150,18 +158,19 @@
     * Cancel Order By ClientOid Sync
     * /api/v1/hf/orders/sync/client-order/{clientOid}
     */
-    public void testCancelOrderByClientOidSync() {
+    @Test
+    public void testCancelOrderByClientOidSync() throws Exception {
         CancelOrderByClientOidSyncReq.CancelOrderByClientOidSyncReqBuilder builder = CancelOrderByClientOidSyncReq.builder();
         builder.symbol(?).clientOid(?);
         CancelOrderByClientOidSyncReq req = builder.build();
-        CancelOrderByClientOidSyncResp resp = this.api.cancelOrderByClientOidSync(req);
-        self::assertNotNull($resp->clientOid);
-        self::assertNotNull($resp->originSize);
-        self::assertNotNull($resp->dealSize);
-        self::assertNotNull($resp->remainSize);
-        self::assertNotNull($resp->canceledSize);
-        self::assertNotNull($resp->status);
-        Logger::info($resp->jsonSerialize($this->serializer));
+        CancelOrderByClientOidSyncResp resp = api.cancelOrderByClientOidSync(req);
+        Assertions.assertNotNull(resp.getClientOid());
+        Assertions.assertNotNull(resp.getOriginSize());
+        Assertions.assertNotNull(resp.getDealSize());
+        Assertions.assertNotNull(resp.getRemainSize());
+        Assertions.assertNotNull(resp.getCanceledSize());
+        Assertions.assertNotNull(resp.getStatus());
+        log.info("resp: {}", mapper.writeValueAsString(resp));
     }
 
     /**
@@ -169,14 +178,15 @@
     * Cancel Partial Order
     * /api/v1/hf/orders/cancel/{orderId}
     */
-    public void testCancelPartialOrder() {
+    @Test
+    public void testCancelPartialOrder() throws Exception {
         CancelPartialOrderReq.CancelPartialOrderReqBuilder builder = CancelPartialOrderReq.builder();
         builder.orderId(?).symbol(?).cancelSize(?);
         CancelPartialOrderReq req = builder.build();
-        CancelPartialOrderResp resp = this.api.cancelPartialOrder(req);
-        self::assertNotNull($resp->orderId);
-        self::assertNotNull($resp->cancelSize);
-        Logger::info($resp->jsonSerialize($this->serializer));
+        CancelPartialOrderResp resp = api.cancelPartialOrder(req);
+        Assertions.assertNotNull(resp.getOrderId());
+        Assertions.assertNotNull(resp.getCancelSize());
+        log.info("resp: {}", mapper.writeValueAsString(resp));
     }
 
     /**
@@ -184,13 +194,14 @@
     * Cancel All Orders By Symbol
     * /api/v1/hf/orders
     */
-    public void testCancelAllOrdersBySymbol() {
+    @Test
+    public void testCancelAllOrdersBySymbol() throws Exception {
         CancelAllOrdersBySymbolReq.CancelAllOrdersBySymbolReqBuilder builder = CancelAllOrdersBySymbolReq.builder();
         builder.symbol(?);
         CancelAllOrdersBySymbolReq req = builder.build();
-        CancelAllOrdersBySymbolResp resp = this.api.cancelAllOrdersBySymbol(req);
-        self::assertNotNull($resp->data);
-        Logger::info($resp->jsonSerialize($this->serializer));
+        CancelAllOrdersBySymbolResp resp = api.cancelAllOrdersBySymbol(req);
+        Assertions.assertNotNull(resp.getData());
+        log.info("resp: {}", mapper.writeValueAsString(resp));
     }
 
     /**
@@ -198,17 +209,18 @@
     * Cancel All Orders
     * /api/v1/hf/orders/cancelAll
     */
-    public void testCancelAllOrders() {
-        CancelAllOrdersResp resp = this.api.cancelAllOrders();
-        foreach($resp->succeedSymbols as $item) {
-        }
+    @Test
+    public void testCancelAllOrders() throws Exception {
+        CancelAllOrdersResp resp = api.cancelAllOrders();
+        resp.getSucceedSymbols().forEach( item -> {
+        });
 
-        foreach($resp->failedSymbols as $item) {
-            self::assertNotNull($item->symbol);
-            self::assertNotNull($item->error);
-        }
+        resp.getFailedSymbols().forEach( item -> {
+            Assertions.assertNotNull(item.getSymbol());
+            Assertions.assertNotNull(item.getError());
+        });
 
-        Logger::info($resp->jsonSerialize($this->serializer));
+        log.info("resp: {}", mapper.writeValueAsString(resp));
     }
 
     /**
@@ -216,14 +228,15 @@
     * Modify Order
     * /api/v1/hf/orders/alter
     */
-    public void testModifyOrder() {
+    @Test
+    public void testModifyOrder() throws Exception {
         ModifyOrderReq.ModifyOrderReqBuilder builder = ModifyOrderReq.builder();
         builder.clientOid(?).symbol(?).orderId(?).newPrice(?).newSize(?);
         ModifyOrderReq req = builder.build();
-        ModifyOrderResp resp = this.api.modifyOrder(req);
-        self::assertNotNull($resp->newOrderId);
-        self::assertNotNull($resp->clientOid);
-        Logger::info($resp->jsonSerialize($this->serializer));
+        ModifyOrderResp resp = api.modifyOrder(req);
+        Assertions.assertNotNull(resp.getNewOrderId());
+        Assertions.assertNotNull(resp.getClientOid());
+        log.info("resp: {}", mapper.writeValueAsString(resp));
     }
 
     /**
@@ -231,46 +244,47 @@
     * Get Order By OrderId
     * /api/v1/hf/orders/{orderId}
     */
-    public void testGetOrderByOrderId() {
+    @Test
+    public void testGetOrderByOrderId() throws Exception {
         GetOrderByOrderIdReq.GetOrderByOrderIdReqBuilder builder = GetOrderByOrderIdReq.builder();
         builder.symbol(?).orderId(?);
         GetOrderByOrderIdReq req = builder.build();
-        GetOrderByOrderIdResp resp = this.api.getOrderByOrderId(req);
-        self::assertNotNull($resp->id);
-        self::assertNotNull($resp->symbol);
-        self::assertNotNull($resp->opType);
-        self::assertNotNull($resp->type);
-        self::assertNotNull($resp->side);
-        self::assertNotNull($resp->price);
-        self::assertNotNull($resp->size);
-        self::assertNotNull($resp->funds);
-        self::assertNotNull($resp->dealSize);
-        self::assertNotNull($resp->dealFunds);
-        self::assertNotNull($resp->fee);
-        self::assertNotNull($resp->feeCurrency);
-        self::assertNotNull($resp->stp);
-        self::assertNotNull($resp->timeInForce);
-        self::assertNotNull($resp->postOnly);
-        self::assertNotNull($resp->hidden);
-        self::assertNotNull($resp->iceberg);
-        self::assertNotNull($resp->visibleSize);
-        self::assertNotNull($resp->cancelAfter);
-        self::assertNotNull($resp->channel);
-        self::assertNotNull($resp->clientOid);
-        self::assertNotNull($resp->remark);
-        self::assertNotNull($resp->tags);
-        self::assertNotNull($resp->cancelExist);
-        self::assertNotNull($resp->createdAt);
-        self::assertNotNull($resp->lastUpdatedAt);
-        self::assertNotNull($resp->tradeType);
-        self::assertNotNull($resp->inOrderBook);
-        self::assertNotNull($resp->cancelledSize);
-        self::assertNotNull($resp->cancelledFunds);
-        self::assertNotNull($resp->remainSize);
-        self::assertNotNull($resp->remainFunds);
-        self::assertNotNull($resp->tax);
-        self::assertNotNull($resp->active);
-        Logger::info($resp->jsonSerialize($this->serializer));
+        GetOrderByOrderIdResp resp = api.getOrderByOrderId(req);
+        Assertions.assertNotNull(resp.getId());
+        Assertions.assertNotNull(resp.getSymbol());
+        Assertions.assertNotNull(resp.getOpType());
+        Assertions.assertNotNull(resp.getType());
+        Assertions.assertNotNull(resp.getSide());
+        Assertions.assertNotNull(resp.getPrice());
+        Assertions.assertNotNull(resp.getSize());
+        Assertions.assertNotNull(resp.getFunds());
+        Assertions.assertNotNull(resp.getDealSize());
+        Assertions.assertNotNull(resp.getDealFunds());
+        Assertions.assertNotNull(resp.getFee());
+        Assertions.assertNotNull(resp.getFeeCurrency());
+        Assertions.assertNotNull(resp.getStp());
+        Assertions.assertNotNull(resp.getTimeInForce());
+        Assertions.assertNotNull(resp.getPostOnly());
+        Assertions.assertNotNull(resp.getHidden());
+        Assertions.assertNotNull(resp.getIceberg());
+        Assertions.assertNotNull(resp.getVisibleSize());
+        Assertions.assertNotNull(resp.getCancelAfter());
+        Assertions.assertNotNull(resp.getChannel());
+        Assertions.assertNotNull(resp.getClientOid());
+        Assertions.assertNotNull(resp.getRemark());
+        Assertions.assertNotNull(resp.getTags());
+        Assertions.assertNotNull(resp.getCancelExist());
+        Assertions.assertNotNull(resp.getCreatedAt());
+        Assertions.assertNotNull(resp.getLastUpdatedAt());
+        Assertions.assertNotNull(resp.getTradeType());
+        Assertions.assertNotNull(resp.getInOrderBook());
+        Assertions.assertNotNull(resp.getCancelledSize());
+        Assertions.assertNotNull(resp.getCancelledFunds());
+        Assertions.assertNotNull(resp.getRemainSize());
+        Assertions.assertNotNull(resp.getRemainFunds());
+        Assertions.assertNotNull(resp.getTax());
+        Assertions.assertNotNull(resp.getActive());
+        log.info("resp: {}", mapper.writeValueAsString(resp));
     }
 
     /**
@@ -278,46 +292,47 @@
     * Get Order By ClientOid
     * /api/v1/hf/orders/client-order/{clientOid}
     */
-    public void testGetOrderByClientOid() {
+    @Test
+    public void testGetOrderByClientOid() throws Exception {
         GetOrderByClientOidReq.GetOrderByClientOidReqBuilder builder = GetOrderByClientOidReq.builder();
         builder.symbol(?).clientOid(?);
         GetOrderByClientOidReq req = builder.build();
-        GetOrderByClientOidResp resp = this.api.getOrderByClientOid(req);
-        self::assertNotNull($resp->id);
-        self::assertNotNull($resp->symbol);
-        self::assertNotNull($resp->opType);
-        self::assertNotNull($resp->type);
-        self::assertNotNull($resp->side);
-        self::assertNotNull($resp->price);
-        self::assertNotNull($resp->size);
-        self::assertNotNull($resp->funds);
-        self::assertNotNull($resp->dealSize);
-        self::assertNotNull($resp->dealFunds);
-        self::assertNotNull($resp->fee);
-        self::assertNotNull($resp->feeCurrency);
-        self::assertNotNull($resp->stp);
-        self::assertNotNull($resp->timeInForce);
-        self::assertNotNull($resp->postOnly);
-        self::assertNotNull($resp->hidden);
-        self::assertNotNull($resp->iceberg);
-        self::assertNotNull($resp->visibleSize);
-        self::assertNotNull($resp->cancelAfter);
-        self::assertNotNull($resp->channel);
-        self::assertNotNull($resp->clientOid);
-        self::assertNotNull($resp->remark);
-        self::assertNotNull($resp->tags);
-        self::assertNotNull($resp->cancelExist);
-        self::assertNotNull($resp->createdAt);
-        self::assertNotNull($resp->lastUpdatedAt);
-        self::assertNotNull($resp->tradeType);
-        self::assertNotNull($resp->inOrderBook);
-        self::assertNotNull($resp->cancelledSize);
-        self::assertNotNull($resp->cancelledFunds);
-        self::assertNotNull($resp->remainSize);
-        self::assertNotNull($resp->remainFunds);
-        self::assertNotNull($resp->tax);
-        self::assertNotNull($resp->active);
-        Logger::info($resp->jsonSerialize($this->serializer));
+        GetOrderByClientOidResp resp = api.getOrderByClientOid(req);
+        Assertions.assertNotNull(resp.getId());
+        Assertions.assertNotNull(resp.getSymbol());
+        Assertions.assertNotNull(resp.getOpType());
+        Assertions.assertNotNull(resp.getType());
+        Assertions.assertNotNull(resp.getSide());
+        Assertions.assertNotNull(resp.getPrice());
+        Assertions.assertNotNull(resp.getSize());
+        Assertions.assertNotNull(resp.getFunds());
+        Assertions.assertNotNull(resp.getDealSize());
+        Assertions.assertNotNull(resp.getDealFunds());
+        Assertions.assertNotNull(resp.getFee());
+        Assertions.assertNotNull(resp.getFeeCurrency());
+        Assertions.assertNotNull(resp.getStp());
+        Assertions.assertNotNull(resp.getTimeInForce());
+        Assertions.assertNotNull(resp.getPostOnly());
+        Assertions.assertNotNull(resp.getHidden());
+        Assertions.assertNotNull(resp.getIceberg());
+        Assertions.assertNotNull(resp.getVisibleSize());
+        Assertions.assertNotNull(resp.getCancelAfter());
+        Assertions.assertNotNull(resp.getChannel());
+        Assertions.assertNotNull(resp.getClientOid());
+        Assertions.assertNotNull(resp.getRemark());
+        Assertions.assertNotNull(resp.getTags());
+        Assertions.assertNotNull(resp.getCancelExist());
+        Assertions.assertNotNull(resp.getCreatedAt());
+        Assertions.assertNotNull(resp.getLastUpdatedAt());
+        Assertions.assertNotNull(resp.getTradeType());
+        Assertions.assertNotNull(resp.getInOrderBook());
+        Assertions.assertNotNull(resp.getCancelledSize());
+        Assertions.assertNotNull(resp.getCancelledFunds());
+        Assertions.assertNotNull(resp.getRemainSize());
+        Assertions.assertNotNull(resp.getRemainFunds());
+        Assertions.assertNotNull(resp.getTax());
+        Assertions.assertNotNull(resp.getActive());
+        log.info("resp: {}", mapper.writeValueAsString(resp));
     }
 
     /**
@@ -325,12 +340,13 @@
     * Get Symbols With Open Order
     * /api/v1/hf/orders/active/symbols
     */
-    public void testGetSymbolsWithOpenOrder() {
-        GetSymbolsWithOpenOrderResp resp = this.api.getSymbolsWithOpenOrder();
-        foreach($resp->symbols as $item) {
-        }
+    @Test
+    public void testGetSymbolsWithOpenOrder() throws Exception {
+        GetSymbolsWithOpenOrderResp resp = api.getSymbolsWithOpenOrder();
+        resp.getSymbols().forEach( item -> {
+        });
 
-        Logger::info($resp->jsonSerialize($this->serializer));
+        log.info("resp: {}", mapper.writeValueAsString(resp));
     }
 
     /**
@@ -338,49 +354,50 @@
     * Get Open Orders
     * /api/v1/hf/orders/active
     */
-    public void testGetOpenOrders() {
+    @Test
+    public void testGetOpenOrders() throws Exception {
         GetOpenOrdersReq.GetOpenOrdersReqBuilder builder = GetOpenOrdersReq.builder();
         builder.symbol(?);
         GetOpenOrdersReq req = builder.build();
-        GetOpenOrdersResp resp = this.api.getOpenOrders(req);
-        foreach($resp->data as $item) {
-            self::assertNotNull($item->id);
-            self::assertNotNull($item->symbol);
-            self::assertNotNull($item->opType);
-            self::assertNotNull($item->type);
-            self::assertNotNull($item->side);
-            self::assertNotNull($item->price);
-            self::assertNotNull($item->size);
-            self::assertNotNull($item->funds);
-            self::assertNotNull($item->dealSize);
-            self::assertNotNull($item->dealFunds);
-            self::assertNotNull($item->fee);
-            self::assertNotNull($item->feeCurrency);
-            self::assertNotNull($item->stp);
-            self::assertNotNull($item->timeInForce);
-            self::assertNotNull($item->postOnly);
-            self::assertNotNull($item->hidden);
-            self::assertNotNull($item->iceberg);
-            self::assertNotNull($item->visibleSize);
-            self::assertNotNull($item->cancelAfter);
-            self::assertNotNull($item->channel);
-            self::assertNotNull($item->clientOid);
-            self::assertNotNull($item->remark);
-            self::assertNotNull($item->tags);
-            self::assertNotNull($item->cancelExist);
-            self::assertNotNull($item->createdAt);
-            self::assertNotNull($item->lastUpdatedAt);
-            self::assertNotNull($item->tradeType);
-            self::assertNotNull($item->inOrderBook);
-            self::assertNotNull($item->cancelledSize);
-            self::assertNotNull($item->cancelledFunds);
-            self::assertNotNull($item->remainSize);
-            self::assertNotNull($item->remainFunds);
-            self::assertNotNull($item->tax);
-            self::assertNotNull($item->active);
-        }
+        GetOpenOrdersResp resp = api.getOpenOrders(req);
+        resp.getData().forEach( item -> {
+            Assertions.assertNotNull(item.getId());
+            Assertions.assertNotNull(item.getSymbol());
+            Assertions.assertNotNull(item.getOpType());
+            Assertions.assertNotNull(item.getType());
+            Assertions.assertNotNull(item.getSide());
+            Assertions.assertNotNull(item.getPrice());
+            Assertions.assertNotNull(item.getSize());
+            Assertions.assertNotNull(item.getFunds());
+            Assertions.assertNotNull(item.getDealSize());
+            Assertions.assertNotNull(item.getDealFunds());
+            Assertions.assertNotNull(item.getFee());
+            Assertions.assertNotNull(item.getFeeCurrency());
+            Assertions.assertNotNull(item.getStp());
+            Assertions.assertNotNull(item.getTimeInForce());
+            Assertions.assertNotNull(item.getPostOnly());
+            Assertions.assertNotNull(item.getHidden());
+            Assertions.assertNotNull(item.getIceberg());
+            Assertions.assertNotNull(item.getVisibleSize());
+            Assertions.assertNotNull(item.getCancelAfter());
+            Assertions.assertNotNull(item.getChannel());
+            Assertions.assertNotNull(item.getClientOid());
+            Assertions.assertNotNull(item.getRemark());
+            Assertions.assertNotNull(item.getTags());
+            Assertions.assertNotNull(item.getCancelExist());
+            Assertions.assertNotNull(item.getCreatedAt());
+            Assertions.assertNotNull(item.getLastUpdatedAt());
+            Assertions.assertNotNull(item.getTradeType());
+            Assertions.assertNotNull(item.getInOrderBook());
+            Assertions.assertNotNull(item.getCancelledSize());
+            Assertions.assertNotNull(item.getCancelledFunds());
+            Assertions.assertNotNull(item.getRemainSize());
+            Assertions.assertNotNull(item.getRemainFunds());
+            Assertions.assertNotNull(item.getTax());
+            Assertions.assertNotNull(item.getActive());
+        });
 
-        Logger::info($resp->jsonSerialize($this->serializer));
+        log.info("resp: {}", mapper.writeValueAsString(resp));
     }
 
     /**
@@ -388,53 +405,54 @@
     * Get Open Orders By Page
     * /api/v1/hf/orders/active/page
     */
-    public void testGetOpenOrdersByPage() {
+    @Test
+    public void testGetOpenOrdersByPage() throws Exception {
         GetOpenOrdersByPageReq.GetOpenOrdersByPageReqBuilder builder = GetOpenOrdersByPageReq.builder();
         builder.symbol(?).pageNum(?).pageSize(?);
         GetOpenOrdersByPageReq req = builder.build();
-        GetOpenOrdersByPageResp resp = this.api.getOpenOrdersByPage(req);
-        self::assertNotNull($resp->currentPage);
-        self::assertNotNull($resp->pageSize);
-        self::assertNotNull($resp->totalNum);
-        self::assertNotNull($resp->totalPage);
-        foreach($resp->items as $item) {
-            self::assertNotNull($item->id);
-            self::assertNotNull($item->symbol);
-            self::assertNotNull($item->opType);
-            self::assertNotNull($item->type);
-            self::assertNotNull($item->side);
-            self::assertNotNull($item->price);
-            self::assertNotNull($item->size);
-            self::assertNotNull($item->funds);
-            self::assertNotNull($item->dealSize);
-            self::assertNotNull($item->dealFunds);
-            self::assertNotNull($item->fee);
-            self::assertNotNull($item->feeCurrency);
-            self::assertNotNull($item->stp);
-            self::assertNotNull($item->timeInForce);
-            self::assertNotNull($item->postOnly);
-            self::assertNotNull($item->hidden);
-            self::assertNotNull($item->iceberg);
-            self::assertNotNull($item->visibleSize);
-            self::assertNotNull($item->cancelAfter);
-            self::assertNotNull($item->channel);
-            self::assertNotNull($item->clientOid);
-            self::assertNotNull($item->remark);
-            self::assertNotNull($item->tags);
-            self::assertNotNull($item->cancelExist);
-            self::assertNotNull($item->createdAt);
-            self::assertNotNull($item->lastUpdatedAt);
-            self::assertNotNull($item->tradeType);
-            self::assertNotNull($item->inOrderBook);
-            self::assertNotNull($item->cancelledSize);
-            self::assertNotNull($item->cancelledFunds);
-            self::assertNotNull($item->remainSize);
-            self::assertNotNull($item->remainFunds);
-            self::assertNotNull($item->tax);
-            self::assertNotNull($item->active);
-        }
+        GetOpenOrdersByPageResp resp = api.getOpenOrdersByPage(req);
+        Assertions.assertNotNull(resp.getCurrentPage());
+        Assertions.assertNotNull(resp.getPageSize());
+        Assertions.assertNotNull(resp.getTotalNum());
+        Assertions.assertNotNull(resp.getTotalPage());
+        resp.getItems().forEach( item -> {
+            Assertions.assertNotNull(item.getId());
+            Assertions.assertNotNull(item.getSymbol());
+            Assertions.assertNotNull(item.getOpType());
+            Assertions.assertNotNull(item.getType());
+            Assertions.assertNotNull(item.getSide());
+            Assertions.assertNotNull(item.getPrice());
+            Assertions.assertNotNull(item.getSize());
+            Assertions.assertNotNull(item.getFunds());
+            Assertions.assertNotNull(item.getDealSize());
+            Assertions.assertNotNull(item.getDealFunds());
+            Assertions.assertNotNull(item.getFee());
+            Assertions.assertNotNull(item.getFeeCurrency());
+            Assertions.assertNotNull(item.getStp());
+            Assertions.assertNotNull(item.getTimeInForce());
+            Assertions.assertNotNull(item.getPostOnly());
+            Assertions.assertNotNull(item.getHidden());
+            Assertions.assertNotNull(item.getIceberg());
+            Assertions.assertNotNull(item.getVisibleSize());
+            Assertions.assertNotNull(item.getCancelAfter());
+            Assertions.assertNotNull(item.getChannel());
+            Assertions.assertNotNull(item.getClientOid());
+            Assertions.assertNotNull(item.getRemark());
+            Assertions.assertNotNull(item.getTags());
+            Assertions.assertNotNull(item.getCancelExist());
+            Assertions.assertNotNull(item.getCreatedAt());
+            Assertions.assertNotNull(item.getLastUpdatedAt());
+            Assertions.assertNotNull(item.getTradeType());
+            Assertions.assertNotNull(item.getInOrderBook());
+            Assertions.assertNotNull(item.getCancelledSize());
+            Assertions.assertNotNull(item.getCancelledFunds());
+            Assertions.assertNotNull(item.getRemainSize());
+            Assertions.assertNotNull(item.getRemainFunds());
+            Assertions.assertNotNull(item.getTax());
+            Assertions.assertNotNull(item.getActive());
+        });
 
-        Logger::info($resp->jsonSerialize($this->serializer));
+        log.info("resp: {}", mapper.writeValueAsString(resp));
     }
 
     /**
@@ -442,50 +460,51 @@
     * Get Closed Orders
     * /api/v1/hf/orders/done
     */
-    public void testGetClosedOrders() {
+    @Test
+    public void testGetClosedOrders() throws Exception {
         GetClosedOrdersReq.GetClosedOrdersReqBuilder builder = GetClosedOrdersReq.builder();
         builder.symbol(?).side(?).type(?).lastId(?).limit(?).startAt(?).endAt(?);
         GetClosedOrdersReq req = builder.build();
-        GetClosedOrdersResp resp = this.api.getClosedOrders(req);
-        self::assertNotNull($resp->lastId);
-        foreach($resp->items as $item) {
-            self::assertNotNull($item->id);
-            self::assertNotNull($item->symbol);
-            self::assertNotNull($item->opType);
-            self::assertNotNull($item->type);
-            self::assertNotNull($item->side);
-            self::assertNotNull($item->price);
-            self::assertNotNull($item->size);
-            self::assertNotNull($item->funds);
-            self::assertNotNull($item->dealSize);
-            self::assertNotNull($item->dealFunds);
-            self::assertNotNull($item->fee);
-            self::assertNotNull($item->feeCurrency);
-            self::assertNotNull($item->stp);
-            self::assertNotNull($item->timeInForce);
-            self::assertNotNull($item->postOnly);
-            self::assertNotNull($item->hidden);
-            self::assertNotNull($item->iceberg);
-            self::assertNotNull($item->visibleSize);
-            self::assertNotNull($item->cancelAfter);
-            self::assertNotNull($item->channel);
-            self::assertNotNull($item->clientOid);
-            self::assertNotNull($item->remark);
-            self::assertNotNull($item->tags);
-            self::assertNotNull($item->cancelExist);
-            self::assertNotNull($item->createdAt);
-            self::assertNotNull($item->lastUpdatedAt);
-            self::assertNotNull($item->tradeType);
-            self::assertNotNull($item->inOrderBook);
-            self::assertNotNull($item->cancelledSize);
-            self::assertNotNull($item->cancelledFunds);
-            self::assertNotNull($item->remainSize);
-            self::assertNotNull($item->remainFunds);
-            self::assertNotNull($item->tax);
-            self::assertNotNull($item->active);
-        }
+        GetClosedOrdersResp resp = api.getClosedOrders(req);
+        Assertions.assertNotNull(resp.getLastId());
+        resp.getItems().forEach( item -> {
+            Assertions.assertNotNull(item.getId());
+            Assertions.assertNotNull(item.getSymbol());
+            Assertions.assertNotNull(item.getOpType());
+            Assertions.assertNotNull(item.getType());
+            Assertions.assertNotNull(item.getSide());
+            Assertions.assertNotNull(item.getPrice());
+            Assertions.assertNotNull(item.getSize());
+            Assertions.assertNotNull(item.getFunds());
+            Assertions.assertNotNull(item.getDealSize());
+            Assertions.assertNotNull(item.getDealFunds());
+            Assertions.assertNotNull(item.getFee());
+            Assertions.assertNotNull(item.getFeeCurrency());
+            Assertions.assertNotNull(item.getStp());
+            Assertions.assertNotNull(item.getTimeInForce());
+            Assertions.assertNotNull(item.getPostOnly());
+            Assertions.assertNotNull(item.getHidden());
+            Assertions.assertNotNull(item.getIceberg());
+            Assertions.assertNotNull(item.getVisibleSize());
+            Assertions.assertNotNull(item.getCancelAfter());
+            Assertions.assertNotNull(item.getChannel());
+            Assertions.assertNotNull(item.getClientOid());
+            Assertions.assertNotNull(item.getRemark());
+            Assertions.assertNotNull(item.getTags());
+            Assertions.assertNotNull(item.getCancelExist());
+            Assertions.assertNotNull(item.getCreatedAt());
+            Assertions.assertNotNull(item.getLastUpdatedAt());
+            Assertions.assertNotNull(item.getTradeType());
+            Assertions.assertNotNull(item.getInOrderBook());
+            Assertions.assertNotNull(item.getCancelledSize());
+            Assertions.assertNotNull(item.getCancelledFunds());
+            Assertions.assertNotNull(item.getRemainSize());
+            Assertions.assertNotNull(item.getRemainFunds());
+            Assertions.assertNotNull(item.getTax());
+            Assertions.assertNotNull(item.getActive());
+        });
 
-        Logger::info($resp->jsonSerialize($this->serializer));
+        log.info("resp: {}", mapper.writeValueAsString(resp));
     }
 
     /**
@@ -493,36 +512,37 @@
     * Get Trade History
     * /api/v1/hf/fills
     */
-    public void testGetTradeHistory() {
+    @Test
+    public void testGetTradeHistory() throws Exception {
         GetTradeHistoryReq.GetTradeHistoryReqBuilder builder = GetTradeHistoryReq.builder();
         builder.symbol(?).orderId(?).side(?).type(?).lastId(?).limit(?).startAt(?).endAt(?);
         GetTradeHistoryReq req = builder.build();
-        GetTradeHistoryResp resp = this.api.getTradeHistory(req);
-        foreach($resp->items as $item) {
-            self::assertNotNull($item->id);
-            self::assertNotNull($item->symbol);
-            self::assertNotNull($item->tradeId);
-            self::assertNotNull($item->orderId);
-            self::assertNotNull($item->counterOrderId);
-            self::assertNotNull($item->side);
-            self::assertNotNull($item->liquidity);
-            self::assertNotNull($item->forceTaker);
-            self::assertNotNull($item->price);
-            self::assertNotNull($item->size);
-            self::assertNotNull($item->funds);
-            self::assertNotNull($item->fee);
-            self::assertNotNull($item->feeRate);
-            self::assertNotNull($item->feeCurrency);
-            self::assertNotNull($item->stop);
-            self::assertNotNull($item->tradeType);
-            self::assertNotNull($item->taxRate);
-            self::assertNotNull($item->tax);
-            self::assertNotNull($item->type);
-            self::assertNotNull($item->createdAt);
-        }
+        GetTradeHistoryResp resp = api.getTradeHistory(req);
+        resp.getItems().forEach( item -> {
+            Assertions.assertNotNull(item.getId());
+            Assertions.assertNotNull(item.getSymbol());
+            Assertions.assertNotNull(item.getTradeId());
+            Assertions.assertNotNull(item.getOrderId());
+            Assertions.assertNotNull(item.getCounterOrderId());
+            Assertions.assertNotNull(item.getSide());
+            Assertions.assertNotNull(item.getLiquidity());
+            Assertions.assertNotNull(item.getForceTaker());
+            Assertions.assertNotNull(item.getPrice());
+            Assertions.assertNotNull(item.getSize());
+            Assertions.assertNotNull(item.getFunds());
+            Assertions.assertNotNull(item.getFee());
+            Assertions.assertNotNull(item.getFeeRate());
+            Assertions.assertNotNull(item.getFeeCurrency());
+            Assertions.assertNotNull(item.getStop());
+            Assertions.assertNotNull(item.getTradeType());
+            Assertions.assertNotNull(item.getTaxRate());
+            Assertions.assertNotNull(item.getTax());
+            Assertions.assertNotNull(item.getType());
+            Assertions.assertNotNull(item.getCreatedAt());
+        });
 
-        self::assertNotNull($resp->lastId);
-        Logger::info($resp->jsonSerialize($this->serializer));
+        Assertions.assertNotNull(resp.getLastId());
+        log.info("resp: {}", mapper.writeValueAsString(resp));
     }
 
     /**
@@ -530,13 +550,14 @@
     * Get DCP
     * /api/v1/hf/orders/dead-cancel-all/query
     */
-    public void testGetDCP() {
-        GetDCPResp resp = this.api.getDCP();
-        self::assertNotNull($resp->timeout);
-        self::assertNotNull($resp->symbols);
-        self::assertNotNull($resp->currentTime);
-        self::assertNotNull($resp->triggerTime);
-        Logger::info($resp->jsonSerialize($this->serializer));
+    @Test
+    public void testGetDCP() throws Exception {
+        GetDCPResp resp = api.getDCP();
+        Assertions.assertNotNull(resp.getTimeout());
+        Assertions.assertNotNull(resp.getSymbols());
+        Assertions.assertNotNull(resp.getCurrentTime());
+        Assertions.assertNotNull(resp.getTriggerTime());
+        log.info("resp: {}", mapper.writeValueAsString(resp));
     }
 
     /**
@@ -544,14 +565,15 @@
     * Set DCP
     * /api/v1/hf/orders/dead-cancel-all
     */
-    public void testSetDCP() {
+    @Test
+    public void testSetDCP() throws Exception {
         SetDCPReq.SetDCPReqBuilder builder = SetDCPReq.builder();
         builder.timeout(?).symbols(?);
         SetDCPReq req = builder.build();
-        SetDCPResp resp = this.api.setDCP(req);
-        self::assertNotNull($resp->currentTime);
-        self::assertNotNull($resp->triggerTime);
-        Logger::info($resp->jsonSerialize($this->serializer));
+        SetDCPResp resp = api.setDCP(req);
+        Assertions.assertNotNull(resp.getCurrentTime());
+        Assertions.assertNotNull(resp.getTriggerTime());
+        log.info("resp: {}", mapper.writeValueAsString(resp));
     }
 
     /**
@@ -559,13 +581,14 @@
     * Add Stop Order
     * /api/v1/stop-order
     */
-    public void testAddStopOrder() {
+    @Test
+    public void testAddStopOrder() throws Exception {
         AddStopOrderReq.AddStopOrderReqBuilder builder = AddStopOrderReq.builder();
         builder.clientOid(?).side(?).symbol(?).type(?).remark(?).stp(?).price(?).size(?).timeInForce(?).postOnly(?).hidden(?).iceberg(?).visibleSize(?).cancelAfter(?).funds(?).stopPrice(?).tradeType(?);
         AddStopOrderReq req = builder.build();
-        AddStopOrderResp resp = this.api.addStopOrder(req);
-        self::assertNotNull($resp->orderId);
-        Logger::info($resp->jsonSerialize($this->serializer));
+        AddStopOrderResp resp = api.addStopOrder(req);
+        Assertions.assertNotNull(resp.getOrderId());
+        log.info("resp: {}", mapper.writeValueAsString(resp));
     }
 
     /**
@@ -573,14 +596,15 @@
     * Cancel Stop Order By ClientOid
     * /api/v1/stop-order/cancelOrderByClientOid
     */
-    public void testCancelStopOrderByClientOid() {
+    @Test
+    public void testCancelStopOrderByClientOid() throws Exception {
         CancelStopOrderByClientOidReq.CancelStopOrderByClientOidReqBuilder builder = CancelStopOrderByClientOidReq.builder();
         builder.symbol(?).clientOid(?);
         CancelStopOrderByClientOidReq req = builder.build();
-        CancelStopOrderByClientOidResp resp = this.api.cancelStopOrderByClientOid(req);
-        self::assertNotNull($resp->clientOid);
-        self::assertNotNull($resp->cancelledOrderId);
-        Logger::info($resp->jsonSerialize($this->serializer));
+        CancelStopOrderByClientOidResp resp = api.cancelStopOrderByClientOid(req);
+        Assertions.assertNotNull(resp.getClientOid());
+        Assertions.assertNotNull(resp.getCancelledOrderId());
+        log.info("resp: {}", mapper.writeValueAsString(resp));
     }
 
     /**
@@ -588,15 +612,16 @@
     * Cancel Stop Order By OrderId
     * /api/v1/stop-order/{orderId}
     */
-    public void testCancelStopOrderByOrderId() {
+    @Test
+    public void testCancelStopOrderByOrderId() throws Exception {
         CancelStopOrderByOrderIdReq.CancelStopOrderByOrderIdReqBuilder builder = CancelStopOrderByOrderIdReq.builder();
         builder.orderId(?);
         CancelStopOrderByOrderIdReq req = builder.build();
-        CancelStopOrderByOrderIdResp resp = this.api.cancelStopOrderByOrderId(req);
-        foreach($resp->cancelledOrderIds as $item) {
-        }
+        CancelStopOrderByOrderIdResp resp = api.cancelStopOrderByOrderId(req);
+        resp.getCancelledOrderIds().forEach( item -> {
+        });
 
-        Logger::info($resp->jsonSerialize($this->serializer));
+        log.info("resp: {}", mapper.writeValueAsString(resp));
     }
 
     /**
@@ -604,15 +629,16 @@
     * Batch Cancel Stop Orders
     * /api/v1/stop-order/cancel
     */
-    public void testBatchCancelStopOrder() {
+    @Test
+    public void testBatchCancelStopOrder() throws Exception {
         BatchCancelStopOrderReq.BatchCancelStopOrderReqBuilder builder = BatchCancelStopOrderReq.builder();
         builder.symbol(?).tradeType(?).orderIds(?);
         BatchCancelStopOrderReq req = builder.build();
-        BatchCancelStopOrderResp resp = this.api.batchCancelStopOrder(req);
-        foreach($resp->cancelledOrderIds as $item) {
-        }
+        BatchCancelStopOrderResp resp = api.batchCancelStopOrder(req);
+        resp.getCancelledOrderIds().forEach( item -> {
+        });
 
-        Logger::info($resp->jsonSerialize($this->serializer));
+        log.info("resp: {}", mapper.writeValueAsString(resp));
     }
 
     /**
@@ -620,54 +646,55 @@
     * Get Stop Orders List
     * /api/v1/stop-order
     */
-    public void testGetStopOrdersList() {
+    @Test
+    public void testGetStopOrdersList() throws Exception {
         GetStopOrdersListReq.GetStopOrdersListReqBuilder builder = GetStopOrdersListReq.builder();
         builder.symbol(?).side(?).type(?).tradeType(?).startAt(?).endAt(?).currentPage(?).orderIds(?).pageSize(?).stop(?);
         GetStopOrdersListReq req = builder.build();
-        GetStopOrdersListResp resp = this.api.getStopOrdersList(req);
-        self::assertNotNull($resp->currentPage);
-        self::assertNotNull($resp->pageSize);
-        self::assertNotNull($resp->totalNum);
-        self::assertNotNull($resp->totalPage);
-        foreach($resp->items as $item) {
-            self::assertNotNull($item->id);
-            self::assertNotNull($item->symbol);
-            self::assertNotNull($item->userId);
-            self::assertNotNull($item->status);
-            self::assertNotNull($item->type);
-            self::assertNotNull($item->side);
-            self::assertNotNull($item->price);
-            self::assertNotNull($item->size);
-            self::assertNotNull($item->funds);
-            self::assertNotNull($item->stp);
-            self::assertNotNull($item->timeInForce);
-            self::assertNotNull($item->cancelAfter);
-            self::assertNotNull($item->postOnly);
-            self::assertNotNull($item->hidden);
-            self::assertNotNull($item->iceberg);
-            self::assertNotNull($item->visibleSize);
-            self::assertNotNull($item->channel);
-            self::assertNotNull($item->clientOid);
-            self::assertNotNull($item->remark);
-            self::assertNotNull($item->tags);
-            self::assertNotNull($item->orderTime);
-            self::assertNotNull($item->domainId);
-            self::assertNotNull($item->tradeSource);
-            self::assertNotNull($item->tradeType);
-            self::assertNotNull($item->feeCurrency);
-            self::assertNotNull($item->takerFeeRate);
-            self::assertNotNull($item->makerFeeRate);
-            self::assertNotNull($item->createdAt);
-            self::assertNotNull($item->stop);
-            self::assertNotNull($item->stopTriggerTime);
-            self::assertNotNull($item->stopPrice);
-            self::assertNotNull($item->relatedNo);
-            self::assertNotNull($item->limitPrice);
-            self::assertNotNull($item->pop);
-            self::assertNotNull($item->activateCondition);
-        }
+        GetStopOrdersListResp resp = api.getStopOrdersList(req);
+        Assertions.assertNotNull(resp.getCurrentPage());
+        Assertions.assertNotNull(resp.getPageSize());
+        Assertions.assertNotNull(resp.getTotalNum());
+        Assertions.assertNotNull(resp.getTotalPage());
+        resp.getItems().forEach( item -> {
+            Assertions.assertNotNull(item.getId());
+            Assertions.assertNotNull(item.getSymbol());
+            Assertions.assertNotNull(item.getUserId());
+            Assertions.assertNotNull(item.getStatus());
+            Assertions.assertNotNull(item.getType());
+            Assertions.assertNotNull(item.getSide());
+            Assertions.assertNotNull(item.getPrice());
+            Assertions.assertNotNull(item.getSize());
+            Assertions.assertNotNull(item.getFunds());
+            Assertions.assertNotNull(item.getStp());
+            Assertions.assertNotNull(item.getTimeInForce());
+            Assertions.assertNotNull(item.getCancelAfter());
+            Assertions.assertNotNull(item.getPostOnly());
+            Assertions.assertNotNull(item.getHidden());
+            Assertions.assertNotNull(item.getIceberg());
+            Assertions.assertNotNull(item.getVisibleSize());
+            Assertions.assertNotNull(item.getChannel());
+            Assertions.assertNotNull(item.getClientOid());
+            Assertions.assertNotNull(item.getRemark());
+            Assertions.assertNotNull(item.getTags());
+            Assertions.assertNotNull(item.getOrderTime());
+            Assertions.assertNotNull(item.getDomainId());
+            Assertions.assertNotNull(item.getTradeSource());
+            Assertions.assertNotNull(item.getTradeType());
+            Assertions.assertNotNull(item.getFeeCurrency());
+            Assertions.assertNotNull(item.getTakerFeeRate());
+            Assertions.assertNotNull(item.getMakerFeeRate());
+            Assertions.assertNotNull(item.getCreatedAt());
+            Assertions.assertNotNull(item.getStop());
+            Assertions.assertNotNull(item.getStopTriggerTime());
+            Assertions.assertNotNull(item.getStopPrice());
+            Assertions.assertNotNull(item.getRelatedNo());
+            Assertions.assertNotNull(item.getLimitPrice());
+            Assertions.assertNotNull(item.getPop());
+            Assertions.assertNotNull(item.getActivateCondition());
+        });
 
-        Logger::info($resp->jsonSerialize($this->serializer));
+        log.info("resp: {}", mapper.writeValueAsString(resp));
     }
 
     /**
@@ -675,43 +702,44 @@
     * Get Stop Order By OrderId
     * /api/v1/stop-order/{orderId}
     */
-    public void testGetStopOrderByOrderId() {
+    @Test
+    public void testGetStopOrderByOrderId() throws Exception {
         GetStopOrderByOrderIdReq.GetStopOrderByOrderIdReqBuilder builder = GetStopOrderByOrderIdReq.builder();
         builder.orderId(?);
         GetStopOrderByOrderIdReq req = builder.build();
-        GetStopOrderByOrderIdResp resp = this.api.getStopOrderByOrderId(req);
-        self::assertNotNull($resp->id);
-        self::assertNotNull($resp->symbol);
-        self::assertNotNull($resp->userId);
-        self::assertNotNull($resp->status);
-        self::assertNotNull($resp->type);
-        self::assertNotNull($resp->side);
-        self::assertNotNull($resp->price);
-        self::assertNotNull($resp->size);
-        self::assertNotNull($resp->funds);
-        self::assertNotNull($resp->stp);
-        self::assertNotNull($resp->timeInForce);
-        self::assertNotNull($resp->cancelAfter);
-        self::assertNotNull($resp->postOnly);
-        self::assertNotNull($resp->hidden);
-        self::assertNotNull($resp->iceberg);
-        self::assertNotNull($resp->visibleSize);
-        self::assertNotNull($resp->channel);
-        self::assertNotNull($resp->clientOid);
-        self::assertNotNull($resp->remark);
-        self::assertNotNull($resp->tags);
-        self::assertNotNull($resp->domainId);
-        self::assertNotNull($resp->tradeSource);
-        self::assertNotNull($resp->tradeType);
-        self::assertNotNull($resp->feeCurrency);
-        self::assertNotNull($resp->takerFeeRate);
-        self::assertNotNull($resp->makerFeeRate);
-        self::assertNotNull($resp->createdAt);
-        self::assertNotNull($resp->stop);
-        self::assertNotNull($resp->stopTriggerTime);
-        self::assertNotNull($resp->stopPrice);
-        self::assertNotNull($resp->orderTime);
-        Logger::info($resp->jsonSerialize($this->serializer));
+        GetStopOrderByOrderIdResp resp = api.getStopOrderByOrderId(req);
+        Assertions.assertNotNull(resp.getId());
+        Assertions.assertNotNull(resp.getSymbol());
+        Assertions.assertNotNull(resp.getUserId());
+        Assertions.assertNotNull(resp.getStatus());
+        Assertions.assertNotNull(resp.getType());
+        Assertions.assertNotNull(resp.getSide());
+        Assertions.assertNotNull(resp.getPrice());
+        Assertions.assertNotNull(resp.getSize());
+        Assertions.assertNotNull(resp.getFunds());
+        Assertions.assertNotNull(resp.getStp());
+        Assertions.assertNotNull(resp.getTimeInForce());
+        Assertions.assertNotNull(resp.getCancelAfter());
+        Assertions.assertNotNull(resp.getPostOnly());
+        Assertions.assertNotNull(resp.getHidden());
+        Assertions.assertNotNull(resp.getIceberg());
+        Assertions.assertNotNull(resp.getVisibleSize());
+        Assertions.assertNotNull(resp.getChannel());
+        Assertions.assertNotNull(resp.getClientOid());
+        Assertions.assertNotNull(resp.getRemark());
+        Assertions.assertNotNull(resp.getTags());
+        Assertions.assertNotNull(resp.getDomainId());
+        Assertions.assertNotNull(resp.getTradeSource());
+        Assertions.assertNotNull(resp.getTradeType());
+        Assertions.assertNotNull(resp.getFeeCurrency());
+        Assertions.assertNotNull(resp.getTakerFeeRate());
+        Assertions.assertNotNull(resp.getMakerFeeRate());
+        Assertions.assertNotNull(resp.getCreatedAt());
+        Assertions.assertNotNull(resp.getStop());
+        Assertions.assertNotNull(resp.getStopTriggerTime());
+        Assertions.assertNotNull(resp.getStopPrice());
+        Assertions.assertNotNull(resp.getOrderTime());
+        log.info("resp: {}", mapper.writeValueAsString(resp));
     }
 
     /**
@@ -719,46 +747,47 @@
     * Get Stop Order By ClientOid
     * /api/v1/stop-order/queryOrderByClientOid
     */
-    public void testGetStopOrderByClientOid() {
+    @Test
+    public void testGetStopOrderByClientOid() throws Exception {
         GetStopOrderByClientOidReq.GetStopOrderByClientOidReqBuilder builder = GetStopOrderByClientOidReq.builder();
         builder.clientOid(?).symbol(?);
         GetStopOrderByClientOidReq req = builder.build();
-        GetStopOrderByClientOidResp resp = this.api.getStopOrderByClientOid(req);
-        foreach($resp->data as $item) {
-            self::assertNotNull($item->id);
-            self::assertNotNull($item->symbol);
-            self::assertNotNull($item->userId);
-            self::assertNotNull($item->status);
-            self::assertNotNull($item->type);
-            self::assertNotNull($item->side);
-            self::assertNotNull($item->price);
-            self::assertNotNull($item->size);
-            self::assertNotNull($item->funds);
-            self::assertNotNull($item->stp);
-            self::assertNotNull($item->timeInForce);
-            self::assertNotNull($item->cancelAfter);
-            self::assertNotNull($item->postOnly);
-            self::assertNotNull($item->hidden);
-            self::assertNotNull($item->iceberg);
-            self::assertNotNull($item->visibleSize);
-            self::assertNotNull($item->channel);
-            self::assertNotNull($item->clientOid);
-            self::assertNotNull($item->remark);
-            self::assertNotNull($item->tags);
-            self::assertNotNull($item->domainId);
-            self::assertNotNull($item->tradeSource);
-            self::assertNotNull($item->tradeType);
-            self::assertNotNull($item->feeCurrency);
-            self::assertNotNull($item->takerFeeRate);
-            self::assertNotNull($item->makerFeeRate);
-            self::assertNotNull($item->createdAt);
-            self::assertNotNull($item->stop);
-            self::assertNotNull($item->stopTriggerTime);
-            self::assertNotNull($item->stopPrice);
-            self::assertNotNull($item->orderTime);
-        }
+        GetStopOrderByClientOidResp resp = api.getStopOrderByClientOid(req);
+        resp.getData().forEach( item -> {
+            Assertions.assertNotNull(item.getId());
+            Assertions.assertNotNull(item.getSymbol());
+            Assertions.assertNotNull(item.getUserId());
+            Assertions.assertNotNull(item.getStatus());
+            Assertions.assertNotNull(item.getType());
+            Assertions.assertNotNull(item.getSide());
+            Assertions.assertNotNull(item.getPrice());
+            Assertions.assertNotNull(item.getSize());
+            Assertions.assertNotNull(item.getFunds());
+            Assertions.assertNotNull(item.getStp());
+            Assertions.assertNotNull(item.getTimeInForce());
+            Assertions.assertNotNull(item.getCancelAfter());
+            Assertions.assertNotNull(item.getPostOnly());
+            Assertions.assertNotNull(item.getHidden());
+            Assertions.assertNotNull(item.getIceberg());
+            Assertions.assertNotNull(item.getVisibleSize());
+            Assertions.assertNotNull(item.getChannel());
+            Assertions.assertNotNull(item.getClientOid());
+            Assertions.assertNotNull(item.getRemark());
+            Assertions.assertNotNull(item.getTags());
+            Assertions.assertNotNull(item.getDomainId());
+            Assertions.assertNotNull(item.getTradeSource());
+            Assertions.assertNotNull(item.getTradeType());
+            Assertions.assertNotNull(item.getFeeCurrency());
+            Assertions.assertNotNull(item.getTakerFeeRate());
+            Assertions.assertNotNull(item.getMakerFeeRate());
+            Assertions.assertNotNull(item.getCreatedAt());
+            Assertions.assertNotNull(item.getStop());
+            Assertions.assertNotNull(item.getStopTriggerTime());
+            Assertions.assertNotNull(item.getStopPrice());
+            Assertions.assertNotNull(item.getOrderTime());
+        });
 
-        Logger::info($resp->jsonSerialize($this->serializer));
+        log.info("resp: {}", mapper.writeValueAsString(resp));
     }
 
     /**
@@ -766,13 +795,14 @@
     * Add OCO Order
     * /api/v3/oco/order
     */
-    public void testAddOcoOrder() {
+    @Test
+    public void testAddOcoOrder() throws Exception {
         AddOcoOrderReq.AddOcoOrderReqBuilder builder = AddOcoOrderReq.builder();
         builder.clientOid(?).side(?).symbol(?).remark(?).price(?).size(?).stopPrice(?).limitPrice(?).tradeType(?);
         AddOcoOrderReq req = builder.build();
-        AddOcoOrderResp resp = this.api.addOcoOrder(req);
-        self::assertNotNull($resp->orderId);
-        Logger::info($resp->jsonSerialize($this->serializer));
+        AddOcoOrderResp resp = api.addOcoOrder(req);
+        Assertions.assertNotNull(resp.getOrderId());
+        log.info("resp: {}", mapper.writeValueAsString(resp));
     }
 
     /**
@@ -780,15 +810,16 @@
     * Cancel OCO Order By OrderId
     * /api/v3/oco/order/{orderId}
     */
-    public void testCancelOcoOrderByOrderId() {
+    @Test
+    public void testCancelOcoOrderByOrderId() throws Exception {
         CancelOcoOrderByOrderIdReq.CancelOcoOrderByOrderIdReqBuilder builder = CancelOcoOrderByOrderIdReq.builder();
         builder.orderId(?);
         CancelOcoOrderByOrderIdReq req = builder.build();
-        CancelOcoOrderByOrderIdResp resp = this.api.cancelOcoOrderByOrderId(req);
-        foreach($resp->cancelledOrderIds as $item) {
-        }
+        CancelOcoOrderByOrderIdResp resp = api.cancelOcoOrderByOrderId(req);
+        resp.getCancelledOrderIds().forEach( item -> {
+        });
 
-        Logger::info($resp->jsonSerialize($this->serializer));
+        log.info("resp: {}", mapper.writeValueAsString(resp));
     }
 
     /**
@@ -796,15 +827,16 @@
     * Cancel OCO Order By ClientOid
     * /api/v3/oco/client-order/{clientOid}
     */
-    public void testCancelOcoOrderByClientOid() {
+    @Test
+    public void testCancelOcoOrderByClientOid() throws Exception {
         CancelOcoOrderByClientOidReq.CancelOcoOrderByClientOidReqBuilder builder = CancelOcoOrderByClientOidReq.builder();
         builder.clientOid(?);
         CancelOcoOrderByClientOidReq req = builder.build();
-        CancelOcoOrderByClientOidResp resp = this.api.cancelOcoOrderByClientOid(req);
-        foreach($resp->cancelledOrderIds as $item) {
-        }
+        CancelOcoOrderByClientOidResp resp = api.cancelOcoOrderByClientOid(req);
+        resp.getCancelledOrderIds().forEach( item -> {
+        });
 
-        Logger::info($resp->jsonSerialize($this->serializer));
+        log.info("resp: {}", mapper.writeValueAsString(resp));
     }
 
     /**
@@ -812,15 +844,16 @@
     * Batch Cancel OCO Order
     * /api/v3/oco/orders
     */
-    public void testBatchCancelOcoOrders() {
+    @Test
+    public void testBatchCancelOcoOrders() throws Exception {
         BatchCancelOcoOrdersReq.BatchCancelOcoOrdersReqBuilder builder = BatchCancelOcoOrdersReq.builder();
         builder.orderIds(?).symbol(?);
         BatchCancelOcoOrdersReq req = builder.build();
-        BatchCancelOcoOrdersResp resp = this.api.batchCancelOcoOrders(req);
-        foreach($resp->cancelledOrderIds as $item) {
-        }
+        BatchCancelOcoOrdersResp resp = api.batchCancelOcoOrders(req);
+        resp.getCancelledOrderIds().forEach( item -> {
+        });
 
-        Logger::info($resp->jsonSerialize($this->serializer));
+        log.info("resp: {}", mapper.writeValueAsString(resp));
     }
 
     /**
@@ -828,17 +861,18 @@
     * Get OCO Order By OrderId
     * /api/v3/oco/order/{orderId}
     */
-    public void testGetOcoOrderByOrderId() {
+    @Test
+    public void testGetOcoOrderByOrderId() throws Exception {
         GetOcoOrderByOrderIdReq.GetOcoOrderByOrderIdReqBuilder builder = GetOcoOrderByOrderIdReq.builder();
         builder.orderId(?);
         GetOcoOrderByOrderIdReq req = builder.build();
-        GetOcoOrderByOrderIdResp resp = this.api.getOcoOrderByOrderId(req);
-        self::assertNotNull($resp->symbol);
-        self::assertNotNull($resp->clientOid);
-        self::assertNotNull($resp->orderId);
-        self::assertNotNull($resp->orderTime);
-        self::assertNotNull($resp->status);
-        Logger::info($resp->jsonSerialize($this->serializer));
+        GetOcoOrderByOrderIdResp resp = api.getOcoOrderByOrderId(req);
+        Assertions.assertNotNull(resp.getSymbol());
+        Assertions.assertNotNull(resp.getClientOid());
+        Assertions.assertNotNull(resp.getOrderId());
+        Assertions.assertNotNull(resp.getOrderTime());
+        Assertions.assertNotNull(resp.getStatus());
+        log.info("resp: {}", mapper.writeValueAsString(resp));
     }
 
     /**
@@ -846,17 +880,18 @@
     * Get OCO Order By ClientOid
     * /api/v3/oco/client-order/{clientOid}
     */
-    public void testGetOcoOrderByClientOid() {
+    @Test
+    public void testGetOcoOrderByClientOid() throws Exception {
         GetOcoOrderByClientOidReq.GetOcoOrderByClientOidReqBuilder builder = GetOcoOrderByClientOidReq.builder();
         builder.clientOid(?);
         GetOcoOrderByClientOidReq req = builder.build();
-        GetOcoOrderByClientOidResp resp = this.api.getOcoOrderByClientOid(req);
-        self::assertNotNull($resp->symbol);
-        self::assertNotNull($resp->clientOid);
-        self::assertNotNull($resp->orderId);
-        self::assertNotNull($resp->orderTime);
-        self::assertNotNull($resp->status);
-        Logger::info($resp->jsonSerialize($this->serializer));
+        GetOcoOrderByClientOidResp resp = api.getOcoOrderByClientOid(req);
+        Assertions.assertNotNull(resp.getSymbol());
+        Assertions.assertNotNull(resp.getClientOid());
+        Assertions.assertNotNull(resp.getOrderId());
+        Assertions.assertNotNull(resp.getOrderTime());
+        Assertions.assertNotNull(resp.getStatus());
+        log.info("resp: {}", mapper.writeValueAsString(resp));
     }
 
     /**
@@ -864,27 +899,28 @@
     * Get OCO Order Detail By OrderId
     * /api/v3/oco/order/details/{orderId}
     */
-    public void testGetOcoOrderDetailByOrderId() {
+    @Test
+    public void testGetOcoOrderDetailByOrderId() throws Exception {
         GetOcoOrderDetailByOrderIdReq.GetOcoOrderDetailByOrderIdReqBuilder builder = GetOcoOrderDetailByOrderIdReq.builder();
         builder.orderId(?);
         GetOcoOrderDetailByOrderIdReq req = builder.build();
-        GetOcoOrderDetailByOrderIdResp resp = this.api.getOcoOrderDetailByOrderId(req);
-        self::assertNotNull($resp->orderId);
-        self::assertNotNull($resp->symbol);
-        self::assertNotNull($resp->clientOid);
-        self::assertNotNull($resp->orderTime);
-        self::assertNotNull($resp->status);
-        foreach($resp->orders as $item) {
-            self::assertNotNull($item->id);
-            self::assertNotNull($item->symbol);
-            self::assertNotNull($item->side);
-            self::assertNotNull($item->price);
-            self::assertNotNull($item->stopPrice);
-            self::assertNotNull($item->size);
-            self::assertNotNull($item->status);
-        }
+        GetOcoOrderDetailByOrderIdResp resp = api.getOcoOrderDetailByOrderId(req);
+        Assertions.assertNotNull(resp.getOrderId());
+        Assertions.assertNotNull(resp.getSymbol());
+        Assertions.assertNotNull(resp.getClientOid());
+        Assertions.assertNotNull(resp.getOrderTime());
+        Assertions.assertNotNull(resp.getStatus());
+        resp.getOrders().forEach( item -> {
+            Assertions.assertNotNull(item.getId());
+            Assertions.assertNotNull(item.getSymbol());
+            Assertions.assertNotNull(item.getSide());
+            Assertions.assertNotNull(item.getPrice());
+            Assertions.assertNotNull(item.getStopPrice());
+            Assertions.assertNotNull(item.getSize());
+            Assertions.assertNotNull(item.getStatus());
+        });
 
-        Logger::info($resp->jsonSerialize($this->serializer));
+        log.info("resp: {}", mapper.writeValueAsString(resp));
     }
 
     /**
@@ -892,24 +928,25 @@
     * Get OCO Order List
     * /api/v3/oco/orders
     */
-    public void testGetOcoOrderList() {
+    @Test
+    public void testGetOcoOrderList() throws Exception {
         GetOcoOrderListReq.GetOcoOrderListReqBuilder builder = GetOcoOrderListReq.builder();
         builder.symbol(?).startAt(?).endAt(?).orderIds(?).pageSize(?).currentPage(?);
         GetOcoOrderListReq req = builder.build();
-        GetOcoOrderListResp resp = this.api.getOcoOrderList(req);
-        self::assertNotNull($resp->currentPage);
-        self::assertNotNull($resp->pageSize);
-        self::assertNotNull($resp->totalNum);
-        self::assertNotNull($resp->totalPage);
-        foreach($resp->items as $item) {
-            self::assertNotNull($item->orderId);
-            self::assertNotNull($item->symbol);
-            self::assertNotNull($item->clientOid);
-            self::assertNotNull($item->orderTime);
-            self::assertNotNull($item->status);
-        }
+        GetOcoOrderListResp resp = api.getOcoOrderList(req);
+        Assertions.assertNotNull(resp.getCurrentPage());
+        Assertions.assertNotNull(resp.getPageSize());
+        Assertions.assertNotNull(resp.getTotalNum());
+        Assertions.assertNotNull(resp.getTotalPage());
+        resp.getItems().forEach( item -> {
+            Assertions.assertNotNull(item.getOrderId());
+            Assertions.assertNotNull(item.getSymbol());
+            Assertions.assertNotNull(item.getClientOid());
+            Assertions.assertNotNull(item.getOrderTime());
+            Assertions.assertNotNull(item.getStatus());
+        });
 
-        Logger::info($resp->jsonSerialize($this->serializer));
+        log.info("resp: {}", mapper.writeValueAsString(resp));
     }
 
     /**
@@ -917,13 +954,14 @@
     * Add Order - Old
     * /api/v1/orders
     */
-    public void testAddOrderOld() {
+    @Test
+    public void testAddOrderOld() throws Exception {
         AddOrderOldReq.AddOrderOldReqBuilder builder = AddOrderOldReq.builder();
         builder.clientOid(?).side(?).symbol(?).type(?).remark(?).stp(?).price(?).size(?).timeInForce(?).postOnly(?).hidden(?).iceberg(?).visibleSize(?).cancelAfter(?).funds(?).tradeType(?);
         AddOrderOldReq req = builder.build();
-        AddOrderOldResp resp = this.api.addOrderOld(req);
-        self::assertNotNull($resp->orderId);
-        Logger::info($resp->jsonSerialize($this->serializer));
+        AddOrderOldResp resp = api.addOrderOld(req);
+        Assertions.assertNotNull(resp.getOrderId());
+        log.info("resp: {}", mapper.writeValueAsString(resp));
     }
 
     /**
@@ -931,13 +969,14 @@
     * Add Order Test - Old
     * /api/v1/orders/test
     */
-    public void testAddOrderTestOld() {
+    @Test
+    public void testAddOrderTestOld() throws Exception {
         AddOrderTestOldReq.AddOrderTestOldReqBuilder builder = AddOrderTestOldReq.builder();
         builder.clientOid(?).side(?).symbol(?).type(?).remark(?).stp(?).price(?).size(?).timeInForce(?).postOnly(?).hidden(?).iceberg(?).visibleSize(?).cancelAfter(?).funds(?).tradeType(?);
         AddOrderTestOldReq req = builder.build();
-        AddOrderTestOldResp resp = this.api.addOrderTestOld(req);
-        self::assertNotNull($resp->orderId);
-        Logger::info($resp->jsonSerialize($this->serializer));
+        AddOrderTestOldResp resp = api.addOrderTestOld(req);
+        Assertions.assertNotNull(resp.getOrderId());
+        log.info("resp: {}", mapper.writeValueAsString(resp));
     }
 
     /**
@@ -945,36 +984,37 @@
     * Batch Add Orders - Old
     * /api/v1/orders/multi
     */
-    public void testBatchAddOrdersOld() {
+    @Test
+    public void testBatchAddOrdersOld() throws Exception {
         BatchAddOrdersOldReq.BatchAddOrdersOldReqBuilder builder = BatchAddOrdersOldReq.builder();
         builder.orderList(?).symbol(?);
         BatchAddOrdersOldReq req = builder.build();
-        BatchAddOrdersOldResp resp = this.api.batchAddOrdersOld(req);
-        foreach($resp->data as $item) {
-            self::assertNotNull($item->symbol);
-            self::assertNotNull($item->type);
-            self::assertNotNull($item->side);
-            self::assertNotNull($item->price);
-            self::assertNotNull($item->size);
-            self::assertNotNull($item->funds);
-            self::assertNotNull($item->stp);
-            self::assertNotNull($item->stop);
-            self::assertNotNull($item->stopPrice);
-            self::assertNotNull($item->timeInForce);
-            self::assertNotNull($item->cancelAfter);
-            self::assertNotNull($item->postOnly);
-            self::assertNotNull($item->hidden);
-            self::assertNotNull($item->iceberge);
-            self::assertNotNull($item->iceberg);
-            self::assertNotNull($item->visibleSize);
-            self::assertNotNull($item->channel);
-            self::assertNotNull($item->id);
-            self::assertNotNull($item->status);
-            self::assertNotNull($item->failMsg);
-            self::assertNotNull($item->clientOid);
-        }
+        BatchAddOrdersOldResp resp = api.batchAddOrdersOld(req);
+        resp.getData().forEach( item -> {
+            Assertions.assertNotNull(item.getSymbol());
+            Assertions.assertNotNull(item.getType());
+            Assertions.assertNotNull(item.getSide());
+            Assertions.assertNotNull(item.getPrice());
+            Assertions.assertNotNull(item.getSize());
+            Assertions.assertNotNull(item.getFunds());
+            Assertions.assertNotNull(item.getStp());
+            Assertions.assertNotNull(item.getStop());
+            Assertions.assertNotNull(item.getStopPrice());
+            Assertions.assertNotNull(item.getTimeInForce());
+            Assertions.assertNotNull(item.getCancelAfter());
+            Assertions.assertNotNull(item.getPostOnly());
+            Assertions.assertNotNull(item.getHidden());
+            Assertions.assertNotNull(item.getIceberge());
+            Assertions.assertNotNull(item.getIceberg());
+            Assertions.assertNotNull(item.getVisibleSize());
+            Assertions.assertNotNull(item.getChannel());
+            Assertions.assertNotNull(item.getId());
+            Assertions.assertNotNull(item.getStatus());
+            Assertions.assertNotNull(item.getFailMsg());
+            Assertions.assertNotNull(item.getClientOid());
+        });
 
-        Logger::info($resp->jsonSerialize($this->serializer));
+        log.info("resp: {}", mapper.writeValueAsString(resp));
     }
 
     /**
@@ -982,15 +1022,16 @@
     * Cancel Order By OrderId - Old
     * /api/v1/orders/{orderId}
     */
-    public void testCancelOrderByOrderIdOld() {
+    @Test
+    public void testCancelOrderByOrderIdOld() throws Exception {
         CancelOrderByOrderIdOldReq.CancelOrderByOrderIdOldReqBuilder builder = CancelOrderByOrderIdOldReq.builder();
         builder.orderId(?);
         CancelOrderByOrderIdOldReq req = builder.build();
-        CancelOrderByOrderIdOldResp resp = this.api.cancelOrderByOrderIdOld(req);
-        foreach($resp->cancelledOrderIds as $item) {
-        }
+        CancelOrderByOrderIdOldResp resp = api.cancelOrderByOrderIdOld(req);
+        resp.getCancelledOrderIds().forEach( item -> {
+        });
 
-        Logger::info($resp->jsonSerialize($this->serializer));
+        log.info("resp: {}", mapper.writeValueAsString(resp));
     }
 
     /**
@@ -998,17 +1039,18 @@
     * Cancel Order By ClientOid - Old
     * /api/v1/order/client-order/{clientOid}
     */
-    public void testCancelOrderByClientOidOld() {
+    @Test
+    public void testCancelOrderByClientOidOld() throws Exception {
         CancelOrderByClientOidOldReq.CancelOrderByClientOidOldReqBuilder builder = CancelOrderByClientOidOldReq.builder();
         builder.clientOid(?);
         CancelOrderByClientOidOldReq req = builder.build();
-        CancelOrderByClientOidOldResp resp = this.api.cancelOrderByClientOidOld(req);
-        self::assertNotNull($resp->clientOid);
-        self::assertNotNull($resp->cancelledOrderId);
-        foreach($resp->cancelledOcoOrderIds as $item) {
-        }
+        CancelOrderByClientOidOldResp resp = api.cancelOrderByClientOidOld(req);
+        Assertions.assertNotNull(resp.getClientOid());
+        Assertions.assertNotNull(resp.getCancelledOrderId());
+        resp.getCancelledOcoOrderIds().forEach( item -> {
+        });
 
-        Logger::info($resp->jsonSerialize($this->serializer));
+        log.info("resp: {}", mapper.writeValueAsString(resp));
     }
 
     /**
@@ -1016,15 +1058,16 @@
     * Batch Cancel Order - Old
     * /api/v1/orders
     */
-    public void testBatchCancelOrderOld() {
+    @Test
+    public void testBatchCancelOrderOld() throws Exception {
         BatchCancelOrderOldReq.BatchCancelOrderOldReqBuilder builder = BatchCancelOrderOldReq.builder();
         builder.symbol(?).tradeType(?);
         BatchCancelOrderOldReq req = builder.build();
-        BatchCancelOrderOldResp resp = this.api.batchCancelOrderOld(req);
-        foreach($resp->cancelledOrderIds as $item) {
-        }
+        BatchCancelOrderOldResp resp = api.batchCancelOrderOld(req);
+        resp.getCancelledOrderIds().forEach( item -> {
+        });
 
-        Logger::info($resp->jsonSerialize($this->serializer));
+        log.info("resp: {}", mapper.writeValueAsString(resp));
     }
 
     /**
@@ -1032,52 +1075,53 @@
     * Get Orders List - Old
     * /api/v1/orders
     */
-    public void testGetOrdersListOld() {
+    @Test
+    public void testGetOrdersListOld() throws Exception {
         GetOrdersListOldReq.GetOrdersListOldReqBuilder builder = GetOrdersListOldReq.builder();
         builder.symbol(?).status(?).side(?).type(?).tradeType(?).startAt(?).endAt(?).currentPage(?).pageSize(?);
         GetOrdersListOldReq req = builder.build();
-        GetOrdersListOldResp resp = this.api.getOrdersListOld(req);
-        self::assertNotNull($resp->currentPage);
-        self::assertNotNull($resp->pageSize);
-        self::assertNotNull($resp->totalNum);
-        self::assertNotNull($resp->totalPage);
-        foreach($resp->items as $item) {
-            self::assertNotNull($item->id);
-            self::assertNotNull($item->symbol);
-            self::assertNotNull($item->opType);
-            self::assertNotNull($item->type);
-            self::assertNotNull($item->side);
-            self::assertNotNull($item->price);
-            self::assertNotNull($item->size);
-            self::assertNotNull($item->funds);
-            self::assertNotNull($item->dealFunds);
-            self::assertNotNull($item->dealSize);
-            self::assertNotNull($item->fee);
-            self::assertNotNull($item->feeCurrency);
-            self::assertNotNull($item->stp);
-            self::assertNotNull($item->stop);
-            self::assertNotNull($item->stopTriggered);
-            self::assertNotNull($item->stopPrice);
-            self::assertNotNull($item->timeInForce);
-            self::assertNotNull($item->postOnly);
-            self::assertNotNull($item->hidden);
-            self::assertNotNull($item->iceberg);
-            self::assertNotNull($item->visibleSize);
-            self::assertNotNull($item->cancelAfter);
-            self::assertNotNull($item->channel);
-            self::assertNotNull($item->clientOid);
-            self::assertNotNull($item->remark);
-            self::assertNotNull($item->tags);
-            self::assertNotNull($item->isActive);
-            self::assertNotNull($item->cancelExist);
-            self::assertNotNull($item->createdAt);
-            self::assertNotNull($item->tradeType);
-            self::assertNotNull($item->tax);
-            self::assertNotNull($item->taxRate);
-            self::assertNotNull($item->taxCurrency);
-        }
+        GetOrdersListOldResp resp = api.getOrdersListOld(req);
+        Assertions.assertNotNull(resp.getCurrentPage());
+        Assertions.assertNotNull(resp.getPageSize());
+        Assertions.assertNotNull(resp.getTotalNum());
+        Assertions.assertNotNull(resp.getTotalPage());
+        resp.getItems().forEach( item -> {
+            Assertions.assertNotNull(item.getId());
+            Assertions.assertNotNull(item.getSymbol());
+            Assertions.assertNotNull(item.getOpType());
+            Assertions.assertNotNull(item.getType());
+            Assertions.assertNotNull(item.getSide());
+            Assertions.assertNotNull(item.getPrice());
+            Assertions.assertNotNull(item.getSize());
+            Assertions.assertNotNull(item.getFunds());
+            Assertions.assertNotNull(item.getDealFunds());
+            Assertions.assertNotNull(item.getDealSize());
+            Assertions.assertNotNull(item.getFee());
+            Assertions.assertNotNull(item.getFeeCurrency());
+            Assertions.assertNotNull(item.getStp());
+            Assertions.assertNotNull(item.getStop());
+            Assertions.assertNotNull(item.getStopTriggered());
+            Assertions.assertNotNull(item.getStopPrice());
+            Assertions.assertNotNull(item.getTimeInForce());
+            Assertions.assertNotNull(item.getPostOnly());
+            Assertions.assertNotNull(item.getHidden());
+            Assertions.assertNotNull(item.getIceberg());
+            Assertions.assertNotNull(item.getVisibleSize());
+            Assertions.assertNotNull(item.getCancelAfter());
+            Assertions.assertNotNull(item.getChannel());
+            Assertions.assertNotNull(item.getClientOid());
+            Assertions.assertNotNull(item.getRemark());
+            Assertions.assertNotNull(item.getTags());
+            Assertions.assertNotNull(item.getIsActive());
+            Assertions.assertNotNull(item.getCancelExist());
+            Assertions.assertNotNull(item.getCreatedAt());
+            Assertions.assertNotNull(item.getTradeType());
+            Assertions.assertNotNull(item.getTax());
+            Assertions.assertNotNull(item.getTaxRate());
+            Assertions.assertNotNull(item.getTaxCurrency());
+        });
 
-        Logger::info($resp->jsonSerialize($this->serializer));
+        log.info("resp: {}", mapper.writeValueAsString(resp));
     }
 
     /**
@@ -1085,45 +1129,46 @@
     * Get Recent Orders List - Old
     * /api/v1/limit/orders
     */
-    public void testGetRecentOrdersListOld() {
-        GetRecentOrdersListOldResp resp = this.api.getRecentOrdersListOld();
-        foreach($resp->data as $item) {
-            self::assertNotNull($item->id);
-            self::assertNotNull($item->symbol);
-            self::assertNotNull($item->opType);
-            self::assertNotNull($item->type);
-            self::assertNotNull($item->side);
-            self::assertNotNull($item->price);
-            self::assertNotNull($item->size);
-            self::assertNotNull($item->funds);
-            self::assertNotNull($item->dealFunds);
-            self::assertNotNull($item->dealSize);
-            self::assertNotNull($item->fee);
-            self::assertNotNull($item->feeCurrency);
-            self::assertNotNull($item->stp);
-            self::assertNotNull($item->stop);
-            self::assertNotNull($item->stopTriggered);
-            self::assertNotNull($item->stopPrice);
-            self::assertNotNull($item->timeInForce);
-            self::assertNotNull($item->postOnly);
-            self::assertNotNull($item->hidden);
-            self::assertNotNull($item->iceberg);
-            self::assertNotNull($item->visibleSize);
-            self::assertNotNull($item->cancelAfter);
-            self::assertNotNull($item->channel);
-            self::assertNotNull($item->clientOid);
-            self::assertNotNull($item->remark);
-            self::assertNotNull($item->tags);
-            self::assertNotNull($item->isActive);
-            self::assertNotNull($item->cancelExist);
-            self::assertNotNull($item->createdAt);
-            self::assertNotNull($item->tradeType);
-            self::assertNotNull($item->tax);
-            self::assertNotNull($item->taxRate);
-            self::assertNotNull($item->taxCurrency);
-        }
+    @Test
+    public void testGetRecentOrdersListOld() throws Exception {
+        GetRecentOrdersListOldResp resp = api.getRecentOrdersListOld();
+        resp.getData().forEach( item -> {
+            Assertions.assertNotNull(item.getId());
+            Assertions.assertNotNull(item.getSymbol());
+            Assertions.assertNotNull(item.getOpType());
+            Assertions.assertNotNull(item.getType());
+            Assertions.assertNotNull(item.getSide());
+            Assertions.assertNotNull(item.getPrice());
+            Assertions.assertNotNull(item.getSize());
+            Assertions.assertNotNull(item.getFunds());
+            Assertions.assertNotNull(item.getDealFunds());
+            Assertions.assertNotNull(item.getDealSize());
+            Assertions.assertNotNull(item.getFee());
+            Assertions.assertNotNull(item.getFeeCurrency());
+            Assertions.assertNotNull(item.getStp());
+            Assertions.assertNotNull(item.getStop());
+            Assertions.assertNotNull(item.getStopTriggered());
+            Assertions.assertNotNull(item.getStopPrice());
+            Assertions.assertNotNull(item.getTimeInForce());
+            Assertions.assertNotNull(item.getPostOnly());
+            Assertions.assertNotNull(item.getHidden());
+            Assertions.assertNotNull(item.getIceberg());
+            Assertions.assertNotNull(item.getVisibleSize());
+            Assertions.assertNotNull(item.getCancelAfter());
+            Assertions.assertNotNull(item.getChannel());
+            Assertions.assertNotNull(item.getClientOid());
+            Assertions.assertNotNull(item.getRemark());
+            Assertions.assertNotNull(item.getTags());
+            Assertions.assertNotNull(item.getIsActive());
+            Assertions.assertNotNull(item.getCancelExist());
+            Assertions.assertNotNull(item.getCreatedAt());
+            Assertions.assertNotNull(item.getTradeType());
+            Assertions.assertNotNull(item.getTax());
+            Assertions.assertNotNull(item.getTaxRate());
+            Assertions.assertNotNull(item.getTaxCurrency());
+        });
 
-        Logger::info($resp->jsonSerialize($this->serializer));
+        log.info("resp: {}", mapper.writeValueAsString(resp));
     }
 
     /**
@@ -1131,45 +1176,46 @@
     * Get Order By OrderId - Old
     * /api/v1/orders/{orderId}
     */
-    public void testGetOrderByOrderIdOld() {
+    @Test
+    public void testGetOrderByOrderIdOld() throws Exception {
         GetOrderByOrderIdOldReq.GetOrderByOrderIdOldReqBuilder builder = GetOrderByOrderIdOldReq.builder();
         builder.orderId(?);
         GetOrderByOrderIdOldReq req = builder.build();
-        GetOrderByOrderIdOldResp resp = this.api.getOrderByOrderIdOld(req);
-        self::assertNotNull($resp->id);
-        self::assertNotNull($resp->symbol);
-        self::assertNotNull($resp->opType);
-        self::assertNotNull($resp->type);
-        self::assertNotNull($resp->side);
-        self::assertNotNull($resp->price);
-        self::assertNotNull($resp->size);
-        self::assertNotNull($resp->funds);
-        self::assertNotNull($resp->dealFunds);
-        self::assertNotNull($resp->dealSize);
-        self::assertNotNull($resp->fee);
-        self::assertNotNull($resp->feeCurrency);
-        self::assertNotNull($resp->stp);
-        self::assertNotNull($resp->stop);
-        self::assertNotNull($resp->stopTriggered);
-        self::assertNotNull($resp->stopPrice);
-        self::assertNotNull($resp->timeInForce);
-        self::assertNotNull($resp->postOnly);
-        self::assertNotNull($resp->hidden);
-        self::assertNotNull($resp->iceberg);
-        self::assertNotNull($resp->visibleSize);
-        self::assertNotNull($resp->cancelAfter);
-        self::assertNotNull($resp->channel);
-        self::assertNotNull($resp->clientOid);
-        self::assertNotNull($resp->remark);
-        self::assertNotNull($resp->tags);
-        self::assertNotNull($resp->isActive);
-        self::assertNotNull($resp->cancelExist);
-        self::assertNotNull($resp->createdAt);
-        self::assertNotNull($resp->tradeType);
-        self::assertNotNull($resp->tax);
-        self::assertNotNull($resp->taxRate);
-        self::assertNotNull($resp->taxCurrency);
-        Logger::info($resp->jsonSerialize($this->serializer));
+        GetOrderByOrderIdOldResp resp = api.getOrderByOrderIdOld(req);
+        Assertions.assertNotNull(resp.getId());
+        Assertions.assertNotNull(resp.getSymbol());
+        Assertions.assertNotNull(resp.getOpType());
+        Assertions.assertNotNull(resp.getType());
+        Assertions.assertNotNull(resp.getSide());
+        Assertions.assertNotNull(resp.getPrice());
+        Assertions.assertNotNull(resp.getSize());
+        Assertions.assertNotNull(resp.getFunds());
+        Assertions.assertNotNull(resp.getDealFunds());
+        Assertions.assertNotNull(resp.getDealSize());
+        Assertions.assertNotNull(resp.getFee());
+        Assertions.assertNotNull(resp.getFeeCurrency());
+        Assertions.assertNotNull(resp.getStp());
+        Assertions.assertNotNull(resp.getStop());
+        Assertions.assertNotNull(resp.getStopTriggered());
+        Assertions.assertNotNull(resp.getStopPrice());
+        Assertions.assertNotNull(resp.getTimeInForce());
+        Assertions.assertNotNull(resp.getPostOnly());
+        Assertions.assertNotNull(resp.getHidden());
+        Assertions.assertNotNull(resp.getIceberg());
+        Assertions.assertNotNull(resp.getVisibleSize());
+        Assertions.assertNotNull(resp.getCancelAfter());
+        Assertions.assertNotNull(resp.getChannel());
+        Assertions.assertNotNull(resp.getClientOid());
+        Assertions.assertNotNull(resp.getRemark());
+        Assertions.assertNotNull(resp.getTags());
+        Assertions.assertNotNull(resp.getIsActive());
+        Assertions.assertNotNull(resp.getCancelExist());
+        Assertions.assertNotNull(resp.getCreatedAt());
+        Assertions.assertNotNull(resp.getTradeType());
+        Assertions.assertNotNull(resp.getTax());
+        Assertions.assertNotNull(resp.getTaxRate());
+        Assertions.assertNotNull(resp.getTaxCurrency());
+        log.info("resp: {}", mapper.writeValueAsString(resp));
     }
 
     /**
@@ -1177,45 +1223,46 @@
     * Get Order By ClientOid - Old
     * /api/v1/order/client-order/{clientOid}
     */
-    public void testGetOrderByClientOidOld() {
+    @Test
+    public void testGetOrderByClientOidOld() throws Exception {
         GetOrderByClientOidOldReq.GetOrderByClientOidOldReqBuilder builder = GetOrderByClientOidOldReq.builder();
         builder.clientOid(?);
         GetOrderByClientOidOldReq req = builder.build();
-        GetOrderByClientOidOldResp resp = this.api.getOrderByClientOidOld(req);
-        self::assertNotNull($resp->id);
-        self::assertNotNull($resp->symbol);
-        self::assertNotNull($resp->opType);
-        self::assertNotNull($resp->type);
-        self::assertNotNull($resp->side);
-        self::assertNotNull($resp->price);
-        self::assertNotNull($resp->size);
-        self::assertNotNull($resp->funds);
-        self::assertNotNull($resp->dealFunds);
-        self::assertNotNull($resp->dealSize);
-        self::assertNotNull($resp->fee);
-        self::assertNotNull($resp->feeCurrency);
-        self::assertNotNull($resp->stp);
-        self::assertNotNull($resp->stop);
-        self::assertNotNull($resp->stopTriggered);
-        self::assertNotNull($resp->stopPrice);
-        self::assertNotNull($resp->timeInForce);
-        self::assertNotNull($resp->postOnly);
-        self::assertNotNull($resp->hidden);
-        self::assertNotNull($resp->iceberg);
-        self::assertNotNull($resp->visibleSize);
-        self::assertNotNull($resp->cancelAfter);
-        self::assertNotNull($resp->channel);
-        self::assertNotNull($resp->clientOid);
-        self::assertNotNull($resp->remark);
-        self::assertNotNull($resp->tags);
-        self::assertNotNull($resp->isActive);
-        self::assertNotNull($resp->cancelExist);
-        self::assertNotNull($resp->createdAt);
-        self::assertNotNull($resp->tradeType);
-        self::assertNotNull($resp->tax);
-        self::assertNotNull($resp->taxRate);
-        self::assertNotNull($resp->taxCurrency);
-        Logger::info($resp->jsonSerialize($this->serializer));
+        GetOrderByClientOidOldResp resp = api.getOrderByClientOidOld(req);
+        Assertions.assertNotNull(resp.getId());
+        Assertions.assertNotNull(resp.getSymbol());
+        Assertions.assertNotNull(resp.getOpType());
+        Assertions.assertNotNull(resp.getType());
+        Assertions.assertNotNull(resp.getSide());
+        Assertions.assertNotNull(resp.getPrice());
+        Assertions.assertNotNull(resp.getSize());
+        Assertions.assertNotNull(resp.getFunds());
+        Assertions.assertNotNull(resp.getDealFunds());
+        Assertions.assertNotNull(resp.getDealSize());
+        Assertions.assertNotNull(resp.getFee());
+        Assertions.assertNotNull(resp.getFeeCurrency());
+        Assertions.assertNotNull(resp.getStp());
+        Assertions.assertNotNull(resp.getStop());
+        Assertions.assertNotNull(resp.getStopTriggered());
+        Assertions.assertNotNull(resp.getStopPrice());
+        Assertions.assertNotNull(resp.getTimeInForce());
+        Assertions.assertNotNull(resp.getPostOnly());
+        Assertions.assertNotNull(resp.getHidden());
+        Assertions.assertNotNull(resp.getIceberg());
+        Assertions.assertNotNull(resp.getVisibleSize());
+        Assertions.assertNotNull(resp.getCancelAfter());
+        Assertions.assertNotNull(resp.getChannel());
+        Assertions.assertNotNull(resp.getClientOid());
+        Assertions.assertNotNull(resp.getRemark());
+        Assertions.assertNotNull(resp.getTags());
+        Assertions.assertNotNull(resp.getIsActive());
+        Assertions.assertNotNull(resp.getCancelExist());
+        Assertions.assertNotNull(resp.getCreatedAt());
+        Assertions.assertNotNull(resp.getTradeType());
+        Assertions.assertNotNull(resp.getTax());
+        Assertions.assertNotNull(resp.getTaxRate());
+        Assertions.assertNotNull(resp.getTaxCurrency());
+        log.info("resp: {}", mapper.writeValueAsString(resp));
     }
 
     /**
@@ -1223,36 +1270,37 @@
     * Get Trade History - Old
     * /api/v1/fills
     */
-    public void testGetTradeHistoryOld() {
+    @Test
+    public void testGetTradeHistoryOld() throws Exception {
         GetTradeHistoryOldReq.GetTradeHistoryOldReqBuilder builder = GetTradeHistoryOldReq.builder();
         builder.symbol(?).orderId(?).side(?).type(?).tradeType(?).startAt(?).endAt(?).currentPage(?).pageSize(?);
         GetTradeHistoryOldReq req = builder.build();
-        GetTradeHistoryOldResp resp = this.api.getTradeHistoryOld(req);
-        self::assertNotNull($resp->currentPage);
-        self::assertNotNull($resp->pageSize);
-        self::assertNotNull($resp->totalNum);
-        self::assertNotNull($resp->totalPage);
-        foreach($resp->items as $item) {
-            self::assertNotNull($item->symbol);
-            self::assertNotNull($item->tradeId);
-            self::assertNotNull($item->orderId);
-            self::assertNotNull($item->counterOrderId);
-            self::assertNotNull($item->side);
-            self::assertNotNull($item->liquidity);
-            self::assertNotNull($item->forceTaker);
-            self::assertNotNull($item->price);
-            self::assertNotNull($item->size);
-            self::assertNotNull($item->funds);
-            self::assertNotNull($item->fee);
-            self::assertNotNull($item->feeRate);
-            self::assertNotNull($item->feeCurrency);
-            self::assertNotNull($item->stop);
-            self::assertNotNull($item->tradeType);
-            self::assertNotNull($item->type);
-            self::assertNotNull($item->createdAt);
-        }
+        GetTradeHistoryOldResp resp = api.getTradeHistoryOld(req);
+        Assertions.assertNotNull(resp.getCurrentPage());
+        Assertions.assertNotNull(resp.getPageSize());
+        Assertions.assertNotNull(resp.getTotalNum());
+        Assertions.assertNotNull(resp.getTotalPage());
+        resp.getItems().forEach( item -> {
+            Assertions.assertNotNull(item.getSymbol());
+            Assertions.assertNotNull(item.getTradeId());
+            Assertions.assertNotNull(item.getOrderId());
+            Assertions.assertNotNull(item.getCounterOrderId());
+            Assertions.assertNotNull(item.getSide());
+            Assertions.assertNotNull(item.getLiquidity());
+            Assertions.assertNotNull(item.getForceTaker());
+            Assertions.assertNotNull(item.getPrice());
+            Assertions.assertNotNull(item.getSize());
+            Assertions.assertNotNull(item.getFunds());
+            Assertions.assertNotNull(item.getFee());
+            Assertions.assertNotNull(item.getFeeRate());
+            Assertions.assertNotNull(item.getFeeCurrency());
+            Assertions.assertNotNull(item.getStop());
+            Assertions.assertNotNull(item.getTradeType());
+            Assertions.assertNotNull(item.getType());
+            Assertions.assertNotNull(item.getCreatedAt());
+        });
 
-        Logger::info($resp->jsonSerialize($this->serializer));
+        log.info("resp: {}", mapper.writeValueAsString(resp));
     }
 
     /**
@@ -1260,31 +1308,32 @@
     * Get Recent Trade History - Old
     * /api/v1/limit/fills
     */
-    public void testGetRecentTradeHistoryOld() {
-        GetRecentTradeHistoryOldResp resp = this.api.getRecentTradeHistoryOld();
-        foreach($resp->data as $item) {
-            self::assertNotNull($item->symbol);
-            self::assertNotNull($item->tradeId);
-            self::assertNotNull($item->orderId);
-            self::assertNotNull($item->counterOrderId);
-            self::assertNotNull($item->side);
-            self::assertNotNull($item->liquidity);
-            self::assertNotNull($item->forceTaker);
-            self::assertNotNull($item->price);
-            self::assertNotNull($item->size);
-            self::assertNotNull($item->funds);
-            self::assertNotNull($item->fee);
-            self::assertNotNull($item->feeRate);
-            self::assertNotNull($item->feeCurrency);
-            self::assertNotNull($item->stop);
-            self::assertNotNull($item->tradeType);
-            self::assertNotNull($item->type);
-            self::assertNotNull($item->createdAt);
-            self::assertNotNull($item->tax);
-            self::assertNotNull($item->taxCurrency);
-            self::assertNotNull($item->taxRate);
-        }
+    @Test
+    public void testGetRecentTradeHistoryOld() throws Exception {
+        GetRecentTradeHistoryOldResp resp = api.getRecentTradeHistoryOld();
+        resp.getData().forEach( item -> {
+            Assertions.assertNotNull(item.getSymbol());
+            Assertions.assertNotNull(item.getTradeId());
+            Assertions.assertNotNull(item.getOrderId());
+            Assertions.assertNotNull(item.getCounterOrderId());
+            Assertions.assertNotNull(item.getSide());
+            Assertions.assertNotNull(item.getLiquidity());
+            Assertions.assertNotNull(item.getForceTaker());
+            Assertions.assertNotNull(item.getPrice());
+            Assertions.assertNotNull(item.getSize());
+            Assertions.assertNotNull(item.getFunds());
+            Assertions.assertNotNull(item.getFee());
+            Assertions.assertNotNull(item.getFeeRate());
+            Assertions.assertNotNull(item.getFeeCurrency());
+            Assertions.assertNotNull(item.getStop());
+            Assertions.assertNotNull(item.getTradeType());
+            Assertions.assertNotNull(item.getType());
+            Assertions.assertNotNull(item.getCreatedAt());
+            Assertions.assertNotNull(item.getTax());
+            Assertions.assertNotNull(item.getTaxCurrency());
+            Assertions.assertNotNull(item.getTaxRate());
+        });
 
-        Logger::info($resp->jsonSerialize($this->serializer));
+        log.info("resp: {}", mapper.writeValueAsString(resp));
     }
 

@@ -4,14 +4,15 @@
     * Borrow
     * /api/v3/margin/borrow
     */
-    public void testBorrow() {
+    @Test
+    public void testBorrow() throws Exception {
         BorrowReq.BorrowReqBuilder builder = BorrowReq.builder();
         builder.currency(?).size(?).timeInForce(?).symbol(?).isIsolated(?).isHf(?);
         BorrowReq req = builder.build();
-        BorrowResp resp = this.api.borrow(req);
-        self::assertNotNull($resp->orderNo);
-        self::assertNotNull($resp->actualSize);
-        Logger::info($resp->jsonSerialize($this->serializer));
+        BorrowResp resp = api.borrow(req);
+        Assertions.assertNotNull(resp.getOrderNo());
+        Assertions.assertNotNull(resp.getActualSize());
+        log.info("resp: {}", mapper.writeValueAsString(resp));
     }
 
     /**
@@ -19,27 +20,28 @@
     * Get Borrow History
     * /api/v3/margin/borrow
     */
-    public void testGetBorrowHistory() {
+    @Test
+    public void testGetBorrowHistory() throws Exception {
         GetBorrowHistoryReq.GetBorrowHistoryReqBuilder builder = GetBorrowHistoryReq.builder();
         builder.currency(?).isIsolated(?).symbol(?).orderNo(?).startTime(?).endTime(?).currentPage(?).pageSize(?);
         GetBorrowHistoryReq req = builder.build();
-        GetBorrowHistoryResp resp = this.api.getBorrowHistory(req);
-        self::assertNotNull($resp->timestamp);
-        self::assertNotNull($resp->currentPage);
-        self::assertNotNull($resp->pageSize);
-        self::assertNotNull($resp->totalNum);
-        self::assertNotNull($resp->totalPage);
-        foreach($resp->items as $item) {
-            self::assertNotNull($item->orderNo);
-            self::assertNotNull($item->symbol);
-            self::assertNotNull($item->currency);
-            self::assertNotNull($item->size);
-            self::assertNotNull($item->actualSize);
-            self::assertNotNull($item->status);
-            self::assertNotNull($item->createdTime);
-        }
+        GetBorrowHistoryResp resp = api.getBorrowHistory(req);
+        Assertions.assertNotNull(resp.getTimestamp());
+        Assertions.assertNotNull(resp.getCurrentPage());
+        Assertions.assertNotNull(resp.getPageSize());
+        Assertions.assertNotNull(resp.getTotalNum());
+        Assertions.assertNotNull(resp.getTotalPage());
+        resp.getItems().forEach( item -> {
+            Assertions.assertNotNull(item.getOrderNo());
+            Assertions.assertNotNull(item.getSymbol());
+            Assertions.assertNotNull(item.getCurrency());
+            Assertions.assertNotNull(item.getSize());
+            Assertions.assertNotNull(item.getActualSize());
+            Assertions.assertNotNull(item.getStatus());
+            Assertions.assertNotNull(item.getCreatedTime());
+        });
 
-        Logger::info($resp->jsonSerialize($this->serializer));
+        log.info("resp: {}", mapper.writeValueAsString(resp));
     }
 
     /**
@@ -47,15 +49,16 @@
     * Repay
     * /api/v3/margin/repay
     */
-    public void testRepay() {
+    @Test
+    public void testRepay() throws Exception {
         RepayReq.RepayReqBuilder builder = RepayReq.builder();
         builder.currency(?).size(?).symbol(?).isIsolated(?).isHf(?);
         RepayReq req = builder.build();
-        RepayResp resp = this.api.repay(req);
-        self::assertNotNull($resp->timestamp);
-        self::assertNotNull($resp->orderNo);
-        self::assertNotNull($resp->actualSize);
-        Logger::info($resp->jsonSerialize($this->serializer));
+        RepayResp resp = api.repay(req);
+        Assertions.assertNotNull(resp.getTimestamp());
+        Assertions.assertNotNull(resp.getOrderNo());
+        Assertions.assertNotNull(resp.getActualSize());
+        log.info("resp: {}", mapper.writeValueAsString(resp));
     }
 
     /**
@@ -63,28 +66,29 @@
     * Get Repay History
     * /api/v3/margin/repay
     */
-    public void testGetRepayHistory() {
+    @Test
+    public void testGetRepayHistory() throws Exception {
         GetRepayHistoryReq.GetRepayHistoryReqBuilder builder = GetRepayHistoryReq.builder();
         builder.currency(?).isIsolated(?).symbol(?).orderNo(?).startTime(?).endTime(?).currentPage(?).pageSize(?);
         GetRepayHistoryReq req = builder.build();
-        GetRepayHistoryResp resp = this.api.getRepayHistory(req);
-        self::assertNotNull($resp->timestamp);
-        self::assertNotNull($resp->currentPage);
-        self::assertNotNull($resp->pageSize);
-        self::assertNotNull($resp->totalNum);
-        self::assertNotNull($resp->totalPage);
-        foreach($resp->items as $item) {
-            self::assertNotNull($item->orderNo);
-            self::assertNotNull($item->symbol);
-            self::assertNotNull($item->currency);
-            self::assertNotNull($item->size);
-            self::assertNotNull($item->principal);
-            self::assertNotNull($item->interest);
-            self::assertNotNull($item->status);
-            self::assertNotNull($item->createdTime);
-        }
+        GetRepayHistoryResp resp = api.getRepayHistory(req);
+        Assertions.assertNotNull(resp.getTimestamp());
+        Assertions.assertNotNull(resp.getCurrentPage());
+        Assertions.assertNotNull(resp.getPageSize());
+        Assertions.assertNotNull(resp.getTotalNum());
+        Assertions.assertNotNull(resp.getTotalPage());
+        resp.getItems().forEach( item -> {
+            Assertions.assertNotNull(item.getOrderNo());
+            Assertions.assertNotNull(item.getSymbol());
+            Assertions.assertNotNull(item.getCurrency());
+            Assertions.assertNotNull(item.getSize());
+            Assertions.assertNotNull(item.getPrincipal());
+            Assertions.assertNotNull(item.getInterest());
+            Assertions.assertNotNull(item.getStatus());
+            Assertions.assertNotNull(item.getCreatedTime());
+        });
 
-        Logger::info($resp->jsonSerialize($this->serializer));
+        log.info("resp: {}", mapper.writeValueAsString(resp));
     }
 
     /**
@@ -92,24 +96,25 @@
     * Get Interest History.
     * /api/v3/margin/interest
     */
-    public void testGetInterestHistory() {
+    @Test
+    public void testGetInterestHistory() throws Exception {
         GetInterestHistoryReq.GetInterestHistoryReqBuilder builder = GetInterestHistoryReq.builder();
         builder.currency(?).isIsolated(?).symbol(?).startTime(?).endTime(?).currentPage(?).pageSize(?);
         GetInterestHistoryReq req = builder.build();
-        GetInterestHistoryResp resp = this.api.getInterestHistory(req);
-        self::assertNotNull($resp->timestamp);
-        self::assertNotNull($resp->currentPage);
-        self::assertNotNull($resp->pageSize);
-        self::assertNotNull($resp->totalNum);
-        self::assertNotNull($resp->totalPage);
-        foreach($resp->items as $item) {
-            self::assertNotNull($item->currency);
-            self::assertNotNull($item->dayRatio);
-            self::assertNotNull($item->interestAmount);
-            self::assertNotNull($item->createdTime);
-        }
+        GetInterestHistoryResp resp = api.getInterestHistory(req);
+        Assertions.assertNotNull(resp.getTimestamp());
+        Assertions.assertNotNull(resp.getCurrentPage());
+        Assertions.assertNotNull(resp.getPageSize());
+        Assertions.assertNotNull(resp.getTotalNum());
+        Assertions.assertNotNull(resp.getTotalPage());
+        resp.getItems().forEach( item -> {
+            Assertions.assertNotNull(item.getCurrency());
+            Assertions.assertNotNull(item.getDayRatio());
+            Assertions.assertNotNull(item.getInterestAmount());
+            Assertions.assertNotNull(item.getCreatedTime());
+        });
 
-        Logger::info($resp->jsonSerialize($this->serializer));
+        log.info("resp: {}", mapper.writeValueAsString(resp));
     }
 
     /**
@@ -117,12 +122,13 @@
     * Modify Leverage
     * /api/v3/position/update-user-leverage
     */
-    public void testModifyLeverage() {
+    @Test
+    public void testModifyLeverage() throws Exception {
         ModifyLeverageReq.ModifyLeverageReqBuilder builder = ModifyLeverageReq.builder();
         builder.symbol(?).isIsolated(?).leverage(?);
         ModifyLeverageReq req = builder.build();
-        ModifyLeverageResp resp = this.api.modifyLeverage(req);
-        self::assertNotNull($resp->data);
-        Logger::info($resp->jsonSerialize($this->serializer));
+        ModifyLeverageResp resp = api.modifyLeverage(req);
+        Assertions.assertNotNull(resp.getData());
+        log.info("resp: {}", mapper.writeValueAsString(resp));
     }
 

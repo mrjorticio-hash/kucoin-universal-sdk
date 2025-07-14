@@ -4,14 +4,15 @@
     * Get Basic Fee - Spot/Margin
     * /api/v1/base-fee
     */
-    public void testGetBasicFee() {
+    @Test
+    public void testGetBasicFee() throws Exception {
         GetBasicFeeReq.GetBasicFeeReqBuilder builder = GetBasicFeeReq.builder();
         builder.currencyType(?);
         GetBasicFeeReq req = builder.build();
-        GetBasicFeeResp resp = this.api.getBasicFee(req);
-        self::assertNotNull($resp->takerFeeRate);
-        self::assertNotNull($resp->makerFeeRate);
-        Logger::info($resp->jsonSerialize($this->serializer));
+        GetBasicFeeResp resp = api.getBasicFee(req);
+        Assertions.assertNotNull(resp.getTakerFeeRate());
+        Assertions.assertNotNull(resp.getMakerFeeRate());
+        log.info("resp: {}", mapper.writeValueAsString(resp));
     }
 
     /**
@@ -19,20 +20,21 @@
     * Get Actual Fee - Spot/Margin
     * /api/v1/trade-fees
     */
-    public void testGetSpotActualFee() {
+    @Test
+    public void testGetSpotActualFee() throws Exception {
         GetSpotActualFeeReq.GetSpotActualFeeReqBuilder builder = GetSpotActualFeeReq.builder();
         builder.symbols(?);
         GetSpotActualFeeReq req = builder.build();
-        GetSpotActualFeeResp resp = this.api.getSpotActualFee(req);
-        foreach($resp->data as $item) {
-            self::assertNotNull($item->symbol);
-            self::assertNotNull($item->takerFeeRate);
-            self::assertNotNull($item->makerFeeRate);
-            self::assertNotNull($item->sellTaxRate);
-            self::assertNotNull($item->buyTaxRate);
-        }
+        GetSpotActualFeeResp resp = api.getSpotActualFee(req);
+        resp.getData().forEach( item -> {
+            Assertions.assertNotNull(item.getSymbol());
+            Assertions.assertNotNull(item.getTakerFeeRate());
+            Assertions.assertNotNull(item.getMakerFeeRate());
+            Assertions.assertNotNull(item.getSellTaxRate());
+            Assertions.assertNotNull(item.getBuyTaxRate());
+        });
 
-        Logger::info($resp->jsonSerialize($this->serializer));
+        log.info("resp: {}", mapper.writeValueAsString(resp));
     }
 
     /**
@@ -40,14 +42,15 @@
     * Get Actual Fee - Futures
     * /api/v1/trade-fees
     */
-    public void testGetFuturesActualFee() {
+    @Test
+    public void testGetFuturesActualFee() throws Exception {
         GetFuturesActualFeeReq.GetFuturesActualFeeReqBuilder builder = GetFuturesActualFeeReq.builder();
         builder.symbol(?);
         GetFuturesActualFeeReq req = builder.build();
-        GetFuturesActualFeeResp resp = this.api.getFuturesActualFee(req);
-        self::assertNotNull($resp->symbol);
-        self::assertNotNull($resp->takerFeeRate);
-        self::assertNotNull($resp->makerFeeRate);
-        Logger::info($resp->jsonSerialize($this->serializer));
+        GetFuturesActualFeeResp resp = api.getFuturesActualFee(req);
+        Assertions.assertNotNull(resp.getSymbol());
+        Assertions.assertNotNull(resp.getTakerFeeRate());
+        Assertions.assertNotNull(resp.getMakerFeeRate());
+        log.info("resp: {}", mapper.writeValueAsString(resp));
     }
 

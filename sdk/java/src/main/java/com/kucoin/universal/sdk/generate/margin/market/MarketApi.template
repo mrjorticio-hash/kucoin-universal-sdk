@@ -4,32 +4,33 @@
     * Get Symbols - Cross Margin
     * /api/v3/margin/symbols
     */
-    public void testGetCrossMarginSymbols() {
+    @Test
+    public void testGetCrossMarginSymbols() throws Exception {
         GetCrossMarginSymbolsReq.GetCrossMarginSymbolsReqBuilder builder = GetCrossMarginSymbolsReq.builder();
         builder.symbol(?);
         GetCrossMarginSymbolsReq req = builder.build();
-        GetCrossMarginSymbolsResp resp = this.api.getCrossMarginSymbols(req);
-        self::assertNotNull($resp->timestamp);
-        foreach($resp->items as $item) {
-            self::assertNotNull($item->symbol);
-            self::assertNotNull($item->name);
-            self::assertNotNull($item->enableTrading);
-            self::assertNotNull($item->market);
-            self::assertNotNull($item->baseCurrency);
-            self::assertNotNull($item->quoteCurrency);
-            self::assertNotNull($item->baseIncrement);
-            self::assertNotNull($item->baseMinSize);
-            self::assertNotNull($item->quoteIncrement);
-            self::assertNotNull($item->quoteMinSize);
-            self::assertNotNull($item->baseMaxSize);
-            self::assertNotNull($item->quoteMaxSize);
-            self::assertNotNull($item->priceIncrement);
-            self::assertNotNull($item->feeCurrency);
-            self::assertNotNull($item->priceLimitRate);
-            self::assertNotNull($item->minFunds);
-        }
+        GetCrossMarginSymbolsResp resp = api.getCrossMarginSymbols(req);
+        Assertions.assertNotNull(resp.getTimestamp());
+        resp.getItems().forEach( item -> {
+            Assertions.assertNotNull(item.getSymbol());
+            Assertions.assertNotNull(item.getName());
+            Assertions.assertNotNull(item.getEnableTrading());
+            Assertions.assertNotNull(item.getMarket());
+            Assertions.assertNotNull(item.getBaseCurrency());
+            Assertions.assertNotNull(item.getQuoteCurrency());
+            Assertions.assertNotNull(item.getBaseIncrement());
+            Assertions.assertNotNull(item.getBaseMinSize());
+            Assertions.assertNotNull(item.getQuoteIncrement());
+            Assertions.assertNotNull(item.getQuoteMinSize());
+            Assertions.assertNotNull(item.getBaseMaxSize());
+            Assertions.assertNotNull(item.getQuoteMaxSize());
+            Assertions.assertNotNull(item.getPriceIncrement());
+            Assertions.assertNotNull(item.getFeeCurrency());
+            Assertions.assertNotNull(item.getPriceLimitRate());
+            Assertions.assertNotNull(item.getMinFunds());
+        });
 
-        Logger::info($resp->jsonSerialize($this->serializer));
+        log.info("resp: {}", mapper.writeValueAsString(resp));
     }
 
     /**
@@ -37,21 +38,22 @@
     * Get ETF Info
     * /api/v3/etf/info
     */
-    public void testGetETFInfo() {
+    @Test
+    public void testGetETFInfo() throws Exception {
         GetETFInfoReq.GetETFInfoReqBuilder builder = GetETFInfoReq.builder();
         builder.currency(?);
         GetETFInfoReq req = builder.build();
-        GetETFInfoResp resp = this.api.getETFInfo(req);
-        foreach($resp->data as $item) {
-            self::assertNotNull($item->currency);
-            self::assertNotNull($item->netAsset);
-            self::assertNotNull($item->targetLeverage);
-            self::assertNotNull($item->actualLeverage);
-            self::assertNotNull($item->issuedSize);
-            self::assertNotNull($item->basket);
-        }
+        GetETFInfoResp resp = api.getETFInfo(req);
+        resp.getData().forEach( item -> {
+            Assertions.assertNotNull(item.getCurrency());
+            Assertions.assertNotNull(item.getNetAsset());
+            Assertions.assertNotNull(item.getTargetLeverage());
+            Assertions.assertNotNull(item.getActualLeverage());
+            Assertions.assertNotNull(item.getIssuedSize());
+            Assertions.assertNotNull(item.getBasket());
+        });
 
-        Logger::info($resp->jsonSerialize($this->serializer));
+        log.info("resp: {}", mapper.writeValueAsString(resp));
     }
 
     /**
@@ -59,15 +61,16 @@
     * Get Mark Price Detail
     * /api/v1/mark-price/{symbol}/current
     */
-    public void testGetMarkPriceDetail() {
+    @Test
+    public void testGetMarkPriceDetail() throws Exception {
         GetMarkPriceDetailReq.GetMarkPriceDetailReqBuilder builder = GetMarkPriceDetailReq.builder();
         builder.symbol(?);
         GetMarkPriceDetailReq req = builder.build();
-        GetMarkPriceDetailResp resp = this.api.getMarkPriceDetail(req);
-        self::assertNotNull($resp->symbol);
-        self::assertNotNull($resp->timePoint);
-        self::assertNotNull($resp->value);
-        Logger::info($resp->jsonSerialize($this->serializer));
+        GetMarkPriceDetailResp resp = api.getMarkPriceDetail(req);
+        Assertions.assertNotNull(resp.getSymbol());
+        Assertions.assertNotNull(resp.getTimePoint());
+        Assertions.assertNotNull(resp.getValue());
+        log.info("resp: {}", mapper.writeValueAsString(resp));
     }
 
     /**
@@ -75,15 +78,16 @@
     * Get Margin Config
     * /api/v1/margin/config
     */
-    public void testGetMarginConfig() {
-        GetMarginConfigResp resp = this.api.getMarginConfig();
-        foreach($resp->currencyList as $item) {
-        }
+    @Test
+    public void testGetMarginConfig() throws Exception {
+        GetMarginConfigResp resp = api.getMarginConfig();
+        resp.getCurrencyList().forEach( item -> {
+        });
 
-        self::assertNotNull($resp->maxLeverage);
-        self::assertNotNull($resp->warningDebtRatio);
-        self::assertNotNull($resp->liqDebtRatio);
-        Logger::info($resp->jsonSerialize($this->serializer));
+        Assertions.assertNotNull(resp.getMaxLeverage());
+        Assertions.assertNotNull(resp.getWarningDebtRatio());
+        Assertions.assertNotNull(resp.getLiqDebtRatio());
+        log.info("resp: {}", mapper.writeValueAsString(resp));
     }
 
     /**
@@ -91,15 +95,16 @@
     * Get Mark Price List
     * /api/v3/mark-price/all-symbols
     */
-    public void testGetMarkPriceList() {
-        GetMarkPriceListResp resp = this.api.getMarkPriceList();
-        foreach($resp->data as $item) {
-            self::assertNotNull($item->symbol);
-            self::assertNotNull($item->timePoint);
-            self::assertNotNull($item->value);
-        }
+    @Test
+    public void testGetMarkPriceList() throws Exception {
+        GetMarkPriceListResp resp = api.getMarkPriceList();
+        resp.getData().forEach( item -> {
+            Assertions.assertNotNull(item.getSymbol());
+            Assertions.assertNotNull(item.getTimePoint());
+            Assertions.assertNotNull(item.getValue());
+        });
 
-        Logger::info($resp->jsonSerialize($this->serializer));
+        log.info("resp: {}", mapper.writeValueAsString(resp));
     }
 
     /**
@@ -107,25 +112,26 @@
     * Get Symbols - Isolated Margin
     * /api/v1/isolated/symbols
     */
-    public void testGetIsolatedMarginSymbols() {
-        GetIsolatedMarginSymbolsResp resp = this.api.getIsolatedMarginSymbols();
-        foreach($resp->data as $item) {
-            self::assertNotNull($item->symbol);
-            self::assertNotNull($item->symbolName);
-            self::assertNotNull($item->baseCurrency);
-            self::assertNotNull($item->quoteCurrency);
-            self::assertNotNull($item->maxLeverage);
-            self::assertNotNull($item->flDebtRatio);
-            self::assertNotNull($item->tradeEnable);
-            self::assertNotNull($item->autoRenewMaxDebtRatio);
-            self::assertNotNull($item->baseBorrowEnable);
-            self::assertNotNull($item->quoteBorrowEnable);
-            self::assertNotNull($item->baseTransferInEnable);
-            self::assertNotNull($item->quoteTransferInEnable);
-            self::assertNotNull($item->baseBorrowCoefficient);
-            self::assertNotNull($item->quoteBorrowCoefficient);
-        }
+    @Test
+    public void testGetIsolatedMarginSymbols() throws Exception {
+        GetIsolatedMarginSymbolsResp resp = api.getIsolatedMarginSymbols();
+        resp.getData().forEach( item -> {
+            Assertions.assertNotNull(item.getSymbol());
+            Assertions.assertNotNull(item.getSymbolName());
+            Assertions.assertNotNull(item.getBaseCurrency());
+            Assertions.assertNotNull(item.getQuoteCurrency());
+            Assertions.assertNotNull(item.getMaxLeverage());
+            Assertions.assertNotNull(item.getFlDebtRatio());
+            Assertions.assertNotNull(item.getTradeEnable());
+            Assertions.assertNotNull(item.getAutoRenewMaxDebtRatio());
+            Assertions.assertNotNull(item.getBaseBorrowEnable());
+            Assertions.assertNotNull(item.getQuoteBorrowEnable());
+            Assertions.assertNotNull(item.getBaseTransferInEnable());
+            Assertions.assertNotNull(item.getQuoteTransferInEnable());
+            Assertions.assertNotNull(item.getBaseBorrowCoefficient());
+            Assertions.assertNotNull(item.getQuoteBorrowCoefficient());
+        });
 
-        Logger::info($resp->jsonSerialize($this->serializer));
+        log.info("resp: {}", mapper.writeValueAsString(resp));
     }
 

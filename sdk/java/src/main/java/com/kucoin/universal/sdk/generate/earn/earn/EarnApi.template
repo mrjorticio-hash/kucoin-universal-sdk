@@ -4,14 +4,15 @@
     * Purchase
     * /api/v1/earn/orders
     */
-    public void testPurchase() {
+    @Test
+    public void testPurchase() throws Exception {
         PurchaseReq.PurchaseReqBuilder builder = PurchaseReq.builder();
         builder.productId(?).amount(?).accountType(?);
         PurchaseReq req = builder.build();
-        PurchaseResp resp = this.api.purchase(req);
-        self::assertNotNull($resp->orderId);
-        self::assertNotNull($resp->orderTxId);
-        Logger::info($resp->jsonSerialize($this->serializer));
+        PurchaseResp resp = api.purchase(req);
+        Assertions.assertNotNull(resp.getOrderId());
+        Assertions.assertNotNull(resp.getOrderTxId());
+        log.info("resp: {}", mapper.writeValueAsString(resp));
     }
 
     /**
@@ -19,19 +20,20 @@
     * Get Redeem Preview
     * /api/v1/earn/redeem-preview
     */
-    public void testGetRedeemPreview() {
+    @Test
+    public void testGetRedeemPreview() throws Exception {
         GetRedeemPreviewReq.GetRedeemPreviewReqBuilder builder = GetRedeemPreviewReq.builder();
         builder.orderId(?).fromAccountType(?);
         GetRedeemPreviewReq req = builder.build();
-        GetRedeemPreviewResp resp = this.api.getRedeemPreview(req);
-        self::assertNotNull($resp->currency);
-        self::assertNotNull($resp->redeemAmount);
-        self::assertNotNull($resp->penaltyInterestAmount);
-        self::assertNotNull($resp->redeemPeriod);
-        self::assertNotNull($resp->deliverTime);
-        self::assertNotNull($resp->manualRedeemable);
-        self::assertNotNull($resp->redeemAll);
-        Logger::info($resp->jsonSerialize($this->serializer));
+        GetRedeemPreviewResp resp = api.getRedeemPreview(req);
+        Assertions.assertNotNull(resp.getCurrency());
+        Assertions.assertNotNull(resp.getRedeemAmount());
+        Assertions.assertNotNull(resp.getPenaltyInterestAmount());
+        Assertions.assertNotNull(resp.getRedeemPeriod());
+        Assertions.assertNotNull(resp.getDeliverTime());
+        Assertions.assertNotNull(resp.getManualRedeemable());
+        Assertions.assertNotNull(resp.getRedeemAll());
+        log.info("resp: {}", mapper.writeValueAsString(resp));
     }
 
     /**
@@ -39,16 +41,17 @@
     * Redeem
     * /api/v1/earn/orders
     */
-    public void testRedeem() {
+    @Test
+    public void testRedeem() throws Exception {
         RedeemReq.RedeemReqBuilder builder = RedeemReq.builder();
         builder.orderId(?).amount(?).fromAccountType(?).confirmPunishRedeem(?);
         RedeemReq req = builder.build();
-        RedeemResp resp = this.api.redeem(req);
-        self::assertNotNull($resp->orderTxId);
-        self::assertNotNull($resp->deliverTime);
-        self::assertNotNull($resp->status);
-        self::assertNotNull($resp->amount);
-        Logger::info($resp->jsonSerialize($this->serializer));
+        RedeemResp resp = api.redeem(req);
+        Assertions.assertNotNull(resp.getOrderTxId());
+        Assertions.assertNotNull(resp.getDeliverTime());
+        Assertions.assertNotNull(resp.getStatus());
+        Assertions.assertNotNull(resp.getAmount());
+        log.info("resp: {}", mapper.writeValueAsString(resp));
     }
 
     /**
@@ -56,38 +59,39 @@
     * Get Savings Products
     * /api/v1/earn/saving/products
     */
-    public void testGetSavingsProducts() {
+    @Test
+    public void testGetSavingsProducts() throws Exception {
         GetSavingsProductsReq.GetSavingsProductsReqBuilder builder = GetSavingsProductsReq.builder();
         builder.currency(?);
         GetSavingsProductsReq req = builder.build();
-        GetSavingsProductsResp resp = this.api.getSavingsProducts(req);
-        foreach($resp->data as $item) {
-            self::assertNotNull($item->id);
-            self::assertNotNull($item->currency);
-            self::assertNotNull($item->category);
-            self::assertNotNull($item->type);
-            self::assertNotNull($item->precision);
-            self::assertNotNull($item->productUpperLimit);
-            self::assertNotNull($item->userUpperLimit);
-            self::assertNotNull($item->userLowerLimit);
-            self::assertNotNull($item->redeemPeriod);
-            self::assertNotNull($item->lockStartTime);
-            self::assertNotNull($item->lockEndTime);
-            self::assertNotNull($item->applyStartTime);
-            self::assertNotNull($item->applyEndTime);
-            self::assertNotNull($item->returnRate);
-            self::assertNotNull($item->incomeCurrency);
-            self::assertNotNull($item->earlyRedeemSupported);
-            self::assertNotNull($item->productRemainAmount);
-            self::assertNotNull($item->status);
-            self::assertNotNull($item->redeemType);
-            self::assertNotNull($item->incomeReleaseType);
-            self::assertNotNull($item->interestDate);
-            self::assertNotNull($item->duration);
-            self::assertNotNull($item->newUserOnly);
-        }
+        GetSavingsProductsResp resp = api.getSavingsProducts(req);
+        resp.getData().forEach( item -> {
+            Assertions.assertNotNull(item.getId());
+            Assertions.assertNotNull(item.getCurrency());
+            Assertions.assertNotNull(item.getCategory());
+            Assertions.assertNotNull(item.getType());
+            Assertions.assertNotNull(item.getPrecision());
+            Assertions.assertNotNull(item.getProductUpperLimit());
+            Assertions.assertNotNull(item.getUserUpperLimit());
+            Assertions.assertNotNull(item.getUserLowerLimit());
+            Assertions.assertNotNull(item.getRedeemPeriod());
+            Assertions.assertNotNull(item.getLockStartTime());
+            Assertions.assertNotNull(item.getLockEndTime());
+            Assertions.assertNotNull(item.getApplyStartTime());
+            Assertions.assertNotNull(item.getApplyEndTime());
+            Assertions.assertNotNull(item.getReturnRate());
+            Assertions.assertNotNull(item.getIncomeCurrency());
+            Assertions.assertNotNull(item.getEarlyRedeemSupported());
+            Assertions.assertNotNull(item.getProductRemainAmount());
+            Assertions.assertNotNull(item.getStatus());
+            Assertions.assertNotNull(item.getRedeemType());
+            Assertions.assertNotNull(item.getIncomeReleaseType());
+            Assertions.assertNotNull(item.getInterestDate());
+            Assertions.assertNotNull(item.getDuration());
+            Assertions.assertNotNull(item.getNewUserOnly());
+        });
 
-        Logger::info($resp->jsonSerialize($this->serializer));
+        log.info("resp: {}", mapper.writeValueAsString(resp));
     }
 
     /**
@@ -95,38 +99,39 @@
     * Get Promotion Products
     * /api/v1/earn/promotion/products
     */
-    public void testGetPromotionProducts() {
+    @Test
+    public void testGetPromotionProducts() throws Exception {
         GetPromotionProductsReq.GetPromotionProductsReqBuilder builder = GetPromotionProductsReq.builder();
         builder.currency(?);
         GetPromotionProductsReq req = builder.build();
-        GetPromotionProductsResp resp = this.api.getPromotionProducts(req);
-        foreach($resp->data as $item) {
-            self::assertNotNull($item->id);
-            self::assertNotNull($item->currency);
-            self::assertNotNull($item->category);
-            self::assertNotNull($item->type);
-            self::assertNotNull($item->precision);
-            self::assertNotNull($item->productUpperLimit);
-            self::assertNotNull($item->userUpperLimit);
-            self::assertNotNull($item->userLowerLimit);
-            self::assertNotNull($item->redeemPeriod);
-            self::assertNotNull($item->lockStartTime);
-            self::assertNotNull($item->lockEndTime);
-            self::assertNotNull($item->applyStartTime);
-            self::assertNotNull($item->applyEndTime);
-            self::assertNotNull($item->returnRate);
-            self::assertNotNull($item->incomeCurrency);
-            self::assertNotNull($item->earlyRedeemSupported);
-            self::assertNotNull($item->productRemainAmount);
-            self::assertNotNull($item->status);
-            self::assertNotNull($item->redeemType);
-            self::assertNotNull($item->incomeReleaseType);
-            self::assertNotNull($item->interestDate);
-            self::assertNotNull($item->duration);
-            self::assertNotNull($item->newUserOnly);
-        }
+        GetPromotionProductsResp resp = api.getPromotionProducts(req);
+        resp.getData().forEach( item -> {
+            Assertions.assertNotNull(item.getId());
+            Assertions.assertNotNull(item.getCurrency());
+            Assertions.assertNotNull(item.getCategory());
+            Assertions.assertNotNull(item.getType());
+            Assertions.assertNotNull(item.getPrecision());
+            Assertions.assertNotNull(item.getProductUpperLimit());
+            Assertions.assertNotNull(item.getUserUpperLimit());
+            Assertions.assertNotNull(item.getUserLowerLimit());
+            Assertions.assertNotNull(item.getRedeemPeriod());
+            Assertions.assertNotNull(item.getLockStartTime());
+            Assertions.assertNotNull(item.getLockEndTime());
+            Assertions.assertNotNull(item.getApplyStartTime());
+            Assertions.assertNotNull(item.getApplyEndTime());
+            Assertions.assertNotNull(item.getReturnRate());
+            Assertions.assertNotNull(item.getIncomeCurrency());
+            Assertions.assertNotNull(item.getEarlyRedeemSupported());
+            Assertions.assertNotNull(item.getProductRemainAmount());
+            Assertions.assertNotNull(item.getStatus());
+            Assertions.assertNotNull(item.getRedeemType());
+            Assertions.assertNotNull(item.getIncomeReleaseType());
+            Assertions.assertNotNull(item.getInterestDate());
+            Assertions.assertNotNull(item.getDuration());
+            Assertions.assertNotNull(item.getNewUserOnly());
+        });
 
-        Logger::info($resp->jsonSerialize($this->serializer));
+        log.info("resp: {}", mapper.writeValueAsString(resp));
     }
 
     /**
@@ -134,38 +139,39 @@
     * Get Staking Products
     * /api/v1/earn/staking/products
     */
-    public void testGetStakingProducts() {
+    @Test
+    public void testGetStakingProducts() throws Exception {
         GetStakingProductsReq.GetStakingProductsReqBuilder builder = GetStakingProductsReq.builder();
         builder.currency(?);
         GetStakingProductsReq req = builder.build();
-        GetStakingProductsResp resp = this.api.getStakingProducts(req);
-        foreach($resp->data as $item) {
-            self::assertNotNull($item->id);
-            self::assertNotNull($item->currency);
-            self::assertNotNull($item->category);
-            self::assertNotNull($item->type);
-            self::assertNotNull($item->precision);
-            self::assertNotNull($item->productUpperLimit);
-            self::assertNotNull($item->userUpperLimit);
-            self::assertNotNull($item->userLowerLimit);
-            self::assertNotNull($item->redeemPeriod);
-            self::assertNotNull($item->lockStartTime);
-            self::assertNotNull($item->lockEndTime);
-            self::assertNotNull($item->applyStartTime);
-            self::assertNotNull($item->applyEndTime);
-            self::assertNotNull($item->returnRate);
-            self::assertNotNull($item->incomeCurrency);
-            self::assertNotNull($item->earlyRedeemSupported);
-            self::assertNotNull($item->productRemainAmount);
-            self::assertNotNull($item->status);
-            self::assertNotNull($item->redeemType);
-            self::assertNotNull($item->incomeReleaseType);
-            self::assertNotNull($item->interestDate);
-            self::assertNotNull($item->duration);
-            self::assertNotNull($item->newUserOnly);
-        }
+        GetStakingProductsResp resp = api.getStakingProducts(req);
+        resp.getData().forEach( item -> {
+            Assertions.assertNotNull(item.getId());
+            Assertions.assertNotNull(item.getCurrency());
+            Assertions.assertNotNull(item.getCategory());
+            Assertions.assertNotNull(item.getType());
+            Assertions.assertNotNull(item.getPrecision());
+            Assertions.assertNotNull(item.getProductUpperLimit());
+            Assertions.assertNotNull(item.getUserUpperLimit());
+            Assertions.assertNotNull(item.getUserLowerLimit());
+            Assertions.assertNotNull(item.getRedeemPeriod());
+            Assertions.assertNotNull(item.getLockStartTime());
+            Assertions.assertNotNull(item.getLockEndTime());
+            Assertions.assertNotNull(item.getApplyStartTime());
+            Assertions.assertNotNull(item.getApplyEndTime());
+            Assertions.assertNotNull(item.getReturnRate());
+            Assertions.assertNotNull(item.getIncomeCurrency());
+            Assertions.assertNotNull(item.getEarlyRedeemSupported());
+            Assertions.assertNotNull(item.getProductRemainAmount());
+            Assertions.assertNotNull(item.getStatus());
+            Assertions.assertNotNull(item.getRedeemType());
+            Assertions.assertNotNull(item.getIncomeReleaseType());
+            Assertions.assertNotNull(item.getInterestDate());
+            Assertions.assertNotNull(item.getDuration());
+            Assertions.assertNotNull(item.getNewUserOnly());
+        });
 
-        Logger::info($resp->jsonSerialize($this->serializer));
+        log.info("resp: {}", mapper.writeValueAsString(resp));
     }
 
     /**
@@ -173,38 +179,39 @@
     * Get KCS Staking Products
     * /api/v1/earn/kcs-staking/products
     */
-    public void testGetKcsStakingProducts() {
+    @Test
+    public void testGetKcsStakingProducts() throws Exception {
         GetKcsStakingProductsReq.GetKcsStakingProductsReqBuilder builder = GetKcsStakingProductsReq.builder();
         builder.currency(?);
         GetKcsStakingProductsReq req = builder.build();
-        GetKcsStakingProductsResp resp = this.api.getKcsStakingProducts(req);
-        foreach($resp->data as $item) {
-            self::assertNotNull($item->id);
-            self::assertNotNull($item->currency);
-            self::assertNotNull($item->category);
-            self::assertNotNull($item->type);
-            self::assertNotNull($item->precision);
-            self::assertNotNull($item->productUpperLimit);
-            self::assertNotNull($item->userUpperLimit);
-            self::assertNotNull($item->userLowerLimit);
-            self::assertNotNull($item->redeemPeriod);
-            self::assertNotNull($item->lockStartTime);
-            self::assertNotNull($item->lockEndTime);
-            self::assertNotNull($item->applyStartTime);
-            self::assertNotNull($item->applyEndTime);
-            self::assertNotNull($item->returnRate);
-            self::assertNotNull($item->incomeCurrency);
-            self::assertNotNull($item->earlyRedeemSupported);
-            self::assertNotNull($item->productRemainAmount);
-            self::assertNotNull($item->status);
-            self::assertNotNull($item->redeemType);
-            self::assertNotNull($item->incomeReleaseType);
-            self::assertNotNull($item->interestDate);
-            self::assertNotNull($item->duration);
-            self::assertNotNull($item->newUserOnly);
-        }
+        GetKcsStakingProductsResp resp = api.getKcsStakingProducts(req);
+        resp.getData().forEach( item -> {
+            Assertions.assertNotNull(item.getId());
+            Assertions.assertNotNull(item.getCurrency());
+            Assertions.assertNotNull(item.getCategory());
+            Assertions.assertNotNull(item.getType());
+            Assertions.assertNotNull(item.getPrecision());
+            Assertions.assertNotNull(item.getProductUpperLimit());
+            Assertions.assertNotNull(item.getUserUpperLimit());
+            Assertions.assertNotNull(item.getUserLowerLimit());
+            Assertions.assertNotNull(item.getRedeemPeriod());
+            Assertions.assertNotNull(item.getLockStartTime());
+            Assertions.assertNotNull(item.getLockEndTime());
+            Assertions.assertNotNull(item.getApplyStartTime());
+            Assertions.assertNotNull(item.getApplyEndTime());
+            Assertions.assertNotNull(item.getReturnRate());
+            Assertions.assertNotNull(item.getIncomeCurrency());
+            Assertions.assertNotNull(item.getEarlyRedeemSupported());
+            Assertions.assertNotNull(item.getProductRemainAmount());
+            Assertions.assertNotNull(item.getStatus());
+            Assertions.assertNotNull(item.getRedeemType());
+            Assertions.assertNotNull(item.getIncomeReleaseType());
+            Assertions.assertNotNull(item.getInterestDate());
+            Assertions.assertNotNull(item.getDuration());
+            Assertions.assertNotNull(item.getNewUserOnly());
+        });
 
-        Logger::info($resp->jsonSerialize($this->serializer));
+        log.info("resp: {}", mapper.writeValueAsString(resp));
     }
 
     /**
@@ -212,38 +219,39 @@
     * Get ETH Staking Products
     * /api/v1/earn/eth-staking/products
     */
-    public void testGetETHStakingProducts() {
+    @Test
+    public void testGetETHStakingProducts() throws Exception {
         GetETHStakingProductsReq.GetETHStakingProductsReqBuilder builder = GetETHStakingProductsReq.builder();
         builder.currency(?);
         GetETHStakingProductsReq req = builder.build();
-        GetETHStakingProductsResp resp = this.api.getETHStakingProducts(req);
-        foreach($resp->data as $item) {
-            self::assertNotNull($item->id);
-            self::assertNotNull($item->category);
-            self::assertNotNull($item->type);
-            self::assertNotNull($item->precision);
-            self::assertNotNull($item->currency);
-            self::assertNotNull($item->incomeCurrency);
-            self::assertNotNull($item->returnRate);
-            self::assertNotNull($item->userLowerLimit);
-            self::assertNotNull($item->userUpperLimit);
-            self::assertNotNull($item->productUpperLimit);
-            self::assertNotNull($item->productRemainAmount);
-            self::assertNotNull($item->redeemPeriod);
-            self::assertNotNull($item->redeemType);
-            self::assertNotNull($item->incomeReleaseType);
-            self::assertNotNull($item->applyStartTime);
-            self::assertNotNull($item->applyEndTime);
-            self::assertNotNull($item->lockStartTime);
-            self::assertNotNull($item->lockEndTime);
-            self::assertNotNull($item->interestDate);
-            self::assertNotNull($item->newUserOnly);
-            self::assertNotNull($item->earlyRedeemSupported);
-            self::assertNotNull($item->duration);
-            self::assertNotNull($item->status);
-        }
+        GetETHStakingProductsResp resp = api.getETHStakingProducts(req);
+        resp.getData().forEach( item -> {
+            Assertions.assertNotNull(item.getId());
+            Assertions.assertNotNull(item.getCategory());
+            Assertions.assertNotNull(item.getType());
+            Assertions.assertNotNull(item.getPrecision());
+            Assertions.assertNotNull(item.getCurrency());
+            Assertions.assertNotNull(item.getIncomeCurrency());
+            Assertions.assertNotNull(item.getReturnRate());
+            Assertions.assertNotNull(item.getUserLowerLimit());
+            Assertions.assertNotNull(item.getUserUpperLimit());
+            Assertions.assertNotNull(item.getProductUpperLimit());
+            Assertions.assertNotNull(item.getProductRemainAmount());
+            Assertions.assertNotNull(item.getRedeemPeriod());
+            Assertions.assertNotNull(item.getRedeemType());
+            Assertions.assertNotNull(item.getIncomeReleaseType());
+            Assertions.assertNotNull(item.getApplyStartTime());
+            Assertions.assertNotNull(item.getApplyEndTime());
+            Assertions.assertNotNull(item.getLockStartTime());
+            Assertions.assertNotNull(item.getLockEndTime());
+            Assertions.assertNotNull(item.getInterestDate());
+            Assertions.assertNotNull(item.getNewUserOnly());
+            Assertions.assertNotNull(item.getEarlyRedeemSupported());
+            Assertions.assertNotNull(item.getDuration());
+            Assertions.assertNotNull(item.getStatus());
+        });
 
-        Logger::info($resp->jsonSerialize($this->serializer));
+        log.info("resp: {}", mapper.writeValueAsString(resp));
     }
 
     /**
@@ -251,34 +259,35 @@
     * Get Account Holding
     * /api/v1/earn/hold-assets
     */
-    public void testGetAccountHolding() {
+    @Test
+    public void testGetAccountHolding() throws Exception {
         GetAccountHoldingReq.GetAccountHoldingReqBuilder builder = GetAccountHoldingReq.builder();
         builder.currency(?).productId(?).productCategory(?).currentPage(?).pageSize(?);
         GetAccountHoldingReq req = builder.build();
-        GetAccountHoldingResp resp = this.api.getAccountHolding(req);
-        self::assertNotNull($resp->totalNum);
-        foreach($resp->items as $item) {
-            self::assertNotNull($item->orderId);
-            self::assertNotNull($item->productId);
-            self::assertNotNull($item->productCategory);
-            self::assertNotNull($item->productType);
-            self::assertNotNull($item->currency);
-            self::assertNotNull($item->incomeCurrency);
-            self::assertNotNull($item->returnRate);
-            self::assertNotNull($item->holdAmount);
-            self::assertNotNull($item->redeemedAmount);
-            self::assertNotNull($item->redeemingAmount);
-            self::assertNotNull($item->lockStartTime);
-            self::assertNotNull($item->lockEndTime);
-            self::assertNotNull($item->purchaseTime);
-            self::assertNotNull($item->redeemPeriod);
-            self::assertNotNull($item->status);
-            self::assertNotNull($item->earlyRedeemSupported);
-        }
+        GetAccountHoldingResp resp = api.getAccountHolding(req);
+        Assertions.assertNotNull(resp.getTotalNum());
+        resp.getItems().forEach( item -> {
+            Assertions.assertNotNull(item.getOrderId());
+            Assertions.assertNotNull(item.getProductId());
+            Assertions.assertNotNull(item.getProductCategory());
+            Assertions.assertNotNull(item.getProductType());
+            Assertions.assertNotNull(item.getCurrency());
+            Assertions.assertNotNull(item.getIncomeCurrency());
+            Assertions.assertNotNull(item.getReturnRate());
+            Assertions.assertNotNull(item.getHoldAmount());
+            Assertions.assertNotNull(item.getRedeemedAmount());
+            Assertions.assertNotNull(item.getRedeemingAmount());
+            Assertions.assertNotNull(item.getLockStartTime());
+            Assertions.assertNotNull(item.getLockEndTime());
+            Assertions.assertNotNull(item.getPurchaseTime());
+            Assertions.assertNotNull(item.getRedeemPeriod());
+            Assertions.assertNotNull(item.getStatus());
+            Assertions.assertNotNull(item.getEarlyRedeemSupported());
+        });
 
-        self::assertNotNull($resp->currentPage);
-        self::assertNotNull($resp->pageSize);
-        self::assertNotNull($resp->totalPage);
-        Logger::info($resp->jsonSerialize($this->serializer));
+        Assertions.assertNotNull(resp.getCurrentPage());
+        Assertions.assertNotNull(resp.getPageSize());
+        Assertions.assertNotNull(resp.getTotalPage());
+        log.info("resp: {}", mapper.writeValueAsString(resp));
     }
 
