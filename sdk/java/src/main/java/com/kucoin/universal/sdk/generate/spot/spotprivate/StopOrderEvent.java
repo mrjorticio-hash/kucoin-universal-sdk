@@ -85,11 +85,11 @@ public class StopOrderEvent implements Response<StopOrderEvent, WsMessage> {
 
   public static class CallbackAdapters {
     public static WebSocketMessageCallback of(Callback callback) {
-      return (msg, objectMapper) ->
-          callback.onEvent(
-              msg.getTopic(),
-              msg.getSubject(),
-              objectMapper.convertValue(msg.getData(), StopOrderEvent.class));
+      return (msg, objectMapper) -> {
+        StopOrderEvent event = objectMapper.convertValue(msg.getData(), StopOrderEvent.class);
+        event.setCommonResponse(msg);
+        callback.onEvent(msg.getTopic(), msg.getSubject(), event);
+      };
     }
   }
 

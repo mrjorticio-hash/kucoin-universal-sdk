@@ -52,11 +52,12 @@ public class OrderbookIncrementEvent implements Response<OrderbookIncrementEvent
 
   public static class CallbackAdapters {
     public static WebSocketMessageCallback of(Callback callback) {
-      return (msg, objectMapper) ->
-          callback.onEvent(
-              msg.getTopic(),
-              msg.getSubject(),
-              objectMapper.convertValue(msg.getData(), OrderbookIncrementEvent.class));
+      return (msg, objectMapper) -> {
+        OrderbookIncrementEvent event =
+            objectMapper.convertValue(msg.getData(), OrderbookIncrementEvent.class);
+        event.setCommonResponse(msg);
+        callback.onEvent(msg.getTopic(), msg.getSubject(), event);
+      };
     }
   }
 }

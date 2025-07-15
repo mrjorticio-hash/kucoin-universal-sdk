@@ -55,11 +55,11 @@ public class InstrumentEvent implements Response<InstrumentEvent, WsMessage> {
 
   public static class CallbackAdapters {
     public static WebSocketMessageCallback of(Callback callback) {
-      return (msg, objectMapper) ->
-          callback.onEvent(
-              msg.getTopic(),
-              msg.getSubject(),
-              objectMapper.convertValue(msg.getData(), InstrumentEvent.class));
+      return (msg, objectMapper) -> {
+        InstrumentEvent event = objectMapper.convertValue(msg.getData(), InstrumentEvent.class);
+        event.setCommonResponse(msg);
+        callback.onEvent(msg.getTopic(), msg.getSubject(), event);
+      };
     }
   }
 }

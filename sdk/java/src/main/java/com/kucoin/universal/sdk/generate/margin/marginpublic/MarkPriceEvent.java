@@ -48,11 +48,11 @@ public class MarkPriceEvent implements Response<MarkPriceEvent, WsMessage> {
 
   public static class CallbackAdapters {
     public static WebSocketMessageCallback of(Callback callback) {
-      return (msg, objectMapper) ->
-          callback.onEvent(
-              msg.getTopic(),
-              msg.getSubject(),
-              objectMapper.convertValue(msg.getData(), MarkPriceEvent.class));
+      return (msg, objectMapper) -> {
+        MarkPriceEvent event = objectMapper.convertValue(msg.getData(), MarkPriceEvent.class);
+        event.setCommonResponse(msg);
+        callback.onEvent(msg.getTopic(), msg.getSubject(), event);
+      };
     }
   }
 }

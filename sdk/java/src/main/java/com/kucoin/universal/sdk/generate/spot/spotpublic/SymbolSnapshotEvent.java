@@ -40,11 +40,12 @@ public class SymbolSnapshotEvent implements Response<SymbolSnapshotEvent, WsMess
 
   public static class CallbackAdapters {
     public static WebSocketMessageCallback of(Callback callback) {
-      return (msg, objectMapper) ->
-          callback.onEvent(
-              msg.getTopic(),
-              msg.getSubject(),
-              objectMapper.convertValue(msg.getData(), SymbolSnapshotEvent.class));
+      return (msg, objectMapper) -> {
+        SymbolSnapshotEvent event =
+            objectMapper.convertValue(msg.getData(), SymbolSnapshotEvent.class);
+        event.setCommonResponse(msg);
+        callback.onEvent(msg.getTopic(), msg.getSubject(), event);
+      };
     }
   }
 }

@@ -74,4 +74,9 @@ public final class TransportOption {
         ? Collections.emptyList()
         : Collections.unmodifiableList(interceptors);
   }
+
+  /** no-op option with all defaults */
+  public static TransportOption defaults() {
+    return TransportOption.builder().build();
+  }
 }

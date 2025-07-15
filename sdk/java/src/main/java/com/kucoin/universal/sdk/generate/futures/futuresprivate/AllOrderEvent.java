@@ -129,11 +129,11 @@ public class AllOrderEvent implements Response<AllOrderEvent, WsMessage> {
 
   public static class CallbackAdapters {
     public static WebSocketMessageCallback of(Callback callback) {
-      return (msg, objectMapper) ->
-          callback.onEvent(
-              msg.getTopic(),
-              msg.getSubject(),
-              objectMapper.convertValue(msg.getData(), AllOrderEvent.class));
+      return (msg, objectMapper) -> {
+        AllOrderEvent event = objectMapper.convertValue(msg.getData(), AllOrderEvent.class);
+        event.setCommonResponse(msg);
+        callback.onEvent(msg.getTopic(), msg.getSubject(), event);
+      };
     }
   }
 

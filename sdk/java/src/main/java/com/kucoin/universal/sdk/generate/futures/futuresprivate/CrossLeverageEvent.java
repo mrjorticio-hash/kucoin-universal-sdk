@@ -47,11 +47,12 @@ public class CrossLeverageEvent implements Response<CrossLeverageEvent, WsMessag
 
   public static class CallbackAdapters {
     public static WebSocketMessageCallback of(Callback callback) {
-      return (msg, objectMapper) ->
-          callback.onEvent(
-              msg.getTopic(),
-              msg.getSubject(),
-              objectMapper.convertValue(msg.getData(), CrossLeverageEvent.class));
+      return (msg, objectMapper) -> {
+        CrossLeverageEvent event =
+            objectMapper.convertValue(msg.getData(), CrossLeverageEvent.class);
+        event.setCommonResponse(msg);
+        callback.onEvent(msg.getTopic(), msg.getSubject(), event);
+      };
     }
   }
 }

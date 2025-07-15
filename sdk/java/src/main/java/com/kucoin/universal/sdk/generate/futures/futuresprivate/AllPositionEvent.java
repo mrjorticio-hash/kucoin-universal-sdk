@@ -236,11 +236,11 @@ public class AllPositionEvent implements Response<AllPositionEvent, WsMessage> {
 
   public static class CallbackAdapters {
     public static WebSocketMessageCallback of(Callback callback) {
-      return (msg, objectMapper) ->
-          callback.onEvent(
-              msg.getTopic(),
-              msg.getSubject(),
-              objectMapper.convertValue(msg.getData(), AllPositionEvent.class));
+      return (msg, objectMapper) -> {
+        AllPositionEvent event = objectMapper.convertValue(msg.getData(), AllPositionEvent.class);
+        event.setCommonResponse(msg);
+        callback.onEvent(msg.getTopic(), msg.getSubject(), event);
+      };
     }
   }
 

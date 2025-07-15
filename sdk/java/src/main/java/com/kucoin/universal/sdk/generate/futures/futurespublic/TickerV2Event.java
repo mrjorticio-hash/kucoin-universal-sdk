@@ -60,11 +60,11 @@ public class TickerV2Event implements Response<TickerV2Event, WsMessage> {
 
   public static class CallbackAdapters {
     public static WebSocketMessageCallback of(Callback callback) {
-      return (msg, objectMapper) ->
-          callback.onEvent(
-              msg.getTopic(),
-              msg.getSubject(),
-              objectMapper.convertValue(msg.getData(), TickerV2Event.class));
+      return (msg, objectMapper) -> {
+        TickerV2Event event = objectMapper.convertValue(msg.getData(), TickerV2Event.class);
+        event.setCommonResponse(msg);
+        callback.onEvent(msg.getTopic(), msg.getSubject(), event);
+      };
     }
   }
 }

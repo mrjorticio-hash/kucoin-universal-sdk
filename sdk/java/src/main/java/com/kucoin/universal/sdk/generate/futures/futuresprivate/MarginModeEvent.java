@@ -47,11 +47,11 @@ public class MarginModeEvent implements Response<MarginModeEvent, WsMessage> {
 
   public static class CallbackAdapters {
     public static WebSocketMessageCallback of(Callback callback) {
-      return (msg, objectMapper) ->
-          callback.onEvent(
-              msg.getTopic(),
-              msg.getSubject(),
-              objectMapper.convertValue(msg.getData(), MarginModeEvent.class));
+      return (msg, objectMapper) -> {
+        MarginModeEvent event = objectMapper.convertValue(msg.getData(), MarginModeEvent.class);
+        event.setCommonResponse(msg);
+        callback.onEvent(msg.getTopic(), msg.getSubject(), event);
+      };
     }
   }
 }

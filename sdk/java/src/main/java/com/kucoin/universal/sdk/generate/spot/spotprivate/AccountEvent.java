@@ -76,11 +76,11 @@ public class AccountEvent implements Response<AccountEvent, WsMessage> {
 
   public static class CallbackAdapters {
     public static WebSocketMessageCallback of(Callback callback) {
-      return (msg, objectMapper) ->
-          callback.onEvent(
-              msg.getTopic(),
-              msg.getSubject(),
-              objectMapper.convertValue(msg.getData(), AccountEvent.class));
+      return (msg, objectMapper) -> {
+        AccountEvent event = objectMapper.convertValue(msg.getData(), AccountEvent.class);
+        event.setCommonResponse(msg);
+        callback.onEvent(msg.getTopic(), msg.getSubject(), event);
+      };
     }
   }
 }

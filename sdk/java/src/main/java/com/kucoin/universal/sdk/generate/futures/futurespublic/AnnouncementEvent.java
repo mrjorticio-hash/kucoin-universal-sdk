@@ -48,11 +48,11 @@ public class AnnouncementEvent implements Response<AnnouncementEvent, WsMessage>
 
   public static class CallbackAdapters {
     public static WebSocketMessageCallback of(Callback callback) {
-      return (msg, objectMapper) ->
-          callback.onEvent(
-              msg.getTopic(),
-              msg.getSubject(),
-              objectMapper.convertValue(msg.getData(), AnnouncementEvent.class));
+      return (msg, objectMapper) -> {
+        AnnouncementEvent event = objectMapper.convertValue(msg.getData(), AnnouncementEvent.class);
+        event.setCommonResponse(msg);
+        callback.onEvent(msg.getTopic(), msg.getSubject(), event);
+      };
     }
   }
 }

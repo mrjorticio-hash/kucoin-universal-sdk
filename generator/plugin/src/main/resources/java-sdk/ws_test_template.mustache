@@ -10,20 +10,20 @@
         {{#vendorExtensions.x-response-model}}
         {{#vars}}
             {{#isArray}}
-        foreach($data->{{name}} as $item) {
+        event.{{getter}}().forEach( item -> {
                 {{#vendorExtensions.x-response-inner-model}}
                     {{#vars}}
-            self::assertNotNull($item->{{name}});
+            Assertions.assertNotNull(item.{{getter}}());
                     {{/vars}}
                 {{/vendorExtensions.x-response-inner-model}}
-        }
+        });
 
             {{/isArray}}
             {{^isArray}}
-        self::assertNotNull($data->{{name}});
+        Assertions.assertNotNull(event.{{getter}}());
             {{/isArray}}
         {{/vars}}
-        Logger::info($data->jsonSerialize(self::$serializer));
+        log.info("event: {}", mapper.writeValueAsString(event));
         {{/vendorExtensions.x-response-model}}
     }
 

@@ -54,11 +54,12 @@ public class OrderbookLevel5Event implements Response<OrderbookLevel5Event, WsMe
 
   public static class CallbackAdapters {
     public static WebSocketMessageCallback of(Callback callback) {
-      return (msg, objectMapper) ->
-          callback.onEvent(
-              msg.getTopic(),
-              msg.getSubject(),
-              objectMapper.convertValue(msg.getData(), OrderbookLevel5Event.class));
+      return (msg, objectMapper) -> {
+        OrderbookLevel5Event event =
+            objectMapper.convertValue(msg.getData(), OrderbookLevel5Event.class);
+        event.setCommonResponse(msg);
+        callback.onEvent(msg.getTopic(), msg.getSubject(), event);
+      };
     }
   }
 }

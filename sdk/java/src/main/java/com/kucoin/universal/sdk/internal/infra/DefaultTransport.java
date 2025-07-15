@@ -199,15 +199,17 @@ public final class DefaultTransport implements Transport {
       }
     }
 
-    rawUrl =
-        rawUrl
-            + "?"
-            + queryParam.stream()
-                .map(p -> p.getFirst() + "=" + p.getSecond())
-                .collect(Collectors.joining("&"));
+    if (!queryParam.isEmpty()) {
+      rawUrl =
+          rawUrl
+              + "?"
+              + queryParam.stream()
+                  .map(p -> p.getFirst() + "=" + p.getSecond())
+                  .collect(Collectors.joining("&"));
+    }
 
     RequestBody rb = null;
-    if (!body.isEmpty()) {
+    if (!body.isEmpty() || method.equalsIgnoreCase("POST")) {
       rb = RequestBody.create(body, JSON);
     }
 

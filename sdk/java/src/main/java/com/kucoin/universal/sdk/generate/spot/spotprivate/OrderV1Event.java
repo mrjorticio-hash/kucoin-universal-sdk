@@ -126,11 +126,11 @@ public class OrderV1Event implements Response<OrderV1Event, WsMessage> {
 
   public static class CallbackAdapters {
     public static WebSocketMessageCallback of(Callback callback) {
-      return (msg, objectMapper) ->
-          callback.onEvent(
-              msg.getTopic(),
-              msg.getSubject(),
-              objectMapper.convertValue(msg.getData(), OrderV1Event.class));
+      return (msg, objectMapper) -> {
+        OrderV1Event event = objectMapper.convertValue(msg.getData(), OrderV1Event.class);
+        event.setCommonResponse(msg);
+        callback.onEvent(msg.getTopic(), msg.getSubject(), event);
+      };
     }
   }
 

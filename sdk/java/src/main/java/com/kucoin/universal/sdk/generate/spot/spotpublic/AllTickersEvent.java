@@ -64,11 +64,11 @@ public class AllTickersEvent implements Response<AllTickersEvent, WsMessage> {
 
   public static class CallbackAdapters {
     public static WebSocketMessageCallback of(Callback callback) {
-      return (msg, objectMapper) ->
-          callback.onEvent(
-              msg.getTopic(),
-              msg.getSubject(),
-              objectMapper.convertValue(msg.getData(), AllTickersEvent.class));
+      return (msg, objectMapper) -> {
+        AllTickersEvent event = objectMapper.convertValue(msg.getData(), AllTickersEvent.class);
+        event.setCommonResponse(msg);
+        callback.onEvent(msg.getTopic(), msg.getSubject(), event);
+      };
     }
   }
 }

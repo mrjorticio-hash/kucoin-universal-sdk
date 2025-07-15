@@ -63,7 +63,11 @@ class {{classname}} {
 
     public static class CallbackAdapters {
         public static WebSocketMessageCallback of(Callback callback) {
-            return (msg, objectMapper) -> callback.onEvent(msg.getTopic(), msg.getSubject(), objectMapper.convertValue(msg.getData(), {{classname}}.class));
+            return (msg, objectMapper) -> {
+                {{classname}} event = objectMapper.convertValue(msg.getData(), {{classname}}.class);
+                event.setCommonResponse(msg);
+                callback.onEvent(msg.getTopic(), msg.getSubject(), event);
+            };
     }
     }
 {{/vendorExtensions.x-response-model}}

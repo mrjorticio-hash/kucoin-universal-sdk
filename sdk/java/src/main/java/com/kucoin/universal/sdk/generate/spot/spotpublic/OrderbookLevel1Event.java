@@ -46,11 +46,12 @@ public class OrderbookLevel1Event implements Response<OrderbookLevel1Event, WsMe
 
   public static class CallbackAdapters {
     public static WebSocketMessageCallback of(Callback callback) {
-      return (msg, objectMapper) ->
-          callback.onEvent(
-              msg.getTopic(),
-              msg.getSubject(),
-              objectMapper.convertValue(msg.getData(), OrderbookLevel1Event.class));
+      return (msg, objectMapper) -> {
+        OrderbookLevel1Event event =
+            objectMapper.convertValue(msg.getData(), OrderbookLevel1Event.class);
+        event.setCommonResponse(msg);
+        callback.onEvent(msg.getTopic(), msg.getSubject(), event);
+      };
     }
   }
 }

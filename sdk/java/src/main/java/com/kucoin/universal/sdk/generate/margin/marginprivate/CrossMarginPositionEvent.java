@@ -68,11 +68,12 @@ public class CrossMarginPositionEvent implements Response<CrossMarginPositionEve
 
   public static class CallbackAdapters {
     public static WebSocketMessageCallback of(Callback callback) {
-      return (msg, objectMapper) ->
-          callback.onEvent(
-              msg.getTopic(),
-              msg.getSubject(),
-              objectMapper.convertValue(msg.getData(), CrossMarginPositionEvent.class));
+      return (msg, objectMapper) -> {
+        CrossMarginPositionEvent event =
+            objectMapper.convertValue(msg.getData(), CrossMarginPositionEvent.class);
+        event.setCommonResponse(msg);
+        callback.onEvent(msg.getTopic(), msg.getSubject(), event);
+      };
     }
   }
 

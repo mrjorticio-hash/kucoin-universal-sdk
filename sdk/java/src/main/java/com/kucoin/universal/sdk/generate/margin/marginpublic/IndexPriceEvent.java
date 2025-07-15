@@ -48,11 +48,11 @@ public class IndexPriceEvent implements Response<IndexPriceEvent, WsMessage> {
 
   public static class CallbackAdapters {
     public static WebSocketMessageCallback of(Callback callback) {
-      return (msg, objectMapper) ->
-          callback.onEvent(
-              msg.getTopic(),
-              msg.getSubject(),
-              objectMapper.convertValue(msg.getData(), IndexPriceEvent.class));
+      return (msg, objectMapper) -> {
+        IndexPriceEvent event = objectMapper.convertValue(msg.getData(), IndexPriceEvent.class);
+        event.setCommonResponse(msg);
+        callback.onEvent(msg.getTopic(), msg.getSubject(), event);
+      };
     }
   }
 }
