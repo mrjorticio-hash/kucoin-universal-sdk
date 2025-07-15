@@ -72,6 +72,7 @@ public final class DefaultWebsocketTransport implements WebsocketTransport {
     safeClose("shutdown");
     scheduler.shutdownNow();
     tokenProvider.close();
+    log.info("websocket closed");
   }
 
   @Override
@@ -146,6 +147,7 @@ public final class DefaultWebsocketTransport implements WebsocketTransport {
 
       connected.set(true);
       listener.onEvent(WebSocketEvent.CONNECTED, "");
+      log.info("Websocket connected");
     } catch (Exception e) {
       safeClose("dial-error");
       throw new RuntimeException(e);

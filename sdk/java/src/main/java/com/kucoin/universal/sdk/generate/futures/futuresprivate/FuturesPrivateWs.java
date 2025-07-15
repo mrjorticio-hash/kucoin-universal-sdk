@@ -2,8 +2,6 @@
 
 package com.kucoin.universal.sdk.generate.futures.futuresprivate;
 
-import java.util.concurrent.CompletableFuture;
-
 public interface FuturesPrivateWs {
 
   /**
@@ -50,7 +48,7 @@ public interface FuturesPrivateWs {
    *
    * <p>push frequency: real-time
    */
-  CompletableFuture<String> marginMode(MarginModeEvent.Callback callback);
+  String marginMode(MarginModeEvent.Callback callback);
 
   /**
    * Order change pushes.
