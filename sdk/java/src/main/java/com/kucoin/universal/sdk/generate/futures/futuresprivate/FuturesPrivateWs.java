@@ -2,56 +2,89 @@
 
 package com.kucoin.universal.sdk.generate.futures.futuresprivate;
 
+import java.util.concurrent.CompletableFuture;
+
 public interface FuturesPrivateWs {
 
-  /** All Order change pushes. Push order changes for all symbol push frequency: real-time */
-  public String allOrder(AllOrderEvent.Callback callback);
+  /**
+   * All Order change pushes.
+   *
+   * <p>Push order changes for all symbol
+   *
+   * <p>push frequency: real-time
+   */
+  String allOrder(AllOrderEvent.Callback callback);
 
   /**
-   * All symbol position change events push Subscribe to this topic to get real-time pushes on all
-   * symbols’ position change events push frequency: real-time
+   * All symbol position change events push
+   *
+   * <p>Subscribe to this topic to get real-time pushes on all symbols’ position change events
+   *
+   * <p>push frequency: real-time
    */
-  public String allPosition(AllPositionEvent.Callback callback);
+  String allPosition(AllPositionEvent.Callback callback);
 
   /**
-   * the balance change push Subscribe to this topic to get real-time balance change pushes push
-   * frequency: real-time
+   * the balance change push
+   *
+   * <p>Subscribe to this topic to get real-time balance change pushes
+   *
+   * <p>push frequency: real-time
    */
-  public String balance(BalanceEvent.Callback callback);
+  String balance(BalanceEvent.Callback callback);
 
   /**
-   * the leverage change push Subscribe to this topic to get real-time pushes on leverage changes of
-   * contracts that are in cross margin mode push frequency: real-time
+   * the leverage change push
+   *
+   * <p>Subscribe to this topic to get real-time pushes on leverage changes of contracts that are in
+   * cross margin mode
+   *
+   * <p>push frequency: real-time
    */
-  public String crossLeverage(CrossLeverageEvent.Callback callback);
+  String crossLeverage(CrossLeverageEvent.Callback callback);
 
   /**
-   * the margin mode change Subscribe to this topic to get real-time pushes on symbols’ margin mode
-   * change events push frequency: real-time
+   * the margin mode change
+   *
+   * <p>Subscribe to this topic to get real-time pushes on symbols’ margin mode change events
+   *
+   * <p>push frequency: real-time
    */
-  public String marginMode(MarginModeEvent.Callback callback);
-
-  /** Order change pushes. Push order changes for the specified symbol push frequency: real-time */
-  public String order(String symbol, OrderEvent.Callback callback);
-
-  /**
-   * the position change events push Subscribe this topic to get real-time pushes on symbols’
-   * position change events push frequency: real-time
-   */
-  public String position(String symbol, PositionEvent.Callback callback);
+  CompletableFuture<String> marginMode(MarginModeEvent.Callback callback);
 
   /**
-   * stop order change pushes. Subscribe to this topic to get real-time pushes on stop order
-   * changes. push frequency: real-time
+   * Order change pushes.
+   *
+   * <p>Push order changes for the specified symbol
+   *
+   * <p>push frequency: real-time
    */
-  public String stopOrders(StopOrdersEvent.Callback callback);
+  String order(String symbol, OrderEvent.Callback callback);
+
+  /**
+   * the position change events push
+   *
+   * <p>Subscribe this topic to get real-time pushes on symbols’ position change events
+   *
+   * <p>push frequency: real-time
+   */
+  String position(String symbol, PositionEvent.Callback callback);
+
+  /**
+   * stop order change pushes.
+   *
+   * <p>Subscribe to this topic to get real-time pushes on stop order changes.
+   *
+   * <p>push frequency: real-time
+   */
+  String stopOrders(StopOrdersEvent.Callback callback);
 
   /** Unsubscribe from topics */
-  public void unSubscribe(String id);
+  void unSubscribe(String id);
 
   /** Start websocket */
-  public void start();
+  void start();
 
   /** Stop websocket */
-  public void stop();
+  void stop();
 }

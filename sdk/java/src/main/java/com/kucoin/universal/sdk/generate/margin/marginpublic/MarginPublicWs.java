@@ -5,24 +5,31 @@ package com.kucoin.universal.sdk.generate.margin.marginpublic;
 public interface MarginPublicWs {
 
   /**
-   * Index Price Subscribe to this topic to get the index price for margin trading. The following
-   * ticker symbols are supported: List of currently supported symbols. push frequency: once every
-   * 1s
+   * Index Price
+   *
+   * <p>Subscribe to this topic to get the index price for margin trading. The following ticker
+   * symbols are supported: List of currently supported symbols.
+   *
+   * <p>push frequency: once every 1s
    */
-  public String indexPrice(String[] symbol, IndexPriceEvent.Callback callback);
+  String indexPrice(String[] symbol, IndexPriceEvent.Callback callback);
 
   /**
-   * Mark Price Subscribe to this topic to get the mark price for margin trading. The following
-   * ticker symbols are supported: List of currently supported symbols push frequency: once every 1s
+   * Mark Price
+   *
+   * <p>Subscribe to this topic to get the mark price for margin trading. The following ticker
+   * symbols are supported: List of currently supported symbols
+   *
+   * <p>push frequency: once every 1s
    */
-  public String markPrice(String[] symbol, MarkPriceEvent.Callback callback);
+  String markPrice(String[] symbol, MarkPriceEvent.Callback callback);
 
   /** Unsubscribe from topics */
-  public void unSubscribe(String id);
+  void unSubscribe(String id);
 
   /** Start websocket */
-  public void start();
+  void start();
 
   /** Stop websocket */
-  public void stop();
+  void stop();
 }

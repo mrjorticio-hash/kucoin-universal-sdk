@@ -5,86 +5,126 @@ package com.kucoin.universal.sdk.generate.spot.spotpublic;
 public interface SpotPublicWs {
 
   /**
-   * Get All Tickers Subscribe to this topic to get pushes on all market symbol BBO changes. push
-   * frequency: once every 100ms
+   * Get All Tickers
+   *
+   * <p>Subscribe to this topic to get pushes on all market symbol BBO changes.
+   *
+   * <p>push frequency: once every 100ms
    */
-  public String allTickers(AllTickersEvent.Callback callback);
+  String allTickers(AllTickersEvent.Callback callback);
 
   /**
-   * Get Call Auction Info Subscribe to this topic to get the specified symbol call auction info.
-   * push frequency: once every 100ms
+   * Get Call Auction Info
+   *
+   * <p>Subscribe to this topic to get the specified symbol call auction info.
+   *
+   * <p>push frequency: once every 100ms
    */
-  public String callAuctionInfo(String symbol, CallAuctionInfoEvent.Callback callback);
+  String callAuctionInfo(String symbol, CallAuctionInfoEvent.Callback callback);
 
   /**
-   * CallAuctionOrderbook - Level50 The system will return the call auction 50 best ask/bid orders
-   * data; if there is no change in the market, data will not be pushed push frequency: once every
-   * 100ms
+   * CallAuctionOrderbook - Level50
+   *
+   * <p>The system will return the call auction 50 best ask/bid orders data; if there is no change
+   * in the market, data will not be pushed
+   *
+   * <p>push frequency: once every 100ms
    */
-  public String callAuctionOrderbookLevel50(
+  String callAuctionOrderbookLevel50(
       String symbol, CallAuctionOrderbookLevel50Event.Callback callback);
 
-  /** Klines Subscribe to this topic to get K-Line data. push frequency: real-time */
-  public String klines(String symbol, String type, KlinesEvent.Callback callback);
+  /**
+   * Klines
+   *
+   * <p>Subscribe to this topic to get K-Line data.
+   *
+   * <p>push frequency: real-time
+   */
+  String klines(String symbol, String type, KlinesEvent.Callback callback);
 
   /**
-   * Market Snapshot Subscribe to this topic to get snapshot data for the entire market. push
-   * frequency: once every 2s
+   * Market Snapshot
+   *
+   * <p>Subscribe to this topic to get snapshot data for the entire market.
+   *
+   * <p>push frequency: once every 2s
    */
-  public String marketSnapshot(String market, MarketSnapshotEvent.Callback callback);
+  String marketSnapshot(String market, MarketSnapshotEvent.Callback callback);
 
   /**
-   * Orderbook - Increment The system will return the increment change orderbook data (all depths);
-   * a topic supports up to 100 symbols. If there is no change in the market, data will not be
-   * pushed push frequency: real-time
+   * Orderbook - Increment
+   *
+   * <p>The system will return the increment change orderbook data (all depths); a topic supports up
+   * to 100 symbols. If there is no change in the market, data will not be pushed
+   *
+   * <p>push frequency: real-time
    */
-  public String orderbookIncrement(String[] symbol, OrderbookIncrementEvent.Callback callback);
+  String orderbookIncrement(String[] symbol, OrderbookIncrementEvent.Callback callback);
 
   /**
-   * Orderbook - Level1 The system will return the 1 best ask/bid orders data; a topic supports up
-   * to 100 symbols. If there is no change in the market, data will not be pushed push frequency:
-   * once every 10ms
+   * Orderbook - Level1
+   *
+   * <p>The system will return the 1 best ask/bid orders data; a topic supports up to 100 symbols.
+   * If there is no change in the market, data will not be pushed
+   *
+   * <p>push frequency: once every 10ms
    */
-  public String orderbookLevel1(String[] symbol, OrderbookLevel1Event.Callback callback);
+  String orderbookLevel1(String[] symbol, OrderbookLevel1Event.Callback callback);
 
   /**
-   * Orderbook - Level50 The system will return data for the 50 best ask/bid orders; a topic
-   * supports up to 100 symbols. If there is no change in the market, data will not be pushed push
-   * frequency: once every 100ms
+   * Orderbook - Level50
+   *
+   * <p>The system will return data for the 50 best ask/bid orders; a topic supports up to 100
+   * symbols. If there is no change in the market, data will not be pushed
+   *
+   * <p>push frequency: once every 100ms
    */
-  public String orderbookLevel50(String[] symbol, OrderbookLevel50Event.Callback callback);
+  String orderbookLevel50(String[] symbol, OrderbookLevel50Event.Callback callback);
 
   /**
-   * Orderbook - Level5 The system will return the 5 best ask/bid orders data; a topic supports up
-   * to 100 symbols. If there is no change in the market, data will not be pushed push frequency:
-   * once every 100ms
+   * Orderbook - Level5
+   *
+   * <p>The system will return the 5 best ask/bid orders data; a topic supports up to 100 symbols.
+   * If there is no change in the market, data will not be pushed
+   *
+   * <p>push frequency: once every 100ms
    */
-  public String orderbookLevel5(String[] symbol, OrderbookLevel5Event.Callback callback);
+  String orderbookLevel5(String[] symbol, OrderbookLevel5Event.Callback callback);
 
   /**
-   * Symbol Snapshot Subscribe to get snapshot data for a single symbol. push frequency: once every
-   * 2s
+   * Symbol Snapshot
+   *
+   * <p>Subscribe to get snapshot data for a single symbol.
+   *
+   * <p>push frequency: once every 2s
    */
-  public String symbolSnapshot(String symbol, SymbolSnapshotEvent.Callback callback);
+  String symbolSnapshot(String symbol, SymbolSnapshotEvent.Callback callback);
 
   /**
-   * Get Ticker Subscribe to this topic to get specified symbol pushes on BBO changes. push
-   * frequency: once every 100ms
+   * Get Ticker
+   *
+   * <p>Subscribe to this topic to get specified symbol pushes on BBO changes.
+   *
+   * <p>push frequency: once every 100ms
    */
-  public String ticker(String[] symbol, TickerEvent.Callback callback);
+  String ticker(String[] symbol, TickerEvent.Callback callback);
 
   /**
-   * Trade Subscribe to this topic to get Level 3 matching event data flows. A topic supports up to
-   * 100 symbols. push frequency: real-time
+   * Trade
+   *
+   * <p>Subscribe to this topic to get Level 3 matching event data flows. A topic supports up to 100
+   * symbols.
+   *
+   * <p>push frequency: real-time
    */
-  public String trade(String[] symbol, TradeEvent.Callback callback);
+  String trade(String[] symbol, TradeEvent.Callback callback);
 
   /** Unsubscribe from topics */
-  public void unSubscribe(String id);
+  void unSubscribe(String id);
 
   /** Start websocket */
-  public void start();
+  void start();
 
   /** Stop websocket */
-  public void stop();
+  void stop();
 }

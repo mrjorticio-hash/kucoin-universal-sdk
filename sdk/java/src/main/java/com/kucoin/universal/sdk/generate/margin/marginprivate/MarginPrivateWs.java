@@ -5,26 +5,31 @@ package com.kucoin.universal.sdk.generate.margin.marginprivate;
 public interface MarginPrivateWs {
 
   /**
-   * Get Cross Margin Position change The system will push the change event when the position status
-   * changes, or push the current debt message periodically when there is a liability. push
-   * frequency: once every 4s
+   * Get Cross Margin Position change
+   *
+   * <p>The system will push the change event when the position status changes, or push the current
+   * debt message periodically when there is a liability.
+   *
+   * <p>push frequency: once every 4s
    */
-  public String crossMarginPosition(CrossMarginPositionEvent.Callback callback);
+  String crossMarginPosition(CrossMarginPositionEvent.Callback callback);
 
   /**
-   * Get Isolated Margin Position change The system will push the change event when the position
-   * status changes, or push the current debt message periodically when there is a liability. push
-   * frequency: real time
+   * Get Isolated Margin Position change
+   *
+   * <p>The system will push the change event when the position status changes, or push the current
+   * debt message periodically when there is a liability.
+   *
+   * <p>push frequency: real time
    */
-  public String isolatedMarginPosition(
-      String symbol, IsolatedMarginPositionEvent.Callback callback);
+  String isolatedMarginPosition(String symbol, IsolatedMarginPositionEvent.Callback callback);
 
   /** Unsubscribe from topics */
-  public void unSubscribe(String id);
+  void unSubscribe(String id);
 
   /** Start websocket */
-  public void start();
+  void start();
 
   /** Stop websocket */
-  public void stop();
+  void stop();
 }

@@ -7,25 +7,26 @@ public interface {{classname}} {
 
     /**
     * {{summary}}
-    * {{notes}}
-    * push frequency: {{vendorExtensions.x-push_frequency}}
+    *
+    * <p>{{notes}}
+    * <p>push frequency: {{vendorExtensions.x-push_frequency}}
     */
-    public String {{vendorExtensions.x-meta.method}}{{operationName}}({{#vendorExtensions.x-meta.otherProperties}}{{#parameters}}{{#type}}{{#type.simple}}String {{paras}},{{/type.simple}}{{#type.array}}String[] {{paras}},{{/type.array}}{{#type.object}}{{#paras}}String {{.}},{{/paras}}{{/type.object}}{{/type}}{{/parameters}}{{/vendorExtensions.x-meta.otherProperties}}{{vendorExtensions.x-meta.methodServiceFmt}}Event.Callback callback);
+    String {{vendorExtensions.x-meta.method}}{{operationName}}({{#vendorExtensions.x-meta.otherProperties}}{{#parameters}}{{#type}}{{#type.simple}}String {{paras}},{{/type.simple}}{{#type.array}}String[] {{paras}},{{/type.array}}{{#type.object}}{{#paras}}String {{.}},{{/paras}}{{/type.object}}{{/type}}{{/parameters}}{{/vendorExtensions.x-meta.otherProperties}}{{vendorExtensions.x-meta.methodServiceFmt}}Event.Callback callback);
     {{/operation}}
 
     /**
     * Unsubscribe from topics
     */
-    public void unSubscribe(String id);
+    void unSubscribe(String id);
 
     /**
     * Start websocket
     */
-    public void start();
+    void start();
 
     /**
     * Stop websocket
     */
-    public void stop();
+    void stop();
 {{/operations}}
 }

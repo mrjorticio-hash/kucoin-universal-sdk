@@ -5,35 +5,49 @@ package com.kucoin.universal.sdk.generate.spot.spotprivate;
 public interface SpotPrivateWs {
 
   /**
-   * Get Account Balance You will receive this message when an account balance changes. The message
-   * contains the details of the change. push frequency: real-time
+   * Get Account Balance
+   *
+   * <p>You will receive this message when an account balance changes. The message contains the
+   * details of the change.
+   *
+   * <p>push frequency: real-time
    */
-  public String account(AccountEvent.Callback callback);
+  String account(AccountEvent.Callback callback);
 
   /**
-   * Get Order(V1) This topic will push all change events of your orders. push frequency: real-time
+   * Get Order(V1)
+   *
+   * <p>This topic will push all change events of your orders.
+   *
+   * <p>push frequency: real-time
    */
-  public String orderV1(OrderV1Event.Callback callback);
+  String orderV1(OrderV1Event.Callback callback);
 
   /**
-   * Get Order(V2) This topic will push all change events of your orders. Compared with v1, v2 adds
-   * an Order Status: \&quot;new\&quot;, there is no difference in push speed push frequency:
-   * real-time
+   * Get Order(V2)
+   *
+   * <p>This topic will push all change events of your orders. Compared with v1, v2 adds an Order
+   * Status: \&quot;new\&quot;, there is no difference in push speed
+   *
+   * <p>push frequency: real-time
    */
-  public String orderV2(OrderV2Event.Callback callback);
+  String orderV2(OrderV2Event.Callback callback);
 
   /**
-   * Get Stop Order This topic will push all change events of your stop orders. push frequency:
-   * real-time
+   * Get Stop Order
+   *
+   * <p>This topic will push all change events of your stop orders.
+   *
+   * <p>push frequency: real-time
    */
-  public String stopOrder(StopOrderEvent.Callback callback);
+  String stopOrder(StopOrderEvent.Callback callback);
 
   /** Unsubscribe from topics */
-  public void unSubscribe(String id);
+  void unSubscribe(String id);
 
   /** Start websocket */
-  public void start();
+  void start();
 
   /** Stop websocket */
-  public void stop();
+  void stop();
 }

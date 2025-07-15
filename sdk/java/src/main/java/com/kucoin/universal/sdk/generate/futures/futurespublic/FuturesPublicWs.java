@@ -5,64 +5,108 @@ package com.kucoin.universal.sdk.generate.futures.futurespublic;
 public interface FuturesPublicWs {
 
   /**
-   * announcement Subscribe this topic to get Funding Fee Settlement. push frequency: Settlement is
-   * made every 8 hours, real-time push
+   * announcement
+   *
+   * <p>Subscribe this topic to get Funding Fee Settlement.
+   *
+   * <p>push frequency: Settlement is made every 8 hours, real-time push
    */
-  public String announcement(String symbol, AnnouncementEvent.Callback callback);
+  String announcement(String symbol, AnnouncementEvent.Callback callback);
 
   /**
-   * Match execution data. For each order executed, the system will send you the match messages in
-   * the format as following. push frequency: real-time
+   * Match execution data.
+   *
+   * <p>For each order executed, the system will send you the match messages in the format as
+   * following.
+   *
+   * <p>push frequency: real-time
    */
-  public String execution(String symbol, ExecutionEvent.Callback callback);
+  String execution(String symbol, ExecutionEvent.Callback callback);
 
   /**
-   * instrument Subscribe this topic to get the mark Price, index Price or funding fee Rate push
-   * frequency: mark.index.price 1s, funding.rate 1min
+   * instrument
+   *
+   * <p>Subscribe this topic to get the mark Price, index Price or funding fee Rate
+   *
+   * <p>push frequency: mark.index.price 1s, funding.rate 1min
    */
-  public String instrument(String symbol, InstrumentEvent.Callback callback);
-
-  /** Klines Subscribe to this topic to get K-Line data. push frequency: 1s */
-  public String klines(String symbol, String type, KlinesEvent.Callback callback);
+  String instrument(String symbol, InstrumentEvent.Callback callback);
 
   /**
-   * Orderbook - Increment The system will return the increment change orderbook data (all depth).
-   * If there is no change in the market, data will not be pushed. push frequency: real-time
+   * Klines
+   *
+   * <p>Subscribe to this topic to get K-Line data.
+   *
+   * <p>push frequency: 1s
    */
-  public String orderbookIncrement(String symbol, OrderbookIncrementEvent.Callback callback);
-
-  /** Orderbook - Level50 The depth50 market data. push frequency: 100ms */
-  public String orderbookLevel50(String symbol, OrderbookLevel50Event.Callback callback);
+  String klines(String symbol, String type, KlinesEvent.Callback callback);
 
   /**
-   * Orderbook - Level5 The system will return the 5 best ask/bid orders data. If there is no change
-   * in the market, data will not be pushed push frequency: 100ms
+   * Orderbook - Increment
+   *
+   * <p>The system will return the increment change orderbook data (all depth). If there is no
+   * change in the market, data will not be pushed.
+   *
+   * <p>push frequency: real-time
    */
-  public String orderbookLevel5(String symbol, OrderbookLevel5Event.Callback callback);
-
-  /** Symbol Snapshot Get symbol snapshot. push frequency: 5000ms */
-  public String symbolSnapshot(String symbol, SymbolSnapshotEvent.Callback callback);
-
-  /**
-   * Get Ticker(not recommended) Subscribe to this topic to get real-time pushes on BBO changes. It
-   * is not recommended to use this topic any more. For real-time ticker information, please
-   * subscribe /contractMarket/tickerV2:{symbol}. push frequency: real-time
-   */
-  public String tickerV1(String symbol, TickerV1Event.Callback callback);
+  String orderbookIncrement(String symbol, OrderbookIncrementEvent.Callback callback);
 
   /**
-   * Get Ticker V2 Subscribe to this topic to get real-time pushes of BBO changes. After
-   * subscription, when there are changes in the order book (not necessarily ask1/bid1 changes), the
-   * system will push the real-time ticker symbol information to you. push frequency: real-time
+   * Orderbook - Level50
+   *
+   * <p>The depth50 market data.
+   *
+   * <p>push frequency: 100ms
    */
-  public String tickerV2(String symbol, TickerV2Event.Callback callback);
+  String orderbookLevel50(String symbol, OrderbookLevel50Event.Callback callback);
+
+  /**
+   * Orderbook - Level5
+   *
+   * <p>The system will return the 5 best ask/bid orders data. If there is no change in the market,
+   * data will not be pushed
+   *
+   * <p>push frequency: 100ms
+   */
+  String orderbookLevel5(String symbol, OrderbookLevel5Event.Callback callback);
+
+  /**
+   * Symbol Snapshot
+   *
+   * <p>Get symbol snapshot.
+   *
+   * <p>push frequency: 5000ms
+   */
+  String symbolSnapshot(String symbol, SymbolSnapshotEvent.Callback callback);
+
+  /**
+   * Get Ticker(not recommended)
+   *
+   * <p>Subscribe to this topic to get real-time pushes on BBO changes. It is not recommended to use
+   * this topic any more. For real-time ticker information, please subscribe
+   * /contractMarket/tickerV2:{symbol}.
+   *
+   * <p>push frequency: real-time
+   */
+  String tickerV1(String symbol, TickerV1Event.Callback callback);
+
+  /**
+   * Get Ticker V2
+   *
+   * <p>Subscribe to this topic to get real-time pushes of BBO changes. After subscription, when
+   * there are changes in the order book (not necessarily ask1/bid1 changes), the system will push
+   * the real-time ticker symbol information to you.
+   *
+   * <p>push frequency: real-time
+   */
+  String tickerV2(String symbol, TickerV2Event.Callback callback);
 
   /** Unsubscribe from topics */
-  public void unSubscribe(String id);
+  void unSubscribe(String id);
 
   /** Start websocket */
-  public void start();
+  void start();
 
   /** Stop websocket */
-  public void stop();
+  void stop();
 }
