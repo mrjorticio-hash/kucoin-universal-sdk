@@ -1,8 +1,8 @@
 package com.kucoin.universal.sdk.e2e.rest.account;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.kucoin.universal.sdk.api.Client;
-import com.kucoin.universal.sdk.api.DefaultClient;
+import com.kucoin.universal.sdk.api.DefaultKucoinClient;
+import com.kucoin.universal.sdk.api.KucoinClient;
 import com.kucoin.universal.sdk.generate.account.account.*;
 import com.kucoin.universal.sdk.model.ClientOption;
 import com.kucoin.universal.sdk.model.Constants;
@@ -63,8 +63,8 @@ public class AccountApiTest {
             .transportOption(httpTransport)
             .build();
 
-    Client client = new DefaultClient(clientOpt);
-    api = client.getRestService().getAccountService().getAccountApi();
+    KucoinClient kucoinClient = new DefaultKucoinClient(clientOpt);
+    api = kucoinClient.getRestService().getAccountService().getAccountApi();
   }
 
   /** getAccountInfo Get Account Summary Info /api/v2/user-info */

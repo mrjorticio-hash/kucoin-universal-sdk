@@ -1,7 +1,7 @@
 package com.kucoin.universal.sdk.api;
 
 /** Client interface defines the methods to get REST and WebSocket services. */
-public interface Client {
+public interface KucoinClient {
 
   /**
    * Get RESTful service.

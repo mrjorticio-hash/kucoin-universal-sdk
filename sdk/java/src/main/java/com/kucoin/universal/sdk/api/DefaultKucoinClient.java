@@ -9,8 +9,8 @@ Client
 TODO
 */
 
-/** DefaultClient provides the default implementation of the {@link Client} interface. */
-public final class DefaultClient implements Client {
+/** DefaultClient provides the default implementation of the {@link KucoinClient} interface. */
+public final class DefaultKucoinClient implements KucoinClient {
 
   /** REST-side facade. */
   private final KucoinRestService restImpl;
@@ -18,7 +18,7 @@ public final class DefaultClient implements Client {
   /** WebSocket-side facade. */
   private final KucoinWSService wsImpl;
 
-  public DefaultClient(ClientOption option) {
+  public DefaultKucoinClient(ClientOption option) {
     this.restImpl = new DefaultKucoinRestAPIImpl(option);
     this.wsImpl = new DefaultKucoinWsImpl(option);
   }

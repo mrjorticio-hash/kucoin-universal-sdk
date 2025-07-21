@@ -1,8 +1,8 @@
 package com.kucoin.universal.sdk.e2e.rest.spot;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.kucoin.universal.sdk.api.Client;
-import com.kucoin.universal.sdk.api.DefaultClient;
+import com.kucoin.universal.sdk.api.DefaultKucoinClient;
+import com.kucoin.universal.sdk.api.KucoinClient;
 import com.kucoin.universal.sdk.generate.spot.order.*;
 import com.kucoin.universal.sdk.model.ClientOption;
 import com.kucoin.universal.sdk.model.Constants;
@@ -66,8 +66,8 @@ public class OrderTest {
             .transportOption(httpTransport)
             .build();
 
-    Client client = new DefaultClient(clientOpt);
-    api = client.getRestService().getSpotService().getOrderApi();
+    KucoinClient kucoinClient = new DefaultKucoinClient(clientOpt);
+    api = kucoinClient.getRestService().getSpotService().getOrderApi();
   }
 
   /** addOrder Add Order /api/v1/hf/orders */
