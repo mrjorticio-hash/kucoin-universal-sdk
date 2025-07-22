@@ -78,6 +78,7 @@ public final class DefaultTransport implements Transport {
 
     // interceptors
     o.interceptors().forEach(b::addInterceptor);
+    o.eventListener().ifPresent(b::eventListener);
 
     return b.build();
   }

@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import lombok.*;
+import okhttp3.EventListener;
 import okhttp3.Interceptor;
 
 /** TransportOption holds configurations for HTTP client behavior. */
@@ -25,11 +26,11 @@ public final class TransportOption {
   /** Idle connection eviction threshold. */
   @Builder.Default private final Duration keepAliveDuration = Duration.ofSeconds(30);
 
-  /** Global dispatcher limit (default 64). */
-  @Builder.Default private final int maxRequests = 64;
+  /** Global dispatcher limit (default 256). */
+  @Builder.Default private final int maxRequests = 256;
 
-  /** Per-host dispatcher limit (default 5). */
-  @Builder.Default private final int maxRequestsPerHost = 5;
+  /** Per-host dispatcher limit (default 32). */
+  @Builder.Default private final int maxRequestsPerHost = 32;
 
   /* ---------- timeout ---------- */
 
@@ -45,28 +46,27 @@ public final class TransportOption {
 
   /* ----------- proxy ------------ */
 
-  /** Pre-configured proxy; {@code null} means “use JVM default”. */
-  private final Proxy proxy;
+  /** Proxy; {@code null} means "no proxy". */
+  @Builder.Default private final Proxy proxy = null;
 
   /* ---------- retry / redirect ---------- */
   @Builder.Default private final boolean retryOnConnectionFailure = true;
 
-  /** SDK-level retry attempts for idempotent requests. */
-  @Builder.Default private final int maxRetries = 3;
-
-  /** Delay between retries. */
-  @Builder.Default private final Duration retryDelay = Duration.ofSeconds(2);
-
-  /* ---------- interceptors ---------- */
+  /* ---------- interceptors&listener ---------- */
 
   /** Application interceptors – executed before routing / retries. */
   @Singular("interceptor")
   private final List<Interceptor> interceptors;
 
-  /* ---------- convenience getters ---------- */
+  /** Optional event listener for connection lifecycle logging, etc. */
+  @Builder.Default private final EventListener eventListener = null;
 
   public Optional<Proxy> proxy() {
     return Optional.ofNullable(proxy);
+  }
+
+  public Optional<EventListener> eventListener() {
+    return Optional.ofNullable(eventListener);
   }
 
   public List<Interceptor> interceptors() {
