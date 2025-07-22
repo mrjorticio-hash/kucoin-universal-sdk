@@ -5,6 +5,7 @@ import java.time.Duration;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.ExecutorService;
 import lombok.*;
 import okhttp3.EventListener;
 import okhttp3.Interceptor;
@@ -61,12 +62,19 @@ public final class TransportOption {
   /** Optional event listener for connection lifecycle logging, etc. */
   @Builder.Default private final EventListener eventListener = null;
 
+  /** Custom executor for Dispatcher (call execution); null means use default */
+  @Builder.Default private final ExecutorService dispatcherExecutor = null;
+
   public Optional<Proxy> proxy() {
     return Optional.ofNullable(proxy);
   }
 
   public Optional<EventListener> eventListener() {
     return Optional.ofNullable(eventListener);
+  }
+
+  public Optional<ExecutorService> dispatcherExecutor() {
+    return Optional.ofNullable(dispatcherExecutor);
   }
 
   public List<Interceptor> interceptors() {

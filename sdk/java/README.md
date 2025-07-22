@@ -159,22 +159,23 @@ This section provides specific considerations and recommendations for using the 
 This section provides details about the configurable parameters for both HTTP and WebSocket client behavior.
 
 ### HTTP Parameters
-| Parameter                  | Type                | Description                                                                                  | Default Value     |
-| -------------------------- |---------------------| -------------------------------------------------------------------------------------------- | ----------------- |
-| `keepAlive`                | `boolean`           | Whether to enable connection pooling / HTTP keep-alive.                                      | `true`            |
-| `maxIdleConnections`       | `int`               | Maximum number of idle connections kept in the pool.                                         | `5`               |
-| `keepAliveDuration`        | `Duration`          | Idle connection eviction threshold.                                                          | `30s`             |
-| `maxRequests`              | `int`               | Maximum number of concurrent requests across all hosts (Dispatcher level).                   | `256`             |
-| `maxRequestsPerHost`       | `int`               | Maximum number of concurrent requests per host.                                              | `32`              |
-| `connectTimeout`           | `Duration`          | Timeout for establishing a connection.                                                       | `10s`             |
-| `readTimeout`              | `Duration`          | Timeout for reading a response.                                                              | `30s`             |
-| `writeTimeout`             | `Duration`          | Timeout for writing a request.                                                               | `30s`             |
-| `callTimeout`              | `Duration`          | Overall timeout for the entire call. `0` disables it.                                        | `0s`              |
-| `pingInterval`             | `Duration`          | Ping interval for HTTP/2 connections. `0` disables it.                                       | `0s`              |
-| `proxy`                    | `Proxy`             | Optional HTTP proxy. If `null`, no proxy will be used.                                       | `null`            |
-| `retryOnConnectionFailure` | `boolean`           | Whether to retry requests on connection failure.                                             | `true`            |
-| `interceptors`             | `List<Interceptor>` | Application-level interceptors (e.g., logging, metrics). Executed before routing or retries. | `[]` (empty list) |
-| `eventListener`            | `EventListener`     | Optional listener for connection lifecycle events (e.g., connect start, connect end, etc.).  | `null`            |
+| Parameter                   | Type                | Description                                                                                  | Default Value     |
+|-----------------------------|---------------------| -------------------------------------------------------------------------------------------- | ----------------- |
+| `keepAlive`                 | `boolean`           | Whether to enable connection pooling / HTTP keep-alive.                                      | `true`            |
+| `maxIdleConnections`        | `int`               | Maximum number of idle connections kept in the pool.                                         | `5`               |
+| `keepAliveDuration`         | `Duration`          | Idle connection eviction threshold.                                                          | `30s`             |
+| `maxRequests`               | `int`               | Maximum number of concurrent requests across all hosts (Dispatcher level).                   | `256`             |
+| `maxRequestsPerHost`        | `int`               | Maximum number of concurrent requests per host.                                              | `32`              |
+| `connectTimeout`            | `Duration`          | Timeout for establishing a connection.                                                       | `10s`             |
+| `readTimeout`               | `Duration`          | Timeout for reading a response.                                                              | `30s`             |
+| `writeTimeout`              | `Duration`          | Timeout for writing a request.                                                               | `30s`             |
+| `callTimeout`               | `Duration`          | Overall timeout for the entire call. `0` disables it.                                        | `0s`              |
+| `pingInterval`              | `Duration`          | Ping interval for HTTP/2 connections. `0` disables it.                                       | `0s`              |
+| `proxy`                     | `Proxy`             | Optional HTTP proxy. If `null`, no proxy will be used.                                       | `null`            |
+| `retryOnConnectionFailure`  | `boolean`           | Whether to retry requests on connection failure.                                             | `true`            |
+| `interceptors`              | `List<Interceptor>` | Application-level interceptors (e.g., logging, metrics). Executed before routing or retries. | `[]` (empty list) |
+| `eventListener`             | `EventListener`     | Optional listener for connection lifecycle events (e.g., connect start, connect end, etc.).  | `null`            |
+| `dispatcherExecutor`        | `ExecutorService`   | Custom thread pool for executing HTTP requests (via OkHttp Dispatcher); `null` = use default pool.       | `null`        |
 
 
 ### WebSocket Parameters
@@ -186,7 +187,6 @@ This section provides details about the configurable parameters for both HTTP an
 | `dialTimeout`                | `Duration`           | Timeout for establishing the WebSocket connection (handshake).              | `10s`         |
 | `writeTimeout`               | `Duration`           | Timeout for sending a single message.                                       | `5s`          |
 | `eventCallback`              | `WebSocketCallback`  | Optional callback to handle WebSocket events and error messages.            | `null`        |
-| `autoResubscribeMaxAttempts` | `int`                | Maximum number of retry attempts for automatic resubscription of each item. | `3`           |
 
 ## 📝 License
 

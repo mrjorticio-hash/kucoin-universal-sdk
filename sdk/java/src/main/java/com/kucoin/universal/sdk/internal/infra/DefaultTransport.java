@@ -71,7 +71,10 @@ public final class DefaultTransport implements Transport {
     o.proxy().ifPresent(b::proxy);
 
     // dispatcher limits
-    Dispatcher d = new Dispatcher();
+    Dispatcher d =
+        o.dispatcherExecutor().isPresent()
+            ? new Dispatcher(o.dispatcherExecutor().get())
+            : new Dispatcher();
     d.setMaxRequests(o.getMaxRequests());
     d.setMaxRequestsPerHost(o.getMaxRequestsPerHost());
     b.dispatcher(d);

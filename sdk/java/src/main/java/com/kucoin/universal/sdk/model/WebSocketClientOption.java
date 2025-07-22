@@ -34,20 +34,12 @@ public final class WebSocketClientOption {
   @Builder.Default private final Duration writeTimeout = Duration.ofSeconds(5);
 
   /** event dispatcher; may be {@code null} */
-  private final WebSocketCallback eventCallback;
-
-  /** max retry for automatic resubscribe (per item) */
-  @Builder.Default private final int autoResubscribeMaxAttempts = 3;
+  @Builder.Default private final WebSocketCallback eventCallback = null;
 
   /* ---------------- helper ---------------- */
 
   /** no-op option with all defaults */
   public static WebSocketClientOption defaults() {
     return WebSocketClientOption.builder().build();
-  }
-
-  /** apply event callback without touching other fields */
-  public WebSocketClientOption withCallback(WebSocketCallback cb) {
-    return toBuilder().eventCallback(cb).build();
   }
 }

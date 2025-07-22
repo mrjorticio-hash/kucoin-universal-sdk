@@ -27,13 +27,20 @@ public final class DefaultWebsocketTransport implements WebsocketTransport {
   private final WebSocketClientOption opt;
   private final WebsocketTransportListener listener;
 
-  private final OkHttpClient http = new OkHttpClient();
+  private final OkHttpClient http;
   private final ObjectMapper mapper = new ObjectMapper();
   private final AtomicBoolean connected = new AtomicBoolean(false);
   private final AtomicBoolean shutting = new AtomicBoolean(false);
   private final AtomicBoolean reconnecting = new AtomicBoolean(false);
   private final Map<String, CompletableFuture<Void>> ackMap = new ConcurrentHashMap<>();
-  private final ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor();
+  private final ScheduledExecutorService scheduler =
+      Executors.newSingleThreadScheduledExecutor(
+              r -> {
+                Thread t = new Thread(r);
+                t.setName("ws-scheduler-single-pool");
+                t.setDaemon(true);
+                return t;
+              });
   private volatile WebSocket socket;
   private volatile WsToken token;
 
@@ -45,6 +52,12 @@ public final class DefaultWebsocketTransport implements WebsocketTransport {
     this.tokenProvider = tokenProvider;
     this.opt = option;
     this.listener = listener;
+    this.http =
+        new OkHttpClient()
+            .newBuilder()
+            .connectTimeout(option.getDialTimeout())
+            .writeTimeout(option.getWriteTimeout())
+            .build();
   }
 
   private static WsToken pick(List<WsToken> list) {
@@ -73,6 +86,7 @@ public final class DefaultWebsocketTransport implements WebsocketTransport {
     scheduler.shutdownNow();
     tokenProvider.close();
     log.info("websocket closed");
+    listener.onEvent(WebSocketEvent.CLIENT_SHUTDOWN, "");
   }
 
   @Override
@@ -137,11 +151,15 @@ public final class DefaultWebsocketTransport implements WebsocketTransport {
 
                 @Override
                 public void onFailure(WebSocket w, Throwable t, Response r) {
-                  log.error("websocket emits error events", t);
+                  if (!shutting.get()) {
+                    log.error("websocket emits error events", t);
+                    return;
+                  }
+                  tryReconnect(t.getMessage());
                 }
               });
 
-      if (!welcome.await(5, TimeUnit.SECONDS)) {
+      if (!welcome.await(opt.getDialTimeout().toMillis(), TimeUnit.MILLISECONDS)) {
         throw new IllegalStateException("welcome not received");
       }
 
@@ -208,6 +226,7 @@ public final class DefaultWebsocketTransport implements WebsocketTransport {
           write(ping, Duration.ofMillis(timeout))
               .exceptionally(
                   ex -> {
+                    log.error("Schedule ping error", ex);
                     listener.onEvent(WebSocketEvent.ERROR_RECEIVED, ex.getMessage());
                     return null;
                   });
@@ -292,6 +311,9 @@ public final class DefaultWebsocketTransport implements WebsocketTransport {
       connected.set(false);
       if (socket != null) {
         socket.close(1000, reason);
+        socket.cancel();
+        http.connectionPool().evictAll();
+        http.dispatcher().executorService().shutdown();
       }
     } catch (Exception e) {
       log.error("exception when safe close", e);
