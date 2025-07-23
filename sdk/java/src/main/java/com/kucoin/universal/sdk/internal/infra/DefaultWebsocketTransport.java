@@ -35,12 +35,12 @@ public final class DefaultWebsocketTransport implements WebsocketTransport {
   private final Map<String, CompletableFuture<Void>> ackMap = new ConcurrentHashMap<>();
   private final ScheduledExecutorService scheduler =
       Executors.newSingleThreadScheduledExecutor(
-              r -> {
-                Thread t = new Thread(r);
-                t.setName("ws-scheduler-single-pool");
-                t.setDaemon(true);
-                return t;
-              });
+          r -> {
+            Thread t = new Thread(r);
+            t.setName("ws-scheduler-single-pool");
+            t.setDaemon(true);
+            return t;
+          });
   private volatile WebSocket socket;
   private volatile WsToken token;
 

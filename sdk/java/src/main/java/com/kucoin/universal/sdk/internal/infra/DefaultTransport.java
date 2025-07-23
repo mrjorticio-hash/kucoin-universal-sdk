@@ -1,5 +1,6 @@
 package com.kucoin.universal.sdk.internal.infra;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.kucoin.universal.sdk.internal.interfaces.PathVar;
@@ -44,6 +45,7 @@ public final class DefaultTransport implements Transport {
             clientOpt.getBrokerName(),
             clientOpt.getBrokerPartner(),
             clientOpt.getBrokerKey());
+    mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
   }
 
   private OkHttpClient buildOkHttp(TransportOption o) {
@@ -211,7 +213,6 @@ public final class DefaultTransport implements Transport {
                   .map(p -> p.getFirst() + "=" + p.getSecond())
                   .collect(Collectors.joining("&"));
     }
-
     RequestBody rb = null;
     if (!body.isEmpty() || method.equalsIgnoreCase("POST")) {
       rb = RequestBody.create(body, JSON);
@@ -251,6 +252,10 @@ public final class DefaultTransport implements Transport {
             headerInt(resp, "gw-ratelimit-reset")));
     common.checkError();
     T response = common.getData();
+    if (response == null) {
+      response = respClazz.getDeclaredConstructor().newInstance();
+    }
+
     response.setCommonResponse(common);
     return response;
   }
