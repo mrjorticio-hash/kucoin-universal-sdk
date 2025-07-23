@@ -1,0 +1,483 @@
+package com.kucoin.universal.sdk.test.e2e.rest.spot;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.kucoin.universal.sdk.api.DefaultKucoinClient;
+import com.kucoin.universal.sdk.api.KucoinClient;
+import com.kucoin.universal.sdk.generate.spot.market.*;
+import com.kucoin.universal.sdk.model.ClientOption;
+import com.kucoin.universal.sdk.model.Constants;
+import com.kucoin.universal.sdk.model.TransportOption;
+import java.io.IOException;
+import java.util.Collections;
+import lombok.extern.slf4j.Slf4j;
+import okhttp3.Interceptor;
+import okhttp3.Request;
+import okhttp3.Response;
+import org.jetbrains.annotations.NotNull;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
+
+@Slf4j
+public class MarketTest {
+
+  private static MarketApi api;
+
+  public static ObjectMapper mapper = new ObjectMapper();
+
+  @BeforeAll
+  public static void setUp() {
+
+    String key = System.getenv("API_KEY");
+    String secret = System.getenv("API_SECRET");
+    String passphrase = System.getenv("API_PASSPHRASE");
+
+    TransportOption httpTransport =
+        TransportOption.builder()
+            .interceptors(
+                Collections.singleton(
+                    new Interceptor() {
+                      @NotNull @Override
+                      public Response intercept(@NotNull Chain chain) throws IOException {
+                        Request request = chain.request();
+
+                        System.out.println("========== Request ==========");
+                        System.out.println(request.method() + " " + request.url());
+
+                        Response response = chain.proceed(request);
+
+                        System.out.println("========== Response ==========");
+                        System.out.println("Status Code: " + response.code());
+                        System.out.println("Message: " + response.message());
+                        return response;
+                      }
+                    }))
+            .build();
+
+    ClientOption clientOpt =
+        ClientOption.builder()
+            .key(key)
+            .secret(secret)
+            .passphrase(passphrase)
+            .spotEndpoint(Constants.GLOBAL_API_ENDPOINT)
+            .futuresEndpoint(Constants.GLOBAL_FUTURES_API_ENDPOINT)
+            .brokerEndpoint(Constants.GLOBAL_BROKER_API_ENDPOINT)
+            .transportOption(httpTransport)
+            .build();
+
+    KucoinClient kucoinClient = new DefaultKucoinClient(clientOpt);
+    api = kucoinClient.getRestService().getSpotService().getMarketApi();
+  }
+
+  /** getAnnouncements Get Announcements /api/v3/announcements */
+  @Test
+  public void testGetAnnouncements() throws Exception {
+    GetAnnouncementsReq.GetAnnouncementsReqBuilder builder = GetAnnouncementsReq.builder();
+    builder
+        .annType(GetAnnouncementsReq.AnnTypeEnum.LATEST_ANNOUNCEMENTS)
+        .lang(GetAnnouncementsReq.LangEnum.EN_US);
+    GetAnnouncementsReq req = builder.build();
+    GetAnnouncementsResp resp = api.getAnnouncements(req);
+    Assertions.assertNotNull(resp.getTotalNum());
+    resp.getItems()
+        .forEach(
+            item -> {
+              Assertions.assertNotNull(item.getAnnId());
+              Assertions.assertNotNull(item.getAnnTitle());
+              Assertions.assertNotNull(item.getAnnType());
+              Assertions.assertNotNull(item.getAnnDesc());
+              Assertions.assertNotNull(item.getCTime());
+              Assertions.assertNotNull(item.getLanguage());
+              Assertions.assertNotNull(item.getAnnUrl());
+            });
+
+    Assertions.assertNotNull(resp.getCurrentPage());
+    Assertions.assertNotNull(resp.getPageSize());
+    Assertions.assertNotNull(resp.getTotalPage());
+    log.info("resp: {}", mapper.writeValueAsString(resp));
+  }
+
+  /** getCurrency Get Currency /api/v3/currencies/{currency} */
+  @Test
+  public void testGetCurrency() throws Exception {
+    GetCurrencyReq.GetCurrencyReqBuilder builder = GetCurrencyReq.builder();
+    builder.chain("eth").currency("eth");
+    GetCurrencyReq req = builder.build();
+    GetCurrencyResp resp = api.getCurrency(req);
+    Assertions.assertNotNull(resp.getCurrency());
+    Assertions.assertNotNull(resp.getName());
+    Assertions.assertNotNull(resp.getFullName());
+    Assertions.assertNotNull(resp.getPrecision());
+    Assertions.assertNotNull(resp.getIsMarginEnabled());
+    Assertions.assertNotNull(resp.getIsDebitEnabled());
+    resp.getChains()
+        .forEach(
+            item -> {
+              Assertions.assertNotNull(item.getChainName());
+              Assertions.assertNotNull(item.getWithdrawalMinSize());
+              Assertions.assertNotNull(item.getDepositMinSize());
+              Assertions.assertNotNull(item.getWithdrawFeeRate());
+              Assertions.assertNotNull(item.getWithdrawalMinFee());
+              Assertions.assertNotNull(item.getIsWithdrawEnabled());
+              Assertions.assertNotNull(item.getIsDepositEnabled());
+              Assertions.assertNotNull(item.getConfirms());
+              Assertions.assertNotNull(item.getPreConfirms());
+              Assertions.assertNotNull(item.getContractAddress());
+              Assertions.assertNotNull(item.getWithdrawPrecision());
+              Assertions.assertNotNull(item.getNeedTag());
+              Assertions.assertNotNull(item.getChainId());
+            });
+
+    log.info("resp: {}", mapper.writeValueAsString(resp));
+  }
+
+  /** getAllCurrencies Get All Currencies /api/v3/currencies */
+  @Test
+  public void testGetAllCurrencies() throws Exception {
+    GetAllCurrenciesResp resp = api.getAllCurrencies();
+    resp.getData()
+        .forEach(
+            item -> {
+              Assertions.assertNotNull(item.getCurrency());
+              Assertions.assertNotNull(item.getName());
+              Assertions.assertNotNull(item.getFullName());
+              Assertions.assertNotNull(item.getPrecision());
+              Assertions.assertNotNull(item.getIsMarginEnabled());
+              Assertions.assertNotNull(item.getIsDebitEnabled());
+            });
+
+    log.info("resp: {}", mapper.writeValueAsString(resp));
+  }
+
+  /** getSymbol Get Symbol /api/v2/symbols/{symbol} */
+  @Test
+  public void testGetSymbol() throws Exception {
+    GetSymbolReq.GetSymbolReqBuilder builder = GetSymbolReq.builder();
+    builder.symbol("BTC-USDT");
+    GetSymbolReq req = builder.build();
+    GetSymbolResp resp = api.getSymbol(req);
+    Assertions.assertNotNull(resp.getSymbol());
+    Assertions.assertNotNull(resp.getName());
+    Assertions.assertNotNull(resp.getBaseCurrency());
+    Assertions.assertNotNull(resp.getQuoteCurrency());
+    Assertions.assertNotNull(resp.getFeeCurrency());
+    Assertions.assertNotNull(resp.getMarket());
+    Assertions.assertNotNull(resp.getBaseMinSize());
+    Assertions.assertNotNull(resp.getQuoteMinSize());
+    Assertions.assertNotNull(resp.getBaseMaxSize());
+    Assertions.assertNotNull(resp.getQuoteMaxSize());
+    Assertions.assertNotNull(resp.getBaseIncrement());
+    Assertions.assertNotNull(resp.getQuoteIncrement());
+    Assertions.assertNotNull(resp.getPriceIncrement());
+    Assertions.assertNotNull(resp.getPriceLimitRate());
+    Assertions.assertNotNull(resp.getMinFunds());
+    Assertions.assertNotNull(resp.getIsMarginEnabled());
+    Assertions.assertNotNull(resp.getEnableTrading());
+    Assertions.assertNotNull(resp.getFeeCategory());
+    Assertions.assertNotNull(resp.getMakerFeeCoefficient());
+    Assertions.assertNotNull(resp.getTakerFeeCoefficient());
+    Assertions.assertNotNull(resp.getSt());
+    Assertions.assertNotNull(resp.getCallauctionIsEnabled());
+    log.info("resp: {}", mapper.writeValueAsString(resp));
+  }
+
+  /** getAllSymbols Get All Symbols /api/v2/symbols */
+  @Test
+  public void testGetAllSymbols() throws Exception {
+    GetAllSymbolsReq.GetAllSymbolsReqBuilder builder = GetAllSymbolsReq.builder();
+    builder.market("USDS");
+    GetAllSymbolsReq req = builder.build();
+    GetAllSymbolsResp resp = api.getAllSymbols(req);
+    resp.getData()
+        .forEach(
+            item -> {
+              Assertions.assertNotNull(item.getSymbol());
+              Assertions.assertNotNull(item.getName());
+              Assertions.assertNotNull(item.getBaseCurrency());
+              Assertions.assertNotNull(item.getQuoteCurrency());
+              Assertions.assertNotNull(item.getFeeCurrency());
+              Assertions.assertNotNull(item.getMarket());
+              Assertions.assertNotNull(item.getBaseMinSize());
+              Assertions.assertNotNull(item.getQuoteMinSize());
+              Assertions.assertNotNull(item.getBaseMaxSize());
+              Assertions.assertNotNull(item.getQuoteMaxSize());
+              Assertions.assertNotNull(item.getBaseIncrement());
+              Assertions.assertNotNull(item.getQuoteIncrement());
+              Assertions.assertNotNull(item.getPriceIncrement());
+              Assertions.assertNotNull(item.getPriceLimitRate());
+              Assertions.assertNotNull(item.getIsMarginEnabled());
+              Assertions.assertNotNull(item.getEnableTrading());
+              Assertions.assertNotNull(item.getFeeCategory());
+              Assertions.assertNotNull(item.getMakerFeeCoefficient());
+              Assertions.assertNotNull(item.getTakerFeeCoefficient());
+              Assertions.assertNotNull(item.getSt());
+              Assertions.assertNotNull(item.getCallauctionIsEnabled());
+            });
+
+    log.info("resp: {}", mapper.writeValueAsString(resp));
+  }
+
+  /** getTicker Get Ticker /api/v1/market/orderbook/level1 */
+  @Test
+  public void testGetTicker() throws Exception {
+    GetTickerReq.GetTickerReqBuilder builder = GetTickerReq.builder();
+    builder.symbol("BTC-USDT");
+    GetTickerReq req = builder.build();
+    GetTickerResp resp = api.getTicker(req);
+    Assertions.assertNotNull(resp.getTime());
+    Assertions.assertNotNull(resp.getSequence());
+    Assertions.assertNotNull(resp.getPrice());
+    Assertions.assertNotNull(resp.getSize());
+    Assertions.assertNotNull(resp.getBestBid());
+    Assertions.assertNotNull(resp.getBestBidSize());
+    Assertions.assertNotNull(resp.getBestAsk());
+    Assertions.assertNotNull(resp.getBestAskSize());
+    log.info("resp: {}", mapper.writeValueAsString(resp));
+  }
+
+  /**
+   * TODO fix later MakerCoefficientEnum(2) getAllTickers Get All Tickers /api/v1/market/allTickers
+   */
+  @Test
+  public void testGetAllTickers() throws Exception {
+    GetAllTickersResp resp = api.getAllTickers();
+    Assertions.assertNotNull(resp.getTime());
+    resp.getTicker()
+        .forEach(
+            item -> {
+              Assertions.assertNotNull(item.getSymbol());
+              Assertions.assertNotNull(item.getSymbolName());
+              Assertions.assertNotNull(item.getBuy());
+              Assertions.assertNotNull(item.getBestBidSize());
+              Assertions.assertNotNull(item.getSell());
+              Assertions.assertNotNull(item.getBestAskSize());
+              Assertions.assertNotNull(item.getChangeRate());
+              Assertions.assertNotNull(item.getChangePrice());
+              Assertions.assertNotNull(item.getHigh());
+              Assertions.assertNotNull(item.getLow());
+              Assertions.assertNotNull(item.getVol());
+              Assertions.assertNotNull(item.getVolValue());
+              Assertions.assertNotNull(item.getLast());
+              Assertions.assertNotNull(item.getAveragePrice());
+              Assertions.assertNotNull(item.getTakerFeeRate());
+              Assertions.assertNotNull(item.getMakerFeeRate());
+              Assertions.assertNotNull(item.getTakerCoefficient());
+              Assertions.assertNotNull(item.getMakerCoefficient());
+            });
+
+    log.info("resp: {}", mapper.writeValueAsString(resp));
+  }
+
+  /** getTradeHistory Get Trade History /api/v1/market/histories */
+  @Test
+  public void testGetTradeHistory() throws Exception {
+    GetTradeHistoryReq.GetTradeHistoryReqBuilder builder = GetTradeHistoryReq.builder();
+    builder.symbol("BTC-USDT");
+    GetTradeHistoryReq req = builder.build();
+    GetTradeHistoryResp resp = api.getTradeHistory(req);
+    resp.getData()
+        .forEach(
+            item -> {
+              Assertions.assertNotNull(item.getSequence());
+              Assertions.assertNotNull(item.getPrice());
+              Assertions.assertNotNull(item.getSize());
+              Assertions.assertNotNull(item.getSide());
+              Assertions.assertNotNull(item.getTime());
+            });
+
+    log.info("resp: {}", mapper.writeValueAsString(resp));
+  }
+
+  /** getKlines Get Klines /api/v1/market/candles */
+  @Test
+  public void testGetKlines() throws Exception {
+    GetKlinesReq.GetKlinesReqBuilder builder = GetKlinesReq.builder();
+    builder
+        .symbol("BTC-USDT")
+        .type(GetKlinesReq.TypeEnum._1MIN)
+        .startAt(1753200000000L)
+        .endAt(1753203600000L);
+    GetKlinesReq req = builder.build();
+    GetKlinesResp resp = api.getKlines(req);
+    resp.getData().forEach(item -> {});
+
+    log.info("resp: {}", mapper.writeValueAsString(resp));
+  }
+
+  /** getPartOrderBook Get Part OrderBook /api/v1/market/orderbook/level2_{size} */
+  @Test
+  public void testGetPartOrderBook() throws Exception {
+    GetPartOrderBookReq.GetPartOrderBookReqBuilder builder = GetPartOrderBookReq.builder();
+    builder.symbol("BTC-USDT").size("20");
+    GetPartOrderBookReq req = builder.build();
+    GetPartOrderBookResp resp = api.getPartOrderBook(req);
+    Assertions.assertNotNull(resp.getTime());
+    Assertions.assertNotNull(resp.getSequence());
+    resp.getBids().forEach(item -> {});
+
+    resp.getAsks().forEach(item -> {});
+
+    log.info("resp: {}", mapper.writeValueAsString(resp));
+  }
+
+  /** getFullOrderBook Get Full OrderBook /api/v3/market/orderbook/level2 */
+  @Test
+  public void testGetFullOrderBook() throws Exception {
+    GetFullOrderBookReq.GetFullOrderBookReqBuilder builder = GetFullOrderBookReq.builder();
+    builder.symbol("BTC-USDT");
+    GetFullOrderBookReq req = builder.build();
+    GetFullOrderBookResp resp = api.getFullOrderBook(req);
+    Assertions.assertNotNull(resp.getTime());
+    Assertions.assertNotNull(resp.getSequence());
+    resp.getBids().forEach(item -> {});
+
+    resp.getAsks().forEach(item -> {});
+
+    log.info("resp: {}", mapper.writeValueAsString(resp));
+  }
+
+  /**
+   * getCallAuctionPartOrderBook Get Call Auction Part OrderBook
+   * /api/v1/market/orderbook/callauction/level2_{size}
+   */
+  @Test
+  public void testGetCallAuctionPartOrderBook() throws Exception {
+    GetCallAuctionPartOrderBookReq.GetCallAuctionPartOrderBookReqBuilder builder =
+        GetCallAuctionPartOrderBookReq.builder();
+    builder.symbol("HBAR-USDC").size("20");
+    GetCallAuctionPartOrderBookReq req = builder.build();
+    GetCallAuctionPartOrderBookResp resp = api.getCallAuctionPartOrderBook(req);
+    Assertions.assertNotNull(resp.getTime());
+    Assertions.assertNotNull(resp.getSequence());
+    resp.getBids().forEach(item -> {});
+
+    resp.getAsks().forEach(item -> {});
+
+    log.info("resp: {}", mapper.writeValueAsString(resp));
+  }
+
+  /** getCallAuctionInfo Get Call Auction Info /api/v1/market/callauctionData */
+  @Test
+  public void testGetCallAuctionInfo() throws Exception {
+    GetCallAuctionInfoReq.GetCallAuctionInfoReqBuilder builder = GetCallAuctionInfoReq.builder();
+    builder.symbol("HBAR-USDC");
+    GetCallAuctionInfoReq req = builder.build();
+    GetCallAuctionInfoResp resp = api.getCallAuctionInfo(req);
+    Assertions.assertNotNull(resp.getSymbol());
+    Assertions.assertNotNull(resp.getEstimatedPrice());
+    Assertions.assertNotNull(resp.getEstimatedSize());
+    Assertions.assertNotNull(resp.getSellOrderRangeLowPrice());
+    Assertions.assertNotNull(resp.getSellOrderRangeHighPrice());
+    Assertions.assertNotNull(resp.getBuyOrderRangeLowPrice());
+    Assertions.assertNotNull(resp.getBuyOrderRangeHighPrice());
+    Assertions.assertNotNull(resp.getTime());
+    log.info("resp: {}", mapper.writeValueAsString(resp));
+  }
+
+  /** getFiatPrice Get Fiat Price /api/v1/prices */
+  @Test
+  public void testGetFiatPrice() throws Exception {
+    GetFiatPriceReq.GetFiatPriceReqBuilder builder = GetFiatPriceReq.builder();
+    builder.base("USD").currencies("BTC");
+    GetFiatPriceReq req = builder.build();
+    GetFiatPriceResp resp = api.getFiatPrice(req);
+    Assertions.assertNotNull(resp.getData());
+    log.info("resp: {}", mapper.writeValueAsString(resp));
+  }
+
+  /** get24hrStats Get 24hr Stats /api/v1/market/stats */
+  @Test
+  public void testGet24hrStats() throws Exception {
+    Get24hrStatsReq.Get24hrStatsReqBuilder builder = Get24hrStatsReq.builder();
+    builder.symbol("BTC-USDT");
+    Get24hrStatsReq req = builder.build();
+    Get24hrStatsResp resp = api.get24hrStats(req);
+    Assertions.assertNotNull(resp.getTime());
+    Assertions.assertNotNull(resp.getSymbol());
+    Assertions.assertNotNull(resp.getBuy());
+    Assertions.assertNotNull(resp.getSell());
+    Assertions.assertNotNull(resp.getChangeRate());
+    Assertions.assertNotNull(resp.getChangePrice());
+    Assertions.assertNotNull(resp.getHigh());
+    Assertions.assertNotNull(resp.getLow());
+    Assertions.assertNotNull(resp.getVol());
+    Assertions.assertNotNull(resp.getVolValue());
+    Assertions.assertNotNull(resp.getLast());
+    Assertions.assertNotNull(resp.getAveragePrice());
+    Assertions.assertNotNull(resp.getTakerFeeRate());
+    Assertions.assertNotNull(resp.getMakerFeeRate());
+    Assertions.assertNotNull(resp.getTakerCoefficient());
+    Assertions.assertNotNull(resp.getMakerCoefficient());
+    log.info("resp: {}", mapper.writeValueAsString(resp));
+  }
+
+  /** getMarketList Get Market List /api/v1/markets */
+  @Test
+  public void testGetMarketList() throws Exception {
+    GetMarketListResp resp = api.getMarketList();
+    resp.getData().forEach(item -> {});
+
+    log.info("resp: {}", mapper.writeValueAsString(resp));
+  }
+
+  /** getClientIPAddress Get Client IP Address /api/v1/my-ip */
+  @Test
+  public void testGetClientIPAddress() throws Exception {
+    GetClientIPAddressResp resp = api.getClientIPAddress();
+    Assertions.assertNotNull(resp.getData());
+    log.info("resp: {}", mapper.writeValueAsString(resp));
+  }
+
+  /** getServerTime Get Server Time /api/v1/timestamp */
+  @Test
+  public void testGetServerTime() throws Exception {
+    GetServerTimeResp resp = api.getServerTime();
+    Assertions.assertNotNull(resp.getData());
+    log.info("resp: {}", mapper.writeValueAsString(resp));
+  }
+
+  /** getServiceStatus Get Service Status /api/v1/status */
+  @Test
+  public void testGetServiceStatus() throws Exception {
+    GetServiceStatusResp resp = api.getServiceStatus();
+    Assertions.assertNotNull(resp.getStatus());
+    Assertions.assertNotNull(resp.getMsg());
+    log.info("resp: {}", mapper.writeValueAsString(resp));
+  }
+
+  /** getPublicToken Get Public Token - Spot/Margin /api/v1/bullet-public */
+  @Test
+  public void testGetPublicToken() throws Exception {
+    GetPublicTokenResp resp = api.getPublicToken();
+    Assertions.assertNotNull(resp.getToken());
+    resp.getInstanceServers()
+        .forEach(
+            item -> {
+              Assertions.assertNotNull(item.getEndpoint());
+              Assertions.assertNotNull(item.getEncrypt());
+              Assertions.assertNotNull(item.getProtocol());
+              Assertions.assertNotNull(item.getPingInterval());
+              Assertions.assertNotNull(item.getPingTimeout());
+            });
+
+    log.info("resp: {}", mapper.writeValueAsString(resp));
+  }
+
+  /** getPrivateToken Get Private Token - Spot/Margin /api/v1/bullet-private */
+  @Test
+  public void testGetPrivateToken() throws Exception {
+    GetPrivateTokenResp resp = api.getPrivateToken();
+    Assertions.assertNotNull(resp.getToken());
+    resp.getInstanceServers()
+        .forEach(
+            item -> {
+              Assertions.assertNotNull(item.getEndpoint());
+              Assertions.assertNotNull(item.getEncrypt());
+              Assertions.assertNotNull(item.getProtocol());
+              Assertions.assertNotNull(item.getPingInterval());
+              Assertions.assertNotNull(item.getPingTimeout());
+            });
+
+    log.info("resp: {}", mapper.writeValueAsString(resp));
+  }
+}

@@ -15,7 +15,6 @@ import com.kucoin.universal.sdk.model.WebSocketClientOption;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 import lombok.extern.slf4j.Slf4j;
-import okhttp3.*;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
