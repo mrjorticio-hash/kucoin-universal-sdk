@@ -1,9 +1,12 @@
-package com.kucoin.universal.sdk.test.e2e.rest.account;
+package com.kucoin.universal.sdk.test.e2e.rest.margin;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.kucoin.universal.sdk.api.DefaultKucoinClient;
 import com.kucoin.universal.sdk.api.KucoinClient;
-import com.kucoin.universal.sdk.generate.account.fee.*;
+import com.kucoin.universal.sdk.generate.margin.risklimit.GetMarginRiskLimitReq;
+import com.kucoin.universal.sdk.generate.margin.risklimit.GetMarginRiskLimitResp;
+import com.kucoin.universal.sdk.generate.margin.risklimit.RiskLimitApi;
 import com.kucoin.universal.sdk.model.ClientOption;
 import com.kucoin.universal.sdk.model.Constants;
 import com.kucoin.universal.sdk.model.TransportOption;
@@ -14,14 +17,13 @@ import okhttp3.Interceptor;
 import okhttp3.Request;
 import okhttp3.Response;
 import org.jetbrains.annotations.NotNull;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 @Slf4j
-public class AccountFeeTest {
+public class RiskLimitApiTest {
 
-  private static FeeApi api;
+  private static RiskLimitApi api;
 
   public static ObjectMapper mapper = new ObjectMapper();
 
@@ -66,49 +68,26 @@ public class AccountFeeTest {
             .build();
 
     KucoinClient kucoinClient = new DefaultKucoinClient(clientOpt);
-    api = kucoinClient.getRestService().getAccountService().getFeeApi();
+    api = kucoinClient.getRestService().getMarginService().getRiskLimitApi();
   }
 
-  /** getBasicFee Get Basic Fee - Spot/Margin /api/v1/base-fee */
+  /** getMarginRiskLimit Get Margin Risk Limit /api/v3/margin/currencies */
   @Test
-  public void testGetBasicFee() throws Exception {
-    GetBasicFeeReq.GetBasicFeeReqBuilder builder = GetBasicFeeReq.builder();
-    builder.currencyType(GetBasicFeeReq.CurrencyTypeEnum._0);
-    GetBasicFeeReq req = builder.build();
-    GetBasicFeeResp resp = api.getBasicFee(req);
-    Assertions.assertNotNull(resp.getTakerFeeRate());
-    Assertions.assertNotNull(resp.getMakerFeeRate());
-    log.info("resp: {}", mapper.writeValueAsString(resp));
-  }
-
-  /** getSpotActualFee Get Actual Fee - Spot/Margin /api/v1/trade-fees */
-  @Test
-  public void testGetSpotActualFee() throws Exception {
-    GetSpotActualFeeReq.GetSpotActualFeeReqBuilder builder = GetSpotActualFeeReq.builder();
-    builder.symbols("BTC-USDT,ETH-USDT");
-    GetSpotActualFeeReq req = builder.build();
-    GetSpotActualFeeResp resp = api.getSpotActualFee(req);
+  public void testGetMarginRiskLimit() throws Exception {
+    GetMarginRiskLimitReq.GetMarginRiskLimitReqBuilder builder = GetMarginRiskLimitReq.builder();
+    builder.isIsolated(false).currency("BTC");
+    GetMarginRiskLimitReq req = builder.build();
+    GetMarginRiskLimitResp resp = api.getMarginRiskLimit(req);
     resp.getData()
         .forEach(
             item -> {
-              Assertions.assertNotNull(item.getSymbol());
-              Assertions.assertNotNull(item.getTakerFeeRate());
-              Assertions.assertNotNull(item.getMakerFeeRate());
+              try {
+                log.info("resp: {}", mapper.writeValueAsString(item));
+              } catch (JsonProcessingException e) {
+                throw new RuntimeException(e);
+              }
             });
 
-    log.info("resp: {}", mapper.writeValueAsString(resp));
-  }
-
-  /** getFuturesActualFee Get Actual Fee - Futures /api/v1/trade-fees */
-  @Test
-  public void testGetFuturesActualFee() throws Exception {
-    GetFuturesActualFeeReq.GetFuturesActualFeeReqBuilder builder = GetFuturesActualFeeReq.builder();
-    builder.symbol("XBTUSDM");
-    GetFuturesActualFeeReq req = builder.build();
-    GetFuturesActualFeeResp resp = api.getFuturesActualFee(req);
-    Assertions.assertNotNull(resp.getSymbol());
-    Assertions.assertNotNull(resp.getTakerFeeRate());
-    Assertions.assertNotNull(resp.getMakerFeeRate());
     log.info("resp: {}", mapper.writeValueAsString(resp));
   }
 }

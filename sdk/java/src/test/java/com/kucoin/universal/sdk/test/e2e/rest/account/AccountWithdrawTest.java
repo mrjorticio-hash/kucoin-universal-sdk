@@ -3,7 +3,6 @@ package com.kucoin.universal.sdk.test.e2e.rest.account;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.kucoin.universal.sdk.api.DefaultKucoinClient;
 import com.kucoin.universal.sdk.api.KucoinClient;
-import com.kucoin.universal.sdk.generate.account.subaccount.*;
 import com.kucoin.universal.sdk.generate.account.withdrawal.*;
 import com.kucoin.universal.sdk.model.ClientOption;
 import com.kucoin.universal.sdk.model.Constants;

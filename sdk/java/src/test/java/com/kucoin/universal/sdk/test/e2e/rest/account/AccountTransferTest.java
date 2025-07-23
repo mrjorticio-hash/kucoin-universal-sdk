@@ -4,7 +4,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.kucoin.universal.sdk.api.DefaultKucoinClient;
 import com.kucoin.universal.sdk.api.KucoinClient;
 import com.kucoin.universal.sdk.generate.account.transfer.*;
-import com.kucoin.universal.sdk.generate.account.withdrawal.*;
 import com.kucoin.universal.sdk.model.ClientOption;
 import com.kucoin.universal.sdk.model.Constants;
 import com.kucoin.universal.sdk.model.TransportOption;
