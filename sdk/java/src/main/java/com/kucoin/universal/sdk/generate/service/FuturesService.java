@@ -9,11 +9,11 @@ import com.kucoin.universal.sdk.generate.futures.positions.PositionsApi;
 
 public interface FuturesService {
 
-  public OrderApi getOrderApi();
+  OrderApi getOrderApi();
 
-  public PositionsApi getPositionsApi();
+  PositionsApi getPositionsApi();
 
-  public FundingFeesApi getFundingFeesApi();
+  FundingFeesApi getFundingFeesApi();
 
-  public MarketApi getMarketApi();
+  MarketApi getMarketApi();
 }

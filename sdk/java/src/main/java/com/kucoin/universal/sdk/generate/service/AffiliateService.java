@@ -5,5 +5,5 @@ package com.kucoin.universal.sdk.generate.service;
 import com.kucoin.universal.sdk.generate.affiliate.affiliate.AffiliateApi;
 
 public interface AffiliateService {
-  public AffiliateApi getAffiliateApi();
+  AffiliateApi getAffiliateApi();
 }

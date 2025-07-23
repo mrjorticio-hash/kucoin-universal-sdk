@@ -5,5 +5,5 @@ package com.kucoin.universal.sdk.generate.service;
 import com.kucoin.universal.sdk.generate.earn.earn.EarnApi;
 
 public interface EarnService {
-  public EarnApi getEarnApi();
+  EarnApi getEarnApi();
 }

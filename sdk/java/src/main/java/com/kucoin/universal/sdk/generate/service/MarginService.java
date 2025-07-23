@@ -10,13 +10,13 @@ import com.kucoin.universal.sdk.generate.margin.risklimit.RiskLimitApi;
 
 public interface MarginService {
 
-  public OrderApi getOrderApi();
+  OrderApi getOrderApi();
 
-  public DebitApi getDebitApi();
+  DebitApi getDebitApi();
 
-  public CreditApi getCreditApi();
+  CreditApi getCreditApi();
 
-  public MarketApi getMarketApi();
+  MarketApi getMarketApi();
 
-  public RiskLimitApi getRiskLimitApi();
+  RiskLimitApi getRiskLimitApi();
 }

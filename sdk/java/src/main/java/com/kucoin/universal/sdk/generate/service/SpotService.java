@@ -7,7 +7,7 @@ import com.kucoin.universal.sdk.generate.spot.order.OrderApi;
 
 public interface SpotService {
 
-  public OrderApi getOrderApi();
+  OrderApi getOrderApi();
 
-  public MarketApi getMarketApi();
+  MarketApi getMarketApi();
 }

@@ -11,15 +11,15 @@ import com.kucoin.universal.sdk.generate.account.withdrawal.WithdrawalApi;
 
 public interface AccountService {
 
-  public AccountApi getAccountApi();
+  AccountApi getAccountApi();
 
-  public DepositApi getDepositApi();
+  DepositApi getDepositApi();
 
-  public WithdrawalApi getWithdrawalApi();
+  WithdrawalApi getWithdrawalApi();
 
-  public FeeApi getFeeApi();
+  FeeApi getFeeApi();
 
-  public SubAccountApi getSubAccountApi();
+  SubAccountApi getSubAccountApi();
 
-  public TransferApi getTransferApi();
+  TransferApi getTransferApi();
 }

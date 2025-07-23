@@ -7,7 +7,7 @@ import com.kucoin.universal.sdk.generate.broker.ndbroker.NDBrokerApi;
 
 public interface BrokerService {
 
-  public APIBrokerApi getAPIBrokerApi();
+  APIBrokerApi getAPIBrokerApi();
 
-  public NDBrokerApi getNDBrokerApi();
+  NDBrokerApi getNDBrokerApi();
 }

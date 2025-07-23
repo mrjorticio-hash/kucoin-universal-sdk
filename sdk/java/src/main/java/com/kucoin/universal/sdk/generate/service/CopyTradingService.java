@@ -5,5 +5,5 @@ package com.kucoin.universal.sdk.generate.service;
 import com.kucoin.universal.sdk.generate.copytrading.futures.FuturesApi;
 
 public interface CopyTradingService {
-  public FuturesApi getFuturesApi();
+  FuturesApi getFuturesApi();
 }

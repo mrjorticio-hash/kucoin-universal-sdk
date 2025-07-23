@@ -5,5 +5,5 @@ package com.kucoin.universal.sdk.generate.service;
 import com.kucoin.universal.sdk.generate.viplending.viplending.VIPLendingApi;
 
 public interface VIPLendingService {
-  public VIPLendingApi getVIPLendingApi();
+  VIPLendingApi getVIPLendingApi();
 }
