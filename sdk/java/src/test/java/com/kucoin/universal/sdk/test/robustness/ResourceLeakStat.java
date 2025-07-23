@@ -91,4 +91,18 @@ public class ResourceLeakStat {
   public static void main(String[] args) {
     ResourceLeakStat.stat("Start");
   }
+
+  public static void printAllThreadsWithStack() {
+    Thread.getAllStackTraces()
+        .forEach(
+            (thread, stackTrace) -> {
+              System.out.printf(
+                  "=== Thread: %s (id=%d, state=%s) ===\n",
+                  thread.getName(), thread.getId(), thread.getState());
+              for (StackTraceElement element : stackTrace) {
+                System.out.println("  at " + element);
+              }
+              System.out.println();
+            });
+  }
 }
