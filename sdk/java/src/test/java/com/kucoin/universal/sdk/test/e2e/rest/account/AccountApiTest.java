@@ -1,4 +1,4 @@
-package com.kucoin.universal.sdk.e2e.rest.account;
+package com.kucoin.universal.sdk.test.e2e.rest.account;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.kucoin.universal.sdk.api.DefaultKucoinClient;
