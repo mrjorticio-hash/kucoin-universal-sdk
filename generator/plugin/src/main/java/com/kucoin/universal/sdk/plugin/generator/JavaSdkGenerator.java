@@ -361,6 +361,7 @@ public class JavaSdkGenerator extends AbstractJavaCodegen implements NameService
 
                 if (vendorExtension.containsKey("x-original-response") || vendorExtension.containsKey("x-request-raw-array")) {
                     imports.add("import com.fasterxml.jackson.annotation.JsonCreator;");
+                    imports.add("import com.fasterxml.jackson.annotation.JsonValue;");
                 }
 
                 codegenModel.getVars().forEach(var -> {

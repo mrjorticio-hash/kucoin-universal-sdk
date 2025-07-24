@@ -61,6 +61,12 @@ public class {{classname}} {
         obj.data = data;
         return obj;
     }
+
+    @JsonValue
+    public Object toJson() {
+        return this.data;
+    }
+
     {{/vars}}
 {{/vendorExtensions.x-original-response}}
 {{#vendorExtensions.x-request-raw-array}}
@@ -71,6 +77,11 @@ public class {{classname}} {
         {{classname}} obj = new {{classname}}();
         obj.items = data;
         return obj;
+    }
+
+    @JsonValue
+    public Object toJson() {
+        return this.items;
     }
     {{/vars}}
 {{/vendorExtensions.x-request-raw-array}}

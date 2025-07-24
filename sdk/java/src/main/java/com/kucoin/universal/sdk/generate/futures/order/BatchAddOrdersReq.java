@@ -5,6 +5,7 @@ package com.kucoin.universal.sdk.generate.futures.order;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonValue;
 import com.kucoin.universal.sdk.internal.interfaces.Request;
 import java.util.ArrayList;
 import java.util.List;
@@ -30,5 +31,10 @@ public class BatchAddOrdersReq implements Request {
     BatchAddOrdersReq obj = new BatchAddOrdersReq();
     obj.items = data;
     return obj;
+  }
+
+  @JsonValue
+  public Object toJson() {
+    return this.items;
   }
 }

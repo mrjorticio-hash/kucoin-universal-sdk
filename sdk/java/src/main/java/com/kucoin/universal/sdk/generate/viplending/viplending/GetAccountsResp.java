@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonValue;
 import com.kucoin.universal.sdk.internal.interfaces.Response;
 import com.kucoin.universal.sdk.model.RestResponse;
 import java.util.ArrayList;
@@ -37,5 +38,10 @@ public class GetAccountsResp implements Response<GetAccountsResp, RestResponse<G
     GetAccountsResp obj = new GetAccountsResp();
     obj.data = data;
     return obj;
+  }
+
+  @JsonValue
+  public Object toJson() {
+    return this.data;
   }
 }
