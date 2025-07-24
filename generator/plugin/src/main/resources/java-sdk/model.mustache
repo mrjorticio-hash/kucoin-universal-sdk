@@ -30,7 +30,7 @@ public class {{classname}} {
     */
     {{#vendorExtensions.x-tag-path}}
     @JsonIgnore
-    @PathVar("{{name}}")
+    @PathVar("{{baseName}}")
     {{/vendorExtensions.x-tag-path}}
     @JsonProperty("{{baseName}}")
     {{#vendorExtensions.x-annotation}}

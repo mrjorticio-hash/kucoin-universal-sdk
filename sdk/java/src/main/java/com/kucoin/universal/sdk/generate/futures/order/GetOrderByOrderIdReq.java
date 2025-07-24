@@ -20,7 +20,7 @@ import lombok.NoArgsConstructor;
 public class GetOrderByOrderIdReq implements Request {
   /** */
   @JsonIgnore
-  @PathVar("orderId")
+  @PathVar("order-id")
   @JsonProperty("order-id")
   private String orderId;
 }

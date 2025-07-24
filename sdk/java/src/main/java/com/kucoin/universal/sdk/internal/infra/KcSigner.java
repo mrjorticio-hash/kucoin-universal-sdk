@@ -82,7 +82,7 @@ public final class KcSigner {
   /** Headers for broker request (includes partner signature). */
   public Map<String, String> brokerHeaders(String plain) {
     if (brokerPartner.isEmpty() || brokerName.isEmpty()) {
-      System.err.println("[BROKER ERROR] Missing broker information");
+      log.error("[BROKER ERROR] Missing broker information");
       throw new IllegalStateException("Broker information cannot be empty");
     }
 
