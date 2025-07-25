@@ -6,7 +6,7 @@
     * {{summary}}
     * {{path}}
     */
-    public function test{{vendorExtensions.x-meta.methodServiceFmt}}() {
+    public void test{{vendorExtensions.x-meta.methodServiceFmt}}() {
         {{#vendorExtensions.x-response-model}}
         {{#vars}}
             {{#isArray}}
@@ -23,7 +23,7 @@
         Assertions.assertNotNull(event.{{getter}}());
             {{/isArray}}
         {{/vars}}
-        log.info("event: {}", mapper.writeValueAsString(event));
+        log.info("event: {}", event.toString());
         {{/vendorExtensions.x-response-model}}
     }
 

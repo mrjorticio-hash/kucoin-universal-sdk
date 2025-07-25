@@ -287,7 +287,7 @@ public class ExampleArbitrageStrategy {
         com.kucoin.universal.sdk.generate.spot.order.GetOrderByOrderIdResp orderDetail =
             spotService.getOrderApi().getOrderByOrderId(detailReq);
 
-        if (!orderDetail.getActive()) {
+        if (orderDetail.getActive() != null && !orderDetail.getActive()) {
           log.info(
               "[SPOT ORDER] Order filled successfully: {} {} {}. Order ID: {}",
               side.toUpperCase(),
@@ -460,7 +460,7 @@ public class ExampleArbitrageStrategy {
         com.kucoin.universal.sdk.generate.margin.order.GetOrderByOrderIdResp orderDetail =
             marginService.getOrderApi().getOrderByOrderId(detailReq);
 
-        if (!orderDetail.getActive()) {
+        if (orderDetail.getActive() != null && !orderDetail.getActive()) {
           log.info(
               "[MARGIN ORDER] Order filled successfully: BUY {} {}. Order ID: {}",
               amount,

@@ -118,6 +118,7 @@ public final class DefaultWsService implements WebSocketService, WebsocketTransp
       cb.onMessage(wsMessage, mapper);
     } catch (Throwable t) {
       notifyEvent(WebSocketEvent.CALLBACK_ERROR, t.getMessage());
+      log.error("invoke callback error", t);
     }
   }
 

@@ -3,7 +3,6 @@ package com.kucoin.universal.sdk.test.e2e.rest.futures;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.kucoin.universal.sdk.api.DefaultKucoinClient;
 import com.kucoin.universal.sdk.api.KucoinClient;
-import com.kucoin.universal.sdk.generate.futures.market.*;
 import com.kucoin.universal.sdk.generate.futures.positions.*;
 import com.kucoin.universal.sdk.model.ClientOption;
 import com.kucoin.universal.sdk.model.Constants;
