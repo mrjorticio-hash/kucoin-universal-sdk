@@ -77,4 +77,10 @@ public interface KucoinRestService {
    * @return VIPLendingService
    */
   VIPLendingService getVipLendingService();
+
+  /**
+   * Closes the service and releases any resources held by the KucoinRestService. This method should
+   * be called when the service is no longer needed to ensure proper cleanup.
+   */
+  void closeService();
 }

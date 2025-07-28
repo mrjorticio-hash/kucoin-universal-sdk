@@ -27,9 +27,20 @@ public interface MarginPrivateWs {
   /** Unsubscribe from topics */
   void unSubscribe(String id);
 
-  /** Start websocket */
+  /**
+   * Initiates the WebSocket service
+   *
+   * <p>This method must be called before subscribing to any topics.
+   */
   void start();
 
-  /** Stop websocket */
+  /**
+   * Stops the WebSocket service.
+   *
+   * <p>This method is used to terminate the WebSocket connection and stop all ongoing
+   * subscriptions. It should be called when no further communication is needed with the server, or
+   * when the application is being shut down to ensure a clean disconnection and release of
+   * resources.
+   */
   void stop();
 }

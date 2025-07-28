@@ -83,6 +83,8 @@ public final class DefaultWebsocketTransport implements WebsocketTransport {
   public void stop() {
     shutting.set(true);
     safeClose("shutdown");
+    http.connectionPool().evictAll();
+    http.dispatcher().executorService().shutdown();
     scheduler.shutdownNow();
     tokenProvider.close();
     log.info("websocket closed");
@@ -101,7 +103,7 @@ public final class DefaultWebsocketTransport implements WebsocketTransport {
     try {
       boolean queued = socket.send(mapper.writeValueAsString(m));
       if (!queued) {
-        throw new IllegalStateException("OkHttp buffer full");
+        throw new IllegalStateException("enqueue message failed");
       }
     } catch (Exception e) {
       ackMap.remove(m.getId());
@@ -151,10 +153,6 @@ public final class DefaultWebsocketTransport implements WebsocketTransport {
 
                 @Override
                 public void onFailure(WebSocket w, Throwable t, Response r) {
-                  if (!shutting.get()) {
-                    log.error("websocket emits error events", t);
-                    return;
-                  }
                   tryReconnect(t.getMessage());
                 }
               });
@@ -237,11 +235,10 @@ public final class DefaultWebsocketTransport implements WebsocketTransport {
   }
 
   private void tryReconnect(String reason) {
+    log.error("Websocket disconnected due to {}, Reconnection...", reason);
     if (shutting.get()) {
       return;
     }
-    log.info("Websocket disconnected due to {}, Reconnection...", reason);
-    safeClose(reason);
 
     if (!opt.isReconnect()) {
       log.warn("Reconnect failed: auto-reconnect is disabled");
@@ -252,6 +249,8 @@ public final class DefaultWebsocketTransport implements WebsocketTransport {
       log.warn("Another thread is reconnecting, skip current attempt");
       return;
     }
+
+    safeClose("reconnect");
 
     Thread reconnectThread =
         new Thread(
@@ -303,6 +302,7 @@ public final class DefaultWebsocketTransport implements WebsocketTransport {
 
   private void safeClose(String reason) {
     try {
+      log.info("Safe close resource for reason: {}", reason);
       listener.onEvent(WebSocketEvent.DISCONNECTED, "");
       ackMap
           .values()
@@ -312,8 +312,7 @@ public final class DefaultWebsocketTransport implements WebsocketTransport {
       if (socket != null) {
         socket.close(1000, reason);
         socket.cancel();
-        http.connectionPool().evictAll();
-        http.dispatcher().executorService().shutdown();
+        socket = null;
       }
     } catch (Exception e) {
       log.error("exception when safe close", e);

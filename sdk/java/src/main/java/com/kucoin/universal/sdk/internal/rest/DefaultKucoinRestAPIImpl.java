@@ -21,6 +21,7 @@ import com.kucoin.universal.sdk.generate.service.SpotServiceImpl;
 import com.kucoin.universal.sdk.generate.service.VIPLendingService;
 import com.kucoin.universal.sdk.generate.service.VIPLendingServiceImpl;
 import com.kucoin.universal.sdk.internal.infra.DefaultTransport;
+import com.kucoin.universal.sdk.internal.interfaces.Transport;
 import com.kucoin.universal.sdk.model.ClientOption;
 import lombok.extern.slf4j.Slf4j;
 
@@ -40,12 +41,13 @@ public final class DefaultKucoinRestAPIImpl implements KucoinRestService {
   private final MarginService marginService;
   private final SpotService spotService;
   private final VIPLendingService vipLendingService;
+  private final Transport transport;
 
   public DefaultKucoinRestAPIImpl(ClientOption option) {
     if (option.getTransportOption() == null) {
       throw new RuntimeException("no transport option provided");
     }
-    DefaultTransport transport = new DefaultTransport(option, Version.SDK_VERSION);
+    transport = new DefaultTransport(option, Version.SDK_VERSION);
 
     this.accountService = new AccountServiceImpl(transport);
     this.affiliateService = new AffiliateServiceImpl(transport);
@@ -103,5 +105,10 @@ public final class DefaultKucoinRestAPIImpl implements KucoinRestService {
   @Override
   public VIPLendingService getVipLendingService() {
     return vipLendingService;
+  }
+
+  @Override
+  public void closeService() {
+    transport.close();
   }
 }
