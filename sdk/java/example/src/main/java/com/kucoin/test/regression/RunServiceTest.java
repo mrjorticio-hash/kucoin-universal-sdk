@@ -19,9 +19,19 @@ import com.kucoin.universal.sdk.model.ClientOption;
 import com.kucoin.universal.sdk.model.Constants;
 import com.kucoin.universal.sdk.model.RestResponse;
 import com.kucoin.universal.sdk.model.TransportOption;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.junit.platform.engine.TestExecutionResult;
+import org.junit.platform.engine.discovery.DiscoverySelectors;
+import org.junit.platform.launcher.Launcher;
+import org.junit.platform.launcher.LauncherDiscoveryRequest;
+import org.junit.platform.launcher.TestExecutionListener;
+import org.junit.platform.launcher.TestIdentifier;
+import org.junit.platform.launcher.core.LauncherDiscoveryRequestBuilder;
+import org.junit.platform.launcher.core.LauncherFactory;
 
 public class RunServiceTest {
 
@@ -84,7 +94,7 @@ public class RunServiceTest {
                 .size("0.001")
                 .autoRepay(true)
                 .autoBorrow(true)
-                .isIsolated(true)
+                .isIsolated(false)
                 .build());
     ok(add.getCommonResponse());
 
@@ -145,5 +155,70 @@ public class RunServiceTest {
     ok(add.getCommonResponse());
 
     orderApi.cancelOrderById(CancelOrderByIdReq.builder().orderId(add.getOrderId()).build());
+  }
+
+  public static void main(String[] args) {
+    LauncherDiscoveryRequest request =
+        LauncherDiscoveryRequestBuilder.request()
+            .selectors(DiscoverySelectors.selectClass(RunServiceTest.class))
+            .build();
+
+    Launcher launcher = LauncherFactory.create();
+
+    class TestResult {
+      String displayName;
+      boolean success;
+      Throwable exception;
+    }
+
+    List<TestResult> results = new ArrayList<>();
+    int[] failedCount = {0};
+
+    TestExecutionListener listener =
+        new TestExecutionListener() {
+          @Override
+          public void executionFinished(
+              TestIdentifier testIdentifier, TestExecutionResult testExecutionResult) {
+            if (!testIdentifier.isTest()) return;
+
+            TestResult result = new TestResult();
+            result.displayName = testIdentifier.getDisplayName();
+
+            if (testExecutionResult.getStatus() == TestExecutionResult.Status.SUCCESSFUL) {
+              result.success = true;
+            } else {
+              result.success = false;
+              result.exception = testExecutionResult.getThrowable().orElse(null);
+              failedCount[0]++;
+            }
+
+            results.add(result);
+          }
+        };
+
+    launcher.registerTestExecutionListeners(listener);
+    launcher.execute(request);
+
+    System.out.println("\nTest Execution Summary:\n");
+
+    for (TestResult r : results) {
+      if (r.success) {
+        System.out.println(r.displayName + " - OK");
+      } else {
+        System.out.println(r.displayName + " - FAILED");
+        if (r.exception != null) {
+          System.out.println("  Exception: " + r.exception.toString());
+          r.exception.printStackTrace(System.out);
+        }
+      }
+    }
+
+    System.out.printf(
+        "\nTotal: %d, Passed: %d, Failed: %d%n",
+        results.size(), results.size() - failedCount[0], failedCount[0]);
+
+    if (failedCount[0] > 0) {
+      System.exit(1);
+    }
   }
 }

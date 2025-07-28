@@ -16,7 +16,7 @@ For an overview of the project and SDKs in other languages, refer to the [Main R
 <dependency>
     <groupId>com.kucoin</groupId>
     <artifactId>kucoin-universal-sdk</artifactId>
-    <version>0.1.0-SNAPSHOT</version>
+    <version>0.1.0-alpha</version>
 </dependency>
 ```
 
@@ -116,10 +116,7 @@ This section provides specific considerations and recommendations for using the 
 
 #### Client Features
 - **Advanced HTTP Handling**:
-  - Supports retries, keep-alive connections, and configurable concurrency limits for robust request execution.
-  - Supports both [Guzzle](https://github.com/guzzle/guzzle) and [Saber (Swoole)](https://github.com/swlib/saber) as underlying HTTP clients.
-  - Use `useCoroutineHttp=true` to enable high-performance coroutine HTTP requests (requires `ext-swoole` and `swlib/saber`).
-
+  - Supports keep-alive connections, and configurable concurrency limits for robust request execution.
 - **Rich Response Details**:
     - Includes rate-limiting information and raw response data in API responses for better debugging and control.
 - **Public API Access**:

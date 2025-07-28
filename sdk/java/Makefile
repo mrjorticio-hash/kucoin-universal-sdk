@@ -19,6 +19,7 @@ before-release-test: build
 	  -e API_SECRET="$$API_SECRET" \
 	  -e API_PASSPHRASE="$$API_PASSPHRASE" \
 	  -e USE_LOCAL="true" \
+	  -v m2-cache:/root/.m2 \
 	  java-sdk-image:latest \
 	  bash /app/release_test.sh
 
@@ -38,6 +39,8 @@ run-forever-test: build
 	  -e API_KEY="$$API_KEY" \
 	  -e API_SECRET="$$API_SECRET" \
 	  -e API_PASSPHRASE="$$API_PASSPHRASE" \
+	  -e USE_LOCAL="true" \
+      -v m2-cache:/root/.m2 \
 	  --name java-run-forever-test \
 	  java-sdk-image:latest \
 	  bash /app/run_forever_test.sh
@@ -49,21 +52,8 @@ reconnect-test: build
 	  -e API_KEY="$$API_KEY" \
 	  -e API_SECRET="$$API_SECRET" \
 	  -e API_PASSPHRASE="$$API_PASSPHRASE" \
+	  -e USE_LOCAL="true" \
+      -v m2-cache:/root/.m2 \
 	  --name java-reconnect-test --network isolated_net \
 	  java-sdk-image:latest \
 	  bash /app/ws_reconnect_test.sh
-
-
-VERSIONS = 7.4 8.0 8.1 8.2
-.PHONY: java-version-test
-java-version-test:
-	@for v in $(VERSIONS); do \
-    	  echo "---- java $$v ----"; \
-    	  docker build --build-arg java_RUNTIME=$$v -t java-sdk-image:$$v . ; \
-    	  docker run --rm \
-    	    -e API_KEY="$$API_KEY" \
-    	    -e API_SECRET="$$API_SECRET" \
-    	    -e API_PASSPHRASE="$$API_PASSPHRASE" \
-    	    -e USE_LOCAL="true" \
-    	    java-sdk-image:$$v bash /app/release_test.sh || exit $$? ; \
-    done
