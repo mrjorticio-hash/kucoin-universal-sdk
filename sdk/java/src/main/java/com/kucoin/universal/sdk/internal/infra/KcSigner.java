@@ -68,7 +68,11 @@ public final class KcSigner {
   /** Headers for normal signed request. */
   public Map<String, String> headers(String plain) {
     String timestamp = ts();
-    String sig = sign(timestamp + plain, apiSecret);
+
+    String sig = "";
+    if (!apiSecret.isEmpty()) {
+      sig = sign(timestamp + plain, apiSecret);
+    }
 
     Map<String, String> h = new HashMap<>();
     h.put("KC-API-KEY", apiKey);
@@ -104,6 +108,6 @@ public final class KcSigner {
   }
 
   private static String nullSafe(String s) {
-    return s == null ? "" : s.trim();
+    return s == null ? "" : s;
   }
 }
