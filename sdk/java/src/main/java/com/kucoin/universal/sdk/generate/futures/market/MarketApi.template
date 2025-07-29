@@ -1,0 +1,461 @@
+
+    /**
+    * getSymbol
+    * Get Symbol
+    * /api/v1/contracts/{symbol}
+    */
+    @Test
+    public void testGetSymbol() throws Exception {
+        GetSymbolReq.GetSymbolReqBuilder builder = GetSymbolReq.builder();
+        builder.symbol(?);
+        GetSymbolReq req = builder.build();
+        GetSymbolResp resp = api.getSymbol(req);
+        Assertions.assertNotNull(resp.getSymbol());
+        Assertions.assertNotNull(resp.getRootSymbol());
+        Assertions.assertNotNull(resp.getType());
+        Assertions.assertNotNull(resp.getFirstOpenDate());
+        Assertions.assertNotNull(resp.getExpireDate());
+        Assertions.assertNotNull(resp.getSettleDate());
+        Assertions.assertNotNull(resp.getBaseCurrency());
+        Assertions.assertNotNull(resp.getQuoteCurrency());
+        Assertions.assertNotNull(resp.getSettleCurrency());
+        Assertions.assertNotNull(resp.getMaxOrderQty());
+        Assertions.assertNotNull(resp.getMaxPrice());
+        Assertions.assertNotNull(resp.getLotSize());
+        Assertions.assertNotNull(resp.getTickSize());
+        Assertions.assertNotNull(resp.getIndexPriceTickSize());
+        Assertions.assertNotNull(resp.getMultiplier());
+        Assertions.assertNotNull(resp.getInitialMargin());
+        Assertions.assertNotNull(resp.getMaintainMargin());
+        Assertions.assertNotNull(resp.getMaxRiskLimit());
+        Assertions.assertNotNull(resp.getMinRiskLimit());
+        Assertions.assertNotNull(resp.getRiskStep());
+        Assertions.assertNotNull(resp.getMakerFeeRate());
+        Assertions.assertNotNull(resp.getTakerFeeRate());
+        Assertions.assertNotNull(resp.getTakerFixFee());
+        Assertions.assertNotNull(resp.getMakerFixFee());
+        Assertions.assertNotNull(resp.getSettlementFee());
+        Assertions.assertNotNull(resp.getIsDeleverage());
+        Assertions.assertNotNull(resp.getIsQuanto());
+        Assertions.assertNotNull(resp.getIsInverse());
+        Assertions.assertNotNull(resp.getMarkMethod());
+        Assertions.assertNotNull(resp.getFairMethod());
+        Assertions.assertNotNull(resp.getFundingBaseSymbol());
+        Assertions.assertNotNull(resp.getFundingQuoteSymbol());
+        Assertions.assertNotNull(resp.getFundingRateSymbol());
+        Assertions.assertNotNull(resp.getIndexSymbol());
+        Assertions.assertNotNull(resp.getSettlementSymbol());
+        Assertions.assertNotNull(resp.getStatus());
+        Assertions.assertNotNull(resp.getFundingFeeRate());
+        Assertions.assertNotNull(resp.getPredictedFundingFeeRate());
+        Assertions.assertNotNull(resp.getFundingRateGranularity());
+        Assertions.assertNotNull(resp.getOpenInterest());
+        Assertions.assertNotNull(resp.getTurnoverOf24h());
+        Assertions.assertNotNull(resp.getVolumeOf24h());
+        Assertions.assertNotNull(resp.getMarkPrice());
+        Assertions.assertNotNull(resp.getIndexPrice());
+        Assertions.assertNotNull(resp.getLastTradePrice());
+        Assertions.assertNotNull(resp.getNextFundingRateTime());
+        Assertions.assertNotNull(resp.getMaxLeverage());
+        resp.getSourceExchanges().forEach( item -> {
+        });
+
+        Assertions.assertNotNull(resp.getPremiumsSymbol1M());
+        Assertions.assertNotNull(resp.getPremiumsSymbol8H());
+        Assertions.assertNotNull(resp.getFundingBaseSymbol1M());
+        Assertions.assertNotNull(resp.getFundingQuoteSymbol1M());
+        Assertions.assertNotNull(resp.getLowPrice());
+        Assertions.assertNotNull(resp.getHighPrice());
+        Assertions.assertNotNull(resp.getPriceChgPct());
+        Assertions.assertNotNull(resp.getPriceChg());
+        Assertions.assertNotNull(resp.getK());
+        Assertions.assertNotNull(resp.getM());
+        Assertions.assertNotNull(resp.getF());
+        Assertions.assertNotNull(resp.getMmrLimit());
+        Assertions.assertNotNull(resp.getMmrLevConstant());
+        Assertions.assertNotNull(resp.getSupportCross());
+        Assertions.assertNotNull(resp.getBuyLimit());
+        Assertions.assertNotNull(resp.getSellLimit());
+        log.info("resp: {}", mapper.writeValueAsString(resp));
+    }
+
+    /**
+    * getAllSymbols
+    * Get All Symbols
+    * /api/v1/contracts/active
+    */
+    @Test
+    public void testGetAllSymbols() throws Exception {
+        GetAllSymbolsResp resp = api.getAllSymbols();
+        resp.getData().forEach( item -> {
+            Assertions.assertNotNull(item.getSymbol());
+            Assertions.assertNotNull(item.getRootSymbol());
+            Assertions.assertNotNull(item.getType());
+            Assertions.assertNotNull(item.getFirstOpenDate());
+            Assertions.assertNotNull(item.getExpireDate());
+            Assertions.assertNotNull(item.getSettleDate());
+            Assertions.assertNotNull(item.getBaseCurrency());
+            Assertions.assertNotNull(item.getQuoteCurrency());
+            Assertions.assertNotNull(item.getSettleCurrency());
+            Assertions.assertNotNull(item.getMaxOrderQty());
+            Assertions.assertNotNull(item.getMaxPrice());
+            Assertions.assertNotNull(item.getLotSize());
+            Assertions.assertNotNull(item.getTickSize());
+            Assertions.assertNotNull(item.getIndexPriceTickSize());
+            Assertions.assertNotNull(item.getMultiplier());
+            Assertions.assertNotNull(item.getInitialMargin());
+            Assertions.assertNotNull(item.getMaintainMargin());
+            Assertions.assertNotNull(item.getMaxRiskLimit());
+            Assertions.assertNotNull(item.getMinRiskLimit());
+            Assertions.assertNotNull(item.getRiskStep());
+            Assertions.assertNotNull(item.getMakerFeeRate());
+            Assertions.assertNotNull(item.getTakerFeeRate());
+            Assertions.assertNotNull(item.getTakerFixFee());
+            Assertions.assertNotNull(item.getMakerFixFee());
+            Assertions.assertNotNull(item.getSettlementFee());
+            Assertions.assertNotNull(item.getIsDeleverage());
+            Assertions.assertNotNull(item.getIsQuanto());
+            Assertions.assertNotNull(item.getIsInverse());
+            Assertions.assertNotNull(item.getMarkMethod());
+            Assertions.assertNotNull(item.getFairMethod());
+            Assertions.assertNotNull(item.getFundingBaseSymbol());
+            Assertions.assertNotNull(item.getFundingQuoteSymbol());
+            Assertions.assertNotNull(item.getFundingRateSymbol());
+            Assertions.assertNotNull(item.getIndexSymbol());
+            Assertions.assertNotNull(item.getSettlementSymbol());
+            Assertions.assertNotNull(item.getStatus());
+            Assertions.assertNotNull(item.getFundingFeeRate());
+            Assertions.assertNotNull(item.getPredictedFundingFeeRate());
+            Assertions.assertNotNull(item.getFundingRateGranularity());
+            Assertions.assertNotNull(item.getOpenInterest());
+            Assertions.assertNotNull(item.getTurnoverOf24h());
+            Assertions.assertNotNull(item.getVolumeOf24h());
+            Assertions.assertNotNull(item.getMarkPrice());
+            Assertions.assertNotNull(item.getIndexPrice());
+            Assertions.assertNotNull(item.getLastTradePrice());
+            Assertions.assertNotNull(item.getNextFundingRateTime());
+            Assertions.assertNotNull(item.getMaxLeverage());
+            Assertions.assertNotNull(item.getSourceExchanges());
+            Assertions.assertNotNull(item.getPremiumsSymbol1M());
+            Assertions.assertNotNull(item.getPremiumsSymbol8H());
+            Assertions.assertNotNull(item.getFundingBaseSymbol1M());
+            Assertions.assertNotNull(item.getFundingQuoteSymbol1M());
+            Assertions.assertNotNull(item.getLowPrice());
+            Assertions.assertNotNull(item.getHighPrice());
+            Assertions.assertNotNull(item.getPriceChgPct());
+            Assertions.assertNotNull(item.getPriceChg());
+            Assertions.assertNotNull(item.getK());
+            Assertions.assertNotNull(item.getM());
+            Assertions.assertNotNull(item.getF());
+            Assertions.assertNotNull(item.getMmrLimit());
+            Assertions.assertNotNull(item.getMmrLevConstant());
+            Assertions.assertNotNull(item.getSupportCross());
+            Assertions.assertNotNull(item.getBuyLimit());
+            Assertions.assertNotNull(item.getSellLimit());
+        });
+
+        log.info("resp: {}", mapper.writeValueAsString(resp));
+    }
+
+    /**
+    * getTicker
+    * Get Ticker
+    * /api/v1/ticker
+    */
+    @Test
+    public void testGetTicker() throws Exception {
+        GetTickerReq.GetTickerReqBuilder builder = GetTickerReq.builder();
+        builder.symbol(?);
+        GetTickerReq req = builder.build();
+        GetTickerResp resp = api.getTicker(req);
+        Assertions.assertNotNull(resp.getSequence());
+        Assertions.assertNotNull(resp.getSymbol());
+        Assertions.assertNotNull(resp.getSide());
+        Assertions.assertNotNull(resp.getSize());
+        Assertions.assertNotNull(resp.getTradeId());
+        Assertions.assertNotNull(resp.getPrice());
+        Assertions.assertNotNull(resp.getBestBidPrice());
+        Assertions.assertNotNull(resp.getBestBidSize());
+        Assertions.assertNotNull(resp.getBestAskPrice());
+        Assertions.assertNotNull(resp.getBestAskSize());
+        Assertions.assertNotNull(resp.getTs());
+        log.info("resp: {}", mapper.writeValueAsString(resp));
+    }
+
+    /**
+    * getAllTickers
+    * Get All Tickers
+    * /api/v1/allTickers
+    */
+    @Test
+    public void testGetAllTickers() throws Exception {
+        GetAllTickersResp resp = api.getAllTickers();
+        resp.getData().forEach( item -> {
+            Assertions.assertNotNull(item.getSequence());
+            Assertions.assertNotNull(item.getSymbol());
+            Assertions.assertNotNull(item.getSide());
+            Assertions.assertNotNull(item.getSize());
+            Assertions.assertNotNull(item.getTradeId());
+            Assertions.assertNotNull(item.getPrice());
+            Assertions.assertNotNull(item.getBestBidPrice());
+            Assertions.assertNotNull(item.getBestBidSize());
+            Assertions.assertNotNull(item.getBestAskPrice());
+            Assertions.assertNotNull(item.getBestAskSize());
+            Assertions.assertNotNull(item.getTs());
+        });
+
+        log.info("resp: {}", mapper.writeValueAsString(resp));
+    }
+
+    /**
+    * getFullOrderBook
+    * Get Full OrderBook
+    * /api/v1/level2/snapshot
+    */
+    @Test
+    public void testGetFullOrderBook() throws Exception {
+        GetFullOrderBookReq.GetFullOrderBookReqBuilder builder = GetFullOrderBookReq.builder();
+        builder.symbol(?);
+        GetFullOrderBookReq req = builder.build();
+        GetFullOrderBookResp resp = api.getFullOrderBook(req);
+        Assertions.assertNotNull(resp.getSequence());
+        Assertions.assertNotNull(resp.getSymbol());
+        resp.getBids().forEach( item -> {
+        });
+
+        resp.getAsks().forEach( item -> {
+        });
+
+        Assertions.assertNotNull(resp.getTs());
+        log.info("resp: {}", mapper.writeValueAsString(resp));
+    }
+
+    /**
+    * getPartOrderBook
+    * Get Part OrderBook
+    * /api/v1/level2/depth{size}
+    */
+    @Test
+    public void testGetPartOrderBook() throws Exception {
+        GetPartOrderBookReq.GetPartOrderBookReqBuilder builder = GetPartOrderBookReq.builder();
+        builder.size(?).symbol(?);
+        GetPartOrderBookReq req = builder.build();
+        GetPartOrderBookResp resp = api.getPartOrderBook(req);
+        Assertions.assertNotNull(resp.getSequence());
+        Assertions.assertNotNull(resp.getSymbol());
+        resp.getBids().forEach( item -> {
+        });
+
+        resp.getAsks().forEach( item -> {
+        });
+
+        Assertions.assertNotNull(resp.getTs());
+        log.info("resp: {}", mapper.writeValueAsString(resp));
+    }
+
+    /**
+    * getTradeHistory
+    * Get Trade History
+    * /api/v1/trade/history
+    */
+    @Test
+    public void testGetTradeHistory() throws Exception {
+        GetTradeHistoryReq.GetTradeHistoryReqBuilder builder = GetTradeHistoryReq.builder();
+        builder.symbol(?);
+        GetTradeHistoryReq req = builder.build();
+        GetTradeHistoryResp resp = api.getTradeHistory(req);
+        resp.getData().forEach( item -> {
+            Assertions.assertNotNull(item.getSequence());
+            Assertions.assertNotNull(item.getContractId());
+            Assertions.assertNotNull(item.getTradeId());
+            Assertions.assertNotNull(item.getMakerOrderId());
+            Assertions.assertNotNull(item.getTakerOrderId());
+            Assertions.assertNotNull(item.getTs());
+            Assertions.assertNotNull(item.getSize());
+            Assertions.assertNotNull(item.getPrice());
+            Assertions.assertNotNull(item.getSide());
+        });
+
+        log.info("resp: {}", mapper.writeValueAsString(resp));
+    }
+
+    /**
+    * getKlines
+    * Get Klines
+    * /api/v1/kline/query
+    */
+    @Test
+    public void testGetKlines() throws Exception {
+        GetKlinesReq.GetKlinesReqBuilder builder = GetKlinesReq.builder();
+        builder.symbol(?).granularity(?).from(?).to(?);
+        GetKlinesReq req = builder.build();
+        GetKlinesResp resp = api.getKlines(req);
+        resp.getData().forEach( item -> {
+        });
+
+        log.info("resp: {}", mapper.writeValueAsString(resp));
+    }
+
+    /**
+    * getMarkPrice
+    * Get Mark Price
+    * /api/v1/mark-price/{symbol}/current
+    */
+    @Test
+    public void testGetMarkPrice() throws Exception {
+        GetMarkPriceReq.GetMarkPriceReqBuilder builder = GetMarkPriceReq.builder();
+        builder.symbol(?);
+        GetMarkPriceReq req = builder.build();
+        GetMarkPriceResp resp = api.getMarkPrice(req);
+        Assertions.assertNotNull(resp.getSymbol());
+        Assertions.assertNotNull(resp.getGranularity());
+        Assertions.assertNotNull(resp.getTimePoint());
+        Assertions.assertNotNull(resp.getValue());
+        Assertions.assertNotNull(resp.getIndexPrice());
+        log.info("resp: {}", mapper.writeValueAsString(resp));
+    }
+
+    /**
+    * getSpotIndexPrice
+    * Get Spot Index Price
+    * /api/v1/index/query
+    */
+    @Test
+    public void testGetSpotIndexPrice() throws Exception {
+        GetSpotIndexPriceReq.GetSpotIndexPriceReqBuilder builder = GetSpotIndexPriceReq.builder();
+        builder.symbol(?).startAt(?).endAt(?).reverse(?).offset(?).forward(?).maxCount(?);
+        GetSpotIndexPriceReq req = builder.build();
+        GetSpotIndexPriceResp resp = api.getSpotIndexPrice(req);
+        resp.getDataList().forEach( item -> {
+            Assertions.assertNotNull(item.getSymbol());
+            Assertions.assertNotNull(item.getGranularity());
+            Assertions.assertNotNull(item.getTimePoint());
+            Assertions.assertNotNull(item.getValue());
+            Assertions.assertNotNull(item.getDecomposionList());
+        });
+
+        Assertions.assertNotNull(resp.getHasMore());
+        log.info("resp: {}", mapper.writeValueAsString(resp));
+    }
+
+    /**
+    * getInterestRateIndex
+    * Get Interest Rate Index
+    * /api/v1/interest/query
+    */
+    @Test
+    public void testGetInterestRateIndex() throws Exception {
+        GetInterestRateIndexReq.GetInterestRateIndexReqBuilder builder = GetInterestRateIndexReq.builder();
+        builder.symbol(?).startAt(?).endAt(?).reverse(?).offset(?).forward(?).maxCount(?);
+        GetInterestRateIndexReq req = builder.build();
+        GetInterestRateIndexResp resp = api.getInterestRateIndex(req);
+        resp.getDataList().forEach( item -> {
+            Assertions.assertNotNull(item.getSymbol());
+            Assertions.assertNotNull(item.getGranularity());
+            Assertions.assertNotNull(item.getTimePoint());
+            Assertions.assertNotNull(item.getValue());
+        });
+
+        Assertions.assertNotNull(resp.getHasMore());
+        log.info("resp: {}", mapper.writeValueAsString(resp));
+    }
+
+    /**
+    * getPremiumIndex
+    * Get Premium Index
+    * /api/v1/premium/query
+    */
+    @Test
+    public void testGetPremiumIndex() throws Exception {
+        GetPremiumIndexReq.GetPremiumIndexReqBuilder builder = GetPremiumIndexReq.builder();
+        builder.symbol(?).startAt(?).endAt(?).reverse(?).offset(?).forward(?).maxCount(?);
+        GetPremiumIndexReq req = builder.build();
+        GetPremiumIndexResp resp = api.getPremiumIndex(req);
+        resp.getDataList().forEach( item -> {
+            Assertions.assertNotNull(item.getSymbol());
+            Assertions.assertNotNull(item.getGranularity());
+            Assertions.assertNotNull(item.getTimePoint());
+            Assertions.assertNotNull(item.getValue());
+        });
+
+        Assertions.assertNotNull(resp.getHasMore());
+        log.info("resp: {}", mapper.writeValueAsString(resp));
+    }
+
+    /**
+    * get24hrStats
+    * Get 24hr stats
+    * /api/v1/trade-statistics
+    */
+    @Test
+    public void testGet24hrStats() throws Exception {
+        Get24hrStatsResp resp = api.get24hrStats();
+        Assertions.assertNotNull(resp.getTurnoverOf24h());
+        log.info("resp: {}", mapper.writeValueAsString(resp));
+    }
+
+    /**
+    * getServerTime
+    * Get Server Time
+    * /api/v1/timestamp
+    */
+    @Test
+    public void testGetServerTime() throws Exception {
+        GetServerTimeResp resp = api.getServerTime();
+        Assertions.assertNotNull(resp.getData());
+        log.info("resp: {}", mapper.writeValueAsString(resp));
+    }
+
+    /**
+    * getServiceStatus
+    * Get Service Status
+    * /api/v1/status
+    */
+    @Test
+    public void testGetServiceStatus() throws Exception {
+        GetServiceStatusResp resp = api.getServiceStatus();
+        Assertions.assertNotNull(resp.getMsg());
+        Assertions.assertNotNull(resp.getStatus());
+        log.info("resp: {}", mapper.writeValueAsString(resp));
+    }
+
+    /**
+    * getPublicToken
+    * Get Public Token - Futures
+    * /api/v1/bullet-public
+    */
+    @Test
+    public void testGetPublicToken() throws Exception {
+        GetPublicTokenResp resp = api.getPublicToken();
+        Assertions.assertNotNull(resp.getToken());
+        resp.getInstanceServers().forEach( item -> {
+            Assertions.assertNotNull(item.getEndpoint());
+            Assertions.assertNotNull(item.getEncrypt());
+            Assertions.assertNotNull(item.getProtocol());
+            Assertions.assertNotNull(item.getPingInterval());
+            Assertions.assertNotNull(item.getPingTimeout());
+        });
+
+        log.info("resp: {}", mapper.writeValueAsString(resp));
+    }
+
+    /**
+    * getPrivateToken
+    * Get Private Token - Futures
+    * /api/v1/bullet-private
+    */
+    @Test
+    public void testGetPrivateToken() throws Exception {
+        GetPrivateTokenResp resp = api.getPrivateToken();
+        Assertions.assertNotNull(resp.getToken());
+        resp.getInstanceServers().forEach( item -> {
+            Assertions.assertNotNull(item.getEndpoint());
+            Assertions.assertNotNull(item.getEncrypt());
+            Assertions.assertNotNull(item.getProtocol());
+            Assertions.assertNotNull(item.getPingInterval());
+            Assertions.assertNotNull(item.getPingTimeout());
+        });
+
+        log.info("resp: {}", mapper.writeValueAsString(resp));
+    }
+

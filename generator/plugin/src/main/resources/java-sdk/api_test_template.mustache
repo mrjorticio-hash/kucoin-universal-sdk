@@ -1,0 +1,40 @@
+
+{{#operations}}
+    {{#operation}}
+    /**
+    * {{vendorExtensions.x-meta.method}}
+    * {{summary}}
+    * {{path}}
+    */
+    @Test
+    public void test{{vendorExtensions.x-meta.methodServiceFmt}}() throws Exception {
+        {{#hasParams}}
+        {{vendorExtensions.x-meta.methodServiceFmt}}Req.{{vendorExtensions.x-meta.methodServiceFmt}}ReqBuilder builder = {{vendorExtensions.x-meta.methodServiceFmt}}Req.builder();
+        {{#vendorExtensions.x-request-model}}
+        builder{{#vars}}.{{name}}(?){{/vars}};
+        {{/vendorExtensions.x-request-model}}
+        {{vendorExtensions.x-meta.methodServiceFmt}}Req req = builder.build();
+        {{/hasParams}}
+        {{vendorExtensions.x-meta.methodServiceFmt}}Resp resp = api.{{vendorExtensions.x-meta.method}}({{#hasParams}}req{{/hasParams}});
+        {{#vendorExtensions.x-response-model}}
+        {{#vars}}
+            {{#isArray}}
+        resp.{{getter}}().forEach( item -> {
+                {{#vendorExtensions.x-response-inner-model}}
+                    {{#vars}}
+            Assertions.assertNotNull(item.{{getter}}());
+                    {{/vars}}
+                {{/vendorExtensions.x-response-inner-model}}
+        });
+
+            {{/isArray}}
+            {{^isArray}}
+        Assertions.assertNotNull(resp.{{getter}}());
+            {{/isArray}}
+        {{/vars}}
+        log.info("resp: {}", mapper.writeValueAsString(resp));
+        {{/vendorExtensions.x-response-model}}
+    }
+
+    {{/operation}}
+{{/operations}}

@@ -1,0 +1,56 @@
+
+    /**
+    * getBasicFee
+    * Get Basic Fee - Spot/Margin
+    * /api/v1/base-fee
+    */
+    @Test
+    public void testGetBasicFee() throws Exception {
+        GetBasicFeeReq.GetBasicFeeReqBuilder builder = GetBasicFeeReq.builder();
+        builder.currencyType(?);
+        GetBasicFeeReq req = builder.build();
+        GetBasicFeeResp resp = api.getBasicFee(req);
+        Assertions.assertNotNull(resp.getTakerFeeRate());
+        Assertions.assertNotNull(resp.getMakerFeeRate());
+        log.info("resp: {}", mapper.writeValueAsString(resp));
+    }
+
+    /**
+    * getSpotActualFee
+    * Get Actual Fee - Spot/Margin
+    * /api/v1/trade-fees
+    */
+    @Test
+    public void testGetSpotActualFee() throws Exception {
+        GetSpotActualFeeReq.GetSpotActualFeeReqBuilder builder = GetSpotActualFeeReq.builder();
+        builder.symbols(?);
+        GetSpotActualFeeReq req = builder.build();
+        GetSpotActualFeeResp resp = api.getSpotActualFee(req);
+        resp.getData().forEach( item -> {
+            Assertions.assertNotNull(item.getSymbol());
+            Assertions.assertNotNull(item.getTakerFeeRate());
+            Assertions.assertNotNull(item.getMakerFeeRate());
+            Assertions.assertNotNull(item.getSellTaxRate());
+            Assertions.assertNotNull(item.getBuyTaxRate());
+        });
+
+        log.info("resp: {}", mapper.writeValueAsString(resp));
+    }
+
+    /**
+    * getFuturesActualFee
+    * Get Actual Fee - Futures
+    * /api/v1/trade-fees
+    */
+    @Test
+    public void testGetFuturesActualFee() throws Exception {
+        GetFuturesActualFeeReq.GetFuturesActualFeeReqBuilder builder = GetFuturesActualFeeReq.builder();
+        builder.symbol(?);
+        GetFuturesActualFeeReq req = builder.build();
+        GetFuturesActualFeeResp resp = api.getFuturesActualFee(req);
+        Assertions.assertNotNull(resp.getSymbol());
+        Assertions.assertNotNull(resp.getTakerFeeRate());
+        Assertions.assertNotNull(resp.getMakerFeeRate());
+        log.info("resp: {}", mapper.writeValueAsString(resp));
+    }
+

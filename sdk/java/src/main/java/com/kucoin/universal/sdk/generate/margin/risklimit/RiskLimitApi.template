@@ -1,0 +1,48 @@
+
+    /**
+    * getMarginRiskLimit
+    * Get Margin Risk Limit
+    * /api/v3/margin/currencies
+    */
+    @Test
+    public void testGetMarginRiskLimit() throws Exception {
+        GetMarginRiskLimitReq.GetMarginRiskLimitReqBuilder builder = GetMarginRiskLimitReq.builder();
+        builder.isIsolated(?).currency(?).symbol(?);
+        GetMarginRiskLimitReq req = builder.build();
+        GetMarginRiskLimitResp resp = api.getMarginRiskLimit(req);
+        resp.getData().forEach( item -> {
+            Assertions.assertNotNull(item.getTimestamp());
+            Assertions.assertNotNull(item.getCurrency());
+            Assertions.assertNotNull(item.getBorrowMaxAmount());
+            Assertions.assertNotNull(item.getBuyMaxAmount());
+            Assertions.assertNotNull(item.getHoldMaxAmount());
+            Assertions.assertNotNull(item.getBorrowCoefficient());
+            Assertions.assertNotNull(item.getMarginCoefficient());
+            Assertions.assertNotNull(item.getPrecision());
+            Assertions.assertNotNull(item.getBorrowMinAmount());
+            Assertions.assertNotNull(item.getBorrowMinUnit());
+            Assertions.assertNotNull(item.getBorrowEnabled());
+            Assertions.assertNotNull(item.getSymbol());
+            Assertions.assertNotNull(item.getBaseMaxBorrowAmount());
+            Assertions.assertNotNull(item.getQuoteMaxBorrowAmount());
+            Assertions.assertNotNull(item.getBaseMaxBuyAmount());
+            Assertions.assertNotNull(item.getQuoteMaxBuyAmount());
+            Assertions.assertNotNull(item.getBaseMaxHoldAmount());
+            Assertions.assertNotNull(item.getQuoteMaxHoldAmount());
+            Assertions.assertNotNull(item.getBasePrecision());
+            Assertions.assertNotNull(item.getQuotePrecision());
+            Assertions.assertNotNull(item.getBaseBorrowMinAmount());
+            Assertions.assertNotNull(item.getQuoteBorrowMinAmount());
+            Assertions.assertNotNull(item.getBaseBorrowMinUnit());
+            Assertions.assertNotNull(item.getQuoteBorrowMinUnit());
+            Assertions.assertNotNull(item.getBaseBorrowEnabled());
+            Assertions.assertNotNull(item.getQuoteBorrowEnabled());
+            Assertions.assertNotNull(item.getBaseBorrowCoefficient());
+            Assertions.assertNotNull(item.getQuoteBorrowCoefficient());
+            Assertions.assertNotNull(item.getBaseMarginCoefficient());
+            Assertions.assertNotNull(item.getQuoteMarginCoefficient());
+        });
+
+        log.info("resp: {}", mapper.writeValueAsString(resp));
+    }
+

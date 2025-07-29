@@ -68,11 +68,15 @@ define generate-code
 	@echo "$(GREEN)lang: ${lang}, copy changelog...$(NC)"
 	docker run --rm -v "${PWD}:/local" $(IMAGE_NAME):$(IMAGE_TAG) cp /local/CHANGELOG.md /local/sdk/$(lang)
 
-	@make -f generate.mk generate lang=$(1) subdir=$(2) USER_VERSION=$(3)
+	@$(MAKE) -f generate.mk generate lang=$(1) subdir=$(2) USER_VERSION=$(3)
 
 	@echo "$(GREEN)lang: $(lang), clean...$(NC)"
 	docker run --rm -v "${PWD}:/local" $(IMAGE_NAME):$(IMAGE_TAG) rm -rf $(outdir)/.openapi-generator
 	docker run --rm -v "${PWD}:/local" $(IMAGE_NAME):$(IMAGE_TAG) rm -rf $(outdir)/.openapi-generator-ignore
+
+	@echo "$(GREEN)lang: $(lang), format project...$(NC)"
+	@sleep 5
+	@$(MAKE) -C sdk/$(lang) format
 
 	@echo "$(GREEN)lang: $(lang), done!$(NC)"
 endef
@@ -84,11 +88,12 @@ endef
 
 .PHONY: generate
 generate: setup-logs
-	$(call generate-postman)
-	$(call generate-code,golang,/pkg/generate)
-	$(call generate-code,python,/kucoin_universal_sdk/generate)
-	$(call generate-code,node,/src/generate)
-	$(call generate-code,php,/src/Generate,0.1.2-alpha)
+#	$(call generate-postman)
+#	$(call generate-code,golang,/pkg/generate)
+#	$(call generate-code,python,/kucoin_universal_sdk/generate)
+#	$(call generate-code,node,/src/generate)
+#	$(call generate-code,php,/src/Generate,0.1.2-alpha)
+	$(call generate-code,java,/src/main/java/com/kucoin/universal/sdk/generate,0.1.0-alpha)
 
 .PHONY: gen-postman
 gen-postman: preprocessor

@@ -1,0 +1,18 @@
+{{>partial_header}}
+package {{package}};
+
+{{#imports}}
+{{{.}}}
+{{/imports}}
+
+{{#api_entry}}
+
+
+public interface {{api_entry_name}} {
+{{#api_entry_value}}
+
+    {{target_service}} get{{methodUppercase}}Api();
+{{/api_entry_value}}
+}
+
+{{/api_entry}}
