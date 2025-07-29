@@ -1,0 +1,150 @@
+
+    /**
+    * getLoanMarket
+    * Get Loan Market
+    * /api/v3/project/list
+    */
+    @Test
+    public void testGetLoanMarket() throws Exception {
+        GetLoanMarketReq.GetLoanMarketReqBuilder builder = GetLoanMarketReq.builder();
+        builder.currency(?);
+        GetLoanMarketReq req = builder.build();
+        GetLoanMarketResp resp = api.getLoanMarket(req);
+        resp.getData().forEach( item -> {
+            Assertions.assertNotNull(item.getCurrency());
+            Assertions.assertNotNull(item.getPurchaseEnable());
+            Assertions.assertNotNull(item.getRedeemEnable());
+            Assertions.assertNotNull(item.getIncrement());
+            Assertions.assertNotNull(item.getMinPurchaseSize());
+            Assertions.assertNotNull(item.getMinInterestRate());
+            Assertions.assertNotNull(item.getMaxInterestRate());
+            Assertions.assertNotNull(item.getInterestIncrement());
+            Assertions.assertNotNull(item.getMaxPurchaseSize());
+            Assertions.assertNotNull(item.getMarketInterestRate());
+            Assertions.assertNotNull(item.getAutoPurchaseEnable());
+        });
+
+        log.info("resp: {}", mapper.writeValueAsString(resp));
+    }
+
+    /**
+    * getLoanMarketInterestRate
+    * Get Loan Market Interest Rate
+    * /api/v3/project/marketInterestRate
+    */
+    @Test
+    public void testGetLoanMarketInterestRate() throws Exception {
+        GetLoanMarketInterestRateReq.GetLoanMarketInterestRateReqBuilder builder = GetLoanMarketInterestRateReq.builder();
+        builder.currency(?);
+        GetLoanMarketInterestRateReq req = builder.build();
+        GetLoanMarketInterestRateResp resp = api.getLoanMarketInterestRate(req);
+        resp.getData().forEach( item -> {
+            Assertions.assertNotNull(item.getTime());
+            Assertions.assertNotNull(item.getMarketInterestRate());
+        });
+
+        log.info("resp: {}", mapper.writeValueAsString(resp));
+    }
+
+    /**
+    * purchase
+    * Purchase
+    * /api/v3/purchase
+    */
+    @Test
+    public void testPurchase() throws Exception {
+        PurchaseReq.PurchaseReqBuilder builder = PurchaseReq.builder();
+        builder.currency(?).size(?).interestRate(?);
+        PurchaseReq req = builder.build();
+        PurchaseResp resp = api.purchase(req);
+        Assertions.assertNotNull(resp.getOrderNo());
+        log.info("resp: {}", mapper.writeValueAsString(resp));
+    }
+
+    /**
+    * modifyPurchase
+    * Modify Purchase
+    * /api/v3/lend/purchase/update
+    */
+    @Test
+    public void testModifyPurchase() throws Exception {
+        ModifyPurchaseReq.ModifyPurchaseReqBuilder builder = ModifyPurchaseReq.builder();
+        builder.currency(?).interestRate(?).purchaseOrderNo(?);
+        ModifyPurchaseReq req = builder.build();
+        ModifyPurchaseResp resp = api.modifyPurchase(req);
+        Assertions.assertNotNull(resp.getData());
+        log.info("resp: {}", mapper.writeValueAsString(resp));
+    }
+
+    /**
+    * getPurchaseOrders
+    * Get Purchase Orders
+    * /api/v3/purchase/orders
+    */
+    @Test
+    public void testGetPurchaseOrders() throws Exception {
+        GetPurchaseOrdersReq.GetPurchaseOrdersReqBuilder builder = GetPurchaseOrdersReq.builder();
+        builder.status(?).currency(?).purchaseOrderNo(?).currentPage(?).pageSize(?);
+        GetPurchaseOrdersReq req = builder.build();
+        GetPurchaseOrdersResp resp = api.getPurchaseOrders(req);
+        Assertions.assertNotNull(resp.getCurrentPage());
+        Assertions.assertNotNull(resp.getPageSize());
+        Assertions.assertNotNull(resp.getTotalNum());
+        Assertions.assertNotNull(resp.getTotalPage());
+        resp.getItems().forEach( item -> {
+            Assertions.assertNotNull(item.getCurrency());
+            Assertions.assertNotNull(item.getPurchaseOrderNo());
+            Assertions.assertNotNull(item.getPurchaseSize());
+            Assertions.assertNotNull(item.getMatchSize());
+            Assertions.assertNotNull(item.getInterestRate());
+            Assertions.assertNotNull(item.getIncomeSize());
+            Assertions.assertNotNull(item.getApplyTime());
+            Assertions.assertNotNull(item.getStatus());
+        });
+
+        log.info("resp: {}", mapper.writeValueAsString(resp));
+    }
+
+    /**
+    * redeem
+    * Redeem
+    * /api/v3/redeem
+    */
+    @Test
+    public void testRedeem() throws Exception {
+        RedeemReq.RedeemReqBuilder builder = RedeemReq.builder();
+        builder.currency(?).size(?).purchaseOrderNo(?);
+        RedeemReq req = builder.build();
+        RedeemResp resp = api.redeem(req);
+        Assertions.assertNotNull(resp.getOrderNo());
+        log.info("resp: {}", mapper.writeValueAsString(resp));
+    }
+
+    /**
+    * getRedeemOrders
+    * Get Redeem Orders
+    * /api/v3/redeem/orders
+    */
+    @Test
+    public void testGetRedeemOrders() throws Exception {
+        GetRedeemOrdersReq.GetRedeemOrdersReqBuilder builder = GetRedeemOrdersReq.builder();
+        builder.status(?).currency(?).redeemOrderNo(?).currentPage(?).pageSize(?);
+        GetRedeemOrdersReq req = builder.build();
+        GetRedeemOrdersResp resp = api.getRedeemOrders(req);
+        Assertions.assertNotNull(resp.getCurrentPage());
+        Assertions.assertNotNull(resp.getPageSize());
+        Assertions.assertNotNull(resp.getTotalNum());
+        Assertions.assertNotNull(resp.getTotalPage());
+        resp.getItems().forEach( item -> {
+            Assertions.assertNotNull(item.getCurrency());
+            Assertions.assertNotNull(item.getPurchaseOrderNo());
+            Assertions.assertNotNull(item.getRedeemOrderNo());
+            Assertions.assertNotNull(item.getRedeemSize());
+            Assertions.assertNotNull(item.getReceiptSize());
+            Assertions.assertNotNull(item.getApplyTime());
+            Assertions.assertNotNull(item.getStatus());
+        });
+
+        log.info("resp: {}", mapper.writeValueAsString(resp));
+    }
+

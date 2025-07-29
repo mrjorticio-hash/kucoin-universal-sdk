@@ -1,0 +1,131 @@
+{{#models}}
+{{#model}}
+{{>partial_header}}
+package {{package}};
+
+{{#vendorExtensions.x-imports}}
+{{{.}}}
+{{/vendorExtensions.x-imports}}
+
+{{#vendorExtensions.x-annotation}}
+{{{.}}}
+{{/vendorExtensions.x-annotation}}
+{{#vendorExtensions.x-response-model}}
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class {{classname}} implements Response<{{classname}}, RestResponse<{{classname}}>> {
+{{/vendorExtensions.x-response-model}}
+{{^vendorExtensions.x-response-model}}
+{{#vendorExtensions.x-request-model}}
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class {{classname}} implements Request {
+{{/vendorExtensions.x-request-model}}
+{{^vendorExtensions.x-request-model}}
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class {{classname}} {
+{{/vendorExtensions.x-request-model}}
+{{/vendorExtensions.x-response-model}}
+{{#vars}}
+    /**
+    * {{#description}}{{{.}}}{{/description}}
+    */
+    {{#vendorExtensions.x-tag-path}}
+    @JsonIgnore
+    @PathVar("{{baseName}}")
+    {{/vendorExtensions.x-tag-path}}
+    @JsonProperty("{{baseName}}")
+    {{#vendorExtensions.x-annotation}}
+    {{{.}}}
+    {{/vendorExtensions.x-annotation}}
+    private {{#isEnum}}{{{datatypeWithEnum}}}{{/isEnum}}{{^isEnum}}{{{dataType}}}{{/isEnum}} {{name}}{{#defaultValue}} = {{{.}}}{{/defaultValue}};
+
+{{/vars}}
+{{#vendorExtensions.x-response-model}}
+    /**
+    * common response
+    */
+    @JsonIgnore
+    private RestResponse<{{classname}}> commonResponse;
+
+    @Override
+    public void setCommonResponse(RestResponse<{{classname}}> response) {
+        this.commonResponse = response;
+    }
+
+{{/vendorExtensions.x-response-model}}
+{{#vendorExtensions.x-original-response}}
+    {{#vars}}
+    @JsonCreator
+    public static {{classname}} fromJson({{{dataType}}} data) {
+        // original response
+        {{classname}} obj = new {{classname}}();
+        obj.data = data;
+        return obj;
+    }
+
+    @JsonValue
+    public Object toJson() {
+        return this.data;
+    }
+
+    {{/vars}}
+{{/vendorExtensions.x-original-response}}
+{{#vendorExtensions.x-request-raw-array}}
+    {{#vars}}
+    @JsonCreator
+    public static {{classname}} fromJson({{{dataType}}} data) {
+        // raw array
+        {{classname}} obj = new {{classname}}();
+        obj.items = data;
+        return obj;
+    }
+
+    @JsonValue
+    public Object toJson() {
+        return this.items;
+    }
+    {{/vars}}
+{{/vendorExtensions.x-request-raw-array}}
+
+
+{{#hasEnums}}
+    {{#vars}}
+        {{#isEnum}}
+    public enum {{enumName}} {
+    {{#vendorExtensions.x-enums}}
+        /**
+        * {{description}}
+        */
+        {{name}}({{{value}}}){{^-last}},{{/-last}}{{#-last}};{{/-last}}
+    {{/vendorExtensions.x-enums}}
+
+        private final {{vendorExtensions.x-enums-datatype}} value;
+
+        {{enumName}}({{vendorExtensions.x-enums-datatype}} value) {
+            this.value = value;
+        }
+
+        @JsonValue
+        public {{vendorExtensions.x-enums-datatype}} getValue() {
+          return value;
+        }
+
+        @Override
+        public String toString() {
+          return String.valueOf(value);
+        }
+
+        @JsonCreator
+        public static {{enumName}} fromValue({{vendorExtensions.x-enums-datatype}} value) {
+          for ({{enumName}} b :  {{enumName}}.values()) {
+            if (b.value.{{^isString}}equals{{/isString}}{{#isString}}{{#useEnumCaseInsensitive}}equalsIgnoreCase{{/useEnumCaseInsensitive}}{{^useEnumCaseInsensitive}}equals{{/useEnumCaseInsensitive}}{{/isString}}(value)) {
+              return b;
+            }
+          }
+          {{#isNullable}}return null;{{/isNullable}}{{^isNullable}}{{#enumUnknownDefaultCase}}{{#allowableValues}}{{#enumVars}}{{#-last}}return {{{name}}};{{/-last}}{{/enumVars}}{{/allowableValues}}{{/enumUnknownDefaultCase}}{{^enumUnknownDefaultCase}}throw new IllegalArgumentException("Unexpected value '" + value + "'");{{/enumUnknownDefaultCase}}{{/isNullable}}
+        }
+    }
+        {{/isEnum}}
+    {{/vars}}
+{{/hasEnums}}
+}
+{{/model}}{{/models}}

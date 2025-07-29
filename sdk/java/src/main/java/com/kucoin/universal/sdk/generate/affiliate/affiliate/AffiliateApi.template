@@ -1,0 +1,29 @@
+
+    /**
+    * getAccount
+    * Get Account
+    * /api/v2/affiliate/inviter/statistics
+    */
+    @Test
+    public void testGetAccount() throws Exception {
+        GetAccountResp resp = api.getAccount();
+        Assertions.assertNotNull(resp.getParentUid());
+        resp.getOrders().forEach( item -> {
+            Assertions.assertNotNull(item.getOrderId());
+            Assertions.assertNotNull(item.getCurrency());
+            Assertions.assertNotNull(item.getPrincipal());
+            Assertions.assertNotNull(item.getInterest());
+        });
+
+        Assertions.assertNotNull(resp.getLtv());
+        Assertions.assertNotNull(resp.getTotalMarginAmount());
+        Assertions.assertNotNull(resp.getTransferMarginAmount());
+        resp.getMargins().forEach( item -> {
+            Assertions.assertNotNull(item.getMarginCcy());
+            Assertions.assertNotNull(item.getMarginQty());
+            Assertions.assertNotNull(item.getMarginFactor());
+        });
+
+        log.info("resp: {}", mapper.writeValueAsString(resp));
+    }
+

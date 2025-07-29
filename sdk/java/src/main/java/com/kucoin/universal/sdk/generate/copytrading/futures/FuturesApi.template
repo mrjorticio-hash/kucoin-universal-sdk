@@ -1,0 +1,208 @@
+
+    /**
+    * addOrder
+    * Add Order
+    * /api/v1/copy-trade/futures/orders
+    */
+    @Test
+    public void testAddOrder() throws Exception {
+        AddOrderReq.AddOrderReqBuilder builder = AddOrderReq.builder();
+        builder.clientOid(?).side(?).symbol(?).leverage(?).type(?).stop(?).stopPriceType(?).stopPrice(?).reduceOnly(?).closeOrder(?).marginMode(?).price(?).size(?).timeInForce(?).postOnly(?).hidden(?).iceberg(?).visibleSize(?);
+        AddOrderReq req = builder.build();
+        AddOrderResp resp = api.addOrder(req);
+        Assertions.assertNotNull(resp.getOrderId());
+        Assertions.assertNotNull(resp.getClientOid());
+        log.info("resp: {}", mapper.writeValueAsString(resp));
+    }
+
+    /**
+    * addOrderTest
+    * Add Order Test
+    * /api/v1/copy-trade/futures/orders/test
+    */
+    @Test
+    public void testAddOrderTest() throws Exception {
+        AddOrderTestReq.AddOrderTestReqBuilder builder = AddOrderTestReq.builder();
+        builder.clientOid(?).side(?).symbol(?).leverage(?).type(?).stop(?).stopPriceType(?).stopPrice(?).reduceOnly(?).closeOrder(?).marginMode(?).price(?).size(?).timeInForce(?).postOnly(?).hidden(?).iceberg(?).visibleSize(?);
+        AddOrderTestReq req = builder.build();
+        AddOrderTestResp resp = api.addOrderTest(req);
+        Assertions.assertNotNull(resp.getOrderId());
+        Assertions.assertNotNull(resp.getClientOid());
+        log.info("resp: {}", mapper.writeValueAsString(resp));
+    }
+
+    /**
+    * addTPSLOrder
+    * Add Take Profit And Stop Loss Order
+    * /api/v1/copy-trade/futures/st-orders
+    */
+    @Test
+    public void testAddTPSLOrder() throws Exception {
+        AddTPSLOrderReq.AddTPSLOrderReqBuilder builder = AddTPSLOrderReq.builder();
+        builder.clientOid(?).side(?).symbol(?).leverage(?).type(?).stopPriceType(?).reduceOnly(?).closeOrder(?).marginMode(?).price(?).size(?).timeInForce(?).postOnly(?).hidden(?).iceberg(?).visibleSize(?).triggerStopUpPrice(?).triggerStopDownPrice(?);
+        AddTPSLOrderReq req = builder.build();
+        AddTPSLOrderResp resp = api.addTPSLOrder(req);
+        Assertions.assertNotNull(resp.getOrderId());
+        Assertions.assertNotNull(resp.getClientOid());
+        log.info("resp: {}", mapper.writeValueAsString(resp));
+    }
+
+    /**
+    * cancelOrderById
+    * Cancel Order By OrderId
+    * /api/v1/copy-trade/futures/orders
+    */
+    @Test
+    public void testCancelOrderById() throws Exception {
+        CancelOrderByIdReq.CancelOrderByIdReqBuilder builder = CancelOrderByIdReq.builder();
+        builder.orderId(?);
+        CancelOrderByIdReq req = builder.build();
+        CancelOrderByIdResp resp = api.cancelOrderById(req);
+        resp.getCancelledOrderIds().forEach( item -> {
+        });
+
+        log.info("resp: {}", mapper.writeValueAsString(resp));
+    }
+
+    /**
+    * cancelOrderByClientOid
+    * Cancel Order By ClientOid
+    * /api/v1/copy-trade/futures/orders/client-order
+    */
+    @Test
+    public void testCancelOrderByClientOid() throws Exception {
+        CancelOrderByClientOidReq.CancelOrderByClientOidReqBuilder builder = CancelOrderByClientOidReq.builder();
+        builder.symbol(?).clientOid(?);
+        CancelOrderByClientOidReq req = builder.build();
+        CancelOrderByClientOidResp resp = api.cancelOrderByClientOid(req);
+        Assertions.assertNotNull(resp.getClientOid());
+        log.info("resp: {}", mapper.writeValueAsString(resp));
+    }
+
+    /**
+    * getMaxOpenSize
+    * Get Max Open Size
+    * /api/v1/copy-trade/futures/get-max-open-size
+    */
+    @Test
+    public void testGetMaxOpenSize() throws Exception {
+        GetMaxOpenSizeReq.GetMaxOpenSizeReqBuilder builder = GetMaxOpenSizeReq.builder();
+        builder.symbol(?).price(?).leverage(?);
+        GetMaxOpenSizeReq req = builder.build();
+        GetMaxOpenSizeResp resp = api.getMaxOpenSize(req);
+        Assertions.assertNotNull(resp.getSymbol());
+        Assertions.assertNotNull(resp.getMaxBuyOpenSize());
+        Assertions.assertNotNull(resp.getMaxSellOpenSize());
+        log.info("resp: {}", mapper.writeValueAsString(resp));
+    }
+
+    /**
+    * getMaxWithdrawMargin
+    * Get Max Withdraw Margin
+    * /api/v1/copy-trade/futures/position/margin/max-withdraw-margin
+    */
+    @Test
+    public void testGetMaxWithdrawMargin() throws Exception {
+        GetMaxWithdrawMarginReq.GetMaxWithdrawMarginReqBuilder builder = GetMaxWithdrawMarginReq.builder();
+        builder.symbol(?);
+        GetMaxWithdrawMarginReq req = builder.build();
+        GetMaxWithdrawMarginResp resp = api.getMaxWithdrawMargin(req);
+        Assertions.assertNotNull(resp.getData());
+        log.info("resp: {}", mapper.writeValueAsString(resp));
+    }
+
+    /**
+    * addIsolatedMargin
+    * Add Isolated Margin
+    * /api/v1/copy-trade/futures/position/margin/deposit-margin
+    */
+    @Test
+    public void testAddIsolatedMargin() throws Exception {
+        AddIsolatedMarginReq.AddIsolatedMarginReqBuilder builder = AddIsolatedMarginReq.builder();
+        builder.symbol(?).margin(?).bizNo(?);
+        AddIsolatedMarginReq req = builder.build();
+        AddIsolatedMarginResp resp = api.addIsolatedMargin(req);
+        Assertions.assertNotNull(resp.getId());
+        Assertions.assertNotNull(resp.getSymbol());
+        Assertions.assertNotNull(resp.getAutoDeposit());
+        Assertions.assertNotNull(resp.getMaintMarginReq());
+        Assertions.assertNotNull(resp.getRiskLimit());
+        Assertions.assertNotNull(resp.getRealLeverage());
+        Assertions.assertNotNull(resp.getCrossMode());
+        Assertions.assertNotNull(resp.getDelevPercentage());
+        Assertions.assertNotNull(resp.getOpeningTimestamp());
+        Assertions.assertNotNull(resp.getCurrentTimestamp());
+        Assertions.assertNotNull(resp.getCurrentQty());
+        Assertions.assertNotNull(resp.getCurrentCost());
+        Assertions.assertNotNull(resp.getCurrentComm());
+        Assertions.assertNotNull(resp.getUnrealisedCost());
+        Assertions.assertNotNull(resp.getRealisedGrossCost());
+        Assertions.assertNotNull(resp.getRealisedCost());
+        Assertions.assertNotNull(resp.getIsOpen());
+        Assertions.assertNotNull(resp.getMarkPrice());
+        Assertions.assertNotNull(resp.getMarkValue());
+        Assertions.assertNotNull(resp.getPosCost());
+        Assertions.assertNotNull(resp.getPosCross());
+        Assertions.assertNotNull(resp.getPosInit());
+        Assertions.assertNotNull(resp.getPosComm());
+        Assertions.assertNotNull(resp.getPosLoss());
+        Assertions.assertNotNull(resp.getPosMargin());
+        Assertions.assertNotNull(resp.getPosMaint());
+        Assertions.assertNotNull(resp.getMaintMargin());
+        Assertions.assertNotNull(resp.getRealisedGrossPnl());
+        Assertions.assertNotNull(resp.getRealisedPnl());
+        Assertions.assertNotNull(resp.getUnrealisedPnl());
+        Assertions.assertNotNull(resp.getUnrealisedPnlPcnt());
+        Assertions.assertNotNull(resp.getUnrealisedRoePcnt());
+        Assertions.assertNotNull(resp.getAvgEntryPrice());
+        Assertions.assertNotNull(resp.getLiquidationPrice());
+        Assertions.assertNotNull(resp.getBankruptPrice());
+        Assertions.assertNotNull(resp.getSettleCurrency());
+        log.info("resp: {}", mapper.writeValueAsString(resp));
+    }
+
+    /**
+    * removeIsolatedMargin
+    * Remove Isolated Margin
+    * /api/v1/copy-trade/futures/position/margin/withdraw-margin
+    */
+    @Test
+    public void testRemoveIsolatedMargin() throws Exception {
+        RemoveIsolatedMarginReq.RemoveIsolatedMarginReqBuilder builder = RemoveIsolatedMarginReq.builder();
+        builder.symbol(?).withdrawAmount(?);
+        RemoveIsolatedMarginReq req = builder.build();
+        RemoveIsolatedMarginResp resp = api.removeIsolatedMargin(req);
+        Assertions.assertNotNull(resp.getData());
+        log.info("resp: {}", mapper.writeValueAsString(resp));
+    }
+
+    /**
+    * modifyIsolatedMarginRiskLimt
+    * Modify Isolated Margin Risk Limit
+    * /api/v1/copy-trade/futures/position/risk-limit-level/change
+    */
+    @Test
+    public void testModifyIsolatedMarginRiskLimt() throws Exception {
+        ModifyIsolatedMarginRiskLimtReq.ModifyIsolatedMarginRiskLimtReqBuilder builder = ModifyIsolatedMarginRiskLimtReq.builder();
+        builder.symbol(?).level(?);
+        ModifyIsolatedMarginRiskLimtReq req = builder.build();
+        ModifyIsolatedMarginRiskLimtResp resp = api.modifyIsolatedMarginRiskLimt(req);
+        Assertions.assertNotNull(resp.getData());
+        log.info("resp: {}", mapper.writeValueAsString(resp));
+    }
+
+    /**
+    * modifyAutoDepositStatus
+    * Modify Isolated Margin Auto-Deposit Status
+    * /api/v1/copy-trade/futures/position/margin/auto-deposit-status
+    */
+    @Test
+    public void testModifyAutoDepositStatus() throws Exception {
+        ModifyAutoDepositStatusReq.ModifyAutoDepositStatusReqBuilder builder = ModifyAutoDepositStatusReq.builder();
+        builder.symbol(?).status(?);
+        ModifyAutoDepositStatusReq req = builder.build();
+        ModifyAutoDepositStatusResp resp = api.modifyAutoDepositStatus(req);
+        Assertions.assertNotNull(resp.getData());
+        log.info("resp: {}", mapper.writeValueAsString(resp));
+    }
+

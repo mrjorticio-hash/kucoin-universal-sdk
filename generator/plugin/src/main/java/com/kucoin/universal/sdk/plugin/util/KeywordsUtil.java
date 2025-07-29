@@ -8,7 +8,7 @@ import java.util.Map;
 public class KeywordsUtil {
 
     private static Map<String, String> specialKeywords =
-            Map.of("copytrading", "CopyTrading", "viplending", "VIPLending");
+            Map.of("copytrading", "CopyTrading", "viplending", "VIPLending", "ndbroker", "NDBroker", "apibroker", "APIBroker");
 
 
     public static String getKeyword(String key) {

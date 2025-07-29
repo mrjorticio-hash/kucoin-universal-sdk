@@ -1,0 +1,137 @@
+
+    /**
+    * getCrossMarginSymbols
+    * Get Symbols - Cross Margin
+    * /api/v3/margin/symbols
+    */
+    @Test
+    public void testGetCrossMarginSymbols() throws Exception {
+        GetCrossMarginSymbolsReq.GetCrossMarginSymbolsReqBuilder builder = GetCrossMarginSymbolsReq.builder();
+        builder.symbol(?);
+        GetCrossMarginSymbolsReq req = builder.build();
+        GetCrossMarginSymbolsResp resp = api.getCrossMarginSymbols(req);
+        Assertions.assertNotNull(resp.getTimestamp());
+        resp.getItems().forEach( item -> {
+            Assertions.assertNotNull(item.getSymbol());
+            Assertions.assertNotNull(item.getName());
+            Assertions.assertNotNull(item.getEnableTrading());
+            Assertions.assertNotNull(item.getMarket());
+            Assertions.assertNotNull(item.getBaseCurrency());
+            Assertions.assertNotNull(item.getQuoteCurrency());
+            Assertions.assertNotNull(item.getBaseIncrement());
+            Assertions.assertNotNull(item.getBaseMinSize());
+            Assertions.assertNotNull(item.getQuoteIncrement());
+            Assertions.assertNotNull(item.getQuoteMinSize());
+            Assertions.assertNotNull(item.getBaseMaxSize());
+            Assertions.assertNotNull(item.getQuoteMaxSize());
+            Assertions.assertNotNull(item.getPriceIncrement());
+            Assertions.assertNotNull(item.getFeeCurrency());
+            Assertions.assertNotNull(item.getPriceLimitRate());
+            Assertions.assertNotNull(item.getMinFunds());
+        });
+
+        log.info("resp: {}", mapper.writeValueAsString(resp));
+    }
+
+    /**
+    * getETFInfo
+    * Get ETF Info
+    * /api/v3/etf/info
+    */
+    @Test
+    public void testGetETFInfo() throws Exception {
+        GetETFInfoReq.GetETFInfoReqBuilder builder = GetETFInfoReq.builder();
+        builder.currency(?);
+        GetETFInfoReq req = builder.build();
+        GetETFInfoResp resp = api.getETFInfo(req);
+        resp.getData().forEach( item -> {
+            Assertions.assertNotNull(item.getCurrency());
+            Assertions.assertNotNull(item.getNetAsset());
+            Assertions.assertNotNull(item.getTargetLeverage());
+            Assertions.assertNotNull(item.getActualLeverage());
+            Assertions.assertNotNull(item.getIssuedSize());
+            Assertions.assertNotNull(item.getBasket());
+        });
+
+        log.info("resp: {}", mapper.writeValueAsString(resp));
+    }
+
+    /**
+    * getMarkPriceDetail
+    * Get Mark Price Detail
+    * /api/v1/mark-price/{symbol}/current
+    */
+    @Test
+    public void testGetMarkPriceDetail() throws Exception {
+        GetMarkPriceDetailReq.GetMarkPriceDetailReqBuilder builder = GetMarkPriceDetailReq.builder();
+        builder.symbol(?);
+        GetMarkPriceDetailReq req = builder.build();
+        GetMarkPriceDetailResp resp = api.getMarkPriceDetail(req);
+        Assertions.assertNotNull(resp.getSymbol());
+        Assertions.assertNotNull(resp.getTimePoint());
+        Assertions.assertNotNull(resp.getValue());
+        log.info("resp: {}", mapper.writeValueAsString(resp));
+    }
+
+    /**
+    * getMarginConfig
+    * Get Margin Config
+    * /api/v1/margin/config
+    */
+    @Test
+    public void testGetMarginConfig() throws Exception {
+        GetMarginConfigResp resp = api.getMarginConfig();
+        resp.getCurrencyList().forEach( item -> {
+        });
+
+        Assertions.assertNotNull(resp.getMaxLeverage());
+        Assertions.assertNotNull(resp.getWarningDebtRatio());
+        Assertions.assertNotNull(resp.getLiqDebtRatio());
+        log.info("resp: {}", mapper.writeValueAsString(resp));
+    }
+
+    /**
+    * getMarkPriceList
+    * Get Mark Price List
+    * /api/v3/mark-price/all-symbols
+    */
+    @Test
+    public void testGetMarkPriceList() throws Exception {
+        GetMarkPriceListResp resp = api.getMarkPriceList();
+        resp.getData().forEach( item -> {
+            Assertions.assertNotNull(item.getSymbol());
+            Assertions.assertNotNull(item.getTimePoint());
+            Assertions.assertNotNull(item.getValue());
+        });
+
+        log.info("resp: {}", mapper.writeValueAsString(resp));
+    }
+
+    /**
+    * getIsolatedMarginSymbols
+    * Get Symbols - Isolated Margin
+    * /api/v1/isolated/symbols
+    */
+    @Test
+    public void testGetIsolatedMarginSymbols() throws Exception {
+        GetIsolatedMarginSymbolsResp resp = api.getIsolatedMarginSymbols();
+        resp.getData().forEach( item -> {
+            Assertions.assertNotNull(item.getSymbol());
+            Assertions.assertNotNull(item.getSymbolName());
+            Assertions.assertNotNull(item.getBaseCurrency());
+            Assertions.assertNotNull(item.getQuoteCurrency());
+            Assertions.assertNotNull(item.getMaxLeverage());
+            Assertions.assertNotNull(item.getFlDebtRatio());
+            Assertions.assertNotNull(item.getTradeEnable());
+            Assertions.assertNotNull(item.getAutoRenewMaxDebtRatio());
+            Assertions.assertNotNull(item.getBaseBorrowEnable());
+            Assertions.assertNotNull(item.getQuoteBorrowEnable());
+            Assertions.assertNotNull(item.getBaseTransferInEnable());
+            Assertions.assertNotNull(item.getQuoteTransferInEnable());
+            Assertions.assertNotNull(item.getBaseBorrowCoefficient());
+            Assertions.assertNotNull(item.getQuoteBorrowCoefficient());
+        });
+
+        log.info("resp: {}", mapper.writeValueAsString(resp));
+    }
+

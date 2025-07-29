@@ -1,0 +1,39 @@
+{{>partial_header}}
+package {{package}};
+
+public interface {{classname}} {
+{{#operations}}
+    {{#operation}}
+
+    /**
+    * {{summary}}
+    *
+    * <p>{{notes}}
+    * <p>push frequency: {{vendorExtensions.x-push_frequency}}
+    */
+    String {{vendorExtensions.x-meta.method}}{{operationName}}({{#vendorExtensions.x-meta.otherProperties}}{{#parameters}}{{#type}}{{#type.simple}}String {{paras}},{{/type.simple}}{{#type.array}}String[] {{paras}},{{/type.array}}{{#type.object}}{{#paras}}String {{.}},{{/paras}}{{/type.object}}{{/type}}{{/parameters}}{{/vendorExtensions.x-meta.otherProperties}}{{vendorExtensions.x-meta.methodServiceFmt}}Event.Callback callback);
+    {{/operation}}
+
+    /**
+    * Unsubscribe from topics
+    */
+    void unSubscribe(String id);
+
+    /**
+    * Initiates the WebSocket service
+    *
+    * <p>This method must be called before subscribing to any topics.
+    */
+    void start();
+
+    /**
+    * Stops the WebSocket service.
+    *
+    * <p>This method is used to terminate the WebSocket connection and stop all ongoing
+    * subscriptions. It should be called when no further communication is needed with
+    * the server, or when the application is being shut down to ensure a clean
+    * disconnection and release of resources.
+    */
+    void stop();
+{{/operations}}
+}
