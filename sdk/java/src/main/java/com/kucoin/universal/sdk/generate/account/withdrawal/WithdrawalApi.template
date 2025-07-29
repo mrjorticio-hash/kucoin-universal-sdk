@@ -1,0 +1,178 @@
+
+    /**
+    * getWithdrawalQuotas
+    * Get Withdrawal Quotas
+    * /api/v1/withdrawals/quotas
+    */
+    @Test
+    public void testGetWithdrawalQuotas() throws Exception {
+        GetWithdrawalQuotasReq.GetWithdrawalQuotasReqBuilder builder = GetWithdrawalQuotasReq.builder();
+        builder.currency(?).chain(?);
+        GetWithdrawalQuotasReq req = builder.build();
+        GetWithdrawalQuotasResp resp = api.getWithdrawalQuotas(req);
+        Assertions.assertNotNull(resp.getCurrency());
+        Assertions.assertNotNull(resp.getLimitBTCAmount());
+        Assertions.assertNotNull(resp.getUsedBTCAmount());
+        Assertions.assertNotNull(resp.getQuotaCurrency());
+        Assertions.assertNotNull(resp.getLimitQuotaCurrencyAmount());
+        Assertions.assertNotNull(resp.getUsedQuotaCurrencyAmount());
+        Assertions.assertNotNull(resp.getRemainAmount());
+        Assertions.assertNotNull(resp.getAvailableAmount());
+        Assertions.assertNotNull(resp.getWithdrawMinFee());
+        Assertions.assertNotNull(resp.getInnerWithdrawMinFee());
+        Assertions.assertNotNull(resp.getWithdrawMinSize());
+        Assertions.assertNotNull(resp.getIsWithdrawEnabled());
+        Assertions.assertNotNull(resp.getPrecision());
+        Assertions.assertNotNull(resp.getChain());
+        Assertions.assertNotNull(resp.getReason());
+        Assertions.assertNotNull(resp.getLockedAmount());
+        log.info("resp: {}", mapper.writeValueAsString(resp));
+    }
+
+    /**
+    * withdrawalV3
+    * Withdraw (V3)
+    * /api/v3/withdrawals
+    */
+    @Test
+    public void testWithdrawalV3() throws Exception {
+        WithdrawalV3Req.WithdrawalV3ReqBuilder builder = WithdrawalV3Req.builder();
+        builder.currency(?).chain(?).amount(?).memo(?).isInner(?).remark(?).feeDeductType(?).toAddress(?).withdrawType(?);
+        WithdrawalV3Req req = builder.build();
+        WithdrawalV3Resp resp = api.withdrawalV3(req);
+        Assertions.assertNotNull(resp.getWithdrawalId());
+        log.info("resp: {}", mapper.writeValueAsString(resp));
+    }
+
+    /**
+    * cancelWithdrawal
+    * Cancel Withdrawal
+    * /api/v1/withdrawals/{withdrawalId}
+    */
+    @Test
+    public void testCancelWithdrawal() throws Exception {
+        CancelWithdrawalReq.CancelWithdrawalReqBuilder builder = CancelWithdrawalReq.builder();
+        builder.withdrawalId(?);
+        CancelWithdrawalReq req = builder.build();
+        CancelWithdrawalResp resp = api.cancelWithdrawal(req);
+        Assertions.assertNotNull(resp.getData());
+        log.info("resp: {}", mapper.writeValueAsString(resp));
+    }
+
+    /**
+    * getWithdrawalHistory
+    * Get Withdrawal History
+    * /api/v1/withdrawals
+    */
+    @Test
+    public void testGetWithdrawalHistory() throws Exception {
+        GetWithdrawalHistoryReq.GetWithdrawalHistoryReqBuilder builder = GetWithdrawalHistoryReq.builder();
+        builder.currency(?).status(?).startAt(?).endAt(?).currentPage(?).pageSize(?);
+        GetWithdrawalHistoryReq req = builder.build();
+        GetWithdrawalHistoryResp resp = api.getWithdrawalHistory(req);
+        Assertions.assertNotNull(resp.getCurrentPage());
+        Assertions.assertNotNull(resp.getPageSize());
+        Assertions.assertNotNull(resp.getTotalNum());
+        Assertions.assertNotNull(resp.getTotalPage());
+        resp.getItems().forEach( item -> {
+            Assertions.assertNotNull(item.getId());
+            Assertions.assertNotNull(item.getCurrency());
+            Assertions.assertNotNull(item.getChain());
+            Assertions.assertNotNull(item.getStatus());
+            Assertions.assertNotNull(item.getAddress());
+            Assertions.assertNotNull(item.getMemo());
+            Assertions.assertNotNull(item.getIsInner());
+            Assertions.assertNotNull(item.getAmount());
+            Assertions.assertNotNull(item.getFee());
+            Assertions.assertNotNull(item.getWalletTxId());
+            Assertions.assertNotNull(item.getCreatedAt());
+            Assertions.assertNotNull(item.getUpdatedAt());
+            Assertions.assertNotNull(item.getRemark());
+        });
+
+        log.info("resp: {}", mapper.writeValueAsString(resp));
+    }
+
+    /**
+    * getWithdrawalHistoryById
+    * Get Withdrawal History By ID
+    * /api/v1/withdrawals/{withdrawalId}
+    */
+    @Test
+    public void testGetWithdrawalHistoryById() throws Exception {
+        GetWithdrawalHistoryByIdReq.GetWithdrawalHistoryByIdReqBuilder builder = GetWithdrawalHistoryByIdReq.builder();
+        builder.withdrawalId(?);
+        GetWithdrawalHistoryByIdReq req = builder.build();
+        GetWithdrawalHistoryByIdResp resp = api.getWithdrawalHistoryById(req);
+        Assertions.assertNotNull(resp.getId());
+        Assertions.assertNotNull(resp.getUid());
+        Assertions.assertNotNull(resp.getCurrency());
+        Assertions.assertNotNull(resp.getChainId());
+        Assertions.assertNotNull(resp.getChainName());
+        Assertions.assertNotNull(resp.getCurrencyName());
+        Assertions.assertNotNull(resp.getStatus());
+        Assertions.assertNotNull(resp.getFailureReason());
+        Assertions.assertNotNull(resp.getFailureReasonMsg());
+        Assertions.assertNotNull(resp.getAddress());
+        Assertions.assertNotNull(resp.getMemo());
+        Assertions.assertNotNull(resp.getIsInner());
+        Assertions.assertNotNull(resp.getAmount());
+        Assertions.assertNotNull(resp.getFee());
+        Assertions.assertNotNull(resp.getWalletTxId());
+        Assertions.assertNotNull(resp.getAddressRemark());
+        Assertions.assertNotNull(resp.getRemark());
+        Assertions.assertNotNull(resp.getCreatedAt());
+        Assertions.assertNotNull(resp.getCancelType());
+        resp.getTaxes().forEach( item -> {
+        });
+
+        Assertions.assertNotNull(resp.getTaxDescription());
+        Assertions.assertNotNull(resp.getReturnStatus());
+        Assertions.assertNotNull(resp.getReturnAmount());
+        Assertions.assertNotNull(resp.getReturnCurrency());
+        log.info("resp: {}", mapper.writeValueAsString(resp));
+    }
+
+    /**
+    * getWithdrawalHistoryOld
+    * Get Withdrawal History - Old
+    * /api/v1/hist-withdrawals
+    */
+    @Test
+    public void testGetWithdrawalHistoryOld() throws Exception {
+        GetWithdrawalHistoryOldReq.GetWithdrawalHistoryOldReqBuilder builder = GetWithdrawalHistoryOldReq.builder();
+        builder.currency(?).status(?).startAt(?).endAt(?).currentPage(?).pageSize(?);
+        GetWithdrawalHistoryOldReq req = builder.build();
+        GetWithdrawalHistoryOldResp resp = api.getWithdrawalHistoryOld(req);
+        Assertions.assertNotNull(resp.getCurrentPage());
+        Assertions.assertNotNull(resp.getPageSize());
+        Assertions.assertNotNull(resp.getTotalNum());
+        Assertions.assertNotNull(resp.getTotalPage());
+        resp.getItems().forEach( item -> {
+            Assertions.assertNotNull(item.getCurrency());
+            Assertions.assertNotNull(item.getCreateAt());
+            Assertions.assertNotNull(item.getAmount());
+            Assertions.assertNotNull(item.getAddress());
+            Assertions.assertNotNull(item.getWalletTxId());
+            Assertions.assertNotNull(item.getIsInner());
+            Assertions.assertNotNull(item.getStatus());
+        });
+
+        log.info("resp: {}", mapper.writeValueAsString(resp));
+    }
+
+    /**
+    * withdrawalV1
+    * Withdraw - V1
+    * /api/v1/withdrawals
+    */
+    @Test
+    public void testWithdrawalV1() throws Exception {
+        WithdrawalV1Req.WithdrawalV1ReqBuilder builder = WithdrawalV1Req.builder();
+        builder.currency(?).chain(?).address(?).amount(?).memo(?).isInner(?).remark(?).feeDeductType(?);
+        WithdrawalV1Req req = builder.build();
+        WithdrawalV1Resp resp = api.withdrawalV1(req);
+        Assertions.assertNotNull(resp.getWithdrawalId());
+        log.info("resp: {}", mapper.writeValueAsString(resp));
+    }
+

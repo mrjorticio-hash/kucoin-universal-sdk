@@ -1,0 +1,33 @@
+{{>partial_header}}
+package {{package}};
+
+{{#imports}}
+{{{.}}}
+{{/imports}}
+{{#implImports}}
+{{{.}}}
+{{/implImports}}
+
+{{#api_entry}}
+
+public class {{api_entry_name}}Impl implements {{api_entry_name}}{
+    private Transport transport;
+{{#api_entry_value}}
+    private {{target_service}} {{method}};
+{{/api_entry_value}}
+
+    public {{api_entry_name}}Impl(Transport transport) {
+        this.transport = transport;
+    {{#api_entry_value}}
+        this.{{method}} = new {{target_service}}Impl(transport);
+    {{/api_entry_value}}
+    }
+
+{{#api_entry_value}}
+
+    public {{target_service}} get{{methodUppercase}}Api() {
+        return this.{{method}};
+    }
+{{/api_entry_value}}
+{{/api_entry}}
+}

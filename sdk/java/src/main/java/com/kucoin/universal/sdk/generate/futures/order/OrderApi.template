@@ -1,0 +1,559 @@
+
+    /**
+    * addOrder
+    * Add Order
+    * /api/v1/orders
+    */
+    @Test
+    public void testAddOrder() throws Exception {
+        AddOrderReq.AddOrderReqBuilder builder = AddOrderReq.builder();
+        builder.clientOid(?).side(?).symbol(?).leverage(?).type(?).remark(?).stop(?).stopPriceType(?).stopPrice(?).reduceOnly(?).closeOrder(?).forceHold(?).stp(?).marginMode(?).price(?).size(?).timeInForce(?).postOnly(?).hidden(?).iceberg(?).visibleSize(?).qty(?).valueQty(?);
+        AddOrderReq req = builder.build();
+        AddOrderResp resp = api.addOrder(req);
+        Assertions.assertNotNull(resp.getOrderId());
+        Assertions.assertNotNull(resp.getClientOid());
+        log.info("resp: {}", mapper.writeValueAsString(resp));
+    }
+
+    /**
+    * addOrderTest
+    * Add Order Test
+    * /api/v1/orders/test
+    */
+    @Test
+    public void testAddOrderTest() throws Exception {
+        AddOrderTestReq.AddOrderTestReqBuilder builder = AddOrderTestReq.builder();
+        builder.clientOid(?).side(?).symbol(?).leverage(?).type(?).remark(?).stop(?).stopPriceType(?).stopPrice(?).reduceOnly(?).closeOrder(?).forceHold(?).stp(?).marginMode(?).price(?).size(?).timeInForce(?).postOnly(?).hidden(?).iceberg(?).visibleSize(?).qty(?).valueQty(?);
+        AddOrderTestReq req = builder.build();
+        AddOrderTestResp resp = api.addOrderTest(req);
+        Assertions.assertNotNull(resp.getOrderId());
+        Assertions.assertNotNull(resp.getClientOid());
+        log.info("resp: {}", mapper.writeValueAsString(resp));
+    }
+
+    /**
+    * batchAddOrders
+    * Batch Add Orders
+    * /api/v1/orders/multi
+    */
+    @Test
+    public void testBatchAddOrders() throws Exception {
+        BatchAddOrdersReq.BatchAddOrdersReqBuilder builder = BatchAddOrdersReq.builder();
+        builder.items(?);
+        BatchAddOrdersReq req = builder.build();
+        BatchAddOrdersResp resp = api.batchAddOrders(req);
+        resp.getData().forEach( item -> {
+            Assertions.assertNotNull(item.getOrderId());
+            Assertions.assertNotNull(item.getClientOid());
+            Assertions.assertNotNull(item.getSymbol());
+            Assertions.assertNotNull(item.getCode());
+            Assertions.assertNotNull(item.getMsg());
+        });
+
+        log.info("resp: {}", mapper.writeValueAsString(resp));
+    }
+
+    /**
+    * addTPSLOrder
+    * Add Take Profit And Stop Loss Order
+    * /api/v1/st-orders
+    */
+    @Test
+    public void testAddTPSLOrder() throws Exception {
+        AddTPSLOrderReq.AddTPSLOrderReqBuilder builder = AddTPSLOrderReq.builder();
+        builder.clientOid(?).side(?).symbol(?).leverage(?).type(?).remark(?).stopPriceType(?).reduceOnly(?).closeOrder(?).forceHold(?).stp(?).marginMode(?).price(?).size(?).timeInForce(?).postOnly(?).hidden(?).iceberg(?).visibleSize(?).triggerStopUpPrice(?).triggerStopDownPrice(?).qty(?).valueQty(?);
+        AddTPSLOrderReq req = builder.build();
+        AddTPSLOrderResp resp = api.addTPSLOrder(req);
+        Assertions.assertNotNull(resp.getOrderId());
+        Assertions.assertNotNull(resp.getClientOid());
+        log.info("resp: {}", mapper.writeValueAsString(resp));
+    }
+
+    /**
+    * cancelOrderById
+    * Cancel Order By OrderId
+    * /api/v1/orders/{orderId}
+    */
+    @Test
+    public void testCancelOrderById() throws Exception {
+        CancelOrderByIdReq.CancelOrderByIdReqBuilder builder = CancelOrderByIdReq.builder();
+        builder.orderId(?);
+        CancelOrderByIdReq req = builder.build();
+        CancelOrderByIdResp resp = api.cancelOrderById(req);
+        resp.getCancelledOrderIds().forEach( item -> {
+        });
+
+        log.info("resp: {}", mapper.writeValueAsString(resp));
+    }
+
+    /**
+    * cancelOrderByClientOid
+    * Cancel Order By ClientOid
+    * /api/v1/orders/client-order/{clientOid}
+    */
+    @Test
+    public void testCancelOrderByClientOid() throws Exception {
+        CancelOrderByClientOidReq.CancelOrderByClientOidReqBuilder builder = CancelOrderByClientOidReq.builder();
+        builder.symbol(?).clientOid(?);
+        CancelOrderByClientOidReq req = builder.build();
+        CancelOrderByClientOidResp resp = api.cancelOrderByClientOid(req);
+        Assertions.assertNotNull(resp.getClientOid());
+        log.info("resp: {}", mapper.writeValueAsString(resp));
+    }
+
+    /**
+    * batchCancelOrders
+    * Batch Cancel Orders
+    * /api/v1/orders/multi-cancel
+    */
+    @Test
+    public void testBatchCancelOrders() throws Exception {
+        BatchCancelOrdersReq.BatchCancelOrdersReqBuilder builder = BatchCancelOrdersReq.builder();
+        builder.orderIdsList(?).clientOidsList(?);
+        BatchCancelOrdersReq req = builder.build();
+        BatchCancelOrdersResp resp = api.batchCancelOrders(req);
+        resp.getData().forEach( item -> {
+            Assertions.assertNotNull(item.getOrderId());
+            Assertions.assertNotNull(item.getClientOid());
+            Assertions.assertNotNull(item.getCode());
+            Assertions.assertNotNull(item.getMsg());
+        });
+
+        log.info("resp: {}", mapper.writeValueAsString(resp));
+    }
+
+    /**
+    * cancelAllOrdersV3
+    * Cancel All Orders
+    * /api/v3/orders
+    */
+    @Test
+    public void testCancelAllOrdersV3() throws Exception {
+        CancelAllOrdersV3Req.CancelAllOrdersV3ReqBuilder builder = CancelAllOrdersV3Req.builder();
+        builder.symbol(?);
+        CancelAllOrdersV3Req req = builder.build();
+        CancelAllOrdersV3Resp resp = api.cancelAllOrdersV3(req);
+        resp.getCancelledOrderIds().forEach( item -> {
+        });
+
+        log.info("resp: {}", mapper.writeValueAsString(resp));
+    }
+
+    /**
+    * cancelAllStopOrders
+    * Cancel All Stop orders
+    * /api/v1/stopOrders
+    */
+    @Test
+    public void testCancelAllStopOrders() throws Exception {
+        CancelAllStopOrdersReq.CancelAllStopOrdersReqBuilder builder = CancelAllStopOrdersReq.builder();
+        builder.symbol(?);
+        CancelAllStopOrdersReq req = builder.build();
+        CancelAllStopOrdersResp resp = api.cancelAllStopOrders(req);
+        resp.getCancelledOrderIds().forEach( item -> {
+        });
+
+        log.info("resp: {}", mapper.writeValueAsString(resp));
+    }
+
+    /**
+    * getOrderByOrderId
+    * Get Order By OrderId
+    * /api/v1/orders/{order-id}
+    */
+    @Test
+    public void testGetOrderByOrderId() throws Exception {
+        GetOrderByOrderIdReq.GetOrderByOrderIdReqBuilder builder = GetOrderByOrderIdReq.builder();
+        builder.orderId(?);
+        GetOrderByOrderIdReq req = builder.build();
+        GetOrderByOrderIdResp resp = api.getOrderByOrderId(req);
+        Assertions.assertNotNull(resp.getId());
+        Assertions.assertNotNull(resp.getSymbol());
+        Assertions.assertNotNull(resp.getType());
+        Assertions.assertNotNull(resp.getSide());
+        Assertions.assertNotNull(resp.getPrice());
+        Assertions.assertNotNull(resp.getSize());
+        Assertions.assertNotNull(resp.getValue());
+        Assertions.assertNotNull(resp.getDealValue());
+        Assertions.assertNotNull(resp.getDealSize());
+        Assertions.assertNotNull(resp.getStp());
+        Assertions.assertNotNull(resp.getStop());
+        Assertions.assertNotNull(resp.getStopPriceType());
+        Assertions.assertNotNull(resp.getStopTriggered());
+        Assertions.assertNotNull(resp.getStopPrice());
+        Assertions.assertNotNull(resp.getTimeInForce());
+        Assertions.assertNotNull(resp.getPostOnly());
+        Assertions.assertNotNull(resp.getHidden());
+        Assertions.assertNotNull(resp.getIceberg());
+        Assertions.assertNotNull(resp.getLeverage());
+        Assertions.assertNotNull(resp.getForceHold());
+        Assertions.assertNotNull(resp.getCloseOrder());
+        Assertions.assertNotNull(resp.getVisibleSize());
+        Assertions.assertNotNull(resp.getClientOid());
+        Assertions.assertNotNull(resp.getRemark());
+        Assertions.assertNotNull(resp.getTags());
+        Assertions.assertNotNull(resp.getIsActive());
+        Assertions.assertNotNull(resp.getCancelExist());
+        Assertions.assertNotNull(resp.getCreatedAt());
+        Assertions.assertNotNull(resp.getUpdatedAt());
+        Assertions.assertNotNull(resp.getEndAt());
+        Assertions.assertNotNull(resp.getOrderTime());
+        Assertions.assertNotNull(resp.getSettleCurrency());
+        Assertions.assertNotNull(resp.getMarginMode());
+        Assertions.assertNotNull(resp.getAvgDealPrice());
+        Assertions.assertNotNull(resp.getFilledSize());
+        Assertions.assertNotNull(resp.getFilledValue());
+        Assertions.assertNotNull(resp.getStatus());
+        Assertions.assertNotNull(resp.getReduceOnly());
+        log.info("resp: {}", mapper.writeValueAsString(resp));
+    }
+
+    /**
+    * getOrderByClientOid
+    * Get Order By ClientOid
+    * /api/v1/orders/byClientOid
+    */
+    @Test
+    public void testGetOrderByClientOid() throws Exception {
+        GetOrderByClientOidReq.GetOrderByClientOidReqBuilder builder = GetOrderByClientOidReq.builder();
+        builder.clientOid(?);
+        GetOrderByClientOidReq req = builder.build();
+        GetOrderByClientOidResp resp = api.getOrderByClientOid(req);
+        Assertions.assertNotNull(resp.getId());
+        Assertions.assertNotNull(resp.getSymbol());
+        Assertions.assertNotNull(resp.getType());
+        Assertions.assertNotNull(resp.getSide());
+        Assertions.assertNotNull(resp.getPrice());
+        Assertions.assertNotNull(resp.getSize());
+        Assertions.assertNotNull(resp.getValue());
+        Assertions.assertNotNull(resp.getDealValue());
+        Assertions.assertNotNull(resp.getDealSize());
+        Assertions.assertNotNull(resp.getStp());
+        Assertions.assertNotNull(resp.getStop());
+        Assertions.assertNotNull(resp.getStopPriceType());
+        Assertions.assertNotNull(resp.getStopTriggered());
+        Assertions.assertNotNull(resp.getStopPrice());
+        Assertions.assertNotNull(resp.getTimeInForce());
+        Assertions.assertNotNull(resp.getPostOnly());
+        Assertions.assertNotNull(resp.getHidden());
+        Assertions.assertNotNull(resp.getIceberg());
+        Assertions.assertNotNull(resp.getLeverage());
+        Assertions.assertNotNull(resp.getForceHold());
+        Assertions.assertNotNull(resp.getCloseOrder());
+        Assertions.assertNotNull(resp.getVisibleSize());
+        Assertions.assertNotNull(resp.getClientOid());
+        Assertions.assertNotNull(resp.getRemark());
+        Assertions.assertNotNull(resp.getTags());
+        Assertions.assertNotNull(resp.getIsActive());
+        Assertions.assertNotNull(resp.getCancelExist());
+        Assertions.assertNotNull(resp.getCreatedAt());
+        Assertions.assertNotNull(resp.getUpdatedAt());
+        Assertions.assertNotNull(resp.getEndAt());
+        Assertions.assertNotNull(resp.getOrderTime());
+        Assertions.assertNotNull(resp.getSettleCurrency());
+        Assertions.assertNotNull(resp.getMarginMode());
+        Assertions.assertNotNull(resp.getAvgDealPrice());
+        Assertions.assertNotNull(resp.getFilledSize());
+        Assertions.assertNotNull(resp.getFilledValue());
+        Assertions.assertNotNull(resp.getStatus());
+        Assertions.assertNotNull(resp.getReduceOnly());
+        log.info("resp: {}", mapper.writeValueAsString(resp));
+    }
+
+    /**
+    * getOrderList
+    * Get Order List
+    * /api/v1/orders
+    */
+    @Test
+    public void testGetOrderList() throws Exception {
+        GetOrderListReq.GetOrderListReqBuilder builder = GetOrderListReq.builder();
+        builder.status(?).symbol(?).side(?).type(?).startAt(?).endAt(?).currentPage(?).pageSize(?);
+        GetOrderListReq req = builder.build();
+        GetOrderListResp resp = api.getOrderList(req);
+        Assertions.assertNotNull(resp.getCurrentPage());
+        Assertions.assertNotNull(resp.getPageSize());
+        Assertions.assertNotNull(resp.getTotalNum());
+        Assertions.assertNotNull(resp.getTotalPage());
+        resp.getItems().forEach( item -> {
+            Assertions.assertNotNull(item.getId());
+            Assertions.assertNotNull(item.getSymbol());
+            Assertions.assertNotNull(item.getType());
+            Assertions.assertNotNull(item.getSide());
+            Assertions.assertNotNull(item.getPrice());
+            Assertions.assertNotNull(item.getSize());
+            Assertions.assertNotNull(item.getValue());
+            Assertions.assertNotNull(item.getDealValue());
+            Assertions.assertNotNull(item.getDealSize());
+            Assertions.assertNotNull(item.getStp());
+            Assertions.assertNotNull(item.getStop());
+            Assertions.assertNotNull(item.getStopPriceType());
+            Assertions.assertNotNull(item.getStopTriggered());
+            Assertions.assertNotNull(item.getStopPrice());
+            Assertions.assertNotNull(item.getTimeInForce());
+            Assertions.assertNotNull(item.getPostOnly());
+            Assertions.assertNotNull(item.getHidden());
+            Assertions.assertNotNull(item.getIceberg());
+            Assertions.assertNotNull(item.getLeverage());
+            Assertions.assertNotNull(item.getForceHold());
+            Assertions.assertNotNull(item.getCloseOrder());
+            Assertions.assertNotNull(item.getVisibleSize());
+            Assertions.assertNotNull(item.getClientOid());
+            Assertions.assertNotNull(item.getRemark());
+            Assertions.assertNotNull(item.getTags());
+            Assertions.assertNotNull(item.getIsActive());
+            Assertions.assertNotNull(item.getCancelExist());
+            Assertions.assertNotNull(item.getCreatedAt());
+            Assertions.assertNotNull(item.getUpdatedAt());
+            Assertions.assertNotNull(item.getEndAt());
+            Assertions.assertNotNull(item.getOrderTime());
+            Assertions.assertNotNull(item.getSettleCurrency());
+            Assertions.assertNotNull(item.getMarginMode());
+            Assertions.assertNotNull(item.getAvgDealPrice());
+            Assertions.assertNotNull(item.getStatus());
+            Assertions.assertNotNull(item.getFilledSize());
+            Assertions.assertNotNull(item.getFilledValue());
+            Assertions.assertNotNull(item.getReduceOnly());
+        });
+
+        log.info("resp: {}", mapper.writeValueAsString(resp));
+    }
+
+    /**
+    * getRecentClosedOrders
+    * Get Recent Closed Orders
+    * /api/v1/recentDoneOrders
+    */
+    @Test
+    public void testGetRecentClosedOrders() throws Exception {
+        GetRecentClosedOrdersReq.GetRecentClosedOrdersReqBuilder builder = GetRecentClosedOrdersReq.builder();
+        builder.symbol(?);
+        GetRecentClosedOrdersReq req = builder.build();
+        GetRecentClosedOrdersResp resp = api.getRecentClosedOrders(req);
+        resp.getData().forEach( item -> {
+            Assertions.assertNotNull(item.getId());
+            Assertions.assertNotNull(item.getSymbol());
+            Assertions.assertNotNull(item.getType());
+            Assertions.assertNotNull(item.getSide());
+            Assertions.assertNotNull(item.getPrice());
+            Assertions.assertNotNull(item.getSize());
+            Assertions.assertNotNull(item.getValue());
+            Assertions.assertNotNull(item.getDealValue());
+            Assertions.assertNotNull(item.getDealSize());
+            Assertions.assertNotNull(item.getStp());
+            Assertions.assertNotNull(item.getStop());
+            Assertions.assertNotNull(item.getStopPriceType());
+            Assertions.assertNotNull(item.getStopTriggered());
+            Assertions.assertNotNull(item.getStopPrice());
+            Assertions.assertNotNull(item.getTimeInForce());
+            Assertions.assertNotNull(item.getPostOnly());
+            Assertions.assertNotNull(item.getHidden());
+            Assertions.assertNotNull(item.getIceberg());
+            Assertions.assertNotNull(item.getLeverage());
+            Assertions.assertNotNull(item.getForceHold());
+            Assertions.assertNotNull(item.getCloseOrder());
+            Assertions.assertNotNull(item.getVisibleSize());
+            Assertions.assertNotNull(item.getClientOid());
+            Assertions.assertNotNull(item.getRemark());
+            Assertions.assertNotNull(item.getTags());
+            Assertions.assertNotNull(item.getIsActive());
+            Assertions.assertNotNull(item.getCancelExist());
+            Assertions.assertNotNull(item.getCreatedAt());
+            Assertions.assertNotNull(item.getUpdatedAt());
+            Assertions.assertNotNull(item.getEndAt());
+            Assertions.assertNotNull(item.getOrderTime());
+            Assertions.assertNotNull(item.getSettleCurrency());
+            Assertions.assertNotNull(item.getMarginMode());
+            Assertions.assertNotNull(item.getAvgDealPrice());
+            Assertions.assertNotNull(item.getFilledSize());
+            Assertions.assertNotNull(item.getFilledValue());
+            Assertions.assertNotNull(item.getStatus());
+            Assertions.assertNotNull(item.getReduceOnly());
+        });
+
+        log.info("resp: {}", mapper.writeValueAsString(resp));
+    }
+
+    /**
+    * getStopOrderList
+    * Get Stop Order List
+    * /api/v1/stopOrders
+    */
+    @Test
+    public void testGetStopOrderList() throws Exception {
+        GetStopOrderListReq.GetStopOrderListReqBuilder builder = GetStopOrderListReq.builder();
+        builder.symbol(?).side(?).type(?).startAt(?).endAt(?).currentPage(?).pageSize(?);
+        GetStopOrderListReq req = builder.build();
+        GetStopOrderListResp resp = api.getStopOrderList(req);
+        Assertions.assertNotNull(resp.getCurrentPage());
+        Assertions.assertNotNull(resp.getPageSize());
+        Assertions.assertNotNull(resp.getTotalNum());
+        Assertions.assertNotNull(resp.getTotalPage());
+        resp.getItems().forEach( item -> {
+            Assertions.assertNotNull(item.getId());
+            Assertions.assertNotNull(item.getSymbol());
+            Assertions.assertNotNull(item.getType());
+            Assertions.assertNotNull(item.getSide());
+            Assertions.assertNotNull(item.getPrice());
+            Assertions.assertNotNull(item.getSize());
+            Assertions.assertNotNull(item.getValue());
+            Assertions.assertNotNull(item.getDealValue());
+            Assertions.assertNotNull(item.getDealSize());
+            Assertions.assertNotNull(item.getStp());
+            Assertions.assertNotNull(item.getStop());
+            Assertions.assertNotNull(item.getStopPriceType());
+            Assertions.assertNotNull(item.getStopTriggered());
+            Assertions.assertNotNull(item.getStopPrice());
+            Assertions.assertNotNull(item.getTimeInForce());
+            Assertions.assertNotNull(item.getPostOnly());
+            Assertions.assertNotNull(item.getHidden());
+            Assertions.assertNotNull(item.getIceberg());
+            Assertions.assertNotNull(item.getLeverage());
+            Assertions.assertNotNull(item.getForceHold());
+            Assertions.assertNotNull(item.getCloseOrder());
+            Assertions.assertNotNull(item.getVisibleSize());
+            Assertions.assertNotNull(item.getClientOid());
+            Assertions.assertNotNull(item.getRemark());
+            Assertions.assertNotNull(item.getTags());
+            Assertions.assertNotNull(item.getIsActive());
+            Assertions.assertNotNull(item.getCancelExist());
+            Assertions.assertNotNull(item.getCreatedAt());
+            Assertions.assertNotNull(item.getUpdatedAt());
+            Assertions.assertNotNull(item.getEndAt());
+            Assertions.assertNotNull(item.getOrderTime());
+            Assertions.assertNotNull(item.getSettleCurrency());
+            Assertions.assertNotNull(item.getMarginMode());
+            Assertions.assertNotNull(item.getAvgDealPrice());
+            Assertions.assertNotNull(item.getFilledSize());
+            Assertions.assertNotNull(item.getFilledValue());
+            Assertions.assertNotNull(item.getStatus());
+            Assertions.assertNotNull(item.getReduceOnly());
+        });
+
+        log.info("resp: {}", mapper.writeValueAsString(resp));
+    }
+
+    /**
+    * getOpenOrderValue
+    * Get Open Order Value
+    * /api/v1/openOrderStatistics
+    */
+    @Test
+    public void testGetOpenOrderValue() throws Exception {
+        GetOpenOrderValueReq.GetOpenOrderValueReqBuilder builder = GetOpenOrderValueReq.builder();
+        builder.symbol(?);
+        GetOpenOrderValueReq req = builder.build();
+        GetOpenOrderValueResp resp = api.getOpenOrderValue(req);
+        Assertions.assertNotNull(resp.getOpenOrderBuySize());
+        Assertions.assertNotNull(resp.getOpenOrderSellSize());
+        Assertions.assertNotNull(resp.getOpenOrderBuyCost());
+        Assertions.assertNotNull(resp.getOpenOrderSellCost());
+        Assertions.assertNotNull(resp.getSettleCurrency());
+        log.info("resp: {}", mapper.writeValueAsString(resp));
+    }
+
+    /**
+    * getRecentTradeHistory
+    * Get Recent Trade History
+    * /api/v1/recentFills
+    */
+    @Test
+    public void testGetRecentTradeHistory() throws Exception {
+        GetRecentTradeHistoryReq.GetRecentTradeHistoryReqBuilder builder = GetRecentTradeHistoryReq.builder();
+        builder.symbol(?);
+        GetRecentTradeHistoryReq req = builder.build();
+        GetRecentTradeHistoryResp resp = api.getRecentTradeHistory(req);
+        resp.getData().forEach( item -> {
+            Assertions.assertNotNull(item.getSymbol());
+            Assertions.assertNotNull(item.getTradeId());
+            Assertions.assertNotNull(item.getOrderId());
+            Assertions.assertNotNull(item.getSide());
+            Assertions.assertNotNull(item.getLiquidity());
+            Assertions.assertNotNull(item.getForceTaker());
+            Assertions.assertNotNull(item.getPrice());
+            Assertions.assertNotNull(item.getSize());
+            Assertions.assertNotNull(item.getValue());
+            Assertions.assertNotNull(item.getOpenFeePay());
+            Assertions.assertNotNull(item.getCloseFeePay());
+            Assertions.assertNotNull(item.getStop());
+            Assertions.assertNotNull(item.getFeeRate());
+            Assertions.assertNotNull(item.getFixFee());
+            Assertions.assertNotNull(item.getFeeCurrency());
+            Assertions.assertNotNull(item.getTradeTime());
+            Assertions.assertNotNull(item.getSubTradeType());
+            Assertions.assertNotNull(item.getMarginMode());
+            Assertions.assertNotNull(item.getDisplayType());
+            Assertions.assertNotNull(item.getFee());
+            Assertions.assertNotNull(item.getSettleCurrency());
+            Assertions.assertNotNull(item.getOrderType());
+            Assertions.assertNotNull(item.getTradeType());
+            Assertions.assertNotNull(item.getCreatedAt());
+        });
+
+        log.info("resp: {}", mapper.writeValueAsString(resp));
+    }
+
+    /**
+    * getTradeHistory
+    * Get Trade History
+    * /api/v1/fills
+    */
+    @Test
+    public void testGetTradeHistory() throws Exception {
+        GetTradeHistoryReq.GetTradeHistoryReqBuilder builder = GetTradeHistoryReq.builder();
+        builder.orderId(?).symbol(?).side(?).type(?).tradeTypes(?).startAt(?).endAt(?).currentPage(?).pageSize(?);
+        GetTradeHistoryReq req = builder.build();
+        GetTradeHistoryResp resp = api.getTradeHistory(req);
+        Assertions.assertNotNull(resp.getCurrentPage());
+        Assertions.assertNotNull(resp.getPageSize());
+        Assertions.assertNotNull(resp.getTotalNum());
+        Assertions.assertNotNull(resp.getTotalPage());
+        resp.getItems().forEach( item -> {
+            Assertions.assertNotNull(item.getSymbol());
+            Assertions.assertNotNull(item.getTradeId());
+            Assertions.assertNotNull(item.getOrderId());
+            Assertions.assertNotNull(item.getSide());
+            Assertions.assertNotNull(item.getLiquidity());
+            Assertions.assertNotNull(item.getForceTaker());
+            Assertions.assertNotNull(item.getPrice());
+            Assertions.assertNotNull(item.getSize());
+            Assertions.assertNotNull(item.getValue());
+            Assertions.assertNotNull(item.getOpenFeePay());
+            Assertions.assertNotNull(item.getCloseFeePay());
+            Assertions.assertNotNull(item.getStop());
+            Assertions.assertNotNull(item.getFeeRate());
+            Assertions.assertNotNull(item.getFixFee());
+            Assertions.assertNotNull(item.getFeeCurrency());
+            Assertions.assertNotNull(item.getTradeTime());
+            Assertions.assertNotNull(item.getSubTradeType());
+            Assertions.assertNotNull(item.getMarginMode());
+            Assertions.assertNotNull(item.getSettleCurrency());
+            Assertions.assertNotNull(item.getDisplayType());
+            Assertions.assertNotNull(item.getFee());
+            Assertions.assertNotNull(item.getOrderType());
+            Assertions.assertNotNull(item.getTradeType());
+            Assertions.assertNotNull(item.getCreatedAt());
+            Assertions.assertNotNull(item.getOpenFeeTaxPay());
+            Assertions.assertNotNull(item.getCloseFeeTaxPay());
+        });
+
+        log.info("resp: {}", mapper.writeValueAsString(resp));
+    }
+
+    /**
+    * cancelAllOrdersV1
+    * Cancel All Orders - V1
+    * /api/v1/orders
+    */
+    @Test
+    public void testCancelAllOrdersV1() throws Exception {
+        CancelAllOrdersV1Req.CancelAllOrdersV1ReqBuilder builder = CancelAllOrdersV1Req.builder();
+        builder.symbol(?);
+        CancelAllOrdersV1Req req = builder.build();
+        CancelAllOrdersV1Resp resp = api.cancelAllOrdersV1(req);
+        resp.getCancelledOrderIds().forEach( item -> {
+        });
+
+        log.info("resp: {}", mapper.writeValueAsString(resp));
+    }
+

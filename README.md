@@ -58,6 +58,16 @@ npm install kucoin-universal-sdk
 composer require kucoin/kucoin-universal-sdk=0.1.3-alpha
 ```
 
+### Java Installation(0.1.0-alpha)
+**Note**: This SDK is currently in the Alpha phase. We are actively iterating and improving its features, stability, and documentation. Feedback and contributions are highly encouraged to help us refine the SDK.
+```bash
+<dependency>
+    <groupId>com.kucoin</groupId>
+    <artifactId>kucoin-universal-sdk</artifactId>
+    <version>0.1.0-alpha</version>
+</dependency>
+```
+
 ### Postman Installation  
 Visit the [KuCoin API Collection on Postman](https://www.postman.com/kucoin-api/kucoin-api/overview)
 
@@ -137,6 +147,7 @@ For other languages, refer to the [Examples](#-examples) section.
 - **[Go Documentation](sdk/golang/README.md)**
 - **[Node.js Documentation](sdk/node/README.md)**
 - **[PHP Documentation](sdk/php/README.md)**
+- **[Java Documentation](sdk/java/README.md)**
 - **[Postman Documentation](sdk/postman/README.md)**
 
 ## 📂 Examples
@@ -147,7 +158,8 @@ Find usage examples for your desired language by selecting the corresponding lin
 | Python   | [sdk/python/examples/](sdk/python/example/)|
 | Go       | [sdk/go/examples/](sdk/golang/example/)    |
 | Node.js  | [sdk/node/examples/](sdk/node/example/)    |
-| PHP  | [sdk/php/examples/](sdk/php/example/)    |
+| PHP      | [sdk/php/examples/](sdk/php/example/)      |
+| Java     | [sdk/java/examples/](sdk/java/example/)    |
 
 ## 📋 Changelog
 
@@ -236,12 +248,7 @@ Before you begin, ensure the following dependencies are installed:
 
 5. **Run Tests**  
    Run automatically generated tests for all SDKs.
-   Command: `make test`
-
-6. **Run All Steps**  
-   Execute the entire pipeline: build tools, preprocess specifications, validate, and generate code.  
-   Command: `make all`
-
+   Command: `make auto-test`
 
 ## 🤝 Contribution Guidelines
 

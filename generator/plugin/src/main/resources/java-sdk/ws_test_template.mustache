@@ -1,0 +1,31 @@
+
+{{#operations}}
+    {{#operation}}
+    /**
+    * {{vendorExtensions.x-meta.method}}
+    * {{summary}}
+    * {{path}}
+    */
+    public void test{{vendorExtensions.x-meta.methodServiceFmt}}() {
+        {{#vendorExtensions.x-response-model}}
+        {{#vars}}
+            {{#isArray}}
+        event.{{getter}}().forEach( item -> {
+                {{#vendorExtensions.x-response-inner-model}}
+                    {{#vars}}
+            Assertions.assertNotNull(item.{{getter}}());
+                    {{/vars}}
+                {{/vendorExtensions.x-response-inner-model}}
+        });
+
+            {{/isArray}}
+            {{^isArray}}
+        Assertions.assertNotNull(event.{{getter}}());
+            {{/isArray}}
+        {{/vars}}
+        log.info("event: {}", event.toString());
+        {{/vendorExtensions.x-response-model}}
+    }
+
+    {{/operation}}
+{{/operations}}

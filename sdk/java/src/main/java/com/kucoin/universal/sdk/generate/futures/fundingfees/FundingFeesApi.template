@@ -1,0 +1,73 @@
+
+    /**
+    * getCurrentFundingRate
+    * Get Current Funding Rate
+    * /api/v1/funding-rate/{symbol}/current
+    */
+    @Test
+    public void testGetCurrentFundingRate() throws Exception {
+        GetCurrentFundingRateReq.GetCurrentFundingRateReqBuilder builder = GetCurrentFundingRateReq.builder();
+        builder.symbol(?);
+        GetCurrentFundingRateReq req = builder.build();
+        GetCurrentFundingRateResp resp = api.getCurrentFundingRate(req);
+        Assertions.assertNotNull(resp.getSymbol());
+        Assertions.assertNotNull(resp.getGranularity());
+        Assertions.assertNotNull(resp.getTimePoint());
+        Assertions.assertNotNull(resp.getValue());
+        Assertions.assertNotNull(resp.getPredictedValue());
+        Assertions.assertNotNull(resp.getFundingRateCap());
+        Assertions.assertNotNull(resp.getFundingRateFloor());
+        Assertions.assertNotNull(resp.getPeriod());
+        Assertions.assertNotNull(resp.getFundingTime());
+        log.info("resp: {}", mapper.writeValueAsString(resp));
+    }
+
+    /**
+    * getPublicFundingHistory
+    * Get Public Funding History
+    * /api/v1/contract/funding-rates
+    */
+    @Test
+    public void testGetPublicFundingHistory() throws Exception {
+        GetPublicFundingHistoryReq.GetPublicFundingHistoryReqBuilder builder = GetPublicFundingHistoryReq.builder();
+        builder.symbol(?).from(?).to(?);
+        GetPublicFundingHistoryReq req = builder.build();
+        GetPublicFundingHistoryResp resp = api.getPublicFundingHistory(req);
+        resp.getData().forEach( item -> {
+            Assertions.assertNotNull(item.getSymbol());
+            Assertions.assertNotNull(item.getFundingRate());
+            Assertions.assertNotNull(item.getTimepoint());
+        });
+
+        log.info("resp: {}", mapper.writeValueAsString(resp));
+    }
+
+    /**
+    * getPrivateFundingHistory
+    * Get Private Funding History
+    * /api/v1/funding-history
+    */
+    @Test
+    public void testGetPrivateFundingHistory() throws Exception {
+        GetPrivateFundingHistoryReq.GetPrivateFundingHistoryReqBuilder builder = GetPrivateFundingHistoryReq.builder();
+        builder.symbol(?).startAt(?).endAt(?).reverse(?).offset(?).forward(?).maxCount(?);
+        GetPrivateFundingHistoryReq req = builder.build();
+        GetPrivateFundingHistoryResp resp = api.getPrivateFundingHistory(req);
+        resp.getDataList().forEach( item -> {
+            Assertions.assertNotNull(item.getId());
+            Assertions.assertNotNull(item.getSymbol());
+            Assertions.assertNotNull(item.getTimePoint());
+            Assertions.assertNotNull(item.getFundingRate());
+            Assertions.assertNotNull(item.getMarkPrice());
+            Assertions.assertNotNull(item.getPositionQty());
+            Assertions.assertNotNull(item.getPositionCost());
+            Assertions.assertNotNull(item.getFunding());
+            Assertions.assertNotNull(item.getSettleCurrency());
+            Assertions.assertNotNull(item.getContext());
+            Assertions.assertNotNull(item.getMarginMode());
+        });
+
+        Assertions.assertNotNull(resp.getHasMore());
+        log.info("resp: {}", mapper.writeValueAsString(resp));
+    }
+

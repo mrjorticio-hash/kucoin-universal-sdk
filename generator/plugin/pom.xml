@@ -17,6 +17,7 @@
         <maven.compiler.plugin.version>3.6.1</maven.compiler.plugin.version>
         <ascii-table.version>1.8.0</ascii-table.version>
         <csv.version>5.7.1</csv.version>
+        <commons-lang3.version>3.17.0</commons-lang3.version>
     </properties>
 
     <dependencies>
@@ -41,6 +42,12 @@
             <groupId>com.opencsv</groupId>
             <artifactId>opencsv</artifactId>
             <version>${csv.version}</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>${commons-lang3.version}</version>
             <scope>compile</scope>
         </dependency>
     </dependencies>

@@ -1,0 +1,45 @@
+{{>partial_header}}
+package {{package}};
+import com.kucoin.universal.sdk.internal.interfaces.WebSocketService;
+
+public class {{classname}}Impl implements {{classname}} {
+
+    private final WebSocketService wsService;
+
+    public {{classname}}Impl(WebSocketService wsService) {
+        this.wsService = wsService;
+    }
+
+{{#operations}}
+    {{#operation}}
+
+    public String {{vendorExtensions.x-meta.method}}{{operationName}}({{#vendorExtensions.x-meta.otherProperties}}{{#parameters}}{{#type}}{{#type.simple}}String {{paras}},{{/type.simple}}{{#type.array}}String[] {{paras}},{{/type.array}}{{#type.object}}{{#paras}}String {{.}},{{/paras}}{{/type.object}}{{/type}}{{/parameters}}{{/vendorExtensions.x-meta.otherProperties}}{{vendorExtensions.x-meta.methodServiceFmt}}Event.Callback callback) {
+        String topicPrefix = "{{vendorExtensions.x-meta.otherProperties.topic}}";
+        {{#vendorExtensions.x-meta.otherProperties}}{{#parameters}}{{#type}}
+        {{#type.none}}String []args = {};{{/type.none}}
+        {{#type.simple}}String []args = { {{#paras}}{{.}}{{/paras}} };{{/type.simple}}
+        {{#type.array}}String []args = {{paras}};{{/type.array}}
+        {{#type.object}}String []args = { String.join("_",{{#paras}}{{.}}{{^-last}},{{/-last}}{{/paras}}) };{{/type.object}}
+        {{/type}}{{/parameters}}{{/vendorExtensions.x-meta.otherProperties}}
+        return this.wsService.subscribe(
+            topicPrefix,
+            args,
+            {{vendorExtensions.x-meta.methodServiceFmt}}Event.CallbackAdapters.of(callback)
+        );
+    }
+    {{/operation}}
+{{/operations}}
+
+    public void unSubscribe(String id){
+        this.wsService.unsubscribe(id);
+    }
+
+    public void start(){
+        this.wsService.start();
+    }
+
+    public void stop(){
+        this.wsService.stop();
+    }
+
+}

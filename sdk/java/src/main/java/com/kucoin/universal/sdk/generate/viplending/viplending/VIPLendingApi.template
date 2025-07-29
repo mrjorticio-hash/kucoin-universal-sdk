@@ -1,0 +1,65 @@
+
+    /**
+    * getDiscountRateConfigs
+    * Get Discount Rate Configs
+    * /api/v1/otc-loan/discount-rate-configs
+    */
+    @Test
+    public void testGetDiscountRateConfigs() throws Exception {
+        GetDiscountRateConfigsResp resp = api.getDiscountRateConfigs();
+        resp.getData().forEach( item -> {
+            Assertions.assertNotNull(item.getCurrency());
+            Assertions.assertNotNull(item.getUsdtLevels());
+        });
+
+        log.info("resp: {}", mapper.writeValueAsString(resp));
+    }
+
+    /**
+    * getLoanInfo
+    * Get Loan Info
+    * /api/v1/otc-loan/loan
+    */
+    @Test
+    public void testGetLoanInfo() throws Exception {
+        GetLoanInfoResp resp = api.getLoanInfo();
+        Assertions.assertNotNull(resp.getParentUid());
+        resp.getOrders().forEach( item -> {
+            Assertions.assertNotNull(item.getOrderId());
+            Assertions.assertNotNull(item.getPrincipal());
+            Assertions.assertNotNull(item.getInterest());
+            Assertions.assertNotNull(item.getCurrency());
+        });
+
+        Assertions.assertNotNull(resp.getLtv());
+        Assertions.assertNotNull(resp.getTotalMarginAmount());
+        Assertions.assertNotNull(resp.getTransferMarginAmount());
+        resp.getMargins().forEach( item -> {
+            Assertions.assertNotNull(item.getMarginCcy());
+            Assertions.assertNotNull(item.getMarginQty());
+            Assertions.assertNotNull(item.getMarginFactor());
+        });
+
+        log.info("resp: {}", mapper.writeValueAsString(resp));
+    }
+
+    /**
+    * getAccounts
+    * Get Accounts
+    * /api/v1/otc-loan/accounts
+    */
+    @Test
+    public void testGetAccounts() throws Exception {
+        GetAccountsResp resp = api.getAccounts();
+        resp.getData().forEach( item -> {
+            Assertions.assertNotNull(item.getUid());
+            Assertions.assertNotNull(item.getMarginCcy());
+            Assertions.assertNotNull(item.getMarginQty());
+            Assertions.assertNotNull(item.getMarginFactor());
+            Assertions.assertNotNull(item.getAccountType());
+            Assertions.assertNotNull(item.getIsParent());
+        });
+
+        log.info("resp: {}", mapper.writeValueAsString(resp));
+    }
+
