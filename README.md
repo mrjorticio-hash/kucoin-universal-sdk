@@ -52,10 +52,10 @@ go mod tidy
 npm install kucoin-universal-sdk
 ```
 
-### PHP Installation(0.1.2-alpha)
+### PHP Installation(0.1.3-alpha)
 **Note**: This SDK is currently in the Alpha phase. We are actively iterating and improving its features, stability, and documentation. Feedback and contributions are highly encouraged to help us refine the SDK.
 ```bash
-composer require kucoin/kucoin-universal-sdk=0.1.2-alpha
+composer require kucoin/kucoin-universal-sdk=0.1.3-alpha
 ```
 
 ### Java Installation(0.1.0-alpha)
